@@ -22,9 +22,12 @@ BANKS = {  # file → fixed section (practice banks)
 }
 YEAR_RX = re.compile(r"(20\d\d)")
 DEV = re.compile(r"[\u0900-\u097F]")
-SKT_WORDS = re.compile(r"\b(अस्ति|भवति|सन्ति|भवन्ति|कुरुत|चिनुत|लिखत|पठत|अस्मिन्|तेषां|तासां|एतेषु|"
-    r"अधोलिखित\S*|उदाहरणानुसार\S*|इति|एव|किम्|कथम्|कुत्र|अहम्|वयम्|भवान्|भवत:|छात्राणां|"
-    r"कथनम्|वाक्यम्|पदम्|नाम|अत्र|तत्र|यत्र|सह|विना|कृते|द्वारा़?)\b")
+SKT_WORDS = re.compile(
+    r"(?<![\u0900-\u0939\u093C-\u094D\u0958-\u0963])"
+    r"(अस्ति|भवति|सन्ति|भवन्ति|कुरुत|चिनुत|लिखत|पठत|अस्मिन्|तेषां|तासां|एतेषु|"
+    r"अधोलिखित\S*|उदाहरणानुसार\S*|इति|एव|किम्|कथम्|कुत्र|अहम्|वयम्|यूयम्|भवान्|भवत:|छात्राणां|"
+    r"कथनम्|वाक्यम्|पदम्|अत्र|तत्र|यत्र|कृते)"
+    r"(?![\u0900-\u0939\u093C-\u094D\u0958-\u0963])")
 
 def sanskrit_score(txt):
     sc = 0
@@ -32,6 +35,7 @@ def sanskrit_score(txt):
     sc += 2 * len(re.findall(r"[क-ह]्?[ा-ौ]?म्(?=[\s,।!?)\-]|$)", txt))    # -म् endings
     sc += 2 * len(re.findall(r"(?<!रह)(?<!सद)स्य(?=[\s,।!?)\-]|$)", txt)) # genitive -स्य
     sc += 2 * len(re.findall(r"(ेषु|ायाम्|ाभि:|ाभिः|ानाम्|ेभ्य:|ेभ्यः)(?=[\s,।]|$)", txt))
+    sc += len(re.findall(r"[क-ह]ेन(?=[\s,।!?)\-]|$)", txt))        # instrumental -ेन
     sc += len(SKT_WORDS.findall(txt))
     return sc
 
@@ -74,17 +78,41 @@ def sec_from_heading(line):
     return None
 
 def sec_for_q(part, qno, stem_all, opts_all):
-    """CTET Paper-1 ka structure FIXED hai — headings ke bharose nahi,
-    canonical ranges: 1-30 cdp, 31-60 math, 61-90 evs, 91+ language."""
+    """1-30 cdp, 31-60 math, 61-90 evs; 91+ = language (post-pass me run-level decide)."""
     if 1 <= qno <= 30: return "cdp"
     if 31 <= qno <= 60: return "math"
     if 61 <= qno <= 90: return "evs"
-    # language section (91-150 + variants >150): content se decide
-    txt = stem_all + " " + " ".join(opts_all)
-    d, l = devanagari_ratio(txt)
-    if is_sanskrit(txt): return "sanskrit"
-    if l > d * 2: return "english"
-    return "hindi"
+    return "LANG"
+
+def assign_language_runs(items):
+    """items: file-order me (idx, qno, txt) language questions.
+    Consecutive qno-runs banakar poore run ka language decide karo —
+    sanskrit variant sections hamesha contiguous hote hain."""
+    out = {}
+    runs, cur = [], []
+    prev = None
+    for it in items:
+        new_run = False
+        if cur:
+            if not (prev < it[1] <= prev + 3):
+                new_run = True                       # numbering reset/jump
+            elif (it[1] - 91) // 30 != (prev - 91) // 30:
+                new_run = True                       # 30-question section boundary (91-120, 121-150, ...)
+        if new_run:
+            runs.append(cur); cur = []
+        cur.append(it); prev = it[1]
+    if cur: runs.append(cur)
+    for run in runs:
+        txts = [t for _, _, t in run]
+        d = sum(len(DEV.findall(t)) for t in txts)
+        l = sum(len(re.findall(r"[A-Za-z]", t)) for t in txts)
+        avg_skt = sum(sanskrit_score(t) for t in txts) / len(txts)
+        if l > d * 2: sec = "english"
+        elif avg_skt >= 2.0: sec = "sanskrit"
+        else: sec = "hindi"
+        for idx, _, _ in run:
+            out[idx] = sec
+    return out
 
 ANS_MAP = {"a": 0, "b": 1, "c": 2, "d": 3, "1": 0, "2": 1, "3": 2, "4": 3}
 
@@ -102,6 +130,7 @@ for path in sorted(glob.glob(os.path.join(SRC, "*.md")), key=str.lower):
     label = re.sub(r"\.md$|_watermark", "", fn).replace("CTET", "").strip(" -_")
     label = re.sub(r"\s+", " ", label)
 
+    pending = []
     part = None
     lines = text.split("\n")
     # प्रश्न blocks with running section state
@@ -152,8 +181,6 @@ for path in sorted(glob.glob(os.path.join(SRC, "*.md")), key=str.lower):
             stats["bad_opts"] += 1; continue
 
         sec = bank_sec or sec_for_q(bpart, qno, stem, opts)
-        if sec == "sanskrit":
-            stats["sanskrit"] += 1; continue
 
         q_en, q_hi = split_bilingual(stem)
         o_en, o_hi = [], []
@@ -187,7 +214,7 @@ for path in sorted(glob.glob(os.path.join(SRC, "*.md")), key=str.lower):
         src = f"CTET {label} Q{qno}" if not bank_sec else f"CTET Bank {label} Q{qno}" + (f" [{srctag}]" if srctag else "")
         topic = "CTET विगत वर्ष" if is_pyq == "1" else "CTET अभ्यास"
 
-        rows.append({
+        pending.append({
             "exams": "ctet1", "section": sec, "topic": topic, "difficulty": "2",
             "pid": pid, "pseq": str(qno) if pid else "", "p_kind": pkind if pbody else "",
             "p_dir": pdir, "p_body": pbody,
@@ -197,6 +224,18 @@ for path in sorted(glob.glob(os.path.join(SRC, "*.md")), key=str.lower):
             "ans": str(ans), "source": src, "is_pyq": is_pyq, "years": yrs,
         })
         stats["ok"] += 1
+
+    # language runs resolve karo (sirf papers, banks nahi)
+    lang_items = [(i, int(re.search(r" Q(\d+)", r["source"]).group(1)), 
+                   r["q_hi"] + " " + r["a_hi"] + " " + r["b_hi"] + " " + r["c_hi"] + " " + r["d_hi"])
+                  for i, r in enumerate(pending) if r["section"] == "LANG"]
+    secmap = assign_language_runs(lang_items) if lang_items else {}
+    for i, r in enumerate(pending):
+        if r["section"] == "LANG":
+            r["section"] = secmap.get(i, "hindi")
+        if r["section"] == "sanskrit":
+            stats["sanskrit"] += 1; stats["ok"] -= 1; continue
+        rows.append(r)
 
 hdr = ["exams","section","topic","difficulty","pid","pseq","p_kind","p_dir","p_body",
        "q_hi","a_hi","b_hi","c_hi","d_hi","q_en","a_en","b_en","c_en","d_en",
