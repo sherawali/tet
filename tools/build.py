@@ -3,27 +3,9 @@
 CSV  →  immutable packs + manifest
 तू सिर्फ़ content/*.csv में पंक्तियाँ जोड़ेगा। बाकी सब ये करेगा।
 """
-import csv,json,hashlib,os,glob,sys,re,math
-
-# ═══════════════════════════════════════════════════════════════
-#  «आने की संभावना» का formula — यहीं अंदर है, अलग फाइल नहीं चाहिए
-#  इसी गणित से बने मॉक से UTET 29-सित-2026 के असली पेपर में
-#  5–10 प्रश्न मिले थे।
-# ═══════════════════════════════════════════════════════════════
-YEAR_W = {"2021":0.08,"2022":0.12,"2023":0.20,"2024":0.30,"2025":0.50,"2026":0.60}
-N_YEARS = 3
-
-def p_score(years, topic_years, is_pyq):
-    years=[y for y in years if y]
-    k=len(years)
-    laplace=(k+1)/(N_YEARS+2)
-    lam=sum(YEAR_W.get(y,0.25) for y in years)
-    recency=1-math.exp(-2.2*lam) if lam else 0.0
-    concept=0.55*laplace + 0.45*recency
-    topic=(topic_years+1)/(N_YEARS+2)
-    s=0.60*concept + 0.40*topic
-    if is_pyq: s=min(1.0, s*1.15)
-    return round(s,4)
+import csv,json,hashlib,os,glob,sys,re
+sys.path.insert(0,os.path.dirname(os.path.abspath(__file__)))
+from pscore import p_score
 
 
 ROOT=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
