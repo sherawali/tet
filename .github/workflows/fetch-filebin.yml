@@ -4,19 +4,46 @@ on:
   push:
     branches: [ "arena/01a0fbb2-tet" ]
     paths: [ ".github/workflows/fetch-filebin.yml" ]
+permissions:
+  contents: write
 jobs:
   fetch:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: arena/01a0fbb2-tet
       - name: Download filebin archive
         run: |
-          mkdir -p pdfs
-          curl -sL -A "curl/8.5.0" -o pdfs.tar "https://filebin.net/archive/jpczx4symu5d277x/tar"
-          tar -xf pdfs.tar -C pdfs
-          ls -la pdfs
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: filebin-pdfs
-          path: pdfs/
-          compression-level: 6
+          mkdir -p /tmp/pdfs
+          curl -sL -A "curl/8.5.0" -o /tmp/pdfs.tar "https://filebin.net/archive/jpczx4symu5d277x/tar"
+          tar -xf /tmp/pdfs.tar -C /tmp/pdfs
+          ls -la /tmp/pdfs
+      - name: Extract text with PyMuPDF
+        run: |
+          pip install --quiet pymupdf
+          python3 - <<'EOF'
+          import pymupdf, os, glob
+          os.makedirs("tmp_extracted", exist_ok=True)
+          for p in sorted(glob.glob("/tmp/pdfs/*.pdf")):
+              name = os.path.splitext(os.path.basename(p))[0]
+              try:
+                  doc = pymupdf.open(p)
+                  parts = []
+                  for i, page in enumerate(doc):
+                      parts.append(f"\n===== PAGE {i+1} =====\n")
+                      parts.append(page.get_text("text"))
+                  txt = "".join(parts)
+                  with open(f"tmp_extracted/{name}.txt", "w", encoding="utf-8") as f:
+                      f.write(txt)
+                  print(name, len(doc), "pages", len(txt), "chars")
+              except Exception as e:
+                  print("FAIL", name, e)
+          EOF
+      - name: Commit extracted text
+        run: |
+          git config user.name "filebin-fetch-bot"
+          git config user.email "bot@example.com"
+          git add tmp_extracted
+          git commit -m "tmp: extracted text from filebin PDFs"
+          git push origin arena/01a0fbb2-tet
