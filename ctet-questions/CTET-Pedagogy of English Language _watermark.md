@@ -993,8 +993,8 @@ Grammar cum translation method is used as a Second language. This method which o
 
 ### प्रश्न 67
 
-New Method of teaching English is developed by: (A) I.K. Davies
-
+New Method of teaching English is developed by: 
+- **(a)** I.K. Davies
 - **(b)** B.S. Bloom
 - **(c)** Dr. West
 - **(d)** None of these
@@ -2537,8 +2537,8 @@ A teacher asks her learners of class VIII to read a novel by Indian author and a
 
 ### प्रश्न 170
 
-Who of the following proposed Listening- Speaking-Writing-Reading order teaching for learning English as foreign language? (A) E. C. Kittson
-
+Who of the following proposed Listening- Speaking-Writing-Reading order teaching for learning English as foreign language? 
+- **(a)** E. C. Kittson
 - **(b)** Robert Paul
 - **(c)** J. A. Bright
 - **(d)** P. Gurrey
@@ -3841,8 +3841,8 @@ Simple substitution the variables cannot be interchanged. A simple substitution 
 
 ### प्रश्न 257
 
-The text-books help the teachers in which of the following ways? (A) It makes the teaching of English systematic
-
+The text-books help the teachers in which of the following ways? 
+- **(a)** It makes the teaching of English systematic
 - **(b)** It checks the teacher from going astray
 - **(c)** It facilitates self-learning and self-study
 - **(d)** All of these
@@ -4350,8 +4350,8 @@ Remedial classes ऐसे learners के लिए महत्वपूर्
 
 ### प्रश्न 291
 
-A disorder related to language comprehension is: (A) Aphasia
-
+A disorder related to language comprehension is: 
+- **(a)** Aphasia
 - **(b)** Apraxia
 - **(c)** Dysiexia
 - **(d)** Aspeechxia
