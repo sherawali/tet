@@ -1,0 +1,19 @@
+name: fetch-filebin
+on:
+  workflow_dispatch:
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download filebin archive
+        run: |
+          mkdir -p pdfs
+          curl -sL -A "curl/8.5.0" -o pdfs.tar "https://filebin.net/archive/jpczx4symu5d277x/tar"
+          tar -xf pdfs.tar -C pdfs
+          ls -la pdfs
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: filebin-pdfs
+          path: pdfs/
+          compression-level: 6
