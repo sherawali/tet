@@ -5,7 +5,7 @@
 
 ### प्रश्न 1
 
-The OMR Answer Sheet is inside this Test Booklet. When you are directed to open the Test Booklet, take out the Answer Sheet and fill in the particulars on Side-1 and Side-2 carefully with blue/black ball point pen only. 2. The test is of 2½ hours duration and consists of 150 questions. There is no negative marking. 3. Use Blue/Black Ball Point Pen only for writing particulars on this page/ marking responses in the Answer Sheet. 4. The CODE for this Booklet is A. Make sure that the CODE printed on Side-2 of the Answer Sheet is the same as that on this Booklet. Also ensure that your Test Booklet No. and Answer Sheet No. are the same. In case of discrepancy, the candidate should immediately report the matter to the Invigilator for replacement of both the Test Booklet and the Answer Sheet. 5. This Test Booklet has five Parts, I, II, III, IV and V, consisting of 150 Objective Type Questions and each carries 1 mark : : Child Development and Pedagogy (Q.Nos. 1-30) : Mathematics (Q.Nos. 31-60) (Q.Nos. 61-90) (Q.Nos. 91-120) : Language-II (English/Hindi) (Q.Nos. 121-150) 6. for Language-II. In this Test Booklet, only questions pertaining to English and Hindi language have been given. In case the language/s you have opted for as Language-I and/or Language-II is a language other than English or Hindi, please ask for a Supplement (Language) Test Booklet of A Code that contains questions on that language. The languages being answered must tally with the languages opted for in your Application Form. No change in languages is allowed. 7. Candidates are required to attempt questions in Language-II (Part-V) in a language other than the one chosen as Language-I (Part-IV) from the list of languages. 8. Rough work should be done only in the space provided in the Test Booklet for the same. 9. The answers are to be recorded on the OMR Answer Sheet only. Mark your responses carefully. No whitener is allowed for changing answers. 10. In case of any discrepancy in the English and Hindi versions of questions/ answers, English version will be taken as final. Name of the Candidate (in Capital Letters) : ___________________________________________________________________________________________________ परीक्षार्थी का नाम (बड़े अक्षरों में) : Roll Number (अनुक्रमांक) : in figures (अंकों में) ________________________________________________________________________________________________ : in words (शब्दों में) ________________________________________________________________________________________________ Centre of Examination (in Capital Letters) : _____________________________________________________________________________________________________ परीक्षा केन्द्र (बड़े अक्षरों में) : Candidate’s Signature : _______________________________________________ Invigilator’s Signature : _________________________________________________ परीक्षार्थी के हस्ताक्षर : निरीक्षक के हस्ताक्षर : Facsimile signature stamp of Centre Superintendent : ____________________________________________________________________________________________ ¬⁄UËˇÊÊÁÕ¸ÿÊ¥ ∑§ Á‹∞ ÁŸŒ¸‡Ê 1. OMR उत्तर पत्र इस परीक्षा पुस्तिका के अन्दर रखा है। जब आपको परीक्षा पुस्तिका खोलने को कहा जाए, तो उत्तर पत्र निकाल कर पृष्ठ-1 एवं पृष्ठ-2 पर ध्यान से केवल नीले/काले बॉल पॉइंट पेन से विवरण भरें। 2. परीक्षा की अवधि 2½ घंटे हैं एवं परीक्षा में 150 प्रश्न हैं। कोई ऋणात्मक अंकन नहीं है। 3. इस पृष्ठ पर विवरण अंकित करने एवं उत्तर पत्र पर निशान लगाने के लिए केवल नीले/काले बॉल पॉइंट पेन का प्रयोग करें। 4. इस पुस्तिका का कोड A है। यह सुनिश्चित कर लें कि इस पुस्तिका का कोड, उत्तर पत्र के पृष्ठ-2 पर छपे कोड से मिलता है। यह भी सुनिश्चित कर लें कि परीक्षा पुस्तिका संख्या और उत्तर पत्र संख्या मिलते हैं। अगर यह भिन्न हों तो परीक्षार्थी दूसरी परीक्षा पुस्तिका और उत्तर पत्र लेने के लिए निरीक्षक को तुरन्त अवगत कराएँ। 5. इस परीक्षा पुस्तिका में पाँच भाग I, II, III, IV और V हैं, जिनमें 150 वस्तुनिष्ठ प्रश्न हैं, तथा प्रत्येक 1 अंक का है : : बाल विकास व शिक्षाशास्त्र (प्रश्न सं. 1-30) : गणित (प्रश्न सं. 31-60) (प्रश्न सं. 61-90) (प्रश्न सं. 91-120) (प्रश्न सं. 121-150) 6. भाग-IV में भाषा-I के लिए 30 प्रश्न और भाग-V में भाषा-II के लिए 30 प्रश्न दिए गए हैं। इस परीक्षा पुस्तिका में केवल अंगे्र$जी व हिन्दी भाषा से संबंधित प्रश्न दिए गए हैं। यदि भाषा-I और/या भाषा-II में आपके द्वारा चुनी गई भाषा(एँ) अंगे्र$जी या हिन्दी के अलावा है/हैं तो कृपया A कोड वाली उस भाषा वाली परिशिष्ट (भाषा) परीक्षा पुस्तिका माँग लीजिए। जिन भाषाओं के प्रश्नों के उत्तर आप दे रहे हैं वह आवेदन पत्र में चुनी गई भाषाओं से अवश्य मेल खानी चाहिए। भाषाओं का परिवर्तन अनुमन्य नहीं है। 7. परीक्षार्थी भाषा-II (भाग-V) के लिए, भाषा सूची से ऐसी भाषा चुनें जो उनके द्वारा भाषा-I (भाग-IV) में चुनी गई भाषा से भिन्न हो। 8. रफ कार्य परीक्षा पुस्तिका में इस प्रयोजन के लिए दी गई खाली जगह पर ही करें। 9. सभी उत्तर केवल OMR उत्तर पत्र पर ही अंकित करें। अपने उत्तर ध्यानपूर्वक अंकित करें। उत्तर बदलने हेतु श्वेत रंजक का प्रयोग निषिद्ध है। 10. यदि अंगे्र$जी और हिन्दी संस्करण के प्रश्नों/उत्तरों में कोई विसंगति हो तो अंगे्र$जी संस्करण अंतिम माना जायेगा। Main Test Booklet Code / मुख्य परीक्षा पुस्तिका कोड CHILD DEVELOPMENT AND PEDAGOGY / ’Ê‹ Áﬂ∑§Ê‚ ﬂ Á‡ÊˇÊÊ‡ÊÊSòÊ 1. Which of the following would support continuous and comprehensive evaluation ? / निम्नलिखित में से कौन-सा निरंतर और व्यापक मूल्यांकन का समर्थन करेगा?
+The OMR Answer Sheet is inside this Test Booklet. When you are directed to open the Test Booklet, take out the Answer Sheet and fill in the particulars on Side-1 and Side-2 carefully with blue/black ball point pen only. 2. The test is of 2½ hours duration and consists of 150 questions. There is no negative marking. 3. Use Blue/Black Ball Point Pen only for writing particulars on this page/ marking responses in the Answer Sheet. 4. The CODE for this Booklet is A. Make sure that the CODE printed on Side-2 of the Answer Sheet is the same as that on this Booklet. Also ensure that your Test Booklet No. and Answer Sheet No. are the same. In case of discrepancy, the candidate should immediately report the matter to the Invigilator for replacement of both the Test Booklet and the Answer Sheet. 5. This Test Booklet has five Parts, I, II, III, IV and V, consisting of 150 Objective Type Questions and each carries 1 mark : : Child Development and Pedagogy (Q.Nos. 1-30) : Mathematics (Q.Nos. 31-60) (Q.Nos. 61-90) (Q.Nos. 91-120) : Language-II (English/Hindi) (Q.Nos. 121-150) 6. for Language-II. In this Test Booklet, only questions pertaining to English and Hindi language have been given. In case the language/s you have opted for as Language-I and/or Language-II is a language other than English or Hindi, please ask for a Supplement (Language) Test Booklet of A Code that contains questions on that language. The languages being answered must tally with the languages opted for in your Application Form. No change in languages is allowed. 7. Candidates are required to attempt questions in Language-II (Part-V) in a language other than the one chosen as Language-I (Part-IV) from the list of languages. 8. Rough work should be done only in the space provided in the Test Booklet for the same. 9. The answers are to be recorded on the OMR Answer Sheet only. Mark your responses carefully. No whitener is allowed for changing answers. 10. In case of any discrepancy in the English and Hindi versions of questions/ answers, English version will be taken as final. Name of the Candidate (in Capital Letters) : ___________________________________________________________________________________________________ परीक्षार्थी का नाम (बड़े अक्षरों में) : Roll Number (अनुक्रमांक) : in figures (अंकों में) ________________________________________________________________________________________________ : in words (शब्दों में) ________________________________________________________________________________________________ Centre of Examination (in Capital Letters) : _____________________________________________________________________________________________________ परीक्षा केन्द्र (बड़े अक्षरों में) : Candidate’s Signature : _______________________________________________ Invigilator’s Signature : _________________________________________________ परीक्षार्थी के हस्ताक्षर : निरीक्षक के हस्ताक्षर : Facsimile signature stamp of Centre Superintendent : ____________________________________________________________________________________________ परीक्षार्थियों के लिए निर्देश 1. OMR उत्तर पत्र इस परीक्षा पुस्तिका के अन्दर रखा है। जब आपको परीक्षा पुस्तिका खोलने को कहा जाए, तो उत्तर पत्र निकाल कर पृष्ठ-1 एवं पृष्ठ-2 पर ध्यान से केवल नीले/काले बॉल पॉइंट पेन से विवरण भरें। 2. परीक्षा की अवधि 2½ घंटे हैं एवं परीक्षा में 150 प्रश्न हैं। कोई ऋणात्मक अंकन नहीं है। 3. इस पृष्ठ पर विवरण अंकित करने एवं उत्तर पत्र पर निशान लगाने के लिए केवल नीले/काले बॉल पॉइंट पेन का प्रयोग करें। 4. इस पुस्तिका का कोड A है। यह सुनिश्चित कर लें कि इस पुस्तिका का कोड, उत्तर पत्र के पृष्ठ-2 पर छपे कोड से मिलता है। यह भी सुनिश्चित कर लें कि परीक्षा पुस्तिका संख्या और उत्तर पत्र संख्या मिलते हैं। अगर यह भिन्न हों तो परीक्षार्थी दूसरी परीक्षा पुस्तिका और उत्तर पत्र लेने के लिए निरीक्षक को तुरन्त अवगत कराएँ। 5. इस परीक्षा पुस्तिका में पाँच भाग I, II, III, IV और V हैं, जिनमें 150 वस्तुनिष्ठ प्रश्न हैं, तथा प्रत्येक 1 अंक का है : : बाल विकास व शिक्षाशास्त्र (प्रश्न सं. 1-30) : गणित (प्रश्न सं. 31-60) (प्रश्न सं. 61-90) (प्रश्न सं. 91-120) (प्रश्न सं. 121-150) 6. भाग-IV में भाषा-I के लिए 30 प्रश्न और भाग-V में भाषा-II के लिए 30 प्रश्न दिए गए हैं। इस परीक्षा पुस्तिका में केवल अंग्रेज़ी व हिन्दी भाषा से संबंधित प्रश्न दिए गए हैं। यदि भाषा-I और/या भाषा-II में आपके द्वारा चुनी गई भाषा(एँ) अंग्रेज़ी या हिन्दी के अलावा है/हैं तो कृपया A कोड वाली उस भाषा वाली परिशिष्ट (भाषा) परीक्षा पुस्तिका माँग लीजिए। जिन भाषाओं के प्रश्नों के उत्तर आप दे रहे हैं वह आवेदन पत्र में चुनी गई भाषाओं से अवश्य मेल खानी चाहिए। भाषाओं का परिवर्तन अनुमन्य नहीं है। 7. परीक्षार्थी भाषा-II (भाग-V) के लिए, भाषा सूची से ऐसी भाषा चुनें जो उनके द्वारा भाषा-I (भाग-IV) में चुनी गई भाषा से भिन्न हो। 8. रफ कार्य परीक्षा पुस्तिका में इस प्रयोजन के लिए दी गई खाली जगह पर ही करें। 9. सभी उत्तर केवल OMR उत्तर पत्र पर ही अंकित करें। अपने उत्तर ध्यानपूर्वक अंकित करें। उत्तर बदलने हेतु श्वेत रंजक का प्रयोग निषिद्ध है। 10. यदि अंग्रेज़ी और हिन्दी संस्करण के प्रश्नों/उत्तरों में कोई विसंगति हो तो अंग्रेज़ी संस्करण अंतिम माना जायेगा। Main Test Booklet Code / मुख्य परीक्षा पुस्तिका कोड CHILD DEVELOPMENT AND PEDAGOGY / बाल विकास व शिक्षाशास्त्र 1. Which of the following would support continuous and comprehensive evaluation ? / निम्नलिखित में से कौन-सा निरंतर और व्यापक मूल्यांकन का समर्थन करेगा?
 
 - **(1)** Best works portfolio / सर्वश्रेष्ठ कार्य पोर्टफोलियो
 - **(2)** Growth and learning progress portfolio / वृद्धि और अधिगम प्रगति पोर्टफोलियो
@@ -30,11 +30,11 @@ The OMR Answer Sheet is inside this Test Booklet. When you are directed to open 
 
 ## भाग-III : पर्यावरण अध्ययन
 
-## भाग-IV : भाषा-I (अंगे्र$जी/हिन्दी)
+## भाग-IV : भाषा-I (अंग्रेज़ी/हिन्दी)
 
-## भाग-V : भाषा-II (अंगे्र$जी/हिन्दी)
+## भाग-V : भाषा-II (अंग्रेज़ी/हिन्दी)
 
-## PART - I / ÷Êª - I
+## PART - I / भाग - I
 
 ### प्रश्न 2
 
@@ -47,7 +47,7 @@ Assertion (A) : Teachers should constantly examine their own attitudes and biase
 
 ### प्रश्न 3
 
-While talking about her poor marks in mathematics Avi says “I just don’t have the sense for numbers” Avi is attributing his performance to : / गणित में अपने खराब अंकों के बारे में बात करते हुए अवि कहता है, ''मुो अंकों की समा नहीं हैÓÓ। अवि अपने प्रदर्शन का कारण किसको ठहरा रहा है?
+While talking about her poor marks in mathematics Avi says “I just don’t have the sense for numbers” Avi is attributing his performance to : / गणित में अपने खराब अंकों के बारे में बात करते हुए अवि कहता है, ''मुो अंकों की समा नहीं है’‘। अवि अपने प्रदर्शन का कारण किसको ठहरा रहा है?
 
 - **(1)** Luck / किस्मत
 - **(2)** Task difficulty / कार्य कठिनाई
@@ -69,7 +69,7 @@ Which of the following statement best describes the role of the teacher in progr
 
 - **(1)** The teacher is the primary source of knowledge. / शिक्षक ज्ञान का प्राथमिक स्रोत होते हैं।
 - **(2)** The teacher serves as a facilitator. / शिक्षक एक सुविधाप्रदाता के रूप में कार्य करते हैं।
-- **(3)** The teacher implements the prescribed curriculum ‘as it is’. / शिक्षक निर्धारित पाठ्यक्रम को 'ज्यों का त्योंÓ लागू करते हैं।
+- **(3)** The teacher implements the prescribed curriculum ‘as it is’. / शिक्षक निर्धारित पाठ्यक्रम को 'ज्यों का त्यों’ लागू करते हैं।
 - **(4)** The teacher leaves the children on their own to work independently. / शिक्षक बच्चों को स्वतंत्र रूप से कार्य करने के लिए उनके हाल पर छोड़ देते हैं।
 
 ### प्रश्न 6
@@ -200,7 +200,7 @@ Learners feel engaged and actively involved in process of learning when : / श�
 
 ### प्रश्न 20
 
-Children with ‘learning difficulties’ typically : / आमतौर पर 'सीखने की अक्षमता/कठिनाइयोंÓ वाले बच्चों में :
+Children with ‘learning difficulties’ typically : / आमतौर पर 'सीखने की अक्षमता/कठिनाइयों’ वाले बच्चों में :
 
 - **(1)** Have difficulties in reading due to their poor sight. / नजर कमजोर होने के कारण पढऩे में परेशानी होती है।
 - **(2)** Have problems in regulating their emotions. / अपनी भावनाओं को नियंत्रित करने में समस्या होती है।
@@ -229,9 +229,9 @@ Preconceived generalizations about behaviour of various gender are called : / �
 
 In an inclusive classroom : / एक समावेशी कक्षा में :
 
-- **(1)** ‘Special children’ always work on their own curriculum. / 'विशेष बच्चेÓ हमेशा अपने पाठ्यचर्या पर काम करते हैं।
+- **(1)** ‘Special children’ always work on their own curriculum. / 'विशेष बच्चे’ हमेशा अपने पाठ्यचर्या पर काम करते हैं।
 - **(2)** All children have access to and are included in classroom activities. / सभी बच्चों की कक्षा की गतिविधियों तक पहुँच है और वे कक्षा की क्रिया में शामिल हैं।
-- **(3)** ‘Special’ children are looked upon as needy and dependent. / 'विशेषÓ बच्चों को जरूरतमंद और आश्रित के रूप में देखा जाता है।
+- **(3)** ‘Special’ children are looked upon as needy and dependent. / 'विशेष’ बच्चों को जरूरतमंद और आश्रित के रूप में देखा जाता है।
 - **(4)** All children follow same curriculum and uniform pedagogy is adopted for all learners. / सभी बच्चे समान पाठ्यचर्या का पालन करते हैं और सभी शिक्षार्थियों के लिए समान शिक्षाशास्त्र अपनाया जाता है।
 
 ### प्रश्न 24
@@ -272,7 +272,7 @@ Growth in height and weight of children is an example of : / बच्चों 
 
 ### प्रश्न 28
 
-When presented with Heinz’s dilemma, Arunima reasons : “The law wasn’t set up for these circumstances. Taking the drug in this situation isn’t really right, but it’s justified.” Which stage of moral development is Arunima according to the theory of Lawrence Kohlberg ? / हेंज की दुविधा को पेश किए जाने पर, अरुणिमा तर्क देती हैं : ''कानून इन परिस्थितियों के लिए स्थापित नहीं किया गया था। इस स्थिति में दवा लेना वास्तव में सही नहीं है, लेकिन यह उचित है।ÓÓ लॉरेंस कोहलबर्ग के सिद्धांत के अनुसार अरुणिमा नैतिक विकास की कौन-सी अवस्था है?
+When presented with Heinz’s dilemma, Arunima reasons : “The law wasn’t set up for these circumstances. Taking the drug in this situation isn’t really right, but it’s justified.” Which stage of moral development is Arunima according to the theory of Lawrence Kohlberg ? / हेंज की दुविधा को पेश किए जाने पर, अरुणिमा तर्क देती हैं : ''कानून इन परिस्थितियों के लिए स्थापित नहीं किया गया था। इस स्थिति में दवा लेना वास्तव में सही नहीं है, लेकिन यह उचित है।’’ लॉरेंस कोहलबर्ग के सिद्धांत के अनुसार अरुणिमा नैतिक विकास की कौन-सी अवस्था है?
 
 - **(1)** Social concern and conscience / सामाजिक सरोकार और विवेक
 - **(2)** Morality of contrast, of individual rights and of democratically / नैतिकता का विरोधाभास, व्यक्तिगत अधिकार व लोकतांत्रिकता
@@ -295,9 +295,9 @@ As per Jean Piaget, pre-operational stage is characterized by abilities to perfo
 - **(1)** Classification and seriation / वर्गीकरण और क्रमबद्धता
 - **(2)** Conservation and abstract thinking / संरक्षण और अमूर्त चिंतन
 - **(3)** Imitation and reversibility / नकल और प्रतिवर्तीता
-- **(4)** Symbolic play and animism / प्रतीकात्मक खेल और जीववाद MATHEMATICS / ªÁáÊÃ Direction : Answer the following questions by selecting the correct/most appropriate options. निर्देश : निम्नलिखित प्रश्नों के उत्तर देने के लिए सही/सबसे उपयुक्त विकल्प चुनिए।
+- **(4)** Symbolic play and animism / प्रतीकात्मक खेल और जीववाद MATHEMATICS / गणित Direction : Answer the following questions by selecting the correct/most appropriate options. निर्देश : निम्नलिखित प्रश्नों के उत्तर देने के लिए सही/सबसे उपयुक्त विकल्प चुनिए।
 
-## PART - II / ÷Êª - II
+## PART - II / भाग - II
 
 ### प्रश्न 31
 
@@ -313,7 +313,7 @@ In order to identify individual differences of students in the mathematics class
 Which of the following resources is best suited to explain the concept of decimals ?
 
 - **(a)** Number Chart / and / and / संख्या चार्ट / और / और
-- **(b)** Dienes Blocks / (2) / and / निम्नलिखित में से कौन-सा संसाधन दशमलव की अवधारणा को समााने के लिए सबसे उचित है? / डाइनिस ब्लाक्स / (2) / और / SPACE FOR ROUGH WORK / रफ कार्य के लिए जगह SPACE FOR ROUGH WORK / रफ कार्य के लिए जगह
+- **(b)** Dienes Blocks / (2) / and / निम्नलिखित में से कौन-सा संसाधन दशमलव की अवधारणा को समाने के लिए सबसे उचित है? / डाइनिस ब्लाक्स / (2) / और / SPACE FOR ROUGH WORK / रफ कार्य के लिए जगह SPACE FOR ROUGH WORK / रफ कार्य के लिए जगह
 - **(c)** Taylor’s Abacus / (4) / टेलर का गिनतारा / (4)
 - **(d)** Graph Paper Choose the correct option : (1) Only / (3) / ग्राफ पेपर सही विकल्प चुनें : (1) केवल / (3)
 
@@ -364,16 +364,16 @@ One crore is : / एक करोड़ है :
 
 ### प्रश्न 38
 
-In a certain week, the number of patients in a dental clinic was as follows : Day Number of patients Monday Tuesday Wednesday Thursday Friday Saturday Based on above table, choose the wrong statement : / किसी सप्ताह में एक दंत चिकित्सालय में मरी$जों की संख्या इस प्रकार थी : {XZ _arµOm| H$s g§»`m gmo_dma _§Jbdma ~wYdma ~¥hñn{Vdma ewH«$dma e{Zdma इस तालिका के आधार पर, गलत कथन को चुनिए :
+In a certain week, the number of patients in a dental clinic was as follows : Day Number of patients Monday Tuesday Wednesday Thursday Friday Saturday Based on above table, choose the wrong statement : / किसी सप्ताह में एक दंत चिकित्सालय में मरीज़ों की संख्या इस प्रकार थी : दिन — मरीजों की संख्या : सोमवार, मंगलवार, बुधवार, बृहस्पतिवार, शुक्रवार, शनिवार इस तालिका के आधार पर, गलत कथन को चुनिए :
 
 - **(1)** Range of the data is 27 / आँकड़ों का परिसर 27 है।
-- **(2)** On most of the days, number of patients was more than 30 / अधिकतर दिनों में मरी$जों की संख्या 30 से अधिक थी।
-- **(3)** Difference between the number of patients on Monday and Wednesday is 20 / सोमवार और बुधवार को मरी$जों की संख्या का अंतर 20 है।
-- **(4)** Total number of patients was 200 / मरी$जों की कुल संख्या 200 थी। SPACE FOR ROUGH WORK / रफ कार्य के लिए जगह
+- **(2)** On most of the days, number of patients was more than 30 / अधिकतर दिनों में मरीज़ों की संख्या 30 से अधिक थी।
+- **(3)** Difference between the number of patients on Monday and Wednesday is 20 / सोमवार और बुधवार को मरीज़ों की संख्या का अंतर 20 है।
+- **(4)** Total number of patients was 200 / मरीज़ों की कुल संख्या 200 थी। SPACE FOR ROUGH WORK / रफ कार्य के लिए जगह
 
 ### प्रश्न 39
 
-Which of the following Indian mathematicians are known as founders of ‘numerical analysis’ ? (i) Ramanujan (ii) Bhaskaracharya (iii) Varahmihir (iv) Aryabhatta Choose the correct option. / निम्नलिखित में से किन भारतीय गणितज्ञों को 'संख्यात्मक विश्लेषणÓ के संस्थापक के रूप में जाना जाता है? (i) रामानुजन (ii) भास्कराचार्य (iii) वराहमिहिर (iv) आर्यभट्ट सही विकल्प चुनें।
+Which of the following Indian mathematicians are known as founders of ‘numerical analysis’ ? (i) Ramanujan (ii) Bhaskaracharya (iii) Varahmihir (iv) Aryabhatta Choose the correct option. / निम्नलिखित में से किन भारतीय गणितज्ञों को 'संख्यात्मक विश्लेषण’ के संस्थापक के रूप में जाना जाता है? (i) रामानुजन (ii) भास्कराचार्य (iii) वराहमिहिर (iv) आर्यभट्ट सही विकल्प चुनें।
 
 - **(1)** (i) and (iii) / (i) और (iii)
 - **(2)** (ii) and (iv) / (ii) और (iv)
@@ -466,7 +466,7 @@ Which of the following statement(s) is/are true about numbers ?
 Which of the following are correct examples of the statement “mathematics is hierarchical in levels that are logically structured”.
 
 - **(a)** The concept of integers needs to be developed before the concept of multiplication and division of numbers. / and / and / पूर्णांकों की अवधारणा को संख्याओं के गुणन और भाग की अवधारणा से पूर्व विकसित करने की आवश्यकता होती है। / और / और
-- **(b)** Multiplication follows and builds on the concept of addition. / (2) / and / कथन ''गणित उन स्तरों में पदानुक्रमित है जो कि तार्किक रूप से व्यवस्थित हैंÓÓ के लिए निम्नलिखित में से कौन-से सही उदाहरण हैं? / गुणन, योग की अवधारणा का अनुपालन करता है और उस पर विकसित होता है। / (2) / और
+- **(b)** Multiplication follows and builds on the concept of addition. / (2) / and / कथन ''गणित उन स्तरों में पदानुक्रमित है जो कि तार्किक रूप से व्यवस्थित हैं’’ के लिए निम्नलिखित में से कौन-से सही उदाहरण हैं? / गुणन, योग की अवधारणा का अनुपालन करता है और उस पर विकसित होता है। / (2) / और
 - **(c)** Number sense needs to be developed before the concepts of addition and subtraction. Choose the correct option : (1) / (3) / (4) only / संख्या बोध को योग और व्यवकलन की अवधारणा से पूर्व विकसित करने की आवश्यकता होती है। सही विकल्प चुनें : (1) / (3) / (4) केवल
 
 ### प्रश्न 50
@@ -480,7 +480,7 @@ Which of the following are correct examples of the statement “mathematics is h
 
 ### प्रश्न 51
 
-While teaching equations a teacher explains the concept of a linear equation having unique solution. She further asks, “If a solution is given then how many equations you can create” ? Choose the correct option : / समीकरण पढ़ाते समय शिक्षिका अद्वितीय हल वाले रैखिक समीकरण की अवधारणा को समााती है। वह आगे पूछती है, ''अगर हल दिया गया हो तो आप कितने समीकरण बना सकते हैÓÓ? सही विकल्प चुनें :
+While teaching equations a teacher explains the concept of a linear equation having unique solution. She further asks, “If a solution is given then how many equations you can create” ? Choose the correct option : / समीकरण पढ़ाते समय शिक्षिका अद्वितीय हल वाले रैखिक समीकरण की अवधारणा को समाती है। वह आगे पूछती है, ''अगर हल दिया गया हो तो आप कितने समीकरण बना सकते है’’? सही विकल्प चुनें :
 
 - **(1)** One equation / एक समीकरण
 - **(2)** No equation / कोई समीकरण नहीं
@@ -528,7 +528,7 @@ In a mathematics class a teacher explains the concept of different angles. He/sh
 
 - **(a)** Vertically opposite angles / and / and / शीर्षाभिमुख कोण / और / और
 - **(b)** Linear pair of angles / (2) / and / कोणों का रैखिक युगल / (2) / और
-- **(c)** Corresponding angles / (3) / and / गणित कक्षा में शिक्षक भिन्न-भिन्न कोणों की अवधारणा को समााता/ती है उसे यह अनुभूति होती है कि कैंची __________ को समााने के लिए सर्वोत्तम उदाहरण है। / संगत कोण / (3) / और
+- **(c)** Corresponding angles / (3) / and / गणित कक्षा में शिक्षक भिन्न-भिन्न कोणों की अवधारणा को समाता/ती है उसे यह अनुभूति होती है कि कैंची __________ को समाने के लिए सर्वोत्तम उदाहरण है। / संगत कोण / (3) / और
 - **(d)** Alternate angles Choose the correct option : (1) / (4) / एकांतर कोण सही विकल्प चुनें : (1) / (4)
 
 ### प्रश्न 57
@@ -565,9 +565,9 @@ The difference between the greatest and smallest 6-digit numbers formed by using
 - **(1)** 861741 / 861741
 - **(2)** 862731 / 862731
 - **(3)** 951741 / 951741
-- **(4)** 851731 अंकों 5, 1, 0, 3, 9 और 6 से बनी सबसे बड़ी और सबसे छोटी 6-अंकों की संख्या का अंतर है : / 851731 ENVIRONMENTAL STUDIES / ¬ÿÊ¸ﬂ⁄UáÊ •äÿÿŸ Direction : Answer the following questions by selecting the correct/most appropriate options. निर्देश : निम्नलिखित प्रश्नों के उत्तर देने के लिए सही/सबसे उपयुक्त विकल्प चुनिए।
+- **(4)** 851731 अंकों 5, 1, 0, 3, 9 और 6 से बनी सबसे बड़ी और सबसे छोटी 6-अंकों की संख्या का अंतर है : / 851731 ENVIRONMENTAL STUDIES / पर्यावरण अध्ययन Direction : Answer the following questions by selecting the correct/most appropriate options. निर्देश : निम्नलिखित प्रश्नों के उत्तर देने के लिए सही/सबसे उपयुक्त विकल्प चुनिए।
 
-## PART - III / ÷Êª - III
+## PART - III / भाग - III
 
 ### प्रश्न 61
 
@@ -584,12 +584,12 @@ As an EVS teacher, you wish your students to be aware of their own safety around
 
 - **(1)** Teach them about POCSO Act, 2012 / उन्हें पॉक्सो एक्ट, 2012 के बारे में बताएँ
 - **(2)** Teach them to avoid strangers / उन्हें अजनबियों से दूर रहना सिखाएँ
-- **(3)** Hold workshops about ‘Good Touch’ and ‘Bad Touch’ / 'गुड टचÓ और 'बैड टचÓ के बारे में वर्कशॉप आयोजित करें
+- **(3)** Hold workshops about ‘Good Touch’ and ‘Bad Touch’ / 'गुड टच’ और 'बैड टच’ के बारे में वर्कशॉप आयोजित करें
 - **(4)** Hold self-defence workshops for girl students / छात्राओं के लिए आत्मरक्षा कार्यशाला आयोजित करें
 
 ### प्रश्न 63
 
-Roshni, an EVS teacher displays a data chart for how many seeds out of 20 seeds each of mustard, green gram, Bengal gram and chilli seeds germinated. She asks students to explain why variation in the germination rates of different seeds occur. She wants to assess the skill of : / रोशनी, एक ईवीएस शिक्षिका ने सरसों, हरा चना, बंगाल चना और मिर्च के प्रत्येक 20 बीजों में से कितने बीज अंकुरित हुए, के लिए एक डेटा चार्ट प्रदर्शित किया। उन्होंने उनसे यह समााने लिए कहा कि विभिन्न बीजों की अंकुरण दर में भिन्नता क्यों होती है। वह कौन से कौशल का आकलन करना चाहती है?
+Roshni, an EVS teacher displays a data chart for how many seeds out of 20 seeds each of mustard, green gram, Bengal gram and chilli seeds germinated. She asks students to explain why variation in the germination rates of different seeds occur. She wants to assess the skill of : / रोशनी, एक ईवीएस शिक्षिका ने सरसों, हरा चना, बंगाल चना और मिर्च के प्रत्येक 20 बीजों में से कितने बीज अंकुरित हुए, के लिए एक डेटा चार्ट प्रदर्शित किया। उन्होंने उनसे यह समाने लिए कहा कि विभिन्न बीजों की अंकुरण दर में भिन्नता क्यों होती है। वह कौन से कौशल का आकलन करना चाहती है?
 
 - **(1)** experiment / प्रयोग
 - **(2)** prediction / अनुमान लगाना
@@ -647,7 +647,7 @@ Select the group of poor conductors of heat from the following : / निम्�
 
 - **(a)** draw and represent / and / , / चित्र बनाएँ और प्रस्तुत करें / और / ,
 - **(b)** predict how germinating seeds would look like / (2) / and / , / and / अनुमान करें कि अंकुरित बीज कैसे दिखेंगे / (2) / और / , / और
-- **(c)** observe and record / (3) / and / पहले दिन से 10 वें दिन तक बीज किस प्रकार अंकुरण में आते हैं लिखिए। रीता ने 'अंकुरणÓ का पाठ पढ़ाने से पहले अपने विद्यार्थियों को यह कार्य दिया। वह अपने छात्रों की कौन सी क्षमता का आकलन करने की कोशिश कर रही है? / निरीक्षण करें और रिकॉर्ड करें / (3) / और
+- **(c)** observe and record / (3) / and / पहले दिन से 10 वें दिन तक बीज किस प्रकार अंकुरण में आते हैं लिखिए। रीता ने 'अंकुरण’ का पाठ पढ़ाने से पहले अपने विद्यार्थियों को यह कार्य दिया। वह अपने छात्रों की कौन सी क्षमता का आकलन करने की कोशिश कर रही है? / निरीक्षण करें और रिकॉर्ड करें / (3) / और
 - **(d)** infer from the given activity (1) / (4) / दी गई क्रियाकलाप से निष्कर्ष निकालें (1) / (4)
 
 ### प्रश्न 70
@@ -712,10 +712,10 @@ Saleem and Raju are young school goers. Saleem likes to eat lot of fried food an
 
 Select from the following a group consisting of alloys only : / निम्नलिखित में से उस समूह को चुनिए जो मिश्रधातुओं से बना है :
 
-- **(1)** Brass, Bronze, Lithium / ब्रास, ब्रां$ज, लिथियम
+- **(1)** Brass, Bronze, Lithium / ब्रास, ब्रांज़, लिथियम
 - **(2)** Magnesium, Aluminium, Steel / मैग्नीशियम, एल्युमिनियम, स्टील
 - **(3)** Steel, Brass, Tin / स्टील, ब्रास, टिन
-- **(4)** Steel, Brass, Bronze / स्टील, ब्रास, ब्रां$ज
+- **(4)** Steel, Brass, Bronze / स्टील, ब्रास, ब्रांज़
 
 ### प्रश्न 77
 
@@ -745,7 +745,7 @@ Read the Assertion (A) and Reason (R) below and choose the correct option. Asser
 
 ### प्रश्न 80
 
-An EVS teacher asks her students to imagine and answer, “What would have happened if all birds were killed at once from earth ?” Such a question is : / एक ईवीएस शिक्षिका अपने छात्रों से कल्पना करने और उत्तर देने के लिए कहती है, ''क्या होता अगर पृथ्वी से सभी पक्षियों को एक साथ मार दिया जाता?ÓÓ ऐसे प्रश्न हैं :
+An EVS teacher asks her students to imagine and answer, “What would have happened if all birds were killed at once from earth ?” Such a question is : / एक ईवीएस शिक्षिका अपने छात्रों से कल्पना करने और उत्तर देने के लिए कहती है, ''क्या होता अगर पृथ्वी से सभी पक्षियों को एक साथ मार दिया जाता?’’ ऐसे प्रश्न हैं :
 
 - **(1)** Convergent question / अभिसारी प्रश्न
 - **(2)** Hypothetical question / काल्पनिक प्रश्न
@@ -758,7 +758,7 @@ In NCERT textbook of class V there is a real story of Suryamani who lives in Jha
 
 - **(a)** Popular perceptions and biases about the tribal communities. / , / , / जनजातीय समुदायों के बारे में लोकप्रिय धारणाएँ और पूर्वाग्रह। / , / ,
 - **(b)** Close relationship between forest dwellers (communities) and forests. / and / , / and / वनवासियों (समुदायों) और उनके पास रहने वाले जंगलों के बीच घनिष्ठ संबंध। / और / , / और
-- **(c)** Girls education how it changes their life. / (2) / and / and / एनसीईआरटी की पाँचवी कक्षा की पाठ्यपुस्तक में ाारखंड में रहने वाली सूर्यमणि की एक वास्तविक कहानी है। यह अध्याय आदिवासी जीवन और सूर्यमणि की भूमिका को दर्शाता है। छात्रों के लिए प्रासंगिक अध्याय द्वारा संबोधित सबसे महत्वपूर्ण पहलू का चयन करें। / लड़कियों की शिक्षा कैसे उनके जीवन को बदलती है। / (2) / और / और
+- **(c)** Girls education how it changes their life. / (2) / and / and / एनसीईआरटी की पाँचवी कक्षा की पाठ्यपुस्तक में ारखंड में रहने वाली सूर्यमणि की एक वास्तविक कहानी है। यह अध्याय आदिवासी जीवन और सूर्यमणि की भूमिका को दर्शाता है। छात्रों के लिए प्रासंगिक अध्याय द्वारा संबोधित सबसे महत्वपूर्ण पहलू का चयन करें। / लड़कियों की शिक्षा कैसे उनके जीवन को बदलती है। / (2) / और / और
 - **(d)** The forest products used by tribes. (1) / (3) / (4) / जनजातीय आदिवासियों द्वारा उपयोग किए जाने वाले वन उत्पाद। (1) / (3) / (4)
 
 ### प्रश्न 82
@@ -825,7 +825,7 @@ It is 7.30 P.M. in India today. It is 2 P.M. of the same day : / भारत �
 
 ### प्रश्न 89
 
-Which of the following strategy promotes inquiry while teaching the theme ‘Travel’ ? / निम्नलिखित में से कौन सी रणनीति 'यात्राÓ थीम को पढ़ाते समय जाँच (इन्क्वायरी) को बढ़ावा देती है?
+Which of the following strategy promotes inquiry while teaching the theme ‘Travel’ ? / निम्नलिखित में से कौन सी रणनीति 'यात्रा’ थीम को पढ़ाते समय जाँच (इन्क्वायरी) को बढ़ावा देती है?
 
 - **(1)** Asking students to collect pictures of various means of transport. / छात्रों से परिवहन के विभिन्न साधनों के चित्र एकत्र करने के लिए कहना।
 - **(2)** Asking students to narrate their or their neighbours’ experiences of travelling. / छात्रों से उनके या उनके पड़ोसियों के यात्रा के अनुभवों को बताने के लिए कहना।
@@ -834,7 +834,7 @@ Which of the following strategy promotes inquiry while teaching the theme ‘Tra
 
 ### प्रश्न 90
 
-A teacher follows the following methods while teaching EVS : Think-Pair-Share, Reciprocal Peer Tutoring, Jigsaw Strategy and Peer Review. These are examples of : / ईवीएस पढ़ाते समय एक शिक्षक निम्नलिखित विधियों का पालन करता है : सोचो-जोड़ो-सााा करो, पारस्परिक सहपाठी ट्यूशन, जिगसा (Jigsaw) रणनीति, सहपाठी पुनरीक्षण। ये उदाहरण हैं :
+A teacher follows the following methods while teaching EVS : Think-Pair-Share, Reciprocal Peer Tutoring, Jigsaw Strategy and Peer Review. These are examples of : / ईवीएस पढ़ाते समय एक शिक्षक निम्नलिखित विधियों का पालन करता है : सोचो-जोड़ो-साा करो, पारस्परिक सहपाठी ट्यूशन, जिगसा (Jigsaw) रणनीति, सहपाठी पुनरीक्षण। ये उदाहरण हैं :
 
 - **(1)** Peer group learning / सहपाठी समूह द्वारा सीखना
 - **(2)** Constructivist approach / रचनात्मक उपागम
@@ -1110,7 +1110,7 @@ Excluding mother tongue in the classroom is the characteristic feature of the __
 - **(1)** Natural
 - **(2)** Bilingual
 - **(3)** Audio-lingual
-- **(4)** Direct ÷Êª - IV ÷Ê·Ê - I : Á„ãŒË महत्वपूर्ण : परीक्षार्थी भाग-IV (प्र.सं. 91 से 120) के प्रश्नों के उत्तर केवल तभी दें यदि उन्होंने भाषा-I का विकल्प हिन्दी चुना हो। निम्नलिखित गद्यांश को पढ़कर पूछे गए प्रश्नों (प्र.सं. 91 – 99) के सही/सर्वाधिक उपयुक्त विकल्प का चयन कीजिए। अध्यात्म भी मन का राजा होने का मार्ग खोलता है। अपने मन का राजा होना मतलब मन पर स्वयं का अंकुश रखना। उसकी चाल का निर्धारण करना, अपना लक्ष्य बनाना, लक्ष्य प्राप्त करने के लिए प्रयत्न करना। अध्यात्म आपको अपने मन का राजा बनने की ओर ले जाता है। यह स्थिति आपको विकारों से दूर रखती है, वैचारिक सुंदरता का वरदान देती है और बुराई के समक्ष कमजोर होने से बचाती है। प्रकृति से उपहार में जो जीवन मिला है, उसके मूल्य को समाना चाहिए और उस क्षेत्र का राजा बनने के मार्ग पर चलना चाहिए, जिस पर मानवता का विस्तार हो। राजा बनिए लेकिन शुद्ध विचारों, अच्छे कर्मों और मानवीय संवेदना का राजा बनिए। अन्याय, अधर्म आदि के भय से भयभीत न हों और एक ऐसी सत्ता बनाएँ, जिसमें समानता हो। जो स्वयं में राजा होकर समानता का मार्ग प्रशस्त करता है, वह अध्यात्म के क्षेत्र का भी राजा बन जाता है।
+- **(4)** Direct भाग - IV भाषा - I : हिन्दी महत्वपूर्ण : परीक्षार्थी भाग-IV (प्र.सं. 91 से 120) के प्रश्नों के उत्तर केवल तभी दें यदि उन्होंने भाषा-I का विकल्प हिन्दी चुना हो। निम्नलिखित गद्यांश को पढ़कर पूछे गए प्रश्नों (प्र.सं. 91 – 99) के सही/सर्वाधिक उपयुक्त विकल्प का चयन कीजिए। अध्यात्म भी मन का राजा होने का मार्ग खोलता है। अपने मन का राजा होना मतलब मन पर स्वयं का अंकुश रखना। उसकी चाल का निर्धारण करना, अपना लक्ष्य बनाना, लक्ष्य प्राप्त करने के लिए प्रयत्न करना। अध्यात्म आपको अपने मन का राजा बनने की ओर ले जाता है। यह स्थिति आपको विकारों से दूर रखती है, वैचारिक सुंदरता का वरदान देती है और बुराई के समक्ष कमजोर होने से बचाती है। प्रकृति से उपहार में जो जीवन मिला है, उसके मूल्य को समाना चाहिए और उस क्षेत्र का राजा बनने के मार्ग पर चलना चाहिए, जिस पर मानवता का विस्तार हो। राजा बनिए लेकिन शुद्ध विचारों, अच्छे कर्मों और मानवीय संवेदना का राजा बनिए। अन्याय, अधर्म आदि के भय से भयभीत न हों और एक ऐसी सत्ता बनाएँ, जिसमें समानता हो। जो स्वयं में राजा होकर समानता का मार्ग प्रशस्त करता है, वह अध्यात्म के क्षेत्र का भी राजा बन जाता है।
 
 ### प्रश्न 91
 
@@ -1132,7 +1132,7 @@ Excluding mother tongue in the classroom is the characteristic feature of the __
 
 ### प्रश्न 93
 
-'अध्यात्मÓ शब्द में __________ प्रत्यय का प्रयोग किया जा सकता है।
+'अध्यात्म’ शब्द में __________ प्रत्यय का प्रयोग किया जा सकता है।
 
 - **(1)** ईय
 - **(2)** इक
@@ -1191,7 +1191,7 @@ Excluding mother tongue in the classroom is the characteristic feature of the __
 - **(1)** दूसरों पर अंकुश लगाना
 - **(2)** अपने लक्ष्य के लिए सत्ता हड़पना
 - **(3)** मन को नियंत्रित करना
-- **(4)** अपने जीवन पर अंकुश लगाना नीचे दी गई कविता को पढ़कर प्रश्नों (प्र.सं. 100 – 105) के सबसे उचित विकल्प का चयन कीजिए। गांधी, तिलक, सुभाष, जवाहर का प्यारा यह देश है, जियो और जीने दो का सबको देता संदेश है। प्रहरी बनकर खड़ा हिमालय जिसके उत्तर द्वार पर, हिंद महासागर दक्षिण में इसके लिए विशेष है। लगी गूँजने दसों दिशाएँ वीरों के यशगान से, हमें मिली आ$जादी वीर शहीदों के बलिदान से।
+- **(4)** अपने जीवन पर अंकुश लगाना नीचे दी गई कविता को पढ़कर प्रश्नों (प्र.सं. 100 – 105) के सबसे उचित विकल्प का चयन कीजिए। गांधी, तिलक, सुभाष, जवाहर का प्यारा यह देश है, जियो और जीने दो का सबको देता संदेश है। प्रहरी बनकर खड़ा हिमालय जिसके उत्तर द्वार पर, हिंद महासागर दक्षिण में इसके लिए विशेष है। लगी गूँजने दसों दिशाएँ वीरों के यशगान से, हमें मिली आज़ादी वीर शहीदों के बलिदान से।
 
 ### प्रश्न 100
 
@@ -1213,7 +1213,7 @@ Excluding mother tongue in the classroom is the characteristic feature of the __
 
 ### प्रश्न 102
 
-'हिमालयÓ का संधि-विच्छेद है -
+'हिमालय’ का संधि-विच्छेद है -
 
 - **(1)** हिमा + लय
 - **(2)** हिम + आलय
@@ -1224,7 +1224,7 @@ Excluding mother tongue in the classroom is the characteristic feature of the __
 
 कविता में किन महापुरुष का उल्लेख किया गया है?
 
-- **(1)** चंद्रशेखर आ$जाद
+- **(1)** चंद्रशेखर आज़ाद
 - **(2)** महात्मा गांधी
 - **(3)** राजगुरु
 - **(4)** सुखदेव
@@ -1240,7 +1240,7 @@ Excluding mother tongue in the classroom is the characteristic feature of the __
 
 ### प्रश्न 105
 
-'वीरÓ का बहुवचन रूप है -
+'वीर’ का बहुवचन रूप है -
 
 - **(1)** वीरों
 - **(2)** वीर
@@ -1267,7 +1267,7 @@ Excluding mother tongue in the classroom is the characteristic feature of the __
 
 ### प्रश्न 108
 
-एक अध्यापक होने के नाते आप एक बच्चे की उसके 'कुल भाषा प्रयोगÓ के लिए प्रशंसा करते हैं। यद्यपि उसने कुछ शब्दों की वर्तनी गलत लिखी है। आप कक्षा में किस उपागम का प्रयोग कर रहे हैं?
+एक अध्यापक होने के नाते आप एक बच्चे की उसके 'कुल भाषा प्रयोग’ के लिए प्रशंसा करते हैं। यद्यपि उसने कुछ शब्दों की वर्तनी गलत लिखी है। आप कक्षा में किस उपागम का प्रयोग कर रहे हैं?
 
 - **(1)** समग्र भाषा
 - **(2)** सम्प्रेषणात्मक
@@ -1321,7 +1321,7 @@ Excluding mother tongue in the classroom is the characteristic feature of the __
 
 ### प्रश्न 114
 
-जब हम यह कहते हैं कि 'भाषा यादृच्छिक हैÓ तो इसका तात्पर्य है -
+जब हम यह कहते हैं कि 'भाषा यादृच्छिक है’ तो इसका तात्पर्य है -
 
 - **(1)** भाषा के शब्दों और उनके अर्थों के बीच अन्तर्निहित संबंध है।
 - **(2)** शब्दों और उनके अर्थों के बीच संबंध किसी ठोस कारण पर आधारित है न कि बस यूँ ही।
@@ -1334,7 +1334,7 @@ Excluding mother tongue in the classroom is the characteristic feature of the __
 
 - **(1)** उदाहरण प्रस्तुत करने चाहिए
 - **(2)** नियम प्रस्तुत करने चाहिए
-- **(3)** वास्तविक सम्पे्रषण प्रस्तुत करना चाहिए
+- **(3)** वास्तविक सम्प्रेषण प्रस्तुत करना चाहिए
 - **(4)** ड्रिल के माध्यम से अभ्यास करवाना चाहिए
 
 ### प्रश्न 116
@@ -1371,7 +1371,7 @@ __________ तथ्यों से कहीं आगे जाकर अन�
 - **(1)** बच्चों को व्याकरण के नियम सिखाए जाएँ
 - **(2)** बच्चों को अनुवाद करने का अभ्यास करवाया जाए
 - **(3)** बच्चों को पठन के अवसर दिए जाएँ
-- **(4)** बच्चों को भाषा का परिवेश (एक्सपो$जर) दिया जाए
+- **(4)** बच्चों को भाषा का परिवेश (एक्सपोज़र) दिया जाए
 
 ### प्रश्न 120
 
@@ -1650,7 +1650,7 @@ The statements that describe the knowledge, skills, and attitudes that students 
 - **(1)** teaching outcomes
 - **(2)** learning outcomes
 - **(3)** numeracy outcomes
-- **(4)** foundational literacy outcomes ÷Êª - V ÷Ê·Ê - II : Á„ãŒË महत्वपूर्ण : परीक्षार्थी भाग-V (प्र.सं. 121 से 150) के प्रश्नों के उत्तर केवल तभी दें यदि उन्होंने भाषा-II का विकल्प हिन्दी चुना हो। निम्नलिखित गद्यांश को पढ़कर पूछे गए प्रश्नों (प्र.सं. 121 – 128) के सही/सर्वाधिक उपयुक्त विकल्प का चयन कीजिए। एक दूसरा संकट ग्लेशियरों के तेजी से पिघलने और अचानक टूटने से खतरनाक बाढ़ और जलप्लावन का संकट है। पर्यावरण के इस संकट को लेकर देश के लोगों और सरकारों की चेतना का जो स्तर है, वह चिंता बढ़ाने वाला है। खेत खत्म हो रहे हैं, पेड़ काटे जा रहे हैं और जंगलों को लेकर सिर्फ आंकड़ों पर जोर है। उदारीकरण के बाद लोगों के रहन-सहन और जरूरतों में आया बदलाव अब मुसीबत बनने वाला है। हम में से हर की जिंदगी में गैर जरूरी सुविधाओं का भोग लगातार बढ़ा है। चालीस पार की उम्र वाले आसानी से अपने बचपन के दिनों को याद करके समा सकते हैं कि संसाधनों का अंधाधुंध इस्तेमाल उनकी जिंदगी में किस कदर बढ़ चुका है। इसका असर मौसम, खेतों और फसलों पर पड़ रहा है। मार्च में खिलने वाले फूल अब फरवरी में नजर आते हैं। फरवरी में अचानक गरमी पड़ती है और गेहूं सूखने लगता है और जब तक फसल तैयार होती है अचानक बेमौसम की बारिश आकर उसे तबाह कर देती है। आम के बागवान शुरुआती बौरों को देखकर खुश तो होते हैं पर अचानक मार्च का आंधी-तूफान उनकी सारी खुशियों को निगल जाता है। पर्यावरण वैश्विक समस्या है पर उसका हल हमारी जरूरतों को कम करने में छिपा है।
+- **(4)** foundational literacy outcomes भाग - V भाषा - II : हिन्दी महत्वपूर्ण : परीक्षार्थी भाग-V (प्र.सं. 121 से 150) के प्रश्नों के उत्तर केवल तभी दें यदि उन्होंने भाषा-II का विकल्प हिन्दी चुना हो। निम्नलिखित गद्यांश को पढ़कर पूछे गए प्रश्नों (प्र.सं. 121 – 128) के सही/सर्वाधिक उपयुक्त विकल्प का चयन कीजिए। एक दूसरा संकट ग्लेशियरों के तेजी से पिघलने और अचानक टूटने से खतरनाक बाढ़ और जलप्लावन का संकट है। पर्यावरण के इस संकट को लेकर देश के लोगों और सरकारों की चेतना का जो स्तर है, वह चिंता बढ़ाने वाला है। खेत खत्म हो रहे हैं, पेड़ काटे जा रहे हैं और जंगलों को लेकर सिर्फ आंकड़ों पर जोर है। उदारीकरण के बाद लोगों के रहन-सहन और जरूरतों में आया बदलाव अब मुसीबत बनने वाला है। हम में से हर की जिंदगी में गैर जरूरी सुविधाओं का भोग लगातार बढ़ा है। चालीस पार की उम्र वाले आसानी से अपने बचपन के दिनों को याद करके समा सकते हैं कि संसाधनों का अंधाधुंध इस्तेमाल उनकी जिंदगी में किस कदर बढ़ चुका है। इसका असर मौसम, खेतों और फसलों पर पड़ रहा है। मार्च में खिलने वाले फूल अब फरवरी में नजर आते हैं। फरवरी में अचानक गरमी पड़ती है और गेहूं सूखने लगता है और जब तक फसल तैयार होती है अचानक बेमौसम की बारिश आकर उसे तबाह कर देती है। आम के बागवान शुरुआती बौरों को देखकर खुश तो होते हैं पर अचानक मार्च का आंधी-तूफान उनकी सारी खुशियों को निगल जाता है। पर्यावरण वैश्विक समस्या है पर उसका हल हमारी जरूरतों को कम करने में छिपा है।
 
 ### प्रश्न 121
 
@@ -1672,7 +1672,7 @@ The statements that describe the knowledge, skills, and attitudes that students 
 
 ### प्रश्न 123
 
-'बचपनÓ शब्द है __________।
+'बचपन’ शब्द है __________।
 
 - **(1)** भाववाचक संज्ञा
 - **(2)** व्यक्तिवाचक संज्ञा
@@ -1690,7 +1690,7 @@ The statements that describe the knowledge, skills, and attitudes that students 
 
 ### प्रश्न 125
 
-'ग्लेशियरÓ शब्द है __________।
+'ग्लेशियर’ शब्द है __________।
 
 - **(1)** आगत
 - **(2)** तत्सम
@@ -1717,7 +1717,7 @@ The statements that describe the knowledge, skills, and attitudes that students 
 
 ### प्रश्न 128
 
-'वैश्विकÓ में मूल शब्द तथा प्रत्यय है __________।
+'वैश्विक’ में मूल शब्द तथा प्रत्यय है __________।
 
 - **(1)** वैश्वि + क
 - **(2)** विश्व + इक
@@ -1753,7 +1753,7 @@ The statements that describe the knowledge, skills, and attitudes that students 
 
 ### प्रश्न 132
 
-गद्यांश के अनुसार 'अहंकार में हम केवल बाहर की तरफ देखकर जीते हैं।Ó वाक्य का आशय है कि __________।
+गद्यांश के अनुसार 'अहंकार में हम केवल बाहर की तरफ देखकर जीते हैं।’ वाक्य का आशय है कि __________।
 
 - **(1)** अहंकार हमें दूर तक देखने की शक्ति प्रदान करता है।
 - **(2)** अहंकार हमें दिखावटी जीवन व्यतीत करने की ओर ले जाता है।
@@ -1762,7 +1762,7 @@ The statements that describe the knowledge, skills, and attitudes that students 
 
 ### प्रश्न 133
 
-'प्रपंचÓ से तात्पर्य है __________।
+'प्रपंच’ से तात्पर्य है __________।
 
 - **(1)** पाँच प्रकार
 - **(2)** आडंबर
@@ -1780,7 +1780,7 @@ The statements that describe the knowledge, skills, and attitudes that students 
 
 ### प्रश्न 135
 
-'आधारितÓ में प्रत्यय है __________।
+'आधारित’ में प्रत्यय है __________।
 
 - **(1)** त
 - **(2)** रित
@@ -1870,7 +1870,7 @@ The statements that describe the knowledge, skills, and attitudes that students 
 
 ### प्रश्न 145
 
-'प्रदूषणÓ टॉपिक पर पाठयोजना तैयार करते समय आपका पहला चरण क्या होगा?
+'प्रदूषण’ टॉपिक पर पाठयोजना तैयार करते समय आपका पहला चरण क्या होगा?
 
 - **(1)** प्रस्तावना संबंधी प्रश्न तैयार करना।
 - **(2)** टॉपिक को बार-बार पढऩा।
@@ -1879,7 +1879,7 @@ The statements that describe the knowledge, skills, and attitudes that students 
 
 ### प्रश्न 146
 
-एक अध्यापक ने अपने शिक्षार्थियों को 'जलÓ पर एक अनुच्छेद लिखने के लिए कहा। शिक्षार्थियों ने विज्ञान और सामाजिक विज्ञान की कक्षाओं में जो पढ़ा था उसके आधार पर आपस में चर्चा आरम्भ की और उसके बाद अनुच्छेद लिखना शुरू किया। यह किस तरह का उदाहरण है?
+एक अध्यापक ने अपने शिक्षार्थियों को 'जल’ पर एक अनुच्छेद लिखने के लिए कहा। शिक्षार्थियों ने विज्ञान और सामाजिक विज्ञान की कक्षाओं में जो पढ़ा था उसके आधार पर आपस में चर्चा आरम्भ की और उसके बाद अनुच्छेद लिखना शुरू किया। यह किस तरह का उदाहरण है?
 
 - **(1)** प्रयोग में भाषा
 - **(2)** विज्ञान की भाषा
@@ -1906,7 +1906,7 @@ The statements that describe the knowledge, skills, and attitudes that students 
 
 ### प्रश्न 149
 
-अपनी कक्षा में 'कालÓ का शिक्षण करते समय आप एक ही व्यक्ति के दो चित्र दिखाते हैं - एक चित्र पन्द्रह वर्ष पहले का है और एक चित्र जो अभी-अभी खींचा गया है। आप इन चित्रों के आधार पर उस व्यक्ति के वर्तमान और भूत - वह कैसा दिखता है, उसकी आदतें - इन पर बात आरंभ करते हैं। आप किसका प्रयोग कर रहे हैं?
+अपनी कक्षा में 'काल’ का शिक्षण करते समय आप एक ही व्यक्ति के दो चित्र दिखाते हैं - एक चित्र पन्द्रह वर्ष पहले का है और एक चित्र जो अभी-अभी खींचा गया है। आप इन चित्रों के आधार पर उस व्यक्ति के वर्तमान और भूत - वह कैसा दिखता है, उसकी आदतें - इन पर बात आरंभ करते हैं। आप किसका प्रयोग कर रहे हैं?
 
 - **(1)** निर्देशात्मक व्याकरण (प्रैसक्रिप्टिव)
 - **(2)** संरचनात्मक व्याकरण
@@ -1920,5 +1920,5 @@ The statements that describe the knowledge, skills, and attitudes that students 
 - **(1)** शिक्षण प्रतिफल
 - **(2)** अधिगम प्रतिफल
 - **(3)** संख्यात्मक प्रतिफल
-- **(4)** बुनियादी साक्षरता प्रतिफल - o 0 o - SPACE FOR ROUGH WORK / रफ कार्य के लिए जगह READ THE FOLLOWING INSTRUCTIONS CAREFULLY : 1. The manner in which the different questions are to be answered has been explained in the Test Booklet which you should read carefully before actually answering the questions. 2. Out of the four alternatives for each question, only one circle for the correct answer is to be darkened completely with Blue / Black Ball Point Pen on Side-2 of the OMR Answer Sheet. The answer once marked is not liable to be changed. 3. The candidates should ensure that the Answer Sheet is not folded. Do not make any stray marks on the Answer Sheet. Do not write your Roll No. anywhere else except in the specified space in the Answer Sheet. 4. Handle the Test Booklet and Answer Sheet with care, as under no circumstances (except for discrepancy in Test Booklet Code or Number and Answer Sheet Code or Number), another set will be provided. 5. The candidates will write the correct Test Booklet Code and Number as given in the Test Booklet/Answer Sheet in the Attendance Sheet. 6. A machine will read the coded information in the OMR Answer Sheet. Hence, no information should be left incomplete and it should not be different from the information given in the Admit Card. 7. Candidates are not allowed to carry any textual material, printed or written, bits of papers, pager, mobile phone, electronic device or any other material except the Admit Card inside the examination hall/room. 8. Mobile phones, wireless communication devices (even in switched off mode) and the other banned items should not be brought in the examination halls/rooms. Failing to comply with this instruction, it will be considered as using unfair means in the examination and action will be taken against the candidate including cancellation of examination. 9. Each candidate must show on demand his/her Admit Card to the Invigilator. 10. No candidate, without special permission of the Centre Superintendent or Invigilator, should leave his/her seat. 11. The candidates should not leave the Examination Hall/Room without handing over their Answer Sheet to the Invigilator on duty and sign the Attendance Sheet twice. Cases where candidate has not signed the Attendance Sheet second time will be deemed not to have handed over the Answer Sheet and dealt with as an unfair means case. The candidates are also required to put their left hand THUMB impression in the space provided in the Attendance Sheet. 12. Use of Electronic/Manual Calculator is prohibited. 13. The candidates are governed by all Rules and Regulations of the Examining Body with regard to their conduct in the Examination Hall/Room. All cases of unfair means will be dealt with as per Rules and Regulations of the Examining Body. 14. No part of the Test Booklet and Answer Sheet shall be detached under any circumstances. 15. On completion of the test, the candidate must hand over the Answer Sheet to the Invigilator in the Hall / Room. The candidates are allowed to take away this Test Booklet with them. निम्नलिखित निर्देशों को ध्यान से पढ़ें : 1. जिस प्रकार से विभिन्न प्रश्नों के उत्तर दिए जाने हैं उसका वर्णन परीक्षा पुस्तिका में किया गया है, जिसे आप प्रश्नों का उत्तर देने से पहले ध्यान से पढ़ लें। 2. प्रत्येक प्रश्न के लिए दिए गए चार विकल्पों में से सही उत्तर के लिए OMR उत्तर पत्र के पृष्ठ-2 पर केवल एक वृत्त को ही पूरी तरह नीले/काले बॉल पॉइन्ट पेन से भरें। एक बार उत्तर अंकित करने के बाद उसे बदला नहीं जा सकता है। 3. परीक्षार्थी सुनिश्चित करें कि इस उत्तर पत्र को मोड़ा न जाए एवं उस पर कोई अन्य निशान न लगाएँ। परीक्षार्थी अपना अनुक्रमांक उत्तर-पत्र में निर्धारित स्थान के अतिरिक्त अन्यत्र न लिखें। 4. परीक्षा पुस्तिका एवं उत्तर पत्र का ध्यानपूर्वक प्रयोग करें, क्योंकि किसी भी परिस्थिति में (केवल परीक्षा पुस्तिका एवं उत्तर पत्र के कोड या संख्या में भिन्नता की स्थिति को छोड़कर) दूसरी परीक्षा पुस्तिका उपलब्ध नहीं करायी जाएगी। 5. परीक्षा पुस्तिका/उत्तर पत्र में दिए गए परीक्षा पुस्तिका कोड व संख्या को परीक्षार्थी सही तरीके से उपस्थिति-पत्र में लिखें। 6. OMR उत्तर पत्र में कोडित जानकारी को एक मशीन पढ़ेगी। इसलिए कोई भी सूचना अधूरी न छोड़ें और यह प्रवेश-पत्र में दी गई सूचना से भिन्न नहीं होनी चाहिए। 7. परीक्षार्थी द्वारा परीक्षा हॉल/कक्ष में प्रवेश-पत्र के सिवाय किसी प्रकार की पाठ्य-सामग्री, मुद्रित या हस्तलिखित, काग$ज की पर्चियाँ, पेजर, मोबाइल फोन, इलेक्ट्रॉनिक उपकरण या किसी अन्य प्रकार की सामग्री को ले जाने या उपयोग करने की अनुमति नहीं है। 8. मोबाइल फोन, बेतार संचार युक्तियाँ (स्विच ऑफ अवस्था में भी) और अन्य प्रतिबंधित वस्तुएँ परीक्षा हॉल/कक्ष में नहीं लाई जानी चाहिए। इस सूचना का पालन न होने पर इसे परीक्षा में अनुचित साधनों का प्रयोग माना जाएगा और परीक्षार्थी विरुद्ध कार्यवाही की जाएगी, परीक्षा रद्द करने सहित। 9. पूछे जाने पर प्रत्येक परीक्षार्थी, निरीक्षक को अपना प्रवेश-पत्र दिखाएँ। 10. केन्द्र अधीक्षक या निरीक्षक की विशेष अनुमति के बिना कोई परीक्षार्थी अपना स्थान न छोड़ें। 11. कार्यरत निरीक्षक को अपना उत्तर पत्र दिए बिना एवं उपस्थिति-पत्र पर दुबारा हस्ताक्षर किए बिना परीक्षार्थी परीक्षा हॉल/कक्ष नहीं छोड़ेंगे। यदि किसी परीक्षार्थी ने दूसरी बार उपस्थिति-पत्र पर हस्ताक्षर नहीं किए, तो यह माना जाएगा कि उसने उत्तर पत्र नहीं लौटाया है और यह अनुचित साधन का मामला माना जाएगा। परीक्षार्थी अपने बाएँ हाथ के अंगूठे का निशान उपस्थिति- पत्र में दिए गए स्थान पर अवश्य लगाएँ। 12. इलेक्ट्रॉनिक/हस्तचालित परिकलक का उपयोग वर्जित है। 13. परीक्षा हॉल/कक्ष में आचरण के लिए परीक्षार्थी परीक्षण संस्था के सभी नियमों एवं विनियमों द्वारा नियमित हैं। अनुचित साधनों के सभी मामलों का फैसला परीक्षण संस्था के नियमों एवं विनियमों के अनुसार होगा। 14. किसी भी परिस्थिति में परीक्षा पुस्तिका और उत्तर पत्र का कोई भाग अलग न करें। 15. परीक्षा सम्पन्न होने पर, परीक्षार्थी हॉल/कक्ष छोडऩे से पूर्व उत्तर पत्र निरीक्षक को अवश्य सौंप दें। परीक्षार्थी अपने साथ इस परीक्षा पुस्तिका को ले जा सकते हैं।
+- **(4)** बुनियादी साक्षरता प्रतिफल - o 0 o - SPACE FOR ROUGH WORK / रफ कार्य के लिए जगह READ THE FOLLOWING INSTRUCTIONS CAREFULLY : 1. The manner in which the different questions are to be answered has been explained in the Test Booklet which you should read carefully before actually answering the questions. 2. Out of the four alternatives for each question, only one circle for the correct answer is to be darkened completely with Blue / Black Ball Point Pen on Side-2 of the OMR Answer Sheet. The answer once marked is not liable to be changed. 3. The candidates should ensure that the Answer Sheet is not folded. Do not make any stray marks on the Answer Sheet. Do not write your Roll No. anywhere else except in the specified space in the Answer Sheet. 4. Handle the Test Booklet and Answer Sheet with care, as under no circumstances (except for discrepancy in Test Booklet Code or Number and Answer Sheet Code or Number), another set will be provided. 5. The candidates will write the correct Test Booklet Code and Number as given in the Test Booklet/Answer Sheet in the Attendance Sheet. 6. A machine will read the coded information in the OMR Answer Sheet. Hence, no information should be left incomplete and it should not be different from the information given in the Admit Card. 7. Candidates are not allowed to carry any textual material, printed or written, bits of papers, pager, mobile phone, electronic device or any other material except the Admit Card inside the examination hall/room. 8. Mobile phones, wireless communication devices (even in switched off mode) and the other banned items should not be brought in the examination halls/rooms. Failing to comply with this instruction, it will be considered as using unfair means in the examination and action will be taken against the candidate including cancellation of examination. 9. Each candidate must show on demand his/her Admit Card to the Invigilator. 10. No candidate, without special permission of the Centre Superintendent or Invigilator, should leave his/her seat. 11. The candidates should not leave the Examination Hall/Room without handing over their Answer Sheet to the Invigilator on duty and sign the Attendance Sheet twice. Cases where candidate has not signed the Attendance Sheet second time will be deemed not to have handed over the Answer Sheet and dealt with as an unfair means case. The candidates are also required to put their left hand THUMB impression in the space provided in the Attendance Sheet. 12. Use of Electronic/Manual Calculator is prohibited. 13. The candidates are governed by all Rules and Regulations of the Examining Body with regard to their conduct in the Examination Hall/Room. All cases of unfair means will be dealt with as per Rules and Regulations of the Examining Body. 14. No part of the Test Booklet and Answer Sheet shall be detached under any circumstances. 15. On completion of the test, the candidate must hand over the Answer Sheet to the Invigilator in the Hall / Room. The candidates are allowed to take away this Test Booklet with them. निम्नलिखित निर्देशों को ध्यान से पढ़ें : 1. जिस प्रकार से विभिन्न प्रश्नों के उत्तर दिए जाने हैं उसका वर्णन परीक्षा पुस्तिका में किया गया है, जिसे आप प्रश्नों का उत्तर देने से पहले ध्यान से पढ़ लें। 2. प्रत्येक प्रश्न के लिए दिए गए चार विकल्पों में से सही उत्तर के लिए OMR उत्तर पत्र के पृष्ठ-2 पर केवल एक वृत्त को ही पूरी तरह नीले/काले बॉल पॉइन्ट पेन से भरें। एक बार उत्तर अंकित करने के बाद उसे बदला नहीं जा सकता है। 3. परीक्षार्थी सुनिश्चित करें कि इस उत्तर पत्र को मोड़ा न जाए एवं उस पर कोई अन्य निशान न लगाएँ। परीक्षार्थी अपना अनुक्रमांक उत्तर-पत्र में निर्धारित स्थान के अतिरिक्त अन्यत्र न लिखें। 4. परीक्षा पुस्तिका एवं उत्तर पत्र का ध्यानपूर्वक प्रयोग करें, क्योंकि किसी भी परिस्थिति में (केवल परीक्षा पुस्तिका एवं उत्तर पत्र के कोड या संख्या में भिन्नता की स्थिति को छोड़कर) दूसरी परीक्षा पुस्तिका उपलब्ध नहीं करायी जाएगी। 5. परीक्षा पुस्तिका/उत्तर पत्र में दिए गए परीक्षा पुस्तिका कोड व संख्या को परीक्षार्थी सही तरीके से उपस्थिति-पत्र में लिखें। 6. OMR उत्तर पत्र में कोडित जानकारी को एक मशीन पढ़ेगी। इसलिए कोई भी सूचना अधूरी न छोड़ें और यह प्रवेश-पत्र में दी गई सूचना से भिन्न नहीं होनी चाहिए। 7. परीक्षार्थी द्वारा परीक्षा हॉल/कक्ष में प्रवेश-पत्र के सिवाय किसी प्रकार की पाठ्य-सामग्री, मुद्रित या हस्तलिखित, कागज़ की पर्चियाँ, पेजर, मोबाइल फोन, इलेक्ट्रॉनिक उपकरण या किसी अन्य प्रकार की सामग्री को ले जाने या उपयोग करने की अनुमति नहीं है। 8. मोबाइल फोन, बेतार संचार युक्तियाँ (स्विच ऑफ अवस्था में भी) और अन्य प्रतिबंधित वस्तुएँ परीक्षा हॉल/कक्ष में नहीं लाई जानी चाहिए। इस सूचना का पालन न होने पर इसे परीक्षा में अनुचित साधनों का प्रयोग माना जाएगा और परीक्षार्थी विरुद्ध कार्यवाही की जाएगी, परीक्षा रद्द करने सहित। 9. पूछे जाने पर प्रत्येक परीक्षार्थी, निरीक्षक को अपना प्रवेश-पत्र दिखाएँ। 10. केन्द्र अधीक्षक या निरीक्षक की विशेष अनुमति के बिना कोई परीक्षार्थी अपना स्थान न छोड़ें। 11. कार्यरत निरीक्षक को अपना उत्तर पत्र दिए बिना एवं उपस्थिति-पत्र पर दुबारा हस्ताक्षर किए बिना परीक्षार्थी परीक्षा हॉल/कक्ष नहीं छोड़ेंगे। यदि किसी परीक्षार्थी ने दूसरी बार उपस्थिति-पत्र पर हस्ताक्षर नहीं किए, तो यह माना जाएगा कि उसने उत्तर पत्र नहीं लौटाया है और यह अनुचित साधन का मामला माना जाएगा। परीक्षार्थी अपने बाएँ हाथ के अंगूठे का निशान उपस्थिति- पत्र में दिए गए स्थान पर अवश्य लगाएँ। 12. इलेक्ट्रॉनिक/हस्तचालित परिकलक का उपयोग वर्जित है। 13. परीक्षा हॉल/कक्ष में आचरण के लिए परीक्षार्थी परीक्षण संस्था के सभी नियमों एवं विनियमों द्वारा नियमित हैं। अनुचित साधनों के सभी मामलों का फैसला परीक्षण संस्था के नियमों एवं विनियमों के अनुसार होगा। 14. किसी भी परिस्थिति में परीक्षा पुस्तिका और उत्तर पत्र का कोई भाग अलग न करें। 15. परीक्षा सम्पन्न होने पर, परीक्षार्थी हॉल/कक्ष छोडऩे से पूर्व उत्तर पत्र निरीक्षक को अवश्य सौंप दें। परीक्षार्थी अपने साथ इस परीक्षा पुस्तिका को ले जा सकते हैं।
 
