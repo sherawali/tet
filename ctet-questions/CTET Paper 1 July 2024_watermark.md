@@ -220,7 +220,7 @@ Feral children, those who experienced severe (human) social deprivation since ve
 
 Preconceived generalizations about behaviour of various gender are called : / विभिन्न जेंडर के व्यवहार के बारे में पूर्वकल्पित सामान्यीकरण क्या कहलाते हैं?
 
-- **(1)** Gender stereotypes / जेंडर रूढि़वादिता
+- **(1)** Gender stereotypes / जेंडर रूढ़िवादिता
 - **(2)** Gender discriminations / जेंडर भेदभाव
 - **(3)** Gender identity / जेंडर पहचान
 - **(4)** Gender typing / जेंडर प्रारूप
@@ -672,10 +672,10 @@ Environment in EVS means :
 
 Select incorrect statement about elephant herds from the following : / हाथियों के विषय में वह कथन चुनिए जो सही नहीं है :
 
-- **(1)** Female elephants live in herds. / हथिनियाँ ाुण्डों में रहती हैं।
-- **(2)** A herd has 20 to 25 female elephants and their young ones. / एक ाुण्ड में 20 से 25 हथिनियाँ और उनके बच्चे होते हैं।
-- **(3)** Male elephants live in the herd till they are 14 - 15 years old. / हाथी 14 - 15 वर्ष की आयु तक ही ाुण्ड में रहते हैं।
-- **(4)** Male elephants of more than 15 years of age leave the herd and move around alone. / 15 वर्ष से अधिक आयु के हाथी ाुण्ड छोड़ देते हैं और अकेले ही रहते हैं।
+- **(1)** Female elephants live in herds. / हथिनियाँ झुण्डों में रहती हैं।
+- **(2)** A herd has 20 to 25 female elephants and their young ones. / एक झुण्ड में 20 से 25 हथिनियाँ और उनके बच्चे होते हैं।
+- **(3)** Male elephants live in the herd till they are 14 - 15 years old. / हाथी 14 - 15 वर्ष की आयु तक ही झुण्ड में रहते हैं।
+- **(4)** Male elephants of more than 15 years of age leave the herd and move around alone. / 15 वर्ष से अधिक आयु के हाथी झुण्ड छोड़ देते हैं और अकेले ही रहते हैं।
 
 ### प्रश्न 73
 
@@ -701,7 +701,7 @@ You are located at X and your school is located at Y. There is no straight path 
 
 ### प्रश्न 75
 
-Saleem and Raju are young school goers. Saleem likes to eat lot of fried food and ‘maida’ products. Raju on the other hand eats home made healthy food but he never eats spinach and other green leafy vegetables. Which of the following disorders they are likely to suffer from, respectively ? / सलीम और राजू स्कूल जाने वाले बच्चे हैं। सलीम को तला हुआ खाना और मैदा से बने उत्पाद बहुत पसंद हैं। दूसरी तरफ राजू घर का बना स्वस्थ्य खाना खाता है। लेकिन वह पालक और अन्य हरी पत्तेदार सब्$िजयाँ कभी नहीं खाता है। दोनों को निम्नलिखित में से क्रमश: किस विकार से पीडि़त होने की संभावना है?
+Saleem and Raju are young school goers. Saleem likes to eat lot of fried food and ‘maida’ products. Raju on the other hand eats home made healthy food but he never eats spinach and other green leafy vegetables. Which of the following disorders they are likely to suffer from, respectively ? / सलीम और राजू स्कूल जाने वाले बच्चे हैं। सलीम को तला हुआ खाना और मैदा से बने उत्पाद बहुत पसंद हैं। दूसरी तरफ राजू घर का बना स्वस्थ्य खाना खाता है। लेकिन वह पालक और अन्य हरी पत्तेदार सब्$िजयाँ कभी नहीं खाता है। दोनों को निम्नलिखित में से क्रमश: किस विकार से पीड़ित होने की संभावना है?
 
 - **(1)** Scurvy and Anaemia / स्कर्वी और अनीमिया
 - **(2)** Kwashiorkar and Anaemia / क्वाशियोरकर और अनीमिया
@@ -758,7 +758,7 @@ In NCERT textbook of class V there is a real story of Suryamani who lives in Jha
 
 - **(a)** Popular perceptions and biases about the tribal communities. / , / , / जनजातीय समुदायों के बारे में लोकप्रिय धारणाएँ और पूर्वाग्रह। / , / ,
 - **(b)** Close relationship between forest dwellers (communities) and forests. / and / , / and / वनवासियों (समुदायों) और उनके पास रहने वाले जंगलों के बीच घनिष्ठ संबंध। / और / , / और
-- **(c)** Girls education how it changes their life. / (2) / and / and / एनसीईआरटी की पाँचवी कक्षा की पाठ्यपुस्तक में ारखंड में रहने वाली सूर्यमणि की एक वास्तविक कहानी है। यह अध्याय आदिवासी जीवन और सूर्यमणि की भूमिका को दर्शाता है। छात्रों के लिए प्रासंगिक अध्याय द्वारा संबोधित सबसे महत्वपूर्ण पहलू का चयन करें। / लड़कियों की शिक्षा कैसे उनके जीवन को बदलती है। / (2) / और / और
+- **(c)** Girls education how it changes their life. / (2) / and / and / एनसीईआरटी की पाँचवी कक्षा की पाठ्यपुस्तक में झारखंड में रहने वाली सूर्यमणि की एक वास्तविक कहानी है। यह अध्याय आदिवासी जीवन और सूर्यमणि की भूमिका को दर्शाता है। छात्रों के लिए प्रासंगिक अध्याय द्वारा संबोधित सबसे महत्वपूर्ण पहलू का चयन करें। / लड़कियों की शिक्षा कैसे उनके जीवन को बदलती है। / (2) / और / और
 - **(d)** The forest products used by tribes. (1) / (3) / (4) / जनजातीय आदिवासियों द्वारा उपयोग किए जाने वाले वन उत्पाद। (1) / (3) / (4)
 
 ### प्रश्न 82

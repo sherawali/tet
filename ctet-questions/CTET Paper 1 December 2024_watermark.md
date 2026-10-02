@@ -576,7 +576,7 @@ The difference of the place values of 5 and 7 in the number 352876 is : सं�
 
 ### प्रश्न 61
 
-Read the Assertion and Reason properly. Assertion : An elephant herd has only female and baby elephants. Reason : Male elephants leave their herd after 14 - 15 years and move around alone. Choose the correct answer from the following : / अभिकथन एवं कारण को ध्यान से पढ़ें : अभिकथन : हाथियों के ाुंड में केवल हथिनियाँ और बच्चे ही रहते हैं। कारण : हाथी 14 - 15 साल बाद ाुंड छोड़ देते हैं और अकेले रहते हैं। निम्नलिखित में से सही उत्तर को चुनें :
+Read the Assertion and Reason properly. Assertion : An elephant herd has only female and baby elephants. Reason : Male elephants leave their herd after 14 - 15 years and move around alone. Choose the correct answer from the following : / अभिकथन एवं कारण को ध्यान से पढ़ें : अभिकथन : हाथियों के झुंड में केवल हथिनियाँ और बच्चे ही रहते हैं। कारण : हाथी 14 - 15 साल बाद झुंड छोड़ देते हैं और अकेले रहते हैं। निम्नलिखित में से सही उत्तर को चुनें :
 
 - **(1)** Assertion is true but Reason is false / अभिकथन सही है किन्तु कारण गलत है
 - **(2)** Assertion is false but Reason is true / अभिकथन गलत है किन्तु कारण सही है
@@ -603,7 +603,7 @@ Mohan is a class V teacher of Environmental Studies. He writes the following act
 
 ### प्रश्न 64
 
-Archana is a teacher of Environmental Studies teaching class IV. She forms two groups of children in her class and conducts a debate activity on the topic “Should the school have uniforms or not”. Why did Archana organize a debate in her class ? Which of the following may not be the most appropriate reason ? (A) Debate gives children an opportunity to think about and understand different aspects of a topic. (B) Children are encouraged to express their views in the classroom. (C) Children get an opportunity to share their experiences in the classroom. (D) Children assess the knowledge of their peers through debate. / अर्चना, कक्षा 4 की एक पर्यावरण अध्ययन की शिक्षिका है। वह अपनी कक्षा में बच्चों के दो समूह बनाती है और ''विद्यालय में यूनिफार्म होनी चाहिए या नहीं’’ इस विषय पर वाद-विवाद गतिविधि कराती है। अर्चना ने अपनी कक्षा में वाद-विवाद क्यों कराया? निम्नलिखित में से कौन सा सबसे उपयुक्त कारण नहीं हो सकता है? (A) वाद विवाद से बच्चों को किसी बात के विभिन्न पहलुओं के बारे में सोचने और समाने का मौका मिलता है। (B) कक्षा में बच्चों को अपनी राय रखने के लिए प्रोत्साहन मिलता है। (C) कक्षा में बच्चों को अपने अनुभव साा करने का अवसर प्राप्त होता है। (D) वाद विवाद से बच्चे अपने साथियों के ज्ञान का आकलन कर लेते हैं।
+Archana is a teacher of Environmental Studies teaching class IV. She forms two groups of children in her class and conducts a debate activity on the topic “Should the school have uniforms or not”. Why did Archana organize a debate in her class ? Which of the following may not be the most appropriate reason ? (A) Debate gives children an opportunity to think about and understand different aspects of a topic. (B) Children are encouraged to express their views in the classroom. (C) Children get an opportunity to share their experiences in the classroom. (D) Children assess the knowledge of their peers through debate. / अर्चना, कक्षा 4 की एक पर्यावरण अध्ययन की शिक्षिका है। वह अपनी कक्षा में बच्चों के दो समूह बनाती है और ''विद्यालय में यूनिफार्म होनी चाहिए या नहीं’’ इस विषय पर वाद-विवाद गतिविधि कराती है। अर्चना ने अपनी कक्षा में वाद-विवाद क्यों कराया? निम्नलिखित में से कौन सा सबसे उपयुक्त कारण नहीं हो सकता है? (A) वाद विवाद से बच्चों को किसी बात के विभिन्न पहलुओं के बारे में सोचने और समाने का मौका मिलता है। (B) कक्षा में बच्चों को अपनी राय रखने के लिए प्रोत्साहन मिलता है। (C) कक्षा में बच्चों को अपने अनुभव साझा करने का अवसर प्राप्त होता है। (D) वाद विवाद से बच्चे अपने साथियों के ज्ञान का आकलन कर लेते हैं।
 
 - **(1)** (A), (C) and (D) / (A), (C) और (D)
 - **(2)** (B) and (D) / (B) और (D)
@@ -648,7 +648,7 @@ In a constructivist EVS classroom, which of the following is NOT seen to be happ
 
 ### प्रश्न 69
 
-Siddhi is a teacher of class 4. She takes all the children of her class to the playground to play Kabbadi, while teaching them lesson 10 “Hu tu tu, hu tu tu” of the NCERT Environmental Studies textbook. Before playing the game, she also explains the rules of this game to all the children. Why does the teacher tell the children the rules before playing this game ? Which of the following may be the most appropriate reason ? (A) She wants to draw the attention of the children that in life like in sports, we make rules. (B) So that all the work is done properly. (C) We are all bound by the rules in the same way in the society by which we settle differences and conflicts among ourselves. (D) By making rules, the attention of all children is much more on the rules than on the game. / सिद्धि, एक कक्षा 4 की शिक्षिका है। वह अपनी कक्षा के बच्चों को एनसीईआरटी के पर्यावरण अध्ययन की पाठ्यपुस्तक का पाठ 10 ''हु तू तू, हु तू तू’’ पढ़ाने के लिए सभी बच्चों को वह खेल के मैदान में ले जाकर कबड्डी खेल खिलाती है। खेल खेलने से पहले वह सभी बच्चों को इस खेल के नियम भी बताती है। शिक्षिका इस खेल को खेलने से पहले बच्चों को नियम क्यों बताती है? निम्नलिखित में से कौन सा सबसे उपयुक्त कारण हो सकता है? (A) वह बच्चों का ध्यान इस ओर खींचना चाहती है कि खेल की तरह ही जीवन में भी हम नियम बनाते हैं। (B) ताकि सभी कार्य सही ढंग से किए जाएं। (C) हम सभी समाज में इसी प्रकार से नियमों से बंधे हैं जिसके द्वारा हम आपस में मतभेद और ागड़े सुलाते हैं। (D) नियम बनाने से सभी बच्चों का ध्यान खेल की अपेक्षा नियम पर बहुत अधिक रहता है।
+Siddhi is a teacher of class 4. She takes all the children of her class to the playground to play Kabbadi, while teaching them lesson 10 “Hu tu tu, hu tu tu” of the NCERT Environmental Studies textbook. Before playing the game, she also explains the rules of this game to all the children. Why does the teacher tell the children the rules before playing this game ? Which of the following may be the most appropriate reason ? (A) She wants to draw the attention of the children that in life like in sports, we make rules. (B) So that all the work is done properly. (C) We are all bound by the rules in the same way in the society by which we settle differences and conflicts among ourselves. (D) By making rules, the attention of all children is much more on the rules than on the game. / सिद्धि, एक कक्षा 4 की शिक्षिका है। वह अपनी कक्षा के बच्चों को एनसीईआरटी के पर्यावरण अध्ययन की पाठ्यपुस्तक का पाठ 10 ''हु तू तू, हु तू तू’’ पढ़ाने के लिए सभी बच्चों को वह खेल के मैदान में ले जाकर कबड्डी खेल खिलाती है। खेल खेलने से पहले वह सभी बच्चों को इस खेल के नियम भी बताती है। शिक्षिका इस खेल को खेलने से पहले बच्चों को नियम क्यों बताती है? निम्नलिखित में से कौन सा सबसे उपयुक्त कारण हो सकता है? (A) वह बच्चों का ध्यान इस ओर खींचना चाहती है कि खेल की तरह ही जीवन में भी हम नियम बनाते हैं। (B) ताकि सभी कार्य सही ढंग से किए जाएं। (C) हम सभी समाज में इसी प्रकार से नियमों से बंधे हैं जिसके द्वारा हम आपस में मतभेद और झगड़े सुलाते हैं। (D) नियम बनाने से सभी बच्चों का ध्यान खेल की अपेक्षा नियम पर बहुत अधिक रहता है।
 
 - **(1)** (C) and (D) / (C) और (D)
 - **(2)** (A) and (D) / (A) और (D)
@@ -657,7 +657,7 @@ Siddhi is a teacher of class 4. She takes all the children of her class to the p
 
 ### प्रश्न 70
 
-Read the following statements and choose the correct option. Assertion (A) : Biomass and Fossil Fuels are the two main conventional sources of energy. Reason (R) : Conventional sources are those which are renewable in nature. / निम्नलिखित कथनों को पढि़ए एवं सही विकल्प चुनिए - अभिकथन (A) : जैव मात्रा एवं जीवाश्म ईंधन, दोनों ऊर्जा के परंपरागत स्रोत हैं। कारण (R) : पारंपरिक स्रोत वे हैं जिनका स्वभाव नवीकरणीय होता है।
+Read the following statements and choose the correct option. Assertion (A) : Biomass and Fossil Fuels are the two main conventional sources of energy. Reason (R) : Conventional sources are those which are renewable in nature. / निम्नलिखित कथनों को पढ़िए एवं सही विकल्प चुनिए - अभिकथन (A) : जैव मात्रा एवं जीवाश्म ईंधन, दोनों ऊर्जा के परंपरागत स्रोत हैं। कारण (R) : पारंपरिक स्रोत वे हैं जिनका स्वभाव नवीकरणीय होता है।
 
 - **(1)** (A) is true, but (R) is false / (A) सही है और (R) गलत है
 - **(2)** (A) is false, but (R) is true / (A) गलत है और (R) सही है
@@ -747,7 +747,7 @@ How much time ‘boiled milk’ takes for digestion in the stomach ? Choose the 
 
 ### प्रश्न 80
 
-A person would not drown in the dead sea or a salty lake even if the person does not know how to swim. This is due to : / एक व्यक्ति मृत समुद्र या खारी ाील में नहीं डूबेगा भले ही वह तैरना न जानता हो। इसकी वजह है :
+A person would not drown in the dead sea or a salty lake even if the person does not know how to swim. This is due to : / एक व्यक्ति मृत समुद्र या खारी झील में नहीं डूबेगा भले ही वह तैरना न जानता हो। इसकी वजह है :
 
 - **(1)** neither high nor low density of sea water / समुद्र के पानी का न उच्च, न निम्न घनत्व
 - **(2)** volume of sea water / समुद्र के पानी की मात्रा
@@ -774,7 +774,7 @@ A teacher of Environmental Studies, while conducting an activity with some child
 
 ### प्रश्न 83
 
-Two Indian birds make nests which hang from the branches of trees or bushes. These two birds are : / दो भारतीय पक्षी वृक्ष या ाडी की डाली पर अपना लटकता घोंसला बनाते हैं। ये दो भारतीय पक्षी हैं :
+Two Indian birds make nests which hang from the branches of trees or bushes. These two birds are : / दो भारतीय पक्षी वृक्ष या झाड़ी की डाली पर अपना लटकता घोंसला बनाते हैं। ये दो भारतीय पक्षी हैं :
 
 - **(1)** Barbet and Sun-bird / बसंत गौरी और शक्करखोरा
 - **(2)** Tailor bird and Indian Robin / दर्जिन चिडिय़ा और कल चिड़ी
