@@ -1,4 +1,5 @@
 name: fetch-filebin
+# v3: span-level extraction with font names
 on:
   workflow_dispatch:
   push:
@@ -19,31 +20,44 @@ jobs:
           curl -sL -A "curl/8.5.0" -o /tmp/pdfs.tar "https://filebin.net/archive/jpczx4symu5d277x/tar"
           tar -xf /tmp/pdfs.tar -C /tmp/pdfs
           ls -la /tmp/pdfs
-      - name: Extract text with PyMuPDF
+      - name: Extract spans with fonts
         run: |
           pip install --quiet pymupdf
           python3 - <<'EOF'
-          import pymupdf, os, glob
-          os.makedirs("tmp_extracted", exist_ok=True)
+          import pymupdf, os, glob, json, gzip, collections
+          os.makedirs("tmp_spans", exist_ok=True)
           for p in sorted(glob.glob("/tmp/pdfs/*.pdf")):
               name = os.path.splitext(os.path.basename(p))[0]
               try:
                   doc = pymupdf.open(p)
-                  parts = []
-                  for i, page in enumerate(doc):
-                      parts.append(f"\n===== PAGE {i+1} =====\n")
-                      parts.append(page.get_text("text"))
-                  txt = "".join(parts)
-                  with open(f"tmp_extracted/{name}.txt", "w", encoding="utf-8") as f:
-                      f.write(txt)
-                  print(name, len(doc), "pages", len(txt), "chars")
+                  fonts = collections.Counter()
+                  with gzip.open(f"tmp_spans/{name}.jsonl.gz", "wt", encoding="utf-8") as f:
+                      for pageno, page in enumerate(doc):
+                          d = page.get_text("dict")
+                          for block in d["blocks"]:
+                              if block.get("type") != 0:
+                                  continue
+                              for line in block["lines"]:
+                                  spans = []
+                                  for s in line["spans"]:
+                                      spans.append({"f": s["font"], "t": s["text"]})
+                                      fonts[s["font"]] += len(s["text"])
+                                  rec = {"p": pageno + 1,
+                                         "x": round(line["bbox"][0], 1),
+                                         "y": round(line["bbox"][1], 1),
+                                         "s": spans}
+                                  f.write(json.dumps(rec, ensure_ascii=False) + "\n")
+                  print("==", name, len(doc), "pages")
+                  for fn, c in fonts.most_common(12):
+                      print("   font:", fn, c)
               except Exception as e:
                   print("FAIL", name, e)
           EOF
-      - name: Commit extracted text
+      - name: Commit extracted spans
         run: |
           git config user.name "filebin-fetch-bot"
           git config user.email "bot@example.com"
-          git add tmp_extracted
-          git commit -m "tmp: extracted text from filebin PDFs"
+          git pull --rebase origin arena/01a0fbb2-tet || true
+          git add tmp_spans
+          git commit -m "tmp: span-level extraction with fonts"
           git push origin arena/01a0fbb2-tet
