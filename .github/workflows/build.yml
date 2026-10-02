@@ -41,6 +41,17 @@ jobs:
           git tag -f v${{ env.BANK_VERSION }}
           git push -f origin v${{ env.BANK_VERSION }}
 
+      # jsDelivr का cache साफ़ करो, वरना @main 12 घंटे पुराना दिखता रहेगा
+      - name: Purge jsDelivr cache
+        run: |
+          R="${{ github.repository }}"
+          for f in "cdn/manifest.json" ""; do
+            curl -s "https://purge.jsdelivr.net/gh/${R}@main/${f}" -o /dev/null || true
+          done
+          sleep 3
+          echo "cache साफ़ — नया manifest:"
+          curl -s "https://cdn.jsdelivr.net/gh/${R}@main/cdn/manifest.json" | head -c 120 || true
+
       - name: Summary
         run: |
           echo "### ✅ Bank v${{ env.BANK_VERSION }} live" >> $GITHUB_STEP_SUMMARY
