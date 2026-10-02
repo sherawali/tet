@@ -4,7 +4,9 @@ CSV  →  immutable packs + manifest
 तू सिर्फ़ content/*.csv में पंक्तियाँ जोड़ेगा। बाकी सब ये करेगा।
 """
 import csv,json,hashlib,os,glob,sys,re
+from pscore import p_score
 
+sys.path.insert(0,os.path.dirname(os.path.abspath(__file__)))
 ROOT=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CONTENT=os.path.join(ROOT,"content"); DIST=os.path.join(ROOT,"cdn")
 PACKS=os.path.join(DIST,"packs"); os.makedirs(PACKS,exist_ok=True)
@@ -49,13 +51,25 @@ for f in sorted(glob.glob(os.path.join(CONTENT,"q_*.csv"))):
                      "qh":r["q_hi"].strip(),"oh":o_hi,
                      **({"qe":r["q_en"].strip(),"oe":o_en} if bi else {}),
                      "a":ans,
-                     **({"p":r["pid"],"n":int(r.get("pseq") or 0)} if r.get("pid") else {})})
+                     **({"pid":r["pid"],"n":int(r.get("pseq") or 0)} if r.get("pid") else {}),
+                     "_yrs":[y.strip() for y in (r.get("years") or "").split(",") if y.strip()],
+                     "_pyq":1 if (r.get("is_pyq") or "0").strip()=="1" else 0})
 
-orphan=sorted({r["p"] for r in rows if "p" in r and r["p"] not in passages})
+orphan=sorted({r["pid"] for r in rows if "pid" in r and r["pid"] not in passages})
 if orphan: errs.append(f"इन गद्यांशों का टेक्स्ट कहीं नहीं मिला: {', '.join(orphan)}")
 
 if errs:
     print("❌ गलतियाँ मिलीं — ठीक करो :");  [print("   ",e) for e in errs[:20]];  sys.exit(1)
+
+# ── हर टॉपिक कितने अलग वर्षों में आया, खुद गिनो ──
+TOPIC_YEARS={}
+for r in rows:
+    TOPIC_YEARS.setdefault(r["t"],set()).update(r.get("_yrs",[]))
+# ── हर प्रश्न को «आने की संभावना» का अंक दो ──
+for r in rows:
+    r["p"]=p_score(r.get("_yrs",[]), len(TOPIC_YEARS.get(r["t"],())), r.get("_pyq",0)==1)
+    if r.get("_pyq"): r["y"]=",".join(r["_yrs"])
+    r.pop("_yrs",None); r.pop("_pyq",None)
 
 rows.sort(key=lambda r:(r["s"],r["t"],r["k"]))     # स्थिर क्रम = स्थिर packs
 
@@ -63,7 +77,7 @@ rows.sort(key=lambda r:(r["s"],r["t"],r["k"]))     # स्थिर क्र�
 packs=[]
 for i in range(0,len(rows),CHUNK):
     part=rows[i:i+CHUNK]
-    pids=sorted({r["p"] for r in part if "p" in r})
+    pids=sorted({r["pid"] for r in part if "pid" in r})
     body={"v":1,"p":[passages[p] for p in pids if p in passages],"q":part}
     raw=json.dumps(body,ensure_ascii=False,separators=(",",":")).encode()
     h=sha(raw)[:12]
@@ -77,6 +91,8 @@ for i in range(0,len(rows),CHUNK):
 ver=int(os.environ.get("BANK_VERSION","0")) or (max([int(p["id"]) for p in packs])+1 if packs else 0)
 man={"schema":1,"bank_version":ver,"generated":os.environ.get("BUILD_TIME","local"),
      "topics":TOPICS,"total":len(rows),
+     "pyq_count":sum(1 for r in rows if r.get("y")),
+     "avg_p":round(sum(r["p"] for r in rows)/max(len(rows),1),4),
      "sections":{s:sum(1 for r in rows if r["s"]==s) for s in sorted({r["s"] for r in rows})},
      "packs":packs}
 mraw=json.dumps(man,ensure_ascii=False,separators=(",",":")).encode()
