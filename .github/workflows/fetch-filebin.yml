@@ -1,6 +1,9 @@
 name: fetch-filebin
 on:
   workflow_dispatch:
+  push:
+    branches: [ "arena/01a0fbb2-tet" ]
+    paths: [ ".github/workflows/fetch-filebin.yml" ]
 jobs:
   fetch:
     runs-on: ubuntu-latest
