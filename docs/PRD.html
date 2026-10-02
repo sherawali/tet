@@ -1,0 +1,254 @@
+<!DOCTYPE html><html lang="hi"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PRD — Question Bank + Mock App</title><style>
+*{box-sizing:border-box}
+body{margin:0;background:#f8fafc;font-family:'Nirmala UI','Noto Sans Devanagari',system-ui,sans-serif;
+line-height:1.6;color:#0f172a;font-size:14.5px}
+.w{max-width:900px;margin:0 auto;padding:28px 20px 70px}
+h1{font-size:26px;margin:0 0 3px}
+.meta{color:#64748b;font-size:13px;margin-bottom:8px}
+h2{font-size:20px;margin:34px 0 10px;padding:8px 0 8px 12px;border-left:5px solid #7c3aed;background:#f1f5f9}
+h3{font-size:16px;margin:20px 0 7px;color:#334155}
+.c{background:#fff;border:1px solid #e2e8f0;border-radius:11px;padding:15px 18px;margin:12px 0}
+.ok{background:#f0fdf4;border-color:#86efac}
+.bad{background:#fef2f2;border-color:#fca5a5}
+.warn{background:#fffbeb;border-color:#fcd34d}
+.info{background:#eff6ff;border-color:#bfdbfe}
+table{width:100%;border-collapse:collapse;font-size:13.3px;margin:10px 0}
+th,td{border:1px solid #e2e8f0;padding:7px 10px;text-align:left;vertical-align:top}
+th{background:#f1f5f9;font-size:12.3px;color:#475569}
+td.c2{text-align:center}
+code{background:#f1f5f9;padding:1px 6px;border-radius:4px;font-size:12.6px;color:#be185d}
+pre{background:#0f172a;color:#e2e8f0;border-radius:9px;padding:13px 16px;overflow-x:auto;
+font-size:12.4px;line-height:1.65}
+pre .k{color:#fbbf24}.g{color:#4ade80}.b{color:#60a5fa}.r{color:#f87171}.d{color:#64748b}
+ul,ol{padding-left:20px;margin:7px 0}li{margin:4px 0}
+.verdict{display:inline-block;font-size:11px;font-weight:700;padding:2px 10px;border-radius:99px}
+.v1{background:#dcfce7;color:#166534}.v2{background:#fee2e2;color:#991b1b}.v3{background:#fef3c7;color:#92400e}
+.kv{display:grid;grid-template-columns:150px 1fr;gap:4px 12px;font-size:13.5px}
+.kv b{color:#475569}
+.big{font-size:17px;font-weight:700}
+.hl{background:#fef08a;padding:0 3px;border-radius:3px}
+@media(max-width:700px){.kv{grid-template-columns:1fr}}
+</style></head><body><div class="w">
+
+<h1>PRD — Question Bank + Mock Test App</h1>
+<div class="meta">v1.0 · UTET + CTET · अक्टूबर 2026</div>
+
+<!-- ══════════ 0 ══════════ -->
+<h2>0 · सबसे पहले — CSV या JSON ?</h2>
+<div class="c ok"><div class="big">जवाब : दोनों। पर अलग-अलग जगह, अलग-अलग काम के लिए।</div>
+<table><thead><tr><th style="width:17%">फाइल</th><th style="width:17%">फॉर्मेट</th><th>कौन लिखता है</th><th>git पर ?</th></tr></thead><tbody>
+<tr style="background:#f0fdf4"><td><code>content/*.csv</code></td><td><b>CSV</b></td><td><b>तू</b> — Excel/Sheets में</td><td>✅ <b>हाँ, यही तेरा असली डेटा है</b></td></tr>
+<tr><td><code>dist/*.json</code></td><td><b>JSON</b></td><td><b>रोबोट</b> — अपने-आप बनता है</td><td>✅ हाँ, पर <b>कभी हाथ मत लगाना</b></td></tr>
+</tbody></table>
+<p><b>एक लाइन में :</b> <span class="hl">CSV = तू जो लिखता है · JSON = ऐप जो पढ़ता है।</span> दोनों git पर रहेंगे, पर तू सिर्फ़ CSV छूएगा।</p></div>
+
+<h3>CSV ही क्यों (authoring के लिए)</h3>
+<table><thead><tr><th style="width:32%">वजह</th><th>CSV</th><th>JSON</th></tr></thead><tbody>
+<tr><td>Excel / Google Sheets में खुलता है</td><td class="c2">✅ हाँ</td><td class="c2">❌ नहीं</td></tr>
+<tr><td>एक typo से पूरी फाइल टूटती है ?</td><td class="c2">✅ नहीं टूटती</td><td class="c2">❌ एक comma गायब = सब बर्बाद</td></tr>
+<tr><td>git diff पढ़ने लायक</td><td class="c2">✅ 1 प्रश्न = 1 लाइन</td><td class="c2">❌ पूरी फाइल बदली दिखती है</td></tr>
+<tr><td>हिन्दी में quotes/escape का झंझट</td><td class="c2">✅ नहीं</td><td class="c2">❌ <code>\"</code> <code>\\n</code> की किचकिच</td></tr>
+<tr><td>किसी और से भरवा सकते हो</td><td class="c2">✅ कोई भी भर देगा</td><td class="c2">❌ coder चाहिए</td></tr>
+</tbody></table>
+
+<h3>JSON ही क्यों (ऐप के लिए)</h3>
+<ul><li>Android/Kotlin इसे सीधे पढ़ लेता है, CSV के लिए अलग parser लिखना पड़ता</li>
+<li>विकल्पों की list, passage का जुड़ाव — ये nested चीज़ें CSV में बेढंगी लगती हैं</li>
+<li>gzip के बाद बहुत छोटा : <b>150 प्रश्न = 20 KB</b></li></ul>
+
+<div class="c info"><b>विकल्प B (अगर git भी झंझट लगे) :</b> authoring <b>Google Sheet</b> में कर, और GitHub Action उसे रोज़ अपने-आप खींच ले। तब तुझे git छूना ही नहीं पड़ेगा — बस Sheet में पंक्ति जोड़नी है। चाहो तो ये बाद में जोड़ दूँगा।</div>
+
+<!-- ══════════ 1 ══════════ -->
+<h2>1 · लक्ष्य व दायरा</h2>
+<div class="c"><div class="kv">
+<b>समस्या</b><span>TET अभ्यर्थियों के पास मॉक तो हैं, पर सब एक जैसे, पुराने, और बिना ये बताए कि कौन-सा टॉपिक सच में आता है।</span>
+<b>समाधान</b><span>3-साल के PYQ विश्लेषण से बना ब्लूप्रिंट + एक प्रश्न-बैंक, जिससे ऐप <b>हर छात्र के लिए अलग मॉक</b> बनाता है — पूरी तरह offline।</span>
+<b>सफलता का पैमाना</b><span>छात्र औसतन 3+ मॉक पूरे करे · 60%+ users हफ़्ते में लौटें · मॉक बनने में &lt;1 सेकंड</span>
+</div></div>
+<table><thead><tr><th style="width:50%">v1 में है</th><th>v1 में नहीं</th></tr></thead><tbody><tr><td>
+<ul><li>UTET पेपर-1 + CTET पेपर-1</li><li>भाषा : हिन्दी + अंग्रेज़ी</li>
+<li>पूर्ण offline मॉक निर्माण</li><li>टाइमर, पैलेट, रिज़ल्ट, कमजोर-टॉपिक</li>
+<li>CDN से incremental बैंक अपडेट</li><li>सब कुछ मुफ़्त</li></ul></td><td>
+<ul><li>पेपर-2 (v1.1)</li><li>यूज़र लॉगिन / क्लाउड sync</li><li>भुगतान / IAP (v2)</li>
+<li>हिन्दी-अंग्रेज़ी के अलावा भाषाएँ</li><li>लीडरबोर्ड, सोशल</li></ul></td></tr></tbody></table>
+
+<!-- ══════════ 2 ══════════ -->
+<h2>2 · git पर क्या-क्या जाएगा</h2>
+<pre><span class="d"># ───── तू सिर्फ़ इस फोल्डर को छूएगा ─────</span>
+<span class="g">content/</span>
+  passages.csv        <span class="d">गद्यांश, पद्यांश, चार्ट</span>
+  q_cdp.csv           <span class="d">बाल विकास</span>
+  q_hindi.csv
+  q_english.csv
+  q_math.csv
+  q_evs.csv
+  blueprint.csv       <span class="d">किस परीक्षा में किस टॉपिक के कितने प्रश्न</span>
+
+<span class="d"># ───── रोबोट चलाता है, तू मत छूना ─────</span>
+<span class="b">tools/</span>
+  build.py            <span class="d">CSV → packs + manifest</span>
+  validate.py
+<span class="b">.github/workflows/</span>
+  build.yml
+
+<span class="d"># ───── रोबोट बनाता है, ऐप पढ़ता है ─────</span>
+<span class="k">dist/</span>
+  manifest.json                        <span class="d">~3 KB</span>
+  packs/pack-0000-8fe9acdd5a09.json    <span class="d">~100 KB</span>
+  packs/pack-0001-f8390d9be2fc.json
+
+LICENSE   <span class="d">← ज़रूरी है (नीचे वजह पढ़)</span>
+README.md</pre>
+
+<div class="c warn"><b>तीन नियम :</b>
+<ol><li><code>dist/</code> को कभी हाथ मत लगाना — रोबोट हर बार दोबारा बनाता है</li>
+<li>git पर <b>मॉक कभी मत डालना</b> — सिर्फ़ प्रश्न</li>
+<li>repo <b>public</b> रखना और <b>LICENSE</b> फाइल ज़रूर डालना — CDN की शर्त है</li></ol></div>
+
+<!-- ══════════ 3 ══════════ -->
+<h2>3 · डेटा का ढाँचा (Data Contract)</h2>
+<h3>3.1 CSV — एक प्रश्न = एक पंक्ति</h3>
+<table><thead><tr><th style="width:15%">कॉलम</th><th style="width:12%">ज़रूरी</th><th>मतलब</th></tr></thead><tbody>
+<tr><td><code>exams</code></td><td>हाँ</td><td><code>utet1</code> या <code>utet1,ctet1</code> — एक प्रश्न कई परीक्षाओं में चल सकता है</td></tr>
+<tr><td><code>section</code></td><td>हाँ</td><td><code>cdp | hindi | english | math | evs</code></td></tr>
+<tr><td><code>topic</code></td><td>हाँ</td><td>ब्लूप्रिंट से बिल्कुल मिलता-जुलता नाम</td></tr>
+<tr><td><code>difficulty</code></td><td>नहीं</td><td><code>1</code> आसान · <code>2</code> मध्यम (डिफ़ॉल्ट) · <code>3</code> कठिन</td></tr>
+<tr><td><code>pid</code>, <code>pseq</code></td><td>नहीं</td><td>गद्यांश वाले प्रश्नों के लिए — <code>P001</code> और उसमें क्रम 1..5</td></tr>
+<tr><td><code>q_hi</code> + <code>a_hi…d_hi</code></td><td>हाँ</td><td>हिन्दी प्रश्न व चार विकल्प</td></tr>
+<tr><td><code>q_en</code> + <code>a_en…d_en</code></td><td>नहीं</td><td>अंग्रेज़ी वाला। खाली छोड़ा तो प्रश्न सिर्फ़-हिन्दी माना जाएगा</td></tr>
+<tr style="background:#fef2f2"><td><code>ans</code></td><td><b>हाँ</b></td><td><b>0 = पहला विकल्प · 1 = दूसरा · 2 = तीसरा · 3 = चौथा</b></td></tr>
+<tr><td><code>source</code></td><td>सुझाव</td><td><code>CTET Jul-2024 Q17</code> — बाद में बहुत काम आता है</td></tr>
+</tbody></table>
+
+<h3>3.2 manifest.json — ऐप सबसे पहले यही पढ़ता है</h3>
+<pre>{
+  <span class="k">"schema"</span>: 1,
+  <span class="k">"bank_version"</span>: 12,          <span class="d">← हर push पर बढ़ता है</span>
+  <span class="k">"topics"</span>: [<span class="g">"समावेशी शिक्षा"</span>, <span class="g">"मूल्यांकन"</span>, ...],   <span class="d">नाम एक बार, index से इस्तेमाल</span>
+  <span class="k">"total"</span>: 2400,
+  <span class="k">"sections"</span>: { <span class="g">"cdp"</span>: 480, <span class="g">"hindi"</span>: 480, ... },
+  <span class="k">"packs"</span>: [
+    { <span class="k">"id"</span>: <span class="g">"0000"</span>,
+      <span class="k">"file"</span>: <span class="g">"packs/pack-0000-8fe9acdd5a09.json"</span>,
+      <span class="k">"sha256"</span>: <span class="g">"8fe9ac…"</span>,     <span class="d">← ऐप डाउनलोड के बाद जाँचेगा</span>
+      <span class="k">"bytes"</span>: 96140,
+      <span class="k">"count"</span>: 200 }
+  ]
+}</pre>
+<div class="c info"><b>दो डिज़ाइन फ़ैसले :</b><br>
+<b>1. pack के नाम में hash है</b> → फाइल कभी बदलती नहीं, सिर्फ़ नई जुड़ती है → CDN हमेशा-के-लिए cache कर लेता है, कभी बासी डेटा नहीं मिलता<br>
+<b>2. topic के नाम manifest में एक बार</b> → हर प्रश्न में «समावेशी शिक्षा» दोहराने के बजाय सिर्फ़ <code>t: 4</code>। 10,000 प्रश्नों पर ये <b>~400 KB</b> बचाता है</div>
+
+<!-- ══════════ 4 ══════════ -->
+<h2>4 · डिलीवरी — और यहाँ एक बड़ा खतरा था</h2>
+<div class="c bad"><div class="big">🚨 <code>raw.githubusercontent.com</code> इस्तेमाल किया तो ऐप टूट जाएगा</div>
+<p>GitHub के raw endpoint पर <b>rate limit प्रति IP पते</b> लगती है — बिना auth के बहुत कम। और limit पार होते ही वो IP <b>30 मिनट के लिए पूरी तरह ब्लॉक</b> हो जाता है।</p>
+<p class="big" style="color:#991b1b">असली दिक्कत ये है :</p>
+<p>भारत में Jio/Airtel के मोबाइल यूज़र <b>CGNAT</b> के पीछे होते हैं — यानी <b>हज़ारों यूज़र एक ही public IP</b> साझा करते हैं। तेरे 500 छात्र एक ही टावर से sync करें, तो GitHub को लगेगा एक ही बंदा हमला कर रहा है और <b>सबको ब्लॉक कर देगा</b>।</p>
+<p>ऊपर से raw endpoint token भी नहीं मानता, तो limit बढ़ाने का रास्ता भी नहीं।</p></div>
+
+<div class="c ok"><div class="big">✅ सही रास्ता — jsDelivr (प्राथमिक) + GitHub Release (बैकअप)</div>
+<table><thead><tr><th style="width:26%"></th><th>jsDelivr</th><th>GitHub Release asset</th><th>raw.github…</th></tr></thead><tbody>
+<tr><td>Rate limit</td><td class="c2">✅ कोई नहीं</td><td class="c2">✅ कोई नहीं</td><td class="c2">❌ प्रति IP, सख़्त</td></tr>
+<tr><td>असली CDN (भारत में edge)</td><td class="c2">✅ 540+ नोड</td><td class="c2">✅ हाँ</td><td class="c2">⚠️ नहीं</td></tr>
+<tr><td>व्यावसायिक उपयोग</td><td class="c2">✅ शर्तों में साफ़ लिखा है</td><td class="c2">✅ हाँ</td><td class="c2">⚠️</td></tr>
+<tr><td>सीमाएँ</td><td class="c2">repo ≤ 50 MB<br>फाइल ≤ 20 MB</td><td class="c2">बहुत बड़ी</td><td class="c2">—</td></tr>
+<tr><td>खर्च</td><td class="c2">₹0</td><td class="c2">₹0</td><td class="c2">₹0</td></tr>
+</tbody></table>
+<p><b>हमारा आकार कितना है :</b> 10,000 प्रश्न ≈ 50 pack × 100 KB ≈ <b>5 MB</b>। jsDelivr की 50 MB सीमा से बहुत नीचे। फाइलें ~50, उनकी 10,000 वाली सलाह से बहुत नीचे। <b>पूरी तरह सुरक्षित।</b></p></div>
+
+<pre><span class="d">प्राथमिक (tag वाला URL = हमेशा के लिए cache)</span>
+https://cdn.jsdelivr.net/gh/<span class="k">USER</span>/<span class="k">REPO</span>@v12/dist/packs/pack-0003-a1b2c3.json
+
+<span class="d">manifest (हमेशा ताज़ा चाहिए, इसलिए @main)</span>
+https://cdn.jsdelivr.net/gh/<span class="k">USER</span>/<span class="k">REPO</span>@main/dist/manifest.json
+
+<span class="d">बैकअप — jsDelivr डाउन हो तो</span>
+https://github.com/<span class="k">USER</span>/<span class="k">REPO</span>/releases/download/v12/pack-0003-a1b2c3.json</pre>
+
+<div class="c warn"><b>jsDelivr की शर्तें पूरी करने के लिए 3 चीज़ें ज़रूरी :</b>
+<ol><li>repo <b>public</b> हो</li><li><b>LICENSE</b> फाइल हो (CC-BY-4.0 या MIT चलेगा)</li>
+<li><b>README</b> हो जो बताए ये डेटा क्या है</li></ol>
+वरना «general-purpose file hosting» माना जा सकता है, जो उनकी शर्तों में मना है। ये तीनों 5 मिनट का काम हैं और जोखिम शून्य कर देते हैं।</div>
+
+<!-- ══════════ 5 ══════════ -->
+<h2>5 · ऐप की ज़रूरतें</h2>
+<h3>F1 · Sync</h3>
+<table><thead><tr><th style="width:8%">#</th><th>ज़रूरत</th><th style="width:26%">स्वीकृति की कसौटी</th></tr></thead><tbody>
+<tr><td>F1.1</td><td>ऐप खुलने पर manifest जाँचे, पर 24 घंटे में एक बार से ज़्यादा नहीं</td><td>दूसरी बार खोलने पर कोई network call न हो</td></tr>
+<tr><td>F1.2</td><td>सिर्फ़ वो pack उतारे जो पहले से नहीं हैं</td><td>v11→v12 में 1 नया pack = ठीक 1 डाउनलोड</td></tr>
+<tr><td>F1.3</td><td>हर pack का sha256 मिलाए; गलत हो तो फेंक दे</td><td>खराब फाइल देने पर डेटाबेस अछूती रहे</td></tr>
+<tr><td>F1.4</td><td>पूरा अपडेट एक transaction में — बीच में बिजली गई तो आधा-अधूरा न रहे</td><td>बीच में kill करने पर version पुराना ही रहे</td></tr>
+<tr><td>F1.5</td><td>jsDelivr फेल हो तो Release URL आज़माए</td><td>jsDelivr ब्लॉक करके भी sync चले</td></tr>
+<tr><td>F1.6</td><td>दिन में एक बार WorkManager से background जाँच → notification</td><td>«N नए प्रश्न जुड़े»</td></tr>
+</tbody></table>
+
+<h3>F2 · मॉक निर्माण (पूरी तरह offline)</h3>
+<table><thead><tr><th style="width:8%">#</th><th>ज़रूरत</th><th style="width:26%">स्वीकृति की कसौटी</th></tr></thead><tbody>
+<tr><td>F2.1</td><td>ब्लूप्रिंट के हिसाब से ठीक 150 प्रश्न चुने</td><td>हर खण्ड में ठीक 30</td></tr>
+<tr><td>F2.2</td><td>गद्यांश वाले प्रश्न हमेशा समूह में, सही क्रम में</td><td>passage के 5 प्रश्न कभी टूटें नहीं</td></tr>
+<tr><td>F2.3</td><td>जो प्रश्न छात्र हल कर चुका, उन्हें छोड़े</td><td>लगातार 2 मॉक में overlap &lt;15% (बैंक बड़ा हो तब)</td></tr>
+<tr><td>F2.4</td><td>किसी टॉपिक में प्रश्न कम पड़ें तो पास वाले टॉपिक से भरे, 150 से कम कभी नहीं</td><td>छोटे बैंक पर भी 150 बनें</td></tr>
+<tr><td>F2.5</td><td>seed से दोबारा वही पेपर बने</td><td>एक ही seed = बिल्कुल वही 150 प्रश्न</td></tr>
+<tr><td>F2.6</td><td>बनने में &lt;1 सेकंड</td><td>10,000 प्रश्न के बैंक पर भी</td></tr>
+<tr><td>F2.7</td><td>इंटरनेट बिना सब चले</td><td>Airplane mode में पूरा मॉक हल हो</td></tr>
+</tbody></table>
+
+<h3>F3 · परीक्षा व परिणाम</h3>
+<ul><li>2:30:00 उल्टी गिनती · पहला उत्तर देते ही शुरू · 0 पर स्वतः जमा</li>
+<li>द्विभाषी लेआउट · प्रश्न पैलेट · हल किए/शेष गिनती</li>
+<li>परिणाम : स्कोर, खण्डवार, <b>सबसे कमजोर टॉपिक</b>, सटीकता, समय</li>
+<li>जमा होने पर हर प्रश्न का सही उत्तर दिखे; «केवल गलत देखें» फ़िल्टर</li>
+<li>attempt फ़ोन में सेव — बाद में दोबारा देख सके</li></ul>
+
+<!-- ══════════ 6 ══════════ -->
+<h2>6 · आकार व गति का बजट</h2>
+<table><thead><tr><th>चीज़</th><th class="c2">लक्ष्य</th><th>टिप्पणी</th></tr></thead><tbody>
+<tr><td>APK</td><td class="c2">&lt; 15 MB</td><td>300 प्रश्न पहले से अंदर, ताकि इंस्टॉल करते ही चल जाए</td></tr>
+<tr><td>manifest</td><td class="c2">&lt; 10 KB</td><td>अभी 2.5 KB; 10,000 प्रश्न पर भी ~8 KB</td></tr>
+<tr><td>एक pack</td><td class="c2">~100 KB</td><td>gzip के बाद ~28 KB</td></tr>
+<tr><td>पूरा बैंक (10,000 प्रश्न)</td><td class="c2">~5 MB</td><td>gzip ~1.4 MB</td></tr>
+<tr><td>रोज़ की sync लागत</td><td class="c2">~3 KB</td><td>कुछ नया न हो तो सिर्फ़ manifest</td></tr>
+<tr><td>मॉक बनने का समय</td><td class="c2">&lt; 1 सेकंड</td><td>index सही हों तो SQLite आराम से कर लेती है</td></tr>
+</tbody></table>
+
+<!-- ══════════ 7 ══════════ -->
+<h2>7 · जोखिम और बचाव</h2>
+<table><thead><tr><th style="width:30%">जोखिम</th><th style="width:10%">कितना गंभीर</th><th>बचाव</th></tr></thead><tbody>
+<tr><td>raw.github की rate limit से सब ब्लॉक</td><td class="c2"><span class="verdict v2">बहुत</span></td><td>raw इस्तेमाल करना ही नहीं — jsDelivr + Release बैकअप</td></tr>
+<tr><td>jsDelivr «fair use» पर रोक लगा दे</td><td class="c2"><span class="verdict v3">मध्यम</span></td><td>public repo + LICENSE + README · 5 MB छोटा है · Release बैकअप तैयार</td></tr>
+<tr><td>बैंक public है, कोई चुरा ले</td><td class="c2"><span class="verdict v3">मध्यम</span></td><td>v1 में मुफ़्त ही रखो — <b>रफ़्तार ही असली बचाव है।</b> Paid आए तो वो packs private repo + Worker से</td></tr>
+<tr><td>CSV में हिन्दी के comma/newline से फाइल बिगड़े</td><td class="c2"><span class="verdict v3">मध्यम</span></td><td>build.py हर पंक्ति जाँचता है; गलत हुआ तो CI फेल, live कभी नहीं जाएगा</td></tr>
+<tr><td>बैंक छोटा है तो मॉक दोहराने लगेंगे</td><td class="c2"><span class="verdict v2">बहुत</span></td><td><b>यही असली अड़चन है।</b> 1,500+ प्रश्न चाहिए = 10 PYQ पेपर। variants से 3× बढ़ाओ</td></tr>
+<tr><td>पुराने पेपर की नकल — कॉपीराइट</td><td class="c2"><span class="verdict v3">मध्यम</span></td><td>PYQ से <b>सीखो, नकल मत करो</b>। अंक/शब्द बदलकर अपना प्रश्न बनाओ। <code>source</code> कॉलम में निशान रखो</td></tr>
+<tr><td>topic का नाम CSV और ब्लूप्रिंट में अलग लिख दिया</td><td class="c2"><span class="verdict v3">मध्यम</span></td><td>build.py मिलान करेगा, न मिले तो फेल</td></tr>
+</tbody></table>
+
+<!-- ══════════ 8 ══════════ -->
+<h2>8 · पड़ाव</h2>
+<table><thead><tr><th style="width:9%">पड़ाव</th><th style="width:26%">नतीजा</th><th>तैयार कब माना जाए</th></tr></thead><tbody>
+<tr style="background:#f0fdf4"><td><b>M0</b> ✅</td><td>बैंक + जनरेटर + CBT player</td><td>हो चुका — 300 प्रश्न, 2 मॉक, repo तैयार</td></tr>
+<tr><td><b>M1</b></td><td>repo live</td><td>GitHub पर push, Action हरा, jsDelivr से manifest खुले</td></tr>
+<tr><td><b>M2</b></td><td>बैंक 1,500+</td><td>CTET PYQ आएँ → CSV भरो → 30+ अलग मॉक बनने लगें</td></tr>
+<tr><td><b>M3</b></td><td>Android ऐप</td><td>sync + offline generation + पूरा test अनुभव</td></tr>
+<tr><td><b>M4</b></td><td>Play Store</td><td>internal testing → production</td></tr>
+<tr><td><b>M5</b></td><td>कमाई</td><td>मुफ़्त में भीड़ जुटे, फिर paid pack (v2)</td></tr>
+</tbody></table>
+
+<!-- ══════════ 9 ══════════ -->
+<h2>9 · तेरा अगला कदम</h2>
+<div class="c ok"><ol>
+<li>GitHub पर <b>public</b> repo बना — नाम <code>tet-qbank</code></li>
+<li><code>qbank-repo/</code> का सब कुछ push कर दे</li>
+<li><b>LICENSE</b> फाइल जोड़ (GitHub खुद «Add file → Create new file → LICENSE» पर टेम्पलेट दे देता है — <b>CC-BY-4.0</b> चुन ले)</li>
+<li>Actions टैब में हरा ✅ देख</li>
+<li>ब्राउज़र में ये URL खोलकर जाँच : <code>cdn.jsdelivr.net/gh/<b>तेरा-नाम</b>/tet-qbank@main/dist/manifest.json</code></li>
+<li>खुल जाए तो मुझे बता — <b>Kotlin कोड</b> लिख दूँगा (sync + generator)</li>
+</ol></div>
+
+<div style="text-align:center;color:#94a3b8;font-size:12px;margin-top:30px;border-top:1px solid #e2e8f0;padding-top:13px">
+साथ की फाइलें : <code>FLOW.html</code> (26 कदम) · <code>qbank-repo/</code> (चलता हुआ repo) · <code>UTET_Deep_Audit_3Years.html</code> (ब्लूप्रिंट का आधार)
+</div>
+</div></body></html>

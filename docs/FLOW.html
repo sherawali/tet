@@ -1,0 +1,259 @@
+<!DOCTYPE html><html lang="hi"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>पूरा फ्लो — एक-एक कदम</title><style>
+*{box-sizing:border-box}
+body{margin:0;background:#f1f5f9;font-family:'Nirmala UI','Noto Sans Devanagari',system-ui,sans-serif;
+line-height:1.6;color:#0f172a}
+.w{max-width:860px;margin:0 auto;padding:26px 18px 70px}
+h1{font-size:25px;margin:0 0 4px}
+.sub{color:#64748b;font-size:14px;margin-bottom:26px}
+.part{background:#fff;border-radius:16px;margin:22px 0;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.ph{padding:14px 20px;color:#fff;font-weight:700;font-size:17px}
+.ph small{display:block;font-weight:400;font-size:12.5px;opacity:.9;margin-top:2px}
+.pa{background:#7c3aed}.pb{background:#0369a1}.pc{background:#047857}
+.pbody{padding:6px 20px 18px}
+.step{display:flex;gap:14px;padding:13px 0;border-bottom:1px dashed #e2e8f0}
+.step:last-child{border:0}
+.num{flex:0 0 32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+font-weight:700;font-size:14px;color:#fff;margin-top:2px}
+.na{background:#7c3aed}.nb{background:#0369a1}.nc{background:#047857}
+.nx{background:#cbd5e1;color:#475569}
+.txt{flex:1}
+.txt b{display:block;font-size:15.5px;margin-bottom:2px}
+.txt span{font-size:13.5px;color:#475569}
+.who{display:inline-block;font-size:10.5px;font-weight:700;padding:1px 8px;border-radius:99px;
+margin-left:6px;vertical-align:1.5px}
+.wu{background:#fef3c7;color:#92400e}
+.wr{background:#dcfce7;color:#166534}
+.wa{background:#dbeafe;color:#1e40af}
+code{background:#f1f5f9;padding:1px 6px;border-radius:4px;font-size:12.5px;color:#be185d}
+.box{background:#f8fafc;border:1px solid #e2e8f0;border-radius:9px;padding:10px 13px;margin-top:7px;font-size:13px}
+.arrow{text-align:center;font-size:24px;color:#94a3b8;margin:-6px 0}
+.hero{background:#0f172a;color:#e2e8f0;border-radius:14px;padding:18px 22px;font-size:13px;
+font-family:ui-monospace,monospace;line-height:2;overflow-x:auto;margin:18px 0}
+.hero b{color:#fbbf24}
+.hero i{color:#4ade80;font-style:normal}
+.hero u{color:#60a5fa;text-decoration:none}
+.note{border-radius:9px;padding:11px 15px;margin:12px 0;font-size:13.5px}
+.nk{background:#f0fdf4;border:1px solid #86efac}
+.nw{background:#fffbeb;border:1px solid #fcd34d}
+table{width:100%;border-collapse:collapse;font-size:13.5px;margin:10px 0}
+th,td{border:1px solid #e2e8f0;padding:7px 10px;text-align:left}
+th{background:#f8fafc;font-size:12.5px;color:#475569}
+.big{font-size:17px;font-weight:700;margin:26px 0 8px}
+</style></head><body><div class="w">
+
+<h1>📘 पूरा फ्लो — एक-एक कदम</h1>
+<div class="sub">तू क्या करेगा · GitHub क्या करेगा · ऐप क्या करेगा</div>
+
+<div class="hero">
+<b>तू</b>  →  CSV में प्रश्न जोड़ा  →  push
+          ↓
+<u>GitHub का रोबोट</u>  →  जाँचा, डिब्बे बनाए, version बढ़ाया
+          ↓
+<u>jsDelivr (मुफ़्त CDN)</u>  →  दुनिया भर में बाँट दिया
+          ↓
+<i>छात्र का ऐप</i>  →  नया डिब्बा उतारा  →  फ़ोन में सेव
+          ↓
+<i>छात्र का ऐप</i>  →  खुद मॉक बनाया  →  <b>offline चल गया</b>
+</div>
+
+<div class="note nk"><b>याद रखने लायक एक बात :</b> तेरा काम सिर्फ़ <b>कदम 1–3</b> तक है। उसके बाद कुछ नहीं करना — बाकी सब अपने-आप होता है।</div>
+
+<!-- ───────── भाग A ───────── -->
+<div class="part"><div class="ph pa">भाग A — तू नया प्रश्न डालता है
+<small>जगह : GitHub · समय : 5 मिनट</small></div><div class="pbody">
+
+<div class="step"><div class="num na">1</div><div class="txt">
+<b>CSV फाइल खोल <span class="who wu">तू</span></b>
+<span>GitHub की वेबसाइट पर जा, <code>content/q_cdp.csv</code> पर क्लिक, पेंसिल का निशान दबा।
+<br>या Excel / Google Sheets में डाउनलोड करके खोल ले — बिल्कुल एक जैसी टेबल है।</span>
+</div></div>
+
+<div class="step"><div class="num na">2</div><div class="txt">
+<b>नई पंक्ति भर <span class="who wu">तू</span></b>
+<span>एक पंक्ति = एक प्रश्न। बस इतने खाने भरने हैं :</span>
+<div class="box"><code>section</code> कौन-सा खण्ड · <code>topic</code> कौन-सा टॉपिक ·
+<code>q_hi</code> प्रश्न हिन्दी में · <code>a_hi b_hi c_hi d_hi</code> चार विकल्प ·
+<code>q_en</code> + <code>a_en…d_en</code> अंग्रेज़ी वाला (न हो तो खाली छोड़ दे) ·
+<code>ans</code> सही उत्तर — <b>0 = पहला, 1 = दूसरा, 2 = तीसरा, 3 = चौथा</b></div>
+</div></div>
+
+<div class="step"><div class="num na">3</div><div class="txt">
+<b>Save / Push कर <span class="who wu">तू</span></b>
+<span>वेबसाइट पर «Commit changes» का हरा बटन दबा दे। <b>बस। तेरा काम यहीं खत्म।</b></span>
+</div></div>
+
+<div class="step"><div class="num nx">4</div><div class="txt">
+<b>रोबोट अपने-आप जाग जाता है <span class="who wr">अपने-आप</span></b>
+<span>GitHub Action नाम का रोबोट देखता है कि <code>content/</code> बदला है, और चल पड़ता है।</span>
+</div></div>
+
+<div class="step"><div class="num nx">5</div><div class="txt">
+<b>रोबोट गलतियाँ पकड़ता है <span class="who wr">अपने-आप</span></b>
+<span>• <code>ans</code> में 5 लिख दिया? → <b>रोक दिया</b><br>
+• कोई विकल्प खाली छोड़ा? → <b>रोक दिया</b><br>
+• वही प्रश्न पहले से है? → <b>चुपचाप हटा दिया</b></span>
+<div class="note nw" style="margin:7px 0 0"><b>ये सबसे काम की चीज़ है :</b> गलत डेटा कभी छात्रों तक पहुँचेगा ही नहीं। रोबोट पहले ही रोक देगा और तुझे लाल निशान दिखा देगा।</div>
+</div></div>
+
+<div class="step"><div class="num nx">6</div><div class="txt">
+<b>रोबोट छोटे डिब्बे बनाता है <span class="who wr">अपने-आप</span></b>
+<span>सारे प्रश्नों को <b>200-200 के डिब्बों</b> में बाँट देता है। हर डिब्बे का नाम उसी के hash से बनता है —
+<code>pack-0003-a1b2c3d4.json</code><br>
+इसलिए <b>डिब्बा कभी बदलता नहीं, सिर्फ़ नया जुड़ता है।</b></span>
+</div></div>
+
+<div class="step"><div class="num nx">7</div><div class="txt">
+<b>रोबोट एक «सूची» बनाता है <span class="who wr">अपने-आप</span></b>
+<span><code>manifest.json</code> — सिर्फ़ <b>2.5 KB</b> की छोटी फाइल। इसमें लिखा होता है :
+version नंबर, कुल कितने प्रश्न, और कौन-कौन से डिब्बे हैं।</span>
+</div></div>
+
+<div class="step"><div class="num nx">8</div><div class="txt">
+<b>version बढ़ जाता है <span class="who wr">अपने-आप</span></b>
+<span>पहले <code>bank_version: 11</code> था → अब <code>12</code> हो गया।
+<b>यही एक नंबर ऐप को बताएगा कि कुछ नया आया है।</b></span>
+</div></div>
+
+<div class="step"><div class="num nx">9</div><div class="txt">
+<b>jsDelivr दुनिया भर में बाँट देता है <span class="who wr">अपने-आप</span></b>
+<span>मुफ़्त CDN है, भारत में भी सर्वर हैं। एक पैसा नहीं लगता, कोई limit नहीं।</span>
+</div></div>
+</div></div>
+
+<div class="arrow">▼</div>
+
+<!-- ───────── भाग B ───────── -->
+<div class="part"><div class="ph pb">भाग B — छात्र के फ़ोन में अपडेट पहुँचता है
+<small>जगह : ऐप · समय : 2 सेकंड · सब अपने-आप</small></div><div class="pbody">
+
+<div class="step"><div class="num nb">10</div><div class="txt">
+<b>छात्र ऐप खोलता है <span class="who wa">ऐप</span></b>
+<span>या ऐप रोज़ एक बार background में खुद जाग जाता है।</span>
+</div></div>
+
+<div class="step"><div class="num nb">11</div><div class="txt">
+<b>ऐप सिर्फ़ «सूची» माँगता है <span class="who wa">ऐप</span></b>
+<span>सिर्फ़ <b>2.5 KB</b>। इतना छोटा कि रोज़ माँगने पर भी छात्र का डेटा खर्च नहीं होता।</span>
+</div></div>
+
+<div class="step"><div class="num nb">12</div><div class="txt">
+<b>ऐप version मिलाता है <span class="who wa">ऐप</span></b>
+<div class="box">मेरे फ़ोन में : <b>11</b> &nbsp;·&nbsp; सर्वर पर : <b>12</b><br>
+<b>12 &gt; 11</b> → कुछ नया है! ✅<br><br>
+<span style="color:#64748b">अगर दोनों बराबर होते → ऐप चुपचाप रुक जाता, कुछ डाउनलोड नहीं करता।</span></div>
+</div></div>
+
+<div class="step"><div class="num nb">13</div><div class="txt">
+<b>ऐप सोचता है : मुझे क्या-क्या नहीं मिला ? <span class="who wa">ऐप</span></b>
+<div class="box">मेरे पास डिब्बे : 0, 1, 2, 3, 4, 5<br>
+सूची में डिब्बे : 0, 1, 2, 3, 4, 5, <b>6</b><br>
+→ <b>सिर्फ़ डिब्बा 6 चाहिए</b></div>
+<span><b>यही सबसे बड़ी बचत है।</b> पूरा बैंक 8 MB का हो तब भी छात्र सिर्फ़ <b>40 KB</b> उतारेगा।</span>
+</div></div>
+
+<div class="step"><div class="num nb">14</div><div class="txt">
+<b>सिर्फ़ डिब्बा 6 डाउनलोड <span class="who wa">ऐप</span></b>
+<span>≈ 40 KB। एक WhatsApp फ़ोटो से भी छोटा।</span>
+</div></div>
+
+<div class="step"><div class="num nb">15</div><div class="txt">
+<b>ऐप जाँचता है कि डिब्बा सही है <span class="who wa">ऐप</span></b>
+<span>सूची में लिखे hash से मिलाता है। बीच में फाइल खराब हुई या किसी ने बदली — तो ऐप उसे फेंक देगा।</span>
+</div></div>
+
+<div class="step"><div class="num nb">16</div><div class="txt">
+<b>फ़ोन के अंदर सेव <span class="who wa">ऐप</span></b>
+<span>प्रश्न फ़ोन की अपनी SQLite डेटाबेस में चले जाते हैं। <b>अब ये हमेशा के लिए फ़ोन में हैं।</b></span>
+</div></div>
+
+<div class="step"><div class="num nb">17</div><div class="txt">
+<b>छात्र को notification <span class="who wa">ऐप</span></b>
+<div class="box">🔔 <b>200 नए प्रश्न जुड़ गए — नया मॉक लगाओ!</b></div>
+<span>Firebase, push सर्वर, कुछ नहीं चाहिए। ऐप ने खुद सूची देखी और खुद notification दिखा दी।</span>
+</div></div>
+
+<div class="step"><div class="num nb">18</div><div class="txt">
+<b>अब इंटरनेट बंद कर दो <span class="who wa">ऐप</span></b>
+<span>सब कुछ फ़ोन में है। ट्रेन में, गाँव में, कहीं भी चलेगा।</span>
+</div></div>
+</div></div>
+
+<div class="arrow">▼</div>
+
+<!-- ───────── भाग C ───────── -->
+<div class="part"><div class="ph pc">भाग C — ऐप खुद मॉक बनाता है
+<small>जगह : छात्र का फ़ोन · पूरी तरह offline · 1 सेकंड</small></div><div class="pbody">
+
+<div class="step"><div class="num nc">19</div><div class="txt">
+<b>छात्र «नया मॉक» दबाता है <span class="who wa">ऐप</span></b>
+</div></div>
+
+<div class="step"><div class="num nc">20</div><div class="txt">
+<b>ऐप ब्लूप्रिंट देखता है <span class="who wa">ऐप</span></b>
+<span>ये वो नुस्खा है जो हमने 3 साल के असली पेपरों से निकाला :</span>
+<div class="box">CDP से 30 → समावेशी 4, मूल्यांकन 3, अधिगम सिद्धांत 3 …<br>
+हिन्दी से 30 → अपठित 10, व्याकरण 3, शब्द-भंडार 3 …<br>
+और इसी तरह पाँचों खण्ड = <b>150</b></div>
+</div></div>
+
+<div class="step"><div class="num nc">21</div><div class="txt">
+<b>ऐप डेटाबेस से प्रश्न उठाता है <span class="who wa">ऐप</span></b>
+<span>«समावेशी शिक्षा» टॉपिक से 4 प्रश्न चाहिए → फ़ोन की डेटाबेस से 4 उठा लिए।</span>
+</div></div>
+
+<div class="step"><div class="num nc">22</div><div class="txt">
+<b>पहले हल किए प्रश्न हटा देता है <span class="who wa">ऐप</span></b>
+<span><b>यही वो चीज़ है जो तेरे ऐप को बाकी सबसे अलग बनाएगी।</b> ऐप याद रखता है कि छात्र ने कौन-से प्रश्न देख लिए,
+और अगली बार उन्हें छोड़ देता है।</span>
+<div class="note nk" style="margin:7px 0 0">नतीजा : <b>हर छात्र को अलग मॉक मिलता है</b>, और जब तक बैंक में प्रश्न हैं, हर बार नया पेपर बनता है।</div>
+</div></div>
+
+<div class="step"><div class="num nc">23</div><div class="txt">
+<b>150 प्रश्न का पेपर तैयार <span class="who wa">ऐप</span></b>
+<span>1 सेकंड में, बिना इंटरनेट, बिना कोई फाइल डाउनलोड किए।</span>
+</div></div>
+
+<div class="step"><div class="num nc">24</div><div class="txt">
+<b>छात्र हल करता है <span class="who wa">ऐप</span></b>
+<span>टाइमर 2:30:00 · विकल्प पर क्लिक · प्रश्न पैलेट — वही सब जो तेरे HTML में पहले से बना है।</span>
+</div></div>
+
+<div class="step"><div class="num nc">25</div><div class="txt">
+<b>Submit → रिज़ल्ट <span class="who wa">ऐप</span></b>
+<span>स्कोर, खण्डवार अंक, सबसे कमजोर टॉपिक।</span>
+</div></div>
+
+<div class="step"><div class="num nc">26</div><div class="txt">
+<b>ऐप याद रख लेता है <span class="who wa">ऐप</span></b>
+<span>ये 150 प्रश्न «देख लिए» की सूची में चले गए → <b>अगला मॉक अपने-आप अलग बनेगा।</b></span>
+</div></div>
+</div></div>
+
+<!-- ───────── सार ───────── -->
+<div class="big">🧠 पूरी बात तीन लाइनों में</div>
+<div class="part"><div class="pbody" style="padding-top:16px">
+<table><thead><tr><th style="width:26%">कौन</th><th>क्या करता है</th></tr></thead><tbody>
+<tr><td><b>तू</b></td><td>CSV में पंक्ति जोड़कर push — <b>बस इतना ही</b></td></tr>
+<tr><td><b>GitHub</b></td><td>जाँचता है, डिब्बे बनाता है, version बढ़ाता है — <b>अपने-आप</b></td></tr>
+<tr><td><b>ऐप</b></td><td>नया डिब्बा उतारता है, और <b>खुद मॉक बनाता है</b> — हमेशा offline</td></tr>
+</tbody></table>
+<div class="note nw"><b>सबसे ज़रूरी बात :</b> git पर <b>कभी मॉक मत डालना — सिर्फ़ प्रश्न डालना।</b><br>
+200 प्रश्न (40 KB) डालोगे तो ऐप उनसे <b>दर्जनों अलग-अलग मॉक</b> बना लेगा। अगर मॉक की फाइल डालते तो
+हर मॉक अलग डाउनलोड करना पड़ता, और सबको एक जैसा मिलता।</div>
+</div></div>
+
+<div class="big">📍 तेरा अगला कदम</div>
+<div class="part"><div class="pbody" style="padding-top:12px">
+<div class="step"><div class="num na">1</div><div class="txt"><b>GitHub पर नया repo बना</b>
+<span>नाम कुछ भी — जैसे <code>qbank</code>. Public रख।</span></div></div>
+<div class="step"><div class="num na">2</div><div class="txt"><b><code>qbank-repo/</code> का सारा सामान उसमें डाल दे</b>
+<span>content, tools, .github — सब कुछ। तेरे 300 प्रश्न पहले से CSV में भरे हुए हैं।</span></div></div>
+<div class="step"><div class="num na">3</div><div class="txt"><b>Push कर और Actions टैब देख</b>
+<span>हरा निशान ✅ आ जाए तो सब सही है। <code>dist/</code> फोल्डर अपने-आप बन जाएगा।</span></div></div>
+<div class="step"><div class="num nc">4</div><div class="txt"><b>फिर मुझे बता</b>
+<span>ऐप का Kotlin कोड लिख दूँगा — sync + मॉक generator, दोनों।</span></div></div>
+</div></div>
+
+</div></body></html>

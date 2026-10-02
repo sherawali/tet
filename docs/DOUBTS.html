@@ -1,0 +1,194 @@
+<!DOCTYPE html><html lang="hi"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>सारे Doubts — एक जगह</title><style>
+*{box-sizing:border-box}
+body{margin:0;background:#f8fafc;font-family:'Nirmala UI','Noto Sans Devanagari',system-ui,sans-serif;
+line-height:1.65;color:#0f172a;font-size:15px}
+.w{max-width:860px;margin:0 auto;padding:26px 18px 70px}
+h1{font-size:25px;margin:0 0 20px}
+.q{background:#fff;border:1px solid #e2e8f0;border-radius:12px;margin:14px 0;overflow:hidden}
+.qh{background:#1e293b;color:#fff;padding:11px 17px;font-weight:700;font-size:16px}
+.qh span{color:#fbbf24}
+.qb{padding:14px 17px}
+.ans{background:#f0fdf4;border-left:4px solid #16a34a;padding:10px 14px;margin:0 0 10px;
+border-radius:0 7px 7px 0;font-size:15.5px;font-weight:600}
+.no{background:#fef2f2;border-left:4px solid #dc2626;padding:9px 14px;margin:8px 0;
+border-radius:0 7px 7px 0;font-size:14px}
+code{background:#f1f5f9;padding:1.5px 6px;border-radius:4px;font-size:13px;color:#be185d}
+pre{background:#0f172a;color:#e2e8f0;border-radius:8px;padding:12px 15px;overflow-x:auto;
+font-size:12.3px;line-height:1.7;margin:9px 0}
+pre .g{color:#4ade80}.y{color:#fbbf24}.r{color:#f87171}.d{color:#64748b}.b{color:#60a5fa}
+table{width:100%;border-collapse:collapse;font-size:13.5px;margin:9px 0}
+th,td{border:1px solid #e2e8f0;padding:7px 10px;text-align:left}
+th{background:#f1f5f9;font-size:12.5px;color:#475569}
+ul,ol{padding-left:20px;margin:7px 0}li{margin:4px 0}
+.chk{background:#fff;border:2px solid #7c3aed;border-radius:12px;padding:16px 20px;margin:24px 0}
+.chk h2{margin:0 0 10px;font-size:19px;color:#6d28d9}
+.chk li{margin:9px 0;font-size:15px}
+.tip{background:#eff6ff;border:1px solid #bfdbfe;border-radius:8px;padding:10px 14px;margin:9px 0;font-size:13.8px}
+.big{font-size:18px;font-weight:700}
+</style></head><body><div class="w">
+
+<h1>❓ सारे Doubts — एक-एक करके</h1>
+
+<!-- 1 -->
+<div class="q"><div class="qh"><span>1.</span> सारे सेक्शन एक फाइल में, या हिन्दी अलग / English अलग / CDP अलग ?</div>
+<div class="qb">
+<div class="ans">✅ एक पेपर = एक फाइल। उसी एक फाइल में पाँचों सेक्शन डाल दे। सेक्शन के हिसाब से मत बाँट।</div>
+<p>क्यों? क्योंकि रोबोट <b>फाइल का नाम देखता ही नहीं</b> — वो <code>section</code> कॉलम देखता है। अभी टेस्ट करके दिखाया : एक ही फाइल में cdp + math + hindi + evs डाले, और सब अपनी-अपनी जगह चले गए।</p>
+<pre><span class="d"># एक फाइल में सब कुछ — बिल्कुल सही है</span>
+q_ctet_jul2024.csv
+   पंक्ति 1   → section=cdp
+   पंक्ति 31  → section=hindi
+   पंक्ति 61  → section=english
+   पंक्ति 91  → section=math
+   पंक्ति 121 → section=evs
+
+<span class="g">नतीजा : cdp 61 · hindi 62 · math 61 · evs 61  ✅ सब सही जगह</span></pre>
+<div class="tip"><b>व्यावहारिक फ़ायदा :</b> AI तुझे एक पेपर के पूरे 150 प्रश्न एक साथ देगा। तुझे उन्हें काट-काटकर 5 फाइलों में बाँटना नहीं पड़ेगा — <b>सीधा एक फाइल में चिपका दे।</b></div>
+<div class="no"><b>जो 5 फाइलें पहले से हैं</b> (<code>q_cdp.csv</code>, <code>q_hindi.csv</code>…) <b>उन्हें छूना ही मत।</b> वो पुराने 300 प्रश्न हैं, वैसी ही पड़ी रहने दे।</div>
+</div></div>
+
+<!-- 2 -->
+<div class="q"><div class="qh"><span>2.</span> फाइल का नाम क्या रखूँ ?</div>
+<div class="qb">
+<div class="ans">✅ कुछ भी — बस <code>q_</code> से शुरू हो और <code>.csv</code> पर खत्म हो।</div>
+<table><tr><th>✅ चलेगा</th><th>❌ नहीं चलेगा</th></tr>
+<tr><td><code>q_ctet_jul2024.csv</code></td><td><code>ctet2024.csv</code> <span style="color:#dc2626">(q_ नहीं)</span></td></tr>
+<tr><td><code>q_utet_2023.csv</code></td><td><code>Q_utet.csv</code> <span style="color:#dc2626">(बड़ा Q)</span></td></tr>
+<tr><td><code>q_naye_prashn_01.csv</code></td><td><code>q_ctet.xlsx</code> <span style="color:#dc2626">(.csv नहीं)</span></td></tr>
+</table>
+<div class="tip">नाम ऐसा रख जिससे 6 महीने बाद भी पता चले क्या है — <code>q_ctet_jul2024.csv</code></div>
+</div></div>
+
+<!-- 3 -->
+<div class="q"><div class="qh"><span>3.</span> हर नई फाइल में header लाइन डालनी है ?</div>
+<div class="qb">
+<div class="ans">✅ हाँ। हर फाइल की पहली लाइन header होनी चाहिए।</div>
+<p><code>TEMPLATE.csv</code> की पहली लाइन कॉपी करके हर नई फाइल में सबसे ऊपर चिपका दे। बस इतना।</p>
+<div class="no">Header भूल गया तो तेरा <b>पहला प्रश्न गायब हो जाएगा</b> (रोबोट उसे header समझ लेगा)।</div>
+</div></div>
+
+<!-- 4 -->
+<div class="q"><div class="qh"><span>4.</span> गद्यांश (comprehension) वाले प्रश्न कैसे डालूँ ? — ये सबसे उलझन वाला था</div>
+<div class="qb">
+<div class="ans">✅ अब आसान कर दिया — गद्यांश <b>उसी CSV में</b> लिख, अलग फाइल की ज़रूरत नहीं।</div>
+<p>3 नए कॉलम जोड़े हैं। ये सिर्फ़ <b>समूह की पहली पंक्ति</b> में भरने हैं, बाकी में खाली :</p>
+<table><tr><th>कॉलम</th><th>क्या डालना</th></tr>
+<tr><td><code>pid</code></td><td>कोई भी आईडी, जैसे <code>P90</code> — समूह के सभी प्रश्नों में <b>एक ही</b></td></tr>
+<tr><td><code>pseq</code></td><td>क्रम : 1, 2, 3, 4, 5</td></tr>
+<tr><td><code>p_kind</code></td><td><code>prose</code> गद्यांश · <code>poem</code> पद्यांश · <code>chart</code> चार्ट — <b>सिर्फ़ पहली पंक्ति</b></td></tr>
+<tr><td><code>p_dir</code></td><td>«निर्देश : …» वाली लाइन — <b>सिर्फ़ पहली पंक्ति</b></td></tr>
+<tr><td><code>p_body</code></td><td>पूरा गद्यांश — <b>सिर्फ़ पहली पंक्ति</b></td></tr>
+</table>
+<pre><span class="d">पहली पंक्ति — यहाँ गद्यांश लिखा</span>
+…,<span class="y">P90</span>,<span class="y">1</span>,<span class="g">prose</span>,<span class="g">निर्देश : गद्यांश पढ़कर…</span>,<span class="g">परिश्रम ही सफलता की कुंजी है…</span>,प्रश्न 1,…
+
+<span class="d">बाकी चार पंक्तियाँ — p_kind/p_dir/p_body खाली</span>
+…,<span class="y">P90</span>,<span class="y">2</span>,,,,प्रश्न 2,…
+…,<span class="y">P90</span>,<span class="y">3</span>,,,,प्रश्न 3,…</pre>
+<div class="tip">भूल गया तो डरना मत — रोबोट पकड़ लेगा और साफ़ बता देगा :<br>
+<code style="color:#dc2626">❌ इन गद्यांशों का टेक्स्ट कहीं नहीं मिला: P90</code></div>
+<div class="no"><b>जल्दी में हो तो :</b> गद्यांश वाले प्रश्न (31–40, 61–70) अभी <b>छोड़ दे</b>। बाकी 130 प्रश्न डाल दे। गद्यांश बाद में जोड़ लेना।</div>
+</div></div>
+
+<!-- 5 -->
+<div class="q"><div class="qh"><span>5.</span> एक फाइल में कितने प्रश्न डाल सकता हूँ ?</div>
+<div class="qb">
+<div class="ans">✅ कोई सीमा नहीं। पर <b>एक पेपर के 150</b> रखना सबसे अच्छा।</div>
+<p>फाइल 2,000 पंक्तियों से बड़ी हो जाए तो Excel धीमा लगने लगता है — तब नई फाइल बना ले।</p>
+</div></div>
+
+<!-- 6 -->
+<div class="q"><div class="qh"><span>6.</span> अंग्रेज़ी वाला हिस्सा न हो तो ?</div>
+<div class="qb">
+<div class="ans">✅ <code>q_en</code> से <code>d_en</code> तक खाली छोड़ दे — सिर्फ़ कॉमा।</div>
+<pre>…,प्रश्न हिन्दी में,विकल्प1,विकल्प2,विकल्प3,विकल्प4,<span class="r">,,,,</span>,1,…
+                                              <span class="d">↑ पाँच खाली खाने</span></pre>
+<p>ऐसा प्रश्न ऐप में <b>सिर्फ़-हिन्दी</b> दिखेगा — हिन्दी सेक्शन के लिए यही सही है।</p>
+</div></div>
+
+<!-- 7 -->
+<div class="q"><div class="qh"><span>7.</span> Excel में हिन्दी टूटी-फूटी दिख रही है</div>
+<div class="qb">
+<div class="ans">✅ फाइल <b>UTF-8</b> में सेव कर।</div>
+<ul><li><b>Excel :</b> File → Save As → टाइप में <b>«CSV UTF-8 (Comma delimited)»</b> चुन</li>
+<li><b>Google Sheets :</b> अपने-आप UTF-8 होता है — <span style="color:#16a34a">सबसे सुरक्षित, यही इस्तेमाल कर</span></li>
+<li><b>Notepad :</b> Save As → Encoding में UTF-8</li></ul>
+<div class="tip"><b>सबसे आसान तरीका :</b> AI से CSV लेकर सीधे <b>GitHub की वेबसाइट</b> पर पेस्ट कर दे। Excel खोलने की ज़रूरत ही नहीं — GitHub हमेशा UTF-8 में सेव करता है।</div>
+</div></div>
+
+<!-- 8 -->
+<div class="q"><div class="qh"><span>8.</span> आंसर-की नहीं है, तो <code>ans</code> में क्या डालूँ ?</div>
+<div class="qb">
+<div class="ans">✅ AI से तय करवा ले — प्रॉम्प्ट B में ये लिखा ही हुआ है।</div>
+<p>फिर <b>प्रॉम्प्ट E</b> से किसी <b>दूसरे</b> AI से जँचवा ले। दोनों का जवाब एक हो तो लगभग पक्का सही है।</p>
+<div class="no">गलत उत्तर सबसे बड़ा नुकसान करता है — छात्र गलत चीज़ रट लेता है। जहाँ शक हो, वो प्रश्न <b>छोड़ दे</b>।</div>
+</div></div>
+
+<!-- 9 -->
+<div class="q"><div class="qh"><span>9.</span> गलत प्रश्न डल गया, कैसे हटाऊँ ?</div>
+<div class="qb">
+<div class="ans">✅ CSV में से वो पंक्ति मिटा दे और commit कर दे। बस।</div>
+<p>रोबोट हर बार <b>सब कुछ दोबारा</b> बनाता है, इसलिए हटाया हुआ प्रश्न अगले अपडेट में ऐप से भी चला जाएगा।</p>
+<p>पूरी फाइल गलत हो गई? <b>फाइल ही डिलीट कर दे</b> — इसीलिए एक पेपर = एक फाइल रखने को कहा था।</p>
+</div></div>
+
+<!-- 10 -->
+<div class="q"><div class="qh"><span>10.</span> <code>is_pyq</code> और <code>years</code> कब भरूँ ?</div>
+<div class="qb">
+<div class="ans">⭐ ये सबसे कीमती कॉलम हैं — <b>इन्हीं से वो formula चलता है जिसने 29 तारीख़ को 5–10 प्रश्न पकड़े।</b></div>
+<table><tr><th>स्थिति</th><th><code>is_pyq</code></th><th><code>years</code></th></tr>
+<tr><td>असली पुराने पेपर से उठाया</td><td><code>1</code></td><td><code>2024</code></td></tr>
+<tr><td>वही concept दो पेपरों में मिला</td><td><code>1</code></td><td><code>2023,2024</code></td></tr>
+<tr><td>खुद/AI से बनवाया नया</td><td><code>0</code></td><td>खाली</td></tr>
+<tr><td>किसी PYQ का variant (अंक बदले)</td><td><code>0</code></td><td>खाली</td></tr>
+</table>
+<div class="tip"><b>सबसे ज़्यादा फ़ायदे वाला काम :</b> जब दो अलग सालों के पेपर में <b>वही concept</b> दिखे, तो दोनों साल लिख दे — <code>2023,2025</code>। ऐसे प्रश्न की संभावना <b>0.68</b> हो जाती है, और वही अगली बार आते हैं।</div>
+</div></div>
+
+<!-- 11 -->
+<div class="q"><div class="qh"><span>11.</span> GitHub पर फाइल डालूँ कैसे ? मुझे git नहीं आता</div>
+<div class="qb">
+<div class="ans">✅ git सीखने की ज़रूरत नहीं — सब ब्राउज़र से हो जाएगा।</div>
+<ol><li>अपने repo पर जा → <code>content</code> फोल्डर खोल</li>
+<li>ऊपर <b>«Add file» → «Create new file»</b> दबा</li>
+<li>नाम लिख : <code>q_ctet_jul2024.csv</code></li>
+<li>बड़े खाने में header + AI वाली CSV पंक्तियाँ पेस्ट कर</li>
+<li>नीचे हरा <b>«Commit changes»</b> दबा</li>
+<li><b>Actions</b> टैब पर जाकर हरा ✅ आने का इंतज़ार कर (1 मिनट)</li></ol>
+<div class="tip">पुरानी फाइल में जोड़ना हो तो : फाइल खोल → <b>✏️ पेंसिल</b> दबा → सबसे नीचे पेस्ट कर → Commit।</div>
+</div></div>
+
+<!-- 12 -->
+<div class="q"><div class="qh"><span>12.</span> कुल कितने प्रश्न चाहिए ?</div>
+<div class="qb">
+<table><tr><th>बैंक</th><th>कितने अच्छे मॉक बनेंगे</th><th>कहाँ से</th></tr>
+<tr><td>300</td><td>6</td><td>← अभी यहाँ है</td></tr>
+<tr><td>1,500</td><td><b>31</b></td><td><b>10 पुराने पेपर</b></td></tr>
+<tr><td>3,000</td><td>62</td><td>10 पेपर + हर एक का 1 variant</td></tr>
+<tr><td>6,000</td><td>124</td><td>10 पेपर + 3 variants</td></tr>
+</table>
+<div class="ans" style="margin-top:9px">🎯 पहला लक्ष्य : <b>10 पुराने पेपर = 1,500 प्रश्न</b>। उसके बाद ऐप सच में काम का हो जाएगा।</div>
+</div></div>
+
+<!-- CHECKLIST -->
+<div class="chk"><h2>✅ अब तू ये कर — क्रम से</h2>
+<ol>
+<li><b>आज :</b> GitHub पर <code>tet-qbank</code> नाम का <b>public</b> repo बना</li>
+<li><code>qbank-repo/</code> की सारी फाइलें उसमें डाल दे (ब्राउज़र से drag-drop चलेगा)</li>
+<li><b>LICENSE</b> फाइल जोड़ — «Add file → Create new file → LICENSE» लिखते ही GitHub टेम्पलेट दे देगा, <b>CC-BY-4.0</b> चुन ले</li>
+<li><b>Actions</b> टैब में हरा ✅ देख ले</li>
+<li><b>कल :</b> कोई <b>एक</b> पुराना पेपर उठा → <code>HANDOVER.md</code> से <b>प्रॉम्प्ट B</b> कॉपी कर → किसी AI में पेपर के साथ पेस्ट कर</li>
+<li>जो CSV मिले, उसे <b>प्रॉम्प्ट E</b> से जँचवा ले</li>
+<li>GitHub पर नई फाइल <code>q_&lt;पेपर का नाम&gt;.csv</code> बनाकर पेस्ट कर दे</li>
+<li>Commit → Actions हरा → <b>हो गया, एक पेपर बैंक में चढ़ गया</b></li>
+<li>यही 10 बार दोहरा दे। <b>बस इतना ही करना है।</b></li>
+</ol>
+<div class="tip" style="margin-top:12px"><b>अटक जाए तो :</b> मुझे वो पेपर भेज दे, मैं CSV बनाकर दे दूँगा — तू सिर्फ़ पेस्ट करके commit कर देना।</div>
+</div>
+
+<div style="text-align:center;color:#94a3b8;font-size:12px;margin-top:28px;border-top:1px solid #e2e8f0;padding-top:12px">
+साथ की फाइलें : <code>HANDOVER.md</code> (प्रोजेक्ट बाइबिल + प्रॉम्प्ट) · <code>TEMPLATE.csv</code> (4 उदाहरण पंक्तियाँ)
+</div>
+</div></body></html>
