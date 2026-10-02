@@ -22,15 +22,25 @@ BANKS = {  # file → fixed section (practice banks)
 }
 YEAR_RX = re.compile(r"(20\d\d)")
 DEV = re.compile(r"[\u0900-\u097F]")
-SKT = re.compile(r"(अस्ति|भवति|सन्ति|कथ्यते|वर्तते|इत्यस्य|अस्मिन्|तेषां|एतेषु|केषां|"
-                 r"पदे समास|सूत्रेण|धातो|प्रत्यय:|विभक्ति|\bइति\b|कुत्र|किम्\b|\w्यते\b)")
+SKT_WORDS = re.compile(r"\b(अस्ति|भवति|सन्ति|भवन्ति|कुरुत|चिनुत|लिखत|पठत|अस्मिन्|तेषां|तासां|एतेषु|"
+    r"अधोलिखित\S*|उदाहरणानुसार\S*|इति|एव|किम्|कथम्|कुत्र|अहम्|वयम्|भवान्|भवत:|छात्राणां|"
+    r"कथनम्|वाक्यम्|पदम्|नाम|अत्र|तत्र|यत्र|सह|विना|कृते|द्वारा़?)\b")
+
+def sanskrit_score(txt):
+    sc = 0
+    sc += 2 * len(re.findall(r"[क-हा-ौृ][:ः](?=[\s,।!?)\-]|$)", txt))      # visarga
+    sc += 2 * len(re.findall(r"[क-ह]्?[ा-ौ]?म्(?=[\s,।!?)\-]|$)", txt))    # -म् endings
+    sc += 2 * len(re.findall(r"(?<!रह)(?<!सद)स्य(?=[\s,।!?)\-]|$)", txt)) # genitive -स्य
+    sc += 2 * len(re.findall(r"(ेषु|ायाम्|ाभि:|ाभिः|ानाम्|ेभ्य:|ेभ्यः)(?=[\s,।]|$)", txt))
+    sc += len(SKT_WORDS.findall(txt))
+    return sc
 
 def devanagari_ratio(s):
     d = len(DEV.findall(s)); l = len(re.findall(r"[A-Za-z]", s))
     return d, l
 
 def is_sanskrit(s):
-    return bool(SKT.search(s)) and len(re.findall(r"(म्|ः)(\s|$|।)", s)) >= 1 or bool(SKT.search(s)) and s.count(":") >= 2
+    return sanskrit_score(s) >= 5
 
 def clean(s):
     s = re.sub(r"\*\*(.+?)\*\*", r"\1", s)
@@ -64,17 +74,16 @@ def sec_from_heading(line):
     return None
 
 def sec_for_q(part, qno, stem_all, opts_all):
-    if part in ("cdp", "math", "evs", "english", "hindi", "sanskrit"):
-        return part
+    """CTET Paper-1 ka structure FIXED hai — headings ke bharose nahi,
+    canonical ranges: 1-30 cdp, 31-60 math, 61-90 evs, 91+ language."""
+    if 1 <= qno <= 30: return "cdp"
+    if 31 <= qno <= 60: return "math"
+    if 61 <= qno <= 90: return "evs"
+    # language section (91-150 + variants >150): content se decide
     txt = stem_all + " " + " ".join(opts_all)
     d, l = devanagari_ratio(txt)
-    if part == "lang" or part is None:
-        if qno and 1 <= qno <= 30 and part is None: return "cdp"
-        if qno and 31 <= qno <= 60 and part is None: return "math"
-        if qno and 61 <= qno <= 90 and part is None: return "evs"
-        if l > d * 2: return "english"
-        if is_sanskrit(txt): return "sanskrit"
-        return "hindi"
+    if is_sanskrit(txt): return "sanskrit"
+    if l > d * 2: return "english"
     return "hindi"
 
 ANS_MAP = {"a": 0, "b": 1, "c": 2, "d": 3, "1": 0, "2": 1, "3": 2, "4": 3}
