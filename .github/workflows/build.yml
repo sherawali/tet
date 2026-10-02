@@ -25,7 +25,7 @@ jobs:
           echo "BUILD_TIME=$(date -u +%Y-%m-%dT%H:%M:%SZ)" >> $GITHUB_ENV
 
       - name: Build packs
-        run: python tools/build.py       # गलती हुई तो यहीं फेल, खराब डेटा कभी live नहीं जाएगा
+        run: python tools/build.py
 
       - name: Commit cdn
         run: |
@@ -33,24 +33,14 @@ jobs:
           git config user.email "bot@users.noreply.github.com"
           git add -A cdn
           git diff --staged --quiet || git commit -m "bank v${{ env.BANK_VERSION }}"
-          git push
+          git pull --rebase origin main
+          git push origin HEAD:main
 
       # tag = jsDelivr पर हमेशा-के-लिए cache होने वाला immutable URL
       - name: Tag release
         run: |
           git tag -f v${{ env.BANK_VERSION }}
           git push -f origin v${{ env.BANK_VERSION }}
-
-      # jsDelivr का cache साफ़ करो, वरना @main 12 घंटे पुराना दिखता रहेगा
-      - name: Purge jsDelivr cache
-        run: |
-          R="${{ github.repository }}"
-          for f in "cdn/manifest.json" ""; do
-            curl -s "https://purge.jsdelivr.net/gh/${R}@main/${f}" -o /dev/null || true
-          done
-          sleep 3
-          echo "cache साफ़ — नया manifest:"
-          curl -s "https://cdn.jsdelivr.net/gh/${R}@main/cdn/manifest.json" | head -c 120 || true
 
       - name: Summary
         run: |
