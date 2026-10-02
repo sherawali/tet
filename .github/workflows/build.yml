@@ -1,48 +1,78 @@
 name: Build Question Bank
+
 on:
   push:
     branches: [main]
-    paths: ['content/**']
+    paths:
+      - 'content/**'
+      - 'tools/**'
   workflow_dispatch:
 
 permissions:
   contents: write
 
+# एक समय में एक ही run — आपस में टकराव नहीं होगा
+concurrency:
+  group: build-bank
+  cancel-in-progress: false
+
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-        with: { fetch-depth: 0 }
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - uses: actions/setup-python@v5
-        with: { python-version: '3.11' }
-
-      # हर push = नया version number
-      - name: Version
-        run: |
-          echo "BANK_VERSION=$(git rev-list --count HEAD)" >> $GITHUB_ENV
-          echo "BUILD_TIME=$(date -u +%Y-%m-%dT%H:%M:%SZ)" >> $GITHUB_ENV
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
 
       - name: Build packs
-        run: python tools/build.py
+        shell: bash
+        run: |
+          git fetch origin main
+          git reset --hard origin/main          # हमेशा सबसे नए main से शुरू करो
+          export BANK_VERSION=$(git rev-list --count HEAD)
+          export BUILD_TIME=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+          echo "BANK_VERSION=$BANK_VERSION" >> "$GITHUB_ENV"
+          python tools/build.py
 
-      - name: Commit cdn
+      - name: Commit and push
+        shell: bash
         run: |
           git config user.name  "bank-bot"
-          git config user.email "bot@users.noreply.github.com"
+          git config user.email "bank-bot@users.noreply.github.com"
           git add -A cdn
-          git diff --staged --quiet || git commit -m "bank v${{ env.BANK_VERSION }}"
-          git pull --rebase origin main
-          git push origin HEAD:main
 
-      # tag = jsDelivr पर हमेशा-के-लिए cache होने वाला immutable URL
-      - name: Tag release
-        run: |
-          git tag -f v${{ env.BANK_VERSION }}
-          git push -f origin v${{ env.BANK_VERSION }}
+          if git diff --staged --quiet; then
+            echo "कुछ नहीं बदला — push की ज़रूरत नहीं"
+          else
+            git commit -m "bank v${BANK_VERSION}"
+            # तीन कोशिशें — बीच में कोई और push कर दे तो भी चल जाए
+            for i in 1 2 3; do
+              echo "कोशिश $i ..."
+              git fetch origin main
+              git rebase origin/main || git rebase --abort || true
+              if git push origin HEAD:main; then
+                echo "✅ push हो गया"
+                break
+              fi
+              echo "टकराव हुआ, 5 सेकंड बाद दोबारा..."
+              sleep 5
+            done
+          fi
 
-      - name: Summary
+          git tag -f "v${BANK_VERSION}"
+          git push -f origin "refs/tags/v${BANK_VERSION}"
+          echo "🏷️  tag v${BANK_VERSION} लग गया"
+
+      - name: Purge jsDelivr cache
+        continue-on-error: true
+        shell: bash
         run: |
-          echo "### ✅ Bank v${{ env.BANK_VERSION }} live" >> $GITHUB_STEP_SUMMARY
-          python -c "import json;m=json.load(open('cdn/manifest.json'));print(f\"- {m['total']} questions, {len(m['packs'])} packs\")" >> $GITHUB_STEP_SUMMARY
+          curl -sS "https://purge.jsdelivr.net/gh/${GITHUB_REPOSITORY}@main/cdn/manifest.json" || true
+          echo ""
