@@ -63,6 +63,21 @@ if orphan: errs.append(f"इन गद्यांशों का टेक्�
 if errs:
     print("❌ गलतियाँ मिलीं — ठीक करो :");  [print("   ",e) for e in errs[:20]];  sys.exit(1)
 
+# ── 2b. गद्यांश/काव्यांश की चेतावनियाँ (build नहीं रोकतीं) ─────
+_REF=re.compile(r'(उपर्युक्त|उपरोक्त|प्रस्तुत|above|following)\s*\S{0,12}'
+                r'(गद्यांश|काव्यांश|पद्यांश|कविता|passage|poem|stanza)',re.I)
+warns=[]
+for r in rows:
+    if not r.get("pid") and _REF.search(r["qh"]+" "+r.get("qe","")):
+        warns.append(f"बिना pid का प्रश्न किसी गद्यांश/कविता की ओर इशारा करता है: {r['qh'][:60]}")
+_cnt={}
+for r in rows:
+    if r.get("pid"): _cnt[r["pid"]]=_cnt.get(r["pid"],0)+1
+for pid,c in sorted(_cnt.items()):
+    if c<3: warns.append(f"{pid} पर सिर्फ़ {c} प्रश्न — असली पेपर से बाकी प्रश्न जोड़ो")
+if warns:
+    print(f"⚠ {len(warns)} गद्यांश-चेतावनी :");  [print("   ",w) for w in warns[:15]]
+
 # ── हर टॉपिक कितने अलग वर्षों में आया, खुद गिनो ──
 TOPIC_YEARS={}
 for r in rows:
