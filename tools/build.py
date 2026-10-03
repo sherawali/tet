@@ -14,7 +14,7 @@ PACKS=os.path.join(DIST,"packs"); os.makedirs(PACKS,exist_ok=True)
 CHUNK=200                      # हर pack में कितने प्रश्न
 
 def norm(s): return re.sub(r'\s+','',(s or '')).lower()
-def fp(r):   return hashlib.sha1((norm(r['q_hi'])+norm(r['q_en'])+norm(r['a_hi'])).encode()).hexdigest()[:16]
+def fp(r):   return hashlib.sha1((norm(r.get('exams',''))+norm(r['q_hi'])+norm(r['q_en'])+norm(r['a_hi'])).encode()).hexdigest()[:16]
 def sha(b):  return hashlib.sha256(b).hexdigest()
 
 # ── 1. passages पढ़ो ───────────────────────────────────────────
@@ -52,7 +52,8 @@ for f in sorted(glob.glob(os.path.join(CONTENT,"q_*.csv"))):
                      "qh":r["q_hi"].strip(),"oh":o_hi,
                      **({"qe":r["q_en"].strip(),"oe":o_en} if bi else {}),
                      "a":ans,
-                     **({"pid":r["pid"],"n":int(r.get("pseq") or 0)} if r.get("pid") else {}),
+                     "n":(lambda ps,m:int(ps) if ps else (int(m.group(1)) if m else 0))((r.get("pseq") or "").strip(), re.search(r' Q(\d+)',r.get("source") or '')),
+                     **({"pid":r["pid"]} if r.get("pid") else {}),
                      "_yrs":[y.strip() for y in (r.get("years") or "").split(",") if y.strip()],
                      "_pyq":1 if (r.get("is_pyq") or "0").strip()=="1" else 0})
 
@@ -72,7 +73,16 @@ for r in rows:
     if r.get("_pyq"): r["y"]=",".join(r["_yrs"])
     r.pop("_yrs",None); r.pop("_pyq",None)
 
-rows.sort(key=lambda r:(r["s"],r["t"],r["k"]))     # स्थिर क्रम = स्थिर packs
+# स्थिर क्रम = स्थिर packs · pid-group साथ-साथ, असली पेपर-क्रम (n) में
+_gmin={}
+for r in rows:
+    if r.get("pid"):
+        _gmin[r["pid"]]=min(_gmin.get(r["pid"],10**9), r.get("n",0))
+def _ordkey(r):
+    pid=r.get("pid")
+    gn=_gmin[pid] if pid else r.get("n",0)
+    return (r["s"], gn, pid or "", r.get("n",0), r["k"])
+rows.sort(key=_ordkey)
 
 # ── 3. immutable packs में बाँटो ──────────────────────────────
 packs=[]
