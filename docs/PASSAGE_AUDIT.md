@@ -1,78 +1,67 @@
-# गद्यांश / काव्यांश (Passage & Poem) Audit — CTET + UTET
+# Passage / Poem Audit — CTET + UTET
 
-_अंतिम अपडेट: fix-राउंड के बाद_
+_Status after full database scan and repair._
 
-## 1. अभी की स्थिति
+## Summary
 
-| प्रकार | Passages | उन पर प्रश्न |
-|---|---|---|
-| chart (HI) | 2 | 4 |
-| poem (EN) | 13 | 70 |
-| poem (HI) | 31 | 173 |
-| prose (EN) | 50 | 354 |
-| prose (HI) | 75 | 539 |
-| **कुल** | **171** | **1140** |
+- Total question rows scanned: **8049**
+- Passage/poem/chart groups: **180**
+- Passage-linked questions: **1185**
+- Orphan `pid`: **0**
+- Unused passage: **0**
+- Passage/comprehension topic with blank `pid`: **0**
+- 1-question passage/poem groups: **0**
+- Language policy: Hindi/English/Sanskrit sections are **single-language only**; CDP/Math/EVS are **dual-language**. Validation in `tools/build.py` enforces this.
 
-फ़ाइल-वार passage-आधारित प्रश्न: `q_ctet.csv` 1034, `q_utet2022.csv` 25, `q_english.csv` 20, `q_hindi.csv` 20, `q_utet2019.csv` 16, `q_utet2026.csv` 16, `q_utet2021.csv` 5, `q_math.csv` 4
+## Current passage inventory
 
-- Orphan pid (प्रश्न है, passage गायब) = **0**
-- बिना प्रश्न वाला passage = **0**
-- बिना पैरे के लटके (dangling) प्रश्न = **0**
-- 1 प्रश्न वाले passage = **0**
+| Type | Language | Passages | Questions |
+|---|---:|---:|---:|
+| chart | HI | 2 | 4 |
+| poem | EN | 14 | 75 |
+| poem | HI | 33 | 185 |
+| prose | EN | 53 | 369 |
+| prose | HI | 78 | 552 |
+| **Total** |  | **180** | **1185** |
 
-## 2. इस राउंड में क्या ठीक हुआ
+## Repairs completed
 
-### (क) असली पैरा/कविता जोड़े गए — प्रश्न-संख्या पेपर से मिलाई गई
+| File / lines | Set | Text attached | Paper-accurate question count |
+|---|---|---|---:|
+| `q_ctet.csv` 2794–2799 | CTET Jan 2021 Hindi poem | “दिशाएँ निमंत्रण मुझे दे रही हैं…” | 6 |
+| `q_ctet.csv` 2853–2858 | CTET Hindi bank poem | “शाम — एक किसान” / “आकाश का साफा बाँधकर…” | 6 |
+| `q_ctet.csv` 3050–3054 | REET 2021 Hindi poem | “हम पंछी उन्मुक्त गगन के” | 5 |
+| `q_ctet.csv` 4239–4244 | CTET Dec 2019 Hindi poem | दिनकर की “हिमालय” कविता का अंश | 6 |
+| `q_utet2021.csv` 32–34 | UTET 2021 Hindi prose | भाषा/आधुनिकता गद्यांश | 3 |
+| `q_utet2021.csv` 57–61 | UTET 2021 Hindi poem | निराला “बादल-राग” / “चल रे चल मेरे पागल बादल” | 5 |
+| `q_utet2021.csv` 72–76 | UTET 2021 English prose | Education: general vs specialised knowledge | 5 |
+| `q_utet2021.csv` 77–81 | UTET 2021 English poem | Tennyson, “The Charge of the Light Brigade” | 5 |
+| `q_utet2021.csv` 97–101 | UTET 2021 Hindi prose | प्रकृति–मनुष्य / पर्यावरण गद्यांश | 5 |
+| `q_utet2021.csv` 110–114 | UTET 2021 Hindi prose | राष्ट्रीयता और भाषा-तत्त्व गद्यांश | 5 |
+| `q_utet2021.csv` 130–134 | UTET 2021 English prose | Stammering passage | 5 |
+| `q_utet2021.csv` 135–139 | UTET 2021 English prose | Great War and Indian literature passage | 5 |
 
-| कहाँ | पेपर | क्या जोड़ा | प्रश्न |
-|---|---|---|---|
-| `q_ctet.csv` 2794–2799 | CTET Jan 2021 Paper-2 हिंदी (Q25–Q30) | काव्यांश “दिशाएँ निमंत्रण मुझे दे रही हैं…” (pid `CTJAN21HIP`) | **6** |
-| `q_ctet.csv` 3050–3054 | REET 2021 (VI–VIII) हिंदी | कविता “हम पंछी उन्मुक्त गगन के” — शिवमंगल सिंह ‘सुमन’ (pid `REET21HPUG`) | **5** |
-| `q_utet2021.csv` 57–61 | UTET 2021 Q56–Q60 | काव्यांश “चल रे चल, मेरे पागल बादल” — निराला, *बादल राग* / अनामिका (pid `UT21KAVYA`) | **5** |
+## Converter off-by-one cleanup
 
-तीनों पाठ वेब से उसी वर्ष के असली पेपर/मूल रचना से लिए गए हैं — अपनी तरफ़ से कुछ नहीं गढ़ा गया।
+The md→csv converter had copied the next passage body onto the previous pedagogy row (usually Q90/Q30). These fake links were removed while keeping the real neighbouring passage groups intact:
 
-### (ख) नक़ली passage हटाए (md→csv कन्वर्टर की off-by-one गलती)
+`CT35a5fa41`, `CT672b9bc0`, `CTfd4ac714`, `CT6e20505b`, `CT742ed581`, `CT1051ce40`, `CTe8f2658a`, `CT309083b7`, `CTaca68a2a`, `CT11ed4b10`, `CT62927b2b`, `CT76710910`, `CT84d922ae`, `CT90ee4281`, `CT98837974`
 
-हर पेपर में Q90 (या Q30) — जो असल में EVS/CDP पेडागॉजी का अलग प्रश्न है — पर अगले गद्यांश का टेक्स्ट चिपक गया था।
-इससे वही passage दो बार बनता था और एक नक़ली “1-प्रश्न वाला गद्यांश” दिखता था। **14 pid साफ़ किए गए:**
+## Remaining short groups
 
-`CT35a5fa41`, `CT672b9bc0`, `CTfd4ac714`, `CT6e20505b`, `CT742ed581`, `CT1051ce40`,
-`CTe8f2658a`, `CT309083b7`, `CTaca68a2a`, `CT11ed4b10`, `CT62927b2b`, `CT76710910`,
-`CT84d922ae`, `CT90ee4281`, `CT98837974`
+| pid | Type | Questions | Note |
+|---|---|---:|---|
+| CT8b1ce257 | prose | 2 | Hindi bank/environment excerpt has exactly Q125–Q126 here; same passage is also used in UTET 2021 as a separate paper set. |
+| CT936a01ad | prose | 2 | Hindi bank excerpt has exactly Q31–Q32. |
+| CTdaafd991 | poem | 2 | Two-line verse item has exactly Q33–Q34. |
+| P005 | chart | 2 | Practice pie-chart item; 2 questions by design. |
+| P010 | chart | 2 | Practice bar-chart item; 2 questions by design. |
 
-(असली गद्यांश Q91 वाली पंक्ति पर पहले से मौजूद था, वह ज्यों-का-त्यों है।)
+## Build validation now enforced
 
-### (ग) डुप्लिकेट हटाया
-`q_ctet.csv` की एक पंक्ति (“प्रबल ने 5% प्रति वर्ष…”, CTET 2013 गणित) दो बार थी — एक हटा दी गई।
+- `hindi`, `english`, `sanskrit`: `q_en/a_en/b_en/c_en/d_en` must be blank.
+- `cdp`, `math`, `evs`: English question/options must be filled.
+- Any topic marked as `अपठित`, `गद्यांश`, `पद्यांश`, `काव्यांश`, `Comprehension`, `Passage`, or `Poem` must have a `pid`.
+- Any one-question passage group is warned for manual review.
 
-### (घ) build.py में नई जाँच
-`tools/build.py` अब हर बिल्ड पर चेतावनी देता है जब —
-बिना `pid` का प्रश्न “उपर्युक्त गद्यांश/कविता” कहे, या किसी `pid` पर 3 से कम प्रश्न हों।
-
-## 3. जान-बूझकर छोड़े गए (स्रोत में भी इतने ही प्रश्न हैं)
-
-| pid | प्रकार | प्रश्न | वजह |
-|---|---|---|---|
-| CT8b1ce257 | prose | 2 | बैंक Q125–Q126 — 2 ही |
-| CT936a01ad | prose | 2 | CTET हिंदी बैंक Q31–Q32 — मूल पुस्तक में भी 2 ही |
-| CTdaafd991 | poem | 2 | बैंक Q33–Q34 (दो पंक्ति का दोहा) — 2 ही |
-| P005 | chart | 2 | अपना बनाया pie-chart आइटम (गणित) — 2 प्रश्न |
-| P010 | chart | 2 | अपना बनाया bar-chart आइटम (गणित) — 2 प्रश्न |
-
-## 4. 🔴 बचा हुआ सबसे बड़ा काम — Hindi/English दोनों भाषा
-
-- passage वाले 1140 प्रश्नों में `q_en` सिर्फ़ **4** में भरा है → **1136 प्रश्न एक ही भाषा में**
-- **169/171** passage समूहों में एक भी English अनुवाद नहीं
-- इनमें **63** ऐसे जहाँ passage व प्रश्न अंग्रेज़ी में हैं पर टेक्स्ट `q_hi/a_hi…` कॉलम में पड़ा है (सिर्फ़ कॉलम ठीक करना + हिंदी अनुवाद चाहिए):
-
-```
-CT0c793059, CT0cfcf6b9, CT12be5500, CT12c1bd6b, CT1304b542, CT18ef8975, CT1b7b4d0c, CT1ef4a5a6
-CT28af566c, CT3517b221, CT393061e9, CT3c671822, CT41b24721, CT467e032d, CT47616e24, CT4bbc79bb
-CT4c75cc5b, CT5a0ff083, CT60a694be, CT61c9ee03, CT63681f32, CT6532b637, CT6ac6580e, CT6ef81e82
-CT82e1f3b8, CT82efc665, CT873ba78e, CT88a8b423, CT8a9dacb6, CT8d5fb118, CT902c7d6e, CT93f5354e
-CTa1681a18, CTa43923ab, CTa4af3dd4, CTa86daccd, CTb23b4bc2, CTc015715b, CTca2f875e, CTcae1cd42
-CTce6c16d8, CTd7f93a20, CTe6ab0849, CTeb6e6977, CTee1dffb0, CTefbe5968, CTf087852e, CTf295fa34
-CTfa37e7f0, J3, J4, J5, J6, K3, K4, P003
-P004, P008, P009, P2019A, P2019B, P2019C, P2019D
-```
+Latest build: `python3 tools/build.py` passes cleanly.

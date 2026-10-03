@@ -36,6 +36,16 @@ for f in sorted(glob.glob(os.path.join(CONTENT,"q_*.csv"))):
         if ans not in (0,1,2,3): errs.append(f"{os.path.basename(f)}:{ln} ans 0-3 होना चाहिए"); continue
         o_hi=[r.get(k,"").strip() for k in ("a_hi","b_hi","c_hi","d_hi")]
         if not all(o_hi): errs.append(f"{os.path.basename(f)}:{ln} विकल्प अधूरे"); continue
+        sec=r["section"].strip()
+        t=r["topic"].strip()
+        o_en=[r.get(x,"").strip() for x in ("a_en","b_en","c_en","d_en")]
+        # भाषा-विषय (Hindi/English/Sanskrit) एक-भाषी रहेंगे; CDP/Math/EVS द्विभाषी रहेंगे।
+        if sec in {"hindi","english","sanskrit"} and ((r.get("q_en") or "").strip() or any(o_en)):
+            errs.append(f"{os.path.basename(f)}:{ln} {sec} सेक्शन में q_en/a_en खाली रहने चाहिए"); continue
+        if sec in {"cdp","math","evs"} and (not (r.get("q_en") or "").strip() or not all(o_en)):
+            errs.append(f"{os.path.basename(f)}:{ln} {sec} सेक्शन द्विभाषी है — q_en/a_en..d_en भरें"); continue
+        if (not (r.get("pid") or "").strip()) and re.search(r'(अपठित|गद्यांश|पद्यांश|काव्यांश|Comprehension|Passage|Poem)', t, re.I):
+            errs.append(f"{os.path.basename(f)}:{ln} passage/poem topic है लेकिन pid खाली है"); continue
         # गद्यांश उसी पंक्ति में दिया हो तो यहीं दर्ज कर लो
         if r.get("pid") and (r.get("p_body") or "").strip() and r["pid"] not in passages:
             passages[r["pid"]]={"id":r["pid"],"k":(r.get("p_kind") or "prose").strip(),
@@ -43,9 +53,7 @@ for f in sorted(glob.glob(os.path.join(CONTENT,"q_*.csv"))):
         k=fp(r)
         if k in seen: dups.append((os.path.basename(f),ln,seen[k])); continue
         seen[k]=f"{os.path.basename(f)}:{ln}"
-        t=r["topic"].strip()
         if t not in TOPICS: TOPICS.append(t)
-        o_en=[r.get(x,"").strip() for x in ("a_en","b_en","c_en","d_en")]
         bi=1 if (r.get("q_en") or "").strip() else 0
         rows.append({"k":k,"e":r["exams"].strip(),"s":r["section"].strip(),"t":TOPICS.index(t),
                      "d":int(r.get("difficulty") or 2),
@@ -74,7 +82,7 @@ _cnt={}
 for r in rows:
     if r.get("pid"): _cnt[r["pid"]]=_cnt.get(r["pid"],0)+1
 for pid,c in sorted(_cnt.items()):
-    if c<3: warns.append(f"{pid} पर सिर्फ़ {c} प्रश्न — असली पेपर से बाकी प्रश्न जोड़ो")
+    if c==1: warns.append(f"{pid} पर सिर्फ़ 1 प्रश्न — passage-link/पेपर-count दोबारा जाँचो")
 if warns:
     print(f"⚠ {len(warns)} गद्यांश-चेतावनी :");  [print("   ",w) for w in warns[:15]]
 
