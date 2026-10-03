@@ -4,6 +4,7 @@ CSV  →  immutable packs + manifest
 तू सिर्फ़ content/*.csv में पंक्तियाँ जोड़ेगा। बाकी सब ये करेगा।
 """
 import csv,json,hashlib,os,glob,sys,re
+sys.stdout.reconfigure(encoding='utf-8')
 sys.path.insert(0,os.path.dirname(os.path.abspath(__file__)))
 from pscore import p_score
 
