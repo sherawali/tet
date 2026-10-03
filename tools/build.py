@@ -52,7 +52,7 @@ for f in sorted(glob.glob(os.path.join(CONTENT,"q_*.csv"))):
                      "qh":r["q_hi"].strip(),"oh":o_hi,
                      **({"qe":r["q_en"].strip(),"oe":o_en} if bi else {}),
                      "a":ans,
-                     "n":(lambda m:int(m.group(1)) if m else int(r.get("pseq") or 0))(re.search(r' Q(\d+)',r.get("source") or '')),
+                     "n":(lambda ps,m:int(ps) if ps else (int(m.group(1)) if m else 0))((r.get("pseq") or "").strip(), re.search(r' Q(\d+)',r.get("source") or '')),
                      **({"pid":r["pid"]} if r.get("pid") else {}),
                      "_yrs":[y.strip() for y in (r.get("years") or "").split(",") if y.strip()],
                      "_pyq":1 if (r.get("is_pyq") or "0").strip()=="1" else 0})
@@ -81,7 +81,7 @@ for r in rows:
 def _ordkey(r):
     pid=r.get("pid")
     gn=_gmin[pid] if pid else r.get("n",0)
-    return (r["s"], r["t"], gn, pid or "", r.get("n",0), r["k"])
+    return (r["s"], gn, pid or "", r.get("n",0), r["k"])
 rows.sort(key=_ordkey)
 
 # ── 3. immutable packs में बाँटो ──────────────────────────────
