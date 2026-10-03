@@ -47,11 +47,12 @@ for f in sorted(glob.glob(os.path.join(CONTENT,"q_*.csv"))):
         t=r["topic"].strip()
         if t not in TOPICS: TOPICS.append(t)
         o_en=[r.get(x,"").strip() for x in ("a_en","b_en","c_en","d_en")]
+        o_en_safe = [e if e else h for e, h in zip(o_en, o_hi)]
         bi=1 if (r.get("q_en") or "").strip() else 0
         rows.append({"k":k,"e":r["exams"].strip(),"s":r["section"].strip(),"t":TOPICS.index(t),
                      "d":int(r.get("difficulty") or 2),
                      "qh":r["q_hi"].strip(),"oh":o_hi,
-                     **({"qe":r["q_en"].strip(),"oe":o_en} if bi else {}),
+                     **({"qe":r["q_en"].strip(),"oe":o_en_safe} if bi else {}),
                      "a":ans,
                      "n":(lambda ps,m:int(ps) if ps else (int(m.group(1)) if m else 0))((r.get("pseq") or "").strip(), re.search(r' Q(\d+)',r.get("source") or '')),
                      **({"pid":r["pid"]} if r.get("pid") else {}),
