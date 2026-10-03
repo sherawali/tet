@@ -100,8 +100,12 @@ for yr, rel_f, pid, kind, qs, qe, d_clean, pat in PASSAGE_SPECS:
     raw_body = re.sub(r'^\*{0,2}पद्यांश\s*\(.*?\).*?\n', '', raw_body)
     lines = [re.sub(r'^>\s?', '', l).strip() for l in raw_body.split('\n')]
     lines = [l for l in lines if l and not l.startswith('निम्नलिखित') and not l.startswith('Read ') and not l.startswith('**निर्देश') and not l.startswith('*निर्देश')]
-    clean_body = '<br>'.join(lines) if kind == 'poem' else ' '.join(lines)
-    clean_body = clean_body.strip('"').strip("'")
+    # Use real newline for poetry verses, space for prose paragraphs
+    clean_body = '\n'.join(lines) if kind == 'poem' else ' '.join(lines)
+    clean_body = re.sub(r'<br\s*/?>', '\n', clean_body, flags=re.IGNORECASE)
+    clean_body = re.sub(r'<\/?b>', '', clean_body, flags=re.IGNORECASE)
+    clean_body = re.sub(r'<[^>]*>', '', clean_body)
+    clean_body = clean_body.strip('"').strip("'").strip()
     PASSAGES_CACHE[pid] = {
         'pid': pid,
         'kind': kind,
@@ -112,13 +116,35 @@ for yr, rel_f, pid, kind, qs, qe, d_clean, pat in PASSAGE_SPECS:
         'year': yr
     }
 
+def strip_leaked_tail(text):
+    if not text: return ''
+    # 1. Answer markers
+    text = re.split(r'\n[#*\s✅\-]*(?:सही उत्तर|उत्तर|Correct Answer|Answer)\s*:', text, flags=re.IGNORECASE)[0]
+    # 2. Document end markers
+    text = re.split(r'\n[#*\s\-]*(?:दस्तावेज़ समाप्त|End of Document)', text, flags=re.IGNORECASE)[0]
+    # 3. Answer key summary tables
+    text = re.split(r'\n#+\s*(?:📋\s*)?(?:उत्तर कुंजी|Answer Key)', text, flags=re.IGNORECASE)[0]
+    # 4. Passage headings (e.g. ## पद्यांश, ## गद्यांश, ## Passage, ## पाई-चार्ट, ## Poem)
+    text = re.split(r'\n(?:---+\s*)?\n?#+\s*(?:पद्यांश|गद्यांश|Passage|पाई-चार्ट|Poem)', text, flags=re.IGNORECASE)[0]
+    # 5. Standalone Directions before next passage/question (e.g. *निर्देश निम्नलिखित... or Direction (Q. No. X):)
+    text = re.split(r'\n(?:---+\s*)?\n?(?:\*+|#+)?\s*(?:Direction|निर्देश)\s*(?:\([^)]*\))?\s*[:*–—\-]', text, flags=re.IGNORECASE)[0]
+    # 6. Trailing dividers and whitespace
+    text = re.sub(r'\n---+\s*$', '', text).strip()
+    return text.strip()
+
 def clean_q_text(text):
     if not text: return ''
+    text = strip_leaked_tail(text)
+    # Remove HTML tags (e.g. <b>, </b>, <br>)
+    text = re.sub(r'<br\s*/?>', ' ', text, flags=re.IGNORECASE)
+    text = re.sub(r'<\/?b>', '', text, flags=re.IGNORECASE)
+    text = re.sub(r'<[^>]*>', '', text)
     text = re.sub(r'^(?:###\s*)?(?:\*+)?(?:Directions?|निर्देश)\s*\([^)]*\)\s*(?::|\*+|-)?\s*', '', text, flags=re.IGNORECASE)
     text = re.sub(r'^(?:###\s*)?(?:\*+)?(?:Directions?|निर्देश)\s*:\s*', '', text, flags=re.IGNORECASE)
     text = re.sub(r'\(?\s*(?:प्रश्न|Q(?:uestion)?\.?\s*No\.?)\s*\d+\s*(?:से|to|–|-|&)\s*\d+\s*\)?[:\s\-]*', '', text, flags=re.IGNORECASE)
     text = re.sub(r'^\*+|\*+$', '', text.strip()).strip()
     text = re.sub(r'^-+|-+$', '', text.strip()).strip()
+    text = re.sub(r'[ \t]+', ' ', text).strip()
     return text.strip()
 
 def parse_line_abcd(s):
@@ -137,6 +163,7 @@ def parse_line_abcd(s):
     ob = s_clean[ib+3:ic].strip()
     oc = s_clean[ic+3:id_].strip()
     od = s_clean[id_+3:].strip()
+    od = strip_leaked_tail(od)
     return q, [oa, ob, oc, od]
 
 def guess_topic(sec, q_hi, q_en, pid, p_kind):
@@ -370,15 +397,12 @@ def parse_year_questions(year):
             if qnum in key_map:
                 ans_letter = key_map[qnum]
             else:
-                m_ans = re.search(r'(?:✅\s*)?(?:सही उत्तर|उत्तर|Correct Answer|Answer)\s*(?:/\s*(?:Correct Answer|उत्तर))?\s*:\s*\(([A-D])\)', rest, re.IGNORECASE)
+                m_ans = re.search(r'[#*\s✅\-]*(?:सही उत्तर|उत्तर|Correct Answer|Answer)\s*(?:/\s*(?:Correct Answer|उत्तर))?\s*:\s*\(([A-D])\)', rest, re.IGNORECASE)
                 if m_ans:
                     ans_letter = m_ans.group(1)
 
-            # Strip answer block from rest
-            m_cut = re.search(r'\n(?:\*\*|#|\s*✅)?(?:सही उत्तर|उत्तर|Correct Answer|Answer)', rest, re.IGNORECASE)
-            if m_cut:
-                rest = rest[:m_cut.start()].strip()
-            rest = re.sub(r'\n---+\s*$', '', rest).strip()
+            # Strip answer block, summary tables, passage headings, directions from rest
+            rest = strip_leaked_tail(rest)
 
             # Special case for 2026 Math Q105
             if year == '2026' and qnum == 105:
@@ -416,7 +440,7 @@ def parse_year_questions(year):
             # Format A: Bullet list: - (A) ...
             bullets = re.findall(r'(?:^|\n)-\s*\(([A-D])\)\s*(.*?)(?=(?:\n-\s*\([A-D]\)|\Z))', rest, re.DOTALL)
             if len(bullets) == 4:
-                opt_dict = {ltr: re.sub(r'✅', '', otxt).strip().strip('*').strip() for ltr, otxt in bullets}
+                opt_dict = {ltr: clean_q_text(re.sub(r'✅', '', otxt).strip().strip('*').strip()) for ltr, otxt in bullets}
                 for ltr, otxt in bullets:
                     if '✅' in otxt and not ans_letter:
                         ans_letter = ltr
@@ -480,7 +504,7 @@ def parse_year_questions(year):
             # Format B: Newline options: \n(A) ... \n(B) ...
             nl_opts = re.findall(r'(?:^|\n)\(([A-D])\)\s*(.*?)(?=(?:\n\([A-D]\)|\Z))', rest, re.DOTALL)
             if len(nl_opts) == 4:
-                opt_dict = {ltr: re.sub(r'✅', '', otxt).strip().strip('*').strip() for ltr, otxt in nl_opts}
+                opt_dict = {ltr: clean_q_text(re.sub(r'✅', '', otxt).strip().strip('*').strip()) for ltr, otxt in nl_opts}
                 for ltr, otxt in nl_opts:
                     if '✅' in otxt and not ans_letter:
                         ans_letter = ltr
@@ -524,6 +548,7 @@ def parse_year_questions(year):
                 res = parse_line_abcd(l)
                 if res:
                     q_part, opts = res
+                    opts = [clean_q_text(o) for o in opts]
                     if sec == 'hindi':
                         if q_part: hi_q_lines.append(q_part)
                         hi_opts = opts
@@ -550,6 +575,11 @@ def parse_year_questions(year):
                                 if q_part: en_q_lines.append(q_part)
                                 en_opts = opts
                 else:
+                    # Ignore lines that are answer summaries, document end, passage headings, or directions
+                    if any(bad in l for bad in ['📋 उत्तर कुंजी', 'दस्तावेज़ समाप्त', '## पद्यांश', '## गद्यांश', '## Passage', '## पाई-चार्ट', '✅ सही उत्तर', 'Correct Answer', '---']):
+                        continue
+                    if re.match(r'^(?:---|\*+|\#+)?\s*(?:Direction|निर्देश)\s*(?:\([^)]*\))?\s*[:*–—\-]', l, flags=re.IGNORECASE):
+                        continue
                     if sec == 'hindi':
                         hi_q_lines.append(l)
                     elif sec == 'english':

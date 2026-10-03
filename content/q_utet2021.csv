@@ -59,86 +59,33 @@ utet1,hindi,व्याकरण,2,,,,,,हिन्दी भाषा के 
 utet1,hindi,छंद/अलंकार/रस,2,,,,,,'रस गंगाधर' किसकी कृति है?,विश्वनाथ,पण्डितराज जगन्नाथ,क्षेमेन्द्र,आनन्दवर्धन,,विश्वनाथ,पण्डितराज जगन्नाथ,क्षेमेन्द्र,आनन्दवर्धन,2,UTET 2021 Q52,1,2021
 utet1,hindi,शब्द-भंडार,2,,,,,,निम्नांकित शब्दों में कौन सा शब्द 'तद्भव' शब्द है?,पाहन,पण्डित,पिपासा,परीक्षा,,पाहन,पण्डित,पिपासा,परीक्षा,2,UTET 2021 Q53,1,2021
 utet1,hindi,हिन्दी साहित्य,2,,,,,,'काव्यालंकार' किसकी रचना है?,अभिनव गुप्त,भामह,आनन्दवर्धन,विश्वनाथ,,अभिनव गुप्त,भामह,आनन्दवर्धन,विश्वनाथ,3,UTET 2021 Q54,1,2021
-utet1,hindi,छंद/अलंकार/रस,2,,,,,,"निम्नांकित में से कौन सा नाटक जयशंकर प्रसाद का नहीं है?
----
-## पद्यांश **निर्देश:** निम्नलिखित पद्यांश को पढ़कर पूछे गए प्रश्नों (प्र.सं. 56 से 60 तक) के सर्वाधिक उचित उत्तर वाले विकल्प का चयन कीजिए।
-> चल रे चल,
-> मेरे पागल बादल!
-> धँसता दलदल
-> हँसता है नद खल खल
-> बहता, कहता कुलकुल कलकल कलकल।
-> देख देख नाचता हृदय
-> बहने को महा विकल बेकल,
-> इस मरोर से — इसी शोर से —
-> सघन घोर गुरु गहन रोर से",अजातशत्रु,ध्रुवस्वामिनी,जनमेजय का नागयज्ञ,विक्रमादित्य,,अजातशत्रु,ध्रुवस्वामिनी,जनमेजय का नागयज्ञ,विक्रमादित्य,1,UTET 2021 Q55,1,2021
-utet1,hindi,अपठित पद्यांश,2,UT21_H2,1,poem,निर्देश : दी गई कविता/पद्यांश को पढ़कर पूछे गए प्रश्नों के सर्वाधिक उचित उत्तर वाले विकल्प का चयन कीजिए।,"चल रे चल,<br>मेरे पागल बादल!<br>धँसता दलदल<br>हँसता है नद खल खल<br>बहता, कहता कुलकुल कलकल कलकल।<br>देख देख नाचता हृदय<br>बहने को महा विकल बेकल,<br>इस मरोर से — इसी शोर से —<br>सघन घोर गुरु गहन रोर से",प्रस्तुत काव्यांश के रचनाकार का नाम बताइए —,गजानन माधव 'मुक्तिबोध',अज्ञेय,सूर्यकान्त त्रिपाठी 'निराला',केदारनाथ अग्रवाल,,गजानन माधव 'मुक्तिबोध',अज्ञेय,सूर्यकान्त त्रिपाठी 'निराला',केदारनाथ अग्रवाल,1,UTET 2021 Q56,1,2021
+utet1,hindi,छंद/अलंकार/रस,2,,,,,,निम्नांकित में से कौन सा नाटक जयशंकर प्रसाद का नहीं है?,अजातशत्रु,ध्रुवस्वामिनी,जनमेजय का नागयज्ञ,विक्रमादित्य,,अजातशत्रु,ध्रुवस्वामिनी,जनमेजय का नागयज्ञ,विक्रमादित्य,1,UTET 2021 Q55,1,2021
+utet1,hindi,अपठित पद्यांश,2,UT21_H2,1,poem,निर्देश : दी गई कविता/पद्यांश को पढ़कर पूछे गए प्रश्नों के सर्वाधिक उचित उत्तर वाले विकल्प का चयन कीजिए।,"चल रे चल,
+मेरे पागल बादल!
+धँसता दलदल
+हँसता है नद खल खल
+बहता, कहता कुलकुल कलकल कलकल।
+देख देख नाचता हृदय
+बहने को महा विकल बेकल,
+इस मरोर से — इसी शोर से —
+सघन घोर गुरु गहन रोर से",प्रस्तुत काव्यांश के रचनाकार का नाम बताइए —,गजानन माधव 'मुक्तिबोध',अज्ञेय,सूर्यकान्त त्रिपाठी 'निराला',केदारनाथ अग्रवाल,,गजानन माधव 'मुक्तिबोध',अज्ञेय,सूर्यकान्त त्रिपाठी 'निराला',केदारनाथ अग्रवाल,1,UTET 2021 Q56,1,2021
 utet1,hindi,अपठित गद्यांश,2,UT21_H2,2,,,,उक्त कविता किस काव्य से ली गई है?,अणिमा,अर्चना,झरना,अनामिका,,अणिमा,अर्चना,झरना,अनामिका,2,UTET 2021 Q57,1,2021
 utet1,hindi,अपठित गद्यांश,2,UT21_H2,3,,,,'चल रे चल मेरे पागल बादल' कहने में कवि का क्या भाव प्रकट होता है?,कवि के हृदय का हर्षोल्लास,वर्षा की विभीषिका,बादल का दीवानापन,बादल की संवेदनहीनता,,कवि के हृदय का हर्षोल्लास,वर्षा की विभीषिका,बादल का दीवानापन,बादल की संवेदनहीनता,0,UTET 2021 Q58,1,2021
 utet1,hindi,अपठित गद्यांश,2,UT21_H2,4,,,,प्रस्तुत कविता में किस रस का प्राधान्य है?,शान्त,वीर,अद्भुत,भयानक,,शान्त,वीर,अद्भुत,भयानक,1,UTET 2021 Q59,1,2021
 utet1,hindi,अपठित गद्यांश,2,UT21_H2,5,,,,"'इस मरोर से — इसी शोर से / सघन घोर गुरु गहन रोर से' — प्रस्तुत पद में निहित 'मरोर, शोर, घोर, रोर' शब्दों की अन्विति में कौन सा अलंकार है?",लाटानुप्रास,श्रुत्यानुप्रास,अन्त्यानुप्रास,वृत्त्यानुप्रास,,लाटानुप्रास,श्रुत्यानुप्रास,अन्त्यानुप्रास,वृत्त्यानुप्रास,2,UTET 2021 Q60,1,2021
 utet1,english,Grammar,2,,,,,,Rohan ________ the movie before he read the review.,watches,have watched,had watched,was watching,Rohan ________ the movie before he read the review.,watches,have watched,had watched,was watching,2,UTET 2021 Q61,1,2021
-utet1,english,Grammar,2,,,,,,"By the next month, we shall ________ the project.
----
-Direction ** Choose the most suitable auxiliary or modal verb out of the given alternatives.",has completed,completing,completed,have completed,"By the next month, we shall ________ the project.
----
-Direction ** Choose the most suitable auxiliary or modal verb out of the given alternatives.",has completed,completing,completed,have completed,0,UTET 2021 Q62,1,2021
+utet1,english,Grammar,2,,,,,,"By the next month, we shall ________ the project.",has completed,completing,completed,have completed,"By the next month, we shall ________ the project.",has completed,completing,completed,have completed,0,UTET 2021 Q62,1,2021
 utet1,english,Grammar,2,,,,,,"In the Middle Ages, people ________ travel by plane.",could,had to,can't,couldn't,"In the Middle Ages, people ________ travel by plane.",could,had to,can't,couldn't,2,UTET 2021 Q63,1,2021
-utet1,english,Synonym/Antonym,2,,,,,,"Kate is ill, so she ________ stay in bed and drink a lot of water.
----
-Direction (Q. No. 65):** Select the word nearest in meaning to the underlined part.",need,can't,has to,doesn't have to,"Kate is ill, so she ________ stay in bed and drink a lot of water.
----
-Direction (Q. No. 65):** Select the word nearest in meaning to the underlined part.",need,can't,has to,doesn't have to,1,UTET 2021 Q64,1,2021
-utet1,english,Grammar,2,,,,,,"The maid servant left the police station **contrite**.
----
-Direction (Q. No. 66):** Select the option in which the punctuation mark is appropriately used.",penitent,sore,angry,remorseless,"The maid servant left the police station **contrite**.
----
-Direction (Q. No. 66):** Select the option in which the punctuation mark is appropriately used.",penitent,sore,angry,remorseless,0,UTET 2021 Q65,1,2021
-utet1,english,Idioms,2,,,,,,Complete the following sentence using the appropriate phrase preposition from the given options.,"It is mentioned in the notice, all of us should read it.",It is mentioned in the notice! all of us should read it.,It is mentioned in the notice? all of us should read it.,"It is mentioned in the notice; all of us should read it.
-
----
-
-**Direction (Q. No. 67):** Complete the following sentence using the appropriate phrase preposition from the given options.",Complete the following sentence using the appropriate phrase preposition from the given options.,"It is mentioned in the notice, all of us should read it.",It is mentioned in the notice! all of us should read it.,It is mentioned in the notice? all of us should read it.,"It is mentioned in the notice; all of us should read it.
-
----
-
-**Direction (Q. No. 67):** Complete the following sentence using the appropriate phrase preposition from the given options.",1,UTET 2021 Q66,1,2021
+utet1,english,Grammar,2,,,,,,"Kate is ill, so she ________ stay in bed and drink a lot of water.",need,can't,has to,doesn't have to,"Kate is ill, so she ________ stay in bed and drink a lot of water.",need,can't,has to,doesn't have to,1,UTET 2021 Q64,1,2021
+utet1,english,Grammar,2,,,,,,The maid servant left the police station **contrite**.,penitent,sore,angry,remorseless,The maid servant left the police station **contrite**.,penitent,sore,angry,remorseless,0,UTET 2021 Q65,1,2021
+utet1,english,Idioms,2,,,,,,Complete the following sentence using the appropriate phrase preposition from the given options.,"It is mentioned in the notice, all of us should read it.",It is mentioned in the notice! all of us should read it.,It is mentioned in the notice? all of us should read it.,It is mentioned in the notice; all of us should read it.,Complete the following sentence using the appropriate phrase preposition from the given options.,"It is mentioned in the notice, all of us should read it.",It is mentioned in the notice! all of us should read it.,It is mentioned in the notice? all of us should read it.,It is mentioned in the notice; all of us should read it.,1,UTET 2021 Q66,1,2021
 utet1,english,Grammar,2,,,,,,How can they be going out? Jane has nothing ________ Peter.,in common,in common to,in common of,in common with,How can they be going out? Jane has nothing ________ Peter.,in common,in common to,in common of,in common with,0,UTET 2021 Q67,1,2021
-utet1,english,ELT Methods,2,,,,,,"Which of the following methods is based on the principle 'From example to generalisation'?
----
-## Passage Direction:** Read the passage given below and answer the questions that follow by selecting the most appropriate option.
-> Stammering is a habit disorder linked with lack of self-confidence. Basically for a child to understand a language, there are four stages. The first is learning to understand the spoken language and the second is speaking. Both of these usually develop around the age of two.
->
-> The third stage is speaking complex sentences, which develops at around 3 and the fourth is when the child recognises the written alphabet. In 80% of children, while the 3rd and 4th stages are at play, the first two get disturbed because something new is getting incorporated in the mind.
->
-> This is absolutely normal. But what over-cautious mothers do is fret a lot and the child develops a fear which later manifests itself as stammering. In fact, most text books on stammering state in bold that 'Had there not been any over-cautious mothers, hardly anyone would have suffered from stammering'. Fluency can be incorporated in the speech of such patients through hypnosis.",Incidental Method,Remedial Teaching Method,Deductive Method,Inductive Method,"Which of the following methods is based on the principle 'From example to generalisation'?
----
-## Passage Direction:** Read the passage given below and answer the questions that follow by selecting the most appropriate option.
-> Stammering is a habit disorder linked with lack of self-confidence. Basically for a child to understand a language, there are four stages. The first is learning to understand the spoken language and the second is speaking. Both of these usually develop around the age of two.
->
-> The third stage is speaking complex sentences, which develops at around 3 and the fourth is when the child recognises the written alphabet. In 80% of children, while the 3rd and 4th stages are at play, the first two get disturbed because something new is getting incorporated in the mind.
->
-> This is absolutely normal. But what over-cautious mothers do is fret a lot and the child develops a fear which later manifests itself as stammering. In fact, most text books on stammering state in bold that 'Had there not been any over-cautious mothers, hardly anyone would have suffered from stammering'. Fluency can be incorporated in the speech of such patients through hypnosis.",Incidental Method,Remedial Teaching Method,Deductive Method,Inductive Method,1,UTET 2021 Q68,1,2021
+utet1,english,ELT Methods,2,,,,,,Which of the following methods is based on the principle 'From example to generalisation'?,Incidental Method,Remedial Teaching Method,Deductive Method,Inductive Method,Which of the following methods is based on the principle 'From example to generalisation'?,Incidental Method,Remedial Teaching Method,Deductive Method,Inductive Method,1,UTET 2021 Q68,1,2021
 utet1,english,Comprehension — Passage,2,UT21_E1,1,prose,Directions : Read the passage given below and answer the questions that follow by selecting the most appropriate option.,"Stammering is a habit disorder linked with lack of self-confidence. Basically for a child to understand a language, there are four stages. The first is learning to understand the spoken language and the second is speaking. Both of these usually develop around the age of two. The third stage is speaking complex sentences, which develops at around 3 and the fourth is when the child recognises the written alphabet. In 80% of children, while the 3rd and 4th stages are at play, the first two get disturbed because something new is getting incorporated in the mind. This is absolutely normal. But what over-cautious mothers do is fret a lot and the child develops a fear which later manifests itself as stammering. In fact, most text books on stammering state in bold that 'Had there not been any over-cautious mothers, hardly anyone would have suffered from stammering'. Fluency can be incorporated in the speech of such patients through hypnosis.",Stammering is caused because of —,Physical disorder,Hindered growth,Lack of self-confidence,Lack of understanding,Stammering is caused because of —,Physical disorder,Hindered growth,Lack of self-confidence,Lack of understanding,3,UTET 2021 Q69,1,2021
 utet1,english,Comprehension — Passage,2,UT21_E1,2,,,,The second stage of a child's understanding the language is —,Speaking,Writing,Listening,Reading,The second stage of a child's understanding the language is —,Speaking,Writing,Listening,Reading,2,UTET 2021 Q70,1,2021
 utet1,english,Comprehension — Passage,2,UT21_E1,3,,,,________ are basically the reason for developing a fear in the child's mind.,Parents,Over-cautious mothers,Fathers,Uncles,________ are basically the reason for developing a fear in the child's mind.,Parents,Over-cautious mothers,Fathers,Uncles,1,UTET 2021 Q71,1,2021
 utet1,english,Comprehension — Passage,2,UT21_E1,4,,,,Fluency in such patients can be incorporated in the speech through —,hypnosis,slap,punishment,symbiosis,Fluency in such patients can be incorporated in the speech through —,hypnosis,slap,punishment,symbiosis,2,UTET 2021 Q72,1,2021
-utet1,english,Comprehension — Passage,2,UT21_E1,5,,,,By the time the child becomes 2 years old he/she can —,speak complex sentences.,only understand spoken language.,understand and speak simple language.,"write the alphabets.
-
----
-
-## Passage (Q. No. 74 to 78)
-
-**Direction:** Read the passage given below and answer the questions that follow by selecting the most appropriate answer.
-
-> The last great war, which nearly shook the foundations of the modern world, had little impact on Indian Literature beyond aggravating the popular revulsion against violence and adding to the growing disillusionment with the 'humane pretensions' of the Western World. This was eloquently voiced in Tagore's later poems and his last testament, *Crisis in Civilisation*. The Indian Intelligentsia was in a state of moral dilemma. On the one hand, it could not help sympathising with England's dogged courage in the hour of peril, with the Russians fighting with their backs to the wall against the ruthless Nazi hordes, and with China groaning under the heel of Japanese militarism; on the other hand, their own country was practically under military occupation of their own soil, and an Indian army under Subhas Bose was trying from the opposite camp to liberate their country. No creative impulse could issue from such confusion of loyalties. One would imagine that the achievement of Indian Independence in 1947, which came in the wake of the Allies' victory and was followed by the collapse of colonialism in the neighbouring countries of South-East Asia, would have released an upsurge of creative energy. No doubt it did, but unfortunately it was soon submerged in the great agony of Partition, with its inhuman slaughter of the innocents and the uprooting of millions of people from their homeland followed by the martyrdom of Mahatma Gandhi.",By the time the child becomes 2 years old he/she can —,speak complex sentences.,only understand spoken language.,understand and speak simple language.,"write the alphabets.
-
----
-
-## Passage (Q. No. 74 to 78)
-
-**Direction:** Read the passage given below and answer the questions that follow by selecting the most appropriate answer.
-
-> The last great war, which nearly shook the foundations of the modern world, had little impact on Indian Literature beyond aggravating the popular revulsion against violence and adding to the growing disillusionment with the 'humane pretensions' of the Western World. This was eloquently voiced in Tagore's later poems and his last testament, *Crisis in Civilisation*. The Indian Intelligentsia was in a state of moral dilemma. On the one hand, it could not help sympathising with England's dogged courage in the hour of peril, with the Russians fighting with their backs to the wall against the ruthless Nazi hordes, and with China groaning under the heel of Japanese militarism; on the other hand, their own country was practically under military occupation of their own soil, and an Indian army under Subhas Bose was trying from the opposite camp to liberate their country. No creative impulse could issue from such confusion of loyalties. One would imagine that the achievement of Indian Independence in 1947, which came in the wake of the Allies' victory and was followed by the collapse of colonialism in the neighbouring countries of South-East Asia, would have released an upsurge of creative energy. No doubt it did, but unfortunately it was soon submerged in the great agony of Partition, with its inhuman slaughter of the innocents and the uprooting of millions of people from their homeland followed by the martyrdom of Mahatma Gandhi.",1,UTET 2021 Q73,1,2021
+utet1,english,Comprehension — Passage,2,UT21_E1,5,,,,By the time the child becomes 2 years old he/she can —,speak complex sentences.,only understand spoken language.,understand and speak simple language.,write the alphabets.,By the time the child becomes 2 years old he/she can —,speak complex sentences.,only understand spoken language.,understand and speak simple language.,write the alphabets.,1,UTET 2021 Q73,1,2021
 utet1,english,Comprehension — Passage,2,UT21_E2,1,prose,Directions : Read the passage given below and answer the questions that follow by selecting the most appropriate option.,"The last great war, which nearly shook the foundations of the modern world, had little impact on Indian Literature beyond aggravating the popular revulsion against violence and adding to the growing disillusionment with the 'humane pretensions' of the Western World. This was eloquently voiced in Tagore's later poems and his last testament, *Crisis in Civilisation*. The Indian Intelligentsia was in a state of moral dilemma. On the one hand, it could not help sympathising with England's dogged courage in the hour of peril, with the Russians fighting with their backs to the wall against the ruthless Nazi hordes, and with China groaning under the heel of Japanese militarism; on the other hand, their own country was practically under military occupation of their own soil, and an Indian army under Subhas Bose was trying from the opposite camp to liberate their country. No creative impulse could issue from such confusion of loyalties. One would imagine that the achievement of Indian Independence in 1947, which came in the wake of the Allies' victory and was followed by the collapse of colonialism in the neighbouring countries of South-East Asia, would have released an upsurge of creative energy. No doubt it did, but unfortunately it was soon submerged in the great agony of Partition, with its inhuman slaughter of the innocents and the uprooting of millions of people from their homeland followed by the martyrdom of Mahatma Gandhi.",What was the impact of the last great war on Indian Literature?,It had no impact.,It aggravated popular revulsion against violence.,It shook the foundations of literature.,It offered eloquent support to the western world.,What was the impact of the last great war on Indian Literature?,It had no impact.,It aggravated popular revulsion against violence.,It shook the foundations of literature.,It offered eloquent support to the western world.,3,UTET 2021 Q74,1,2021
 utet1,english,Comprehension — Passage,2,UT21_E2,2,,,,What did Tagore articulate in his last testament?,Offered support to Subhas Bose.,Exposed the humane pretensions of the Western World.,Expressed loyalty to England.,Encouraged the liberation of countries.,What did Tagore articulate in his last testament?,Offered support to Subhas Bose.,Exposed the humane pretensions of the Western World.,Expressed loyalty to England.,Encouraged the liberation of countries.,0,UTET 2021 Q75,1,2021
 utet1,english,Comprehension — Passage,2,UT21_E2,3,,,,What was the stance of Indian Intelligentsia during the period of the great war?,Indifference to Russia's plight.,They favoured Japanese militarism.,They prompted creativity out of confused loyalties.,They expressed sympathy for England's dogged courage.,What was the stance of Indian Intelligentsia during the period of the great war?,Indifference to Russia's plight.,They favoured Japanese militarism.,They prompted creativity out of confused loyalties.,They expressed sympathy for England's dogged courage.,2,UTET 2021 Q76,1,2021
@@ -148,25 +95,11 @@ utet1,english,Grammar,2,,,,,,"According to language teaching experts, the early 
 utet1,english,Grammar,2,,,,,,"In continuous comprehensive evaluation, the teacher tries to —",Find out to what extent the learning objectives are achieved.,Make the learner assess the teacher.,Identify the special needs of the learners in a group.,Make the learner learn by cramming.,"In continuous comprehensive evaluation, the teacher tries to —",Find out to what extent the learning objectives are achieved.,Make the learner assess the teacher.,Identify the special needs of the learners in a group.,Make the learner learn by cramming.,2,UTET 2021 Q80,1,2021
 utet1,english,ELT Methods,2,,,,,,"The alphabetic method, the phonic method, the word method and the sentence method are associated with —",Listening,Speaking,Reading,Writing,"The alphabetic method, the phonic method, the word method and the sentence method are associated with —",Listening,Speaking,Reading,Writing,3,UTET 2021 Q81,1,2021
 utet1,english,Grammar,2,,,,,,Effective learning takes place when the learners are —,Passive,Quiet,Interactive,Good at preparing for the examination,Effective learning takes place when the learners are —,Passive,Quiet,Interactive,Good at preparing for the examination,1,UTET 2021 Q82,1,2021
-utet1,english,Idioms,2,,,,,,"In order to assess the all-round development of a learner, a teacher has to take the help of —
----
-Direction (Q. No. 84):** Rearrange the following words and phrases to form a meaningful sentence. Choose the correct alternative sentence.",Unit-end evaluation,Term-end evaluation,Continuous and comprehensive evaluation,Month-end evaluation,"In order to assess the all-round development of a learner, a teacher has to take the help of —
----
-Direction (Q. No. 84):** Rearrange the following words and phrases to form a meaningful sentence. Choose the correct alternative sentence.",Unit-end evaluation,Term-end evaluation,Continuous and comprehensive evaluation,Month-end evaluation,2,UTET 2021 Q83,1,2021
-utet1,english,Grammar,2,,,,,,services will / tourism in / air taxi / the state / boost,Tourism in the state services will boost air taxi.,Air taxi boost services will tourism in the state.,Air taxi services will boost tourism in the state.,"Services will boost tourism in the state air taxi.
-
-**Direction (Q. No. 85):** Choose the most suitable option that describes the meaning of the underlined idiom/phrase.",services will / tourism in / air taxi / the state / boost,Tourism in the state services will boost air taxi.,Air taxi boost services will tourism in the state.,Air taxi services will boost tourism in the state.,"Services will boost tourism in the state air taxi.
-
-**Direction (Q. No. 85):** Choose the most suitable option that describes the meaning of the underlined idiom/phrase.",1,UTET 2021 Q84,1,2021
-utet1,english,Synonym/Antonym,2,,,,,,"The exam **went down in flames**, I should have studied well.
-Direction (Q. No. 86):** Choose the antonym to the underlined word.",exam paper got burnt,passed with good marks,failed spectacularly,exam hall caught fire,"The exam **went down in flames**, I should have studied well.
-Direction (Q. No. 86):** Choose the antonym to the underlined word.",exam paper got burnt,passed with good marks,failed spectacularly,exam hall caught fire,0,UTET 2021 Q85,1,2021
-utet1,english,Synonym/Antonym,2,,,,,,"She was determined not to **dissipate** her energies.
-Direction (Q. No. 87):** Choose the synonym to the underlined word.",Utilize,Conserve,Manage,Organise,"She was determined not to **dissipate** her energies.
-Direction (Q. No. 87):** Choose the synonym to the underlined word.",Utilize,Conserve,Manage,Organise,1,UTET 2021 Q86,1,2021
-utet1,english,Spelling,2,,,,,,"She requested him not to **abandon** her.
-Direction ** Select the incorrectly spelt word from the following.",Try,Join,Keep up,Forsake,"She requested him not to **abandon** her.
-Direction ** Select the incorrectly spelt word from the following.",Try,Join,Keep up,Forsake,1,UTET 2021 Q87,1,2021
+utet1,english,Grammar,2,,,,,,"In order to assess the all-round development of a learner, a teacher has to take the help of —",Unit-end evaluation,Term-end evaluation,Continuous and comprehensive evaluation,Month-end evaluation,"In order to assess the all-round development of a learner, a teacher has to take the help of —",Unit-end evaluation,Term-end evaluation,Continuous and comprehensive evaluation,Month-end evaluation,2,UTET 2021 Q83,1,2021
+utet1,english,Grammar,2,,,,,,services will / tourism in / air taxi / the state / boost,Tourism in the state services will boost air taxi.,Air taxi boost services will tourism in the state.,Air taxi services will boost tourism in the state.,Services will boost tourism in the state air taxi.,services will / tourism in / air taxi / the state / boost,Tourism in the state services will boost air taxi.,Air taxi boost services will tourism in the state.,Air taxi services will boost tourism in the state.,Services will boost tourism in the state air taxi.,1,UTET 2021 Q84,1,2021
+utet1,english,Grammar,2,,,,,,"The exam **went down in flames**, I should have studied well.",exam paper got burnt,passed with good marks,failed spectacularly,exam hall caught fire,"The exam **went down in flames**, I should have studied well.",exam paper got burnt,passed with good marks,failed spectacularly,exam hall caught fire,0,UTET 2021 Q85,1,2021
+utet1,english,Grammar,2,,,,,,She was determined not to **dissipate** her energies.,Utilize,Conserve,Manage,Organise,She was determined not to **dissipate** her energies.,Utilize,Conserve,Manage,Organise,1,UTET 2021 Q86,1,2021
+utet1,english,Grammar,2,,,,,,She requested him not to **abandon** her.,Try,Join,Keep up,Forsake,She requested him not to **abandon** her.,Try,Join,Keep up,Forsake,1,UTET 2021 Q87,1,2021
 utet1,english,Spelling,2,,,,,,Select the incorrectly spelt word from the following.,Potassium,Possibility,Parasology,Preamble,Select the incorrectly spelt word from the following.,Potassium,Possibility,Parasology,Preamble,1,UTET 2021 Q88,1,2021
 utet1,english,Grammar,2,,,,,,Select the correct alternative which can be substituted for the sentence below.,Pursue,Persuit,Persuade,Peruse,Select the correct alternative which can be substituted for the sentence below.,Pursue,Persuit,Persuade,Peruse,0,UTET 2021 Q89,1,2021
 utet1,english,Grammar,2,,,,,,A person who talks in sleep is called —,Philatelist,Somnambulist,Somniloquist,Oneirocritic,A person who talks in sleep is called —,Philatelist,Somnambulist,Somniloquist,Oneirocritic,3,UTET 2021 Q90,1,2021
@@ -188,7 +121,7 @@ utet1,math,समय एवं कार्य,2,,,,,,"कितने घण्
 utet1,math,संख्या पद्धति,2,,,,,,"यदि
 तो x और y के मान हैं —",x = 9; y = 3,x = 3; y = 9,x = 5; y = 8,x = 4; y = 8,"```
 9 x 7 6
-−   x 6 y 9
+− x 6 y 9
 ─────────────
 3 y y 7
 ```",x = 9; y = 3,x = 3; y = 9,x = 5; y = 8,x = 4; y = 8,2,UTET 2021 Q106,1,2021
