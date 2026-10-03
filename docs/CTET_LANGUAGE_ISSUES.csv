@@ -1,0 +1,10 @@
+file,csv_line,exam,section,source,severity,affected_fields,repair_note
+q_ctet.csv,3164,ctet2,math,"CTET Bank Maths Pedagogy Questions Paper 2 Q75 [CTET (VI-VIII) 29/12/2021]",critical,"a_hi;b_hi;c_hi;d_hi;a_en;b_en;c_en;d_en","Restore the source statements and complete answer-combination options; English option D is only 'Only...'."
+q_ctet.csv,3596,ctet2,math,"CTET Bank Maths Pedagogy Questions Paper 2 Q509 [CTET (VI-VIII) 24/01/2023 (Shift-II)]",critical,"a_hi;b_hi;c_hi;d_hi;a_en;b_en;c_en;d_en","Restore the Van Hiele statements and answer-combination options; fields contain raw separators and 'Only'."
+q_ctet.csv,4121,ctet1,math,"CTET Paper 1 dec 2019 Q41",critical,"q_hi;a_hi;b_hi;c_hi;d_hi;q_en;a_en;b_en;c_en;d_en","Reconstruct the car-parking rate table and its options from the source paper; the bilingual text is merged and incomplete."
+q_ctet.csv,5154,ctet1,math,"CTET ctet paper 1 jan 2024 Q38",critical,"q_hi;a_hi;b_hi;c_hi;d_hi;q_en;a_en;b_en;c_en;d_en","Restore the A/B/C cognitive-conflict statements and all four answer-combination options."
+q_ctet.csv,5180,ctet1,evs,"CTET ctet paper 1 jan 2024 Q64",critical,"q_hi;a_hi;b_hi;c_hi;d_hi;q_en;a_en;b_en;c_en;d_en","Restore the Wahida Prism statements and answer-combination options; current fields contain separators and 'and'."
+q_ctet.csv,5181,ctet1,evs,"CTET ctet paper 1 jan 2024 Q65",critical,"q_hi;a_hi;b_hi;c_hi;d_hi;q_en;a_en;b_en;c_en;d_en","Clean raw separators and ///; rebuild the Hindi/English question and options from the source paper."
+q_ctet.csv,5184,ctet1,evs,"CTET ctet paper 1 jan 2024 Q68",critical,"q_hi;a_hi;b_hi;c_hi;d_hi;q_en;a_en;b_en;c_en;d_en","Clean raw separators and ///; restore the beehive statements and answer-combination options."
+q_ctet.csv,5190,ctet1,evs,"CTET ctet paper 1 jan 2024 Q74",critical,"q_hi;a_hi;b_hi;c_hi;d_hi;q_en;a_en;b_en;c_en;d_en","Restore the zoo field-trip statements and answer-combination options; current options are separator fragments."
+q_ctet.csv,4299,ctet1,cdp,"CTET Paper 1 dec 2021 Q11",minor,a_hi,"Optional Hindi-mode cleanup: translate 'Linguistic intelligence' as 'भाषाई बुद्धि'."
