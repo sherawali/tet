@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "id": "ctet-p1-2021-dec-sources",
+  "exam": "ctet",
+  "paper": 1,
+  "cycleLabel": "2021-dec",
+  "examDate": "2021-12-16",
+  "canonicalSet": "D",
+  "counts": {
+    "questions": 240,
+    "appearances": 240,
+    "stimuli": 10,
+    "paperForms": 1
+  },
+  "verificationStatus": "verified"
+}

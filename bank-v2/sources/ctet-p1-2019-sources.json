@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "id": "ctet-p1-2019-sources",
+  "exam": "ctet",
+  "paper": 1,
+  "cycleLabel": "2019",
+  "examDate": "2019-12-08",
+  "canonicalSet": "A",
+  "counts": {
+    "questions": 270,
+    "appearances": 270,
+    "stimuli": 12,
+    "paperForms": 1
+  },
+  "verificationStatus": "verified"
+}

@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "id": "ctet-p1-2016-sources",
+  "exam": "ctet",
+  "paper": 1,
+  "cycleLabel": "2016",
+  "examDate": "2016-02-21",
+  "canonicalSet": "I",
+  "counts": {
+    "questions": 180,
+    "appearances": 180,
+    "stimuli": 6,
+    "paperForms": 1
+  },
+  "verificationStatus": "verified"
+}

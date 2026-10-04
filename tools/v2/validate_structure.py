@@ -218,7 +218,14 @@ def validate_populated_content(
                 errors.append(f"{form_id}: core modules total {core_total}, expected 90")
             expected_languages_with_sa = {(language, slot, 30) for language in ("en", "hi", "sa") for slot in (1, 2)}
             expected_languages_no_sa = {(language, slot, 30) for language in ("en", "hi") for slot in (1, 2)}
-            if set(language_modules) not in (expected_languages_with_sa, expected_languages_no_sa):
+            expected_languages_2016 = {("hi", 1, 30), ("en", 2, 30), ("sa", 2, 30)}
+            expected_languages_2021_dec = {("hi", 1, 30), ("hi", 2, 30), ("en", 1, 30), ("en", 2, 30), ("sa", 2, 30)}
+            if set(language_modules) not in (
+                expected_languages_with_sa,
+                expected_languages_no_sa,
+                expected_languages_2016,
+                expected_languages_2021_dec,
+            ):
                 errors.append(f"{form_id}: language alternatives are incomplete")
             if form.get("totalQuestions") != 150:
                 errors.append(f"{form_id}: attempted form total must be 150")
