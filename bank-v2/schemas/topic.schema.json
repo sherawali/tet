@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tet.local/schemas/topic.schema.json",
+  "title": "Syllabus topic or concept",
+  "type": "object",
+  "required": ["schemaVersion", "id", "kind", "name", "exam", "paper", "section", "status"],
+  "properties": {
+    "schemaVersion": {"const": 1},
+    "id": {"$ref": "common.schema.json#/$defs/stableId"},
+    "kind": {"enum": ["topic", "subtopic", "concept"]},
+    "parentId": {"type": ["string", "null"]},
+    "name": {"$ref": "common.schema.json#/$defs/localizedText"},
+    "exam": {"$ref": "common.schema.json#/$defs/exam"},
+    "paper": {"$ref": "common.schema.json#/$defs/paper"},
+    "section": {"$ref": "common.schema.json#/$defs/section"},
+    "officialSyllabus": {"type": "boolean"},
+    "status": {"enum": ["active", "retired"]}
+  },
+  "additionalProperties": false
+}

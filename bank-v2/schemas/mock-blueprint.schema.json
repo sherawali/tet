@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tet.local/schemas/mock-blueprint.schema.json",
+  "title": "Official/smart mock assembly blueprint",
+  "type": "object",
+  "required": [
+    "schemaVersion", "id", "exam", "paper", "durationMinutes",
+    "totalQuestions", "totalMarks", "languageRules", "sections"
+  ],
+  "properties": {
+    "$schema": {"type": "string"},
+    "schemaVersion": {"const": 1},
+    "id": {"$ref": "common.schema.json#/$defs/stableId"},
+    "exam": {"$ref": "common.schema.json#/$defs/exam"},
+    "paper": {"$ref": "common.schema.json#/$defs/paper"},
+    "durationMinutes": {"type": "integer", "minimum": 1},
+    "totalQuestions": {"const": 150},
+    "totalMarks": {"const": 150},
+    "negativeMarking": {"const": 0},
+    "languageRules": {
+      "type": "object",
+      "required": ["slots", "mustDiffer"],
+      "properties": {
+        "slots": {"type": "integer", "minimum": 0, "maximum": 2},
+        "mustDiffer": {"type": "boolean"},
+        "supportedLanguages": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"$ref": "common.schema.json#/$defs/locale"}
+        }
+      },
+      "additionalProperties": false
+    },
+    "sections": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "questionCount"],
+        "properties": {
+          "id": {"$ref": "common.schema.json#/$defs/stableId"},
+          "section": {"$ref": "common.schema.json#/$defs/section"},
+          "languageSlot": {"type": ["integer", "null"], "enum": [1, 2, null]},
+          "stream": {"type": ["string", "null"], "enum": ["mathematics-science", "social-studies", null]},
+          "questionCount": {"type": "integer", "minimum": 1},
+          "marks": {"type": "integer", "minimum": 1},
+          "contentMode": {"enum": ["bilingual", "language-specific"]},
+          "selectionPolicy": {"enum": ["fixed-paper", "blueprint-random", "smart-weighted"]}
+        },
+        "additionalProperties": false
+      }
+    },
+    "constraints": {
+      "type": "object",
+      "properties": {
+        "stimulusGroupsAtomic": {"type": "boolean"},
+        "excludeSemanticDuplicates": {"type": "boolean"},
+        "respectTopicQuotas": {"type": "boolean"},
+        "respectExposureLimits": {"type": "boolean"}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,14 @@
+{
+  "$schema": "https://tet.local/schemas/section.schema.json",
+  "schemaVersion": 1,
+  "databaseId": "utet-paper-2-cdp",
+  "exam": "utet",
+  "paper": 2,
+  "section": "cdp",
+  "language": null,
+  "languageSlot": null,
+  "contentMode": "bilingual",
+  "questionsFile": "questions.ndjson",
+  "stimuliFile": "stimuli.ndjson",
+  "status": "empty"
+}

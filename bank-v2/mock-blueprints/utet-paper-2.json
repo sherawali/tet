@@ -1,0 +1,30 @@
+{
+  "$schema": "../schemas/mock-blueprint.schema.json",
+  "schemaVersion": 1,
+  "id": "utet-paper-2",
+  "exam": "utet",
+  "paper": 2,
+  "durationMinutes": 150,
+  "totalQuestions": 150,
+  "totalMarks": 150,
+  "negativeMarking": 0,
+  "languageRules": {
+    "slots": 2,
+    "mustDiffer": true,
+    "supportedLanguages": ["hi", "en", "sa", "ur"]
+  },
+  "sections": [
+    {"id": "cdp", "section": "cdp", "languageSlot": null, "stream": null, "questionCount": 30, "marks": 30, "contentMode": "bilingual", "selectionPolicy": "smart-weighted"},
+    {"id": "language-1", "section": "language", "languageSlot": 1, "stream": null, "questionCount": 30, "marks": 30, "contentMode": "language-specific", "selectionPolicy": "smart-weighted"},
+    {"id": "language-2", "section": "language", "languageSlot": 2, "stream": null, "questionCount": 30, "marks": 30, "contentMode": "language-specific", "selectionPolicy": "smart-weighted"},
+    {"id": "mathematics", "section": "mathematics", "languageSlot": null, "stream": "mathematics-science", "questionCount": 30, "marks": 30, "contentMode": "bilingual", "selectionPolicy": "smart-weighted"},
+    {"id": "science", "section": "science", "languageSlot": null, "stream": "mathematics-science", "questionCount": 30, "marks": 30, "contentMode": "bilingual", "selectionPolicy": "smart-weighted"},
+    {"id": "social-studies", "section": "social-studies", "languageSlot": null, "stream": "social-studies", "questionCount": 60, "marks": 60, "contentMode": "bilingual", "selectionPolicy": "smart-weighted"}
+  ],
+  "constraints": {
+    "stimulusGroupsAtomic": true,
+    "excludeSemanticDuplicates": true,
+    "respectTopicQuotas": true,
+    "respectExposureLimits": true
+  }
+}

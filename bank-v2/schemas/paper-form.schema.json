@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tet.local/schemas/paper-form.schema.json",
+  "title": "Verified real previous-year paper form",
+  "type": "object",
+  "required": [
+    "schemaVersion", "id", "exam", "paper", "examDate", "title",
+    "durationMinutes", "totalQuestions", "totalMarks", "verificationStatus", "modules"
+  ],
+  "properties": {
+    "schemaVersion": {"const": 1},
+    "id": {"$ref": "common.schema.json#/$defs/stableId"},
+    "exam": {"$ref": "common.schema.json#/$defs/exam"},
+    "paper": {"$ref": "common.schema.json#/$defs/paper"},
+    "examDate": {"type": "string", "pattern": "^20[0-9]{2}-(0[1-9]|1[0-2])(-[0-3][0-9])?$"},
+    "shift": {"type": ["integer", "null"], "minimum": 1},
+    "setCode": {"type": ["string", "null"]},
+    "title": {"$ref": "common.schema.json#/$defs/localizedText"},
+    "durationMinutes": {"type": "integer", "minimum": 1},
+    "totalQuestions": {"type": "integer", "minimum": 1},
+    "totalMarks": {"type": "integer", "minimum": 1},
+    "negativeMarking": {"type": "number", "minimum": 0},
+    "verificationStatus": {"enum": ["draft", "partial", "verified"]},
+    "sourceRef": {"type": ["string", "null"]},
+    "modules": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "kind", "questionCount", "appearanceIds"],
+        "properties": {
+          "id": {"$ref": "common.schema.json#/$defs/stableId"},
+          "kind": {"enum": ["core", "language", "subject-stream"]},
+          "section": {"$ref": "common.schema.json#/$defs/section"},
+          "language": {"type": ["string", "null"], "enum": ["hi", "en", "sa", "ur", null]},
+          "languageSlot": {"type": ["integer", "null"], "enum": [1, 2, null]},
+          "stream": {"type": ["string", "null"], "enum": ["mathematics-science", "social-studies", null]},
+          "questionCount": {"type": "integer", "minimum": 1},
+          "appearanceIds": {"type": "array", "uniqueItems": true, "items": {"$ref": "common.schema.json#/$defs/stableId"}}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}
