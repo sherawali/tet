@@ -76,7 +76,18 @@
   "sourcePolicy": {
     "correctnessAuthority": "officialFinalAnswerKeys",
     "questionTextAuthority": "authenticatedCandidatePaperVariants",
+    "acceptedQuestionArtifactStandard": "externally-mirrored-original-CBSE-CBT-export-only-after-metadata-question-ID-and-official-key-sequence-authentication",
+    "rejectedQuestionArtifactTypes": [
+      "coaching-reconstruction",
+      "memory-based-paper",
+      "AI-generated-content",
+      "unverified-mirror"
+    ],
     "mirrorRole": "transcription-and-visual-recovery-only",
+    "processingMode": "serial-form-gated",
+    "bulkQuestionImportAllowed": false,
+    "nextFormGate": "current-form-must-pass-question-by-question-source-answer-visual-and-structure-audit",
+    "nextCycleGate": "all-forms-in-current-cycle-must-be-complete-and-verified-and-user-must-authorize-the-next-cycle",
     "coachingExplanationsImported": false,
     "filenameOrCatalogLabelAloneIsDateEvidence": false,
     "requiredVariantMatchingEvidence": [

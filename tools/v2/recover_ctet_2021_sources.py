@@ -10,6 +10,7 @@ Source PDFs stay in the runner's temporary directory and are never committed.
 
 from __future__ import annotations
 
+import argparse
 import hashlib
 import json
 import re
@@ -227,24 +228,52 @@ def source_entries(manifest: dict[str, Any]) -> list[dict[str, str]]:
     return entries
 
 
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--date",
+        help="Recover exactly one catalogued form date (YYYY-MM-DD). Requires --source.",
+    )
+    parser.add_argument(
+        "--source",
+        help="Recover exactly one source ID for the selected date. Requires --date.",
+    )
+    args = parser.parse_args()
+    if bool(args.date) != bool(args.source):
+        parser.error("--date and --source must be supplied together")
+    return args
+
+
 def main() -> int:
+    args = parse_args()
     manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
     OUTPUT.mkdir(parents=True, exist_ok=True)
     session = requests.Session()
     session.headers.update({"User-Agent": USER_AGENT, "Accept": "application/pdf,*/*;q=0.8"})
     recovered: list[dict[str, Any]] = []
     failures: list[dict[str, str]] = []
+    entries = source_entries(manifest)
+    if args.date and args.source:
+        entries = [
+            entry
+            for entry in entries
+            if entry["date"] == args.date and entry["source"] == args.source
+        ]
+        if len(entries) != 1:
+            raise SystemExit(
+                f"Expected exactly one source for {args.date} {args.source}; found {len(entries)}"
+            )
 
     with tempfile.TemporaryDirectory(prefix="ctet-2021-recovery-") as temporary:
         temporary_root = Path(temporary)
-        for index, entry in enumerate(source_entries(manifest), start=1):
+        for index, entry in enumerate(entries, start=1):
             date = entry["date"]
             source_name = entry["source"]
             url = entry["url"]
             base_name = f"{date}--{slug(source_name)}"
             pdf_path = temporary_root / f"{base_name}.pdf"
             text_path = OUTPUT / "text" / f"{base_name}.txt"
-            full_page_ocr = source_name == "preppCatalogPdf"
+            full_page_ocr = bool(args.date) and source_name == "preppCatalogPdf"
             ocr_text_path = OUTPUT / "ocr" / f"{base_name}.txt"
             print(f"[{index}] recovering {date} {source_name}: {url}", flush=True)
             try:
@@ -282,21 +311,46 @@ def main() -> int:
                 )
                 print(f"    FAILED {type(exc).__name__}: {exc}", flush=True)
 
+    all_recovered = recovered
+    all_failures = failures
+    index_path = OUTPUT / "recovery-index.json"
+    if args.date and args.source and index_path.exists():
+        existing = json.loads(index_path.read_text(encoding="utf-8"))
+        selected_key = (args.date, args.source)
+        all_recovered = [
+            document
+            for document in existing["documents"]
+            if (document["date"], document["source"]) != selected_key
+        ] + recovered
+        all_failures = [
+            failure
+            for failure in existing["failures"]
+            if (failure["date"], failure["source"]) != selected_key
+        ] + failures
+        all_recovered.sort(key=lambda item: (item["date"], item["source"]))
+        all_failures.sort(key=lambda item: (item["date"], item["source"]))
+
     index_document = {
         "schemaVersion": 1,
         "cycleSourceManifest": str(MANIFEST.relative_to(ROOT)),
         "purpose": "Source matching and transcription only; no recovered row is imported by this process.",
         "sourcePdfRetention": "not-retained",
-        "recoveredCount": len(recovered),
-        "failureCount": len(failures),
-        "documents": recovered,
-        "failures": failures,
+        "recoveryMode": "single-source" if args.date else "all-sources",
+        "lastSelectedDate": args.date,
+        "lastSelectedSource": args.source,
+        "recoveredCount": len(all_recovered),
+        "failureCount": len(all_failures),
+        "documents": all_recovered,
+        "failures": all_failures,
     }
-    (OUTPUT / "recovery-index.json").write_text(
+    index_path.write_text(
         json.dumps(index_document, ensure_ascii=False, indent=2) + "\n",
         encoding="utf-8",
     )
-    print(f"Recovered {len(recovered)} documents; failures={len(failures)}")
+    print(
+        f"Selected recovery: recovered={len(recovered)} failures={len(failures)}; "
+        f"index totals: recovered={len(all_recovered)} failures={len(all_failures)}"
+    )
     return 1 if failures else 0
 
 

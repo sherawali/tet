@@ -17,8 +17,9 @@ permissions:
 
 # एक समय में एक ही run — आपस में टकराव नहीं होगा
 concurrency:
-  group: build-bank
-  cancel-in-progress: false
+  group: ${{ github.workflow }}-${{ github.ref }}
+  # A new serial-recovery request supersedes an older recovery on this branch.
+  cancel-in-progress: true
 
 jobs:
   build:
@@ -107,9 +108,12 @@ jobs:
           sudo apt-get install -y --no-install-recommends tesseract-ocr tesseract-ocr-eng tesseract-ocr-hin tesseract-ocr-san
           python -m pip install --disable-pip-version-check requests==2.32.5 PyMuPDF==1.26.4
 
-      - name: Recover public paper text and metadata
+      - name: Recover one authenticated paper only
         continue-on-error: true
-        run: python tools/v2/recover_ctet_2021_sources.py
+        run: >-
+          python tools/v2/recover_ctet_2021_sources.py
+          --date 2021-12-16
+          --source preppCatalogPdf
 
       - name: Return recovery derivatives to the Arena branch
         run: |
