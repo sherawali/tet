@@ -17,7 +17,7 @@ permissions:
 
 # एक समय में एक ही run — आपस में टकराव नहीं होगा
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: build-bank
   # A new serial-recovery request supersedes an older recovery on this branch.
   cancel-in-progress: true
 
