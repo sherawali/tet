@@ -25,9 +25,129 @@
         "5052124169",
         "5052124170"
       ],
-      "positions": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-      "observedCorrectOptions": [3, 1, 2, 3, 2, 2, 1, 1, 2, 4, 4, 1],
+      "positions": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "observedCorrectOptions": [
+        3,
+        1,
+        2,
+        3,
+        2,
+        2,
+        1,
+        1,
+        2,
+        4,
+        4,
+        1
+      ],
       "notes": "All 12 positions exactly match only the official 16 December 2021 English-medium main-key table. The paper's 22 December internal creation timestamp is therefore not its exam date."
+    },
+    {
+      "id": "candidate-2021-12-20-main-first-10",
+      "cataloguedFormDate": "2021-12-20",
+      "sources": [
+        "preppCatalogPdf"
+      ],
+      "candidateQuestionIds": [
+        "953357298605",
+        "953357298606",
+        "953357298607",
+        "953357298608",
+        "953357298609",
+        "953357298610",
+        "953357298611",
+        "953357298612",
+        "953357298613",
+        "953357298614"
+      ],
+      "positions": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "observedCorrectOptions": [
+        1,
+        1,
+        2,
+        1,
+        2,
+        3,
+        1,
+        4,
+        2,
+        4
+      ],
+      "notes": "All ten semantic answers were independently checked against the complete visible English stem and four options. The reconciliation tool compares this observed sequence against every official date/medium main-key table."
+    },
+    {
+      "id": "collegedekho-catalogued-2021-12-21-main-first-12",
+      "cataloguedFormDate": "2021-12-21",
+      "sources": [
+        "collegeDekhoPdfMirror"
+      ],
+      "candidateQuestionIds": [
+        "953357163701",
+        "953357163702",
+        "953357163703",
+        "953357163704",
+        "953357163705",
+        "953357163706",
+        "953357163707",
+        "953357163708",
+        "953357163709",
+        "953357163710",
+        "953357163711",
+        "953357163712"
+      ],
+      "positions": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "observedCorrectOptions": [
+        1,
+        3,
+        2,
+        1,
+        3,
+        2,
+        2,
+        2,
+        2,
+        3,
+        4,
+        3
+      ],
+      "notes": "All 12 positions match the official 21 January 2022 main-key ordering (both medium tables have the same 12-option prefix) and do not match 21 December 2021. This is a miscatalogued 21 January Set A mirror."
     },
     {
       "id": "ocr-recovered-prepp-2021-12-21-main-first-15",
@@ -52,15 +172,903 @@
         "953357293228",
         "953357293229"
       ],
-      "positions": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
-      "observedCorrectOptions": [3, 2, 4, 2, 1, 2, 2, 2, 3, 4, 2, 3, 4, 3, 3],
+      "positions": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "observedCorrectOptions": [
+        3,
+        2,
+        4,
+        2,
+        1,
+        2,
+        2,
+        2,
+        3,
+        4,
+        2,
+        3,
+        4,
+        3,
+        3
+      ],
       "notes": "OCR recovered Set D's complete bilingual stems, four options and question IDs. All 15 independently verified answers match the official 21 December 2021 main-key ordering in both medium tables and discriminate it from every other official date/medium sequence."
     },
     {
-      "id": "collegedekho-catalogued-2021-12-21-main-first-12",
-      "cataloguedFormDate": "2021-12-21",
+      "id": "candidate-2021-12-22-main-first-10",
+      "cataloguedFormDate": "2021-12-22",
       "sources": [
-        "collegeDekhoPdfMirror"
+        "collegeDekhoPdfMirror",
+        "preppCatalogPdf"
+      ],
+      "candidateQuestionIds": [
+        "953357248555",
+        "953357248556",
+        "953357248557",
+        "953357248558",
+        "953357248559",
+        "953357248560",
+        "953357248561",
+        "953357248562",
+        "953357248563",
+        "953357248564"
+      ],
+      "positions": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "observedCorrectOptions": [
+        2,
+        3,
+        4,
+        4,
+        1,
+        3,
+        1,
+        3,
+        3,
+        3
+      ],
+      "notes": "All ten semantic answers were independently checked against the complete visible English stem and four options. The reconciliation tool compares this observed sequence against every official date/medium main-key table."
+    },
+    {
+      "id": "candidate-2021-12-23-main-first-10",
+      "cataloguedFormDate": "2021-12-23",
+      "sources": [
+        "collegeDekhoPdfMirror",
+        "preppCatalogPdf"
+      ],
+      "candidateQuestionIds": [
+        "36496343737",
+        "36496343738",
+        "36496343739",
+        "36496343740",
+        "36496343741",
+        "36496343742",
+        "36496343743",
+        "36496343744",
+        "36496343745",
+        "36496343746"
+      ],
+      "positions": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "observedCorrectOptions": [
+        3,
+        2,
+        4,
+        3,
+        1,
+        1,
+        3,
+        1,
+        3,
+        3
+      ],
+      "notes": "All ten semantic answers were independently checked against the complete visible English stem and four options. The reconciliation tool compares this observed sequence against every official date/medium main-key table."
+    },
+    {
+      "id": "candidate-2021-12-24-main-first-10",
+      "cataloguedFormDate": "2021-12-24",
+      "sources": [
+        "collegeDekhoPdfMirror",
+        "preppCatalogPdf"
+      ],
+      "candidateQuestionIds": [
+        "34844244045",
+        "34844244046",
+        "34844244047",
+        "34844244048",
+        "34844244049",
+        "34844244050",
+        "34844244051",
+        "34844244052",
+        "34844244053",
+        "34844244054"
+      ],
+      "positions": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "observedCorrectOptions": [
+        2,
+        1,
+        2,
+        4,
+        3,
+        1,
+        2,
+        1,
+        3,
+        1
+      ],
+      "notes": "All ten semantic answers were independently checked against the complete visible English stem and four options. The reconciliation tool compares this observed sequence against every official date/medium main-key table."
+    },
+    {
+      "id": "candidate-2021-12-27-main-first-10",
+      "cataloguedFormDate": "2021-12-27",
+      "sources": [
+        "collegeDekhoPdfMirror",
+        "preppCatalogPdf"
+      ],
+      "candidateQuestionIds": [
+        "50521223409",
+        "50521223410",
+        "50521223411",
+        "50521223412",
+        "50521223413",
+        "50521223414",
+        "50521223415",
+        "50521223416",
+        "50521223417",
+        "50521223418"
+      ],
+      "positions": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "observedCorrectOptions": [
+        3,
+        1,
+        1,
+        1,
+        4,
+        2,
+        2,
+        3,
+        3,
+        2
+      ],
+      "notes": "All ten semantic answers were independently checked against the complete visible English stem and four options. The reconciliation tool compares this observed sequence against every official date/medium main-key table."
+    },
+    {
+      "id": "candidate-2021-12-28-main-first-10",
+      "cataloguedFormDate": "2021-12-28",
+      "sources": [
+        "collegeDekhoPdfMirror",
+        "preppCatalogPdf"
+      ],
+      "candidateQuestionIds": [
+        "43417823717",
+        "43417823718",
+        "43417823719",
+        "43417823720",
+        "43417823721",
+        "43417823722",
+        "43417823723",
+        "43417823724",
+        "43417823725",
+        "43417823726"
+      ],
+      "positions": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "observedCorrectOptions": [
+        4,
+        1,
+        2,
+        1,
+        4,
+        3,
+        1,
+        2,
+        2,
+        1
+      ],
+      "notes": "All ten semantic answers were independently checked against the complete visible English stem and four options. The reconciliation tool compares this observed sequence against every official date/medium main-key table."
+    },
+    {
+      "id": "candidate-2021-12-29-main-first-10",
+      "cataloguedFormDate": "2021-12-29",
+      "sources": [
+        "collegeDekhoPdfMirror",
+        "preppCatalogPdf"
+      ],
+      "candidateQuestionIds": [
+        "8247242927",
+        "8247242928",
+        "8247242929",
+        "8247242930",
+        "8247242931",
+        "8247242932",
+        "8247242933",
+        "8247242934",
+        "8247242935",
+        "8247242936"
+      ],
+      "positions": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "observedCorrectOptions": [
+        3,
+        1,
+        2,
+        1,
+        4,
+        1,
+        1,
+        3,
+        2,
+        2
+      ],
+      "notes": "All ten semantic answers were independently checked against the complete visible English stem and four options. The reconciliation tool compares this observed sequence against every official date/medium main-key table."
+    },
+    {
+      "id": "candidate-2021-12-30-main-first-10",
+      "cataloguedFormDate": "2021-12-30",
+      "sources": [
+        "collegeDekhoPdfMirror",
+        "preppCatalogPdf"
+      ],
+      "candidateQuestionIds": [
+        "50521224333",
+        "50521224334",
+        "50521224335",
+        "50521224336",
+        "50521224337",
+        "50521224338",
+        "50521224339",
+        "50521224340",
+        "50521224341",
+        "50521224342"
+      ],
+      "positions": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "observedCorrectOptions": [
+        2,
+        3,
+        3,
+        4,
+        1,
+        3,
+        3,
+        3,
+        1,
+        4
+      ],
+      "notes": "All ten semantic answers were independently checked against the complete visible English stem and four options. The reconciliation tool compares this observed sequence against every official date/medium main-key table."
+    },
+    {
+      "id": "candidate-2021-12-31-main-first-10",
+      "cataloguedFormDate": "2021-12-31",
+      "sources": [
+        "collegeDekhoPdfMirror",
+        "preppCatalogPdf"
+      ],
+      "candidateQuestionIds": [
+        "36496347587",
+        "36496347588",
+        "36496347589",
+        "36496347590",
+        "36496347591",
+        "36496347592",
+        "36496347593",
+        "36496347594",
+        "36496347595",
+        "36496347596"
+      ],
+      "positions": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "observedCorrectOptions": [
+        3,
+        2,
+        1,
+        3,
+        2,
+        3,
+        3,
+        1,
+        1,
+        3
+      ],
+      "notes": "All ten semantic answers were independently checked against the complete visible English stem and four options. The reconciliation tool compares this observed sequence against every official date/medium main-key table."
+    },
+    {
+      "id": "candidate-2022-01-01-main-first-10",
+      "cataloguedFormDate": "2022-01-01",
+      "sources": [
+        "collegeDekhoPdfMirror",
+        "preppCatalogPdf"
+      ],
+      "candidateQuestionIds": [
+        "50521228029",
+        "50521228030",
+        "50521228031",
+        "50521228032",
+        "50521228033",
+        "50521228034",
+        "50521228035",
+        "50521228036",
+        "50521228037",
+        "50521228038"
+      ],
+      "positions": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "observedCorrectOptions": [
+        4,
+        1,
+        4,
+        1,
+        3,
+        1,
+        2,
+        1,
+        1,
+        3
+      ],
+      "notes": "All ten semantic answers were independently checked against the complete visible English stem and four options. The reconciliation tool compares this observed sequence against every official date/medium main-key table."
+    },
+    {
+      "id": "candidate-2022-01-03-main-first-10",
+      "cataloguedFormDate": "2022-01-03",
+      "sources": [
+        "collegeDekhoPdfMirror",
+        "preppCatalogPdf"
+      ],
+      "candidateQuestionIds": [
+        "8247244313",
+        "8247244314",
+        "8247244315",
+        "8247244316",
+        "8247244317",
+        "8247244318",
+        "8247244319",
+        "8247244320",
+        "8247244321",
+        "8247244322"
+      ],
+      "positions": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "observedCorrectOptions": [
+        2,
+        3,
+        2,
+        3,
+        3,
+        1,
+        2,
+        3,
+        1,
+        3
+      ],
+      "notes": "All ten semantic answers were independently checked against the complete visible English stem and four options. The reconciliation tool compares this observed sequence against every official date/medium main-key table."
+    },
+    {
+      "id": "candidate-2022-01-04-main-first-10",
+      "cataloguedFormDate": "2022-01-04",
+      "sources": [
+        "collegeDekhoPdfMirror",
+        "preppCatalogPdf"
+      ],
+      "candidateQuestionIds": [
+        "50521227105",
+        "50521227106",
+        "50521227107",
+        "50521227108",
+        "50521227109",
+        "50521227110",
+        "50521227111",
+        "50521227112",
+        "50521227113",
+        "50521227114"
+      ],
+      "positions": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "observedCorrectOptions": [
+        1,
+        1,
+        2,
+        1,
+        2,
+        2,
+        1,
+        2,
+        2,
+        2
+      ],
+      "notes": "All ten semantic answers were independently checked against the complete visible English stem and four options. The reconciliation tool compares this observed sequence against every official date/medium main-key table."
+    },
+    {
+      "id": "candidate-2022-01-05-main-first-10",
+      "cataloguedFormDate": "2022-01-05",
+      "sources": [
+        "collegeDekhoPdfMirror",
+        "preppCatalogPdf",
+        "testbook-english-hindi"
+      ],
+      "candidateQuestionIds": [
+        "8247244929",
+        "8247244930",
+        "8247244931",
+        "8247244932",
+        "8247244933",
+        "8247244934",
+        "8247244935",
+        "8247244936",
+        "8247244937",
+        "8247244938"
+      ],
+      "positions": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "observedCorrectOptions": [
+        4,
+        3,
+        2,
+        2,
+        2,
+        1,
+        3,
+        3,
+        3,
+        1
+      ],
+      "notes": "All ten semantic answers were independently checked against the complete visible English stem and four options. The reconciliation tool compares this observed sequence against every official date/medium main-key table."
+    },
+    {
+      "id": "candidate-2022-01-06-main-first-10",
+      "cataloguedFormDate": "2022-01-06",
+      "sources": [
+        "collegeDekhoPdfMirror",
+        "preppCatalogPdf",
+        "testbook-english-hindi"
+      ],
+      "candidateQuestionIds": [
+        "8247244621",
+        "8247244622",
+        "8247244623",
+        "8247244624",
+        "8247244625",
+        "8247244626",
+        "8247244627",
+        "8247244628",
+        "8247244629",
+        "8247244630"
+      ],
+      "positions": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "observedCorrectOptions": [
+        2,
+        1,
+        2,
+        4,
+        2,
+        1,
+        2,
+        4,
+        4,
+        2
+      ],
+      "notes": "All ten semantic answers were independently checked against the complete visible English stem and four options. The reconciliation tool compares this observed sequence against every official date/medium main-key table."
+    },
+    {
+      "id": "candidate-2022-01-07-main-first-10",
+      "cataloguedFormDate": "2022-01-07",
+      "sources": [
+        "collegeDekhoPdfMirror",
+        "preppCatalogPdf"
+      ],
+      "candidateQuestionIds": [
+        "36496350051",
+        "36496350052",
+        "36496350053",
+        "36496350054",
+        "36496350055",
+        "36496350056",
+        "36496350057",
+        "36496350058",
+        "36496350059",
+        "36496350060"
+      ],
+      "positions": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "observedCorrectOptions": [
+        1,
+        4,
+        2,
+        4,
+        1,
+        2,
+        1,
+        1,
+        2,
+        4
+      ],
+      "notes": "All ten semantic answers were independently checked against the complete visible English stem and four options. The reconciliation tool compares this observed sequence against every official date/medium main-key table."
+    },
+    {
+      "id": "candidate-2022-01-08-main-first-10",
+      "cataloguedFormDate": "2022-01-08",
+      "sources": [
+        "collegeDekhoPdfMirror",
+        "preppCatalogPdf"
+      ],
+      "candidateQuestionIds": [
+        "8247247085",
+        "8247247086",
+        "8247247087",
+        "8247247088",
+        "8247247089",
+        "8247247090",
+        "8247247091",
+        "8247247092",
+        "8247247093",
+        "8247247094"
+      ],
+      "positions": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "observedCorrectOptions": [
+        4,
+        1,
+        4,
+        3,
+        3,
+        1,
+        1,
+        2,
+        4,
+        3
+      ],
+      "notes": "All ten semantic answers were independently checked against the complete visible English stem and four options. The reconciliation tool compares this observed sequence against every official date/medium main-key table."
+    },
+    {
+      "id": "candidate-2022-01-10-main-first-10",
+      "cataloguedFormDate": "2022-01-10",
+      "sources": [
+        "collegeDekhoPdfMirror",
+        "preppCatalogPdf"
+      ],
+      "candidateQuestionIds": [
+        "36496351745",
+        "36496351746",
+        "36496351747",
+        "36496351748",
+        "36496351749",
+        "36496351750",
+        "36496351751",
+        "36496351752",
+        "36496351753",
+        "36496351754"
+      ],
+      "positions": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "observedCorrectOptions": [
+        2,
+        2,
+        3,
+        3,
+        2,
+        4,
+        1,
+        3,
+        4,
+        1
+      ],
+      "notes": "All ten semantic answers were independently checked against the complete visible English stem and four options. The reconciliation tool compares this observed sequence against every official date/medium main-key table."
+    },
+    {
+      "id": "candidate-2022-01-11-main-first-10",
+      "cataloguedFormDate": "2022-01-11",
+      "sources": [
+        "collegeDekhoPdfMirror",
+        "preppCatalogPdf"
+      ],
+      "candidateQuestionIds": [
+        "36496352669",
+        "36496352670",
+        "36496352671",
+        "36496352672",
+        "36496352673",
+        "36496352674",
+        "36496352675",
+        "36496352676",
+        "36496352677",
+        "36496352678"
+      ],
+      "positions": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "observedCorrectOptions": [
+        4,
+        2,
+        3,
+        1,
+        2,
+        2,
+        1,
+        1,
+        2,
+        1
+      ],
+      "notes": "All ten semantic answers were independently checked against the complete visible English stem and four options. The reconciliation tool compares this observed sequence against every official date/medium main-key table."
+    },
+    {
+      "id": "candidate-2022-01-12-main-first-10",
+      "cataloguedFormDate": "2022-01-12",
+      "sources": [
+        "collegeDekhoPdfMirror",
+        "preppCatalogPdf"
+      ],
+      "candidateQuestionIds": [
+        "8247248009",
+        "8247248010",
+        "8247248011",
+        "8247248012",
+        "8247248013",
+        "8247248014",
+        "8247248015",
+        "8247248016",
+        "8247248017",
+        "8247248018"
+      ],
+      "positions": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "observedCorrectOptions": [
+        4,
+        3,
+        4,
+        4,
+        2,
+        2,
+        1,
+        3,
+        3,
+        3
+      ],
+      "notes": "All ten semantic answers were independently checked against the complete visible English stem and four options. The reconciliation tool compares this observed sequence against every official date/medium main-key table."
+    },
+    {
+      "id": "candidate-2022-01-17-main-first-10",
+      "cataloguedFormDate": "2022-01-17",
+      "sources": [
+        "preppCatalogPdf"
+      ],
+      "candidateQuestionIds": [
+        "953357522829",
+        "953357522830",
+        "953357522831",
+        "953357522832",
+        "953357522833",
+        "953357522834",
+        "953357522835",
+        "953357522836",
+        "953357522837",
+        "953357522838"
+      ],
+      "positions": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "observedCorrectOptions": [
+        3,
+        3,
+        4,
+        1,
+        3,
+        1,
+        3,
+        1,
+        1,
+        4
+      ],
+      "notes": "All ten semantic answers were independently checked against the complete visible English stem and four options. The reconciliation tool compares this observed sequence against every official date/medium main-key table."
+    },
+    {
+      "id": "candidate-2022-01-21-main-first-10",
+      "cataloguedFormDate": "2022-01-21",
+      "sources": [
+        "preppCatalogPdf"
       ],
       "candidateQuestionIds": [
         "953357163701",
@@ -72,13 +1080,33 @@
         "953357163707",
         "953357163708",
         "953357163709",
-        "953357163710",
-        "953357163711",
-        "953357163712"
+        "953357163710"
       ],
-      "positions": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-      "observedCorrectOptions": [1, 3, 2, 1, 3, 2, 2, 2, 2, 3, 4, 3],
-      "notes": "All 12 positions match the official 21 January 2022 main-key ordering (both medium tables have the same 12-option prefix) and do not match 21 December 2021. This is a miscatalogued 21 January Set A mirror."
+      "positions": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "observedCorrectOptions": [
+        1,
+        3,
+        2,
+        1,
+        3,
+        2,
+        2,
+        2,
+        2,
+        3
+      ],
+      "notes": "All ten semantic answers were independently checked against the complete visible English stem and four options. The reconciliation tool compares this observed sequence against every official date/medium main-key table."
     }
   ]
 }
