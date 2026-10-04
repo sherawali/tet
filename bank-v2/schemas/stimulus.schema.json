@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tet.local/schemas/stimulus.schema.json",
+  "title": "Reusable passage, poem, table, image or case-study stimulus",
+  "type": "object",
+  "required": ["schemaVersion", "id", "status", "exam", "paper", "section", "type", "content", "selectionPolicy"],
+  "properties": {
+    "schemaVersion": {"const": 1},
+    "id": {"$ref": "common.schema.json#/$defs/stableId"},
+    "status": {"enum": ["draft", "review", "published", "retired"]},
+    "exam": {"$ref": "common.schema.json#/$defs/exam"},
+    "paper": {"$ref": "common.schema.json#/$defs/paper"},
+    "section": {"$ref": "common.schema.json#/$defs/section"},
+    "language": {"type": ["string", "null"], "enum": ["hi", "en", "sa", "ur", null]},
+    "languageSlot": {"type": ["integer", "null"], "enum": [1, 2, null]},
+    "type": {"enum": ["prose", "poem", "dialogue", "case-study", "table", "image", "map", "diagram", "composite"]},
+    "title": {"$ref": "common.schema.json#/$defs/localizedText"},
+    "instructions": {"$ref": "common.schema.json#/$defs/localizedText"},
+    "content": {"$ref": "common.schema.json#/$defs/contentBlocks"},
+    "selectionPolicy": {"enum": ["atomic", "allow-subset"]},
+    "minimumQuestions": {"type": "integer", "minimum": 1},
+    "sourceType": {"enum": ["pyq", "original", "practice"]},
+    "review": {
+      "type": "object",
+      "properties": {
+        "textVerified": {"type": "boolean"},
+        "translationVerified": {"type": "boolean"},
+        "mediaVerified": {"type": "boolean"}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

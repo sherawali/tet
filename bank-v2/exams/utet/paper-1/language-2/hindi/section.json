@@ -1,0 +1,14 @@
+{
+  "$schema": "https://tet.local/schemas/section.schema.json",
+  "schemaVersion": 1,
+  "databaseId": "utet-paper-1-language-2-hi",
+  "exam": "utet",
+  "paper": 1,
+  "section": "language",
+  "language": "hi",
+  "languageSlot": 2,
+  "contentMode": "language-specific",
+  "questionsFile": "questions.ndjson",
+  "stimuliFile": "stimuli.ndjson",
+  "status": "empty"
+}

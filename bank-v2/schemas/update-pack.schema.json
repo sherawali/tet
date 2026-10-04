@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tet.local/schemas/update-pack.schema.json",
+  "title": "Atomic offline database delta",
+  "type": "object",
+  "required": ["schemaVersion", "fromBankVersion", "toBankVersion", "upserts", "deletes"],
+  "properties": {
+    "schemaVersion": {"type": "integer", "minimum": 1},
+    "fromBankVersion": {"type": "integer", "minimum": 0},
+    "toBankVersion": {"type": "integer", "minimum": 1},
+    "upserts": {
+      "type": "object",
+      "required": ["questions", "stimuli", "appearances", "paperForms", "topics", "assets"],
+      "properties": {
+        "questions": {"type": "array", "items": {"type": "object"}},
+        "stimuli": {"type": "array", "items": {"type": "object"}},
+        "appearances": {"type": "array", "items": {"type": "object"}},
+        "paperForms": {"type": "array", "items": {"type": "object"}},
+        "topics": {"type": "array", "items": {"type": "object"}},
+        "assets": {"type": "array", "items": {"type": "object"}}
+      },
+      "additionalProperties": false
+    },
+    "deletes": {
+      "type": "object",
+      "required": ["questions", "stimuli", "appearances", "paperForms", "topics", "assets"],
+      "properties": {
+        "questions": {"type": "array", "items": {"$ref": "common.schema.json#/$defs/stableId"}},
+        "stimuli": {"type": "array", "items": {"$ref": "common.schema.json#/$defs/stableId"}},
+        "appearances": {"type": "array", "items": {"$ref": "common.schema.json#/$defs/stableId"}},
+        "paperForms": {"type": "array", "items": {"$ref": "common.schema.json#/$defs/stableId"}},
+        "topics": {"type": "array", "items": {"$ref": "common.schema.json#/$defs/stableId"}},
+        "assets": {"type": "array", "items": {"$ref": "common.schema.json#/$defs/stableId"}}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

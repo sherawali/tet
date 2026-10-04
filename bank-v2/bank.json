@@ -1,0 +1,36 @@
+{
+  "$schema": "./schemas/bank.schema.json",
+  "schemaVersion": 1,
+  "bankVersion": 1,
+  "databaseId": "tet-question-bank-v2",
+  "status": "active",
+  "contentFormat": "ndjson",
+  "defaultLocale": "hi",
+  "supportedLocales": [
+    "hi",
+    "en",
+    "sa",
+    "ur"
+  ],
+  "exams": {
+    "ctet": {
+      "papers": [
+        1,
+        2
+      ]
+    },
+    "utet": {
+      "papers": [
+        1,
+        2
+      ]
+    }
+  },
+  "sync": {
+    "direction": "remote-to-device",
+    "loginRequired": false,
+    "offlineFirst": true,
+    "contentDatabase": "content.sqlite",
+    "userDatabase": "user.sqlite"
+  }
+}

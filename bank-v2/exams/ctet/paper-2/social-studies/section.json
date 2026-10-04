@@ -1,0 +1,14 @@
+{
+  "$schema": "https://tet.local/schemas/section.schema.json",
+  "schemaVersion": 1,
+  "databaseId": "ctet-paper-2-social-studies",
+  "exam": "ctet",
+  "paper": 2,
+  "section": "social-studies",
+  "language": null,
+  "languageSlot": null,
+  "contentMode": "bilingual",
+  "questionsFile": "questions.ndjson",
+  "stimuliFile": "stimuli.ndjson",
+  "status": "empty"
+}

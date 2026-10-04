@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tet.local/schemas/release-manifest.schema.json",
+  "title": "Offline content release manifest",
+  "type": "object",
+  "required": ["schemaVersion", "bankVersion", "publishedAt", "minimumAppVersion", "packs"],
+  "properties": {
+    "schemaVersion": {"type": "integer", "minimum": 1},
+    "bankVersion": {"type": "integer", "minimum": 1},
+    "publishedAt": {"type": "string", "format": "date-time"},
+    "minimumAppVersion": {"type": "string", "minLength": 1},
+    "packs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "exam", "paper", "section", "version", "url", "sha256", "bytes", "questionCount"],
+        "properties": {
+          "id": {"$ref": "common.schema.json#/$defs/stableId"},
+          "exam": {"$ref": "common.schema.json#/$defs/exam"},
+          "paper": {"$ref": "common.schema.json#/$defs/paper"},
+          "section": {"$ref": "common.schema.json#/$defs/section"},
+          "language": {"type": ["string", "null"], "enum": ["hi", "en", "sa", "ur", null]},
+          "languageSlot": {"type": ["integer", "null"], "enum": [1, 2, null]},
+          "version": {"type": "integer", "minimum": 1},
+          "url": {"type": "string", "minLength": 1},
+          "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+          "bytes": {"type": "integer", "minimum": 1},
+          "questionCount": {"type": "integer", "minimum": 0},
+          "assetIds": {"type": "array", "uniqueItems": true, "items": {"$ref": "common.schema.json#/$defs/stableId"}}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

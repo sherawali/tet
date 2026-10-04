@@ -1,0 +1,14 @@
+{
+  "$schema": "https://tet.local/schemas/section.schema.json",
+  "schemaVersion": 1,
+  "databaseId": "ctet-paper-2-science",
+  "exam": "ctet",
+  "paper": 2,
+  "section": "science",
+  "language": null,
+  "languageSlot": null,
+  "contentMode": "bilingual",
+  "questionsFile": "questions.ndjson",
+  "stimuliFile": "stimuli.ndjson",
+  "status": "empty"
+}

@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tet.local/schemas/section.schema.json",
+  "title": "Independent section database metadata",
+  "type": "object",
+  "required": [
+    "schemaVersion", "databaseId", "exam", "paper", "section",
+    "contentMode", "questionsFile", "stimuliFile", "status"
+  ],
+  "properties": {
+    "$schema": {"type": "string"},
+    "schemaVersion": {"const": 1},
+    "databaseId": {"$ref": "common.schema.json#/$defs/stableId"},
+    "exam": {"$ref": "common.schema.json#/$defs/exam"},
+    "paper": {"$ref": "common.schema.json#/$defs/paper"},
+    "section": {"$ref": "common.schema.json#/$defs/section"},
+    "language": {"type": ["string", "null"], "enum": ["hi", "en", "sa", "ur", null]},
+    "languageSlot": {"type": ["integer", "null"], "enum": [1, 2, null]},
+    "contentMode": {"enum": ["bilingual", "language-specific"]},
+    "questionsFile": {"const": "questions.ndjson"},
+    "stimuliFile": {"const": "stimuli.ndjson"},
+    "status": {"enum": ["empty", "migrating", "active", "retired"]}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"section": {"const": "language"}}},
+      "then": {"required": ["language", "languageSlot"]}
+    }
+  ],
+  "additionalProperties": false
+}

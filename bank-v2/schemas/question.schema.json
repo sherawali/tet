@@ -1,0 +1,127 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tet.local/schemas/question.schema.json",
+  "title": "Canonical TET question",
+  "type": "object",
+  "required": [
+    "schemaVersion", "id", "status", "exam", "paper", "section", "type",
+    "availableLocales", "prompt", "answer", "sourceType", "topicIds", "conceptIds"
+  ],
+  "properties": {
+    "schemaVersion": {"const": 1},
+    "id": {"$ref": "common.schema.json#/$defs/stableId"},
+    "status": {"enum": ["draft", "review", "published", "retired"]},
+    "exam": {"$ref": "common.schema.json#/$defs/exam"},
+    "paper": {"$ref": "common.schema.json#/$defs/paper"},
+    "section": {"$ref": "common.schema.json#/$defs/section"},
+    "language": {"type": ["string", "null"], "enum": ["hi", "en", "sa", "ur", null]},
+    "languageSlot": {"type": ["integer", "null"], "enum": [1, 2, null]},
+    "type": {
+      "enum": [
+        "single-choice", "multi-select", "true-false", "assertion-reason",
+        "statement-code", "matching", "sequence", "fill-blank", "numeric",
+        "passage-question", "poem-question", "image-question", "table-question",
+        "case-study-question"
+      ]
+    },
+    "availableLocales": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"$ref": "common.schema.json#/$defs/locale"}
+    },
+    "prompt": {"$ref": "common.schema.json#/$defs/contentBlocks"},
+    "options": {
+      "type": "array",
+      "minItems": 2,
+      "uniqueItems": true,
+      "items": {"$ref": "common.schema.json#/$defs/option"}
+    },
+    "answer": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": ["kind", "optionId"],
+          "properties": {
+            "kind": {"const": "single"},
+            "optionId": {"type": "string", "minLength": 1}
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": ["kind", "optionIds"],
+          "properties": {
+            "kind": {"const": "multiple"},
+            "optionIds": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string"}}
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": ["kind", "value"],
+          "properties": {
+            "kind": {"enum": ["boolean", "numeric", "text"]},
+            "value": {"type": ["boolean", "number", "string"]},
+            "tolerance": {"type": "number", "minimum": 0}
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": ["kind", "pairs"],
+          "properties": {
+            "kind": {"const": "matching"},
+            "pairs": {"type": "object", "minProperties": 1, "additionalProperties": {"type": "string"}}
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": ["kind", "orderedIds"],
+          "properties": {
+            "kind": {"const": "sequence"},
+            "orderedIds": {"type": "array", "minItems": 2, "items": {"type": "string"}}
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "stimulusId": {"type": ["string", "null"]},
+    "explanation": {"$ref": "common.schema.json#/$defs/contentBlocks"},
+    "sourceType": {"enum": ["pyq", "original", "practice"]},
+    "topicIds": {"type": "array", "uniqueItems": true, "items": {"$ref": "common.schema.json#/$defs/stableId"}},
+    "conceptIds": {"type": "array", "uniqueItems": true, "items": {"$ref": "common.schema.json#/$defs/stableId"}},
+    "difficulty": {
+      "type": "object",
+      "properties": {
+        "editorial": {"enum": ["easy", "moderate", "hard", "unrated"]},
+        "empirical": {"type": ["number", "null"], "minimum": 0, "maximum": 1}
+      },
+      "additionalProperties": false
+    },
+    "cognitiveLevel": {"enum": ["remember", "understand", "apply", "analyse", "evaluate", "create", "unrated"]},
+    "estimatedSeconds": {"type": "integer", "minimum": 1},
+    "tags": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "review": {
+      "type": "object",
+      "properties": {
+        "answerVerified": {"type": "boolean"},
+        "translationVerified": {"type": "boolean"},
+        "mediaVerified": {"type": "boolean"}
+      },
+      "additionalProperties": false
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"type": {"enum": ["single-choice", "assertion-reason", "statement-code", "passage-question", "poem-question", "image-question", "table-question", "case-study-question"]}}},
+      "then": {"required": ["options"], "properties": {"answer": {"properties": {"kind": {"const": "single"}}}}}
+    },
+    {
+      "if": {"properties": {"section": {"const": "language"}}},
+      "then": {"required": ["language", "languageSlot"]}
+    }
+  ],
+  "additionalProperties": false
+}
