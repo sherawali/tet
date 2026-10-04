@@ -13,9 +13,6 @@
   "n_evs": 30,
   "n_lang": 30,
   "flags": [
-   "Q46: book=2 official=4",
-   "Q46: stem damaged ('8')",
-   "Q46: sirf 0 विकल्प",
    "Q80: book=1 official=3",
    "Q85: book=1 official=4"
   ]
@@ -1104,16 +1101,26 @@
   {
    "qno": 46,
    "section": "math",
-   "q_en": "",
-   "q_hi": "8",
-   "options_en": [],
-   "options_hi": [],
+   "q_en": "Mathematical thinking is based on :",
+   "q_hi": "गणितीय चिंतन आधारित है :",
+   "options_en": [
+    "procedural fluency",
+    "intuition and observation",
+    "logic and observation",
+    "logic and reasoning"
+   ],
+   "options_hi": [
+    "प्रक्रियात्मक प्रवाह पर",
+    "अंतर्बोध (अंतर्ज्ञान) एवं अवलोकन पर",
+    "तर्क एवं अवलोकन पर",
+    "तर्क एवं विवेचन पर"
+   ],
    "ans": 3,
-   "ans_note": "",
+   "ans_note": " | repair: options raw text me the par block-boundaries toote the; official key ans (d) सत्यापित",
    "ans_accepted": null,
-   "book_ans": 1,
-   "explanation": "प्रथम 10 विषम अभाज्य संख्याएँ– 3, 5, 7, 11, 13, 17, 19, 23, 29, 31 माध्य = संख्याओं का कुल योग संख्याओं की कुल संख्या अभीष्ट माध्य 11 13 17 + + + + + + + + + = = = 15.8 15. The marks obtained by 30 students in a mathematics test are as shown below : 7, 1, 3, 6, 5, 5, 5, 0, 7, 8, 1, 9, 0, 5, 8, 3, 1, 8, 10, 10, 4, 3, 8, 6, 8, 9, 2, 1, 0, 4 The number of students obtaining more than or equal to 5 marks is : गणित के एक टेस्ट में 30 विद्यार्थियों द्वारा प्राप्त किए गए अंक नीचे दिए गए हैं : 7, 1, 3, 6, 5, 5, 5, 0, 7, 8, 1, 9, 0, 5, 8, 3, 1, 8, 10, 10, 4, 3, 8, 6, 8, 9, 2, 1, 0, 4 5 से अधिक या उसके बराबर अंक प्राप्त करने वाले विद्यार्थियों की संख्या है : (a) (b) (c) (d) Ans : (a) गणित के टेस्ट में 30 विद्यार्थियों के प्राप्तांक को आरोही क्रम में लिखने पर– 0,0,0,1,1,1,1,2,3,3,3,4,4,5,5,5,5,6,6,7,7,8,8,8,8,8,9,9,10,10 अत: 5 से अधिक या उसके बराबर अंक प्राप्त करने वाले विद्यार्थियों की संख्या = 17 16. Mathematical thinking is based on : गणितीय चिंतन आधारित है : (a) procedural fluency/प्रक्रियात्मक प्रवाह पर (b) intution and observation अंतर्बोध (अंतर्ज्ञान) एवं अवलोकन पर (c) logic and observation/तर्क एवं अवलोकन पर (d) logic and reasoning/तर्क एवं विवेचन पर Ans : (d) गणितीय चिंतन तर्क एवं विवेचन पर आधारित है।",
-   "n_opts": 0
+   "book_ans": null,
+   "explanation": "गणितीय चिंतन तर्क एवं विवेचन (logic and reasoning) पर आधारित है।",
+   "n_opts": 4
   },
   {
    "qno": 47,

@@ -299,6 +299,14 @@ REPAIRS = {
         explanation="आरोही क्रम: 0,0,0,1,1,1,1,2,3,3,3,4,4,5,5,5,5,6,6,7,7,8,8,8,8,8,9,9,10,10 → 5 या अधिक अंक वाले = 17 विद्यार्थी।",
         repair_note="stem extraction me kho gaya tha (block-shift); book ke explanation se पुनर्निर्मित; official key ans (a)=17 सत्यापित",
     ),
+    ("2022-12", 46): dict(
+        q_hi="गणितीय चिंतन आधारित है :",
+        q_en="Mathematical thinking is based on :",
+        options_hi=["प्रक्रियात्मक प्रवाह पर", "अंतर्बोध (अंतर्ज्ञान) एवं अवलोकन पर", "तर्क एवं अवलोकन पर", "तर्क एवं विवेचन पर"],
+        options_en=["procedural fluency", "intuition and observation", "logic and observation", "logic and reasoning"],
+        explanation="गणितीय चिंतन तर्क एवं विवेचन (logic and reasoning) पर आधारित है।",
+        repair_note="options raw text me the par block-boundaries toote the; official key ans (d) सत्यापित",
+    ),
 }
 
 def apply_repairs(ex, questions, flags, rep):

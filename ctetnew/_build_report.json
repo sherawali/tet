@@ -56,23 +56,17 @@
    "n_evs": 30,
    "n_lang": 30,
    "flags": [
-    "Q46: book=2 official=4",
-    "Q46: stem damaged ('8')",
-    "Q46: sirf 0 विकल्प",
     "Q80: book=1 official=3",
     "Q85: book=1 official=4"
    ]
   },
   "report": {
-   "bad_opts": 1,
-   "book_vs_official_mismatch": 1,
+   "bad_opts": 0,
+   "book_vs_official_mismatch": 0,
    "broken_stem": 0,
-   "repaired_manually": 2
+   "repaired_manually": 3
   },
   "flags": [
-   "Q46: book=2 official=4",
-   "Q46: stem damaged ('8')",
-   "Q46: sirf 0 विकल्प",
    "Q80: book=1 official=3",
    "Q85: book=1 official=4"
   ]
