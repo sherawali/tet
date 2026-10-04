@@ -1168,5 +1168,89 @@
   ],
   "started": "2026-10-04 03:17:22",
   "elapsed_min": 1.8
+ },
+ "run4": {
+  "papers": [
+   {
+    "label": "feb2026_07feb_S",
+    "fid": "1suavWoDsydGcTk_alVmKhwmyH9GuUJ48",
+    "status": "drive-fail"
+   },
+   {
+    "label": "feb2026_07feb_U",
+    "fid": "1jdwb05v_GzPJAuyNKJ6WKzhbG1iwTosy",
+    "status": "drive-fail"
+   },
+   {
+    "label": "feb2026_08feb_C",
+    "fid": "1wbsYGwEMnmQyj5eiZ5ZcdHiCGtIeam60",
+    "status": "drive-fail"
+   },
+   {
+    "label": "feb2026_08feb_E",
+    "fid": "1NZiXv9hXKqvU1pyCkCxHB7400CYNPfRO",
+    "status": "drive-fail"
+   },
+   {
+    "label": "july2024_A",
+    "fid": "1i61Br_kq-YiSqL-0u_obVV0j0RC_beeL",
+    "status": "drive-fail"
+   },
+   {
+    "label": "dec2024_H",
+    "fid": "17kvon5hwlXZiJyOaOHaFUO3zY_Gg6kn5",
+    "status": "drive-fail"
+   },
+   {
+    "label": "jan2024_I",
+    "fid": "1zvLZtZEIhvqoooU88uXmgbHTmDHpfQd1",
+    "status": "drive-fail"
+   },
+   {
+    "label": "dec2022_13jan",
+    "fid": "15G4FF1qtpMot8KZS_VZCXoQVUYepdrY9",
+    "status": "drive-fail"
+   },
+   {
+    "label": "adda247_7feb_codeU",
+    "url": "https://www.adda247.com/jobs/wp-content/uploads/sites/13/2026/02/07183549/Code-U.pdf",
+    "status": "dl-fail",
+    "size": 919,
+    "head": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//E"
+   },
+   {
+    "label": "adda247_7feb_codeV",
+    "url": "https://www.adda247.com/jobs/wp-content/uploads/sites/13/2026/02/07183547/Code-V.pdf",
+    "status": "dl-fail",
+    "size": 919,
+    "head": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//E"
+   },
+   {
+    "label": "adda247_8feb_setC",
+    "url": "https://www.adda247.com/jobs/wp-content/uploads/sites/13/2026/02/08180518/PRT-08-02-26-Set-C.pdf",
+    "status": "dl-fail",
+    "size": 919,
+    "head": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//E"
+   },
+   {
+    "label": "careerpower_8feb_C",
+    "url": "https://www.careerpower.in/blog/wp-content/uploads/2026/05/12122845/CTET-Question-Paper-1-Shift-2-8-Feb-2026-Code-C.pdf",
+    "status": "dl-fail",
+    "size": 919,
+    "head": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//E"
+   }
+  ],
+  "errors": [
+   "drive fail: feb2026_07feb_S",
+   "drive fail: feb2026_07feb_U",
+   "drive fail: feb2026_08feb_C",
+   "drive fail: feb2026_08feb_E",
+   "drive fail: july2024_A",
+   "drive fail: dec2024_H",
+   "drive fail: jan2024_I",
+   "drive fail: dec2022_13jan"
+  ],
+  "started": "2026-10-04 03:28:11",
+  "elapsed_min": 5.7
  }
 }
