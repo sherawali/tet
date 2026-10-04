@@ -125,18 +125,18 @@ jobs:
           echo '3753bcece99c9efb8790153ef60811d0a2f10ee300d0325b3b3638f42dd53308  /tmp/ctet-p1-2021-12-16-preppcatalogpdf.pdf' \
             | sha256sum --check --strict
 
-      - name: Publish the selected source as a short-lived audit artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: ctet-p1-2021-12-16-preppcatalogpdf-audit-source
-          path: /tmp/ctet-p1-2021-12-16-preppcatalogpdf.pdf
-          if-no-files-found: error
-          retention-days: 1
+      - name: Stage the selected source for manual page audit
+        shell: bash
+        run: |
+          mkdir -p bank-v2/audits/work
+          cp /tmp/ctet-p1-2021-12-16-preppcatalogpdf.pdf \
+            bank-v2/audits/work/ctet-p1-2021-12-16-preppcatalogpdf.pdf
 
       - name: Return recovery derivatives to the Arena branch
         run: |
           git config user.name "source-recovery-bot"
           git config user.email "source-recovery-bot@users.noreply.github.com"
-          git add bank-v2/source-recovery/ctet-p1-2021-2022
+          git add bank-v2/source-recovery/ctet-p1-2021-2022 \
+            bank-v2/audits/work/ctet-p1-2021-12-16-preppcatalogpdf.pdf
           git commit -m "Recover CTET 2021 CBT source text" || exit 0
           git push origin HEAD:arena/01a1044b-tet
