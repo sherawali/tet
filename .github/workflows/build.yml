@@ -84,10 +84,10 @@ jobs:
           curl -sS "https://purge.jsdelivr.net/gh/${GITHUB_REPOSITORY}@main/cdn/manifest.json" || true
           echo ""
 
-  probe-public-paper-source:
-    # The Arena sandbox cannot negotiate TLS with the public Prepp CDN. Run a
-    # metadata-only browser probe on GitHub's runner; no credentials or browser
-    # storage are printed. This branch-only diagnostic never writes to main.
+  recover-public-paper-sources:
+    # The Arena sandbox cannot negotiate TLS with several public source CDNs.
+    # Recover text/metadata derivatives on GitHub's runner; source PDFs remain
+    # temporary and this branch-only job never writes to main.
     if: github.ref_name == 'arena/01a1044b-tet' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
     runs-on: ubuntu-latest
     permissions:
@@ -101,20 +101,17 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Install browser probe
-        run: |
-          python -m pip install --disable-pip-version-check playwright==1.55.0
-          python -m playwright install --with-deps chromium
+      - name: Install PDF recovery dependencies
+        run: python -m pip install --disable-pip-version-check requests==2.32.5 PyMuPDF==1.26.4
 
-      - name: Probe public paper page
-        run: |
-          mkdir -p bank-v2/source-recovery
-          python tools/v2/probe_prepp_paper.py | tee bank-v2/source-recovery/prepp-probe.log
+      - name: Recover public paper text and metadata
+        continue-on-error: true
+        run: python tools/v2/recover_ctet_2021_sources.py
 
-      - name: Return probe report to the Arena branch
+      - name: Return recovery derivatives to the Arena branch
         run: |
           git config user.name "source-recovery-bot"
           git config user.email "source-recovery-bot@users.noreply.github.com"
-          git add bank-v2/source-recovery/prepp-probe.log
-          git commit -m "Record Prepp source probe" || exit 0
+          git add bank-v2/source-recovery/ctet-p1-2021-2022
+          git commit -m "Recover CTET 2021 CBT source text" || exit 0
           git push origin HEAD:arena/01a1044b-tet

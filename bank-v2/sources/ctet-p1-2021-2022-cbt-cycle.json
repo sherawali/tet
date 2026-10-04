@@ -245,6 +245,12 @@
       "preppCatalogPdf": "https://cdn-images.prepp.in/public/image/365850e5a6049fb11728f293b88ba6c4.pdf",
       "aglasemPaperMirror": "https://docs.aglasem.com/view/4e6099b8-81a8-11ec-855c-0a5e36bc6706",
       "collegeDekhoPdfMirror": "https://static.collegedekho.com/media/django-summernote/2022-01-29/cd9c13c6-244e-4b20-9c01-811e5cca6768.pdf",
+      "additionalPaperMirrors": [
+        {
+          "id": "testbook-english-hindi",
+          "url": "https://blogmedia.testbook.com/blog/wp-content/uploads/2022/12/ctet-paper-1-5th-jan-2022-english-hindi-15499e82.pdf"
+        }
+      ],
       "candidateVariantStatus": "pending-internal-verification"
     },
     {
@@ -255,6 +261,12 @@
       "preppCatalogPdf": "https://cdn-images.prepp.in/public/image/83d322d9816f9cbb83c0175684523dc0.pdf",
       "aglasemPaperMirror": "https://docs.aglasem.com/view/5261b632-81a8-11ec-96d4-0a5e36bc6706",
       "collegeDekhoPdfMirror": "https://static.collegedekho.com/media/django-summernote/2022-01-29/85f12d27-fd73-410d-9d4b-c6592b0a5d68.pdf",
+      "additionalPaperMirrors": [
+        {
+          "id": "testbook-english-hindi",
+          "url": "https://blogmedia.testbook.com/blog/wp-content/uploads/2022/12/ctet-paper-1-6th-jan-2022-english-hindi-353ac7f0.pdf"
+        }
+      ],
       "candidateVariantStatus": "pending-internal-verification"
     },
     {
