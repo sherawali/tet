@@ -1,0 +1,680 @@
+{
+ "keys": [
+  {
+   "pages": 32,
+   "avg_chars": 2823,
+   "devanagari": 0,
+   "method": "pdfplumber",
+   "chars": 90997,
+   "file": "feb2026_p1_07feb_final_key.txt",
+   "url": "https://cdnbbsr.s3waas.gov.in/s3443dec3062d0286986e21dc0631734c9/uploads/2026/04/20260401145739613.pdf",
+   "kind": "key",
+   "sha256": "75152d717fd573c9"
+  },
+  {
+   "pages": 84,
+   "avg_chars": 2817,
+   "devanagari": 0,
+   "method": "pdfplumber",
+   "chars": 238347,
+   "file": "feb2026_p1_08feb_final_key.txt",
+   "url": "https://cdnbbsr.s3waas.gov.in/s3443dec3062d0286986e21dc0631734c9/uploads/2026/04/20260401449979389.pdf",
+   "kind": "key",
+   "sha256": "d0b52176abe19c44"
+  },
+  {
+   "pages": 16,
+   "avg_chars": 2835,
+   "devanagari": 0,
+   "method": "pdfplumber",
+   "chars": 45682,
+   "file": "feb2026_p1_01mar_final_key.txt",
+   "url": "https://cdnbbsr.s3waas.gov.in/s3443dec3062d0286986e21dc0631734c9/uploads/2026/04/202604011664019376.pdf",
+   "kind": "key",
+   "sha256": "b36f4e01b232c647"
+  },
+  {
+   "pages": 84,
+   "avg_chars": 2155,
+   "devanagari": 0,
+   "method": "pdfplumber",
+   "chars": 182801,
+   "file": "dec2024_p1_final_key.txt",
+   "url": "https://cdnbbsr.s3waas.gov.in/s3443dec3062d0286986e21dc0631734c9/uploads/2025/01/2025012321.pdf",
+   "kind": "key",
+   "sha256": "370a3622da4eee6d"
+  },
+  {
+   "pages": 84,
+   "avg_chars": 2155,
+   "devanagari": 0,
+   "method": "pdfplumber",
+   "chars": 182793,
+   "file": "july2024_p1_final_key.txt",
+   "url": "https://cdnbbsr.s3waas.gov.in/s3443dec3062d0286986e21dc0631734c9/uploads/2024/08/2024080797.pdf",
+   "kind": "key",
+   "sha256": "f518876b7f6ee642"
+  },
+  {
+   "pages": 84,
+   "avg_chars": 2144,
+   "devanagari": 0,
+   "method": "pdfplumber",
+   "chars": 181877,
+   "file": "aug2023_p1_final_key.txt",
+   "url": "https://cdnbbsr.s3waas.gov.in/s3443dec3062d0286986e21dc0631734c9/uploads/2023/09/2023092672.pdf",
+   "kind": "key",
+   "sha256": "3f134bc9657bf3ec"
+  },
+  {
+   "pages": 176,
+   "avg_chars": 1919,
+   "devanagari": 0,
+   "method": "pdfplumber",
+   "chars": 341462,
+   "file": "dec2022_final_key.txt",
+   "url": "https://cdnbbsr.s3waas.gov.in/s3443dec3062d0286986e21dc0631734c9/uploads/2023/03/2023030346.pdf",
+   "kind": "key",
+   "sha256": "df41315b90fd1785"
+  },
+  {
+   "pages": 177,
+   "avg_chars": 504,
+   "devanagari": 0,
+   "method": "pdfplumber",
+   "chars": 92931,
+   "file": "dec2021_p1_final_key_hi.txt",
+   "url": "https://cdnbbsr.s3waas.gov.in/s3443dec3062d0286986e21dc0631734c9/uploads/2022/08/2022082386.pdf",
+   "kind": "key",
+   "sha256": "682f296b1d78168b"
+  },
+  {
+   "pages": 177,
+   "avg_chars": 500,
+   "devanagari": 0,
+   "method": "pdfplumber",
+   "chars": 92243,
+   "file": "dec2021_p1_final_key_en.txt",
+   "url": "https://cdnbbsr.s3waas.gov.in/s3443dec3062d0286986e21dc0631734c9/uploads/2022/08/2022082370.pdf",
+   "kind": "key",
+   "sha256": "b8ed27b9ae615bec"
+  },
+  {
+   "pages": 101,
+   "avg_chars": 2171,
+   "devanagari": 0,
+   "method": "pdfplumber",
+   "chars": 221386,
+   "file": "jan2021_p1_final_key.txt",
+   "url": "https://cdnbbsr.s3waas.gov.in/s3443dec3062d0286986e21dc0631734c9/uploads/2022/03/2022033154.pdf",
+   "kind": "key",
+   "sha256": "ddfed5d777087a8b"
+  }
+ ],
+ "papers": [
+  {
+   "exam": "feb2026",
+   "label": "p1_01March.zip",
+   "fid": "16HwPMmPMWgkhM0awbrB5kq3fFROxhmMX",
+   "url": "https://drive.google.com/file/d/16HwPMmPMWgkhM0awbrB5kq3fFROxhmMX/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "feb2026",
+   "label": "p2_01March.zip",
+   "fid": "19AhNF5zDSdgEt-KGm5SDmVjigoNT_66y",
+   "url": "https://drive.google.com/file/d/19AhNF5zDSdgEt-KGm5SDmVjigoNT_66y/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "feb2026",
+   "label": "p1_07Feb_Set-V.zip",
+   "fid": "19el0mwLCUQEQUGL8ZX69--BJPTI6u-eb",
+   "url": "https://drive.google.com/file/d/19el0mwLCUQEQUGL8ZX69--BJPTI6u-eb/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "feb2026",
+   "label": "p1_07Feb_Set-U.zip",
+   "fid": "1jdwb05v_GzPJAuyNKJ6WKzhbG1iwTosy",
+   "url": "https://drive.google.com/file/d/1jdwb05v_GzPJAuyNKJ6WKzhbG1iwTosy/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "feb2026",
+   "label": "p1_07Feb_Set-T.zip",
+   "fid": "1acb86ozAM5d1DzasoLY7-5Aq30k6RhGk",
+   "url": "https://drive.google.com/file/d/1acb86ozAM5d1DzasoLY7-5Aq30k6RhGk/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "feb2026",
+   "label": "p1_07Feb_Set-S.zip",
+   "fid": "1suavWoDsydGcTk_alVmKhwmyH9GuUJ48",
+   "url": "https://drive.google.com/file/d/1suavWoDsydGcTk_alVmKhwmyH9GuUJ48/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "feb2026",
+   "label": "p1_08Feb_Set-E.zip",
+   "fid": "1NZiXv9hXKqvU1pyCkCxHB7400CYNPfRO",
+   "url": "https://drive.google.com/file/d/1NZiXv9hXKqvU1pyCkCxHB7400CYNPfRO/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "feb2026",
+   "label": "p1_08Feb_Set-D.zip",
+   "fid": "1AWdFQf5PJygIptJOVr7tJEm1IymSvDN3",
+   "url": "https://drive.google.com/file/d/1AWdFQf5PJygIptJOVr7tJEm1IymSvDN3/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "feb2026",
+   "label": "p1_08Feb_Set-C.zip",
+   "fid": "1wbsYGwEMnmQyj5eiZ5ZcdHiCGtIeam60",
+   "url": "https://drive.google.com/file/d/1wbsYGwEMnmQyj5eiZ5ZcdHiCGtIeam60/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "feb2026",
+   "label": "p1_08Feb_Set-B.zip",
+   "fid": "1xsXs0jb4zA65QYM_-_O04sfvJpNu9hr5",
+   "url": "https://drive.google.com/file/d/1xsXs0jb4zA65QYM_-_O04sfvJpNu9hr5/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "feb2026",
+   "label": "p2_07Feb_Set-Z.zip",
+   "fid": "1qipb5OPKXkS_2nNxrCgJKuZI08tBUZUO",
+   "url": "https://drive.google.com/file/d/1qipb5OPKXkS_2nNxrCgJKuZI08tBUZUO/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "feb2026",
+   "label": "p2_07Feb_Set-Y.zip",
+   "fid": "1wksDRwaRSd_Gl8YwtgK9-jAmqy4YTgve",
+   "url": "https://drive.google.com/file/d/1wksDRwaRSd_Gl8YwtgK9-jAmqy4YTgve/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "feb2026",
+   "label": "p2_07Feb_Set-X.zip",
+   "fid": "1FAjFRFH3WZNdClwnYsQKvNx_gYvWE9LP",
+   "url": "https://drive.google.com/file/d/1FAjFRFH3WZNdClwnYsQKvNx_gYvWE9LP/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "feb2026",
+   "label": "p2_07Feb_Set-W.zip",
+   "fid": "1ELsT1Khh1y67V_vF6uSrVBX9SU0jXlUG",
+   "url": "https://drive.google.com/file/d/1ELsT1Khh1y67V_vF6uSrVBX9SU0jXlUG/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "feb2026",
+   "label": "p2_08Feb_Set-J.zip",
+   "fid": "1U25EbwkcvG6I_7Alct4MmuK9lpUCJMlV",
+   "url": "https://drive.google.com/file/d/1U25EbwkcvG6I_7Alct4MmuK9lpUCJMlV/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "feb2026",
+   "label": "p2_08Feb_Set-I.zip",
+   "fid": "11l0Ag899osnehwYrahV-gIMOnx66GEpn",
+   "url": "https://drive.google.com/file/d/11l0Ag899osnehwYrahV-gIMOnx66GEpn/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "feb2026",
+   "label": "p2_08Feb_Set-H.zip",
+   "fid": "1ocIPCYaNc35_4RmShnkRF_PZQC0_D-XT",
+   "url": "https://drive.google.com/file/d/1ocIPCYaNc35_4RmShnkRF_PZQC0_D-XT/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "feb2026",
+   "label": "p2_08Feb_Set-G.zip",
+   "fid": "1I3uuJOlt_6upkDpdATngw4Mkay8SCyO0",
+   "url": "https://drive.google.com/file/d/1I3uuJOlt_6upkDpdATngw4Mkay8SCyO0/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "dec2024",
+   "label": "paper1_set_H",
+   "fid": "17kvon5hwlXZiJyOaOHaFUO3zY_Gg6kn5",
+   "url": "https://drive.google.com/file/d/17kvon5hwlXZiJyOaOHaFUO3zY_Gg6kn5/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "dec2024",
+   "label": "paper1_set_I",
+   "fid": "1o7ajgENw4l8nTAcc8VdgxLILB2MdoH8v",
+   "url": "https://drive.google.com/file/d/1o7ajgENw4l8nTAcc8VdgxLILB2MdoH8v/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "dec2024",
+   "label": "paper1_set_J",
+   "fid": "1ZUvH49umIk-0x8EG3W6yHMpkcw2YIH3u",
+   "url": "https://drive.google.com/file/d/1ZUvH49umIk-0x8EG3W6yHMpkcw2YIH3u/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "dec2024",
+   "label": "paper1_set_K",
+   "fid": "1Q35rYmsMzEgXumjyTJwMiMPjj0HXSfbk",
+   "url": "https://drive.google.com/file/d/1Q35rYmsMzEgXumjyTJwMiMPjj0HXSfbk/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "dec2024",
+   "label": "paper2_14Dec_set_D",
+   "fid": "17-WxQfIIohol-KEF_nJw-6RBd1FOUB4w",
+   "url": "https://drive.google.com/file/d/17-WxQfIIohol-KEF_nJw-6RBd1FOUB4w/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "dec2024",
+   "label": "paper2_14Dec_set_E",
+   "fid": "1bR1BX4ZF7b6lPNAd5AnSCFa5UpLaV4t9",
+   "url": "https://drive.google.com/file/d/1bR1BX4ZF7b6lPNAd5AnSCFa5UpLaV4t9/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "dec2024",
+   "label": "paper2_14Dec_set_F",
+   "fid": "1ZSJV3nQShNRUmpjFgEVP8hrk4kegk9Mb",
+   "url": "https://drive.google.com/file/d/1ZSJV3nQShNRUmpjFgEVP8hrk4kegk9Mb/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "dec2024",
+   "label": "paper2_14Dec_set_G",
+   "fid": "1GFQa3kIa86hgFfvxDpD2m8iBjhYAheay",
+   "url": "https://drive.google.com/file/d/1GFQa3kIa86hgFfvxDpD2m8iBjhYAheay/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "dec2024",
+   "label": "paper2_15Dec_set_L",
+   "fid": "1oqAxEJs7MhNFfGIvmzpCE4hQJ2E7jJ28",
+   "url": "https://drive.google.com/file/d/1oqAxEJs7MhNFfGIvmzpCE4hQJ2E7jJ28/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "dec2024",
+   "label": "paper2_15Dec_set_M",
+   "fid": "1v9cDggrm5hgocCUJsApvhFrJvRI4_V1S",
+   "url": "https://drive.google.com/file/d/1v9cDggrm5hgocCUJsApvhFrJvRI4_V1S/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "dec2024",
+   "label": "paper2_15Dec_set_N",
+   "fid": "1H8R1LAyCuoVohWuaqcwiLq5UVPBUDsLY",
+   "url": "https://drive.google.com/file/d/1H8R1LAyCuoVohWuaqcwiLq5UVPBUDsLY/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "dec2024",
+   "label": "paper2_15Dec_set_O",
+   "fid": "1YM41t_8PnM8WQ0nqIfF2sEtdKL8IqvZr",
+   "url": "https://drive.google.com/file/d/1YM41t_8PnM8WQ0nqIfF2sEtdKL8IqvZr/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "july2024",
+   "label": "paper1_setA",
+   "fid": "1i61Br_kq-YiSqL-0u_obVV0j0RC_beeL",
+   "url": "https://drive.google.com/file/d/1i61Br_kq-YiSqL-0u_obVV0j0RC_beeL/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "july2024",
+   "label": "paper1_setB",
+   "fid": "1-H4TkmEqxpzV4ZZSg5PNIx2o58KchW6a",
+   "url": "https://drive.google.com/file/d/1-H4TkmEqxpzV4ZZSg5PNIx2o58KchW6a/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "july2024",
+   "label": "paper1_setC",
+   "fid": "1lDN3BRXmENFzH0uq3wNAJqbOnTRHgCvQ",
+   "url": "https://drive.google.com/file/d/1lDN3BRXmENFzH0uq3wNAJqbOnTRHgCvQ/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "july2024",
+   "label": "paper1_setD",
+   "fid": "17OjonS2yWROeB_2p8hufrETj9IzF3YtN",
+   "url": "https://drive.google.com/file/d/17OjonS2yWROeB_2p8hufrETj9IzF3YtN/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "july2024",
+   "label": "paper2_setI",
+   "fid": "16UYhtfjhq8PyTDSn4CUmrKGQ9sjOqQWY",
+   "url": "https://drive.google.com/file/d/16UYhtfjhq8PyTDSn4CUmrKGQ9sjOqQWY/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "july2024",
+   "label": "paper2_setJ",
+   "fid": "1ftomyDlqnGOvhob13NcFOoZw8u7MR4rR",
+   "url": "https://drive.google.com/file/d/1ftomyDlqnGOvhob13NcFOoZw8u7MR4rR/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "july2024",
+   "label": "paper2_setK",
+   "fid": "12n91ZoHUBK6VWSG4p3ARXV9e0Smro91H",
+   "url": "https://drive.google.com/file/d/12n91ZoHUBK6VWSG4p3ARXV9e0Smro91H/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "july2024",
+   "label": "paper2_setL",
+   "fid": "1e254uYJBpKfSQpRFHZWME9XkYci4tW-l",
+   "url": "https://drive.google.com/file/d/1e254uYJBpKfSQpRFHZWME9XkYci4tW-l/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "jan2024",
+   "label": "paper1_setI",
+   "fid": "1zvLZtZEIhvqoooU88uXmgbHTmDHpfQd1",
+   "url": "https://drive.google.com/file/d/1zvLZtZEIhvqoooU88uXmgbHTmDHpfQd1/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "jan2024",
+   "label": "paper1_setJ",
+   "fid": "1G9dTNyzk3t2w6PW7ybZiE9KyQJaF_mTD",
+   "url": "https://drive.google.com/file/d/1G9dTNyzk3t2w6PW7ybZiE9KyQJaF_mTD/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "jan2024",
+   "label": "paper1_setK",
+   "fid": "1gSQxrQGKx5SjUMjcjT-BbCP61sk-rZKN",
+   "url": "https://drive.google.com/file/d/1gSQxrQGKx5SjUMjcjT-BbCP61sk-rZKN/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "jan2024",
+   "label": "paper1_setL",
+   "fid": "1ELHGrhxxFAVfUh4q6KhxRL_NvYYew8i3",
+   "url": "https://drive.google.com/file/d/1ELHGrhxxFAVfUh4q6KhxRL_NvYYew8i3/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "jan2024",
+   "label": "paper2_setM",
+   "fid": "1V50WFSwH68yvY8cMW4wQWamxwHIFSSz-",
+   "url": "https://drive.google.com/file/d/1V50WFSwH68yvY8cMW4wQWamxwHIFSSz-/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "jan2024",
+   "label": "paper2_setN",
+   "fid": "1Mm75W9dc62SkKYk771Jkb2E8KHVRkSay",
+   "url": "https://drive.google.com/file/d/1Mm75W9dc62SkKYk771Jkb2E8KHVRkSay/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "jan2024",
+   "label": "paper2_setO",
+   "fid": "1Ddl3hmXKi0O0HiObt-kM5y7uX9nvN3WW",
+   "url": "https://drive.google.com/file/d/1Ddl3hmXKi0O0HiObt-kM5y7uX9nvN3WW/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "jan2024",
+   "label": "paper2_setP",
+   "fid": "1vSFB8o3DIxiN89pCQlSr50t-10MYN4TW",
+   "url": "https://drive.google.com/file/d/1vSFB8o3DIxiN89pCQlSr50t-10MYN4TW/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "dec2022",
+   "label": "28Dec2022",
+   "fid": "1qdEicflmwD4r_NqJfjJthIsMhSTXdXvI",
+   "url": "https://drive.google.com/file/d/1qdEicflmwD4r_NqJfjJthIsMhSTXdXvI/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "dec2022",
+   "label": "28Jan2023",
+   "fid": "13Jby39dXGQxbddFhj9luNBVjBFphWMcs",
+   "url": "https://drive.google.com/file/d/13Jby39dXGQxbddFhj9luNBVjBFphWMcs/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "dec2022",
+   "label": "29Dec2022",
+   "fid": "18CjIzQtL9IqKGKEnMR54YHVohFGo8qFn",
+   "url": "https://drive.google.com/file/d/18CjIzQtL9IqKGKEnMR54YHVohFGo8qFn/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "dec2022",
+   "label": "29Jan2023",
+   "fid": "1iV5KNYORQx3HFsxG5SOhzEUrwxKaa16N",
+   "url": "https://drive.google.com/file/d/1iV5KNYORQx3HFsxG5SOhzEUrwxKaa16N/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "dec2022",
+   "label": "30Jan2023",
+   "fid": "1rXyki9dlDJ6lOdgOsjLfwp19wiXP3Y6Z",
+   "url": "https://drive.google.com/file/d/1rXyki9dlDJ6lOdgOsjLfwp19wiXP3Y6Z/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "dec2022",
+   "label": "09Jan2023",
+   "fid": "10tg5KHdLJO65Ukw0qz3PYOYjFiJSsgKV",
+   "url": "https://drive.google.com/file/d/10tg5KHdLJO65Ukw0qz3PYOYjFiJSsgKV/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "dec2022",
+   "label": "10Jan2023",
+   "fid": "1ZvnfqpyG7Um6mM5Q5IVCll75L0z8iUsG",
+   "url": "https://drive.google.com/file/d/1ZvnfqpyG7Um6mM5Q5IVCll75L0z8iUsG/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "dec2022",
+   "label": "11Jan2023",
+   "fid": "1YwOVEvc1--tECxu-gKb8sjALKIXGhFSh",
+   "url": "https://drive.google.com/file/d/1YwOVEvc1--tECxu-gKb8sjALKIXGhFSh/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "dec2022",
+   "label": "12Jan2023",
+   "fid": "1r_NjOiF7Hxxw3jFGMfQyfuybw6ItqN6G",
+   "url": "https://drive.google.com/file/d/1r_NjOiF7Hxxw3jFGMfQyfuybw6ItqN6G/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "dec2022",
+   "label": "13Jan2023",
+   "fid": "15G4FF1qtpMot8KZS_VZCXoQVUYepdrY9",
+   "url": "https://drive.google.com/file/d/15G4FF1qtpMot8KZS_VZCXoQVUYepdrY9/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "dec2022",
+   "label": "17Jan2023",
+   "fid": "1iErYaTQhLAAlexp8LV0OXEqJGGoMM3Di",
+   "url": "https://drive.google.com/file/d/1iErYaTQhLAAlexp8LV0OXEqJGGoMM3Di/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "dec2022",
+   "label": "18Jan2023",
+   "fid": "1w7jZo0_P5lr1IUcXqBWPdDYZe-LurwA6",
+   "url": "https://drive.google.com/file/d/1w7jZo0_P5lr1IUcXqBWPdDYZe-LurwA6/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "dec2022",
+   "label": "19Jan2023",
+   "fid": "13gY0E68VKGe4A0vMtRGKaRmWYFk-y3k-",
+   "url": "https://drive.google.com/file/d/13gY0E68VKGe4A0vMtRGKaRmWYFk-y3k-/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "dec2022",
+   "label": "20Jan2023",
+   "fid": "1SjeI1x_X8k7oQnKAEUr9NDgQFnT_VXID",
+   "url": "https://drive.google.com/file/d/1SjeI1x_X8k7oQnKAEUr9NDgQFnT_VXID/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "dec2022",
+   "label": "23Jan2023",
+   "fid": "1AgakfdmYcyhyR4n8_yguKsNoDowCqwWy",
+   "url": "https://drive.google.com/file/d/1AgakfdmYcyhyR4n8_yguKsNoDowCqwWy/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "dec2022",
+   "label": "24Jan2023",
+   "fid": "1VpXEQ5tYMjZcDzjyyH5E6F1rGv8IEFRe",
+   "url": "https://drive.google.com/file/d/1VpXEQ5tYMjZcDzjyyH5E6F1rGv8IEFRe/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "dec2022",
+   "label": "25Jan2023",
+   "fid": "11JsPsDXLUQJvFSWdGl8q5tVg5WasIHxq",
+   "url": "https://drive.google.com/file/d/11JsPsDXLUQJvFSWdGl8q5tVg5WasIHxq/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "dec2022",
+   "label": "27Jan2023",
+   "fid": "1W1AGWdpYFIrg4BiQDMKgY8Q2MDaT6Dsc",
+   "url": "https://drive.google.com/file/d/1W1AGWdpYFIrg4BiQDMKgY8Q2MDaT6Dsc/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "dec2022",
+   "label": "01FEB2023",
+   "fid": "1E8KJZXk6PvaGp1_xfkxyQK38qQzd_JHg",
+   "url": "https://drive.google.com/file/d/1E8KJZXk6PvaGp1_xfkxyQK38qQzd_JHg/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "dec2022",
+   "label": "02FEB2023",
+   "fid": "1OACbjoNhAhLuV5USJbIpomoTrKEIDT1s",
+   "url": "https://drive.google.com/file/d/1OACbjoNhAhLuV5USJbIpomoTrKEIDT1s/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "dec2022",
+   "label": "03FEB2023",
+   "fid": "1E2X2NgTalnsZUzAuL3eKPuzDkrlrAGkw",
+   "url": "https://drive.google.com/file/d/1E2X2NgTalnsZUzAuL3eKPuzDkrlrAGkw/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "dec2022",
+   "label": "04FEB2023",
+   "fid": "1-xx4kZ7TMxeyZ6nvTAYYHpx2zVLavezj",
+   "url": "https://drive.google.com/file/d/1-xx4kZ7TMxeyZ6nvTAYYHpx2zVLavezj/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "dec2022",
+   "label": "06FEB2023",
+   "fid": "1JVc75d6d_3V_NhEbGZxeYljDynD98vh6",
+   "url": "https://drive.google.com/file/d/1JVc75d6d_3V_NhEbGZxeYljDynD98vh6/view?usp=sharing",
+   "status": "gdown-fail"
+  },
+  {
+   "exam": "dec2022",
+   "label": "07FEB2023",
+   "fid": "1YYuq-wXbjek1lVb2qC8B9oUz4i1N7Kxs",
+   "url": "https://drive.google.com/file/d/1YYuq-wXbjek1lVb2qC8B9oUz4i1N7Kxs/view?usp=sharing",
+   "status": "gdown-fail"
+  }
+ ],
+ "errors": [
+  "key download fail: jan2024_p1_final_key.pdf",
+  "page fetch fail: aug2023",
+  "gdown fail: feb2026 p1_01March.zip",
+  "gdown fail: feb2026 p2_01March.zip",
+  "gdown fail: feb2026 p1_07Feb_Set-V.zip",
+  "gdown fail: feb2026 p1_07Feb_Set-U.zip",
+  "gdown fail: feb2026 p1_07Feb_Set-T.zip",
+  "gdown fail: feb2026 p1_07Feb_Set-S.zip",
+  "gdown fail: feb2026 p1_08Feb_Set-E.zip",
+  "gdown fail: feb2026 p1_08Feb_Set-D.zip",
+  "gdown fail: feb2026 p1_08Feb_Set-C.zip",
+  "gdown fail: feb2026 p1_08Feb_Set-B.zip",
+  "gdown fail: feb2026 p2_07Feb_Set-Z.zip",
+  "gdown fail: feb2026 p2_07Feb_Set-Y.zip",
+  "gdown fail: feb2026 p2_07Feb_Set-X.zip",
+  "gdown fail: feb2026 p2_07Feb_Set-W.zip",
+  "gdown fail: feb2026 p2_08Feb_Set-J.zip",
+  "gdown fail: feb2026 p2_08Feb_Set-I.zip",
+  "gdown fail: feb2026 p2_08Feb_Set-H.zip",
+  "gdown fail: feb2026 p2_08Feb_Set-G.zip",
+  "gdown fail: dec2024 paper1_set_H",
+  "gdown fail: dec2024 paper1_set_I",
+  "gdown fail: dec2024 paper1_set_J",
+  "gdown fail: dec2024 paper1_set_K",
+  "gdown fail: dec2024 paper2_14Dec_set_D",
+  "gdown fail: dec2024 paper2_14Dec_set_E",
+  "gdown fail: dec2024 paper2_14Dec_set_F",
+  "gdown fail: dec2024 paper2_14Dec_set_G",
+  "gdown fail: dec2024 paper2_15Dec_set_L",
+  "gdown fail: dec2024 paper2_15Dec_set_M",
+  "gdown fail: dec2024 paper2_15Dec_set_N",
+  "gdown fail: dec2024 paper2_15Dec_set_O",
+  "gdown fail: july2024 paper1_setA",
+  "gdown fail: july2024 paper1_setB",
+  "gdown fail: july2024 paper1_setC",
+  "gdown fail: july2024 paper1_setD",
+  "gdown fail: july2024 paper2_setI",
+  "gdown fail: july2024 paper2_setJ",
+  "gdown fail: july2024 paper2_setK",
+  "gdown fail: july2024 paper2_setL",
+  "gdown fail: jan2024 paper1_setI",
+  "gdown fail: jan2024 paper1_setJ",
+  "gdown fail: jan2024 paper1_setK",
+  "gdown fail: jan2024 paper1_setL",
+  "gdown fail: jan2024 paper2_setM",
+  "gdown fail: jan2024 paper2_setN",
+  "gdown fail: jan2024 paper2_setO",
+  "gdown fail: jan2024 paper2_setP",
+  "gdown fail: dec2022 28Dec2022",
+  "gdown fail: dec2022 28Jan2023",
+  "gdown fail: dec2022 29Dec2022",
+  "gdown fail: dec2022 29Jan2023",
+  "gdown fail: dec2022 30Jan2023",
+  "gdown fail: dec2022 09Jan2023",
+  "gdown fail: dec2022 10Jan2023",
+  "gdown fail: dec2022 11Jan2023",
+  "gdown fail: dec2022 12Jan2023",
+  "gdown fail: dec2022 13Jan2023",
+  "gdown fail: dec2022 17Jan2023",
+  "gdown fail: dec2022 18Jan2023",
+  "gdown fail: dec2022 19Jan2023",
+  "gdown fail: dec2022 20Jan2023",
+  "gdown fail: dec2022 23Jan2023",
+  "gdown fail: dec2022 24Jan2023",
+  "gdown fail: dec2022 25Jan2023",
+  "gdown fail: dec2022 27Jan2023",
+  "gdown fail: dec2022 01FEB2023",
+  "gdown fail: dec2022 02FEB2023",
+  "gdown fail: dec2022 03FEB2023",
+  "gdown fail: dec2022 04FEB2023",
+  "gdown fail: dec2022 06FEB2023",
+  "gdown fail: dec2022 07FEB2023"
+ ]
+}
