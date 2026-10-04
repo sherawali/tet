@@ -33,13 +33,21 @@
 | CTET paper1 Sept 2015.md | 150 | 150 | 0 | 6 | 1 | लगातार 1–150 | 5 | 0 | 0 | 39/41/50/20 |
 | CTET-Pedagogy of English Language _watermark.md | 304 | 304 | 0 | 1 | 0 | लगातार 1–304 | 0 | 0 | 0 | 88/57/81/78 |
 
-## B. द्विभाषी कवरेज (PYQ papers — Math/EVS/CDP हेतु, उपयोगकर्ता-आवश्यकता: हिन्दी+English दोनों)
+## B. द्विभाषी कवरेज (2020–26 वाले papers, पहले 90 प्रश्न = CDP/Math/EVS)
 
-- **CTET 2018.md**: CDP/Math/EVS प्रश्न 90 | stem में दोनों भाषाएँ: 0 (0%) | वर्तमान split से q_en बना: 0 (0%)
-- **CTET Paper 1 September 2014.md**: CDP/Math/EVS प्रश्न 90 | stem में दोनों भाषाएँ: 0 (0%) | वर्तमान split से q_en बना: 0 (0%)
-- **CTET Paper 1 sept 2016.md**: CDP/Math/EVS प्रश्न 90 | stem में दोनों भाषाएँ: 0 (0%) | वर्तमान split से q_en बना: 0 (0%)
-- **CTET paper1 Sept 2015.md**: CDP/Math/EVS प्रश्न 90 | stem में दोनों भाषाएँ: 0 (0%) | वर्तमान split से q_en बना: 0 (0%)
-- **Ctet Paper 1 july 2013.md**: CDP/Math/EVS प्रश्न 90 | stem में दोनों भाषाएँ: 0 (0%) | वर्तमान split से q_en बना: 0 (0%)
+| Paper (md) | कुल blocks | CDP/Math/EVS में द्विभाषी | केवल-English | केवल-हिन्दी | बिना उत्तर | <4 विकल्प |
+|---|---|---|---|---|---|---|
+| CTET Paper 1 jan 2021.md (31-जन-2021) | 270 | 89/90 | 0 | 1 | 0 | 1 |
+| CTET Paper 1 dec 2021.md (Dec-2021) | 240 | 90/90 ✓ | 0 | 0 | 0 | 0 |
+| ctet paper 1 jan 2023.md (Dec-2022 shift) | 150 | 88/90 | 0 | 0 | 2 | 3 |
+| ctet paper 1 aug 2023.md (20-अग-2023) | 270 | 89/90 | 0 | 1 | 0 | 0 |
+| ctet paper 1 jan 2024.md (21-जन-2024) | 270 | 89/90 | 0 | 0 | 0 | 0 |
+| CTET Paper 1 July 2024_watermark.md | 210 | 58/90 ⚠ | 29 | 1 | **89/90** | 4 |
+| CTET Paper 1 December 2024_watermark.md | 210 | 86/90 | 2 | 0 | **90/90** | 1 |
+
+नोट:
+- 2021+ के papers में stem inline द्विभाषी हैं — ठीक है। **July-2024 में 29 प्रश्नों की हिन्दी गायब** है और दोनों 2024 papers में उत्तर ही नहीं हैं।
+- पुराने papers (2011–2018) अलग-अलग English-only या Hindi-only files में हैं (जैसे `CTET 2018.md` English-only)। committed CSV इन्हें पुराने script में जोड़कर bilingual बनाता था — वर्तमान script यह नहीं करता।
 
 ## C. नंबरिंग-रीस्टार्ट वाले papers → `sec_for_q` बग (section गलत लगता है)
 
@@ -95,20 +103,22 @@
 
 वास्तविक CTET आयोजन (2020–26 के लिए महत्वपूर्ण): 2011-06: 26 Jun 2011; 2012-01: 29 Jan 2012; 2012-11: 18 Nov 2012; 2013-07: 28 Jul 2013; 2014-02: 16 Feb 2014; 2014-09: 21 Sep 2014; 2015-02: 22 Feb 2015; 2015-09: 20 Sep 2015; 2016-02: 21 Feb 2016; 2016-09: 18 Sep 2016; 2018-12: 09 Dec 2018; 2019-12: 08 Dec 2019; 2021-01: 31 Jan 2021 (July-2020 cycle, COVID postponed); 2021-12: 20 Dec 2021 (shifts till 21 Jan 2022); 2022-12: 28 Dec 2022 (shifts till 07 Feb 2023); 2023-08: 20 Aug 2023; 2024-01: 21 Jan 2024; 2024-12: 14 Dec 2024
 
-- **`CTET Paper 1 July 2024_watermark.md`** — जुलाई 2024 में **कोई CTET हुआ ही नहीं** (2024 में केवल 21 जनवरी और 14 दिसंबर)। यह या तो ग़लत label है (संभवतः Dec-2024 का दूसरा shift/कोई coaching-mock), और इसमें 210 में से केवल **1 उत्तर** है। प्रश्न 1 का stem असल में **OMR निर्देश-पृष्ठ** है (असली प्रश्न इसमें घुल-मिल गया)।
-- **`CTET Paper 1 December 2024_watermark.md`** — असली पुस्तिका, पर **0 उत्तर** (answer-key PDF में थी ही नहीं) → CSV में 0 पंक्तियाँ।
+- **`CTET Paper 1 July 2024_watermark.md`** — CTET-July-2024 **असली परीक्षा है** (ctet.nic.in archive में `question-paper-july-2024` + official final answer key मौजूद है)। समस्या: 210 में से केवल **1 उत्तर** भरा है, और प्रश्न 1 का stem असल में **OMR निर्देश-पृष्ठ** है (असली प्रश्न-1 उसमें घुल-मिल गया) → official key से उत्तर भरने होंगे।
+- **`CTET Paper 1 December 2024_watermark.md`** — असली पुस्तिका (कोड H), पर **0 उत्तर** (answer-key PDF में थी ही नहीं) → CSV में 0 पंक्तियाँ।
 - **`ctet paper 1 jan 2023.md`** — यह असल में **CTET Dec-2022** (28-Dec-2022 shift) है; साथ ही यह एक ही shift है (Dec-2022 में कई shifts हुए थे)।
-- **`CTET 2018.md`** — सिर्फ़ '2018'; CTET-2018 केवल दिसंबर में हुआ था → `CTET Paper 1 Dec 2018.md` से ओवरलैप जाँचें (नीचे D खंड)।
-- **2020–2026 कवरेज गैप**: repo में Feb-2025, जुलाई-2025 (यदि हुआ), Dec-2025/Feb-2026/जुलाई-2026 — **कोई नहीं है**। (2020 में कोई CTET नहीं हुआ — जुलाई-2020 चक्र 31-जन-2021 को हुआ, जो repo में `jan 2021` के नाम से है।)
+- **`CTET paper 1 june 2019.md`** — CTET-2019 की जुलाई परीक्षा (07-Jul-2019) है; फ़ाइल-नाम 'june' **ग़लत** है (पुराने CSV की years-mapping इसे सही `2019-07` देती थी)।
+- **`CTET 2018.md`** — CTET-2018 केवल दिसंबर में हुआ था; यह फ़ाइल `CTET Paper 1 Dec 2018.md` का ही **डुप्लिकेट** है (D खंड देखें)।
+- **2020–2026 कवरेज गैप**: repo में **Feb-2026 (07 & 08-Feb-2026)** — **कोई नहीं है**। नोट: **2025 में कोई CTET आयोजित नहीं हुआ** (July स्किप, Dec चक्र Feb-2026 बन गया)। 2020 में भी कोई CTET नहीं हुआ — जुलाई-2020 चक्र 31-जन-2021 को हुआ, जो repo में `jan 2021` के नाम से है। CTET Dec-2026 (12–13 दिसंबर) अभी होना बाकी है।
 
 ## F. CSV पाइपलाइन — committed `content/q_ctet.csv` vs वर्तमान script
 
-- committed CSV पंक्तियाँ: **7002**; वर्तमान md+script से ताज़ा रन: **7032** → **CSV stale है** (पुनर्जनित नहीं गया)।
+- committed CSV पंक्तियाँ: **7002**; वर्तमान md+script से ताज़ा रन: **7032** → **CSV वर्तमान `tools/md2csv_ctet.py` के output से मेल नहीं खाता** (CSV किसी बेहतर/पुराने संस्करण से बना है)।
 - committed sections: {'cdp': 1590, 'math': 1068, 'evs': 1187, 'english': 1052, 'hindi': 2100, 'sanskrit': 5}
 - अमान्य `ans` मान: 0
-- PYQ CDP/Math/EVS पंक्तियाँ: 2617; जिनमें q_en (अंग्रेज़ी) मौजूद: **2617 (100%)** — उपयोगकर्ता-आवश्यकता 'दोनों भाषाएँ' अधूरी।
-- `jan 2023` (Dec-2022) committed rows: 114 → sections {'cdp': 80, 'hindi': 29, 'sanskrit': 5} — Math/EVS भी 'cdp' में हैं।
+- **द्विभाषी स्थिति**: committed CSV में PYQ CDP/Math/EVS की सभी **2617 पंक्तियाँ q_en सहित (100%)** हैं — डेटा ठीक है। लेकिन वर्तमान `md2csv_ctet.py` दोबारा चले तो केवल **689 पंक्तियाँ** bilingual बनतीं (क्योंकि `split_bilingual` सिर्फ़ English-पहले stems पकड़ता है, और English-only/Hindi-only files का merge भी नहीं करता) — **वर्तमान script एक regression है**।
+- `jan 2023` (Dec-2022) committed rows: 114 → sections {'cdp': 80, 'hindi': 29, 'sanskrit': 5} — Math/EVS भी 'cdp' में हैं, `years` खाली।
 - CSV में duplicate q_hi stems (banks सहित): 615
+- GitHub Action (`build.yml`) केवल `tools/build.py` (CSV→packs) चलाता है; md→csv चरण manual है — ग़लती से `md2csv_ctet.py` चलाने पर quality चुपचाप गिर जाएगी।
 
 ## G. बैंक फ़ाइलें (coaching books) — प्रश्न-स्रोत CTET-PYQ से अलग
 
@@ -120,8 +130,8 @@
 
 ## H. प्रमुख सिफ़ारिशें
 
-1. `sec_for_q` को `part`-heading (भाग/PART) और नंबरिंग-रीस्टार्ट दोनों से section लेना चाहिए।
-2. `content/q_ctet.csv` re-generate करके commit करना चाहिए (अभी stale)।
-3. `July 2024` फ़ाइल की पहचान कर उसे सही label देना चाहिए; दोनों 2024 फ़ाइलों के लिए official answer key (ctet.nic.in) से उत्तर भरने चाहिए।
-4. द्विभाषी split सुधार: stem/विकल्प जिनमें हिन्दी पहले है, उनके लिए भी विभाजन — ताकि Math/EVS/CDP सब दोनों भाषाओं में मिलें।
-5. 2025–2026 के पेपर web से official PDF + answer key के साथ जोड़ने चाहिए (folder: `ctetnew/`)।
+1. `tools/md2csv_ctet.py` का `sec_for_q` **`part`-heading (भाग/PART) को अनदेखा करता है** — restart-नंबरिंग वाले papers (jan 2023 = Dec-2022, aug 2023, jan 2024 आदि) के सारे प्रश्न 'cdp' बन जाते हैं। Section-detection ठीक करनी चाहिए।
+2. **वर्तमान `md2csv_ctet.py` को तब तक न चलाएँ** जब तक split/merge ठीक न हो जाए — वरना committed CSV की bilingual quality (4897 पंक्तियाँ) गिरकर 689 रह जाएगी।
+3. दोनों 2024 papers (July-2024: 89/90 उत्तर गायब; Dec-2024: 90/90 गायब) के लिए **official final answer keys** (ctet.nic.in, S3 CDN) से उत्तर भरना चाहिए; July-2024 के 29 English-only प्रश्नों की हिन्दी भी असली पुस्तिका से भरनी चाहिए।
+4. `CTET 2018.md` (`CTET Paper 1 Dec 2018.md` का duplicate) और `CTET paper 1 june 2019.md` (असल में July-2019) — labels ठीक करने चाहिए।
+5. **Feb-2026 (07 & 08-फ़र-2026) papers repo में नहीं हैं** — web से official PDF + final answer key के साथ `ctetnew/` में जोड़ना चाहिए (2025 में कोई CTET हुआ ही नहीं था)।

@@ -11,7 +11,7 @@ CTET official sources fetcher (GitHub Actions runner par chalne ke liye).
 
 Output sirf TEXT hai (PDFs commit nahi hote — repo halka rahe).
 """
-import json, os, re, subprocess, sys, hashlib, glob
+import json, os, re, subprocess, sys, hashlib, glob, time
 
 OUT = os.path.join("ctetnew", "_sources")
 KEYS_DIR = os.path.join(OUT, "keys")
@@ -55,9 +55,29 @@ QP_PAGES = {
 def sh(cmd, timeout=240):
     return subprocess.run(cmd, shell=True, capture_output=True, text=True, timeout=timeout)
 
-def fetch(url, dest):
-    r = sh(f'curl -sL --max-time 120 -A "Mozilla/5.0 (X11; Linux x86_64)" "{url}" -o "{dest}"')
-    return os.path.exists(dest) and os.path.getsize(dest) > 500
+def fetch(url, dest, tries=3):
+    for i in range(tries):
+        sh(f'curl -sL --max-time 180 -A "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36" "{url}" -o "{dest}"')
+        if os.path.exists(dest) and os.path.getsize(dest) > 500:
+            return True
+        time.sleep(5)
+    return False
+
+def drive_download(fid, dest):
+    """Drive: pehle usercontent endpoint, phir gdown."""
+    u = f"https://drive.usercontent.google.com/download?id={fid}&export=download&confirm=t"
+    for i in range(2):
+        sh(f'curl -sL --max-time 300 -A "Mozilla/5.0 (X11; Linux x86_64)" "{u}" -o "{dest}"')
+        if os.path.exists(dest) and os.path.getsize(dest) > 1000:
+            head = open(dest, "rb").read(200)
+            if b"<html" not in head.lower() and b"docs.google" not in head.lower():
+                return "usercontent"
+        time.sleep(3)
+    r = sh(f'gdown --fuzzy "https://drive.google.com/file/d/{fid}/view" -O "{dest}"', timeout=300)
+    if os.path.exists(dest) and os.path.getsize(dest) > 1000:
+        return "gdown"
+    manifest["errors"].append(f"drive dl fail {fid}: {r.stderr[-300:] if r else ''}")
+    return None
 
 def extract_pdf(pdf_path, txt_path):
     """pdfplumber se text; scan ho to tesseract OCR (hin+eng)."""
@@ -144,17 +164,48 @@ for exam, page_url in QP_PAGES.items():
 print(f"  found {len(manifest['papers'])} drive links", flush=True)
 
 # ------------------------------------------------------------- 3. gdown QPs
-for item in manifest["papers"]:
+# extra direct PDFs (careerpower scans + adda247 text pdfs)
+EXTRA_PDFS = {
+    "feb2026": [
+        ("careerpower_7Feb_CodeX_P1.pdf", "https://www.careerpower.in/blog/wp-content/uploads/2026/05/12122733/CTET-7-Feb-Code-X-Paper-1.pdf"),
+        ("careerpower_7Feb_CodeV_P1.pdf", "https://www.careerpower.in/blog/wp-content/uploads/2026/05/12122746/CTET-Question-Paper-1-Shift-2-7-Feb-2026-Code-V.pdf"),
+        ("careerpower_8Feb_CodeC_P1.pdf", "https://www.careerpower.in/blog/wp-content/uploads/2026/05/12122845/CTET-Question-Paper-1-Shift-2-8-Feb-2026-Code-C.pdf"),
+        ("careerpower_8Feb_CodeE_P1.pdf", "https://www.careerpower.in/blog/wp-content/uploads/2026/05/12122850/CTET-Question-Paper-1-Shift-2-8-Feb-2026-Code-E.pdf"),
+        ("adda247_7Feb_CodeU_P1.pdf", "https://www.adda247.com/jobs/wp-content/uploads/sites/13/2026/02/07183549/Code-U.pdf"),
+        ("adda247_7Feb_CodeV_P1.pdf", "https://www.adda247.com/jobs/wp-content/uploads/sites/13/2026/02/07183547/Code-V.pdf"),
+        ("adda247_8Feb_CodeC_P1.pdf", "https://www.adda247.com/jobs/wp-content/uploads/sites/13/2026/02/08180518/PRT-08-02-26-Set-C.pdf"),
+    ],
+}
+
+print("== extra direct PDFs ==", flush=True)
+for exam, items in EXTRA_PDFS.items():
+    for name, url in items:
+        dest = os.path.join(DL, "qps", exam, name)
+        os.makedirs(os.path.dirname(dest), exist_ok=True)
+        if not fetch(url, dest):
+            manifest["errors"].append(f"extra pdf fail: {name}")
+            continue
+        txt = os.path.join(QPS_DIR, exam, name.replace(".pdf", ".txt"))
+        try:
+            info = extract_pdf(dest, txt)
+            info.update(file=f"qps/{exam}/{name.replace('.pdf', '.txt')}", label=name.replace(".pdf",""),
+                        url=url, kind="extra-pdf")
+            manifest["papers"].append(dict(exam=exam, label=name.replace(".pdf", ""), files=[info], url=url))
+            print(f"  extra {name}: {info['pages']}p {info['method']} dev={info['devanagari']}", flush=True)
+        except Exception as e:
+            manifest["errors"].append(f"extra extract fail {name}: {e}")
+
+for item in [p for p in manifest["papers"] if "fid" in p]:
     label = re.sub(r"[^A-Za-z0-9_.-]+", "_", item["label"]).strip("_")
     exam = item["exam"]
     ddir = os.path.join(DL, "qps", exam)
     os.makedirs(ddir, exist_ok=True)
     dest = os.path.join(ddir, label + ".bin")
-    r = sh(f'gdown --fuzzy "{item["url"]}" -O "{dest}"', timeout=300)
-    if not os.path.exists(dest) or os.path.getsize(dest) < 500:
-        item["status"] = "gdown-fail"
-        manifest["errors"].append(f"gdown fail: {exam} {label}")
+    how = drive_download(item["fid"], dest)
+    if not how:
+        item["status"] = "drive-fail"
         continue
+    item["via"] = how
     # identify file type
     ft = sh(f'file -b --mime-type "{dest}"').stdout.strip()
     item["mime"] = ft
@@ -170,7 +221,7 @@ for item in manifest["papers"]:
     else:
         item["status"] = "unknown-type:" + ft
         continue
-    item["files"] = []
+    item["files"] = item.get("files", [])
     for pdf in files:
         base = os.path.basename(pdf)
         txt = os.path.join(QPS_DIR, exam, re.sub(r"\.pdf$", "", base) + ".txt")
