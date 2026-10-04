@@ -1,3 +1,1 @@
-  feb2026_07feb_S/Main-S.pdf: ocr(48p) pages=48 chars=105758
-  feb2026_08feb_C/FSC Paper I Eng+Hin CCCC.pdf: ocr(48p) pages=48 chars=109328
-DONE in 3.3 min; errors=0
+DONE in 10.6 min; errors=0
