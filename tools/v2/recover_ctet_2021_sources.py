@@ -17,6 +17,7 @@ import shutil
 import subprocess
 import tempfile
 import time
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from typing import Any
 from urllib.parse import urlparse
@@ -63,10 +64,7 @@ def download(session: requests.Session, url: str, destination: Path) -> tuple[in
     raise last_error
 
 
-def ocr_page(page: fitz.Page, image_path: Path) -> str:
-    """OCR one raster-only page without retaining the rendered image."""
-    pixmap = page.get_pixmap(matrix=fitz.Matrix(2, 2), colorspace=fitz.csGRAY, alpha=False)
-    pixmap.save(image_path)
+def ocr_image(image_path: Path) -> str:
     completed = subprocess.run(
         [
             "tesseract",
@@ -86,7 +84,31 @@ def ocr_page(page: fitz.Page, image_path: Path) -> str:
     return completed.stdout.replace("\x00", "")
 
 
-def extract_pdf(pdf_path: Path, text_path: Path) -> dict[str, Any]:
+def ocr_document(document: fitz.Document, temporary_root: Path) -> list[str]:
+    """Render source pages, then OCR two at a time on the two-core runner."""
+    image_paths: list[Path] = []
+    for page_index, page in enumerate(document):
+        image_path = temporary_root / f"page-{page_index + 1:04d}.png"
+        pixmap = page.get_pixmap(
+            matrix=fitz.Matrix(2, 2), colorspace=fitz.csGRAY, alpha=False
+        )
+        pixmap.save(image_path)
+        image_paths.append(image_path)
+    try:
+        with ThreadPoolExecutor(max_workers=2) as executor:
+            return list(executor.map(ocr_image, image_paths))
+    finally:
+        for image_path in image_paths:
+            image_path.unlink(missing_ok=True)
+
+
+def extract_pdf(
+    pdf_path: Path,
+    text_path: Path,
+    *,
+    full_page_ocr: bool = False,
+    ocr_text_path: Path | None = None,
+) -> dict[str, Any]:
     document = fitz.open(pdf_path)
     native_texts: list[str] = []
     image_counts: list[int] = []
@@ -100,17 +122,27 @@ def extract_pdf(pdf_path: Path, text_path: Path) -> dict[str, Any]:
         native_pages_with_text <= max(1, document.page_count // 20)
         and native_text_characters < document.page_count * 100
     )
-    if ocr_applied and shutil.which("tesseract") is None:
-        raise RuntimeError("Raster-only PDF requires tesseract, but it is not installed")
+    if (ocr_applied or full_page_ocr) and shutil.which("tesseract") is None:
+        raise RuntimeError("Requested OCR requires tesseract, but it is not installed")
+
+    ocr_texts: list[str] | None = None
+    if ocr_applied or full_page_ocr:
+        ocr_temporary_root = Path(
+            tempfile.mkdtemp(prefix=f"{pdf_path.stem}-ocr-", dir=pdf_path.parent)
+        )
+        try:
+            ocr_texts = ocr_document(document, ocr_temporary_root)
+        finally:
+            shutil.rmtree(ocr_temporary_root, ignore_errors=True)
 
     page_texts: list[str] = []
     extracted_texts: list[str] = []
     ocr_pages = 0
-    image_path = pdf_path.with_suffix(".ocr.png")
-    for page_index, (page, native_text) in enumerate(zip(document, native_texts, strict=True)):
+    for page_index, native_text in enumerate(native_texts):
         text = native_text
         if ocr_applied and not native_text.strip():
-            text = ocr_page(page, image_path)
+            assert ocr_texts is not None
+            text = ocr_texts[page_index]
             ocr_pages += 1
         extracted_texts.append(text)
         page_texts.append(f"===== PDF PAGE {page_index + 1} =====\n{text.rstrip()}\n")
@@ -118,6 +150,17 @@ def extract_pdf(pdf_path: Path, text_path: Path) -> dict[str, Any]:
     text_path.parent.mkdir(parents=True, exist_ok=True)
     text_path.write_text("\n".join(page_texts), encoding="utf-8")
     full_text = "\n".join(page_texts)
+
+    ocr_full_text = None
+    if full_page_ocr:
+        assert ocr_texts is not None and ocr_text_path is not None
+        ocr_page_texts = [
+            f"===== PDF PAGE {page_index + 1} =====\n{text.rstrip()}\n"
+            for page_index, text in enumerate(ocr_texts)
+        ]
+        ocr_full_text = "\n".join(ocr_page_texts)
+        ocr_text_path.parent.mkdir(parents=True, exist_ok=True)
+        ocr_text_path.write_text(ocr_full_text, encoding="utf-8")
     question_numbers = [int(value) for value in re.findall(r"Question Number\s*:\s*(\d+)", full_text)]
     question_ids = re.findall(r"Question Id\s*:\s*(\d+)", full_text)
     metadata = {key: value for key, value in document.metadata.items() if value}
@@ -129,8 +172,20 @@ def extract_pdf(pdf_path: Path, text_path: Path) -> dict[str, Any]:
         "nativeTextCharacters": native_text_characters,
         "nativePagesWithText": native_pages_with_text,
         "ocrApplied": ocr_applied,
-        "ocrLanguage": "eng+hin+san" if ocr_applied else None,
+        "ocrLanguage": "eng+hin+san" if (ocr_applied or full_page_ocr) else None,
         "ocrPageCount": ocr_pages,
+        "fullPageOcrApplied": full_page_ocr,
+        "fullPageOcrTextPath": (
+            str(ocr_text_path.relative_to(ROOT)) if full_page_ocr and ocr_text_path else None
+        ),
+        "fullPageOcrPageCount": document.page_count if full_page_ocr else 0,
+        "fullPageOcrTextCharacters": len(ocr_full_text) if ocr_full_text is not None else 0,
+        "fullPageOcrQuestionNumberOccurrences": len(
+            re.findall(r"Question Number\s*:\s*(\d+)", ocr_full_text or "")
+        ),
+        "fullPageOcrUniqueQuestionIdCount": len(
+            set(re.findall(r"Question Id\s*:\s*(\d+)", ocr_full_text or ""))
+        ),
         "embeddedImageCount": sum(image_counts),
         "pagesWithEmbeddedImages": sum(value > 0 for value in image_counts),
         "questionNumberOccurrences": len(question_numbers),
@@ -140,7 +195,6 @@ def extract_pdf(pdf_path: Path, text_path: Path) -> dict[str, Any]:
         "frontMatterText": "\n".join(page_texts[:3])[:12_000],
     }
     document.close()
-    image_path.unlink(missing_ok=True)
     return result
 
 
@@ -190,10 +244,17 @@ def main() -> int:
             base_name = f"{date}--{slug(source_name)}"
             pdf_path = temporary_root / f"{base_name}.pdf"
             text_path = OUTPUT / "text" / f"{base_name}.txt"
+            full_page_ocr = source_name == "preppCatalogPdf"
+            ocr_text_path = OUTPUT / "ocr" / f"{base_name}.txt"
             print(f"[{index}] recovering {date} {source_name}: {url}", flush=True)
             try:
                 size, sha256 = download(session, url, pdf_path)
-                details = extract_pdf(pdf_path, text_path)
+                details = extract_pdf(
+                    pdf_path,
+                    text_path,
+                    full_page_ocr=full_page_ocr,
+                    ocr_text_path=ocr_text_path if full_page_ocr else None,
+                )
                 recovered.append(
                     {
                         "date": date,

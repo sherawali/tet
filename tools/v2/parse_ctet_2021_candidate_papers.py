@@ -93,7 +93,9 @@ def textual_characters(value: str) -> int:
     return sum(character.isalpha() for character in value)
 
 
-def parse_occurrence(text: str, match: re.Match[str], end: int) -> dict[str, Any]:
+def parse_occurrence(
+    text: str, match: re.Match[str], end: int, origin: str
+) -> dict[str, Any]:
     payload = text[match.end():end]
     options_split = re.split(r"\bOptions\s*:\s*", payload, maxsplit=1, flags=re.I)
     stem = clean_fragment(options_split[0])
@@ -109,6 +111,7 @@ def parse_occurrence(text: str, match: re.Match[str], end: int) -> dict[str, Any
         status = "image-encoded"
     score = meaningful_stem + sum(meaningful_options) + complete_option_count * 20
     return {
+        "origin": origin,
         "page": page_at(text, match.start()),
         "stemText": stem,
         "options": options,
@@ -132,32 +135,129 @@ def candidate_metadata(text: str) -> dict[str, str | None]:
     }
 
 
-def parse_document(document: dict[str, Any], disposition: str | None) -> dict[str, Any]:
-    text_path = ROOT / document["textPath"]
-    text = text_path.read_text(encoding="utf-8")
+def extract_occurrences(
+    text: str, origin: str
+) -> dict[tuple[int, str], list[dict[str, Any]]]:
     headers = list(QUESTION_HEADER.finditer(text))
     occurrences: dict[tuple[int, str], list[dict[str, Any]]] = defaultdict(list)
     for index, match in enumerate(headers):
         end = headers[index + 1].start() if index + 1 < len(headers) else len(text)
         position = int(match.group(1))
-        question_id = match.group(2)
         if 1 <= position <= 150:
-            occurrences[(position, question_id)].append(parse_occurrence(text, match, end))
+            occurrences[(position, match.group(2))].append(
+                parse_occurrence(text, match, end, origin)
+            )
+    return occurrences
+
+
+def target_languages(subject_name: str | None) -> dict[int, str]:
+    if not subject_name:
+        return {}
+    match = re.search(
+        r"P1\s+(English|Hindi|Sanskrit)\s+and\s+(English|Hindi|Sanskrit)",
+        subject_name,
+        flags=re.I,
+    )
+    if not match:
+        return {}
+    return {1: match.group(1).lower(), 2: match.group(2).lower()}
+
+
+def detected_common_language(value: dict[str, Any]) -> str | None:
+    combined = value["stemText"] + " " + " ".join(
+        option["text"] for option in value["options"]
+    )
+    devanagari = len(re.findall(r"[\u0900-\u097f]", combined))
+    latin = len(re.findall(r"[A-Za-z]", combined))
+    if devanagari >= 4 and devanagari * 2 >= latin:
+        return "hindi"
+    if latin >= 5:
+        return "english"
+    return None
+
+
+def occurrence_quality(value: dict[str, Any]) -> int:
+    native_bonus = 60 if value["origin"] == "native" and value["extractionStatus"] == "text-complete" else 0
+    return value["score"] + native_bonus
+
+
+def normalized_presentations(
+    position: int,
+    values: list[dict[str, Any]],
+    languages_by_slot: dict[int, str],
+) -> list[dict[str, Any]]:
+    by_language: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    for value in values:
+        if value["extractionStatus"] == "image-encoded":
+            continue
+        if position <= 90:
+            language = detected_common_language(value)
+        else:
+            language = languages_by_slot.get(1 if position <= 120 else 2)
+        if language:
+            by_language[language].append(value)
+
+    presentations: list[dict[str, Any]] = []
+    for language, candidates in sorted(by_language.items()):
+        best = max(candidates, key=occurrence_quality)
+        presentations.append(
+            {
+                "language": language,
+                "source": best["origin"],
+                "reviewStatus": (
+                    "ocr-review-required"
+                    if best["origin"] == "full-page-ocr"
+                    else "source-text-extraction"
+                ),
+                "page": best["page"],
+                "stemText": best["stemText"],
+                "options": best["options"],
+                "extractionStatus": best["extractionStatus"],
+            }
+        )
+    return presentations
+
+
+def parse_document(document: dict[str, Any], disposition: str | None) -> dict[str, Any]:
+    text_path = ROOT / document["textPath"]
+    text = text_path.read_text(encoding="utf-8")
+    metadata = candidate_metadata(text)
+    native_occurrences = extract_occurrences(text, "native")
+    occurrences = defaultdict(list, {key: list(values) for key, values in native_occurrences.items()})
+
+    ocr_text_path_value = document.get("fullPageOcrTextPath")
+    ocr_header_count = 0
+    if ocr_text_path_value:
+        ocr_text = (ROOT / ocr_text_path_value).read_text(encoding="utf-8")
+        ocr_occurrences = extract_occurrences(ocr_text, "full-page-ocr")
+        ocr_header_count = sum(len(values) for values in ocr_occurrences.values())
+        # Native IDs/positions are canonical. OCR augments text only when its
+        # independently recognized header agrees with that canonical pair.
+        for key, values in ocr_occurrences.items():
+            if key in native_occurrences:
+                occurrences[key].extend(values)
 
     by_position: dict[int, list[tuple[str, list[dict[str, Any]]]]] = defaultdict(list)
     for (position, question_id), values in occurrences.items():
         by_position[position].append((question_id, values))
 
+    languages_by_slot = target_languages(metadata["subjectName"])
     questions: list[dict[str, Any]] = []
     position_conflicts: list[dict[str, Any]] = []
     for position in sorted(by_position):
         ids = by_position[position]
-        if len(ids) > 1:
-            position_conflicts.append(
-                {"position": position, "questionIds": sorted(question_id for question_id, _ in ids)}
-            )
-        question_id, values = max(ids, key=lambda item: max(value["score"] for value in item[1]))
-        best = max(values, key=lambda value: value["score"])
+        native_ids = sorted(
+            question_id
+            for question_id, _ in ids
+            if (position, question_id) in native_occurrences
+        )
+        if len(native_ids) > 1:
+            position_conflicts.append({"position": position, "questionIds": native_ids})
+        question_id, values = max(
+            ids, key=lambda item: max(occurrence_quality(value) for value in item[1])
+        )
+        best = max(values, key=occurrence_quality)
+        presentations = normalized_presentations(position, values, languages_by_slot)
         questions.append(
             {
                 "position": position,
@@ -170,24 +270,30 @@ def parse_document(document: dict[str, Any], disposition: str | None) -> dict[st
                 "meaningfulStemCharacters": best["meaningfulStemCharacters"],
                 "nonemptyOptionCount": best["nonemptyOptionCount"],
                 "extractionStatus": best["extractionStatus"],
+                "presentations": presentations,
             }
         )
 
     stimuli_seen: set[tuple[str, int, int]] = set()
     stimuli: list[dict[str, Any]] = []
-    for match in COMPREHENSION_HEADER.finditer(text):
-        evidence = (match.group(1), int(match.group(2)), int(match.group(3)))
-        if evidence in stimuli_seen:
-            continue
-        stimuli_seen.add(evidence)
-        stimuli.append(
-            {
-                "questionId": evidence[0],
-                "firstPosition": evidence[1],
-                "lastPosition": evidence[2],
-                "page": page_at(text, match.start()),
-            }
-        )
+    source_texts = [("native", text)]
+    if ocr_text_path_value:
+        source_texts.append(("full-page-ocr", ocr_text))
+    for origin, source_text in source_texts:
+        for match in COMPREHENSION_HEADER.finditer(source_text):
+            evidence = (match.group(1), int(match.group(2)), int(match.group(3)))
+            if evidence in stimuli_seen:
+                continue
+            stimuli_seen.add(evidence)
+            stimuli.append(
+                {
+                    "questionId": evidence[0],
+                    "firstPosition": evidence[1],
+                    "lastPosition": evidence[2],
+                    "page": page_at(source_text, match.start()),
+                    "source": origin,
+                }
+            )
 
     position_set = {question["position"] for question in questions}
     missing_positions = sorted(set(range(1, 151)) - position_set)
@@ -211,9 +317,18 @@ def parse_document(document: dict[str, Any], disposition: str | None) -> dict[st
         "url": document["url"],
         "sourceSha256": document["sha256"],
         "sourceTextPath": document["textPath"],
-        **candidate_metadata(text),
+        "fullPageOcrTextPath": ocr_text_path_value,
+        **metadata,
         "pageCount": document["pageCount"],
         "ocrApplied": document.get("ocrApplied", False),
+        "fullPageOcrApplied": document.get("fullPageOcrApplied", False),
+        "fullPageOcrRecognizedHeaderCount": ocr_header_count,
+        "commonPositionsWithEnglishAndHindi": sum(
+            question["position"] <= 90
+            and {presentation["language"] for presentation in question["presentations"]}
+            >= {"english", "hindi"}
+            for question in questions
+        ),
         "parsedQuestionCount": len(questions),
         "missingPositions": missing_positions,
         "positionConflicts": position_conflicts,
