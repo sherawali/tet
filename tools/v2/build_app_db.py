@@ -330,7 +330,8 @@ def main():
             questions_seen.add(qid)
 
             exam = q.get("exam", "utet")
-            exams_tag = "ctet1" if exam == "ctet" else "utet1"
+            paper_num = q.get("paper", 1)
+            exams_tag = f"{exam}{paper_num}"
 
             raw_sec = q.get("section", "")
             if raw_sec == "cdp":
@@ -363,7 +364,7 @@ def main():
                 if m_y: year = m_y.group(0)
 
             # Source tag
-            source_tag = f"{exam.upper()} {year} (Paper 1)" if year else f"{exam.upper()} PYQ"
+            source_tag = f"{exam.upper()} {year} (Paper {paper_num})" if year else f"{exam.upper()} PYQ"
 
             # Prompt text
             prompt_block = q.get("prompt", [{}])[0]

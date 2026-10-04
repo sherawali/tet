@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "bank_version": 20261004,
-  "generated": "2026-10-04T09:45:58Z",
+  "generated": "2026-10-04T10:02:51Z",
   "topics": [
     "बाल विकास एवं शिक्षणशास्त्र",
     "हिन्दी भाषा",
@@ -26,9 +26,9 @@
   "packs": [
     {
       "id": "0000",
-      "file": "packs/pack-0000-2796491ca6ec.json",
-      "sha256": "2796491ca6ecbdd1249a4e025282a17d3c9a8ed8e7253d27a7a0c450a07fd899",
-      "bytes": 204239,
+      "file": "packs/pack-0000-494d1a953d71.json",
+      "sha256": "494d1a953d713fae159550cef65d626a1e69b828ead324a3f958a1233923ccb9",
+      "bytes": 214279,
       "count": 200,
       "sections": [
         "cdp"
@@ -36,9 +36,9 @@
     },
     {
       "id": "0001",
-      "file": "packs/pack-0001-ee6c568159b4.json",
-      "sha256": "ee6c568159b4d5208cf21957983bb33811bb01ead7b1072ae55a4c68e64f7dd5",
-      "bytes": 131316,
+      "file": "packs/pack-0001-2349fe3772a7.json",
+      "sha256": "2349fe3772a75b902911705f421a07279eab83222878ba6bfc5920cb6921530a",
+      "bytes": 140246,
       "count": 200,
       "sections": [
         "cdp",
@@ -47,9 +47,9 @@
     },
     {
       "id": "0002",
-      "file": "packs/pack-0002-22e79bfa5509.json",
-      "sha256": "22e79bfa5509b637db08adf2cde1024232daae0717c6817927ef8f5329923b81",
-      "bytes": 134960,
+      "file": "packs/pack-0002-d0d79edd6644.json",
+      "sha256": "d0d79edd664499161351a083424a754b6da884f459dc11e41ebdabe3c8aeca70",
+      "bytes": 135662,
       "count": 200,
       "sections": [
         "english"
@@ -57,9 +57,9 @@
     },
     {
       "id": "0003",
-      "file": "packs/pack-0003-a36243885fc1.json",
-      "sha256": "a36243885fc16289a022a68135bd2a69c3181b2f212bbfcb243ba0dd8e4fae89",
-      "bytes": 175161,
+      "file": "packs/pack-0003-69b4676ec913.json",
+      "sha256": "69b4676ec913d186e4d6791a93ec4250d0af1540794b2109e4b66bca0d9cb7b6",
+      "bytes": 185369,
       "count": 200,
       "sections": [
         "english",
@@ -68,9 +68,9 @@
     },
     {
       "id": "0004",
-      "file": "packs/pack-0004-6ebcfa12e22b.json",
-      "sha256": "6ebcfa12e22b57b2a2f06cf52260ba401d2c43cfd58a4f5b527d6fe04ac9ce97",
-      "bytes": 188663,
+      "file": "packs/pack-0004-ae9af811f8ee.json",
+      "sha256": "ae9af811f8ee5b3894bc918fd0df9b35398d0a56d7e43a2ba0359734d22ae11a",
+      "bytes": 200153,
       "count": 200,
       "sections": [
         "evs",
@@ -89,9 +89,9 @@
     },
     {
       "id": "0006",
-      "file": "packs/pack-0006-a0e86778ffb2.json",
-      "sha256": "a0e86778ffb2462a94355112590736dc0635a19330f6bd746f7abf1ac488e0dd",
-      "bytes": 158662,
+      "file": "packs/pack-0006-d9c9631bcb56.json",
+      "sha256": "d9c9631bcb56fbe4f9856eebf49a78ac759bb8ec6a680ccdd76781304e0280cf",
+      "bytes": 159964,
       "count": 200,
       "sections": [
         "hindi",
@@ -100,9 +100,9 @@
     },
     {
       "id": "0007",
-      "file": "packs/pack-0007-faaabfe64631.json",
-      "sha256": "faaabfe64631d8fa65b115a5926d7b62a399b1f23b5d57a5b90265b211234404",
-      "bytes": 187345,
+      "file": "packs/pack-0007-692d84560710.json",
+      "sha256": "692d8456071075418bb876bc07cb48a1a1d37b47fda7a962453fcdac1910c478",
+      "bytes": 198799,
       "count": 200,
       "sections": [
         "math"
@@ -110,9 +110,9 @@
     },
     {
       "id": "0008",
-      "file": "packs/pack-0008-f7488cdd9ed0.json",
-      "sha256": "f7488cdd9ed03a0505e174b085aa0633f7de84c75d612fa41f6dc8a55912c4ff",
-      "bytes": 130052,
+      "file": "packs/pack-0008-47200ef8255a.json",
+      "sha256": "47200ef8255a8b61c63f137968a47efcc84a5e1c52f060fbd5977ff5d204cd9b",
+      "bytes": 134348,
       "count": 200,
       "sections": [
         "math",
@@ -121,9 +121,9 @@
     },
     {
       "id": "0009",
-      "file": "packs/pack-0009-d0603a8a94b0.json",
-      "sha256": "d0603a8a94b008996196e2c45793ef0a0e07e3a6dacb23466281ea33e6f2576a",
-      "bytes": 151346,
+      "file": "packs/pack-0009-c048352e42a2.json",
+      "sha256": "c048352e42a27441fb430b667276334f12ce641e8d5b68d082f6935f9ecb4269",
+      "bytes": 152057,
       "count": 200,
       "sections": [
         "cdp",

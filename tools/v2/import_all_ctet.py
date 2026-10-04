@@ -113,11 +113,11 @@ def extract_options_and_q(b: str, year_mode: str) -> tuple[str, str, dict[str, s
         m_ans = re.search(r'Ans\.\s*\(?([a-d1-4])\)?', b, re.I)
         ans = m_ans.group(1).lower() if m_ans else 'a'
         ans_letter = LETTERS[int(ans)-1] if ans.isdigit() else ans
-        if '**English**' in b and '**हिन्दी**' in b:
-            en_part = b.split('**हिन्दी**')[0]
-            hi_part = b.split('**हिन्दी**')[1]
+        parts = re.split(r'\*\*(?:हिन्दी|Hindi)\*\*|####\s*(?:हिन्दी|Hindi)', b)
+        if len(parts) >= 2:
+            en_part, hi_part = parts[0], parts[1]
             m_en = re.search(r'\*\*English\*\*\s*\n(.*?)(?=\n- \*\*\(|$)', en_part, re.S)
-            m_hi = re.search(r'\*\*हिन्दी\*\*\s*\n(.*?)(?=\n- \*\*\(|>\s*\*\*Ans|$)', hi_part, re.S)
+            m_hi = re.search(r'(?:^\s*|\n)(.*?)(?=\n- \*\*\(|>\s*\*\*Ans|$)', hi_part, re.S)
             if m_en: q_en = clean_markdown_text(m_en.group(1))
             if m_hi: q_hi = clean_markdown_text(m_hi.group(1))
             for l in LETTERS:
@@ -188,9 +188,15 @@ def extract_options_and_q(b: str, year_mode: str) -> tuple[str, str, dict[str, s
                 oe[let] = oh[let]
 
     elif year_mode == "2024":
-        m_en = re.search(r'\*\*English\*\*\s*\n(.*?)(?=\n- \*\*\(|\*\*हिन्दी\*\*|$)', b, re.DOTALL)
+        parts = re.split(r'\*\*(?:हिन्दी|Hindi)\*\*|####\s*(?:हिन्दी|Hindi)', b)
+        if len(parts) >= 2:
+            en_part, hi_part = parts[0], parts[1]
+        else:
+            en_part, hi_part = b, b
+
+        m_en = re.search(r'\*\*English\*\*\s*\n(.*?)(?=\n- \*\*\(|\*\*हिन्दी\*\*|$)', en_part, re.DOTALL)
         if m_en: q_en = clean_markdown_text(m_en.group(1))
-        m_hi = re.search(r'\*\*हिन्दी\*\*\s*\n(.*?)(?=\n- \*\*\(|\*\*English\*\*|\*\*उत्तर|$)', b, re.DOTALL)
+        m_hi = re.search(r'(?:^\s*|\n)(.*?)(?=\n- \*\*\(|\*\*English\*\*|\*\*उत्तर|$)', hi_part, re.DOTALL)
         if m_hi: q_hi = clean_markdown_text(m_hi.group(1))
 
         if not q_hi and not q_en:
@@ -203,15 +209,23 @@ def extract_options_and_q(b: str, year_mode: str) -> tuple[str, str, dict[str, s
             ans_letter = LETTERS[int(val) - 1] if val.isdigit() else val
 
         for let in LETTERS:
-            m_opt = re.search(rf'[-*]\s*\*\*\(?{let}\)?\*\*\s*([^\n✓✅]+)', b, re.IGNORECASE)
-            if m_opt:
-                oh[let] = clean_markdown_text(m_opt.group(1))
-                oe[let] = oh[let]
+            m_opt_en = re.search(rf'[-*]\s*\*\*\(?{let}\)?\*\*\s*([^\n✓✅]+)', en_part, re.IGNORECASE)
+            if m_opt_en:
+                oe[let] = clean_markdown_text(m_opt_en.group(1))
+            m_opt_hi = re.search(rf'[-*]\s*\*\*\(?{let}\)?\*\*\s*([^\n✓✅]+)', hi_part, re.IGNORECASE)
+            if m_opt_hi:
+                oh[let] = clean_markdown_text(m_opt_hi.group(1))
 
     elif year_mode == "2026":
-        m_en = re.search(r'\*\*English\*\*\s*\n(.*?)(?=\n- \*\*\(|\*\*हिन्दी\*\*|$)', b, re.DOTALL)
+        parts = re.split(r'\*\*(?:हिन्दी|Hindi)\*\*|####\s*(?:हिन्दी|Hindi)', b)
+        if len(parts) >= 2:
+            en_part, hi_part = parts[0], parts[1]
+        else:
+            en_part, hi_part = b, b
+
+        m_en = re.search(r'\*\*English\*\*\s*\n(.*?)(?=\n- \*\*\(|\*\*हिन्दी\*\*|$)', en_part, re.DOTALL)
         if m_en: q_en = clean_markdown_text(m_en.group(1))
-        m_hi = re.search(r'\*\*हिन्दी\*\*\s*\n(.*?)(?=\n- \*\*\(|\*\*English\*\*|>\s*\*\*Ans|$)', b, re.DOTALL)
+        m_hi = re.search(r'(?:^\s*|\n)(.*?)(?=\n- \*\*\(|\*\*English\*\*|>\s*\*\*Ans|$)', hi_part, re.DOTALL)
         if m_hi: q_hi = clean_markdown_text(m_hi.group(1))
 
         if not q_hi and not q_en:
@@ -224,10 +238,17 @@ def extract_options_and_q(b: str, year_mode: str) -> tuple[str, str, dict[str, s
             ans_letter = LETTERS[int(val) - 1] if val.isdigit() else val
 
         for idx, let in enumerate(LETTERS, 1):
-            m_opt_hi = re.search(rf'[-*]\s*\*\*\(?{idx}\)?\*\*\s*([^\n/]+)', b)
+            m_opt_en = re.search(rf'[-*]\s*\*\*\(?{idx}\)?\*\*\s*([^\n✓✅/]+)', en_part)
+            if not m_opt_en:
+                m_opt_en = re.search(rf'[-*]\s*\*\*\(?{let}\)?\*\*\s*([^\n✓✅/]+)', en_part, re.IGNORECASE)
+            if m_opt_en:
+                oe[let] = clean_markdown_text(m_opt_en.group(1))
+
+            m_opt_hi = re.search(rf'[-*]\s*\*\*\(?{idx}\)?\*\*\s*([^\n✓✅/]+)', hi_part)
+            if not m_opt_hi:
+                m_opt_hi = re.search(rf'[-*]\s*\*\*\(?{let}\)?\*\*\s*([^\n✓✅/]+)', hi_part, re.IGNORECASE)
             if m_opt_hi:
                 oh[let] = clean_markdown_text(m_opt_hi.group(1))
-                oe[let] = oh[let]
 
     # Clean fallbacks
     if not q_hi and q_en: q_hi = q_en
