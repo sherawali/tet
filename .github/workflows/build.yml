@@ -18,6 +18,9 @@ concurrency:
 
 jobs:
   build:
+    # workflow_dispatch on this Arena branch is reserved for the public-source
+    # recovery probe below. The production bank build remains main-push only.
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
 
     steps:
@@ -76,3 +79,28 @@ jobs:
         run: |
           curl -sS "https://purge.jsdelivr.net/gh/${GITHUB_REPOSITORY}@main/cdn/manifest.json" || true
           echo ""
+
+  probe-public-paper-source:
+    # The Arena sandbox cannot negotiate TLS with the public Prepp CDN. Run a
+    # metadata-only browser probe on GitHub's runner; no credentials or browser
+    # storage are printed. This branch-only diagnostic never writes to main.
+    if: github.event_name == 'workflow_dispatch' && github.ref_name == 'arena/01a1044b-tet'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout the Arena branch
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install browser probe
+        run: |
+          python -m pip install --disable-pip-version-check playwright==1.55.0
+          python -m playwright install --with-deps chromium
+
+      - name: Probe public paper page
+        run: python tools/v2/probe_prepp_paper.py

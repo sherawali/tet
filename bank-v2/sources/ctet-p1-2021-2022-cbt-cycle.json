@@ -1,0 +1,331 @@
+{
+  "schemaVersion": 1,
+  "id": "ctet-p1-2021-2022-cbt-cycle-sources",
+  "exam": "ctet",
+  "paper": 1,
+  "cycleLabel": "December 2021",
+  "deliveryMode": "CBT",
+  "status": "source-recovery",
+  "importAuthorized": true,
+  "importStarted": false,
+  "dateInventory": {
+    "authority": "officialFinalAnswerKeys",
+    "formCount": 23,
+    "dates": [
+      "2021-12-16",
+      "2021-12-20",
+      "2021-12-21",
+      "2021-12-22",
+      "2021-12-23",
+      "2021-12-24",
+      "2021-12-27",
+      "2021-12-28",
+      "2021-12-29",
+      "2021-12-30",
+      "2021-12-31",
+      "2022-01-01",
+      "2022-01-03",
+      "2022-01-04",
+      "2022-01-05",
+      "2022-01-06",
+      "2022-01-07",
+      "2022-01-08",
+      "2022-01-10",
+      "2022-01-11",
+      "2022-01-12",
+      "2022-01-17",
+      "2022-01-21"
+    ],
+    "explicitlyExcludedCatalogLabels": [
+      {
+        "date": "2022-01-16",
+        "reason": "No Paper-I table for this date occurs in either official final answer key."
+      },
+      {
+        "date": "2022-01-20",
+        "reason": "No Paper-I table for this date occurs in either official final answer key."
+      }
+    ]
+  },
+  "officialDocuments": {
+    "questionPaperArchive": "https://ctet.nic.in/question-paper-december-2021/",
+    "finalAnswerKeyArchive": "https://ctet.nic.in/previous-year-final-answer-key/",
+    "paper1EnglishMediumFinalKey": "https://cdnbbsr.s3waas.gov.in/s3443dec3062d0286986e21dc0631734c9/uploads/2022/08/2022082370.pdf",
+    "paper1HindiMediumFinalKey": "https://cdnbbsr.s3waas.gov.in/s3443dec3062d0286986e21dc0631734c9/uploads/2022/08/2022082386.pdf",
+    "englishKeySearchableMirror": "https://docs.aglasem.com/view/fa782618-e100-11ed-a8c2-0a5e36bc6706"
+  },
+  "officialPositionModel": {
+    "1-30": "child-development-and-pedagogy",
+    "31-60": "mathematics",
+    "61-90": "environmental-studies",
+    "91-120": "selected-language-as-language-1",
+    "121-150": "selected-language-as-language-2"
+  },
+  "officialAnswerSemantics": {
+    "9": "marks-awarded-to-all-candidates",
+    "commaSeparatedValues": "multiple-accepted-answers"
+  },
+  "targetLanguageModules": [
+    "english-1",
+    "english-2",
+    "hindi-1",
+    "hindi-2",
+    "sanskrit-1",
+    "sanskrit-2"
+  ],
+  "sourcePolicy": {
+    "correctnessAuthority": "officialFinalAnswerKeys",
+    "questionTextAuthority": "authenticatedCandidatePaperVariants",
+    "mirrorRole": "transcription-and-visual-recovery-only",
+    "coachingExplanationsImported": false,
+    "filenameOrCatalogLabelAloneIsDateEvidence": false,
+    "requiredVariantMatchingEvidence": [
+      "internalCreationDate",
+      "questionIds",
+      "commonQuestionStems",
+      "officialAnswerSequence"
+    ]
+  },
+  "recoveryNotes": [
+    "Each form represents one authenticated exam date, not one language-combination mirror.",
+    "mirrorAdvertisedLanguages records discoverability only; it is not an assertion of official availability or completed recovery.",
+    "The common 90-question master and each language-slot module must be verified independently before import.",
+    "The 2021-12-16 Prepp catalog PDF is internally dated 2021-12-22 and must not be treated as date evidence for 2021-12-16.",
+    "The 2021-12-31 Prepp page reports 270 questions across nine 30-question modules; server rendering exposes only five questions from a selected section.",
+    "The local December Markdown is a Unicode transcription aid for 240 questions and lacks Sanskrit-I; it is not an authoritative cycle source."
+  ],
+  "forms": [
+    {
+      "date": "2021-12-16",
+      "id": "ctet-p1-2021-12-16",
+      "mirrorAdvertisedLanguages": ["english", "hindi", "sanskrit", "bengali", "marathi", "telugu"],
+      "preppPaperPage": "https://prepp.in/paper/ctet-paper-1-16-dec-2021-eng-hin-skt-ben-mar-tel-6632edc80368feeaa5692910",
+      "preppCatalogPdf": "https://cdn-images.prepp.in/public/image/f66a393349d8e7ca57144bc3c0c79d89.pdf",
+      "aglasemPaperMirror": "https://docs.aglasem.com/view/3a7b1b78-81f6-11ec-ab48-0a5e36bc6706",
+      "collegeDekhoPdfMirror": "https://static.collegedekho.com/media/django-summernote/2022-01-29/0c8afe41-1a7e-4b42-b431-5dc4756984de.pdf",
+      "candidateVariantStatus": "mismatch-rejected",
+      "knownInternalCreationDate": "2021-12-22"
+    },
+    {
+      "date": "2021-12-20",
+      "id": "ctet-p1-2021-12-20",
+      "mirrorAdvertisedLanguages": ["english", "hindi", "sanskrit", "bengali", "marathi", "telugu"],
+      "preppPaperPage": "https://prepp.in/paper/ctet-paper-1-question-paper-20-dec-2021-eng-hin-skt-ben-mar-6632ed6c0368feeaa5690d6a",
+      "preppCatalogPdf": "https://cdn-images.prepp.in/public/image/6d42630623637e289317f35629314b26.pdf",
+      "aglasemPaperMirror": null,
+      "collegeDekhoPdfMirror": null,
+      "candidateVariantStatus": "pending-internal-verification"
+    },
+    {
+      "date": "2021-12-21",
+      "id": "ctet-p1-2021-12-21",
+      "mirrorAdvertisedLanguages": ["english", "hindi", "sanskrit", "bengali", "marathi", "telugu"],
+      "preppPaperPage": "https://prepp.in/paper/ctet-paper-1-21-dec-2021-eng-hin-skt-ben-mar-tel-6632ed860368feeaa5691541",
+      "preppCatalogPdf": "https://cdn-images.prepp.in/public/image/e84b3334e8c9726f0a68a38479a3f15b.pdf",
+      "aglasemPaperMirror": "https://docs.aglasem.com/view/71092f30-81a7-11ec-aa74-0a5e36bc6706",
+      "collegeDekhoPdfMirror": "https://static.collegedekho.com/media/django-summernote/2022-01-29/3d129c7c-33d6-4093-adf8-2a6a0c37b364.pdf",
+      "candidateVariantStatus": "pending-internal-verification"
+    },
+    {
+      "date": "2021-12-22",
+      "id": "ctet-p1-2021-12-22",
+      "mirrorAdvertisedLanguages": ["english", "hindi", "sanskrit"],
+      "preppPaperPage": "https://prepp.in/paper/ctet-paper-1-question-paper-22-dec-2021-eng-hin-skt-6632eda10368feeaa5691d60",
+      "preppCatalogPdf": "https://cdn-images.prepp.in/public/image/ba3112558c317ce9cdde255b3d3b8e70.pdf",
+      "aglasemPaperMirror": "https://docs.aglasem.com/view/73da3c54-81a7-11ec-84cc-0a5e36bc6706",
+      "collegeDekhoPdfMirror": "https://static.collegedekho.com/media/django-summernote/2022-01-29/37718011-fa6a-4cad-a19c-a3b260ba3084.pdf",
+      "candidateVariantStatus": "pending-internal-verification"
+    },
+    {
+      "date": "2021-12-23",
+      "id": "ctet-p1-2021-12-23",
+      "mirrorAdvertisedLanguages": ["english", "hindi", "sanskrit"],
+      "preppPaperPage": "https://prepp.in/paper/ctet-paper-1-question-paper-23-dec-2021-eng-hin-skt-6632edb50368feeaa569233e",
+      "preppCatalogPdf": "https://cdn-images.prepp.in/public/image/093d0ca04035dbb35236c015501e9704.pdf",
+      "aglasemPaperMirror": "https://docs.aglasem.com/view/7464fc5e-81a7-11ec-8f7a-0a5e36bc6706",
+      "collegeDekhoPdfMirror": "https://static.collegedekho.com/media/django-summernote/2022-01-29/11bc7836-7da1-4c44-af7f-524b4b8499ff.pdf",
+      "candidateVariantStatus": "pending-internal-verification"
+    },
+    {
+      "date": "2021-12-24",
+      "id": "ctet-p1-2021-12-24",
+      "mirrorAdvertisedLanguages": ["english", "hindi", "sanskrit"],
+      "preppPaperPage": "https://prepp.in/paper/ctet-paper-1-question-paper-24-dec-2021-eng-hin-skt-6632ede10368feeaa56930ca",
+      "preppCatalogPdf": "https://cdn-images.prepp.in/public/image/9419b75d4eed13784e4dc91eb13078ea.pdf",
+      "aglasemPaperMirror": "https://docs.aglasem.com/view/78478ddc-81a7-11ec-a7a9-0a5e36bc6706",
+      "collegeDekhoPdfMirror": "https://static.collegedekho.com/media/django-summernote/2022-01-29/3971c197-166e-4d59-891f-015b54790c8d.pdf",
+      "candidateVariantStatus": "pending-internal-verification"
+    },
+    {
+      "date": "2021-12-27",
+      "id": "ctet-p1-2021-12-27",
+      "mirrorAdvertisedLanguages": ["english", "hindi", "sanskrit"],
+      "preppPaperPage": "https://prepp.in/paper/ctet-paper-1-question-paper-27-dec-2021-eng-hin-skt-6632ecf50368feeaa568ebd2",
+      "preppCatalogPdf": "https://cdn-images.prepp.in/public/image/a316f348fc0c78cd977d36487e79ed31.pdf",
+      "aglasemPaperMirror": "https://docs.aglasem.com/view/78aaf8a4-81a7-11ec-b2ef-0a5e36bc6706",
+      "collegeDekhoPdfMirror": "https://static.collegedekho.com/media/django-summernote/2022-01-29/f1ba55dc-661d-4b48-b35c-cb3058d2b0ad.pdf",
+      "candidateVariantStatus": "pending-internal-verification"
+    },
+    {
+      "date": "2021-12-28",
+      "id": "ctet-p1-2021-12-28",
+      "mirrorAdvertisedLanguages": ["english", "hindi", "sanskrit"],
+      "preppPaperPage": "https://prepp.in/paper/ctet-paper-1-question-paper-28-dec-2021-eng-hin-skt-6632ed0b0368feeaa568f1d0",
+      "preppCatalogPdf": "https://cdn-images.prepp.in/public/image/c077d08629128157602c569811ea4ef9.pdf",
+      "aglasemPaperMirror": "https://docs.aglasem.com/view/7aef0ba0-81a7-11ec-929f-0a5e36bc6706",
+      "collegeDekhoPdfMirror": "https://static.collegedekho.com/media/django-summernote/2022-01-29/cfb94275-24cf-4eb3-9836-b0222325253a.pdf",
+      "candidateVariantStatus": "pending-internal-verification"
+    },
+    {
+      "date": "2021-12-29",
+      "id": "ctet-p1-2021-12-29",
+      "mirrorAdvertisedLanguages": ["english", "hindi", "sanskrit"],
+      "preppPaperPage": "https://prepp.in/paper/ctet-paper-1-question-paper-29-dec-2021-eng-hin-skt-6632ed200368feeaa568f799",
+      "preppCatalogPdf": "https://cdn-images.prepp.in/public/image/6a9f37bb756e6c6bb11a71d49783cc33.pdf",
+      "aglasemPaperMirror": "https://docs.aglasem.com/view/7bc7c09e-81a7-11ec-8674-0a5e36bc6706",
+      "collegeDekhoPdfMirror": "https://static.collegedekho.com/media/django-summernote/2022-01-29/f9e0ffaf-db9f-4697-8632-738ce16f9b23.pdf",
+      "candidateVariantStatus": "pending-internal-verification"
+    },
+    {
+      "date": "2021-12-30",
+      "id": "ctet-p1-2021-12-30",
+      "mirrorAdvertisedLanguages": ["english", "hindi", "sanskrit"],
+      "preppPaperPage": "https://prepp.in/paper/ctet-paper-1-question-paper-30-dec-2021-eng-hin-skt-6632ed4a0368feeaa569036a",
+      "preppCatalogPdf": "https://cdn-images.prepp.in/public/image/43d8630cf1f9ea49e8236ada518f321d.pdf",
+      "aglasemPaperMirror": "https://docs.aglasem.com/view/7e5b0e4c-81a7-11ec-a84a-0a5e36bc6706",
+      "collegeDekhoPdfMirror": "https://static.collegedekho.com/media/django-summernote/2022-01-29/cb80cdbc-8226-4fa4-a540-4321d0ab70b5.pdf",
+      "candidateVariantStatus": "pending-internal-verification"
+    },
+    {
+      "date": "2021-12-31",
+      "id": "ctet-p1-2021-12-31",
+      "mirrorAdvertisedLanguages": ["english", "hindi", "sanskrit"],
+      "preppPaperPage": "https://prepp.in/paper/ctet-paper-1-question-paper-31-dec-2021-eng-hin-skt-6632ed350368feeaa568fd52",
+      "preppCatalogPdf": "https://cdn-images.prepp.in/public/image/5f35b2a7c7b5f3b16df5310073243304.pdf",
+      "aglasemPaperMirror": "https://docs.aglasem.com/view/7febf820-81a7-11ec-9003-0a5e36bc6706",
+      "collegeDekhoPdfMirror": "https://static.collegedekho.com/media/django-summernote/2022-01-29/bc744b3c-3428-4071-b3d6-a018fffcb9de.pdf",
+      "candidateVariantStatus": "partially-verified",
+      "knownInternalCreationDate": "2021-12-31"
+    },
+    {
+      "date": "2022-01-01",
+      "id": "ctet-p1-2022-01-01",
+      "mirrorAdvertisedLanguages": ["english", "hindi"],
+      "preppPaperPage": "https://prepp.in/paper/ctet-paper-1-question-paper-01-jan-2022-eng-hin-6632ec2c0368feeaa568afb2",
+      "preppCatalogPdf": "https://cdn-images.prepp.in/public/image/4fa36225ff9f8f1207f13cc89a654565.pdf",
+      "aglasemPaperMirror": "https://docs.aglasem.com/view/7e76cd68-81f6-11ec-87ed-0a5e36bc6706",
+      "collegeDekhoPdfMirror": "https://static.collegedekho.com/media/django-summernote/2022-01-29/e2b134cf-3fbe-4a8e-8386-71d4910ec98a.pdf",
+      "candidateVariantStatus": "pending-internal-verification"
+    },
+    {
+      "date": "2022-01-03",
+      "id": "ctet-p1-2022-01-03",
+      "mirrorAdvertisedLanguages": ["english", "hindi"],
+      "preppPaperPage": "https://prepp.in/paper/ctet-paper-1-question-paper-03-jan-2022-eng-hin-6632ed5e0368feeaa569094a",
+      "preppCatalogPdf": "https://cdn-images.prepp.in/public/image/cfe6fffec60624f3982972ef0b053b91.pdf",
+      "aglasemPaperMirror": "https://docs.aglasem.com/view/463625fa-81a8-11ec-81db-0a5e36bc6706",
+      "collegeDekhoPdfMirror": "https://static.collegedekho.com/media/django-summernote/2022-01-29/9ffe07ca-2145-43fd-bf14-b0518cc2d41b.pdf",
+      "candidateVariantStatus": "pending-internal-verification"
+    },
+    {
+      "date": "2022-01-04",
+      "id": "ctet-p1-2022-01-04",
+      "mirrorAdvertisedLanguages": ["english", "hindi"],
+      "preppPaperPage": "https://prepp.in/paper/ctet-paper-1-question-paper-04-jan-2022-eng-hin-6632ecb00368feeaa568d798",
+      "preppCatalogPdf": "https://cdn-images.prepp.in/public/image/bd7e58ac09e6c985f23a448f652fe985.pdf",
+      "aglasemPaperMirror": "https://docs.aglasem.com/view/47e97b9a-81a8-11ec-ab6e-0a5e36bc6706",
+      "collegeDekhoPdfMirror": "https://static.collegedekho.com/media/django-summernote/2022-01-29/2e72809b-037e-4dcf-90b4-85c31c713912.pdf",
+      "candidateVariantStatus": "pending-internal-verification"
+    },
+    {
+      "date": "2022-01-05",
+      "id": "ctet-p1-2022-01-05",
+      "mirrorAdvertisedLanguages": ["english", "hindi"],
+      "preppPaperPage": "https://prepp.in/paper/ctet-paper-1-question-paper-05-jan-2022-eng-hin-6632ec5b0368feeaa568be09",
+      "preppCatalogPdf": "https://cdn-images.prepp.in/public/image/365850e5a6049fb11728f293b88ba6c4.pdf",
+      "aglasemPaperMirror": "https://docs.aglasem.com/view/4e6099b8-81a8-11ec-855c-0a5e36bc6706",
+      "collegeDekhoPdfMirror": "https://static.collegedekho.com/media/django-summernote/2022-01-29/cd9c13c6-244e-4b20-9c01-811e5cca6768.pdf",
+      "candidateVariantStatus": "pending-internal-verification"
+    },
+    {
+      "date": "2022-01-06",
+      "id": "ctet-p1-2022-01-06",
+      "mirrorAdvertisedLanguages": ["english", "hindi"],
+      "preppPaperPage": "https://prepp.in/paper/ctet-paper-1-question-paper-06-jan-2022-eng-hin-6632ecbe0368feeaa568dbc0",
+      "preppCatalogPdf": "https://cdn-images.prepp.in/public/image/83d322d9816f9cbb83c0175684523dc0.pdf",
+      "aglasemPaperMirror": "https://docs.aglasem.com/view/5261b632-81a8-11ec-96d4-0a5e36bc6706",
+      "collegeDekhoPdfMirror": "https://static.collegedekho.com/media/django-summernote/2022-01-29/85f12d27-fd73-410d-9d4b-c6592b0a5d68.pdf",
+      "candidateVariantStatus": "pending-internal-verification"
+    },
+    {
+      "date": "2022-01-07",
+      "id": "ctet-p1-2022-01-07",
+      "mirrorAdvertisedLanguages": ["english", "hindi"],
+      "preppPaperPage": "https://prepp.in/paper/ctet-paper-1-question-paper-07-jan-2022-eng-hin-6632ec3a0368feeaa568b3e0",
+      "preppCatalogPdf": "https://cdn-images.prepp.in/public/image/7c9aa502c9fe9560b4ead5d90312bb6b.pdf",
+      "aglasemPaperMirror": "https://docs.aglasem.com/view/551df5e8-81a8-11ec-8d2d-0a5e36bc6706",
+      "collegeDekhoPdfMirror": "https://static.collegedekho.com/media/django-summernote/2022-01-29/f7f80511-2a44-45c8-abac-f9fabe3034df.pdf",
+      "candidateVariantStatus": "pending-internal-verification"
+    },
+    {
+      "date": "2022-01-08",
+      "id": "ctet-p1-2022-01-08",
+      "mirrorAdvertisedLanguages": ["english", "hindi"],
+      "preppPaperPage": "https://prepp.in/paper/ctet-paper-1-question-paper-08-jan-2022-eng-hin-6632eccb0368feeaa568dfb7",
+      "preppCatalogPdf": "https://cdn-images.prepp.in/public/image/1eae2e2ffb59e8274ce870ae812e0970.pdf",
+      "aglasemPaperMirror": "https://docs.aglasem.com/view/58922172-81a8-11ec-80cc-0a5e36bc6706",
+      "collegeDekhoPdfMirror": "https://static.collegedekho.com/media/django-summernote/2022-01-29/8f1357fa-5686-4dae-a949-257bf8a37d83.pdf",
+      "candidateVariantStatus": "pending-internal-verification"
+    },
+    {
+      "date": "2022-01-10",
+      "id": "ctet-p1-2022-01-10",
+      "mirrorAdvertisedLanguages": ["english", "hindi"],
+      "preppPaperPage": "https://prepp.in/paper/ctet-paper-1-question-paper-10-jan-2022-eng-hin-6632ec6a0368feeaa568c224",
+      "preppCatalogPdf": "https://cdn-images.prepp.in/public/image/cd0089aeb512772b092240b0b0d9548f.pdf",
+      "aglasemPaperMirror": "https://docs.aglasem.com/view/b7352620-81a8-11ec-b09d-0a5e36bc6706",
+      "collegeDekhoPdfMirror": "https://static.collegedekho.com/media/django-summernote/2022-01-29/5abf034a-6d83-4d84-8ddb-512cef5c0d7a.pdf",
+      "candidateVariantStatus": "pending-internal-verification"
+    },
+    {
+      "date": "2022-01-11",
+      "id": "ctet-p1-2022-01-11",
+      "mirrorAdvertisedLanguages": ["english", "hindi", "sanskrit"],
+      "preppPaperPage": "https://prepp.in/paper/ctet-paper-1-question-paper-11-jan-2022-eng-hin-skt-6632ec770368feeaa568c639",
+      "preppCatalogPdf": "https://cdn-images.prepp.in/public/image/bbd8a101cbc1d4330273d357b5ecdd55.pdf",
+      "aglasemPaperMirror": "https://docs.aglasem.com/view/b73dca1e-81a8-11ec-8e44-0a5e36bc6706",
+      "collegeDekhoPdfMirror": "https://static.collegedekho.com/media/django-summernote/2022-01-29/ebaffb22-99c7-4eea-b425-0dc9c65147a2.pdf",
+      "candidateVariantStatus": "pending-internal-verification"
+    },
+    {
+      "date": "2022-01-12",
+      "id": "ctet-p1-2022-01-12",
+      "mirrorAdvertisedLanguages": ["english", "hindi", "sanskrit"],
+      "preppPaperPage": "https://prepp.in/paper/ctet-paper-1-question-paper-12-jan-2022-eng-hin-skt-6632ec480368feeaa568b818",
+      "preppCatalogPdf": "https://cdn-images.prepp.in/public/image/bffc8d629b96e0de056c2fd8488516f3.pdf",
+      "aglasemPaperMirror": "https://docs.aglasem.com/view/bbf41360-81a8-11ec-bc93-0a5e36bc6706",
+      "collegeDekhoPdfMirror": "https://static.collegedekho.com/media/django-summernote/2022-01-29/e5f8242d-1ccc-47e8-ae65-ea1d6ce7d004.pdf",
+      "candidateVariantStatus": "pending-internal-verification"
+    },
+    {
+      "date": "2022-01-17",
+      "id": "ctet-p1-2022-01-17",
+      "mirrorAdvertisedLanguages": ["english", "hindi", "sanskrit"],
+      "preppPaperPage": "https://prepp.in/paper/ctet-paper-1-question-paper-17-jan-2022-eng-hin-skt-6632ec8a0368feeaa568cc2e",
+      "preppCatalogPdf": "https://cdn-images.prepp.in/public/image/2126e0b5b545e61bf7fed1d317dad2e2.pdf",
+      "aglasemPaperMirror": "https://docs.aglasem.com/view/c3d92ad4-81a8-11ec-a28d-0a5e36bc6706",
+      "collegeDekhoPdfMirror": null,
+      "candidateVariantStatus": "pending-internal-verification"
+    },
+    {
+      "date": "2022-01-21",
+      "id": "ctet-p1-2022-01-21",
+      "mirrorAdvertisedLanguages": ["english", "hindi", "sanskrit"],
+      "preppPaperPage": "https://prepp.in/paper/ctet-paper-1-question-paper-21-jan-2022-eng-hin-skt-6632ec9e0368feeaa568d1e1",
+      "preppCatalogPdf": "https://cdn-images.prepp.in/public/image/8859a983a5f1b4e4b4d03bc47cc68bd0.pdf",
+      "aglasemPaperMirror": "https://docs.aglasem.com/view/6ffea8c2-81a7-11ec-ad3e-0a5e36bc6706",
+      "collegeDekhoPdfMirror": null,
+      "candidateVariantStatus": "pending-internal-verification"
+    }
+  ]
+}
