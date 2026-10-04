@@ -15,7 +15,22 @@ PACKS=os.path.join(DIST,"packs"); os.makedirs(PACKS,exist_ok=True)
 CHUNK=200                      # हर pack में कितने प्रश्न
 
 def norm(s): return re.sub(r'\s+','',(s or '')).lower()
-def fp(r):   return hashlib.sha1((norm(r.get('exams',''))+norm(r['q_hi'])+norm(r['q_en'])+norm(r['a_hi'])).encode()).hexdigest()[:16]
+def fp(r):
+    """Fingerprint the complete answerable item, independent of option order.
+
+    Including section/passage, every bilingual option, and the correct option
+    prevents the old false collisions caused by hashing only option A. Sorting
+    option pairs also catches a duplicate whose choices were merely reordered.
+    """
+    option_pairs=[norm(r.get(h,''))+"\x1e"+norm(r.get(e,'')) for h,e in zip(
+        ("a_hi","b_hi","c_hi","d_hi"),("a_en","b_en","c_en","d_en"))]
+    answer=int(r["ans"])
+    payload="\x1f".join((
+        norm(r.get("exams","")),norm(r.get("section","")),norm(r.get("pid","")),
+        norm(r.get("q_hi","")),norm(r.get("q_en","")),
+        *sorted(option_pairs),option_pairs[answer],
+    ))
+    return hashlib.sha1(payload.encode()).hexdigest()[:16]
 def sha(b):  return hashlib.sha256(b).hexdigest()
 
 # ── 1. passages पढ़ो ───────────────────────────────────────────

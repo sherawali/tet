@@ -1,0 +1,1806 @@
+original_csv_line,source,issue_code,resolution,current_csv_line,current_exam
+2,CTET 2018 Q1,pyq_year_missing,repaired,2,ctet1
+3,CTET 2018 Q2,pyq_year_missing,repaired,3,ctet1
+4,CTET 2018 Q3,pyq_year_missing,repaired,4,ctet1
+5,CTET 2018 Q4,pyq_year_missing,repaired,5,ctet1
+6,CTET 2018 Q5,pyq_year_missing,repaired,6,ctet1
+7,CTET 2018 Q6,pyq_year_missing,repaired,7,ctet1
+8,CTET 2018 Q7,pyq_year_missing,repaired,8,ctet1
+9,CTET 2018 Q8,pyq_year_missing,repaired,9,ctet1
+10,CTET 2018 Q9,pyq_year_missing,repaired,10,ctet1
+11,CTET 2018 Q10,pyq_year_missing,repaired,11,ctet1
+12,CTET 2018 Q11,pyq_year_missing,repaired,12,ctet1
+13,CTET 2018 Q12,pyq_year_missing,repaired,13,ctet1
+14,CTET 2018 Q13,pyq_year_missing,repaired,14,ctet1
+15,CTET 2018 Q14,pyq_year_missing,repaired,15,ctet1
+16,CTET 2018 Q15,pyq_year_missing,repaired,16,ctet1
+17,CTET 2018 Q16,pyq_year_missing,repaired,17,ctet1
+18,CTET 2018 Q17,pyq_year_missing,repaired,18,ctet1
+19,CTET 2018 Q18,pyq_year_missing,repaired,19,ctet1
+20,CTET 2018 Q19,pyq_year_missing,repaired,20,ctet1
+21,CTET 2018 Q20,pyq_year_missing,repaired,21,ctet1
+22,CTET 2018 Q21,pyq_year_missing,repaired,22,ctet1
+23,CTET 2018 Q22,pyq_year_missing,repaired,23,ctet1
+24,CTET 2018 Q23,wrong_answer_key,repaired,24,ctet1
+24,CTET 2018 Q23,pyq_year_missing,repaired,24,ctet1
+25,CTET 2018 Q24,pyq_year_missing,repaired,25,ctet1
+26,CTET 2018 Q25,pyq_year_missing,repaired,26,ctet1
+27,CTET 2018 Q26,pyq_year_missing,repaired,27,ctet1
+28,CTET 2018 Q27,pyq_year_missing,repaired,28,ctet1
+29,CTET 2018 Q28,pyq_year_missing,repaired,29,ctet1
+30,CTET 2018 Q29,pyq_year_missing,repaired,30,ctet1
+31,CTET 2018 Q30,pyq_year_missing,repaired,31,ctet1
+32,CTET 2018 Q31,pyq_year_missing,repaired,32,ctet1
+33,CTET 2018 Q32,pyq_year_missing,repaired,33,ctet1
+34,CTET 2018 Q33,pyq_year_missing,repaired,34,ctet1
+35,CTET 2018 Q34,pyq_year_missing,repaired,35,ctet1
+36,CTET 2018 Q35,pyq_year_missing,repaired,36,ctet1
+37,CTET 2018 Q36,pyq_year_missing,repaired,37,ctet1
+38,CTET 2018 Q37,pyq_year_missing,repaired,38,ctet1
+39,CTET 2018 Q38,wrong_answer_key,repaired,39,ctet1
+39,CTET 2018 Q38,pyq_year_missing,repaired,39,ctet1
+40,CTET 2018 Q39,pyq_year_missing,repaired,40,ctet1
+41,CTET 2018 Q42,pyq_year_missing,repaired,41,ctet1
+42,CTET 2018 Q43,missing_visual_stimulus,removed_unrecoverable,,
+42,CTET 2018 Q43,pyq_year_missing,removed_unrecoverable,,
+43,CTET 2018 Q44,math_expression_lost,repaired,42,ctet1
+43,CTET 2018 Q44,pyq_year_missing,repaired,42,ctet1
+44,CTET 2018 Q45,pyq_year_missing,repaired,43,ctet1
+45,CTET 2018 Q46,pyq_year_missing,repaired,44,ctet1
+46,CTET 2018 Q47,pyq_year_missing,repaired,45,ctet1
+47,CTET 2018 Q48,missing_visual_stimulus,removed_unrecoverable,,
+47,CTET 2018 Q48,pyq_year_missing,removed_unrecoverable,,
+48,CTET 2018 Q49,pyq_year_missing,repaired,46,ctet1
+49,CTET 2018 Q51,missing_visual_stimulus,removed_unrecoverable,,
+49,CTET 2018 Q51,pyq_year_missing,removed_unrecoverable,,
+50,CTET 2018 Q53,pyq_year_missing,repaired,47,ctet1
+51,CTET 2018 Q54,pyq_year_missing,repaired,48,ctet1
+52,CTET 2018 Q55,wrong_answer_key,repaired,49,ctet1
+52,CTET 2018 Q55,pyq_year_missing,repaired,49,ctet1
+53,CTET 2018 Q56,pyq_year_missing,repaired,50,ctet1
+54,CTET 2018 Q57,missing_visual_stimulus,removed_unrecoverable,,
+54,CTET 2018 Q57,pyq_year_missing,removed_unrecoverable,,
+55,CTET 2018 Q58,pyq_year_missing,repaired,51,ctet1
+56,CTET 2018 Q59,pyq_year_missing,repaired,52,ctet1
+57,CTET 2018 Q60,pyq_year_missing,repaired,53,ctet1
+58,CTET 2018 Q61,pyq_year_missing,repaired,54,ctet1
+59,CTET 2018 Q62,pyq_year_missing,repaired,55,ctet1
+60,CTET 2018 Q63,pyq_year_missing,repaired,56,ctet1
+61,CTET 2018 Q64,pyq_year_missing,repaired,57,ctet1
+62,CTET 2018 Q65,pyq_year_missing,repaired,58,ctet1
+63,CTET 2018 Q66,pyq_year_missing,repaired,59,ctet1
+64,CTET 2018 Q67,pyq_year_missing,repaired,60,ctet1
+65,CTET 2018 Q68,pyq_year_missing,repaired,61,ctet1
+66,CTET 2018 Q69,pyq_year_missing,repaired,62,ctet1
+67,CTET 2018 Q70,pyq_year_missing,repaired,63,ctet1
+68,CTET 2018 Q71,pyq_year_missing,repaired,64,ctet1
+69,CTET 2018 Q72,wrong_answer_key,repaired,65,ctet1
+69,CTET 2018 Q72,pyq_year_missing,repaired,65,ctet1
+70,CTET 2018 Q73,pyq_year_missing,repaired,66,ctet1
+71,CTET 2018 Q74,pyq_year_missing,repaired,67,ctet1
+72,CTET 2018 Q75,pyq_year_missing,repaired,68,ctet1
+73,CTET 2018 Q76,pyq_year_missing,repaired,69,ctet1
+74,CTET 2018 Q77,pyq_year_missing,repaired,70,ctet1
+75,CTET 2018 Q78,pyq_year_missing,repaired,71,ctet1
+76,CTET 2018 Q79,wrong_answer_key,repaired,72,ctet1
+76,CTET 2018 Q79,pyq_year_missing,repaired,72,ctet1
+77,CTET 2018 Q80,pyq_year_missing,repaired,73,ctet1
+78,CTET 2018 Q81,wrong_answer_key,repaired,74,ctet1
+78,CTET 2018 Q81,pyq_year_missing,repaired,74,ctet1
+79,CTET 2018 Q82,pyq_year_missing,repaired,75,ctet1
+80,CTET 2018 Q83,pyq_year_missing,repaired,76,ctet1
+81,CTET 2018 Q84,pyq_year_missing,repaired,77,ctet1
+82,CTET 2018 Q85,wrong_answer_key,repaired,78,ctet1
+82,CTET 2018 Q85,pyq_year_missing,repaired,78,ctet1
+83,CTET 2018 Q86,pyq_year_missing,repaired,79,ctet1
+84,CTET 2018 Q87,pyq_year_missing,repaired,80,ctet1
+85,CTET 2018 Q88,pyq_year_missing,repaired,81,ctet1
+86,CTET 2018 Q89,pyq_year_missing,repaired,82,ctet1
+87,CTET 2018 Q90,pyq_year_missing,repaired,83,ctet1
+88,CTET 2018 Q91,pyq_year_missing,repaired,84,ctet1
+89,CTET 2018 Q92,pyq_year_missing,repaired,85,ctet1
+90,CTET 2018 Q93,pyq_year_missing,repaired,86,ctet1
+91,CTET 2018 Q94,pyq_year_missing,repaired,87,ctet1
+92,CTET 2018 Q95,pyq_year_missing,repaired,88,ctet1
+93,CTET 2018 Q96,pyq_year_missing,repaired,89,ctet1
+94,CTET 2018 Q97,pyq_year_missing,repaired,90,ctet1
+95,CTET 2018 Q98,pyq_year_missing,repaired,91,ctet1
+96,CTET 2018 Q99,pyq_year_missing,repaired,92,ctet1
+97,CTET 2018 Q100,pyq_year_missing,repaired,93,ctet1
+98,CTET 2018 Q101,pyq_year_missing,repaired,94,ctet1
+99,CTET 2018 Q102,pyq_year_missing,repaired,95,ctet1
+100,CTET 2018 Q103,pyq_year_missing,repaired,96,ctet1
+101,CTET 2018 Q104,pyq_year_missing,repaired,97,ctet1
+102,CTET 2018 Q105,pyq_year_missing,repaired,98,ctet1
+103,CTET 2018 Q106,pyq_year_missing,repaired,99,ctet1
+104,CTET 2018 Q107,pyq_year_missing,repaired,100,ctet1
+105,CTET 2018 Q108,pyq_year_missing,repaired,101,ctet1
+106,CTET 2018 Q109,pyq_year_missing,repaired,102,ctet1
+107,CTET 2018 Q110,pyq_year_missing,repaired,103,ctet1
+108,CTET 2018 Q111,pyq_year_missing,repaired,104,ctet1
+109,CTET 2018 Q112,pyq_year_missing,repaired,105,ctet1
+110,CTET 2018 Q113,pyq_year_missing,repaired,106,ctet1
+111,CTET 2018 Q114,pyq_year_missing,repaired,107,ctet1
+112,CTET 2018 Q115,pyq_year_missing,repaired,108,ctet1
+113,CTET 2018 Q116,pyq_year_missing,repaired,109,ctet1
+114,CTET 2018 Q117,pyq_year_missing,repaired,110,ctet1
+115,CTET 2018 Q118,pyq_year_missing,repaired,111,ctet1
+116,CTET 2018 Q119,pyq_year_missing,repaired,112,ctet1
+117,CTET 2018 Q120,pyq_year_missing,repaired,113,ctet1
+118,CTET 2018 Q121,pyq_year_missing,repaired,114,ctet1
+119,CTET 2018 Q122,pyq_year_missing,repaired,115,ctet1
+120,CTET 2018 Q123,pyq_year_missing,repaired,116,ctet1
+121,CTET 2018 Q124,pyq_year_missing,repaired,117,ctet1
+122,CTET 2018 Q125,pyq_year_missing,repaired,118,ctet1
+123,CTET 2018 Q126,pyq_year_missing,repaired,119,ctet1
+124,CTET 2018 Q127,pyq_year_missing,repaired,120,ctet1
+125,CTET 2018 Q128,pyq_year_missing,repaired,121,ctet1
+126,CTET 2018 Q129,pyq_year_missing,repaired,122,ctet1
+127,CTET 2018 Q130,pyq_year_missing,repaired,123,ctet1
+128,CTET 2018 Q131,pyq_year_missing,repaired,124,ctet1
+129,CTET 2018 Q132,pyq_year_missing,repaired,125,ctet1
+130,CTET 2018 Q133,pyq_year_missing,repaired,126,ctet1
+131,CTET 2018 Q134,pyq_year_missing,repaired,127,ctet1
+132,CTET 2018 Q135,pyq_year_missing,repaired,128,ctet1
+133,CTET 2018 Q136,pyq_year_missing,repaired,129,ctet1
+134,CTET 2018 Q137,pyq_year_missing,repaired,130,ctet1
+135,CTET 2018 Q138,pyq_year_missing,repaired,131,ctet1
+136,CTET 2018 Q139,pyq_year_missing,repaired,132,ctet1
+137,CTET 2018 Q140,pyq_year_missing,repaired,133,ctet1
+138,CTET 2018 Q141,pyq_year_missing,repaired,134,ctet1
+139,CTET 2018 Q142,pyq_year_missing,repaired,135,ctet1
+140,CTET 2018 Q143,pyq_year_missing,repaired,136,ctet1
+141,CTET 2018 Q144,pyq_year_missing,repaired,137,ctet1
+142,CTET 2018 Q145,pyq_year_missing,repaired,138,ctet1
+143,CTET 2018 Q146,pyq_year_missing,repaired,139,ctet1
+144,CTET 2018 Q147,pyq_year_missing,repaired,140,ctet1
+146,CTET 2018 Q149,pyq_year_missing,repaired,142,ctet1
+147,CTET 2018 Q150,pyq_year_missing,repaired,143,ctet1
+148,"CTET Bank CDP Questiins for Paper-1 Q1 [CTET (I-V) 9 December, 2018]",unrelated_preamble_or_ocr_garbage,repaired,144,ctet1
+148,"CTET Bank CDP Questiins for Paper-1 Q1 [CTET (I-V) 9 December, 2018]",pyq_year_missing,repaired,144,ctet1
+172,CTET Bank CDP Questiins for Paper-1 Q26 [CTET Paper - I (Class I-V) 22 Feb 2015],wrong_option_text,repaired,165,ctet1
+184,CTET Bank CDP Questiins for Paper-1 Q38 [UK TET Paper - I (Class I-V) 2014],scope_non_ctet_exam,unchanged_by_user_request,171,ctet1
+185,CTET Bank CDP Questiins for Paper-1 Q39 [MP TET Paper - I (Class I-V) 2011],scope_non_ctet_exam,unchanged_by_user_request,172,ctet1
+187,CTET Bank CDP Questiins for Paper-1 Q41 [Jharkhand TET Paper - I (Class I-V) 2011],scope_non_ctet_exam,unchanged_by_user_request,174,ctet1
+191,CTET Bank CDP Questiins for Paper-1 Q45 [UK TET Paper - I (Class I-V) 2014],scope_non_ctet_exam,unchanged_by_user_request,178,ctet1
+200,CTET Bank CDP Questiins for Paper-1 Q54 [Jharkhand TET Paper - I (Class I-V) 2011],scope_non_ctet_exam,unchanged_by_user_request,187,ctet1
+212,CTET Bank CDP Questiins for Paper-1 Q66 [MP TET Paper - I (Class I-V) 2011],scope_non_ctet_exam,unchanged_by_user_request,199,ctet1
+213,CTET Bank CDP Questiins for Paper-1 Q67 [MP TET Paper - I (Class I-V) 2011],scope_non_ctet_exam,unchanged_by_user_request,200,ctet1
+214,CTET Bank CDP Questiins for Paper-1 Q68 [MP TET Paper - I (Class I-V) 2011],scope_non_ctet_exam,unchanged_by_user_request,201,ctet1
+224,CTET Bank CDP Questiins for Paper-1 Q78 [MP TET Paper - I (Class I-V) 2011],scope_non_ctet_exam,unchanged_by_user_request,209,ctet1
+227,CTET Bank CDP Questiins for Paper-1 Q81 [UK TET Paper - I (Class I-V) 2014],scope_non_ctet_exam,unchanged_by_user_request,212,ctet1
+239,CTET Bank CDP Questiins for Paper-1 Q93 [CTET Paper - I (Class I-V) 22 Feb 2015],pyq_year_missing,repaired,221,ctet1
+272,CTET Bank CDP Questiins for Paper-1 Q126 [MP TET Paper - I (Class I-V) 2011],scope_non_ctet_exam,unchanged_by_user_request,249,ctet1
+281,CTET Bank CDP Questiins for Paper-1 Q135 [Jharkhand TET Paper - I (Class I-V) 2011],scope_non_ctet_exam,unchanged_by_user_request,258,ctet1
+290,CTET Bank CDP Questiins for Paper-1 Q144 [Jharkhand TET Paper - I (Class I-V) 2011],scope_non_ctet_exam,unchanged_by_user_request,267,ctet1
+305,CTET Bank CDP Questiins for Paper-1 Q159,wrong_answer_key,repaired,280,ctet1
+318,CTET Bank CDP Questiins for Paper-1 Q172 [MP TET Paper - I (Class I-V) 2011],scope_non_ctet_exam,unchanged_by_user_request,285,ctet1
+319,CTET Bank CDP Questiins for Paper-1 Q173 [MP TET Paper - I (Class I-V) 2011],scope_non_ctet_exam,unchanged_by_user_request,286,ctet1
+327,CTET Bank CDP Questiins for Paper-1 Q181 [MP TET Paper - I (Class I-V) 2011],scope_non_ctet_exam,unchanged_by_user_request,294,ctet1
+336,CTET Bank CDP Questiins for Paper-1 Q190 [CTET Paper - I (Class I-V) 20 Sep 2015],pyq_year_missing,repaired,300,ctet1
+340,CTET Bank CDP Questiins for Paper-1 Q194 [MP TET Paper - I (Class I-V) 2011],scope_non_ctet_exam,unchanged_by_user_request,304,ctet1
+341,CTET Bank CDP Questiins for Paper-1 Q195 [MP TET Paper - I (Class I-V) 2011],scope_non_ctet_exam,unchanged_by_user_request,305,ctet1
+346,CTET Bank CDP Questiins for Paper-1 Q200 [MP TET Paper - I (Class I-V) 2011],scope_non_ctet_exam,unchanged_by_user_request,310,ctet1
+349,CTET Bank CDP Questiins for Paper-1 Q203,scope_paper2_source_match,moved_to_ctet2,313,ctet2
+350,CTET Bank CDP Questiins for Paper-1 Q204 [UPTET Paper - I (Class I-V) 21 Feb 2016],scope_non_ctet_exam,unchanged_by_user_request,314,ctet1
+359,CTET Bank CDP Questiins for Paper-1 Q213 [Jharkhand TET Paper - I (Class I-V) 2011],scope_non_ctet_exam,unchanged_by_user_request,320,ctet1
+361,CTET Bank CDP Questiins for Paper-1 Q215 [MP TET Paper - I (Class I-V) 2011],scope_non_ctet_exam,unchanged_by_user_request,322,ctet1
+377,CTET Bank CDP Questiins for Paper-1 Q14 [MP TET Paper - I (Class I-V) 2011],scope_non_ctet_exam,unchanged_by_user_request,333,ctet1
+380,CTET Bank CDP Questiins for Paper-1 Q17 [Jharkhand TET Paper - I (Class I-V) 2011],scope_non_ctet_exam,unchanged_by_user_request,336,ctet1
+383,CTET Bank CDP Questiins for Paper-1 Q20 [MP TET Paper - I (Class I-V) 2011],scope_non_ctet_exam,unchanged_by_user_request,339,ctet1
+385,CTET Bank CDP Questiins for Paper-1 Q22 [MP TET Paper - I (Class I-V) 2011],scope_non_ctet_exam,unchanged_by_user_request,341,ctet1
+402,CTET Bank CDP Questiins for Paper-1 Q17 [UK TET Paper - I (Class I-V) 2014],scope_non_ctet_exam,unchanged_by_user_request,352,ctet1
+427,CTET Bank CDP Questiins for Paper-1 Q13 [MP TET Paper - I (Class I-V) 2011],scope_non_ctet_exam,unchanged_by_user_request,375,ctet1
+464,CTET Bank CDP Questiins for Paper-1 Q50 [CTET Paper - I (Class I-V) 21 Feb 2016],pyq_year_missing,repaired,400,ctet1
+465,CTET Bank CDP Questiins for Paper-1 Q51 [CTET Paper - I (Class I-V) 20 Sep 2015],pyq_year_missing,repaired,401,ctet1
+478,CTET Bank CDP Questiins for Paper-1 Q64 [MP TET Paper - I (Class I-V) 2011],scope_non_ctet_exam,unchanged_by_user_request,408,ctet1
+495,CTET Bank CDP Questiins for Paper-1 Q82 [CTET Paper - I (Class I-V) 21 Feb 2016],pyq_year_missing,repaired,413,ctet1
+509,CTET Bank CDP Questiins for Paper-1 Q10 [UK TET Paper - I (Class I-V) 29 Jan 2011],scope_non_ctet_exam,unchanged_by_user_request,425,ctet1
+545,CTET Bank CDP Questiins for Paper-1 Q46 [Jharkhand TET Paper - I (Class I-V) 2011],scope_non_ctet_exam,unchanged_by_user_request,448,ctet1
+554,CTET Bank CDP Questiins for Paper-1 Q55,scope_upper_primary_probable,moved_to_ctet2,456,ctet2
+555,CTET Bank CDP Questiins for Paper-1 Q56 [Jharkhand TET Paper - I (Class I-V) 2011],scope_non_ctet_exam,unchanged_by_user_request,457,ctet1
+556,CTET Bank CDP Questiins for Paper-1 Q57 [UK TET Paper - I (Class I-V) 2014],scope_non_ctet_exam,unchanged_by_user_request,458,ctet1
+565,CTET Bank CDP Questiins for Paper-1 Q66 [UPTET Paper - I (Class I-V) 21 Feb 2016],scope_non_ctet_exam,unchanged_by_user_request,463,ctet1
+584,"CTET Bank CDP Questiins for Paper-1 Q85 [CTET (I-V) 9 December, 2018]",pyq_year_missing,repaired,479,ctet1
+591,CTET Bank CDP Questiins for Paper-1 Q92 [CTET Paper - I (Class I-V) 20 Sep 2015],pyq_year_missing,repaired,481,ctet1
+605,CTET Bank CDP Questiins for Paper-1 Q106 [Jharkhand TET Paper - I (Class I-V) 2011],scope_non_ctet_exam,unchanged_by_user_request,487,ctet1
+606,CTET Bank CDP Questiins for Paper-1 Q107 [UK TET Paper - I (Class I-V) 2014],scope_non_ctet_exam,unchanged_by_user_request,488,ctet1
+617,CTET Bank CDP Questiins for Paper-1 Q118 [UK TET Paper - I (Class I-V) 29 Jan 2011],scope_non_ctet_exam,unchanged_by_user_request,497,ctet1
+619,CTET Bank CDP Questiins for Paper-1 Q120 [UK TET Paper - I (Class I-V) 29 Jan 2011],scope_non_ctet_exam,unchanged_by_user_request,499,ctet1
+623,CTET Bank CDP Questiins for Paper-1 Q1 [CTET (I-V) 7 July 2019],bilingual_semantic_mismatch,repaired,503,ctet1
+623,CTET Bank CDP Questiins for Paper-1 Q1 [CTET (I-V) 7 July 2019],unrelated_preamble_or_ocr_garbage,repaired,503,ctet1
+623,CTET Bank CDP Questiins for Paper-1 Q1 [CTET (I-V) 7 July 2019],pyq_year_missing,repaired,503,ctet1
+624,CTET Bank CDP Questiins for Paper-1 Q2 [CTET (I-V) 7 July 2019],pyq_year_missing,repaired,504,ctet1
+642,CTET Bank CDP Questiins for Paper-1 Q22,wrong_answer_key,repaired,517,ctet1
+650,CTET Bank CDP Questiins for Paper-1 Q30 [CTET Paper -I (Class (I-V) 26 June 2011],pyq_year_missing,repaired,519,ctet1
+656,CTET Bank CDP Questiins for Paper-1 Q36,duplicate_or_lost_option,repaired,523,ctet1
+694,CTET Bank CDP Questiins for Paper-1 Q74 [MP TET Paper - I (Class I-V) 2011],scope_non_ctet_exam,unchanged_by_user_request,557,ctet1
+713,CTET Bank CDP Questiins for Paper-1 Q93 [UK TET Paper - I (Class I-V) 2014],scope_non_ctet_exam,unchanged_by_user_request,576,ctet1
+718,CTET Bank CDP Questiins for Paper-1 Q98 [Jharkhand TET Paper - I (Class I-V) 2011],scope_non_ctet_exam,unchanged_by_user_request,581,ctet1
+719,CTET Bank CDP Questiins for Paper-1 Q99 [UK TET Paper - I (Class I-V) 29 Jan 2011],scope_non_ctet_exam,unchanged_by_user_request,582,ctet1
+723,CTET Bank CDP Questiins for Paper-1 Q1 [CTET (I-V) 7 July 2019],pyq_year_missing,repaired,586,ctet1
+732,CTET Bank CDP Questiins for Paper-1 Q10 [CTET Paper - I (Class I-V) 20 Sep 2015],pyq_year_missing,repaired,590,ctet1
+733,CTET Bank CDP Questiins for Paper-1 Q11 [CTET Paper - I (Class I-V) 21 Feb 2016],pyq_year_missing,repaired,591,ctet1
+736,CTET Bank CDP Questiins for Paper-1 Q14 [Jharkhand TET Paper - I (Class I-V) 2011],scope_non_ctet_exam,unchanged_by_user_request,594,ctet1
+745,CTET Bank CDP Questiins for Paper-1 Q1 [CTET Paper - I (Class I-V) 21 Sep 2014],pyq_year_missing,repaired,603,ctet1
+759,CTET Bank CDP Questiins for Paper-1 Q16 [Jharkhand TET Paper - I (Class I-V) 2011],scope_non_ctet_exam,unchanged_by_user_request,613,ctet1
+760,CTET Bank CDP Questiins for Paper-1 Q17 [Jharkhand TET Paper - I (Class I-V) 2011],scope_non_ctet_exam,unchanged_by_user_request,614,ctet1
+764,CTET Bank CDP Questiins for Paper-1 Q21 [UK TET Paper - I (Class I-V) 29 Jan 2011],scope_non_ctet_exam,unchanged_by_user_request,618,ctet1
+774,CTET Bank CDP Questiins for Paper-1 Q6 [CTET Paper - I (Class I-V) 21 Feb 2016],pyq_year_missing,repaired,625,ctet1
+776,CTET Bank CDP Questiins for Paper-1 Q8 [Jharkhand TET Paper - I (Class I-V) 2011],scope_non_ctet_exam,unchanged_by_user_request,627,ctet1
+785,CTET Bank CDP Questiins for Paper-1 Q6 [UK TET Paper - I (Class I-V) 29 Jan 2011],scope_non_ctet_exam,unchanged_by_user_request,636,ctet1
+786,CTET Bank CDP Questiins for Paper-1 Q7 [UK TET Paper - I (Class I-V) 29 Jan 2011],scope_non_ctet_exam,unchanged_by_user_request,637,ctet1
+787,CTET Bank CDP Questiins for Paper-1 Q1,unrelated_preamble_or_ocr_garbage,repaired,638,ctet1
+809,CTET Bank CDP Questiins for Paper-1 Q5 [CTET Paper - I (Class I-V) 21 Feb 2016],pyq_year_missing,repaired,656,ctet1
+810,CTET Bank CDP Questiins for Paper-1 Q6 [UPTET Paper - I (Class I-V) 21 Feb 2016],scope_non_ctet_exam,unchanged_by_user_request,657,ctet1
+815,CTET Bank CDP Questiins for Paper-1 Q11 [CTET Paper -I (Class (I-V) 28 July 2013],pyq_year_missing,repaired,658,ctet1
+816,CTET Bank CDP Questiins for Paper-1 Q12,stem_option_code_merged,removed_unrecoverable,,
+825,CTET Bank CDP Questiins for Paper-1 Q21 [UK TET Paper - I (Class I-V) 29 Jan 2011],scope_non_ctet_exam,unchanged_by_user_request,665,ctet1
+826,CTET Bank CDP Questiins for Paper-1 Q22 [UK TET Paper - I (Class I-V) 29 Jan 2011],scope_non_ctet_exam,unchanged_by_user_request,666,ctet1
+830,CTET Bank CDP Questiins for Paper-1 Q1 [CTET (I-V) 7 July 2019],unrelated_preamble_or_ocr_garbage,repaired,670,ctet1
+830,CTET Bank CDP Questiins for Paper-1 Q1 [CTET (I-V) 7 July 2019],pyq_year_missing,repaired,670,ctet1
+841,CTET Bank CDP Questiins for Paper-1 Q12 [CTET Paper - I (Class I-V) 22 Feb 2015],pyq_year_missing,repaired,677,ctet1
+842,CTET Bank CDP Questiins for Paper-1 Q13 [CTET Paper - I (Class I-V) 16 Feb 2014],pyq_year_missing,repaired,678,ctet1
+845,CTET Bank CDP Questiins for Paper-1 Q17 [Jharkhand TET Paper - I (Class I-V) 2011],scope_non_ctet_exam,unchanged_by_user_request,680,ctet1
+874,CTET Bank CDP Questiins for Paper-1 Q46 [UK TET Paper - I (Class I-V) 2014],scope_non_ctet_exam,unchanged_by_user_request,709,ctet1
+875,CTET Bank CDP Questiins for Paper-1 Q47 [UK TET Paper - I (Class I-V) 2014],scope_non_ctet_exam,unchanged_by_user_request,710,ctet1
+877,CTET Bank CDP Questiins for Paper-1 Q49 [UK TET Paper - I (Class I-V) 29 Jan 2011],scope_non_ctet_exam,unchanged_by_user_request,712,ctet1
+878,CTET Bank CDP Questiins for Paper-1 Q50 [UK TET Paper - I (Class I-V) 29 Jan 2011],scope_non_ctet_exam,unchanged_by_user_request,713,ctet1
+879,CTET Bank CDP Questiins for Paper-1 Q51 [UK TET Paper - I (Class I-V) 29 Jan 2011],scope_non_ctet_exam,unchanged_by_user_request,714,ctet1
+891,CTET Bank CDP Questiins for Paper-1 Q13 [UK TET Paper - I (Class I-V) 29 Jan 2011],scope_non_ctet_exam,unchanged_by_user_request,718,ctet1
+913,CTET Bank CDP Questiins for Paper-1 Q23 [CTET Paper - I (Class I-V) 22 Feb 2015],pyq_year_missing,repaired,734,ctet1
+919,CTET Bank CDP Questiins for Paper-1 Q29 [UK TET Paper - I (Class I-V) 2014],scope_non_ctet_exam,unchanged_by_user_request,738,ctet1
+920,CTET Bank CDP Questiins for Paper-1 Q30 [UK TET Paper - I (Class I-V) 2014],scope_non_ctet_exam,unchanged_by_user_request,739,ctet1
+944,CTET Bank CDP Questiins for Paper-1 Q24 [UK TET Paper - I (Class I-V) 29 Jan 2011],scope_non_ctet_exam,unchanged_by_user_request,755,ctet1
+946,CTET Bank CDP Questiins for Paper-1 Q26 [MP TET Paper - I (Class I-V) 2011],scope_non_ctet_exam,unchanged_by_user_request,757,ctet1
+981,CTET Bank CDP Questiins for Paper-1 Q33 [UK TET Paper - I (Class I-V) 29 Jan 2011],scope_non_ctet_exam,unchanged_by_user_request,780,ctet1
+982,CTET Bank CDP Questiins for Paper-1 Q34 [UK TET Paper - I (Class I-V) 29 Jan 2011],scope_non_ctet_exam,unchanged_by_user_request,781,ctet1
+983,CTET Bank CDP Questiins for Paper-1 Q35 [MP TET Paper - I (Class I-V) 2011],scope_non_ctet_exam,unchanged_by_user_request,782,ctet1
+1046,CTET Bank CDP Questiins for Paper-1 Q46 [CTET Paper - I (Class I-V) 16 Feb 2014],pyq_year_missing,repaired,821,ctet1
+1059,CTET Bank CDP Questiins for Paper-1 Q60 [Jharkhand TET Paper - I (Class I-V) 2011],scope_non_ctet_exam,unchanged_by_user_request,832,ctet1
+1090,CTET Bank CDP Questiins for Paper-1 Q91 [MP TET Paper - I (Class I-V) 2011],scope_non_ctet_exam,unchanged_by_user_request,863,ctet1
+1091,CTET Bank CDP Questiins for Paper-1 Q92 [MP TET Paper - I (Class I-V) 2011],scope_non_ctet_exam,unchanged_by_user_request,864,ctet1
+1092,CTET Bank CDP Questiins for Paper-1 Q93 [MP TET Paper - I (Class I-V) 2011],scope_non_ctet_exam,unchanged_by_user_request,865,ctet1
+1100,CTET Bank CDP Questiins for Paper-1 Q101 [UK TET Paper - I (Class I-V) 29 Jan 2011],scope_non_ctet_exam,unchanged_by_user_request,873,ctet1
+1101,CTET Bank CDP Questiins for Paper-1 Q102 [UK TET Paper - I (Class I-V) 2014],scope_non_ctet_exam,unchanged_by_user_request,874,ctet1
+1104,CTET Bank CDP Questiins for Paper-1 Q105 [UK TET Paper - I (Class I-V) 29 Jan 2011],scope_non_ctet_exam,unchanged_by_user_request,877,ctet1
+1106,CTET Bank CDP Questiins for Paper-1 Q107 [MP TET Paper - I (Class I-V) 2011],scope_non_ctet_exam,unchanged_by_user_request,879,ctet1
+1122,CTET Bank CDP Questiins for Paper-1 Q123 [UK TET Paper - I (Class I-V) 29 Jan 2011],scope_non_ctet_exam,unchanged_by_user_request,895,ctet1
+1123,CTET Bank Evs Notes and Pedagogy Q1 [CTET (I-V) 9 December 2018],pyq_year_missing,repaired,896,ctet1
+1155,"CTET Bank Evs Notes and Pedagogy Q25 [CTET (I-V) 26 JUN, 2011]",pyq_year_missing,repaired,915,ctet1
+1195,"CTET Bank Evs Notes and Pedagogy Q8 [CTET (I-V) 20 SEP, 2015]",pyq_year_missing,repaired,946,ctet1
+1205,CTET Bank Evs Notes and Pedagogy Q2 [CTET (I-V) 7 July 2019],english_stem_truncated,incomplete_english_removed,951,ctet1
+1205,CTET Bank Evs Notes and Pedagogy Q2 [CTET (I-V) 7 July 2019],pyq_year_missing,repaired,951,ctet1
+1226,"CTET Bank Evs Notes and Pedagogy Q23 [CTET (I-V) 22 FEB, 2015]",pyq_year_missing,repaired,967,ctet1
+1231,"CTET Bank Evs Notes and Pedagogy Q28 [CTET (I-V) 16 FEB, 2014]",english_stem_truncated,incomplete_english_removed,968,ctet1
+1231,"CTET Bank Evs Notes and Pedagogy Q28 [CTET (I-V) 16 FEB, 2014]",pyq_year_missing,repaired,968,ctet1
+1232,"CTET Bank Evs Notes and Pedagogy Q29 [CTET (I-V) 16 FEB, 2014]",english_stem_truncated,consolidated_duplicate,,
+1234,"CTET Bank Evs Notes and Pedagogy Q31 [CTET (I-V) 16 FEB, 2014]",english_stem_truncated,consolidated_duplicate,,
+1236,"CTET Bank Evs Notes and Pedagogy Q33 [CTET (I-V) 28 JUL, 2013]",english_stem_truncated,consolidated_duplicate,,
+1245,CTET Bank Evs Notes and Pedagogy Q42,wrong_answer_key,repaired,976,ctet1
+1289,CTET Bank Evs Notes and Pedagogy Q1 [CTET (I-V) 7 July 2019],english_stem_truncated,incomplete_english_removed,1015,ctet1
+1289,CTET Bank Evs Notes and Pedagogy Q1 [CTET (I-V) 7 July 2019],pyq_year_missing,repaired,1015,ctet1
+1357,CTET Bank Evs Notes and Pedagogy Q23 [MP TET (I-V) 2011],scope_non_ctet_exam,unchanged_by_user_request,1072,ctet1
+1366,"CTET Bank Evs Notes and Pedagogy Q33 [CTET (I-V) 22 FEB, 2015]",english_stem_truncated,consolidated_duplicate,,
+1369,CTET Bank Evs Notes and Pedagogy Q36 [MP TET (I-V) 2011],scope_non_ctet_exam,unchanged_by_user_request,1082,ctet1
+1398,CTET Bank Evs Notes and Pedagogy Q1,bilingual_semantic_mismatch,repaired,1110,ctet1
+1398,CTET Bank Evs Notes and Pedagogy Q1,english_stem_truncated,incomplete_english_removed,1110,ctet1
+1398,CTET Bank Evs Notes and Pedagogy Q1,unrelated_preamble_or_ocr_garbage,repaired,1110,ctet1
+1429,CTET Bank Evs Notes and Pedagogy Q9 [MP TET (I-V) 2011],scope_non_ctet_exam,unchanged_by_user_request,1141,ctet1
+1444,CTET Bank Evs Notes and Pedagogy Q25,english_stem_truncated,incomplete_english_removed,1156,ctet1
+1450,CTET Bank Evs Notes and Pedagogy Q4,english_stem_truncated,incomplete_english_removed,1162,ctet1
+1451,CTET Bank Evs Notes and Pedagogy Q5 [MP TET (I-V) 2011],scope_non_ctet_exam,unchanged_by_user_request,1163,ctet1
+1500,CTET Bank Evs Notes and Pedagogy Q21,english_stem_truncated,incomplete_english_removed,1211,ctet1
+1524,"CTET Bank Evs Notes and Pedagogy Q12 [CTET (I-V) 18 SEP, 2016]",english_stem_truncated,consolidated_duplicate,,
+1525,"CTET Bank Evs Notes and Pedagogy Q13 [CTET (I-V) 21 FEB, 2016]",pyq_year_missing,repaired,1233,ctet1
+1527,CTET Bank Evs Notes and Pedagogy Q2 [CTET (I-V) 9 December 2018],pyq_year_missing,repaired,1234,ctet1
+1538,"CTET Bank Evs Notes and Pedagogy Q13 [CTET (I-V) 26 JUN, 2011]",pyq_year_missing,repaired,1244,ctet1
+1551,CTET Bank Evs Notes and Pedagogy Q3 [CTET (I-V) 7 July 2019],bilingual_semantic_mismatch,repaired,1245,ctet1
+1551,CTET Bank Evs Notes and Pedagogy Q3 [CTET (I-V) 7 July 2019],unrelated_preamble_or_ocr_garbage,repaired,1245,ctet1
+1551,CTET Bank Evs Notes and Pedagogy Q3 [CTET (I-V) 7 July 2019],pyq_year_missing,repaired,1245,ctet1
+1568,CTET Bank Evs Notes and Pedagogy Q20 [MP TET (I-V) 2011],scope_non_ctet_exam,unchanged_by_user_request,1253,ctet1
+1582,CTET Bank Evs Notes and Pedagogy Q1 [CTET (I-V) 7 July 2019],unrelated_preamble_or_ocr_garbage,repaired,1254,ctet1
+1582,CTET Bank Evs Notes and Pedagogy Q1 [CTET (I-V) 7 July 2019],pyq_year_missing,repaired,1254,ctet1
+1584,CTET Bank Evs Notes and Pedagogy Q3 [CTET (I-V) 9 December 2018],pyq_year_missing,repaired,1255,ctet1
+1591,"CTET Bank Evs Notes and Pedagogy Q10 [CTET (I-V) 21 FEB, 2016]",english_stem_truncated,incomplete_english_removed,1262,ctet1
+1591,"CTET Bank Evs Notes and Pedagogy Q10 [CTET (I-V) 21 FEB, 2016]",pyq_year_missing,repaired,1262,ctet1
+1600,CTET Bank Evs Notes and Pedagogy Q2 [CTET (I-V) 9 December 2018],pyq_year_missing,repaired,1266,ctet1
+1612,CTET Bank Evs Notes and Pedagogy Q1 [CTET (I-V) 9 December 2018],pyq_year_missing,repaired,1273,ctet1
+1625,"CTET Bank Evs Notes and Pedagogy Q14 [CTET (I-V) 21 SEP, 2014]",pyq_year_missing,repaired,1285,ctet1
+1627,"CTET Bank Evs Notes and Pedagogy Q16 [CTET (I-V) 22 FEB, 2015]",english_stem_truncated,consolidated_duplicate,,
+1629,CTET Bank Evs Notes and Pedagogy Q1 [CTET (I-V) 7 July 2019],pyq_year_missing,repaired,1286,ctet1
+1630,CTET Bank Evs Notes and Pedagogy Q2 [CTET (I-V) 9 December 2018],pyq_year_missing,repaired,1287,ctet1
+1641,"CTET Bank Evs Notes and Pedagogy Q13 [CTET (I-V) 18 SEP, 2016]",bilingual_semantic_mismatch,repaired,1292,ctet1
+1641,"CTET Bank Evs Notes and Pedagogy Q13 [CTET (I-V) 18 SEP, 2016]",stem_option_code_merged,repaired,1292,ctet1
+1642,"CTET Bank Evs Notes and Pedagogy Q14 [CTET (I-V) 18 SEP, 2016]",english_stem_truncated,consolidated_duplicate,,
+1644,CTET Bank Evs Notes and Pedagogy Q1 [CTET (I-V) 7 July 2019],english_stem_truncated,incomplete_english_removed,1293,ctet1
+1644,CTET Bank Evs Notes and Pedagogy Q1 [CTET (I-V) 7 July 2019],pyq_year_missing,repaired,1293,ctet1
+1645,CTET Bank Evs Notes and Pedagogy Q2 [CTET (I-V) 7 July 2019],pyq_year_missing,repaired,1294,ctet1
+1656,CTET Bank Evs Notes and Pedagogy Q14,incomplete_table_or_data,removed_unrecoverable,,
+1656,CTET Bank Evs Notes and Pedagogy Q14,scope_upper_primary_probable,removed_unrecoverable,,
+1660,"CTET Bank Evs Notes and Pedagogy Q18 [CTET (I-V) 29 JAN, 2012]",pyq_year_missing,repaired,1303,ctet1
+1664,"CTET Bank Evs Notes and Pedagogy Q22 [CTET (I-V) 21 FEB, 2016]",pyq_year_missing,repaired,1304,ctet1
+1669,CTET Bank Evs Notes and Pedagogy Q1 [CTET (I-V) 7 July 2019],pyq_year_missing,repaired,1309,ctet1
+1678,CTET Bank Evs Notes and Pedagogy Q10,duplicate_survives_build,consolidated_duplicate,,
+1681,"CTET Bank Evs Notes and Pedagogy Q13 [CTET (I-V) 16 FEB, 2014]",english_stem_truncated,consolidated_duplicate,,
+1684,"CTET Bank Evs Notes and Pedagogy Q16 [CTET (I-V) 21 FEB, 2016]",pyq_year_missing,repaired,1319,ctet1
+1686,"CTET Bank Evs Notes and Pedagogy Q18 [CTET (I-V) 21 FEB, 2016]",pyq_year_missing,repaired,1320,ctet1
+1693,"CTET Bank Evs Notes and Pedagogy Q26 [CTET (I-V) 29 JAN, 2012]",bilingual_semantic_mismatch,consolidated_duplicate,,
+1693,"CTET Bank Evs Notes and Pedagogy Q26 [CTET (I-V) 29 JAN, 2012]",stem_option_code_merged,consolidated_duplicate,,
+1693,"CTET Bank Evs Notes and Pedagogy Q26 [CTET (I-V) 29 JAN, 2012]",pyq_year_missing,consolidated_duplicate,,
+1700,"CTET Bank Evs Notes and Pedagogy Q33 [CTET (I-V) 21 FEB, 2016]",pyq_year_missing,repaired,1324,ctet1
+1701,"CTET Bank Evs Notes and Pedagogy Q34 [CTET (I-V) 21 FEB, 2016]",english_stem_truncated,consolidated_duplicate,,
+1703,CTET Bank Evs Notes and Pedagogy Q1 [CTET (I-V) 7 July 2019],pyq_year_missing,repaired,1326,ctet1
+1722,"CTET Bank Evs Notes and Pedagogy Q20 [CTET (I-V) 26 JUN, 2011]",pyq_year_missing,repaired,1341,ctet1
+1739,"CTET Bank Evs Notes and Pedagogy Q37 [CTET (I-V) 29 JAN, 2012]",pyq_year_missing,repaired,1344,ctet1
+1743,"CTET Bank Evs Notes and Pedagogy Q41 [CTET (I-V) 16 FEB, 2014]",pyq_year_missing,repaired,1345,ctet1
+1744,"CTET Bank Evs Notes and Pedagogy Q42 [CTET (I-V) 21 SEP, 2014]",english_stem_truncated,consolidated_duplicate,,
+1749,"CTET Bank Evs Notes and Pedagogy Q47 [CTET (I-V) 22 FEB, 2015]",english_stem_truncated,consolidated_duplicate,,
+1752,CTET Bank Evs Notes and Pedagogy Q1 [CTET (I-V) 9 December 2018],pyq_year_missing,repaired,1346,ctet1
+1759,"CTET Bank Evs Notes and Pedagogy Q8 [CTET (I-V) 16 FEB, 2014]",english_stem_truncated,consolidated_duplicate,,
+1762,CTET Bank Evs Notes and Pedagogy Q11,duplicate_survives_build,consolidated_duplicate,,
+1770,CTET Bank Hindi Language_ Pedagogy Q1 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1356,ctet1
+1771,CTET Bank Hindi Language_ Pedagogy Q2 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1357,ctet1
+1772,CTET Bank Hindi Language_ Pedagogy Q3 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1358,ctet1
+1773,CTET Bank Hindi Language_ Pedagogy Q4,scope_paper2_visible,moved_to_ctet2,1359,ctet2
+1774,CTET Bank Hindi Language_ Pedagogy Q5,scope_paper2_visible,moved_to_ctet2,1360,ctet2
+1775,CTET Bank Hindi Language_ Pedagogy Q6,scope_paper2_visible,moved_to_ctet2,1361,ctet2
+1776,CTET Bank Hindi Language_ Pedagogy Q7,scope_paper2_visible,moved_to_ctet2,1362,ctet2
+1777,CTET Bank Hindi Language_ Pedagogy Q8,scope_paper2_visible,moved_to_ctet2,1363,ctet2
+1781,CTET Bank Hindi Language_ Pedagogy Q12,scope_paper2_source_match,moved_to_ctet2,1367,ctet2
+1782,CTET Bank Hindi Language_ Pedagogy Q13,scope_paper2_source_match,moved_to_ctet2,1368,ctet2
+1783,CTET Bank Hindi Language_ Pedagogy Q14,scope_paper2_source_match,moved_to_ctet2,1369,ctet2
+1784,CTET Bank Hindi Language_ Pedagogy Q15,scope_paper2_source_match,moved_to_ctet2,1370,ctet2
+1785,CTET Bank Hindi Language_ Pedagogy Q16,scope_paper2_source_match,moved_to_ctet2,1371,ctet2
+1786,CTET Bank Hindi Language_ Pedagogy Q17,scope_paper2_source_match,moved_to_ctet2,1372,ctet2
+1787,CTET Bank Hindi Language_ Pedagogy Q18,scope_paper2_source_match,moved_to_ctet2,1373,ctet2
+1788,CTET Bank Hindi Language_ Pedagogy Q19,scope_paper2_source_match,moved_to_ctet2,1374,ctet2
+1790,CTET Bank Hindi Language_ Pedagogy Q21,scope_paper2_source_match,moved_to_ctet2,1376,ctet2
+1791,CTET Bank Hindi Language_ Pedagogy Q22,scope_paper2_source_match,moved_to_ctet2,1377,ctet2
+1792,CTET Bank Hindi Language_ Pedagogy Q23,scope_paper2_source_match,moved_to_ctet2,1378,ctet2
+1806,CTET Bank Hindi Language_ Pedagogy Q7,scope_paper2_visible,moved_to_ctet2,1392,ctet2
+1807,CTET Bank Hindi Language_ Pedagogy Q8,scope_paper2_visible,moved_to_ctet2,1393,ctet2
+1808,CTET Bank Hindi Language_ Pedagogy Q9,scope_paper2_visible,moved_to_ctet2,1394,ctet2
+1814,CTET Bank Hindi Language_ Pedagogy Q15,scope_paper2_source_match,moved_to_ctet2,1400,ctet2
+1815,CTET Bank Hindi Language_ Pedagogy Q16,scope_paper2_source_match,moved_to_ctet2,1401,ctet2
+1816,CTET Bank Hindi Language_ Pedagogy Q17,scope_paper2_source_match,moved_to_ctet2,1402,ctet2
+1817,CTET Bank Hindi Language_ Pedagogy Q18,scope_paper2_source_match,moved_to_ctet2,1403,ctet2
+1818,CTET Bank Hindi Language_ Pedagogy Q19,scope_paper2_source_match,moved_to_ctet2,1404,ctet2
+1821,CTET Bank Hindi Language_ Pedagogy Q22,scope_paper2_source_match,moved_to_ctet2,1407,ctet2
+1822,CTET Bank Hindi Language_ Pedagogy Q23,scope_paper2_source_match,moved_to_ctet2,1408,ctet2
+1823,CTET Bank Hindi Language_ Pedagogy Q24,scope_paper2_source_match,moved_to_ctet2,1409,ctet2
+1827,CTET Bank Hindi Language_ Pedagogy Q28,scope_paper2_source_match,moved_to_ctet2,1413,ctet2
+1832,CTET Bank Hindi Language_ Pedagogy Q33 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1418,ctet1
+1833,CTET Bank Hindi Language_ Pedagogy Q34,scope_paper2_source_match,moved_to_ctet2,1419,ctet2
+1835,CTET Bank Hindi Language_ Pedagogy Q36,scope_paper2_source_match,moved_to_ctet2,1421,ctet2
+1836,CTET Bank Hindi Language_ Pedagogy Q37,scope_paper2_source_match,moved_to_ctet2,1422,ctet2
+1837,CTET Bank Hindi Language_ Pedagogy Q38,scope_paper2_source_match,moved_to_ctet2,1423,ctet2
+1838,CTET Bank Hindi Language_ Pedagogy Q39,scope_paper2_source_match,moved_to_ctet2,1424,ctet2
+1839,CTET Bank Hindi Language_ Pedagogy Q40,scope_paper2_source_match,moved_to_ctet2,1425,ctet2
+1841,CTET Bank Hindi Language_ Pedagogy Q42,scope_paper2_source_match,moved_to_ctet2,1427,ctet2
+1845,CTET Bank Hindi Language_ Pedagogy Q46,scope_paper2_source_match,moved_to_ctet2,1431,ctet2
+1846,CTET Bank Hindi Language_ Pedagogy Q1 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1432,ctet1
+1847,CTET Bank Hindi Language_ Pedagogy Q2,scope_paper2_visible,moved_to_ctet2,1433,ctet2
+1849,CTET Bank Hindi Language_ Pedagogy Q4,scope_paper2_source_match,moved_to_ctet2,1435,ctet2
+1850,CTET Bank Hindi Language_ Pedagogy Q5,scope_paper2_source_match,moved_to_ctet2,1436,ctet2
+1851,CTET Bank Hindi Language_ Pedagogy Q6,scope_paper2_source_match,moved_to_ctet2,1437,ctet2
+1858,CTET Bank Hindi Language_ Pedagogy Q13,scope_paper2_source_match,moved_to_ctet2,1444,ctet2
+1859,CTET Bank Hindi Language_ Pedagogy Q14,scope_paper2_source_match,moved_to_ctet2,1445,ctet2
+1860,CTET Bank Hindi Language_ Pedagogy Q15,scope_paper2_source_match,moved_to_ctet2,1446,ctet2
+1861,CTET Bank Hindi Language_ Pedagogy Q16,scope_paper2_source_match,moved_to_ctet2,1447,ctet2
+1862,CTET Bank Hindi Language_ Pedagogy Q17,scope_paper2_source_match,moved_to_ctet2,1448,ctet2
+1863,CTET Bank Hindi Language_ Pedagogy Q18,scope_paper2_source_match,moved_to_ctet2,1449,ctet2
+1864,CTET Bank Hindi Language_ Pedagogy Q19,scope_paper2_source_match,moved_to_ctet2,1450,ctet2
+1866,CTET Bank Hindi Language_ Pedagogy Q21,scope_paper2_source_match,moved_to_ctet2,1452,ctet2
+1867,CTET Bank Hindi Language_ Pedagogy Q22,scope_paper2_source_match,moved_to_ctet2,1453,ctet2
+1869,CTET Bank Hindi Language_ Pedagogy Q24,scope_paper2_visible,moved_to_ctet2,1455,ctet2
+1870,CTET Bank Hindi Language_ Pedagogy Q25,scope_paper2_visible,moved_to_ctet2,1456,ctet2
+1875,CTET Bank Hindi Language_ Pedagogy Q30,scope_paper2_source_match,moved_to_ctet2,1461,ctet2
+1876,CTET Bank Hindi Language_ Pedagogy Q31,scope_paper2_source_match,moved_to_ctet2,1462,ctet2
+1877,CTET Bank Hindi Language_ Pedagogy Q32,scope_paper2_source_match,moved_to_ctet2,1463,ctet2
+1879,CTET Bank Hindi Language_ Pedagogy Q34,scope_paper2_source_match,moved_to_ctet2,1465,ctet2
+1880,CTET Bank Hindi Language_ Pedagogy Q35,scope_paper2_source_match,moved_to_ctet2,1466,ctet2
+1881,CTET Bank Hindi Language_ Pedagogy Q36,scope_paper2_source_match,moved_to_ctet2,1467,ctet2
+1882,CTET Bank Hindi Language_ Pedagogy Q37,scope_paper2_source_match,moved_to_ctet2,1468,ctet2
+1883,CTET Bank Hindi Language_ Pedagogy Q38,scope_paper2_source_match,moved_to_ctet2,1469,ctet2
+1884,CTET Bank Hindi Language_ Pedagogy Q39,scope_paper2_source_match,moved_to_ctet2,1470,ctet2
+1887,CTET Bank Hindi Language_ Pedagogy Q42 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1473,ctet1
+1888,CTET Bank Hindi Language_ Pedagogy Q43 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1474,ctet1
+1889,CTET Bank Hindi Language_ Pedagogy Q44,scope_paper2_source_match,moved_to_ctet2,1475,ctet2
+1891,CTET Bank Hindi Language_ Pedagogy Q46 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1477,ctet1
+1892,CTET Bank Hindi Language_ Pedagogy Q47,scope_paper2_source_match,moved_to_ctet2,1478,ctet2
+1893,CTET Bank Hindi Language_ Pedagogy Q48,scope_paper2_source_match,moved_to_ctet2,1479,ctet2
+1894,CTET Bank Hindi Language_ Pedagogy Q49,scope_paper2_source_match,moved_to_ctet2,1480,ctet2
+1897,CTET Bank Hindi Language_ Pedagogy Q52,scope_paper2_source_match,moved_to_ctet2,1483,ctet2
+1899,CTET Bank Hindi Language_ Pedagogy Q54,scope_paper2_source_match,moved_to_ctet2,1485,ctet2
+1904,CTET Bank Hindi Language_ Pedagogy Q59 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1490,ctet1
+1905,CTET Bank Hindi Language_ Pedagogy Q60 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1491,ctet1
+1906,CTET Bank Hindi Language_ Pedagogy Q61 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1492,ctet1
+1910,CTET Bank Hindi Language_ Pedagogy Q1,scope_paper2_source_match,moved_to_ctet2,1495,ctet2
+1911,CTET Bank Hindi Language_ Pedagogy Q2,scope_paper2_source_match,moved_to_ctet2,1496,ctet2
+1912,CTET Bank Hindi Language_ Pedagogy Q3,scope_paper2_source_match,moved_to_ctet2,1497,ctet2
+1912,CTET Bank Hindi Language_ Pedagogy Q3,unrelated_preamble_or_ocr_garbage,repaired,1497,ctet2
+1913,CTET Bank Hindi Language_ Pedagogy Q4,scope_paper2_source_match,moved_to_ctet2,1498,ctet2
+1916,CTET Bank Hindi Language_ Pedagogy Q7,scope_paper2_source_match,moved_to_ctet2,1501,ctet2
+1918,CTET Bank Hindi Language_ Pedagogy Q9,scope_paper2_source_match,moved_to_ctet2,1503,ctet2
+1919,CTET Bank Hindi Language_ Pedagogy Q10,scope_paper2_source_match,moved_to_ctet2,1504,ctet2
+1920,CTET Bank Hindi Language_ Pedagogy Q11,scope_paper2_source_match,moved_to_ctet2,1505,ctet2
+1921,CTET Bank Hindi Language_ Pedagogy Q12,scope_paper2_source_match,moved_to_ctet2,1506,ctet2
+1923,CTET Bank Hindi Language_ Pedagogy Q14 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1508,ctet1
+1924,CTET Bank Hindi Language_ Pedagogy Q15 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1509,ctet1
+1926,CTET Bank Hindi Language_ Pedagogy Q17,scope_paper2_visible,moved_to_ctet2,1511,ctet2
+1927,CTET Bank Hindi Language_ Pedagogy Q18,scope_paper2_source_match,moved_to_ctet2,1512,ctet2
+1928,CTET Bank Hindi Language_ Pedagogy Q19,scope_paper2_source_match,moved_to_ctet2,1513,ctet2
+1929,CTET Bank Hindi Language_ Pedagogy Q20,scope_paper2_source_match,moved_to_ctet2,1514,ctet2
+1930,CTET Bank Hindi Language_ Pedagogy Q21,scope_paper2_source_match,moved_to_ctet2,1515,ctet2
+1931,CTET Bank Hindi Language_ Pedagogy Q22,scope_paper2_source_match,moved_to_ctet2,1516,ctet2
+1932,CTET Bank Hindi Language_ Pedagogy Q23,scope_paper2_source_match,moved_to_ctet2,1517,ctet2
+1937,CTET Bank Hindi Language_ Pedagogy Q28 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1522,ctet1
+1939,CTET Bank Hindi Language_ Pedagogy Q30,scope_paper2_visible,moved_to_ctet2,1523,ctet2
+1940,CTET Bank Hindi Language_ Pedagogy Q1 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1524,ctet1
+1941,CTET Bank Hindi Language_ Pedagogy Q2 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1525,ctet1
+1943,CTET Bank Hindi Language_ Pedagogy Q4,scope_paper2_source_match,moved_to_ctet2,1527,ctet2
+1944,CTET Bank Hindi Language_ Pedagogy Q5,scope_paper2_source_match,moved_to_ctet2,1528,ctet2
+1946,CTET Bank Hindi Language_ Pedagogy Q7,scope_paper2_source_match,moved_to_ctet2,1530,ctet2
+1949,CTET Bank Hindi Language_ Pedagogy Q10,scope_paper2_source_match,moved_to_ctet2,1533,ctet2
+1950,CTET Bank Hindi Language_ Pedagogy Q11,scope_paper2_source_match,moved_to_ctet2,1534,ctet2
+1951,CTET Bank Hindi Language_ Pedagogy Q12,scope_paper2_source_match,moved_to_ctet2,1535,ctet2
+1952,CTET Bank Hindi Language_ Pedagogy Q13,scope_paper2_source_match,moved_to_ctet2,1536,ctet2
+1954,CTET Bank Hindi Language_ Pedagogy Q15,scope_paper2_source_match,moved_to_ctet2,1538,ctet2
+1955,CTET Bank Hindi Language_ Pedagogy Q16,scope_paper2_source_match,moved_to_ctet2,1539,ctet2
+1957,CTET Bank Hindi Language_ Pedagogy Q18,scope_paper2_source_match,moved_to_ctet2,1541,ctet2
+1959,CTET Bank Hindi Language_ Pedagogy Q20,scope_paper2_visible,moved_to_ctet2,1543,ctet2
+1960,CTET Bank Hindi Language_ Pedagogy Q21,scope_paper2_source_match,moved_to_ctet2,1544,ctet2
+1962,CTET Bank Hindi Language_ Pedagogy Q2,scope_paper2_source_match,moved_to_ctet2,1546,ctet2
+1963,CTET Bank Hindi Language_ Pedagogy Q3,scope_paper2_source_match,moved_to_ctet2,1547,ctet2
+1964,CTET Bank Hindi Language_ Pedagogy Q4,scope_paper2_source_match,moved_to_ctet2,1548,ctet2
+1965,CTET Bank Hindi Language_ Pedagogy Q5,scope_paper2_source_match,moved_to_ctet2,1549,ctet2
+1967,CTET Bank Hindi Language_ Pedagogy Q7,scope_paper2_source_match,moved_to_ctet2,1551,ctet2
+1968,CTET Bank Hindi Language_ Pedagogy Q8,scope_paper2_visible,moved_to_ctet2,1552,ctet2
+1969,CTET Bank Hindi Language_ Pedagogy Q9,scope_paper2_source_match,moved_to_ctet2,1553,ctet2
+1970,CTET Bank Hindi Language_ Pedagogy Q10,scope_paper2_source_match,moved_to_ctet2,1554,ctet2
+1971,CTET Bank Hindi Language_ Pedagogy Q11,scope_paper2_source_match,moved_to_ctet2,1555,ctet2
+1972,CTET Bank Hindi Language_ Pedagogy Q12,scope_paper2_source_match,moved_to_ctet2,1556,ctet2
+1974,CTET Bank Hindi Language_ Pedagogy Q14,scope_paper2_source_match,moved_to_ctet2,1558,ctet2
+1975,CTET Bank Hindi Language_ Pedagogy Q15,scope_paper2_source_match,moved_to_ctet2,1559,ctet2
+1979,CTET Bank Hindi Language_ Pedagogy Q1 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1563,ctet1
+1980,CTET Bank Hindi Language_ Pedagogy Q2 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1564,ctet1
+1981,CTET Bank Hindi Language_ Pedagogy Q3 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1565,ctet1
+1982,CTET Bank Hindi Language_ Pedagogy Q4 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1566,ctet1
+1983,CTET Bank Hindi Language_ Pedagogy Q5 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1567,ctet1
+1984,CTET Bank Hindi Language_ Pedagogy Q6,scope_paper2_visible,moved_to_ctet2,1568,ctet2
+1985,CTET Bank Hindi Language_ Pedagogy Q7,scope_paper2_visible,moved_to_ctet2,1569,ctet2
+1986,CTET Bank Hindi Language_ Pedagogy Q8,scope_paper2_visible,moved_to_ctet2,1570,ctet2
+1987,CTET Bank Hindi Language_ Pedagogy Q9,scope_paper2_source_match,moved_to_ctet2,1571,ctet2
+1988,CTET Bank Hindi Language_ Pedagogy Q11,scope_paper2_source_match,moved_to_ctet2,1572,ctet2
+1989,CTET Bank Hindi Language_ Pedagogy Q12,scope_paper2_source_match,moved_to_ctet2,1573,ctet2
+1990,CTET Bank Hindi Language_ Pedagogy Q13,scope_paper2_source_match,moved_to_ctet2,1574,ctet2
+1991,CTET Bank Hindi Language_ Pedagogy Q14,scope_paper2_source_match,moved_to_ctet2,1575,ctet2
+1992,CTET Bank Hindi Language_ Pedagogy Q15,scope_paper2_source_match,moved_to_ctet2,1576,ctet2
+1993,CTET Bank Hindi Language_ Pedagogy Q16,scope_paper2_source_match,moved_to_ctet2,1577,ctet2
+1994,CTET Bank Hindi Language_ Pedagogy Q17,scope_paper2_source_match,moved_to_ctet2,1578,ctet2
+1995,CTET Bank Hindi Language_ Pedagogy Q18,scope_paper2_source_match,moved_to_ctet2,1579,ctet2
+1996,CTET Bank Hindi Language_ Pedagogy Q19,scope_paper2_source_match,moved_to_ctet2,1580,ctet2
+1997,CTET Bank Hindi Language_ Pedagogy Q20,scope_paper2_source_match,moved_to_ctet2,1581,ctet2
+1998,CTET Bank Hindi Language_ Pedagogy Q21,scope_paper2_source_match,moved_to_ctet2,1582,ctet2
+1999,CTET Bank Hindi Language_ Pedagogy Q22,scope_paper2_source_match,moved_to_ctet2,1583,ctet2
+2000,CTET Bank Hindi Language_ Pedagogy Q23,scope_paper2_source_match,moved_to_ctet2,1584,ctet2
+2005,CTET Bank Hindi Language_ Pedagogy Q28 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1589,ctet1
+2006,CTET Bank Hindi Language_ Pedagogy Q29 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1590,ctet1
+2008,CTET Bank Hindi Language_ Pedagogy Q31,scope_paper2_visible,moved_to_ctet2,1592,ctet2
+2009,CTET Bank Hindi Language_ Pedagogy Q32,scope_paper2_visible,moved_to_ctet2,1593,ctet2
+2010,CTET Bank Hindi Language_ Pedagogy Q33,scope_paper2_visible,moved_to_ctet2,1594,ctet2
+2011,CTET Bank Hindi Language_ Pedagogy Q34,scope_paper2_source_match,moved_to_ctet2,1595,ctet2
+2013,CTET Bank Hindi Language_ Pedagogy Q36,scope_paper2_source_match,moved_to_ctet2,1597,ctet2
+2014,CTET Bank Hindi Language_ Pedagogy Q37,scope_paper2_source_match,moved_to_ctet2,1598,ctet2
+2015,CTET Bank Hindi Language_ Pedagogy Q38,scope_paper2_source_match,moved_to_ctet2,1599,ctet2
+2016,CTET Bank Hindi Language_ Pedagogy Q39,scope_paper2_source_match,moved_to_ctet2,1600,ctet2
+2019,CTET Bank Hindi Language_ Pedagogy Q42,scope_paper2_source_match,moved_to_ctet2,1603,ctet2
+2025,CTET Bank Hindi Language_ Pedagogy Q1 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1609,ctet1
+2026,CTET Bank Hindi Language_ Pedagogy Q2 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1610,ctet1
+2031,CTET Bank Hindi Language_ Pedagogy Q7,scope_paper2_visible,moved_to_ctet2,1615,ctet2
+2032,CTET Bank Hindi Language_ Pedagogy Q8,scope_paper2_visible,moved_to_ctet2,1616,ctet2
+2033,CTET Bank Hindi Language_ Pedagogy Q9,scope_paper2_visible,moved_to_ctet2,1617,ctet2
+2034,CTET Bank Hindi Language_ Pedagogy Q10,scope_paper2_visible,moved_to_ctet2,1618,ctet2
+2035,CTET Bank Hindi Language_ Pedagogy Q11,scope_paper2_source_match,moved_to_ctet2,1619,ctet2
+2036,CTET Bank Hindi Language_ Pedagogy Q12,scope_paper2_source_match,moved_to_ctet2,1620,ctet2
+2037,CTET Bank Hindi Language_ Pedagogy Q13,scope_paper2_source_match,moved_to_ctet2,1621,ctet2
+2038,CTET Bank Hindi Language_ Pedagogy Q14,scope_paper2_source_match,moved_to_ctet2,1622,ctet2
+2039,CTET Bank Hindi Language_ Pedagogy Q15,scope_paper2_source_match,moved_to_ctet2,1623,ctet2
+2040,CTET Bank Hindi Language_ Pedagogy Q16,scope_paper2_source_match,moved_to_ctet2,1624,ctet2
+2041,CTET Bank Hindi Language_ Pedagogy Q17,scope_paper2_source_match,moved_to_ctet2,1625,ctet2
+2042,CTET Bank Hindi Language_ Pedagogy Q18,scope_paper2_source_match,moved_to_ctet2,1626,ctet2
+2043,CTET Bank Hindi Language_ Pedagogy Q19,scope_paper2_source_match,moved_to_ctet2,1627,ctet2
+2044,CTET Bank Hindi Language_ Pedagogy Q20,scope_paper2_source_match,moved_to_ctet2,1628,ctet2
+2045,CTET Bank Hindi Language_ Pedagogy Q21,scope_paper2_source_match,moved_to_ctet2,1629,ctet2
+2046,CTET Bank Hindi Language_ Pedagogy Q22,scope_paper2_source_match,moved_to_ctet2,1630,ctet2
+2047,CTET Bank Hindi Language_ Pedagogy Q23,scope_paper2_source_match,moved_to_ctet2,1631,ctet2
+2048,CTET Bank Hindi Language_ Pedagogy Q24,scope_paper2_source_match,moved_to_ctet2,1632,ctet2
+2049,CTET Bank Hindi Language_ Pedagogy Q25,scope_paper2_source_match,moved_to_ctet2,1633,ctet2
+2062,CTET Bank Hindi Language_ Pedagogy Q1 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1645,ctet1
+2063,CTET Bank Hindi Language_ Pedagogy Q2,scope_paper2_visible,moved_to_ctet2,1646,ctet2
+2064,CTET Bank Hindi Language_ Pedagogy Q3,scope_paper2_visible,moved_to_ctet2,1647,ctet2
+2065,CTET Bank Hindi Language_ Pedagogy Q4,scope_paper2_visible,moved_to_ctet2,1648,ctet2
+2066,CTET Bank Hindi Language_ Pedagogy Q5,scope_paper2_source_match,moved_to_ctet2,1649,ctet2
+2067,CTET Bank Hindi Language_ Pedagogy Q6,scope_paper2_source_match,moved_to_ctet2,1650,ctet2
+2068,CTET Bank Hindi Language_ Pedagogy Q7,scope_paper2_source_match,moved_to_ctet2,1651,ctet2
+2069,CTET Bank Hindi Language_ Pedagogy Q8,scope_paper2_source_match,moved_to_ctet2,1652,ctet2
+2070,CTET Bank Hindi Language_ Pedagogy Q9,scope_paper2_source_match,moved_to_ctet2,1653,ctet2
+2071,CTET Bank Hindi Language_ Pedagogy Q10,scope_paper2_source_match,moved_to_ctet2,1654,ctet2
+2072,CTET Bank Hindi Language_ Pedagogy Q11,scope_paper2_source_match,moved_to_ctet2,1655,ctet2
+2073,CTET Bank Hindi Language_ Pedagogy Q12,scope_paper2_source_match,moved_to_ctet2,1656,ctet2
+2074,CTET Bank Hindi Language_ Pedagogy Q13 [Uttarakhand TET Ist Paper (I-V) April 2016],scope_non_ctet_exam,unchanged_by_user_request,1657,ctet1
+2076,CTET Bank Hindi Language_ Pedagogy Q1,scope_paper2_visible,moved_to_ctet2,1659,ctet2
+2077,CTET Bank Hindi Language_ Pedagogy Q2,scope_paper2_visible,moved_to_ctet2,1660,ctet2
+2078,CTET Bank Hindi Language_ Pedagogy Q3,scope_paper2_visible,moved_to_ctet2,1661,ctet2
+2079,CTET Bank Hindi Language_ Pedagogy Q4,scope_paper2_visible,moved_to_ctet2,1662,ctet2
+2080,CTET Bank Hindi Language_ Pedagogy Q5,scope_paper2_source_match,moved_to_ctet2,1663,ctet2
+2081,CTET Bank Hindi Language_ Pedagogy Q6,scope_paper2_source_match,moved_to_ctet2,1664,ctet2
+2082,CTET Bank Hindi Language_ Pedagogy Q7,scope_paper2_source_match,moved_to_ctet2,1665,ctet2
+2083,CTET Bank Hindi Language_ Pedagogy Q8,scope_paper2_source_match,moved_to_ctet2,1666,ctet2
+2084,CTET Bank Hindi Language_ Pedagogy Q9,scope_paper2_source_match,moved_to_ctet2,1667,ctet2
+2085,CTET Bank Hindi Language_ Pedagogy Q1 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1668,ctet1
+2086,CTET Bank Hindi Language_ Pedagogy Q2,scope_paper2_visible,moved_to_ctet2,1669,ctet2
+2087,CTET Bank Hindi Language_ Pedagogy Q3,scope_paper2_visible,moved_to_ctet2,1670,ctet2
+2088,CTET Bank Hindi Language_ Pedagogy Q4,scope_paper2_source_match,moved_to_ctet2,1671,ctet2
+2089,CTET Bank Hindi Language_ Pedagogy Q5,scope_paper2_source_match,moved_to_ctet2,1672,ctet2
+2093,CTET Bank Hindi Language_ Pedagogy Q4 [UP Aided J.H.S. Assistant Teacher 2021 | UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1676,ctet1
+2094,CTET Bank Hindi Language_ Pedagogy Q5 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1677,ctet1
+2095,CTET Bank Hindi Language_ Pedagogy Q6 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1678,ctet1
+2096,CTET Bank Hindi Language_ Pedagogy Q7 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1679,ctet1
+2097,CTET Bank Hindi Language_ Pedagogy Q8 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1680,ctet1
+2098,CTET Bank Hindi Language_ Pedagogy Q9 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1681,ctet1
+2099,CTET Bank Hindi Language_ Pedagogy Q10 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1682,ctet1
+2100,CTET Bank Hindi Language_ Pedagogy Q11 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1683,ctet1
+2101,CTET Bank Hindi Language_ Pedagogy Q12 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1684,ctet1
+2102,CTET Bank Hindi Language_ Pedagogy Q13 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1685,ctet1
+2103,CTET Bank Hindi Language_ Pedagogy Q14 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1686,ctet1
+2104,CTET Bank Hindi Language_ Pedagogy Q15 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1687,ctet1
+2105,CTET Bank Hindi Language_ Pedagogy Q16 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1688,ctet1
+2106,CTET Bank Hindi Language_ Pedagogy Q17 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1689,ctet1
+2107,CTET Bank Hindi Language_ Pedagogy Q18 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1690,ctet1
+2108,CTET Bank Hindi Language_ Pedagogy Q19 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1691,ctet1
+2109,CTET Bank Hindi Language_ Pedagogy Q20 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1692,ctet1
+2110,CTET Bank Hindi Language_ Pedagogy Q21 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1693,ctet1
+2111,CTET Bank Hindi Language_ Pedagogy Q22 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1694,ctet1
+2112,CTET Bank Hindi Language_ Pedagogy Q23 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1695,ctet1
+2113,CTET Bank Hindi Language_ Pedagogy Q24 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1696,ctet1
+2114,CTET Bank Hindi Language_ Pedagogy Q25 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1697,ctet1
+2115,CTET Bank Hindi Language_ Pedagogy Q26 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1698,ctet1
+2116,CTET Bank Hindi Language_ Pedagogy Q27 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1699,ctet1
+2117,CTET Bank Hindi Language_ Pedagogy Q28 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1700,ctet1
+2118,CTET Bank Hindi Language_ Pedagogy Q29 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1701,ctet1
+2119,CTET Bank Hindi Language_ Pedagogy Q30 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1702,ctet1
+2120,CTET Bank Hindi Language_ Pedagogy Q31 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1703,ctet1
+2121,CTET Bank Hindi Language_ Pedagogy Q32 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1704,ctet1
+2122,CTET Bank Hindi Language_ Pedagogy Q33 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1705,ctet1
+2123,CTET Bank Hindi Language_ Pedagogy Q34 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1706,ctet1
+2124,CTET Bank Hindi Language_ Pedagogy Q35 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1707,ctet1
+2125,CTET Bank Hindi Language_ Pedagogy Q36 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1708,ctet1
+2126,CTET Bank Hindi Language_ Pedagogy Q37 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1709,ctet1
+2127,CTET Bank Hindi Language_ Pedagogy Q38 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1710,ctet1
+2128,CTET Bank Hindi Language_ Pedagogy Q39 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1711,ctet1
+2129,CTET Bank Hindi Language_ Pedagogy Q40 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1712,ctet1
+2130,CTET Bank Hindi Language_ Pedagogy Q41 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1713,ctet1
+2131,CTET Bank Hindi Language_ Pedagogy Q42 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1714,ctet1
+2132,CTET Bank Hindi Language_ Pedagogy Q43 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1715,ctet1
+2133,CTET Bank Hindi Language_ Pedagogy Q44 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1716,ctet1
+2134,CTET Bank Hindi Language_ Pedagogy Q45 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1717,ctet1
+2135,CTET Bank Hindi Language_ Pedagogy Q46 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1718,ctet1
+2136,CTET Bank Hindi Language_ Pedagogy Q47 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1719,ctet1
+2137,CTET Bank Hindi Language_ Pedagogy Q48 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1720,ctet1
+2138,CTET Bank Hindi Language_ Pedagogy Q49 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1721,ctet1
+2139,CTET Bank Hindi Language_ Pedagogy Q50 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1722,ctet1
+2140,CTET Bank Hindi Language_ Pedagogy Q51 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1723,ctet1
+2141,CTET Bank Hindi Language_ Pedagogy Q52 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1724,ctet1
+2142,CTET Bank Hindi Language_ Pedagogy Q53 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1725,ctet1
+2143,CTET Bank Hindi Language_ Pedagogy Q54 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1726,ctet1
+2144,CTET Bank Hindi Language_ Pedagogy Q55 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1727,ctet1
+2145,CTET Bank Hindi Language_ Pedagogy Q56 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1728,ctet1
+2146,CTET Bank Hindi Language_ Pedagogy Q57 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1729,ctet1
+2147,CTET Bank Hindi Language_ Pedagogy Q58 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1730,ctet1
+2148,CTET Bank Hindi Language_ Pedagogy Q59 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1731,ctet1
+2149,CTET Bank Hindi Language_ Pedagogy Q60 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1732,ctet1
+2150,CTET Bank Hindi Language_ Pedagogy Q61 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1733,ctet1
+2151,CTET Bank Hindi Language_ Pedagogy Q62,scope_paper2_visible,moved_to_ctet2,1734,ctet2
+2152,CTET Bank Hindi Language_ Pedagogy Q63,scope_paper2_visible,moved_to_ctet2,1735,ctet2
+2153,CTET Bank Hindi Language_ Pedagogy Q64,scope_paper2_visible,moved_to_ctet2,1736,ctet2
+2154,CTET Bank Hindi Language_ Pedagogy Q65,scope_paper2_visible,moved_to_ctet2,1737,ctet2
+2155,CTET Bank Hindi Language_ Pedagogy Q66,scope_paper2_visible,moved_to_ctet2,1738,ctet2
+2157,CTET Bank Hindi Language_ Pedagogy Q68,scope_paper2_visible,moved_to_ctet2,1740,ctet2
+2158,CTET Bank Hindi Language_ Pedagogy Q69,scope_paper2_visible,moved_to_ctet2,1741,ctet2
+2159,CTET Bank Hindi Language_ Pedagogy Q70,scope_paper2_visible,moved_to_ctet2,1742,ctet2
+2160,CTET Bank Hindi Language_ Pedagogy Q71,scope_paper2_visible,moved_to_ctet2,1743,ctet2
+2161,CTET Bank Hindi Language_ Pedagogy Q72,scope_paper2_visible,moved_to_ctet2,1744,ctet2
+2162,CTET Bank Hindi Language_ Pedagogy Q73,scope_paper2_visible,moved_to_ctet2,1745,ctet2
+2163,CTET Bank Hindi Language_ Pedagogy Q74,scope_paper2_visible,moved_to_ctet2,1746,ctet2
+2164,CTET Bank Hindi Language_ Pedagogy Q75,scope_paper2_visible,moved_to_ctet2,1747,ctet2
+2165,CTET Bank Hindi Language_ Pedagogy Q76,scope_paper2_visible,moved_to_ctet2,1748,ctet2
+2166,CTET Bank Hindi Language_ Pedagogy Q77,scope_paper2_visible,moved_to_ctet2,1749,ctet2
+2167,CTET Bank Hindi Language_ Pedagogy Q78,scope_paper2_visible,moved_to_ctet2,1750,ctet2
+2168,CTET Bank Hindi Language_ Pedagogy Q79,scope_paper2_source_match,moved_to_ctet2,1751,ctet2
+2169,CTET Bank Hindi Language_ Pedagogy Q80,scope_paper2_source_match,moved_to_ctet2,1752,ctet2
+2170,CTET Bank Hindi Language_ Pedagogy Q81,scope_paper2_source_match,moved_to_ctet2,1753,ctet2
+2171,CTET Bank Hindi Language_ Pedagogy Q82,scope_paper2_source_match,moved_to_ctet2,1754,ctet2
+2172,CTET Bank Hindi Language_ Pedagogy Q83,scope_paper2_source_match,moved_to_ctet2,1755,ctet2
+2173,CTET Bank Hindi Language_ Pedagogy Q84,scope_paper2_source_match,moved_to_ctet2,1756,ctet2
+2174,CTET Bank Hindi Language_ Pedagogy Q85,scope_paper2_source_match,moved_to_ctet2,1757,ctet2
+2175,CTET Bank Hindi Language_ Pedagogy Q86,scope_paper2_source_match,moved_to_ctet2,1758,ctet2
+2176,CTET Bank Hindi Language_ Pedagogy Q87,scope_paper2_source_match,moved_to_ctet2,1759,ctet2
+2177,CTET Bank Hindi Language_ Pedagogy Q88,scope_paper2_source_match,moved_to_ctet2,1760,ctet2
+2178,CTET Bank Hindi Language_ Pedagogy Q89,scope_paper2_source_match,moved_to_ctet2,1761,ctet2
+2179,CTET Bank Hindi Language_ Pedagogy Q90,scope_paper2_source_match,moved_to_ctet2,1762,ctet2
+2180,CTET Bank Hindi Language_ Pedagogy Q91,scope_paper2_source_match,moved_to_ctet2,1763,ctet2
+2182,CTET Bank Hindi Language_ Pedagogy Q93,scope_paper2_source_match,moved_to_ctet2,1765,ctet2
+2183,CTET Bank Hindi Language_ Pedagogy Q94,scope_paper2_source_match,moved_to_ctet2,1766,ctet2
+2184,CTET Bank Hindi Language_ Pedagogy Q95,scope_paper2_source_match,moved_to_ctet2,1767,ctet2
+2185,CTET Bank Hindi Language_ Pedagogy Q96,scope_paper2_source_match,moved_to_ctet2,1768,ctet2
+2187,CTET Bank Hindi Language_ Pedagogy Q98,scope_paper2_source_match,moved_to_ctet2,1770,ctet2
+2188,CTET Bank Hindi Language_ Pedagogy Q99,scope_paper2_source_match,moved_to_ctet2,1771,ctet2
+2189,CTET Bank Hindi Language_ Pedagogy Q100,scope_paper2_source_match,moved_to_ctet2,1772,ctet2
+2190,CTET Bank Hindi Language_ Pedagogy Q101,scope_paper2_source_match,moved_to_ctet2,1773,ctet2
+2191,CTET Bank Hindi Language_ Pedagogy Q102,scope_paper2_source_match,moved_to_ctet2,1774,ctet2
+2192,CTET Bank Hindi Language_ Pedagogy Q103,scope_paper2_source_match,moved_to_ctet2,1775,ctet2
+2193,CTET Bank Hindi Language_ Pedagogy Q104,scope_paper2_source_match,moved_to_ctet2,1776,ctet2
+2194,CTET Bank Hindi Language_ Pedagogy Q105,scope_paper2_source_match,moved_to_ctet2,1777,ctet2
+2195,CTET Bank Hindi Language_ Pedagogy Q106,scope_paper2_source_match,moved_to_ctet2,1778,ctet2
+2196,CTET Bank Hindi Language_ Pedagogy Q107,scope_paper2_source_match,moved_to_ctet2,1779,ctet2
+2197,CTET Bank Hindi Language_ Pedagogy Q109,scope_paper2_source_match,moved_to_ctet2,1780,ctet2
+2198,CTET Bank Hindi Language_ Pedagogy Q110,scope_paper2_source_match,moved_to_ctet2,1781,ctet2
+2199,CTET Bank Hindi Language_ Pedagogy Q111,scope_paper2_source_match,moved_to_ctet2,1782,ctet2
+2201,CTET Bank Hindi Language_ Pedagogy Q113,scope_paper2_source_match,moved_to_ctet2,1784,ctet2
+2202,CTET Bank Hindi Language_ Pedagogy Q114,scope_paper2_source_match,moved_to_ctet2,1785,ctet2
+2203,CTET Bank Hindi Language_ Pedagogy Q115,scope_paper2_source_match,moved_to_ctet2,1786,ctet2
+2222,CTET Bank Hindi Language_ Pedagogy Q134,scope_paper2_source_match,moved_to_ctet2,1805,ctet2
+2223,CTET Bank Hindi Language_ Pedagogy Q135,scope_paper2_source_match,moved_to_ctet2,1806,ctet2
+2224,CTET Bank Hindi Language_ Pedagogy Q136,scope_paper2_source_match,moved_to_ctet2,1807,ctet2
+2225,CTET Bank Hindi Language_ Pedagogy Q137,scope_paper2_source_match,moved_to_ctet2,1808,ctet2
+2226,CTET Bank Hindi Language_ Pedagogy Q138,scope_paper2_source_match,moved_to_ctet2,1809,ctet2
+2227,CTET Bank Hindi Language_ Pedagogy Q139,scope_paper2_source_match,moved_to_ctet2,1810,ctet2
+2228,CTET Bank Hindi Language_ Pedagogy Q140,scope_paper2_source_match,moved_to_ctet2,1811,ctet2
+2231,CTET Bank Hindi Language_ Pedagogy Q143,scope_paper2_source_match,moved_to_ctet2,1814,ctet2
+2232,CTET Bank Hindi Language_ Pedagogy Q144,scope_paper2_source_match,moved_to_ctet2,1815,ctet2
+2233,CTET Bank Hindi Language_ Pedagogy Q145,scope_paper2_source_match,moved_to_ctet2,1816,ctet2
+2234,CTET Bank Hindi Language_ Pedagogy Q146,scope_paper2_source_match,moved_to_ctet2,1817,ctet2
+2237,CTET Bank Hindi Language_ Pedagogy Q1 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1820,ctet1
+2238,CTET Bank Hindi Language_ Pedagogy Q2 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1821,ctet1
+2239,CTET Bank Hindi Language_ Pedagogy Q3 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1822,ctet1
+2240,CTET Bank Hindi Language_ Pedagogy Q4 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1823,ctet1
+2241,CTET Bank Hindi Language_ Pedagogy Q5 [UP Aided J.H.S. Assistant Teacher 2021],scope_non_ctet_exam,unchanged_by_user_request,1824,ctet1
+2242,CTET Bank Hindi Language_ Pedagogy Q6,scope_paper2_visible,moved_to_ctet2,1825,ctet2
+2243,CTET Bank Hindi Language_ Pedagogy Q7,scope_paper2_visible,moved_to_ctet2,1826,ctet2
+2244,CTET Bank Hindi Language_ Pedagogy Q8,scope_paper2_visible,moved_to_ctet2,1827,ctet2
+2245,CTET Bank Hindi Language_ Pedagogy Q9,scope_paper2_visible,moved_to_ctet2,1828,ctet2
+2246,CTET Bank Hindi Language_ Pedagogy Q10,scope_paper2_visible,moved_to_ctet2,1829,ctet2
+2247,CTET Bank Hindi Language_ Pedagogy Q12,scope_paper2_visible,moved_to_ctet2,1830,ctet2
+2248,CTET Bank Hindi Language_ Pedagogy Q13,scope_paper2_visible,moved_to_ctet2,1831,ctet2
+2249,CTET Bank Hindi Language_ Pedagogy Q14,scope_paper2_source_match,moved_to_ctet2,1832,ctet2
+2250,CTET Bank Hindi Language_ Pedagogy Q15,scope_paper2_source_match,moved_to_ctet2,1833,ctet2
+2252,CTET Bank Hindi Language_ Pedagogy Q17,scope_paper2_source_match,moved_to_ctet2,1835,ctet2
+2253,CTET Bank Hindi Language_ Pedagogy Q18,scope_paper2_source_match,moved_to_ctet2,1836,ctet2
+2254,CTET Bank Hindi Language_ Pedagogy Q19,scope_paper2_source_match,moved_to_ctet2,1837,ctet2
+2261,CTET Bank Hindi Language_ Pedagogy Q2,scope_paper2_visible,moved_to_ctet2,1844,ctet2
+2262,CTET Bank Hindi Language_ Pedagogy Q3,scope_paper2_visible,moved_to_ctet2,1845,ctet2
+2263,CTET Bank Hindi Language_ Pedagogy Q4,scope_paper2_visible,moved_to_ctet2,1846,ctet2
+2264,CTET Bank Hindi Language_ Pedagogy Q5,scope_paper2_visible,moved_to_ctet2,1847,ctet2
+2268,CTET Bank Hindi Language_ Pedagogy Q9,scope_paper2_source_match,moved_to_ctet2,1851,ctet2
+2269,CTET Bank Hindi Language_ Pedagogy Q10,scope_paper2_source_match,moved_to_ctet2,1852,ctet2
+2271,CTET Bank Hindi Language_ Pedagogy Q12,scope_paper2_source_match,moved_to_ctet2,1854,ctet2
+2272,CTET Bank Hindi Language_ Pedagogy Q13,scope_paper2_source_match,moved_to_ctet2,1855,ctet2
+2273,CTET Bank Hindi Language_ Pedagogy Q14,scope_paper2_source_match,moved_to_ctet2,1856,ctet2
+2274,CTET Bank Hindi Language_ Pedagogy Q15,scope_paper2_source_match,moved_to_ctet2,1857,ctet2
+2275,CTET Bank Hindi Language_ Pedagogy Q16,scope_paper2_source_match,moved_to_ctet2,1858,ctet2
+2276,CTET Bank Hindi Language_ Pedagogy Q17,scope_paper2_source_match,moved_to_ctet2,1859,ctet2
+2277,CTET Bank Hindi Language_ Pedagogy Q18,scope_paper2_source_match,moved_to_ctet2,1860,ctet2
+2278,CTET Bank Hindi Language_ Pedagogy Q19,scope_paper2_source_match,moved_to_ctet2,1861,ctet2
+2292,"CTET Bank Hindi Language_ Pedagogy Q33 [CTET II Paper (VI–VIII) भाषा–2, Nov.–2012]",scope_paper2_visible,moved_to_ctet2,1875,ctet2
+2292,"CTET Bank Hindi Language_ Pedagogy Q33 [CTET II Paper (VI–VIII) भाषा–2, Nov.–2012]",pyq_year_missing,repaired,1875,ctet2
+2293,"CTET Bank Hindi Language_ Pedagogy Q34 [CTET II Paper (VI–VIII) भाषा–2, Nov.–2012]",scope_paper2_visible,moved_to_ctet2,1876,ctet2
+2293,"CTET Bank Hindi Language_ Pedagogy Q34 [CTET II Paper (VI–VIII) भाषा–2, Nov.–2012]",pyq_year_missing,repaired,1876,ctet2
+2296,"CTET Bank Hindi Language_ Pedagogy Q37 [CTET II-Paper (VI–VIII) भाषा–2, Feb.-2016]",scope_paper2_visible,moved_to_ctet2,1879,ctet2
+2296,"CTET Bank Hindi Language_ Pedagogy Q37 [CTET II-Paper (VI–VIII) भाषा–2, Feb.-2016]",pyq_year_missing,repaired,1879,ctet2
+2298,"CTET Bank Hindi Language_ Pedagogy Q39 [CTET II-Paper (VI–VIII) भाषा–2, Feb.-2016]",scope_paper2_visible,moved_to_ctet2,1881,ctet2
+2298,"CTET Bank Hindi Language_ Pedagogy Q39 [CTET II-Paper (VI–VIII) भाषा–2, Feb.-2016]",pyq_year_missing,repaired,1881,ctet2
+2302,"CTET Bank Hindi Language_ Pedagogy Q43 [CTET II-Paper (VI–VIII) भाषा–2, Feb.-2016]",scope_paper2_visible,moved_to_ctet2,1885,ctet2
+2302,"CTET Bank Hindi Language_ Pedagogy Q43 [CTET II-Paper (VI–VIII) भाषा–2, Feb.-2016]",pyq_year_missing,repaired,1885,ctet2
+2309,CTET Bank Hindi Language_ Pedagogy Q50,scope_paper2_source_match,moved_to_ctet2,1892,ctet2
+2312,CTET Bank Hindi Language_ Pedagogy Q3,scope_paper2_visible,moved_to_ctet2,1895,ctet2
+2324,CTET Bank Hindi Language_ Pedagogy Q15,scope_paper2_source_match,moved_to_ctet2,1907,ctet2
+2325,CTET Bank Hindi Language_ Pedagogy Q16,scope_paper2_source_match,moved_to_ctet2,1908,ctet2
+2326,CTET Bank Hindi Language_ Pedagogy Q17,scope_paper2_source_match,moved_to_ctet2,1909,ctet2
+2327,CTET Bank Hindi Language_ Pedagogy Q18,scope_paper2_source_match,moved_to_ctet2,1910,ctet2
+2328,CTET Bank Hindi Language_ Pedagogy Q19,scope_paper2_source_match,moved_to_ctet2,1911,ctet2
+2329,CTET Bank Hindi Language_ Pedagogy Q20,scope_paper2_source_match,moved_to_ctet2,1912,ctet2
+2330,CTET Bank Hindi Language_ Pedagogy Q21,scope_paper2_source_match,moved_to_ctet2,1913,ctet2
+2331,CTET Bank Hindi Language_ Pedagogy Q22,scope_paper2_source_match,moved_to_ctet2,1914,ctet2
+2332,CTET Bank Hindi Language_ Pedagogy Q23,scope_paper2_source_match,moved_to_ctet2,1915,ctet2
+2333,CTET Bank Hindi Language_ Pedagogy Q24,scope_paper2_source_match,moved_to_ctet2,1916,ctet2
+2334,CTET Bank Hindi Language_ Pedagogy Q25,scope_paper2_source_match,moved_to_ctet2,1917,ctet2
+2335,CTET Bank Hindi Language_ Pedagogy Q26,scope_paper2_source_match,moved_to_ctet2,1918,ctet2
+2336,CTET Bank Hindi Language_ Pedagogy Q27,scope_paper2_source_match,moved_to_ctet2,1919,ctet2
+2337,CTET Bank Hindi Language_ Pedagogy Q28,scope_paper2_source_match,moved_to_ctet2,1920,ctet2
+2338,CTET Bank Hindi Language_ Pedagogy Q29,scope_paper2_source_match,moved_to_ctet2,1921,ctet2
+2339,CTET Bank Hindi Language_ Pedagogy Q30,scope_paper2_source_match,moved_to_ctet2,1922,ctet2
+2340,CTET Bank Hindi Language_ Pedagogy Q31,scope_paper2_source_match,moved_to_ctet2,1923,ctet2
+2341,CTET Bank Hindi Language_ Pedagogy Q32,scope_paper2_source_match,moved_to_ctet2,1924,ctet2
+2342,CTET Bank Hindi Language_ Pedagogy Q33,scope_paper2_source_match,moved_to_ctet2,1925,ctet2
+2343,CTET Bank Hindi Language_ Pedagogy Q34,scope_paper2_source_match,moved_to_ctet2,1926,ctet2
+2344,CTET Bank Hindi Language_ Pedagogy Q35,scope_paper2_source_match,moved_to_ctet2,1927,ctet2
+2345,CTET Bank Hindi Language_ Pedagogy Q36,scope_paper2_source_match,moved_to_ctet2,1928,ctet2
+2346,CTET Bank Hindi Language_ Pedagogy Q37,scope_paper2_source_match,moved_to_ctet2,1929,ctet2
+2347,CTET Bank Hindi Language_ Pedagogy Q38,scope_paper2_source_match,moved_to_ctet2,1930,ctet2
+2348,CTET Bank Hindi Language_ Pedagogy Q39,scope_paper2_source_match,moved_to_ctet2,1931,ctet2
+2349,CTET Bank Hindi Language_ Pedagogy Q40,scope_paper2_source_match,moved_to_ctet2,1932,ctet2
+2350,CTET Bank Hindi Language_ Pedagogy Q41,scope_paper2_source_match,moved_to_ctet2,1933,ctet2
+2363,CTET Bank Hindi Language_ Pedagogy Q54,scope_paper2_source_match,moved_to_ctet2,1946,ctet2
+2364,CTET Bank Hindi Language_ Pedagogy Q55,scope_paper2_source_match,moved_to_ctet2,1947,ctet2
+2367,CTET Bank Hindi Language_ Pedagogy Q58,scope_paper2_source_match,moved_to_ctet2,1950,ctet2
+2369,"CTET Bank Hindi Language_ Pedagogy Q60 [CTET II Paper (VI–VII) भाषा–2, Nov.–2012]",scope_paper2_visible,moved_to_ctet2,1952,ctet2
+2369,"CTET Bank Hindi Language_ Pedagogy Q60 [CTET II Paper (VI–VII) भाषा–2, Nov.–2012]",pyq_year_missing,repaired,1952,ctet2
+2371,"CTET Bank Hindi Language_ Pedagogy Q62 [CTET II Paper (VI–VII) भाषा–2, Nov.–2012]",scope_paper2_visible,moved_to_ctet2,1954,ctet2
+2371,"CTET Bank Hindi Language_ Pedagogy Q62 [CTET II Paper (VI–VII) भाषा–2, Nov.–2012]",pyq_year_missing,repaired,1954,ctet2
+2376,CTET Bank Hindi Language_ Pedagogy Q67 [CTET I-Paper (VI-VII) भाषा–I Sept. 2016],scope_paper2_visible,moved_to_ctet2,1959,ctet2
+2376,CTET Bank Hindi Language_ Pedagogy Q67 [CTET I-Paper (VI-VII) भाषा–I Sept. 2016],pyq_year_missing,repaired,1959,ctet2
+2380,CTET Bank Hindi Language_ Pedagogy Q71,scope_paper2_source_match,moved_to_ctet2,1963,ctet2
+2381,CTET Bank Hindi Language_ Pedagogy Q72,scope_paper2_source_match,moved_to_ctet2,1964,ctet2
+2382,CTET Bank Hindi Language_ Pedagogy Q73,scope_paper2_source_match,moved_to_ctet2,1965,ctet2
+2386,CTET Bank Hindi Language_ Pedagogy Q1,scope_paper2_visible,moved_to_ctet2,1969,ctet2
+2392,CTET Bank Hindi Language_ Pedagogy Q7,scope_paper2_source_match,moved_to_ctet2,1975,ctet2
+2393,CTET Bank Hindi Language_ Pedagogy Q8,scope_paper2_source_match,moved_to_ctet2,1976,ctet2
+2394,CTET Bank Hindi Language_ Pedagogy Q9,scope_paper2_source_match,moved_to_ctet2,1977,ctet2
+2402,CTET Bank Hindi Language_ Pedagogy Q17 [CTET II-Paper (VI-VII) भाषा–I Sept. 2016],scope_paper2_visible,moved_to_ctet2,1985,ctet2
+2402,CTET Bank Hindi Language_ Pedagogy Q17 [CTET II-Paper (VI-VII) भाषा–I Sept. 2016],pyq_year_missing,repaired,1985,ctet2
+2404,"CTET Bank Hindi Language_ Pedagogy Q19 [CTET II-Paper (VI–VIII) भाषा–2, Feb.-2016]",scope_paper2_visible,moved_to_ctet2,1987,ctet2
+2404,"CTET Bank Hindi Language_ Pedagogy Q19 [CTET II-Paper (VI–VIII) भाषा–2, Feb.-2016]",pyq_year_missing,repaired,1987,ctet2
+2405,"CTET Bank Hindi Language_ Pedagogy Q20 [CTET II-Paper (VI–VIII) भाषा–2, Feb.-2016]",scope_paper2_visible,moved_to_ctet2,1988,ctet2
+2405,"CTET Bank Hindi Language_ Pedagogy Q20 [CTET II-Paper (VI–VIII) भाषा–2, Feb.-2016]",pyq_year_missing,repaired,1988,ctet2
+2408,"CTET Bank Hindi Language_ Pedagogy Q23 [CTET II-Paper (VI–VIII) भाषा–2, Feb.-2016]",scope_paper2_visible,moved_to_ctet2,1991,ctet2
+2408,"CTET Bank Hindi Language_ Pedagogy Q23 [CTET II-Paper (VI–VIII) भाषा–2, Feb.-2016]",pyq_year_missing,repaired,1991,ctet2
+2414,CTET Bank Hindi Language_ Pedagogy Q1,scope_paper2_visible,moved_to_ctet2,1997,ctet2
+2416,CTET Bank Hindi Language_ Pedagogy Q3,scope_paper2_source_match,moved_to_ctet2,1999,ctet2
+2417,CTET Bank Hindi Language_ Pedagogy Q4,scope_paper2_source_match,moved_to_ctet2,2000,ctet2
+2418,CTET Bank Hindi Language_ Pedagogy Q5,scope_paper2_source_match,moved_to_ctet2,2001,ctet2
+2419,CTET Bank Hindi Language_ Pedagogy Q6,scope_paper2_source_match,moved_to_ctet2,2002,ctet2
+2420,CTET Bank Hindi Language_ Pedagogy Q7,scope_paper2_source_match,moved_to_ctet2,2003,ctet2
+2421,CTET Bank Hindi Language_ Pedagogy Q8,scope_paper2_source_match,moved_to_ctet2,2004,ctet2
+2422,CTET Bank Hindi Language_ Pedagogy Q9,scope_paper2_source_match,moved_to_ctet2,2005,ctet2
+2423,CTET Bank Hindi Language_ Pedagogy Q10,scope_paper2_source_match,moved_to_ctet2,2006,ctet2
+2424,CTET Bank Hindi Language_ Pedagogy Q11,scope_paper2_source_match,moved_to_ctet2,2007,ctet2
+2426,CTET Bank Hindi Language_ Pedagogy Q13,scope_paper2_source_match,moved_to_ctet2,2009,ctet2
+2431,CTET Bank Hindi Language_ Pedagogy Q18,scope_paper2_source_match,moved_to_ctet2,2014,ctet2
+2432,CTET Bank Hindi Language_ Pedagogy Q19,scope_paper2_source_match,moved_to_ctet2,2015,ctet2
+2433,CTET Bank Hindi Language_ Pedagogy Q20,scope_paper2_source_match,moved_to_ctet2,2016,ctet2
+2440,CTET Bank Hindi Language_ Pedagogy Q27 [CTET II-Paper (VI-VII) भाषा–I Sept. 2016],scope_paper2_visible,moved_to_ctet2,2023,ctet2
+2440,CTET Bank Hindi Language_ Pedagogy Q27 [CTET II-Paper (VI-VII) भाषा–I Sept. 2016],pyq_year_missing,repaired,2023,ctet2
+2441,CTET Bank Hindi Language_ Pedagogy Q28 [CTET II-Paper (VI-VII) भाषा–I Sept. 2016],scope_paper2_visible,moved_to_ctet2,2024,ctet2
+2441,CTET Bank Hindi Language_ Pedagogy Q28 [CTET II-Paper (VI-VII) भाषा–I Sept. 2016],pyq_year_missing,repaired,2024,ctet2
+2443,"CTET Bank Hindi Language_ Pedagogy Q30 [CTET II-Paper (VI–VIII) भाषा–2, Feb.-2016]",scope_paper2_visible,moved_to_ctet2,2026,ctet2
+2443,"CTET Bank Hindi Language_ Pedagogy Q30 [CTET II-Paper (VI–VIII) भाषा–2, Feb.-2016]",pyq_year_missing,repaired,2026,ctet2
+2444,"CTET Bank Hindi Language_ Pedagogy Q31 [CTET II-Paper (VI–VIII) भाषा–2, Feb.-2016]",scope_paper2_visible,moved_to_ctet2,2027,ctet2
+2444,"CTET Bank Hindi Language_ Pedagogy Q31 [CTET II-Paper (VI–VIII) भाषा–2, Feb.-2016]",pyq_year_missing,repaired,2027,ctet2
+2445,"CTET Bank Hindi Language_ Pedagogy Q32 [CTET II-Paper (VI–VIII) भाषा–2, Feb.-2016]",scope_paper2_visible,moved_to_ctet2,2028,ctet2
+2445,"CTET Bank Hindi Language_ Pedagogy Q32 [CTET II-Paper (VI–VIII) भाषा–2, Feb.-2016]",pyq_year_missing,repaired,2028,ctet2
+2446,"CTET Bank Hindi Language_ Pedagogy Q33 [CTET II-Paper (VI–VIII) भाषा–2, Feb.-2016]",scope_paper2_visible,moved_to_ctet2,2029,ctet2
+2446,"CTET Bank Hindi Language_ Pedagogy Q33 [CTET II-Paper (VI–VIII) भाषा–2, Feb.-2016]",pyq_year_missing,repaired,2029,ctet2
+2464,CTET Bank Hindi Language_ Pedagogy Q51 [CTET II-Paper (VI-VII) भाषा–I Sept. 2016],scope_paper2_visible,moved_to_ctet2,2047,ctet2
+2464,CTET Bank Hindi Language_ Pedagogy Q51 [CTET II-Paper (VI-VII) भाषा–I Sept. 2016],pyq_year_missing,repaired,2047,ctet2
+2465,CTET Bank Hindi Language_ Pedagogy Q52 [CTET II-Paper (VI-VII) भाषा–I Sept. 2016],scope_paper2_visible,moved_to_ctet2,2048,ctet2
+2465,CTET Bank Hindi Language_ Pedagogy Q52 [CTET II-Paper (VI-VII) भाषा–I Sept. 2016],pyq_year_missing,repaired,2048,ctet2
+2467,"CTET Bank Hindi Language_ Pedagogy Q54 [CTET II-Paper (VI–VIII) भाषा–2, Feb.-2016]",scope_paper2_visible,moved_to_ctet2,2050,ctet2
+2467,"CTET Bank Hindi Language_ Pedagogy Q54 [CTET II-Paper (VI–VIII) भाषा–2, Feb.-2016]",pyq_year_missing,repaired,2050,ctet2
+2476,CTET Bank Hindi Language_ Pedagogy Q2,scope_paper2_visible,moved_to_ctet2,2059,ctet2
+2477,CTET Bank Hindi Language_ Pedagogy Q3,scope_paper2_visible,moved_to_ctet2,2060,ctet2
+2478,CTET Bank Hindi Language_ Pedagogy Q4,scope_paper2_visible,moved_to_ctet2,2061,ctet2
+2479,CTET Bank Hindi Language_ Pedagogy Q5,scope_paper2_source_match,moved_to_ctet2,2062,ctet2
+2480,CTET Bank Hindi Language_ Pedagogy Q6,scope_paper2_source_match,moved_to_ctet2,2063,ctet2
+2481,CTET Bank Hindi Language_ Pedagogy Q7,scope_paper2_source_match,moved_to_ctet2,2064,ctet2
+2482,CTET Bank Hindi Language_ Pedagogy Q8,scope_paper2_source_match,moved_to_ctet2,2065,ctet2
+2520,CTET Bank Hindi Language_ Pedagogy Q47,scope_paper2_source_match,moved_to_ctet2,2103,ctet2
+2524,"CTET Bank Hindi Language_ Pedagogy Q51 [CTET II Paper (VI–VIII) भाषा–2, Nov.–2012]",scope_paper2_visible,moved_to_ctet2,2107,ctet2
+2524,"CTET Bank Hindi Language_ Pedagogy Q51 [CTET II Paper (VI–VIII) भाषा–2, Nov.–2012]",pyq_year_missing,repaired,2107,ctet2
+2526,"CTET Bank Hindi Language_ Pedagogy Q53 [CTET II Paper (VI–VII) भाषा–2, Nov.–2012]",scope_paper2_visible,moved_to_ctet2,2109,ctet2
+2526,"CTET Bank Hindi Language_ Pedagogy Q53 [CTET II Paper (VI–VII) भाषा–2, Nov.–2012]",pyq_year_missing,repaired,2109,ctet2
+2527,"CTET Bank Hindi Language_ Pedagogy Q54 [CTET II Paper (VI–VIII) भाषा–2, Nov.–2012]",scope_paper2_visible,moved_to_ctet2,2110,ctet2
+2527,"CTET Bank Hindi Language_ Pedagogy Q54 [CTET II Paper (VI–VIII) भाषा–2, Nov.–2012]",pyq_year_missing,repaired,2110,ctet2
+2543,"CTET Bank Hindi Language_ Pedagogy Q70 [CTET II-Paper (VI–VIII) भाषा–2, Feb.-2016]",scope_paper2_visible,moved_to_ctet2,2126,ctet2
+2543,"CTET Bank Hindi Language_ Pedagogy Q70 [CTET II-Paper (VI–VIII) भाषा–2, Feb.-2016]",pyq_year_missing,repaired,2126,ctet2
+2547,"CTET Bank Hindi Language_ Pedagogy Q74 [CTET II Paper (VI–VII) भाषा–2, Nov.–2012]",scope_paper2_visible,moved_to_ctet2,2130,ctet2
+2547,"CTET Bank Hindi Language_ Pedagogy Q74 [CTET II Paper (VI–VII) भाषा–2, Nov.–2012]",pyq_year_missing,repaired,2130,ctet2
+2548,"CTET Bank Hindi Language_ Pedagogy Q75 [CTET II Paper (VI–VII) भाषा–2, Nov.–2012]",scope_paper2_visible,moved_to_ctet2,2131,ctet2
+2548,"CTET Bank Hindi Language_ Pedagogy Q75 [CTET II Paper (VI–VII) भाषा–2, Nov.–2012]",pyq_year_missing,repaired,2131,ctet2
+2552,CTET Bank Hindi Language_ Pedagogy Q79,scope_paper2_source_match,moved_to_ctet2,2135,ctet2
+2566,CTET Bank Hindi Language_ Pedagogy Q3,scope_paper2_visible,moved_to_ctet2,2149,ctet2
+2574,CTET Bank Hindi Language_ Pedagogy Q11,scope_paper2_source_match,moved_to_ctet2,2157,ctet2
+2575,CTET Bank Hindi Language_ Pedagogy Q12,scope_paper2_source_match,moved_to_ctet2,2158,ctet2
+2576,CTET Bank Hindi Language_ Pedagogy Q13,scope_paper2_source_match,moved_to_ctet2,2159,ctet2
+2577,CTET Bank Hindi Language_ Pedagogy Q14,scope_paper2_source_match,moved_to_ctet2,2160,ctet2
+2578,CTET Bank Hindi Language_ Pedagogy Q15,scope_paper2_source_match,moved_to_ctet2,2161,ctet2
+2579,CTET Bank Hindi Language_ Pedagogy Q16,scope_paper2_source_match,moved_to_ctet2,2162,ctet2
+2580,CTET Bank Hindi Language_ Pedagogy Q17,scope_paper2_source_match,moved_to_ctet2,2163,ctet2
+2581,CTET Bank Hindi Language_ Pedagogy Q18,scope_paper2_source_match,moved_to_ctet2,2164,ctet2
+2582,CTET Bank Hindi Language_ Pedagogy Q19,scope_paper2_source_match,moved_to_ctet2,2165,ctet2
+2583,CTET Bank Hindi Language_ Pedagogy Q20,scope_paper2_source_match,moved_to_ctet2,2166,ctet2
+2584,CTET Bank Hindi Language_ Pedagogy Q21,scope_paper2_source_match,moved_to_ctet2,2167,ctet2
+2585,CTET Bank Hindi Language_ Pedagogy Q22,scope_paper2_source_match,moved_to_ctet2,2168,ctet2
+2586,CTET Bank Hindi Language_ Pedagogy Q23,scope_paper2_source_match,moved_to_ctet2,2169,ctet2
+2587,CTET Bank Hindi Language_ Pedagogy Q24,scope_paper2_source_match,moved_to_ctet2,2170,ctet2
+2588,CTET Bank Hindi Language_ Pedagogy Q25,scope_paper2_source_match,moved_to_ctet2,2171,ctet2
+2589,CTET Bank Hindi Language_ Pedagogy Q26,scope_paper2_source_match,moved_to_ctet2,2172,ctet2
+2590,CTET Bank Hindi Language_ Pedagogy Q27,scope_paper2_source_match,moved_to_ctet2,2173,ctet2
+2596,CTET Bank Hindi Language_ Pedagogy Q33 [CTET I-Paper (VI-VII) भाषा–I Sept. 2016],scope_paper2_visible,moved_to_ctet2,2179,ctet2
+2596,CTET Bank Hindi Language_ Pedagogy Q33 [CTET I-Paper (VI-VII) भाषा–I Sept. 2016],pyq_year_missing,repaired,2179,ctet2
+2597,"CTET Bank Hindi Language_ Pedagogy Q34 [CTET II Paper (VI–VII) भाषा–2, Nov.–2012]",scope_paper2_visible,moved_to_ctet2,2180,ctet2
+2597,"CTET Bank Hindi Language_ Pedagogy Q34 [CTET II Paper (VI–VII) भाषा–2, Nov.–2012]",pyq_year_missing,repaired,2180,ctet2
+2601,"CTET Bank Hindi Language_ Pedagogy Q38 [CTET II Paper (VI–VII) भाषा–2, Nov.–2012]",scope_paper2_visible,moved_to_ctet2,2184,ctet2
+2601,"CTET Bank Hindi Language_ Pedagogy Q38 [CTET II Paper (VI–VII) भाषा–2, Nov.–2012]",pyq_year_missing,repaired,2184,ctet2
+2602,"CTET Bank Hindi Language_ Pedagogy Q39 [CTET II Paper (VI–VII) भाषा–2, Nov.–2012]",scope_paper2_visible,moved_to_ctet2,2185,ctet2
+2602,"CTET Bank Hindi Language_ Pedagogy Q39 [CTET II Paper (VI–VII) भाषा–2, Nov.–2012]",pyq_year_missing,repaired,2185,ctet2
+2607,CTET Bank Hindi Language_ Pedagogy Q44 [CTET I-Paper (VI-VII) भाषा–I Sept. 2016],scope_paper2_visible,moved_to_ctet2,2190,ctet2
+2607,CTET Bank Hindi Language_ Pedagogy Q44 [CTET I-Paper (VI-VII) भाषा–I Sept. 2016],pyq_year_missing,repaired,2190,ctet2
+2614,CTET Bank Hindi Language_ Pedagogy Q51 [CTET I-Paper (VI-VII) भाषा–I Sept. 2016],scope_paper2_visible,moved_to_ctet2,2197,ctet2
+2614,CTET Bank Hindi Language_ Pedagogy Q51 [CTET I-Paper (VI-VII) भाषा–I Sept. 2016],pyq_year_missing,repaired,2197,ctet2
+2634,"CTET Bank Hindi Language_ Pedagogy Q72 [CTET II Paper (VI–VII) भाषा–2, Nov.–2012]",scope_paper2_visible,moved_to_ctet2,2217,ctet2
+2634,"CTET Bank Hindi Language_ Pedagogy Q72 [CTET II Paper (VI–VII) भाषा–2, Nov.–2012]",pyq_year_missing,repaired,2217,ctet2
+2636,"CTET Bank Hindi Language_ Pedagogy Q74 [CTET II Paper (VI–VII) भाषा–2, Nov.–2012]",scope_paper2_visible,moved_to_ctet2,2219,ctet2
+2636,"CTET Bank Hindi Language_ Pedagogy Q74 [CTET II Paper (VI–VII) भाषा–2, Nov.–2012]",pyq_year_missing,repaired,2219,ctet2
+2637,"CTET Bank Hindi Language_ Pedagogy Q75 [CTET II Paper (VI–VII) भाषा–2, Nov.–2012]",scope_paper2_visible,moved_to_ctet2,2220,ctet2
+2637,"CTET Bank Hindi Language_ Pedagogy Q75 [CTET II Paper (VI–VII) भाषा–2, Nov.–2012]",pyq_year_missing,repaired,2220,ctet2
+2644,CTET Bank Hindi Language_ Pedagogy Q82 [CTET I-Paper (VI-VII) भाषा–I Sept. 2016],scope_paper2_visible,moved_to_ctet2,2227,ctet2
+2644,CTET Bank Hindi Language_ Pedagogy Q82 [CTET I-Paper (VI-VII) भाषा–I Sept. 2016],pyq_year_missing,repaired,2227,ctet2
+2645,CTET Bank Hindi Language_ Pedagogy Q83 [CTET I-Paper (VI-VII) भाषा–I Sept. 2016],scope_paper2_visible,moved_to_ctet2,2228,ctet2
+2645,CTET Bank Hindi Language_ Pedagogy Q83 [CTET I-Paper (VI-VII) भाषा–I Sept. 2016],pyq_year_missing,repaired,2228,ctet2
+2646,CTET Bank Hindi Language_ Pedagogy Q84 [CTET I-Paper (VI-VII) भाषा–I Sept. 2016],scope_paper2_visible,moved_to_ctet2,2229,ctet2
+2646,CTET Bank Hindi Language_ Pedagogy Q84 [CTET I-Paper (VI-VII) भाषा–I Sept. 2016],pyq_year_missing,repaired,2229,ctet2
+2647,CTET Bank Hindi Language_ Pedagogy Q85 [CTET I-Paper (VI-VII) भाषा–I Sept. 2016],scope_paper2_visible,moved_to_ctet2,2230,ctet2
+2647,CTET Bank Hindi Language_ Pedagogy Q85 [CTET I-Paper (VI-VII) भाषा–I Sept. 2016],pyq_year_missing,repaired,2230,ctet2
+2649,"CTET Bank Hindi Language_ Pedagogy Q87 [CTET II-Paper (VI–VIII) भाषा–2, Feb.-2016]",scope_paper2_visible,moved_to_ctet2,2232,ctet2
+2649,"CTET Bank Hindi Language_ Pedagogy Q87 [CTET II-Paper (VI–VIII) भाषा–2, Feb.-2016]",pyq_year_missing,repaired,2232,ctet2
+2652,"CTET Bank Hindi Language_ Pedagogy Q90 [CTET II-Paper (VI–VIII) भाषा–2, Feb.-2016]",scope_paper2_visible,moved_to_ctet2,2235,ctet2
+2652,"CTET Bank Hindi Language_ Pedagogy Q90 [CTET II-Paper (VI–VIII) भाषा–2, Feb.-2016]",pyq_year_missing,repaired,2235,ctet2
+2654,CTET Bank Hindi Language_ Pedagogy Q92,scope_paper2_source_match,moved_to_ctet2,2237,ctet2
+2655,CTET Bank Hindi Language_ Pedagogy Q93,scope_paper2_source_match,moved_to_ctet2,2238,ctet2
+2669,CTET Bank Hindi Language_ Pedagogy Q9,scope_paper2_source_match,moved_to_ctet2,2252,ctet2
+2670,CTET Bank Hindi Language_ Pedagogy Q10,scope_paper2_source_match,moved_to_ctet2,2253,ctet2
+2671,CTET Bank Hindi Language_ Pedagogy Q11,scope_paper2_source_match,moved_to_ctet2,2254,ctet2
+2672,CTET Bank Hindi Language_ Pedagogy Q12,scope_paper2_source_match,moved_to_ctet2,2255,ctet2
+2673,CTET Bank Hindi Language_ Pedagogy Q13,scope_paper2_source_match,moved_to_ctet2,2256,ctet2
+2674,CTET Bank Hindi Language_ Pedagogy Q16,scope_paper2_source_match,moved_to_ctet2,2257,ctet2
+2675,CTET Bank Hindi Language_ Pedagogy Q17,scope_paper2_source_match,moved_to_ctet2,2258,ctet2
+2676,CTET Bank Hindi Language_ Pedagogy Q18,scope_paper2_source_match,moved_to_ctet2,2259,ctet2
+2678,CTET Bank Hindi Language_ Pedagogy Q20,scope_paper2_source_match,moved_to_ctet2,2261,ctet2
+2679,CTET Bank Hindi Language_ Pedagogy Q21,scope_paper2_source_match,moved_to_ctet2,2262,ctet2
+2680,CTET Bank Hindi Language_ Pedagogy Q22,scope_paper2_source_match,moved_to_ctet2,2263,ctet2
+2681,CTET Bank Hindi Language_ Pedagogy Q23,scope_paper2_source_match,moved_to_ctet2,2264,ctet2
+2682,CTET Bank Hindi Language_ Pedagogy Q24,scope_paper2_source_match,moved_to_ctet2,2265,ctet2
+2683,CTET Bank Hindi Language_ Pedagogy Q25,scope_paper2_source_match,moved_to_ctet2,2266,ctet2
+2684,CTET Bank Hindi Language_ Pedagogy Q26,scope_paper2_source_match,moved_to_ctet2,2267,ctet2
+2685,CTET Bank Hindi Language_ Pedagogy Q27,scope_paper2_source_match,moved_to_ctet2,2268,ctet2
+2686,CTET Bank Hindi Language_ Pedagogy Q28,scope_paper2_source_match,moved_to_ctet2,2269,ctet2
+2687,CTET Bank Hindi Language_ Pedagogy Q29,scope_paper2_source_match,moved_to_ctet2,2270,ctet2
+2688,CTET Bank Hindi Language_ Pedagogy Q30,scope_paper2_source_match,moved_to_ctet2,2271,ctet2
+2689,CTET Bank Hindi Language_ Pedagogy Q31,scope_paper2_source_match,moved_to_ctet2,2272,ctet2
+2690,CTET Bank Hindi Language_ Pedagogy Q32,scope_paper2_source_match,moved_to_ctet2,2273,ctet2
+2691,CTET Bank Hindi Language_ Pedagogy Q33,scope_paper2_source_match,moved_to_ctet2,2274,ctet2
+2693,CTET Bank Hindi Language_ Pedagogy Q35,scope_paper2_source_match,moved_to_ctet2,2276,ctet2
+2694,CTET Bank Hindi Language_ Pedagogy Q36,scope_paper2_source_match,moved_to_ctet2,2277,ctet2
+2695,CTET Bank Hindi Language_ Pedagogy Q37,scope_paper2_source_match,moved_to_ctet2,2278,ctet2
+2704,CTET Bank Hindi Language_ Pedagogy Q46,scope_paper2_source_match,moved_to_ctet2,2287,ctet2
+2711,"CTET Bank Hindi Language_ Pedagogy Q53 [CTET II-Paper (VI–VIII) भाषा–2, Feb.-2016]",scope_paper2_visible,moved_to_ctet2,2294,ctet2
+2711,"CTET Bank Hindi Language_ Pedagogy Q53 [CTET II-Paper (VI–VIII) भाषा–2, Feb.-2016]",pyq_year_missing,repaired,2294,ctet2
+2718,CTET Bank Hindi Language_ Pedagogy Q2,scope_paper2_visible,moved_to_ctet2,2301,ctet2
+2719,CTET Bank Hindi Language_ Pedagogy Q3,scope_paper2_source_match,moved_to_ctet2,2302,ctet2
+2720,CTET Bank Hindi Language_ Pedagogy Q4,scope_paper2_source_match,moved_to_ctet2,2303,ctet2
+2721,CTET Bank Hindi Language_ Pedagogy Q5,scope_paper2_source_match,moved_to_ctet2,2304,ctet2
+2722,CTET Bank Hindi Language_ Pedagogy Q6,scope_paper2_source_match,moved_to_ctet2,2305,ctet2
+2763,CTET Bank Hindi Language_ Pedagogy Q1,scope_paper2_visible,moved_to_ctet2,2345,ctet2
+2764,CTET Bank Hindi Language_ Pedagogy Q2,scope_paper2_visible,moved_to_ctet2,2346,ctet2
+2764,CTET Bank Hindi Language_ Pedagogy Q2,unrelated_preamble_or_ocr_garbage,repaired,2346,ctet2
+2771,CTET Bank Hindi Language_ Pedagogy Q9,scope_paper2_source_match,moved_to_ctet2,2353,ctet2
+2891,CTET Bank Hindi Language_ Pedagogy Q127,scope_paper2_source_match,moved_to_ctet2,2473,ctet2
+2892,CTET Bank Hindi Language_ Pedagogy Q128,scope_paper2_source_match,moved_to_ctet2,2474,ctet2
+2893,CTET Bank Hindi Language_ Pedagogy Q129,scope_paper2_source_match,moved_to_ctet2,2475,ctet2
+2894,CTET Bank Hindi Language_ Pedagogy Q130,scope_paper2_source_match,moved_to_ctet2,2476,ctet2
+2895,CTET Bank Hindi Language_ Pedagogy Q131,scope_paper2_source_match,moved_to_ctet2,2477,ctet2
+2896,CTET Bank Hindi Language_ Pedagogy Q132 [CTET II-Paper (VI-VII) भाषा–I Sept. 2016],scope_paper2_visible,moved_to_ctet2,2478,ctet2
+2896,CTET Bank Hindi Language_ Pedagogy Q132 [CTET II-Paper (VI-VII) भाषा–I Sept. 2016],pyq_year_missing,repaired,2478,ctet2
+2897,CTET Bank Hindi Language_ Pedagogy Q133 [CTET II-Paper (VI-VII) भाषा–I Sept. 2016],scope_paper2_visible,moved_to_ctet2,2479,ctet2
+2897,CTET Bank Hindi Language_ Pedagogy Q133 [CTET II-Paper (VI-VII) भाषा–I Sept. 2016],pyq_year_missing,repaired,2479,ctet2
+2898,CTET Bank Hindi Language_ Pedagogy Q134 [CTET II-Paper (VI-VII) भाषा–I Sept. 2016],scope_paper2_visible,moved_to_ctet2,2480,ctet2
+2898,CTET Bank Hindi Language_ Pedagogy Q134 [CTET II-Paper (VI-VII) भाषा–I Sept. 2016],pyq_year_missing,repaired,2480,ctet2
+2899,CTET Bank Hindi Language_ Pedagogy Q135 [CTET II-Paper (VI-VII) भाषा–I Sept. 2016],scope_paper2_visible,moved_to_ctet2,2481,ctet2
+2899,CTET Bank Hindi Language_ Pedagogy Q135 [CTET II-Paper (VI-VII) भाषा–I Sept. 2016],pyq_year_missing,repaired,2481,ctet2
+2900,CTET Bank Hindi Language_ Pedagogy Q136 [CTET II-Paper (VI-VII) भाषा–I Sept. 2016],scope_paper2_visible,moved_to_ctet2,2482,ctet2
+2900,CTET Bank Hindi Language_ Pedagogy Q136 [CTET II-Paper (VI-VII) भाषा–I Sept. 2016],pyq_year_missing,repaired,2482,ctet2
+2901,CTET Bank Hindi Language_ Pedagogy Q137 [CTET II-Paper (VI-VII) भाषा–I Sept. 2016],scope_paper2_visible,moved_to_ctet2,2483,ctet2
+2901,CTET Bank Hindi Language_ Pedagogy Q137 [CTET II-Paper (VI-VII) भाषा–I Sept. 2016],pyq_year_missing,repaired,2483,ctet2
+2909,"CTET Bank Hindi Language_ Pedagogy Q145 [CTET II-Paper (VI–VIII) भाषा–2, Feb.-2016]",scope_paper2_visible,moved_to_ctet2,2491,ctet2
+2909,"CTET Bank Hindi Language_ Pedagogy Q145 [CTET II-Paper (VI–VIII) भाषा–2, Feb.-2016]",pyq_year_missing,repaired,2491,ctet2
+2910,"CTET Bank Hindi Language_ Pedagogy Q146 [CTET II-Paper (VI–VIII) भाषा–2, Feb.-2016]",scope_paper2_visible,moved_to_ctet2,2492,ctet2
+2910,"CTET Bank Hindi Language_ Pedagogy Q146 [CTET II-Paper (VI–VIII) भाषा–2, Feb.-2016]",pyq_year_missing,repaired,2492,ctet2
+2911,"CTET Bank Hindi Language_ Pedagogy Q147 [CTET II-Paper (VI–VIII) भाषा–2, Feb.-2016]",scope_paper2_visible,moved_to_ctet2,2493,ctet2
+2911,"CTET Bank Hindi Language_ Pedagogy Q147 [CTET II-Paper (VI–VIII) भाषा–2, Feb.-2016]",pyq_year_missing,repaired,2493,ctet2
+2912,"CTET Bank Hindi Language_ Pedagogy Q148 [CTET II-Paper (VI–VIII) भाषा–2, Feb.-2016]",scope_paper2_visible,moved_to_ctet2,2494,ctet2
+2912,"CTET Bank Hindi Language_ Pedagogy Q148 [CTET II-Paper (VI–VIII) भाषा–2, Feb.-2016]",pyq_year_missing,repaired,2494,ctet2
+2913,"CTET Bank Hindi Language_ Pedagogy Q149 [CTET II-Paper (VI–VIII) भाषा–2, Feb.-2016]",scope_paper2_visible,moved_to_ctet2,2495,ctet2
+2913,"CTET Bank Hindi Language_ Pedagogy Q149 [CTET II-Paper (VI–VIII) भाषा–2, Feb.-2016]",pyq_year_missing,repaired,2495,ctet2
+2914,"CTET Bank Hindi Language_ Pedagogy Q150 [CTET II-Paper (VI–VIII) भाषा–2, Feb.-2016]",scope_paper2_visible,moved_to_ctet2,2496,ctet2
+2914,"CTET Bank Hindi Language_ Pedagogy Q150 [CTET II-Paper (VI–VIII) भाषा–2, Feb.-2016]",pyq_year_missing,repaired,2496,ctet2
+2915,"CTET Bank Hindi Language_ Pedagogy Q151 [CTET II-Paper (VI–VIII) भाषा–2, Feb.-2016]",scope_paper2_visible,moved_to_ctet2,2497,ctet2
+2915,"CTET Bank Hindi Language_ Pedagogy Q151 [CTET II-Paper (VI–VIII) भाषा–2, Feb.-2016]",pyq_year_missing,repaired,2497,ctet2
+2916,"CTET Bank Hindi Language_ Pedagogy Q152 [CTET II-Paper (VI–VIII) भाषा–2, Feb.-2016]",scope_paper2_visible,moved_to_ctet2,2498,ctet2
+2916,"CTET Bank Hindi Language_ Pedagogy Q152 [CTET II-Paper (VI–VIII) भाषा–2, Feb.-2016]",pyq_year_missing,repaired,2498,ctet2
+2943,CTET Bank Hindi Language_ Pedagogy Q179 [CTET II-Paper (VI-VII) भाषा–I Sept. 2016],scope_paper2_visible,moved_to_ctet2,2525,ctet2
+2943,CTET Bank Hindi Language_ Pedagogy Q179 [CTET II-Paper (VI-VII) भाषा–I Sept. 2016],pyq_year_missing,repaired,2525,ctet2
+2944,CTET Bank Hindi Language_ Pedagogy Q180 [CTET II -Paper (VI-VII) भाषा–I Sept. 2016],scope_paper2_visible,moved_to_ctet2,2526,ctet2
+2944,CTET Bank Hindi Language_ Pedagogy Q180 [CTET II -Paper (VI-VII) भाषा–I Sept. 2016],pyq_year_missing,repaired,2526,ctet2
+2945,CTET Bank Hindi Language_ Pedagogy Q181 [CTET II -Paper (VI-VII) भाषा–I Sept. 2016],scope_paper2_visible,moved_to_ctet2,2527,ctet2
+2945,CTET Bank Hindi Language_ Pedagogy Q181 [CTET II -Paper (VI-VII) भाषा–I Sept. 2016],pyq_year_missing,repaired,2527,ctet2
+2946,CTET Bank Hindi Language_ Pedagogy Q182 [CTET II -Paper (VI-VII) भाषा–I Sept. 2016],scope_paper2_visible,moved_to_ctet2,2528,ctet2
+2946,CTET Bank Hindi Language_ Pedagogy Q182 [CTET II -Paper (VI-VII) भाषा–I Sept. 2016],pyq_year_missing,repaired,2528,ctet2
+2947,CTET Bank Hindi Language_ Pedagogy Q183 [CTET II -Paper (VI-VII) भाषा–I Sept. 2016],scope_paper2_visible,moved_to_ctet2,2529,ctet2
+2947,CTET Bank Hindi Language_ Pedagogy Q183 [CTET II -Paper (VI-VII) भाषा–I Sept. 2016],pyq_year_missing,repaired,2529,ctet2
+2948,CTET Bank Hindi Language_ Pedagogy Q184 [CTET II -Paper (VI-VII) भाषा–I Sept. 2016],scope_paper2_visible,moved_to_ctet2,2530,ctet2
+2948,CTET Bank Hindi Language_ Pedagogy Q184 [CTET II -Paper (VI-VII) भाषा–I Sept. 2016],pyq_year_missing,repaired,2530,ctet2
+2949,CTET Bank Hindi Language_ Pedagogy Q185 [CTET II -Paper (VI-VII) भाषा–I Sept. 2016],scope_paper2_visible,moved_to_ctet2,2531,ctet2
+2949,CTET Bank Hindi Language_ Pedagogy Q185 [CTET II -Paper (VI-VII) भाषा–I Sept. 2016],pyq_year_missing,repaired,2531,ctet2
+2950,CTET Bank Hindi Language_ Pedagogy Q186 [CTET II -Paper (VI-VII) भाषा–I Sept. 2016],scope_paper2_visible,moved_to_ctet2,2532,ctet2
+2950,CTET Bank Hindi Language_ Pedagogy Q186 [CTET II -Paper (VI-VII) भाषा–I Sept. 2016],pyq_year_missing,repaired,2532,ctet2
+2951,CTET Bank Hindi Language_ Pedagogy Q187 [CTET II -Paper (VI-VII) भाषा–I Sept. 2016],scope_paper2_visible,moved_to_ctet2,2533,ctet2
+2951,CTET Bank Hindi Language_ Pedagogy Q187 [CTET II -Paper (VI-VII) भाषा–I Sept. 2016],pyq_year_missing,repaired,2533,ctet2
+2952,"CTET Bank Hindi Language_ Pedagogy Q188 [CTET II-Paper (VI–VIII) भाषा–2, Feb.-2016]",scope_paper2_visible,moved_to_ctet2,2534,ctet2
+2952,"CTET Bank Hindi Language_ Pedagogy Q188 [CTET II-Paper (VI–VIII) भाषा–2, Feb.-2016]",pyq_year_missing,repaired,2534,ctet2
+2953,"CTET Bank Hindi Language_ Pedagogy Q189 [CTET II-Paper (VI–VIII) भाषा–2, Feb.-2016]",scope_paper2_visible,moved_to_ctet2,2535,ctet2
+2953,"CTET Bank Hindi Language_ Pedagogy Q189 [CTET II-Paper (VI–VIII) भाषा–2, Feb.-2016]",pyq_year_missing,repaired,2535,ctet2
+2954,"CTET Bank Hindi Language_ Pedagogy Q190 [CTET II-Paper (VI–VIII) भाषा–2, Feb.-2016]",scope_paper2_visible,moved_to_ctet2,2536,ctet2
+2954,"CTET Bank Hindi Language_ Pedagogy Q190 [CTET II-Paper (VI–VIII) भाषा–2, Feb.-2016]",pyq_year_missing,repaired,2536,ctet2
+2955,"CTET Bank Hindi Language_ Pedagogy Q191 [CTET II-Paper (VI–VIII) भाषा–2, Feb.-2016]",scope_paper2_visible,moved_to_ctet2,2537,ctet2
+2955,"CTET Bank Hindi Language_ Pedagogy Q191 [CTET II-Paper (VI–VIII) भाषा–2, Feb.-2016]",pyq_year_missing,repaired,2537,ctet2
+2956,"CTET Bank Hindi Language_ Pedagogy Q192 [CTET II-Paper (VI–VIII) भाषा–2, Feb.-2016]",scope_paper2_visible,moved_to_ctet2,2538,ctet2
+2956,"CTET Bank Hindi Language_ Pedagogy Q192 [CTET II-Paper (VI–VIII) भाषा–2, Feb.-2016]",pyq_year_missing,repaired,2538,ctet2
+2957,"CTET Bank Hindi Language_ Pedagogy Q193 [CTET II-Paper (VI–VIII) भाषा–2, Feb.-2016]",scope_paper2_visible,moved_to_ctet2,2539,ctet2
+2957,"CTET Bank Hindi Language_ Pedagogy Q193 [CTET II-Paper (VI–VIII) भाषा–2, Feb.-2016]",pyq_year_missing,repaired,2539,ctet2
+2958,"CTET Bank Hindi Language_ Pedagogy Q194 [CTET II-Paper (VI–VIII) भाषा–2, Feb.-2016]",scope_paper2_visible,moved_to_ctet2,2540,ctet2
+2958,"CTET Bank Hindi Language_ Pedagogy Q194 [CTET II-Paper (VI–VIII) भाषा–2, Feb.-2016]",pyq_year_missing,repaired,2540,ctet2
+3058,CTET Bank Hindi Language_ Pedagogy Q294,scope_paper2_visible,moved_to_ctet2,2636,ctet2
+3059,CTET Bank Hindi Language_ Pedagogy Q295,scope_paper2_visible,moved_to_ctet2,2637,ctet2
+3060,CTET Bank Hindi Language_ Pedagogy Q296,scope_paper2_source_match,moved_to_ctet2,2638,ctet2
+3061,CTET Bank Hindi Language_ Pedagogy Q297,scope_paper2_visible,moved_to_ctet2,2639,ctet2
+3062,CTET Bank Hindi Language_ Pedagogy Q298,scope_paper2_visible,moved_to_ctet2,2640,ctet2
+3063,CTET Bank Hindi Language_ Pedagogy Q299,scope_paper2_visible,moved_to_ctet2,2641,ctet2
+3064,CTET Bank Hindi Language_ Pedagogy Q300,scope_paper2_visible,moved_to_ctet2,2642,ctet2
+3065,CTET Bank Hindi Language_ Pedagogy Q301,scope_paper2_visible,moved_to_ctet2,2643,ctet2
+3066,CTET Bank Hindi Language_ Pedagogy Q302,scope_paper2_visible,moved_to_ctet2,2644,ctet2
+3067,CTET Bank Hindi Language_ Pedagogy Q303,scope_paper2_visible,moved_to_ctet2,2645,ctet2
+3068,CTET Bank Hindi Language_ Pedagogy Q304,scope_paper2_visible,moved_to_ctet2,2646,ctet2
+3069,CTET Bank Hindi Language_ Pedagogy Q305,scope_paper2_visible,moved_to_ctet2,2647,ctet2
+3070,CTET Bank Hindi Language_ Pedagogy Q306,scope_paper2_visible,moved_to_ctet2,2648,ctet2
+3071,CTET Bank Hindi Language_ Pedagogy Q307,scope_paper2_visible,moved_to_ctet2,2649,ctet2
+3072,CTET Bank Hindi Language_ Pedagogy Q308,scope_paper2_visible,moved_to_ctet2,2650,ctet2
+3073,CTET Bank Hindi Language_ Pedagogy Q309,scope_paper2_visible,moved_to_ctet2,2651,ctet2
+3074,CTET Bank Hindi Language_ Pedagogy Q310,scope_paper2_visible,moved_to_ctet2,2652,ctet2
+3075,CTET Bank Hindi Language_ Pedagogy Q311,scope_paper2_visible,moved_to_ctet2,2653,ctet2
+3076,CTET Bank Hindi Language_ Pedagogy Q312,scope_paper2_visible,moved_to_ctet2,2654,ctet2
+3077,CTET Bank Hindi Language_ Pedagogy Q313,scope_paper2_visible,moved_to_ctet2,2655,ctet2
+3078,CTET Bank Hindi Language_ Pedagogy Q314,scope_paper2_visible,moved_to_ctet2,2656,ctet2
+3079,CTET Bank Hindi Language_ Pedagogy Q315,scope_paper2_visible,moved_to_ctet2,2657,ctet2
+3080,CTET Bank Hindi Language_ Pedagogy Q316,scope_paper2_visible,moved_to_ctet2,2658,ctet2
+3081,CTET Bank Hindi Language_ Pedagogy Q317,scope_paper2_visible,moved_to_ctet2,2659,ctet2
+3082,CTET Bank Hindi Language_ Pedagogy Q318,scope_paper2_visible,moved_to_ctet2,2660,ctet2
+3083,CTET Bank Hindi Language_ Pedagogy Q319,scope_paper2_visible,moved_to_ctet2,2661,ctet2
+3084,CTET Bank Hindi Language_ Pedagogy Q320,scope_paper2_visible,moved_to_ctet2,2662,ctet2
+3085,CTET Bank Hindi Language_ Pedagogy Q321,scope_paper2_visible,moved_to_ctet2,2663,ctet2
+3086,CTET Bank Hindi Language_ Pedagogy Q322,scope_paper2_visible,moved_to_ctet2,2664,ctet2
+3087,CTET Bank Hindi Language_ Pedagogy Q323,scope_paper2_visible,moved_to_ctet2,2665,ctet2
+3088,CTET Bank Hindi Language_ Pedagogy Q324,scope_paper2_visible,moved_to_ctet2,2666,ctet2
+3089,CTET Bank Hindi Language_ Pedagogy Q325,scope_paper2_visible,moved_to_ctet2,2667,ctet2
+3090,CTET Bank Hindi Language_ Pedagogy Q326,scope_paper2_visible,moved_to_ctet2,2668,ctet2
+3091,CTET Bank Hindi Language_ Pedagogy Q327,scope_paper2_visible,moved_to_ctet2,2669,ctet2
+3092,CTET Bank Hindi Language_ Pedagogy Q328,scope_paper2_visible,moved_to_ctet2,2670,ctet2
+3093,CTET Bank Hindi Language_ Pedagogy Q329,scope_paper2_visible,moved_to_ctet2,2671,ctet2
+3671,CTET ctet paper 1 aug 2023 Q5,option_metadata_leak,repaired,3144,ctet1
+3673,CTET ctet paper 1 aug 2023 Q7,assertion_reason_label_artifact,repaired,3146,ctet1
+3677,CTET ctet paper 1 aug 2023 Q11,duplicate_or_lost_option,repaired,3150,ctet1
+3679,CTET ctet paper 1 aug 2023 Q13,assertion_reason_label_artifact,repaired,3152,ctet1
+3689,CTET ctet paper 1 aug 2023 Q23,english_option_truncated,incomplete_english_removed,3162,ctet1
+3694,CTET ctet paper 1 aug 2023 Q28,stem_option_code_merged,removed_unrecoverable,,
+3699,CTET ctet paper 1 aug 2023 Q33,incomplete_table_or_data,removed_unrecoverable,,
+3702,CTET ctet paper 1 aug 2023 Q36,math_expression_lost,repaired,3173,ctet1
+3703,CTET ctet paper 1 aug 2023 Q37,math_expression_lost,repaired,3174,ctet1
+3737,CTET ctet paper 1 aug 2023 Q71,stem_option_code_merged,repaired,3208,ctet1
+3740,CTET ctet paper 1 aug 2023 Q74,assertion_reason_label_artifact,repaired,3211,ctet1
+3742,CTET ctet paper 1 aug 2023 Q76,assertion_reason_label_artifact,repaired,3213,ctet1
+3747,CTET ctet paper 1 aug 2023 Q81,assertion_reason_label_artifact,repaired,3218,ctet1
+3752,CTET ctet paper 1 aug 2023 Q86,assertion_reason_label_artifact,repaired,3223,ctet1
+3756,CTET ctet paper 1 aug 2023 Q90,stem_option_code_merged,repaired,3227,ctet1
+3768,CTET ctet paper 1 aug 2023 Q102,missing_underlining_target,removed_unrecoverable,,
+3770,CTET ctet paper 1 aug 2023 Q104,missing_underlining_target,removed_unrecoverable,,
+3771,CTET ctet paper 1 aug 2023 Q105,missing_underlining_target,removed_unrecoverable,,
+3772,CTET ctet paper 1 aug 2023 Q106,duplicate_or_lost_option,repaired,3240,ctet1
+3776,CTET ctet paper 1 aug 2023 Q110,invalid_answer_code,repaired,3244,ctet1
+3835,CTET ctet paper 1 aug 2023 Q139,stem_option_code_merged,repaired,3303,ctet1
+3837,CTET ctet paper 1 aug 2023 Q141,missing_underlining_target,removed_unrecoverable,,
+3838,CTET ctet paper 1 aug 2023 Q142,missing_underlining_target,removed_unrecoverable,,
+3839,CTET ctet paper 1 aug 2023 Q143,missing_underlining_target,removed_unrecoverable,,
+3844,CTET ctet paper 1 aug 2023 Q148,missing_underlining_target,removed_unrecoverable,,
+3845,CTET ctet paper 1 aug 2023 Q149,missing_underlining_target,removed_unrecoverable,,
+3846,CTET ctet paper 1 aug 2023 Q150,missing_underlining_target,removed_unrecoverable,,
+3877,CTET Paper 1 Dec 2018 Q1,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3339,ctet1
+3878,CTET Paper 1 Dec 2018 Q2,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3340,ctet1
+3879,CTET Paper 1 Dec 2018 Q3,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3341,ctet1
+3881,CTET Paper 1 Dec 2018 Q5,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3343,ctet1
+3882,CTET Paper 1 Dec 2018 Q6,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3344,ctet1
+3883,CTET Paper 1 Dec 2018 Q7,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3345,ctet1
+3884,CTET Paper 1 Dec 2018 Q8,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3346,ctet1
+3885,CTET Paper 1 Dec 2018 Q9,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3347,ctet1
+3886,CTET Paper 1 Dec 2018 Q10,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3348,ctet1
+3887,CTET Paper 1 Dec 2018 Q11,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3349,ctet1
+3888,CTET Paper 1 Dec 2018 Q12,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3350,ctet1
+3889,CTET Paper 1 Dec 2018 Q13,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3351,ctet1
+3890,CTET Paper 1 Dec 2018 Q14,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3352,ctet1
+3891,CTET Paper 1 Dec 2018 Q15,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3353,ctet1
+3892,CTET Paper 1 Dec 2018 Q16,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3354,ctet1
+3893,CTET Paper 1 Dec 2018 Q17,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3355,ctet1
+3894,CTET Paper 1 Dec 2018 Q18,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3356,ctet1
+3895,CTET Paper 1 Dec 2018 Q19,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3357,ctet1
+3896,CTET Paper 1 Dec 2018 Q20,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3358,ctet1
+3897,CTET Paper 1 Dec 2018 Q21,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3359,ctet1
+3898,CTET Paper 1 Dec 2018 Q22,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3360,ctet1
+3899,CTET Paper 1 Dec 2018 Q23,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3361,ctet1
+3900,CTET Paper 1 Dec 2018 Q24,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3362,ctet1
+3902,CTET Paper 1 Dec 2018 Q26,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3364,ctet1
+3903,CTET Paper 1 Dec 2018 Q27,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3365,ctet1
+3904,CTET Paper 1 Dec 2018 Q28,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3366,ctet1
+3905,CTET Paper 1 Dec 2018 Q29,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3367,ctet1
+3906,CTET Paper 1 Dec 2018 Q30,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3368,ctet1
+3909,CTET Paper 1 Dec 2018 Q33,missing_visual_stimulus,removed_unrecoverable,,
+3924,CTET Paper 1 Dec 2018 Q49,missing_visual_stimulus,removed_unrecoverable,,
+3925,CTET Paper 1 Dec 2018 Q50,math_expression_lost,consolidated_duplicate,,
+3928,CTET Paper 1 Dec 2018 Q53,exact_duplicate_auto_dropped,consolidated_duplicate,,
+3929,CTET Paper 1 Dec 2018 Q54,missing_visual_stimulus,removed_unrecoverable,,
+3931,CTET Paper 1 Dec 2018 Q57,missing_visual_stimulus,removed_unrecoverable,,
+3933,CTET Paper 1 Dec 2018 Q60,math_expression_lost,consolidated_duplicate,,
+3934,CTET Paper 1 Dec 2018 Q61,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3389,ctet1
+3935,CTET Paper 1 Dec 2018 Q62,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3390,ctet1
+3936,CTET Paper 1 Dec 2018 Q63,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3391,ctet1
+3937,CTET Paper 1 Dec 2018 Q64,wrong_answer_key,repaired,3392,ctet1
+3938,CTET Paper 1 Dec 2018 Q65,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3393,ctet1
+3939,CTET Paper 1 Dec 2018 Q66,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3394,ctet1
+3940,CTET Paper 1 Dec 2018 Q67,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3395,ctet1
+3941,CTET Paper 1 Dec 2018 Q68,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3396,ctet1
+3942,CTET Paper 1 Dec 2018 Q69,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3397,ctet1
+3943,CTET Paper 1 Dec 2018 Q70,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3398,ctet1
+3945,CTET Paper 1 Dec 2018 Q72,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3400,ctet1
+3946,CTET Paper 1 Dec 2018 Q73,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3401,ctet1
+3947,CTET Paper 1 Dec 2018 Q74,corrupt_options_no_correct_answer,consolidated_duplicate,,
+3948,CTET Paper 1 Dec 2018 Q75,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3402,ctet1
+3949,CTET Paper 1 Dec 2018 Q76,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3403,ctet1
+3950,CTET Paper 1 Dec 2018 Q77,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3404,ctet1
+3953,CTET Paper 1 Dec 2018 Q80,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3406,ctet1
+3955,CTET Paper 1 Dec 2018 Q82,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3408,ctet1
+3956,CTET Paper 1 Dec 2018 Q83,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3409,ctet1
+3957,CTET Paper 1 Dec 2018 Q84,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3410,ctet1
+3958,CTET Paper 1 Dec 2018 Q85,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3411,ctet1
+3959,CTET Paper 1 Dec 2018 Q86,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3412,ctet1
+3960,CTET Paper 1 Dec 2018 Q87,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3413,ctet1
+3961,CTET Paper 1 Dec 2018 Q88,duplicate_survives_build,consolidated_duplicate,,
+3963,CTET Paper 1 Dec 2018 Q90,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3415,ctet1
+3994,CTET Paper 1 Dec 2018 Q121,duplicate_survives_build,consolidated_duplicate,,
+4012,CTET Paper 1 Dec 2018 Q139,duplicate_survives_build,consolidated_duplicate,,
+4017,CTET Paper 1 Dec 2018 Q144,duplicate_survives_build,consolidated_duplicate,,
+4018,CTET Paper 1 Dec 2018 Q145,duplicate_survives_build,consolidated_duplicate,,
+4022,CTET Paper 1 Dec 2018 Q149,duplicate_survives_build,consolidated_duplicate,,
+4024,CTET Paper 1 Dec 2018 Q91,duplicate_survives_build,consolidated_duplicate,,
+4026,CTET Paper 1 Dec 2018 Q93,duplicate_survives_build,consolidated_duplicate,,
+4027,CTET Paper 1 Dec 2018 Q94,duplicate_survives_build,consolidated_duplicate,,
+4029,CTET Paper 1 Dec 2018 Q96,duplicate_survives_build,consolidated_duplicate,,
+4031,CTET Paper 1 Dec 2018 Q98,duplicate_survives_build,consolidated_duplicate,,
+4032,CTET Paper 1 Dec 2018 Q99,duplicate_survives_build,consolidated_duplicate,,
+4034,CTET Paper 1 Dec 2018 Q101,duplicate_survives_build,consolidated_duplicate,,
+4035,CTET Paper 1 Dec 2018 Q102,duplicate_survives_build,consolidated_duplicate,,
+4038,CTET Paper 1 Dec 2018 Q105,duplicate_survives_build,consolidated_duplicate,,
+4039,CTET Paper 1 Dec 2018 Q106,duplicate_survives_build,consolidated_duplicate,,
+4040,CTET Paper 1 Dec 2018 Q107,duplicate_survives_build,consolidated_duplicate,,
+4045,CTET Paper 1 Dec 2018 Q112,duplicate_survives_build,consolidated_duplicate,,
+4046,CTET Paper 1 Dec 2018 Q113,duplicate_survives_build,consolidated_duplicate,,
+4047,CTET Paper 1 Dec 2018 Q114,duplicate_survives_build,consolidated_duplicate,,
+4048,CTET Paper 1 Dec 2018 Q115,duplicate_survives_build,consolidated_duplicate,,
+4050,CTET Paper 1 Dec 2018 Q117,duplicate_survives_build,consolidated_duplicate,,
+4052,CTET Paper 1 Dec 2018 Q119,duplicate_survives_build,consolidated_duplicate,,
+4053,CTET Paper 1 Dec 2018 Q120,duplicate_survives_build,consolidated_duplicate,,
+4088,CTET Paper 1 dec 2019 Q5,option_metadata_leak,repaired,3511,ctet1
+4122,CTET Paper 1 dec 2019 Q39,incomplete_table_or_data,removed_unrecoverable,,
+4143,CTET Paper 1 dec 2019 Q60,math_expression_lost,repaired,3565,ctet1
+4176,CTET Paper 1 dec 2019 Q93,missing_underlining_target,removed_unrecoverable,,
+4214,CTET Paper 1 dec 2019 Q131,missing_underlining_target,removed_unrecoverable,,
+4296,CTET Paper 1 dec 2021 Q4,option_metadata_leak,repaired,3716,ctet1
+4383,CTET Paper 1 dec 2021 Q91,missing_underlining_target,removed_unrecoverable,,
+4392,CTET Paper 1 dec 2021 Q100,missing_underlining_target,removed_unrecoverable,,
+4419,CTET Paper 1 dec 2021 Q127,missing_underlining_target,removed_unrecoverable,,
+4450,CTET Paper 1 dec 2021 Q98,missing_underlining_target,removed_unrecoverable,,
+4479,CTET Paper 1 dec 2021 Q127,missing_underlining_target,removed_unrecoverable,,
+4503,CTET paper 1 Feb 2015 Q1,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3918,ctet1
+4504,CTET paper 1 Feb 2015 Q2,duplicate_survives_build,duplicate_group_canonical_or_cross_exam,3919,ctet1
+4506,CTET paper 1 Feb 2015 Q4,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3921,ctet1
+4509,CTET paper 1 Feb 2015 Q7,english_option_truncated,incomplete_english_removed,3924,ctet1
+4509,CTET paper 1 Feb 2015 Q7,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3924,ctet1
+4510,CTET paper 1 Feb 2015 Q8,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3925,ctet1
+4512,CTET paper 1 Feb 2015 Q10,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3927,ctet1
+4513,CTET paper 1 Feb 2015 Q11,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3928,ctet1
+4514,CTET paper 1 Feb 2015 Q12,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3929,ctet1
+4515,CTET paper 1 Feb 2015 Q13,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3930,ctet1
+4516,CTET paper 1 Feb 2015 Q14,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3931,ctet1
+4517,CTET paper 1 Feb 2015 Q15,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3932,ctet1
+4518,CTET paper 1 Feb 2015 Q16,exact_duplicate_auto_dropped,consolidated_duplicate,,
+4519,CTET paper 1 Feb 2015 Q17,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3933,ctet1
+4520,CTET paper 1 Feb 2015 Q18,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3934,ctet1
+4521,CTET paper 1 Feb 2015 Q19,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3935,ctet1
+4523,CTET paper 1 Feb 2015 Q21,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3936,ctet1
+4525,CTET paper 1 Feb 2015 Q23,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3937,ctet1
+4526,CTET paper 1 Feb 2015 Q24,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3938,ctet1
+4530,CTET paper 1 Feb 2015 Q28,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3942,ctet1
+4531,CTET paper 1 Feb 2015 Q29,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3943,ctet1
+4533,CTET paper 1 Feb 2015 Q31,english_option_truncated,incomplete_english_removed,3945,ctet1
+4538,CTET paper 1 Feb 2015 Q36,english_option_truncated,incomplete_english_removed,3950,ctet1
+4541,CTET paper 1 Feb 2015 Q39,english_option_truncated,incomplete_english_removed,3953,ctet1
+4543,CTET paper 1 Feb 2015 Q41,english_option_truncated,incomplete_english_removed,3955,ctet1
+4543,CTET paper 1 Feb 2015 Q41,english_stem_truncated,incomplete_english_removed,3955,ctet1
+4544,CTET paper 1 Feb 2015 Q42,english_option_truncated,incomplete_english_removed,3956,ctet1
+4546,CTET paper 1 Feb 2015 Q44,english_option_truncated,incomplete_english_removed,3958,ctet1
+4547,CTET paper 1 Feb 2015 Q45,english_option_truncated,incomplete_english_removed,3959,ctet1
+4548,CTET paper 1 Feb 2015 Q46,duplicate_or_lost_option,repaired,3960,ctet1
+4548,CTET paper 1 Feb 2015 Q46,english_option_truncated,incomplete_english_removed,3960,ctet1
+4549,CTET paper 1 Feb 2015 Q47,english_option_truncated,incomplete_english_removed,3961,ctet1
+4551,CTET paper 1 Feb 2015 Q49,duplicate_or_lost_option,repaired,3963,ctet1
+4551,CTET paper 1 Feb 2015 Q49,english_option_truncated,incomplete_english_removed,3963,ctet1
+4551,CTET paper 1 Feb 2015 Q49,english_stem_truncated,incomplete_english_removed,3963,ctet1
+4552,CTET paper 1 Feb 2015 Q50,math_expression_lost,repaired,3964,ctet1
+4556,CTET paper 1 Feb 2015 Q54,english_option_truncated,incomplete_english_removed,3968,ctet1
+4561,CTET paper 1 Feb 2015 Q60,english_option_truncated,incomplete_english_removed,3973,ctet1
+4562,CTET paper 1 Feb 2015 Q61,english_stem_truncated,incomplete_english_removed,3974,ctet1
+4562,CTET paper 1 Feb 2015 Q61,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3974,ctet1
+4563,CTET paper 1 Feb 2015 Q62,english_stem_truncated,incomplete_english_removed,3975,ctet1
+4564,CTET paper 1 Feb 2015 Q63,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3976,ctet1
+4566,CTET paper 1 Feb 2015 Q65,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3978,ctet1
+4567,CTET paper 1 Feb 2015 Q66,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3979,ctet1
+4568,CTET paper 1 Feb 2015 Q67,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3980,ctet1
+4569,CTET paper 1 Feb 2015 Q68,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3981,ctet1
+4571,CTET paper 1 Feb 2015 Q70,english_stem_truncated,incomplete_english_removed,3983,ctet1
+4571,CTET paper 1 Feb 2015 Q70,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3983,ctet1
+4572,CTET paper 1 Feb 2015 Q71,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3984,ctet1
+4573,CTET paper 1 Feb 2015 Q72,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3985,ctet1
+4574,CTET paper 1 Feb 2015 Q73,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3986,ctet1
+4575,CTET paper 1 Feb 2015 Q74,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3987,ctet1
+4578,CTET paper 1 Feb 2015 Q77,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3990,ctet1
+4580,CTET paper 1 Feb 2015 Q79,english_stem_truncated,incomplete_english_removed,3992,ctet1
+4580,CTET paper 1 Feb 2015 Q79,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3992,ctet1
+4581,CTET paper 1 Feb 2015 Q80,english_stem_truncated,incomplete_english_removed,3993,ctet1
+4584,CTET paper 1 Feb 2015 Q83,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3995,ctet1
+4585,CTET paper 1 Feb 2015 Q84,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3996,ctet1
+4586,CTET paper 1 Feb 2015 Q85,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3997,ctet1
+4587,CTET paper 1 Feb 2015 Q86,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3998,ctet1
+4588,CTET paper 1 Feb 2015 Q87,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,3999,ctet1
+4589,CTET paper 1 Feb 2015 Q88,english_stem_truncated,incomplete_english_removed,4000,ctet1
+4591,CTET paper 1 Feb 2015 Q90,english_stem_truncated,incomplete_english_removed,4002,ctet1
+4653,CTET CTEt paper 1 febuary 2014 Q2,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4064,ctet1
+4657,CTET CTEt paper 1 febuary 2014 Q6,option_metadata_leak,repaired,4068,ctet1
+4657,CTET CTEt paper 1 febuary 2014 Q6,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4068,ctet1
+4658,CTET CTEt paper 1 febuary 2014 Q7,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4069,ctet1
+4659,CTET CTEt paper 1 febuary 2014 Q8,english_option_truncated,incomplete_english_removed,4070,ctet1
+4660,CTET CTEt paper 1 febuary 2014 Q9,english_option_truncated,incomplete_english_removed,4071,ctet1
+4661,CTET CTEt paper 1 febuary 2014 Q10,english_option_truncated,incomplete_english_removed,4072,ctet1
+4663,CTET CTEt paper 1 febuary 2014 Q12,english_option_truncated,incomplete_english_removed,4074,ctet1
+4664,CTET CTEt paper 1 febuary 2014 Q13,english_option_truncated,incomplete_english_removed,4075,ctet1
+4667,CTET CTEt paper 1 febuary 2014 Q16,english_option_truncated,incomplete_english_removed,4078,ctet1
+4670,CTET CTEt paper 1 febuary 2014 Q19,english_option_truncated,incomplete_english_removed,4081,ctet1
+4672,CTET CTEt paper 1 febuary 2014 Q21,english_option_truncated,incomplete_english_removed,4083,ctet1
+4675,CTET CTEt paper 1 febuary 2014 Q24,english_option_truncated,incomplete_english_removed,4086,ctet1
+4678,CTET CTEt paper 1 febuary 2014 Q27,english_option_truncated,incomplete_english_removed,4089,ctet1
+4679,CTET CTEt paper 1 febuary 2014 Q28,english_option_truncated,incomplete_english_removed,4090,ctet1
+4680,CTET CTEt paper 1 febuary 2014 Q29,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4091,ctet1
+4681,CTET CTEt paper 1 febuary 2014 Q30,english_option_truncated,incomplete_english_removed,4092,ctet1
+4683,CTET CTEt paper 1 febuary 2014 Q32,english_stem_truncated,incomplete_english_removed,4094,ctet1
+4684,CTET CTEt paper 1 febuary 2014 Q33,english_option_truncated,incomplete_english_removed,4095,ctet1
+4687,CTET CTEt paper 1 febuary 2014 Q36,english_stem_truncated,incomplete_english_removed,4098,ctet1
+4688,CTET CTEt paper 1 febuary 2014 Q37,missing_visual_stimulus,removed_unrecoverable,,
+4689,CTET CTEt paper 1 febuary 2014 Q38,missing_visual_stimulus,removed_unrecoverable,,
+4690,CTET CTEt paper 1 febuary 2014 Q39,english_option_truncated,incomplete_english_removed,4099,ctet1
+4691,CTET CTEt paper 1 febuary 2014 Q40,english_option_truncated,incomplete_english_removed,4100,ctet1
+4695,CTET CTEt paper 1 febuary 2014 Q44,english_stem_truncated,incomplete_english_removed,4104,ctet1
+4696,CTET CTEt paper 1 febuary 2014 Q45,english_stem_truncated,incomplete_english_removed,4105,ctet1
+4697,CTET CTEt paper 1 febuary 2014 Q46,english_option_truncated,incomplete_english_removed,4106,ctet1
+4699,CTET CTEt paper 1 febuary 2014 Q48,english_option_truncated,incomplete_english_removed,4108,ctet1
+4700,CTET CTEt paper 1 febuary 2014 Q49,english_stem_truncated,incomplete_english_removed,4109,ctet1
+4708,CTET CTEt paper 1 febuary 2014 Q58,english_stem_truncated,incomplete_english_removed,4117,ctet1
+4710,CTET CTEt paper 1 febuary 2014 Q61,english_stem_truncated,incomplete_english_removed,4119,ctet1
+4711,CTET CTEt paper 1 febuary 2014 Q62,english_stem_truncated,incomplete_english_removed,4120,ctet1
+4712,CTET CTEt paper 1 febuary 2014 Q63,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4121,ctet1
+4714,CTET CTEt paper 1 febuary 2014 Q65,english_stem_truncated,incomplete_english_removed,4123,ctet1
+4714,CTET CTEt paper 1 febuary 2014 Q65,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4123,ctet1
+4715,CTET CTEt paper 1 febuary 2014 Q66,english_stem_truncated,incomplete_english_removed,4124,ctet1
+4716,CTET CTEt paper 1 febuary 2014 Q67,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4125,ctet1
+4717,CTET CTEt paper 1 febuary 2014 Q68,missing_visual_stimulus,removed_unrecoverable,,
+4717,CTET CTEt paper 1 febuary 2014 Q68,duplicate_or_lost_option,removed_unrecoverable,,
+4717,CTET CTEt paper 1 febuary 2014 Q68,english_option_truncated,removed_unrecoverable,,
+4718,CTET CTEt paper 1 febuary 2014 Q69,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4126,ctet1
+4719,CTET CTEt paper 1 febuary 2014 Q70,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4127,ctet1
+4720,CTET CTEt paper 1 febuary 2014 Q71,english_option_truncated,incomplete_english_removed,4128,ctet1
+4721,CTET CTEt paper 1 febuary 2014 Q72,english_stem_truncated,incomplete_english_removed,4129,ctet1
+4721,CTET CTEt paper 1 febuary 2014 Q72,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4129,ctet1
+4722,CTET CTEt paper 1 febuary 2014 Q73,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4130,ctet1
+4724,CTET CTEt paper 1 febuary 2014 Q75,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4132,ctet1
+4725,CTET CTEt paper 1 febuary 2014 Q76,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4133,ctet1
+4727,CTET CTEt paper 1 febuary 2014 Q78,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4135,ctet1
+4728,CTET CTEt paper 1 febuary 2014 Q79,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4136,ctet1
+4729,CTET CTEt paper 1 febuary 2014 Q80,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4137,ctet1
+4730,CTET CTEt paper 1 febuary 2014 Q81,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4138,ctet1
+4731,CTET CTEt paper 1 febuary 2014 Q82,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4139,ctet1
+4732,CTET CTEt paper 1 febuary 2014 Q83,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4140,ctet1
+4734,CTET CTEt paper 1 febuary 2014 Q85,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4142,ctet1
+4735,CTET CTEt paper 1 febuary 2014 Q86,english_stem_truncated,incomplete_english_removed,4143,ctet1
+4735,CTET CTEt paper 1 febuary 2014 Q86,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4143,ctet1
+4736,CTET CTEt paper 1 febuary 2014 Q87,english_stem_truncated,incomplete_english_removed,4144,ctet1
+4736,CTET CTEt paper 1 febuary 2014 Q87,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4144,ctet1
+4737,CTET CTEt paper 1 febuary 2014 Q88,english_stem_truncated,incomplete_english_removed,4145,ctet1
+4738,CTET CTEt paper 1 febuary 2014 Q89,incomplete_table_or_data,removed_unrecoverable,,
+4739,CTET CTEt paper 1 febuary 2014 Q90,english_stem_truncated,incomplete_english_removed,4146,ctet1
+4748,CTET CTEt paper 1 febuary 2014 Q99,missing_underlining_target,removed_unrecoverable,,
+4856,CTET Paper 1 jan 2021 Q58,incomplete_table_or_data,removed_unrecoverable,,
+4858,CTET Paper 1 jan 2021 Q60,stem_option_code_merged,removed_unrecoverable,,
+4889,CTET Paper 1 jan 2021 Q92,missing_underlining_target,removed_unrecoverable,,
+4905,CTET Paper 1 jan 2021 Q108,scope_upper_primary_probable,moved_to_ctet2,4308,ctet2
+4920,CTET Paper 1 jan 2021 Q123,missing_underlining_target,removed_unrecoverable,,
+5008,CTET ctet paper 1 jan 2023 Q1,pyq_year_missing,repaired,4410,ctet1
+5009,CTET ctet paper 1 jan 2023 Q2,pyq_year_missing,repaired,4411,ctet1
+5010,CTET ctet paper 1 jan 2023 Q3,pyq_year_missing,repaired,4412,ctet1
+5011,CTET ctet paper 1 jan 2023 Q4,option_metadata_leak,repaired,4413,ctet1
+5011,CTET ctet paper 1 jan 2023 Q4,pyq_year_missing,repaired,4413,ctet1
+5012,CTET ctet paper 1 jan 2023 Q5,pyq_year_missing,repaired,4414,ctet1
+5013,CTET ctet paper 1 jan 2023 Q6,pyq_year_missing,repaired,4415,ctet1
+5014,CTET ctet paper 1 jan 2023 Q7,pyq_year_missing,repaired,4416,ctet1
+5015,CTET ctet paper 1 jan 2023 Q8,pyq_year_missing,repaired,4417,ctet1
+5016,CTET ctet paper 1 jan 2023 Q9,pyq_year_missing,repaired,4418,ctet1
+5017,CTET ctet paper 1 jan 2023 Q10,pyq_year_missing,repaired,4419,ctet1
+5018,CTET ctet paper 1 jan 2023 Q11,pyq_year_missing,repaired,4420,ctet1
+5019,CTET ctet paper 1 jan 2023 Q12,pyq_year_missing,repaired,4421,ctet1
+5020,CTET ctet paper 1 jan 2023 Q13,pyq_year_missing,repaired,4422,ctet1
+5021,CTET ctet paper 1 jan 2023 Q14,pyq_year_missing,repaired,4423,ctet1
+5022,CTET ctet paper 1 jan 2023 Q15,pyq_year_missing,repaired,4424,ctet1
+5023,CTET ctet paper 1 jan 2023 Q16,pyq_year_missing,repaired,4425,ctet1
+5024,CTET ctet paper 1 jan 2023 Q17,pyq_year_missing,repaired,4426,ctet1
+5025,CTET ctet paper 1 jan 2023 Q18,pyq_year_missing,repaired,4427,ctet1
+5026,CTET ctet paper 1 jan 2023 Q19,pyq_year_missing,repaired,4428,ctet1
+5027,CTET ctet paper 1 jan 2023 Q20,pyq_year_missing,repaired,4429,ctet1
+5028,CTET ctet paper 1 jan 2023 Q21,pyq_year_missing,repaired,4430,ctet1
+5029,CTET ctet paper 1 jan 2023 Q22,pyq_year_missing,repaired,4431,ctet1
+5030,CTET ctet paper 1 jan 2023 Q23,pyq_year_missing,repaired,4432,ctet1
+5031,CTET ctet paper 1 jan 2023 Q24,pyq_year_missing,repaired,4433,ctet1
+5032,CTET ctet paper 1 jan 2023 Q25,pyq_year_missing,repaired,4434,ctet1
+5033,CTET ctet paper 1 jan 2023 Q26,pyq_year_missing,repaired,4435,ctet1
+5034,CTET ctet paper 1 jan 2023 Q27,pyq_year_missing,repaired,4436,ctet1
+5035,CTET ctet paper 1 jan 2023 Q28,pyq_year_missing,repaired,4437,ctet1
+5036,CTET ctet paper 1 jan 2023 Q29,pyq_year_missing,repaired,4438,ctet1
+5037,CTET ctet paper 1 jan 2023 Q30,pyq_year_missing,repaired,4439,ctet1
+5038,CTET ctet paper 1 jan 2023 Q7,pyq_year_missing,repaired,4440,ctet1
+5039,CTET ctet paper 1 jan 2023 Q9,pyq_year_missing,repaired,4441,ctet1
+5040,CTET ctet paper 1 jan 2023 Q10,pyq_year_missing,repaired,4442,ctet1
+5041,CTET ctet paper 1 jan 2023 Q11,pyq_year_missing,repaired,4443,ctet1
+5042,CTET ctet paper 1 jan 2023 Q12,pyq_year_missing,repaired,4444,ctet1
+5043,CTET ctet paper 1 jan 2023 Q13,pyq_year_missing,repaired,4445,ctet1
+5044,CTET ctet paper 1 jan 2023 Q17,pyq_year_missing,repaired,4446,ctet1
+5045,CTET ctet paper 1 jan 2023 Q18,pyq_year_missing,repaired,4447,ctet1
+5046,CTET ctet paper 1 jan 2023 Q19,pyq_year_missing,repaired,4448,ctet1
+5047,CTET ctet paper 1 jan 2023 Q20,pyq_year_missing,repaired,4449,ctet1
+5048,CTET ctet paper 1 jan 2023 Q21,pyq_year_missing,repaired,4450,ctet1
+5049,CTET ctet paper 1 jan 2023 Q22,pyq_year_missing,repaired,4451,ctet1
+5050,CTET ctet paper 1 jan 2023 Q23,pyq_year_missing,repaired,4452,ctet1
+5051,CTET ctet paper 1 jan 2023 Q24,pyq_year_missing,repaired,4453,ctet1
+5052,CTET ctet paper 1 jan 2023 Q25,pyq_year_missing,repaired,4454,ctet1
+5053,CTET ctet paper 1 jan 2023 Q26,pyq_year_missing,repaired,4455,ctet1
+5054,CTET ctet paper 1 jan 2023 Q27,pyq_year_missing,repaired,4456,ctet1
+5055,CTET ctet paper 1 jan 2023 Q28,pyq_year_missing,repaired,4457,ctet1
+5056,CTET ctet paper 1 jan 2023 Q29,pyq_year_missing,repaired,4458,ctet1
+5057,CTET ctet paper 1 jan 2023 Q30,pyq_year_missing,repaired,4459,ctet1
+5058,CTET ctet paper 1 jan 2023 Q1,pyq_year_missing,repaired,4460,ctet1
+5059,CTET ctet paper 1 jan 2023 Q2,pyq_year_missing,repaired,4461,ctet1
+5060,CTET ctet paper 1 jan 2023 Q3,pyq_year_missing,repaired,4462,ctet1
+5061,CTET ctet paper 1 jan 2023 Q4,pyq_year_missing,repaired,4463,ctet1
+5062,CTET ctet paper 1 jan 2023 Q5,pyq_year_missing,repaired,4464,ctet1
+5063,CTET ctet paper 1 jan 2023 Q6,pyq_year_missing,repaired,4465,ctet1
+5064,CTET ctet paper 1 jan 2023 Q7,pyq_year_missing,repaired,4466,ctet1
+5065,CTET ctet paper 1 jan 2023 Q8,pyq_year_missing,repaired,4467,ctet1
+5066,CTET ctet paper 1 jan 2023 Q9,pyq_year_missing,repaired,4468,ctet1
+5067,CTET ctet paper 1 jan 2023 Q10,pyq_year_missing,repaired,4469,ctet1
+5068,CTET ctet paper 1 jan 2023 Q11,pyq_year_missing,repaired,4470,ctet1
+5069,CTET ctet paper 1 jan 2023 Q12,pyq_year_missing,repaired,4471,ctet1
+5070,CTET ctet paper 1 jan 2023 Q13,pyq_year_missing,repaired,4472,ctet1
+5071,CTET ctet paper 1 jan 2023 Q14,pyq_year_missing,repaired,4473,ctet1
+5072,CTET ctet paper 1 jan 2023 Q15,pyq_year_missing,repaired,4474,ctet1
+5073,CTET ctet paper 1 jan 2023 Q16,pyq_year_missing,repaired,4475,ctet1
+5074,CTET ctet paper 1 jan 2023 Q17,pyq_year_missing,repaired,4476,ctet1
+5075,CTET ctet paper 1 jan 2023 Q18,pyq_year_missing,repaired,4477,ctet1
+5076,CTET ctet paper 1 jan 2023 Q19,pyq_year_missing,repaired,4478,ctet1
+5077,CTET ctet paper 1 jan 2023 Q20,pyq_year_missing,repaired,4479,ctet1
+5078,CTET ctet paper 1 jan 2023 Q21,pyq_year_missing,repaired,4480,ctet1
+5079,CTET ctet paper 1 jan 2023 Q22,pyq_year_missing,repaired,4481,ctet1
+5080,CTET ctet paper 1 jan 2023 Q23,pyq_year_missing,repaired,4482,ctet1
+5081,CTET ctet paper 1 jan 2023 Q24,pyq_year_missing,repaired,4483,ctet1
+5082,CTET ctet paper 1 jan 2023 Q25,pyq_year_missing,repaired,4484,ctet1
+5083,CTET ctet paper 1 jan 2023 Q26,pyq_year_missing,repaired,4485,ctet1
+5084,CTET ctet paper 1 jan 2023 Q27,pyq_year_missing,repaired,4486,ctet1
+5085,CTET ctet paper 1 jan 2023 Q28,pyq_year_missing,repaired,4487,ctet1
+5086,CTET ctet paper 1 jan 2023 Q29,pyq_year_missing,repaired,4488,ctet1
+5087,CTET ctet paper 1 jan 2023 Q30,pyq_year_missing,repaired,4489,ctet1
+5088,CTET ctet paper 1 jan 2023 Q1,pyq_year_missing,repaired,4490,ctet1
+5089,CTET ctet paper 1 jan 2023 Q2,pyq_year_missing,repaired,4491,ctet1
+5090,CTET ctet paper 1 jan 2023 Q3,pyq_year_missing,repaired,4492,ctet1
+5091,CTET ctet paper 1 jan 2023 Q4,pyq_year_missing,repaired,4493,ctet1
+5092,CTET ctet paper 1 jan 2023 Q5,pyq_year_missing,repaired,4494,ctet1
+5093,CTET ctet paper 1 jan 2023 Q6,pyq_year_missing,repaired,4495,ctet1
+5094,CTET ctet paper 1 jan 2023 Q7,pyq_year_missing,repaired,4496,ctet1
+5095,CTET ctet paper 1 jan 2023 Q8,pyq_year_missing,repaired,4497,ctet1
+5096,CTET ctet paper 1 jan 2023 Q9,pyq_year_missing,repaired,4498,ctet1
+5097,CTET ctet paper 1 jan 2023 Q10,pyq_year_missing,repaired,4499,ctet1
+5098,CTET ctet paper 1 jan 2023 Q11,pyq_year_missing,repaired,4500,ctet1
+5099,CTET ctet paper 1 jan 2023 Q12,pyq_year_missing,repaired,4501,ctet1
+5100,CTET ctet paper 1 jan 2023 Q13,pyq_year_missing,repaired,4502,ctet1
+5101,CTET ctet paper 1 jan 2023 Q14,pyq_year_missing,repaired,4503,ctet1
+5102,CTET ctet paper 1 jan 2023 Q15,pyq_year_missing,repaired,4504,ctet1
+5103,CTET ctet paper 1 jan 2023 Q16,pyq_year_missing,repaired,4505,ctet1
+5104,CTET ctet paper 1 jan 2023 Q17,pyq_year_missing,repaired,4506,ctet1
+5105,CTET ctet paper 1 jan 2023 Q18,pyq_year_missing,repaired,4507,ctet1
+5106,CTET ctet paper 1 jan 2023 Q19,pyq_year_missing,repaired,4508,ctet1
+5107,CTET ctet paper 1 jan 2023 Q20,pyq_year_missing,repaired,4509,ctet1
+5108,CTET ctet paper 1 jan 2023 Q21,pyq_year_missing,repaired,4510,ctet1
+5109,CTET ctet paper 1 jan 2023 Q22,pyq_year_missing,repaired,4511,ctet1
+5110,CTET ctet paper 1 jan 2023 Q23,pyq_year_missing,repaired,4512,ctet1
+5111,CTET ctet paper 1 jan 2023 Q24,pyq_year_missing,repaired,4513,ctet1
+5112,CTET ctet paper 1 jan 2023 Q25,pyq_year_missing,repaired,4514,ctet1
+5113,CTET ctet paper 1 jan 2023 Q26,pyq_year_missing,repaired,4515,ctet1
+5114,CTET ctet paper 1 jan 2023 Q27,pyq_year_missing,repaired,4516,ctet1
+5115,CTET ctet paper 1 jan 2023 Q28,pyq_year_missing,repaired,4517,ctet1
+5116,CTET ctet paper 1 jan 2023 Q29,pyq_year_missing,repaired,4518,ctet1
+5117,CTET ctet paper 1 jan 2023 Q1,pyq_year_missing,repaired,4519,ctet1
+5118,CTET ctet paper 1 jan 2023 Q4,pyq_year_missing,repaired,4520,ctet1
+5119,CTET ctet paper 1 jan 2023 Q9,pyq_year_missing,repaired,4521,ctet1
+5120,CTET ctet paper 1 jan 2023 Q12,pyq_year_missing,repaired,4522,ctet1
+5121,CTET ctet paper 1 jan 2023 Q17,pyq_year_missing,repaired,4523,ctet1
+5125,CTET ctet paper 1 jan 2024 Q4,assertion_reason_label_artifact,repaired,4527,ctet1
+5126,CTET ctet paper 1 jan 2024 Q5,assertion_reason_label_artifact,repaired,4528,ctet1
+5131,CTET ctet paper 1 jan 2024 Q10,assertion_reason_label_artifact,repaired,4533,ctet1
+5139,CTET ctet paper 1 jan 2024 Q18,assertion_reason_label_artifact,repaired,4541,ctet1
+5174,CTET ctet paper 1 jan 2024 Q54,math_expression_lost,repaired,4576,ctet1
+5191,CTET ctet paper 1 jan 2024 Q71,assertion_reason_label_artifact,repaired,4593,ctet1
+5195,CTET ctet paper 1 jan 2024 Q75,stem_option_code_merged,repaired,4597,ctet1
+5197,CTET ctet paper 1 jan 2024 Q77,stem_option_code_merged,removed_unrecoverable,,
+5199,CTET ctet paper 1 jan 2024 Q79,assertion_reason_label_artifact,repaired,4600,ctet1
+5204,CTET ctet paper 1 jan 2024 Q84,assertion_reason_label_artifact,repaired,4605,ctet1
+5209,CTET ctet paper 1 jan 2024 Q89,assertion_reason_label_artifact,repaired,4610,ctet1
+5213,CTET ctet paper 1 jan 2024 Q94,missing_underlining_target,removed_unrecoverable,,
+5214,CTET ctet paper 1 jan 2024 Q95,missing_underlining_target,removed_unrecoverable,,
+5215,CTET ctet paper 1 jan 2024 Q96,missing_underlining_target,removed_unrecoverable,,
+5217,CTET ctet paper 1 jan 2024 Q98,missing_underlining_target,removed_unrecoverable,,
+5272,CTET ctet paper 1 jan 2024 Q124,missing_underlining_target,removed_unrecoverable,,
+5274,CTET ctet paper 1 jan 2024 Q126,missing_underlining_target,removed_unrecoverable,,
+5276,CTET ctet paper 1 jan 2024 Q128,stem_option_code_merged,removed_unrecoverable,,
+5281,CTET ctet paper 1 jan 2024 Q133,missing_underlining_target,removed_unrecoverable,,
+5282,CTET ctet paper 1 jan 2024 Q134,missing_underlining_target,removed_unrecoverable,,
+5283,CTET ctet paper 1 jan 2024 Q135,missing_underlining_target,removed_unrecoverable,,
+5301,CTET ctet paper 1 jan 2024 Q123,missing_underlining_target,removed_unrecoverable,,
+5304,CTET ctet paper 1 jan 2024 Q126,missing_underlining_target,removed_unrecoverable,,
+5329,CTET Ctet Paper 1 july 2013 Q1,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4718,ctet1
+5330,CTET Ctet Paper 1 july 2013 Q2,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4719,ctet1
+5331,CTET Ctet Paper 1 july 2013 Q3,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4720,ctet1
+5332,CTET Ctet Paper 1 july 2013 Q4,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4721,ctet1
+5333,CTET Ctet Paper 1 july 2013 Q5,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4722,ctet1
+5335,CTET Ctet Paper 1 july 2013 Q7,option_metadata_leak,repaired,4724,ctet1
+5335,CTET Ctet Paper 1 july 2013 Q7,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4724,ctet1
+5336,CTET Ctet Paper 1 july 2013 Q8,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4725,ctet1
+5340,CTET Ctet Paper 1 july 2013 Q12,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4729,ctet1
+5341,CTET Ctet Paper 1 july 2013 Q13,duplicate_survives_build,duplicate_group_canonical_or_cross_exam,4730,ctet1
+5342,CTET Ctet Paper 1 july 2013 Q14,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4731,ctet1
+5344,CTET Ctet Paper 1 july 2013 Q16,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4733,ctet1
+5345,CTET Ctet Paper 1 july 2013 Q17,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4734,ctet1
+5346,CTET Ctet Paper 1 july 2013 Q18,duplicate_survives_build,consolidated_duplicate,,
+5347,CTET Ctet Paper 1 july 2013 Q19,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4735,ctet1
+5348,CTET Ctet Paper 1 july 2013 Q20,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4736,ctet1
+5351,CTET Ctet Paper 1 july 2013 Q23,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4739,ctet1
+5352,CTET Ctet Paper 1 july 2013 Q25,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4740,ctet1
+5353,CTET Ctet Paper 1 july 2013 Q26,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4741,ctet1
+5355,CTET Ctet Paper 1 july 2013 Q28,duplicate_survives_build,duplicate_group_canonical_or_cross_exam,4742,ctet1
+5357,CTET Ctet Paper 1 july 2013 Q30,english_option_truncated,incomplete_english_removed,4744,ctet1
+5357,CTET Ctet Paper 1 july 2013 Q30,english_stem_truncated,incomplete_english_removed,4744,ctet1
+5358,CTET Ctet Paper 1 july 2013 Q31,english_option_truncated,incomplete_english_removed,4745,ctet1
+5360,CTET Ctet Paper 1 july 2013 Q33,english_stem_truncated,incomplete_english_removed,4747,ctet1
+5361,CTET Ctet Paper 1 july 2013 Q34,english_stem_truncated,incomplete_english_removed,4748,ctet1
+5363,CTET Ctet Paper 1 july 2013 Q36,english_option_truncated,incomplete_english_removed,4750,ctet1
+5363,CTET Ctet Paper 1 july 2013 Q36,english_stem_truncated,incomplete_english_removed,4750,ctet1
+5364,CTET Ctet Paper 1 july 2013 Q37,english_stem_truncated,incomplete_english_removed,4751,ctet1
+5365,CTET Ctet Paper 1 july 2013 Q38,english_option_truncated,incomplete_english_removed,4752,ctet1
+5374,CTET Ctet Paper 1 july 2013 Q47,english_option_truncated,incomplete_english_removed,4761,ctet1
+5375,CTET Ctet Paper 1 july 2013 Q48,english_stem_truncated,incomplete_english_removed,4762,ctet1
+5377,CTET Ctet Paper 1 july 2013 Q50,english_stem_truncated,incomplete_english_removed,4764,ctet1
+5378,CTET Ctet Paper 1 july 2013 Q51,english_stem_truncated,incomplete_english_removed,4765,ctet1
+5381,CTET Ctet Paper 1 july 2013 Q54,duplicate_or_lost_option,repaired,4768,ctet1
+5381,CTET Ctet Paper 1 july 2013 Q54,english_option_truncated,incomplete_english_removed,4768,ctet1
+5381,CTET Ctet Paper 1 july 2013 Q54,math_expression_lost,repaired,4768,ctet1
+5382,CTET Ctet Paper 1 july 2013 Q55,english_option_truncated,incomplete_english_removed,4769,ctet1
+5383,CTET Ctet Paper 1 july 2013 Q56,english_option_truncated,incomplete_english_removed,4770,ctet1
+5384,CTET Ctet Paper 1 july 2013 Q57,bilingual_semantic_mismatch,repaired,4771,ctet1
+5384,CTET Ctet Paper 1 july 2013 Q57,english_stem_truncated,incomplete_english_removed,4771,ctet1
+5384,CTET Ctet Paper 1 july 2013 Q57,unrelated_preamble_or_ocr_garbage,repaired,4771,ctet1
+5385,CTET Ctet Paper 1 july 2013 Q58,english_option_truncated,incomplete_english_removed,4772,ctet1
+5387,CTET Ctet Paper 1 july 2013 Q60,missing_visual_stimulus,removed_unrecoverable,,
+5387,CTET Ctet Paper 1 july 2013 Q60,english_option_truncated,removed_unrecoverable,,
+5389,CTET Ctet Paper 1 july 2013 Q62,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4775,ctet1
+5390,CTET Ctet Paper 1 july 2013 Q63,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4776,ctet1
+5391,CTET Ctet Paper 1 july 2013 Q64,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4777,ctet1
+5392,CTET Ctet Paper 1 july 2013 Q65,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4778,ctet1
+5393,CTET Ctet Paper 1 july 2013 Q66,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4779,ctet1
+5394,CTET Ctet Paper 1 july 2013 Q67,english_stem_truncated,incomplete_english_removed,4780,ctet1
+5395,CTET Ctet Paper 1 july 2013 Q68,english_stem_truncated,incomplete_english_removed,4781,ctet1
+5396,CTET Ctet Paper 1 july 2013 Q69,duplicate_or_lost_option,repaired,4782,ctet1
+5396,CTET Ctet Paper 1 july 2013 Q69,english_option_truncated,incomplete_english_removed,4782,ctet1
+5398,CTET Ctet Paper 1 july 2013 Q71,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4784,ctet1
+5399,CTET Ctet Paper 1 july 2013 Q72,bilingual_semantic_mismatch,repaired,4785,ctet1
+5399,CTET Ctet Paper 1 july 2013 Q72,english_stem_truncated,incomplete_english_removed,4785,ctet1
+5401,CTET Ctet Paper 1 july 2013 Q74,english_stem_truncated,incomplete_english_removed,4787,ctet1
+5403,CTET Ctet Paper 1 july 2013 Q76,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4789,ctet1
+5404,CTET Ctet Paper 1 july 2013 Q77,english_stem_truncated,incomplete_english_removed,4790,ctet1
+5404,CTET Ctet Paper 1 july 2013 Q77,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4790,ctet1
+5406,CTET Ctet Paper 1 july 2013 Q79,english_option_truncated,incomplete_english_removed,4792,ctet1
+5408,CTET Ctet Paper 1 july 2013 Q81,english_option_truncated,incomplete_english_removed,4794,ctet1
+5409,CTET Ctet Paper 1 july 2013 Q82,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4795,ctet1
+5410,CTET Ctet Paper 1 july 2013 Q83,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4796,ctet1
+5411,CTET Ctet Paper 1 july 2013 Q84,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4797,ctet1
+5412,CTET Ctet Paper 1 july 2013 Q85,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4798,ctet1
+5413,CTET Ctet Paper 1 july 2013 Q86,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4799,ctet1
+5414,CTET Ctet Paper 1 july 2013 Q87,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4800,ctet1
+5415,CTET Ctet Paper 1 july 2013 Q88,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4801,ctet1
+5416,CTET Ctet Paper 1 july 2013 Q89,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4802,ctet1
+5417,CTET Ctet Paper 1 july 2013 Q90,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4803,ctet1
+5474,CTET Ctet Paper 1 july 2013 Q147,scope_upper_primary_probable,moved_to_ctet2,4860,ctet2
+5478,CTET Paper 1 July 2024 Q74,pyq_year_missing,repaired,4864,ctet1
+5480,CTET paper 1 june 2019 Q2,duplicate_survives_build,consolidated_duplicate,,
+5481,CTET paper 1 june 2019 Q3,english_option_truncated,incomplete_english_removed,4866,ctet1
+5482,CTET paper 1 june 2019 Q4,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4867,ctet1
+5484,CTET paper 1 june 2019 Q6,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4869,ctet1
+5485,CTET paper 1 june 2019 Q8,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4870,ctet1
+5486,CTET paper 1 june 2019 Q9,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4871,ctet1
+5487,CTET paper 1 june 2019 Q10,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4872,ctet1
+5488,CTET paper 1 june 2019 Q11,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4873,ctet1
+5489,CTET paper 1 june 2019 Q12,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4874,ctet1
+5490,CTET paper 1 june 2019 Q13,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4875,ctet1
+5491,CTET paper 1 june 2019 Q14,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4876,ctet1
+5492,CTET paper 1 june 2019 Q15,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4877,ctet1
+5493,CTET paper 1 june 2019 Q16,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4878,ctet1
+5495,CTET paper 1 june 2019 Q18,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4880,ctet1
+5496,CTET paper 1 june 2019 Q19,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4881,ctet1
+5497,CTET paper 1 june 2019 Q20,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4882,ctet1
+5498,CTET paper 1 june 2019 Q21,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4883,ctet1
+5499,CTET paper 1 june 2019 Q22,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4884,ctet1
+5500,CTET paper 1 june 2019 Q23,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4885,ctet1
+5501,CTET paper 1 june 2019 Q24,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4886,ctet1
+5502,CTET paper 1 june 2019 Q25,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4887,ctet1
+5503,CTET paper 1 june 2019 Q26,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4888,ctet1
+5504,CTET paper 1 june 2019 Q27,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4889,ctet1
+5505,CTET paper 1 june 2019 Q28,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4890,ctet1
+5506,CTET paper 1 june 2019 Q29,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4891,ctet1
+5507,CTET paper 1 june 2019 Q30,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4892,ctet1
+5523,CTET paper 1 june 2019 Q50,incomplete_table_or_data,removed_unrecoverable,,
+5529,CTET paper 1 june 2019 Q60,math_expression_lost,repaired,4913,ctet1
+5530,CTET paper 1 june 2019 Q61,duplicate_survives_build,consolidated_duplicate,,
+5531,CTET paper 1 june 2019 Q62,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4914,ctet1
+5532,CTET paper 1 june 2019 Q63,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4915,ctet1
+5533,CTET paper 1 june 2019 Q64,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4916,ctet1
+5534,CTET paper 1 june 2019 Q65,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4917,ctet1
+5535,CTET paper 1 june 2019 Q66,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4918,ctet1
+5538,CTET paper 1 june 2019 Q69,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4921,ctet1
+5539,CTET paper 1 june 2019 Q70,duplicate_survives_build,consolidated_duplicate,,
+5540,CTET paper 1 june 2019 Q71,duplicate_survives_build,consolidated_duplicate,,
+5541,CTET paper 1 june 2019 Q72,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4922,ctet1
+5542,CTET paper 1 june 2019 Q73,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4923,ctet1
+5543,CTET paper 1 june 2019 Q74,duplicate_survives_build,consolidated_duplicate,,
+5544,CTET paper 1 june 2019 Q75,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4924,ctet1
+5545,CTET paper 1 june 2019 Q76,duplicate_survives_build,consolidated_duplicate,,
+5546,CTET paper 1 june 2019 Q77,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4925,ctet1
+5547,CTET paper 1 june 2019 Q78,duplicate_survives_build,consolidated_duplicate,,
+5548,CTET paper 1 june 2019 Q79,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4926,ctet1
+5549,CTET paper 1 june 2019 Q80,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4927,ctet1
+5550,CTET paper 1 june 2019 Q81,duplicate_survives_build,consolidated_duplicate,,
+5551,CTET paper 1 june 2019 Q82,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4928,ctet1
+5552,CTET paper 1 june 2019 Q83,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4929,ctet1
+5553,CTET paper 1 june 2019 Q84,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4930,ctet1
+5554,CTET paper 1 june 2019 Q85,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4931,ctet1
+5555,CTET paper 1 june 2019 Q86,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4932,ctet1
+5556,CTET paper 1 june 2019 Q87,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4933,ctet1
+5557,CTET paper 1 june 2019 Q88,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4934,ctet1
+5558,CTET paper 1 june 2019 Q89,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4935,ctet1
+5559,CTET paper 1 june 2019 Q90,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,4936,ctet1
+5563,CTET paper 1 june 2019 Q94,missing_underlining_target,removed_unrecoverable,,
+5564,CTET paper 1 june 2019 Q95,missing_underlining_target,removed_unrecoverable,,
+5593,CTET paper 1 june 2019 Q124,missing_underlining_target,removed_unrecoverable,,
+5636,CTET paper 1 june 2019 Q109,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5010,ctet1
+5637,CTET paper 1 june 2019 Q110,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5011,ctet1
+5638,CTET paper 1 june 2019 Q111,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5012,ctet1
+5646,CTET paper 1 june 2019 Q119,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5020,ctet1
+5657,CTET paper 1 june 2019 Q130,missing_underlining_target,removed_unrecoverable,,
+5673,CTET paper 1 june 2019 Q146,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5046,ctet1
+5678,CTET Paper 1 sept 2016 Q1,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5051,ctet1
+5679,CTET Paper 1 sept 2016 Q2,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5052,ctet1
+5681,CTET Paper 1 sept 2016 Q4,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5054,ctet1
+5683,CTET Paper 1 sept 2016 Q6,english_option_truncated,incomplete_english_removed,5056,ctet1
+5684,CTET Paper 1 sept 2016 Q7,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5057,ctet1
+5687,CTET Paper 1 sept 2016 Q10,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5060,ctet1
+5688,CTET Paper 1 sept 2016 Q11,english_stem_truncated,incomplete_english_removed,5061,ctet1
+5689,CTET Paper 1 sept 2016 Q12,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5062,ctet1
+5690,CTET Paper 1 sept 2016 Q13,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5063,ctet1
+5695,CTET Paper 1 sept 2016 Q18,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5068,ctet1
+5696,CTET Paper 1 sept 2016 Q19,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5069,ctet1
+5697,CTET Paper 1 sept 2016 Q20,duplicate_survives_build,duplicate_group_canonical_or_cross_exam,5070,ctet1
+5700,CTET Paper 1 sept 2016 Q23,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5073,ctet1
+5701,CTET Paper 1 sept 2016 Q24,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5074,ctet1
+5702,CTET Paper 1 sept 2016 Q25,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5075,ctet1
+5704,CTET Paper 1 sept 2016 Q27,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5077,ctet1
+5706,CTET Paper 1 sept 2016 Q29,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5079,ctet1
+5708,CTET Paper 1 sept 2016 Q31,english_option_truncated,incomplete_english_removed,5081,ctet1
+5709,CTET Paper 1 sept 2016 Q32,english_option_truncated,incomplete_english_removed,5082,ctet1
+5710,CTET Paper 1 sept 2016 Q33,english_option_truncated,incomplete_english_removed,5083,ctet1
+5711,CTET Paper 1 sept 2016 Q34,english_option_truncated,incomplete_english_removed,5084,ctet1
+5712,CTET Paper 1 sept 2016 Q35,english_option_truncated,incomplete_english_removed,5085,ctet1
+5713,CTET Paper 1 sept 2016 Q36,english_stem_truncated,incomplete_english_removed,5086,ctet1
+5715,CTET Paper 1 sept 2016 Q38,english_option_truncated,incomplete_english_removed,5088,ctet1
+5717,CTET Paper 1 sept 2016 Q40,english_stem_truncated,incomplete_english_removed,5090,ctet1
+5719,CTET Paper 1 sept 2016 Q42,english_option_truncated,incomplete_english_removed,5092,ctet1
+5723,CTET Paper 1 sept 2016 Q54,math_expression_lost,repaired,5096,ctet1
+5723,CTET Paper 1 sept 2016 Q54,english_stem_truncated,incomplete_english_removed,5096,ctet1
+5724,CTET Paper 1 sept 2016 Q56,english_option_truncated,incomplete_english_removed,5097,ctet1
+5725,CTET Paper 1 sept 2016 Q57,english_option_truncated,incomplete_english_removed,5098,ctet1
+5729,CTET Paper 1 sept 2016 Q61,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5102,ctet1
+5730,CTET Paper 1 sept 2016 Q62,english_stem_truncated,incomplete_english_removed,5103,ctet1
+5731,CTET Paper 1 sept 2016 Q63,english_option_truncated,incomplete_english_removed,5104,ctet1
+5732,CTET Paper 1 sept 2016 Q64,english_option_truncated,incomplete_english_removed,5105,ctet1
+5732,CTET Paper 1 sept 2016 Q64,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5105,ctet1
+5734,CTET Paper 1 sept 2016 Q66,stem_option_code_merged,removed_unrecoverable,,
+5734,CTET Paper 1 sept 2016 Q66,exact_duplicate_auto_dropped,removed_unrecoverable,,
+5735,CTET Paper 1 sept 2016 Q67,english_stem_truncated,incomplete_english_removed,5107,ctet1
+5735,CTET Paper 1 sept 2016 Q67,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5107,ctet1
+5736,CTET Paper 1 sept 2016 Q68,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5108,ctet1
+5737,CTET Paper 1 sept 2016 Q69,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5109,ctet1
+5739,CTET Paper 1 sept 2016 Q71,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5111,ctet1
+5740,CTET Paper 1 sept 2016 Q72,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5112,ctet1
+5741,CTET Paper 1 sept 2016 Q73,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5113,ctet1
+5742,CTET Paper 1 sept 2016 Q74,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5114,ctet1
+5743,CTET Paper 1 sept 2016 Q75,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5115,ctet1
+5744,CTET Paper 1 sept 2016 Q76,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5116,ctet1
+5745,CTET Paper 1 sept 2016 Q77,english_stem_truncated,incomplete_english_removed,5117,ctet1
+5745,CTET Paper 1 sept 2016 Q77,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5117,ctet1
+5746,CTET Paper 1 sept 2016 Q78,english_option_truncated,incomplete_english_removed,5118,ctet1
+5749,CTET Paper 1 sept 2016 Q81,english_option_truncated,incomplete_english_removed,5121,ctet1
+5752,CTET Paper 1 sept 2016 Q84,english_stem_truncated,incomplete_english_removed,5124,ctet1
+5753,CTET Paper 1 sept 2016 Q85,english_option_truncated,incomplete_english_removed,5125,ctet1
+5754,CTET Paper 1 sept 2016 Q86,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5126,ctet1
+5755,CTET Paper 1 sept 2016 Q87,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5127,ctet1
+5757,CTET Paper 1 sept 2016 Q89,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5129,ctet1
+5758,CTET Paper 1 sept 2016 Q90,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5130,ctet1
+5794,CTET Paper 1 sept 2016 Q127,missing_underlining_target,removed_unrecoverable,,
+5818,CTET Paper 1 September 2014 Q1,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5189,ctet1
+5819,CTET Paper 1 September 2014 Q2,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5190,ctet1
+5820,CTET Paper 1 September 2014 Q3,english_option_truncated,incomplete_english_removed,5191,ctet1
+5822,CTET Paper 1 September 2014 Q5,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5193,ctet1
+5824,CTET Paper 1 September 2014 Q7,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5195,ctet1
+5826,CTET Paper 1 September 2014 Q9,option_metadata_leak,repaired,5197,ctet1
+5826,CTET Paper 1 September 2014 Q9,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5197,ctet1
+5830,CTET Paper 1 September 2014 Q13,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5201,ctet1
+5831,CTET Paper 1 September 2014 Q14,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5202,ctet1
+5835,CTET Paper 1 September 2014 Q18,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5206,ctet1
+5837,CTET Paper 1 September 2014 Q20,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5208,ctet1
+5838,CTET Paper 1 September 2014 Q21,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5209,ctet1
+5839,CTET Paper 1 September 2014 Q22,english_option_truncated,incomplete_english_removed,5210,ctet1
+5840,CTET Paper 1 September 2014 Q23,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5211,ctet1
+5841,CTET Paper 1 September 2014 Q24,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5212,ctet1
+5842,CTET Paper 1 September 2014 Q25,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5213,ctet1
+5843,CTET Paper 1 September 2014 Q26,english_option_truncated,incomplete_english_removed,5214,ctet1
+5843,CTET Paper 1 September 2014 Q26,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5214,ctet1
+5844,CTET Paper 1 September 2014 Q27,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5215,ctet1
+5845,CTET Paper 1 September 2014 Q28,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5216,ctet1
+5846,CTET Paper 1 September 2014 Q29,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5217,ctet1
+5847,CTET Paper 1 September 2014 Q30,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5218,ctet1
+5849,CTET Paper 1 September 2014 Q32,english_option_truncated,incomplete_english_removed,5220,ctet1
+5854,CTET Paper 1 September 2014 Q37,english_option_truncated,incomplete_english_removed,5225,ctet1
+5855,CTET Paper 1 September 2014 Q38,missing_visual_stimulus,removed_unrecoverable,,
+5858,CTET Paper 1 September 2014 Q41,english_option_truncated,incomplete_english_removed,5228,ctet1
+5860,CTET Paper 1 September 2014 Q43,missing_visual_stimulus,removed_unrecoverable,,
+5861,CTET Paper 1 September 2014 Q44,english_option_truncated,incomplete_english_removed,5230,ctet1
+5864,CTET Paper 1 September 2014 Q47,english_stem_truncated,incomplete_english_removed,5233,ctet1
+5866,CTET Paper 1 September 2014 Q49,english_stem_truncated,incomplete_english_removed,5235,ctet1
+5866,CTET Paper 1 September 2014 Q49,math_expression_lost,repaired,5235,ctet1
+5869,CTET Paper 1 September 2014 Q52,duplicate_or_lost_option,repaired,5238,ctet1
+5873,CTET Paper 1 September 2014 Q57,math_expression_lost,repaired,5242,ctet1
+5875,CTET Paper 1 September 2014 Q59,english_option_truncated,incomplete_english_removed,5244,ctet1
+5877,CTET Paper 1 September 2014 Q61,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5246,ctet1
+5878,CTET Paper 1 September 2014 Q62,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5247,ctet1
+5879,CTET Paper 1 September 2014 Q63,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5248,ctet1
+5881,CTET Paper 1 September 2014 Q65,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5250,ctet1
+5882,CTET Paper 1 September 2014 Q66,english_option_truncated,incomplete_english_removed,5251,ctet1
+5883,CTET Paper 1 September 2014 Q67,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5252,ctet1
+5884,CTET Paper 1 September 2014 Q68,english_option_truncated,incomplete_english_removed,5253,ctet1
+5885,CTET Paper 1 September 2014 Q69,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5254,ctet1
+5887,CTET Paper 1 September 2014 Q71,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5256,ctet1
+5888,CTET Paper 1 September 2014 Q72,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5257,ctet1
+5889,CTET Paper 1 September 2014 Q73,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5258,ctet1
+5892,CTET Paper 1 September 2014 Q76,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5261,ctet1
+5893,CTET Paper 1 September 2014 Q77,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5262,ctet1
+5894,CTET Paper 1 September 2014 Q78,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5263,ctet1
+5895,CTET Paper 1 September 2014 Q79,english_option_truncated,incomplete_english_removed,5264,ctet1
+5896,CTET Paper 1 September 2014 Q80,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5265,ctet1
+5899,CTET Paper 1 September 2014 Q83,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5268,ctet1
+5900,CTET Paper 1 September 2014 Q84,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5269,ctet1
+5901,CTET Paper 1 September 2014 Q85,english_stem_truncated,incomplete_english_removed,5270,ctet1
+5901,CTET Paper 1 September 2014 Q85,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5270,ctet1
+5902,CTET Paper 1 September 2014 Q86,english_option_truncated,incomplete_english_removed,5271,ctet1
+5902,CTET Paper 1 September 2014 Q86,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5271,ctet1
+5903,CTET Paper 1 September 2014 Q87,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5272,ctet1
+5905,CTET Paper 1 September 2014 Q89,english_stem_truncated,incomplete_english_removed,5274,ctet1
+5906,CTET Paper 1 September 2014 Q90,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5275,ctet1
+5945,CTET Paper 1 September 2014 Q129,scope_upper_primary_probable,moved_to_ctet2,5314,ctet2
+5968,CTET Paper-1 January 2012 Q2,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5337,ctet1
+5969,CTET Paper-1 January 2012 Q3,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5338,ctet1
+5971,CTET Paper-1 January 2012 Q5,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5340,ctet1
+5972,CTET Paper-1 January 2012 Q6,duplicate_survives_build,duplicate_group_canonical_or_cross_exam,5341,ctet1
+5973,CTET Paper-1 January 2012 Q7,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5342,ctet1
+5974,CTET Paper-1 January 2012 Q8,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5343,ctet1
+5978,CTET Paper-1 January 2012 Q12,english_option_truncated,incomplete_english_removed,5347,ctet1
+5978,CTET Paper-1 January 2012 Q12,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5347,ctet1
+5979,CTET Paper-1 January 2012 Q13,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5348,ctet1
+5981,CTET Paper-1 January 2012 Q15,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5350,ctet1
+5983,CTET Paper-1 January 2012 Q17,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5352,ctet1
+5985,CTET Paper-1 January 2012 Q19,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5354,ctet1
+5986,CTET Paper-1 January 2012 Q20,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5355,ctet1
+5987,CTET Paper-1 January 2012 Q21,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5356,ctet1
+5988,CTET Paper-1 January 2012 Q22,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5357,ctet1
+5989,CTET Paper-1 January 2012 Q23,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5358,ctet1
+5992,CTET Paper-1 January 2012 Q26,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5361,ctet1
+5993,CTET Paper-1 January 2012 Q27,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5362,ctet1
+5994,CTET Paper-1 January 2012 Q28,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5363,ctet1
+5995,CTET Paper-1 January 2012 Q29,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5364,ctet1
+6004,CTET Paper-1 January 2012 Q38,missing_visual_stimulus,removed_unrecoverable,,
+6009,CTET Paper-1 January 2012 Q43,missing_visual_stimulus,removed_unrecoverable,,
+6026,CTET Paper-1 January 2012 Q60,math_expression_lost,repaired,5393,ctet1
+6027,CTET Paper-1 January 2012 Q61,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5394,ctet1
+6029,CTET Paper-1 January 2012 Q63,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5396,ctet1
+6032,CTET Paper-1 January 2012 Q66,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5399,ctet1
+6037,CTET Paper-1 January 2012 Q71,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5403,ctet1
+6039,CTET Paper-1 January 2012 Q73,missing_visual_stimulus,removed_unrecoverable,,
+6046,CTET Paper-1 January 2012 Q80,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5411,ctet1
+6049,CTET Paper-1 January 2012 Q83,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5414,ctet1
+6050,CTET Paper-1 January 2012 Q84,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5415,ctet1
+6051,CTET Paper-1 January 2012 Q85,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5416,ctet1
+6052,CTET Paper-1 January 2012 Q86,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5417,ctet1
+6053,CTET Paper-1 January 2012 Q87,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5418,ctet1
+6055,CTET Paper-1 January 2012 Q89,stem_option_code_merged,repaired,5419,ctet1
+6116,CTET Paper-1 june 2011 Q1,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5480,ctet1
+6117,CTET Paper-1 june 2011 Q2,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5481,ctet1
+6118,CTET Paper-1 june 2011 Q3,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5482,ctet1
+6119,CTET Paper-1 june 2011 Q4,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5483,ctet1
+6120,CTET Paper-1 june 2011 Q5,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5484,ctet1
+6121,CTET Paper-1 june 2011 Q6,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5485,ctet1
+6122,CTET Paper-1 june 2011 Q7,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5486,ctet1
+6126,CTET Paper-1 june 2011 Q11,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5489,ctet1
+6127,CTET Paper-1 june 2011 Q12,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5490,ctet1
+6130,CTET Paper-1 june 2011 Q15,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5493,ctet1
+6131,CTET Paper-1 june 2011 Q16,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5494,ctet1
+6132,CTET Paper-1 june 2011 Q17,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5495,ctet1
+6133,CTET Paper-1 june 2011 Q18,duplicate_survives_build,duplicate_group_canonical_or_cross_exam,5496,ctet1
+6134,CTET Paper-1 june 2011 Q19,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5497,ctet1
+6135,CTET Paper-1 june 2011 Q20,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5498,ctet1
+6136,CTET Paper-1 june 2011 Q21,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5499,ctet1
+6137,CTET Paper-1 june 2011 Q22,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5500,ctet1
+6139,CTET Paper-1 june 2011 Q24,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5502,ctet1
+6141,CTET Paper-1 june 2011 Q26,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5504,ctet1
+6143,CTET Paper-1 june 2011 Q28,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5506,ctet1
+6144,CTET Paper-1 june 2011 Q29,duplicate_survives_build,duplicate_group_canonical_or_cross_exam,5507,ctet1
+6145,CTET Paper-1 june 2011 Q30,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5508,ctet1
+6147,CTET Paper-1 june 2011 Q33,stem_option_code_merged,repaired,5510,ctet1
+6154,CTET Paper-1 june 2011 Q41,stem_option_code_merged,repaired,5517,ctet1
+6160,CTET Paper-1 june 2011 Q48,math_expression_lost,repaired,5523,ctet1
+6168,CTET Paper-1 june 2011 Q58,math_expression_lost,repaired,5531,ctet1
+6171,CTET Paper-1 june 2011 Q61,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5534,ctet1
+6172,CTET Paper-1 june 2011 Q62,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5535,ctet1
+6174,CTET Paper-1 june 2011 Q64,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5537,ctet1
+6175,CTET Paper-1 june 2011 Q65,missing_visual_stimulus,removed_unrecoverable,,
+6177,CTET Paper-1 june 2011 Q67,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5538,ctet1
+6178,CTET Paper-1 june 2011 Q68,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5539,ctet1
+6181,CTET Paper-1 june 2011 Q71,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5541,ctet1
+6183,CTET Paper-1 june 2011 Q73,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5543,ctet1
+6185,CTET Paper-1 june 2011 Q75,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5545,ctet1
+6186,CTET Paper-1 june 2011 Q76,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5546,ctet1
+6188,CTET Paper-1 june 2011 Q78,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5548,ctet1
+6189,CTET Paper-1 june 2011 Q79,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5549,ctet1
+6190,CTET Paper-1 june 2011 Q80,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5550,ctet1
+6191,CTET Paper-1 june 2011 Q81,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5551,ctet1
+6193,CTET Paper-1 june 2011 Q83,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5553,ctet1
+6194,CTET Paper-1 june 2011 Q84,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5554,ctet1
+6200,CTET Paper-1 june 2011 Q90,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5559,ctet1
+6263,CTET Paper-1 November 2012 Q3,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5622,ctet1
+6267,CTET Paper-1 November 2012 Q7,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5626,ctet1
+6268,CTET Paper-1 November 2012 Q8,option_metadata_leak,repaired,5627,ctet1
+6268,CTET Paper-1 November 2012 Q8,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5627,ctet1
+6270,CTET Paper-1 November 2012 Q10,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5629,ctet1
+6272,CTET Paper-1 November 2012 Q12,duplicate_survives_build,duplicate_group_canonical_or_cross_exam,5631,ctet1
+6273,CTET Paper-1 November 2012 Q13,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5632,ctet1
+6276,CTET Paper-1 November 2012 Q16,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5635,ctet1
+6277,CTET Paper-1 November 2012 Q17,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5636,ctet1
+6278,CTET Paper-1 November 2012 Q18,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5637,ctet1
+6279,CTET Paper-1 November 2012 Q19,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5638,ctet1
+6280,CTET Paper-1 November 2012 Q20,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5639,ctet1
+6286,CTET Paper-1 November 2012 Q26,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5645,ctet1
+6289,CTET Paper-1 November 2012 Q29,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5648,ctet1
+6298,CTET Paper-1 November 2012 Q39,missing_visual_stimulus,removed_unrecoverable,,
+6330,CTET Paper-1 November 2012 Q71,incomplete_table_or_data,removed_unrecoverable,,
+6410,CTET paper1 Feb 2016 Q1,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5767,ctet1
+6411,CTET paper1 Feb 2016 Q2,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5768,ctet1
+6412,CTET paper1 Feb 2016 Q3,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5769,ctet1
+6416,CTET paper1 Feb 2016 Q7,option_metadata_leak,repaired,5772,ctet1
+6418,CTET paper1 Feb 2016 Q9,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5774,ctet1
+6421,CTET paper1 Feb 2016 Q12,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5777,ctet1
+6422,CTET paper1 Feb 2016 Q13,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5778,ctet1
+6424,CTET paper1 Feb 2016 Q15,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5780,ctet1
+6426,CTET paper1 Feb 2016 Q17,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5781,ctet1
+6428,CTET paper1 Feb 2016 Q19,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5783,ctet1
+6429,CTET paper1 Feb 2016 Q20,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5784,ctet1
+6430,CTET paper1 Feb 2016 Q21,duplicate_survives_build,consolidated_duplicate,,
+6436,CTET paper1 Feb 2016 Q28,bilingual_semantic_mismatch,repaired,5789,ctet1
+6436,CTET paper1 Feb 2016 Q28,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5789,ctet1
+6452,CTET paper1 Feb 2016 Q52,math_expression_lost,repaired,5805,ctet1
+6459,CTET paper1 Feb 2016 Q62,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5812,ctet1
+6462,CTET paper1 Feb 2016 Q65,english_stem_truncated,incomplete_english_removed,5815,ctet1
+6462,CTET paper1 Feb 2016 Q65,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5815,ctet1
+6464,CTET paper1 Feb 2016 Q67,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5817,ctet1
+6467,CTET paper1 Feb 2016 Q70,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5819,ctet1
+6477,CTET paper1 Feb 2016 Q80,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5829,ctet1
+6481,CTET paper1 Feb 2016 Q84,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5833,ctet1
+6482,CTET paper1 Feb 2016 Q85,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5834,ctet1
+6484,CTET paper1 Feb 2016 Q87,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5836,ctet1
+6485,CTET paper1 Feb 2016 Q88,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5837,ctet1
+6486,CTET paper1 Feb 2016 Q89,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5838,ctet1
+6546,CTET paper1 Feb 2016 Q149,missing_underlining_target,removed_unrecoverable,,
+6547,CTET paper1 Feb 2016 Q150,english_option_truncated,incomplete_english_removed,5898,ctet1
+6548,CTET paper1 Sept 2015 Q1,duplicate_survives_build,duplicate_group_canonical_or_cross_exam,5899,ctet1
+6549,CTET paper1 Sept 2015 Q2,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5900,ctet1
+6550,CTET paper1 Sept 2015 Q3,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5901,ctet1
+6551,CTET paper1 Sept 2015 Q4,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5902,ctet1
+6554,CTET paper1 Sept 2015 Q7,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5904,ctet1
+6558,CTET paper1 Sept 2015 Q11,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5907,ctet1
+6560,CTET paper1 Sept 2015 Q13,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5909,ctet1
+6561,CTET paper1 Sept 2015 Q14,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5910,ctet1
+6562,CTET paper1 Sept 2015 Q15,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5911,ctet1
+6564,CTET paper1 Sept 2015 Q17,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5913,ctet1
+6568,CTET paper1 Sept 2015 Q22,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5916,ctet1
+6569,CTET paper1 Sept 2015 Q23,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5917,ctet1
+6570,CTET paper1 Sept 2015 Q24,duplicate_survives_build,duplicate_group_canonical_or_cross_exam,5918,ctet1
+6571,CTET paper1 Sept 2015 Q25,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5919,ctet1
+6572,CTET paper1 Sept 2015 Q26,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5920,ctet1
+6573,CTET paper1 Sept 2015 Q27,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5921,ctet1
+6574,CTET paper1 Sept 2015 Q28,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5922,ctet1
+6599,CTET paper1 Sept 2015 Q58,incomplete_table_or_data,removed_unrecoverable,,
+6602,CTET paper1 Sept 2015 Q62,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5949,ctet1
+6603,CTET paper1 Sept 2015 Q63,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5950,ctet1
+6604,CTET paper1 Sept 2015 Q64,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5951,ctet1
+6605,CTET paper1 Sept 2015 Q65,duplicate_or_lost_option,repaired,5952,ctet1
+6609,CTET paper1 Sept 2015 Q69,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5956,ctet1
+6610,CTET paper1 Sept 2015 Q70,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5957,ctet1
+6614,CTET paper1 Sept 2015 Q74,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5960,ctet1
+6618,CTET paper1 Sept 2015 Q78,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5964,ctet1
+6622,CTET paper1 Sept 2015 Q82,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5968,ctet1
+6623,CTET paper1 Sept 2015 Q83,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5969,ctet1
+6624,CTET paper1 Sept 2015 Q84,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5970,ctet1
+6626,CTET paper1 Sept 2015 Q86,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5972,ctet1
+6627,CTET paper1 Sept 2015 Q87,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5973,ctet1
+6628,CTET paper1 Sept 2015 Q88,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5974,ctet1
+6629,CTET paper1 Sept 2015 Q89,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5975,ctet1
+6630,CTET paper1 Sept 2015 Q90,exact_duplicate_auto_dropped,duplicate_group_canonical_or_cross_exam,5976,ctet1
+6632,CTET paper1 Sept 2015 Q92,missing_underlining_target,removed_unrecoverable,,
+6633,CTET paper1 Sept 2015 Q93,missing_underlining_target,removed_unrecoverable,,
+6672,CTET paper1 Sept 2015 Q132,missing_underlining_target,removed_unrecoverable,,
+6698,CTET Bank Pedagogy of English Language Q8,wrong_answer_key,repaired,6041,ctet1
+6995,CTET Bank Hindi Language_ Pedagogy Q11,scope_paper2_visible,moved_to_ctet2,6337,ctet2
