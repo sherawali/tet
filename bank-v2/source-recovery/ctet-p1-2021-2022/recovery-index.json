@@ -3,8 +3,8 @@
   "cycleSourceManifest": "bank-v2/sources/ctet-p1-2021-2022-cbt-cycle.json",
   "purpose": "Source matching and transcription only; no recovered row is imported by this process.",
   "sourcePdfRetention": "not-retained",
-  "recoveredCount": 46,
-  "failureCount": 14,
+  "recoveredCount": 47,
+  "failureCount": 13,
   "documents": [
     {
       "date": "2021-12-16",
@@ -92,6 +92,35 @@
       "questionNumberMaximum": 150,
       "uniqueQuestionIdCount": 154,
       "frontMatterText": "===== PDF PAGE 1 =====\nCTET     Exam\n\nPaper I (English and Hindi)\n\n===== PDF PAGE 2 =====\n                    CBSE\n\n\n\nQuestion Paper Name :                                        P1 English and Hindi Comb19\nSubject Name :                                              P1 English and Hindi\nCreation Date :                                                    2021-12-20 15:59:01\nDuration :                                                     150\nTotal Marks :                                                  150\nDisplay Marks:                                                  Yes\n\n\n                         P1 English and Hindi\nGroup Number :                                               1\nGroup Id :                                                     9533572940\nGroup Maximum Duration :                                     0\nGroup Minimum Duration :                                      150\nShow Attended Group? :                                 No\nEdit Attended Group? :                                  No\nBreak time :                                                   0\nGroup Marks :                                                 150\nIs this Group for Examiner? :                              No\n\n\n                        Child Development and Pedagogy\nSection Id :                                                    95335710063\nSection Number :                                               1\nSection type :                                                       Online\nMandatory or Optional :                                          Mandatory\nNumber of Questions :                                          30\nNumber of Questions to be attempted :                             30\nSection Marks :                                                30\nEnable Mark as Answered Mark for Review and Clear Response :      Yes\nSub-Section Number :                                           1\nSub-Section Id :                                                95335717747\nQuestion Shuffling Allowed :                                      Yes\n\n\nQuestion Number : 1 Question Id : 953357298605 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No\nCorrect Marks : 1 Wrong Marks : 0\nWhich of the following is NOT a principle of the development?\nOptions :\n1. Development occurs along a single course and is not uni-dimensional.\n2. Development proceeds from the top-down and from centre outwards.\n3. Development is influenced by both 'nature' and 'nurture'.\n4. Development occurs in socio-cultural contexts.\n\n\nQuestion Number : 1 Question Id : 953357298605 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No\nCorrect Marks : 1 Wrong Marks : 0\n\n\nOptions :\n\n1.\n\n===== PDF PAGE 3 =====\n2.\n\n\n\n3.\n\n\n4.\n\n\n\nQuestion Number : 2 Question Id : 953357298606 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No\nCorrect Marks : 1 Wrong Marks : 0\nCephalocaudal principle is applicable in the sphere of -\nOptions :\n1. motor Development\n2. language Development\n3. cognitive Development\n4. moral Development\n\n\nQuestion Number : 2 Question Id : 953357298606 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No\nCorrect Marks : 1 Wrong Marks : 0\n\n\n\nOptions :\n\n1.\n\n\n2.\n\n\n3.\n\n\n4.\n\n\n\nQuestion Number : 3 Question Id : 953357298607 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No\nCorrect Marks : 1 Wrong Marks : 0\n_________________ is a 'sensitive period' pertaining to language development.\nOptions :\n1. Pre-natal period\n2. Early childhood period\n3. Middle childhood\n4. Adolescence\n\n\nQuestion Number : 3 Question Id : 953357298607 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No\nCorrect Marks : 1 Wrong Marks : 0\n\n\nOptions :\n\n\n1.\n\n\n2.\n\n\n3.\n"
+    },
+    {
+      "date": "2021-12-21",
+      "source": "preppCatalogPdf",
+      "url": "https://cdn-images.prepp.in/public/image/e84b3334e8c9726f0a68a38479a3f15b.pdf",
+      "bytes": 15705638,
+      "sha256": "494aa869e0e5d72b2471e5b790ea4ea6d95848d9239a65a1a62019254bfb481c",
+      "textPath": "bank-v2/source-recovery/ctet-p1-2021-2022/text/2021-12-21--preppcatalogpdf.txt",
+      "pageCount": 98,
+      "metadata": {
+        "format": "PDF 1.6",
+        "producer": "2.2.15 (4.2.4) ",
+        "creationDate": "D:20210415054539+02'00'",
+        "modDate": "D:20220215124029+05'30'"
+      },
+      "textCharacters": 143198,
+      "pagesWithText": 98,
+      "nativeTextCharacters": 42,
+      "nativePagesWithText": 1,
+      "ocrApplied": true,
+      "ocrLanguage": "eng+hin+san",
+      "ocrPageCount": 97,
+      "embeddedImageCount": 897,
+      "pagesWithEmbeddedImages": 98,
+      "questionNumberOccurrences": 299,
+      "questionNumberMinimum": 1,
+      "questionNumberMaximum": 150,
+      "uniqueQuestionIdCount": 154,
+      "frontMatterText": "===== PDF PAGE 1 =====\nCTET     Exam\n\nPaper I (English and Hindi)\n\n===== PDF PAGE 2 =====\n1/1/22, 5:32 PM\nCBSE\nQuestion Paper Name : Set D P1 English and Hindi Comb19\nSubject Name : PI English and Hindi\nCreation Date : 2021-12-21 14:02:09\nDuration : 150\nTotal Marks : 150\nDisplay Marks: Yes\nP1 English and Hindi\nGroup Number : 1\nGroup Id: 9533572905\nGroup Maximum Duration : 0\nGroup Minimum Duration : 150\nShow Attended Group? : No\nEdit Attended Group? : No\nBreak time : 0\nGroup Marks : 150\nIs this Group for Examiner? : No\nChild Development and Pedagogy\nSection प: 9533579888\nSection Number : 1\nSection type : Online\nMandatory or Optional : Mandatory\nNumber of Questions : 30\nNumber of Questions to be attempted : 30\nSection Marks : 30\nEnable Mark as Answered Mark for Review and Clear Response : Yes\nSub-Section Number : 1\nSub-Section Id : 95335717432\nQuestion Shuffling Allowed : Yes\nQuestion Number : 1 Question Id : 953357293215 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No\nCorrect Marks : 1 Wrong Marks : 0\nDevelopment is -\nOptions :\n1. unidimensional.\n2. uni-directional.\n3. modifiable.\n4. totally genetically pre-programmed.\nQuestion Number : 1 Question Id : 953357293215 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No\nCorrect Marks : 1 Wrong Marks : 0\nविकास.................है।\nOptions :\n1. एक-आयामी\nVacancies and updates on one click\n\n===== PDF PAGE 3 =====\n1/1/22, 5:32 PM\n2. एक दिशायी\n3. में बदलाव किया जा सकता\n4 अनुवांशिकता द्वारा पूर्ण रूप से पूर्व निधारित\nQuestion Number : 2 Question Id : 953357293216 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No\nCorrect Marks : 1 Wrong Marks : 0\nWhich of the following is definitely predetermined by genetics / heredity?\nOptions :\n1. Choice of friends\n2. Colour of the eyes\n3. Academic success\n4. Interest in studies\nQuestion Number : 2 Question Id : 953357293216 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No\nCorrect Marks : 1 Wrong Marks : 0\nइनमें से कौन-सा पृणर्तः अनुवांशिकी द्वारा पूर्व निर्धारित होता है?\nOptions :\n1. मित्रों का चयन\n2. आखों का रंग\n3. शैक्षणिक सफलता\n4. शिक्षा में रुचि\nQuestion Number : 3 Question Id : 953357293217 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No\nCorrect Marks : 1 Wrong Marks : 0\nrefers to the learning that children undergo when they enter social institutions such as school.\nOptions :\n1. Maturation\n2. Passive socialisation\n3. Primary socialisation\n4. Secondary socialisation\nQuestion Number : 3 Question Id : 953357293217 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No\nCorrect Marks : 1 Wrong Marks : 0\nसीखने की वह प्रक्रिया क्या कहलाती है जिसमें बच्चे स्कूल जैसी सामाजिक संस्थाओं में प्रवेश करके सीखते हैं?\nOptions :\n1. परिपक्वता\n2. निष्क्रिय सामाजीकरण\n3. प्रथामिक सामाजीकरण\nLatest Sarkari Jobs, Govt & Results, ज तकु\n| know More | 2196\n"
     },
     {
       "date": "2021-12-21",
@@ -1354,12 +1383,6 @@
       "source": "careerpower-response-oriya-english",
       "url": "https://www.careerpower.in/2019/CTET_Paper1_16_Dec_oriya.pdf",
       "error": "HTTPError: 403 Client Error: Forbidden for url: https://www.careerpower.in/2019/CTET_Paper1_16_Dec_oriya.pdf"
-    },
-    {
-      "date": "2021-12-21",
-      "source": "preppCatalogPdf",
-      "url": "https://cdn-images.prepp.in/public/image/e84b3334e8c9726f0a68a38479a3f15b.pdf",
-      "error": "RuntimeError: Raster-only PDF requires tesseract, but it is not installed"
     },
     {
       "date": "2021-12-21",
