@@ -1,0 +1,113 @@
+{
+ "CTET Paper 1 jan 2021.md": {
+  "key_exam": "jan2021_p1",
+  "rates": {
+   "I": 0.278,
+   "J": 0.211,
+   "K": 0.989,
+   "L": 0.256,
+   "Q": 0.289,
+   "R": 0.222,
+   "S": 0.233,
+   "T": 0.278
+  },
+  "matched_set": "K",
+  "match_rate": 0.989,
+  "n_answered": 90,
+  "mismatches": [
+   [
+    71,
+    2,
+    "0"
+   ]
+  ]
+ },
+ "CTET Paper 1 dec 2021.md": {
+  "key_exam": "dec2021_p1_final_key_en",
+  "rates": {
+   "31/12/2021": 1.0
+  },
+  "matched_set": "31/12/2021",
+  "match_rate": 1.0,
+  "n_answered": 90,
+  "mismatches": []
+ },
+ "ctet paper 1 jan 2023.md": {
+  "key_exam": "dec2022",
+  "rates": {
+   "13/01/2023": 0.966
+  },
+  "matched_set": "13/01/2023",
+  "match_rate": 0.966,
+  "n_answered": 88,
+  "mismatches": [
+   [
+    46,
+    1,
+    "3"
+   ],
+   [
+    80,
+    0,
+    "2"
+   ],
+   [
+    85,
+    0,
+    "3"
+   ]
+  ]
+ },
+ "ctet paper 1 aug 2023.md": {
+  "key_exam": "aug2023_p1",
+  "rates": {
+   "A": 0.247,
+   "B": 0.213,
+   "C": 0.27,
+   "D": 1.0
+  },
+  "matched_set": "D",
+  "match_rate": 1.0,
+  "n_answered": 90,
+  "mismatches": []
+ },
+ "ctet paper 1 jan 2024.md": {
+  "key_exam": "jan2024_p1",
+  "rates": {
+   "I": null,
+   "J": null,
+   "K": null,
+   "L": null
+  },
+  "matched_set": null,
+  "match_rate": null,
+  "n_answered": 90,
+  "mismatches": []
+ },
+ "CTET Paper 1 July 2024_watermark.md": {
+  "key_exam": "july2024_p1",
+  "rates": {
+   "A": 1.0,
+   "B": 0.0,
+   "C": 0.0,
+   "D": 0.0
+  },
+  "matched_set": "A",
+  "match_rate": 1.0,
+  "n_answered": 1,
+  "mismatches": []
+ },
+ "CTET Paper 1 December 2024_watermark.md": {
+  "key_exam": "dec2024_p1",
+  "rates": {
+   "H": 0,
+   "I": 0,
+   "J": 0,
+   "K": 0
+  },
+  "matched_set": "H",
+  "match_rate": 0,
+  "n_answered": 0,
+  "mismatches": []
+ }
+}

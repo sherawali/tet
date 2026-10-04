@@ -1,0 +1,188 @@
+{
+ "2021-01": {
+  "meta": {
+   "id": "2021-01",
+   "name": "CTET January 2021 (Paper 1)",
+   "exam_date": "31/01/2021",
+   "paper": "1",
+   "booklet_set": "K",
+   "note": "July-2020 cycle COVID-postponed; Set K",
+   "answer_source": "CBSE official final answer key (ctet.nic.in)",
+   "question_source": "ctet-questions/CTET Paper 1 jan 2021.md (PDF extraction, verified vs official key)",
+   "n_cdp": 30,
+   "n_math": 30,
+   "n_evs": 30,
+   "n_lang": 60,
+   "flags": [
+    "Q71: book=3 official=1",
+    "Q71: sirf 0 विकल्प"
+   ]
+  },
+  "report": {
+   "book_vs_official_mismatch": 1,
+   "bad_opts": 1
+  },
+  "flags": [
+   "Q71: book=3 official=1",
+   "Q71: sirf 0 विकल्प"
+  ]
+ },
+ "2021-12": {
+  "meta": {
+   "id": "2021-12",
+   "name": "CTET December 2021 (Paper 1)",
+   "exam_date": "31/12/2021",
+   "paper": "1",
+   "booklet_set": "31/12/2021",
+   "note": "Dec-2021 cycle (shifts Dec-2021–Jan-2022); booklet of 31-Dec-2021",
+   "answer_source": "CBSE official final answer key (ctet.nic.in)",
+   "question_source": "ctet-questions/CTET Paper 1 dec 2021.md (PDF extraction, verified vs official key)",
+   "n_cdp": 30,
+   "n_math": 30,
+   "n_evs": 30,
+   "n_lang": 60,
+   "flags": []
+  },
+  "report": {},
+  "flags": []
+ },
+ "2022-12": {
+  "meta": {
+   "id": "2022-12",
+   "name": "CTET December 2022 (Paper 1)",
+   "exam_date": "13/01/2023",
+   "paper": "1",
+   "booklet_set": "13/01/2023",
+   "note": "Dec-2022 cycle (shifts Dec-2022–Feb-2023); booklet of 13-Jan-2023 (Paper 1)",
+   "answer_source": "CBSE official final answer key (ctet.nic.in)",
+   "question_source": "ctet-questions/ctet paper 1 jan 2023.md (PDF extraction, verified vs official key)",
+   "n_cdp": 30,
+   "n_math": 30,
+   "n_evs": 30,
+   "n_lang": 30,
+   "flags": [
+    "Q44: sirf 0 विकल्प",
+    "Q45: sirf 0 विकल्प",
+    "Q46: book=2 official=4",
+    "Q46: stem damaged ('8')",
+    "Q46: sirf 0 विकल्प",
+    "Q80: book=1 official=3",
+    "Q85: book=1 official=4"
+   ]
+  },
+  "report": {
+   "bad_opts": 3,
+   "book_vs_official_mismatch": 3,
+   "broken_stem": 1
+  },
+  "flags": [
+   "Q44: sirf 0 विकल्प",
+   "Q45: sirf 0 विकल्प",
+   "Q46: book=2 official=4",
+   "Q46: stem damaged ('8')",
+   "Q46: sirf 0 विकल्प",
+   "Q80: book=1 official=3",
+   "Q85: book=1 official=4"
+  ]
+ },
+ "2023-08": {
+  "meta": {
+   "id": "2023-08",
+   "name": "CTET August 2023 (Paper 1)",
+   "exam_date": "20/08/2023",
+   "paper": "1",
+   "booklet_set": "D",
+   "note": "Set D",
+   "answer_source": "CBSE official final answer key (ctet.nic.in)",
+   "question_source": "ctet-questions/ctet paper 1 aug 2023.md (PDF extraction, verified vs official key)",
+   "n_cdp": 30,
+   "n_math": 30,
+   "n_evs": 30,
+   "n_lang": 60,
+   "flags": [
+    "Q48: book=3 official=2"
+   ]
+  },
+  "report": {
+   "book_vs_official_mismatch": 1
+  },
+  "flags": [
+   "Q48: book=3 official=2"
+  ]
+ },
+ "2024-01": {
+  "meta": {
+   "id": "2024-01",
+   "name": "CTET January 2024 (Paper 1)",
+   "exam_date": "21/01/2024",
+   "paper": "1",
+   "booklet_set": null,
+   "note": "Set (auto-detect)",
+   "answer_source": "CBSE official final answer key (ctet.nic.in)",
+   "question_source": "ctet-questions/ctet paper 1 jan 2024.md (PDF extraction, verified vs official key)",
+   "n_cdp": 30,
+   "n_math": 30,
+   "n_evs": 30,
+   "n_lang": 60,
+   "flags": []
+  },
+  "report": {},
+  "flags": []
+ },
+ "2024-07": {
+  "meta": {
+   "id": "2024-07",
+   "name": "CTET July 2024 (Paper 1)",
+   "exam_date": "07/07/2024",
+   "paper": "1",
+   "booklet_set": "A",
+   "note": "Booklet code A",
+   "answer_source": "CBSE official final answer key (ctet.nic.in)",
+   "question_source": "ctet-questions/CTET Paper 1 July 2024_watermark.md (PDF extraction, verified vs official key)",
+   "n_cdp": 30,
+   "n_math": 30,
+   "n_evs": 30,
+   "n_lang": 60,
+   "flags": [
+    "Q49: sirf 3 विकल्प",
+    "Q52: sirf 3 विकल्प",
+    "Q78: sirf 3 विकल्प",
+    "Q82: sirf 3 विकल्प"
+   ]
+  },
+  "report": {
+   "bad_opts": 4
+  },
+  "flags": [
+   "Q49: sirf 3 विकल्प",
+   "Q52: sirf 3 विकल्प",
+   "Q78: sirf 3 विकल्प",
+   "Q82: sirf 3 विकल्प"
+  ]
+ },
+ "2024-12": {
+  "meta": {
+   "id": "2024-12",
+   "name": "CTET December 2024 (Paper 1)",
+   "exam_date": "14/12/2024",
+   "paper": "1",
+   "booklet_set": "H",
+   "note": "Booklet code H",
+   "answer_source": "CBSE official final answer key (ctet.nic.in)",
+   "question_source": "ctet-questions/CTET Paper 1 December 2024_watermark.md (PDF extraction, verified vs official key)",
+   "n_cdp": 30,
+   "n_math": 30,
+   "n_evs": 30,
+   "n_lang": 60,
+   "flags": [
+    "Q55: sirf 3 विकल्प"
+   ]
+  },
+  "report": {
+   "bad_opts": 1
+  },
+  "flags": [
+   "Q55: sirf 3 विकल्प"
+  ]
+ }
+}

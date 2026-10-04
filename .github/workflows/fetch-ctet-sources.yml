@@ -3,7 +3,7 @@ name: Fetch CTET sources
 on:
   push:
     branches: [arena/01a10471-tet]
-    paths: ['.github/workflows/fetch-ctet-sources.yml', 'tools/fetch_ctet_sources.py']
+    paths: ['.github/workflows/fetch-ctet-sources.yml', 'tools/fetch_ctet_run3.py']
   workflow_dispatch:
 
 permissions:
@@ -35,7 +35,7 @@ jobs:
           pip install --quiet pdfplumber gdown
 
       - name: Fetch and extract
-        run: python tools/fetch_ctet_sources.py
+        run: python tools/fetch_ctet_run3.py
 
       - name: Commit results
         shell: bash
