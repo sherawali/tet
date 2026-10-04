@@ -46,7 +46,7 @@ def fetch(url, dest, tries=4, referer=None):
     for i in range(tries):
         ref = f'-e "{referer}"' if referer else ""
         sh(f'curl -sL --max-time 200 -A "Mozilla/5.0 (X11; Linux x86_64; rv:124.0) Gecko/20100101 Firefox/124.0" {ref} "{url}" -o "{dest}"')
-        if is_pdf(dest) and os.path.getsize(dest) > 10000:
+        if os.path.exists(dest) and os.path.getsize(dest) > 10000 and (is_pdf(dest) or zipfile.is_zipfile(dest)):
             return True
         time.sleep(8)
     return False
@@ -54,11 +54,18 @@ def fetch(url, dest, tries=4, referer=None):
 def drive_dl(fid, dest):
     u = f"https://drive.usercontent.google.com/download?id={fid}&export=download&confirm=t"
     if fetch(u, dest, tries=3):
-        if is_pdf(dest) or zipfile.is_zipfile(dest):
-            return "usercontent"
+        return "usercontent"
+    u2 = f"https://docs.google.com/uc?export=download&id={fid}&confirm=t"
+    if fetch(u2, dest, tries=2):
+        return "docs.google.com"
     r = sh(f'gdown --fuzzy "https://drive.google.com/file/d/{fid}/view" -O "{dest}"', timeout=300)
     if r and r.returncode == 0 and (is_pdf(dest) or zipfile.is_zipfile(dest)):
         return "gdown"
+    try:
+        head = open(dest, "rb").read(120).decode("utf-8", "ignore")
+    except Exception:
+        head = ""
+    R["errors"].append(f"drive_dl head {fid[:8]}: size={os.path.getsize(dest) if os.path.exists(dest) else 0} head={head[:100]!r}")
     return None
 
 def n_pages(pdf):
@@ -149,36 +156,7 @@ for label, fid, pick in ZIPS:
     R["papers"].append(ent)
     print(f"  {label}: {[(e['pages_ocr'], e['chars']) for e in ex_list]}", flush=True)
 
-# ---------------------------------------------- adda247 / careerpower (diagnose+retry)
-EXTRA = {
-    "adda247_7feb_codeU": ("https://www.adda247.com/jobs/wp-content/uploads/sites/13/2026/02/07183549/Code-U.pdf", "https://www.adda247.com/jobs/"),
-    "adda247_7feb_codeV": ("https://www.adda247.com/jobs/wp-content/uploads/sites/13/2026/02/07183547/Code-V.pdf", "https://www.adda247.com/jobs/"),
-    "adda247_8feb_setC": ("https://www.adda247.com/jobs/wp-content/uploads/sites/13/2026/02/08180518/PRT-08-02-26-Set-C.pdf", "https://www.adda247.com/jobs/"),
-    "careerpower_8feb_C": ("https://www.careerpower.in/blog/wp-content/uploads/2026/05/12122845/CTET-Question-Paper-1-Shift-2-8-Feb-2026-Code-C.pdf", "https://www.careerpower.in/"),
-}
-print("== extras (adda247/careerpower) ==", flush=True)
-for label, (url, ref) in EXTRA.items():
-    ent = {"label": label, "url": url}
-    dest = os.path.join(DL, label + ".pdf")
-    if fetch(url, dest, tries=3, referer=ref):
-        txt, n = ocr_pdf(dest, max_pages=40)
-        if len(txt) < 5000:      # OCR bhi fail? pdfplumber text try
-            r = sh(f'python3 -c "import pdfplumber,sys; print(chr(10).join((p.extract_text() or \'\') for p in pdfplumber.open(sys.argv[1]).pages))" "{dest}"', timeout=240)
-            if r and r.returncode == 0 and len(r.stdout) > len(txt):
-                txt = r.stdout; n = -1
-        stem = re.sub(r"[^A-Za-z0-9_-]+", "_", label)
-        open(os.path.join(QPS_DIR, stem + ".txt"), "w", encoding="utf-8").write(txt)
-        ent.update({"status": "ok", "pages": n, "chars": len(txt)})
-    else:
-        sz = os.path.getsize(dest) if os.path.exists(dest) else 0
-        head = ""
-        try:
-            head = open(dest, "rb").read(60).decode("utf-8", "ignore")
-        except Exception:
-            pass
-        ent.update({"status": "dl-fail", "size": sz, "head": head})
-    R["papers"].append(ent)
-    print(" ", label, ent.get("status"), ent.get("chars"), flush=True)
+# adda247/careerpower: runner-IP blocked (919B HTML) — official zips primary hain, skip
 
 R["elapsed_min"] = round((time.time() - T0) / 60, 1)
 json.dump(manifest, open(MANIFEST_PATH, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
