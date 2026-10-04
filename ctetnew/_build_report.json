@@ -108,7 +108,7 @@
    "name": "CTET January 2024 (Paper 1)",
    "exam_date": "21/01/2024",
    "paper": "1",
-   "booklet_set": null,
+   "booklet_set": "I",
    "note": "Set (auto-detect)",
    "answer_source": "CBSE official final answer key (ctet.nic.in)",
    "question_source": "ctet-questions/ctet paper 1 jan 2024.md (PDF extraction, verified vs official key)",

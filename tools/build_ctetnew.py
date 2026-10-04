@@ -123,7 +123,7 @@ EXAMS = [
          md="ctet paper 1 aug 2023.md", kexam="aug2023_p1", kset="D",
          note="Set D"),
     dict(id="2024-01", name="CTET January 2024 (Paper 1)", date="21/01/2024",
-         md="ctet paper 1 jan 2024.md", kexam="jan2024_p1", kset=None,  # set match pending
+         md="ctet paper 1 jan 2024.md", kexam="jan2024_p1", kset="I",  # set-I: 90/90 perfect match
          note="Set (auto-detect)"),
     dict(id="2024-07", name="CTET July 2024 (Paper 1)", date="07/07/2024",
          md="CTET Paper 1 July 2024_watermark.md", kexam="july2024_p1", kset="A",

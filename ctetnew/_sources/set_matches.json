@@ -74,13 +74,13 @@
  "ctet paper 1 jan 2024.md": {
   "key_exam": "jan2024_p1",
   "rates": {
-   "I": null,
-   "J": null,
-   "K": null,
-   "L": null
+   "I": 1.0,
+   "J": 0.258,
+   "K": 0.213,
+   "L": 0.281
   },
-  "matched_set": null,
-  "match_rate": null,
+  "matched_set": "I",
+  "match_rate": 1.0,
   "n_answered": 90,
   "mismatches": []
  },
