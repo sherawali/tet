@@ -1,1 +1,137 @@
-{"schema":1,"bank_version":110,"generated":"2026-10-04T09:16:05Z","topics":[],"total":0,"pyq_count":0,"avg_p":0.0,"sections":{},"packs":[]}
+{
+  "schema": 1,
+  "bank_version": 20261004,
+  "generated": "2026-10-04T09:21:23Z",
+  "topics": [
+    "बाल विकास एवं शिक्षणशास्त्र",
+    "हिन्दी भाषा",
+    "English Language",
+    "गणित एवं शिक्षणशास्त्र",
+    "पर्यावरण अध्ययन",
+    "संस्कृत भाषा",
+    "विज्ञान",
+    "सामाजिक अध्ययन"
+  ],
+  "total": 1920,
+  "pyq_count": 1920,
+  "avg_p": 0.85,
+  "sections": {
+    "cdp": 300,
+    "english": 420,
+    "evs": 300,
+    "hindi": 420,
+    "math": 300,
+    "sanskrit": 180
+  },
+  "packs": [
+    {
+      "id": "0000",
+      "file": "packs/pack-0000-ee3b1b0e7ae9.json",
+      "sha256": "ee3b1b0e7ae95f42762d137a44b5a3cf15db82fe8427f795c9cc787a7b1d679c",
+      "bytes": 173962,
+      "count": 200,
+      "sections": [
+        "cdp",
+        "english"
+      ]
+    },
+    {
+      "id": "0001",
+      "file": "packs/pack-0001-49540cb32960.json",
+      "sha256": "49540cb329604292932f37be1799744ffda36e0853dc48718f3cb287a47a06c6",
+      "bytes": 153027,
+      "count": 200,
+      "sections": [
+        "english",
+        "evs"
+      ]
+    },
+    {
+      "id": "0002",
+      "file": "packs/pack-0002-93ecb3284ae5.json",
+      "sha256": "93ecb3284ae5acf3724350f49eebd45a2717e70a8adfda0d0584b81afce42ba6",
+      "bytes": 183596,
+      "count": 200,
+      "sections": [
+        "evs",
+        "hindi"
+      ]
+    },
+    {
+      "id": "0003",
+      "file": "packs/pack-0003-63cb9ff7fb1c.json",
+      "sha256": "63cb9ff7fb1cde56f04865889e028a8492916c922772fc576e7cf97318752837",
+      "bytes": 171691,
+      "count": 200,
+      "sections": [
+        "hindi",
+        "math"
+      ]
+    },
+    {
+      "id": "0004",
+      "file": "packs/pack-0004-ba797b30399b.json",
+      "sha256": "ba797b30399b9ea567f63fd7ee2e6e8bb8d328ca35792461def3fe88f31da1f7",
+      "bytes": 158303,
+      "count": 200,
+      "sections": [
+        "math",
+        "sanskrit"
+      ]
+    },
+    {
+      "id": "0005",
+      "file": "packs/pack-0005-5d60d3640a64.json",
+      "sha256": "5d60d3640a64fdc3e4dceb3ee631b65ab886a01f5158e2741ada1608cfdd6fcd",
+      "bytes": 148096,
+      "count": 200,
+      "sections": [
+        "cdp",
+        "sanskrit"
+      ]
+    },
+    {
+      "id": "0006",
+      "file": "packs/pack-0006-87c77a996de7.json",
+      "sha256": "87c77a996de741e8ad3a9b5fff3c3a721114e407a69922f1054499c8e65f5396",
+      "bytes": 110045,
+      "count": 200,
+      "sections": [
+        "english",
+        "evs"
+      ]
+    },
+    {
+      "id": "0007",
+      "file": "packs/pack-0007-a996be7e8cba.json",
+      "sha256": "a996be7e8cba10cb8935ea4816ccf63a44abf67368f1bc4db67d124cc78f6bcb",
+      "bytes": 152145,
+      "count": 200,
+      "sections": [
+        "evs",
+        "hindi"
+      ]
+    },
+    {
+      "id": "0008",
+      "file": "packs/pack-0008-047d8517efc2.json",
+      "sha256": "047d8517efc2da4fb482441cf44ad819de29edf041e5563137b920a275508877",
+      "bytes": 113753,
+      "count": 200,
+      "sections": [
+        "hindi",
+        "math"
+      ]
+    },
+    {
+      "id": "0009",
+      "file": "packs/pack-0009-339b6ea54bb0.json",
+      "sha256": "339b6ea54bb01ccac1a6e7618c512bab05d5df6790ddd21daf7bb9459492378e",
+      "bytes": 69757,
+      "count": 120,
+      "sections": [
+        "math"
+      ]
+    }
+  ]
+}

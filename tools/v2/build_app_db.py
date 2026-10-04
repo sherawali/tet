@@ -10,11 +10,18 @@ import sqlite3
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[3] # C:\Users\pujariji\Desktop\T
-BANK = ROOT / "tet_repo" / "bank-v2"
-APP_ASSETS_DB = ROOT / "tet_app" / "assets" / "database"
-APP_ASSETS_DB.mkdir(parents=True, exist_ok=True)
-DB_PATH = APP_ASSETS_DB / "tet_mock_vault.db"
+REPO_ROOT = Path(__file__).resolve().parents[2] # tet_repo
+BANK = REPO_ROOT / "bank-v2"
+WORKSPACE_ROOT = REPO_ROOT.parent # T if local
+APP_ASSETS_DB = WORKSPACE_ROOT / "tet_app" / "assets" / "database"
+
+if (WORKSPACE_ROOT / "tet_app").exists():
+    APP_ASSETS_DB.mkdir(parents=True, exist_ok=True)
+    DB_PATH = APP_ASSETS_DB / "tet_mock_vault.db"
+else:
+    RUNTIME_DIR = REPO_ROOT / "runtime"
+    RUNTIME_DIR.mkdir(parents=True, exist_ok=True)
+    DB_PATH = RUNTIME_DIR / "tet_mock_vault.db"
 
 
 def table_to_markdown(block: dict) -> str:
