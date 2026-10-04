@@ -110,7 +110,7 @@
       "preppCatalogPdf": "https://cdn-images.prepp.in/public/image/f66a393349d8e7ca57144bc3c0c79d89.pdf",
       "aglasemPaperMirror": "https://docs.aglasem.com/view/3a7b1b78-81f6-11ec-ab48-0a5e36bc6706",
       "collegeDekhoPdfMirror": "https://static.collegedekho.com/media/django-summernote/2022-01-29/0c8afe41-1a7e-4b42-b431-5dc4756984de.pdf",
-      "candidateVariantStatus": "mismatch-rejected",
+      "candidateVariantStatus": "official-key-sequence-matched",
       "officialAvailableTargetLanguages": [
         "english",
         "hindi",
@@ -132,10 +132,159 @@
           "paperName": "P1 English and Hindi Comb19",
           "subjectName": "P1 English and Hindi",
           "internalCreationDateTime": "2021-12-22 13:16:45",
-          "internalDateMatchesForm": false,
+          "internalCreationDate": "2021-12-22",
+          "internalCreationDateMatchesForm": false,
+          "explicitTestDate": null,
+          "explicitTestDateMatchesForm": null,
           "pageCount": 157,
           "textCharacters": 84606,
           "uniqueQuestionIdCount": 154,
+          "ocrApplied": false,
+          "sequenceProbes": [
+            {
+              "id": "prepp-catalogued-2021-12-16-main-first-12",
+              "cataloguedFormDate": "2021-12-16",
+              "sources": [
+                "preppCatalogPdf",
+                "collegeDekhoPdfMirror"
+              ],
+              "candidateQuestionIds": [
+                "5052124159",
+                "5052124160",
+                "5052124161",
+                "5052124162",
+                "5052124163",
+                "5052124164",
+                "5052124165",
+                "5052124166",
+                "5052124167",
+                "5052124168",
+                "5052124169",
+                "5052124170"
+              ],
+              "positions": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12
+              ],
+              "observedCorrectOptions": [
+                3,
+                1,
+                2,
+                3,
+                2,
+                2,
+                1,
+                1,
+                2,
+                4,
+                4,
+                1
+              ],
+              "notes": "All 12 positions exactly match only the official 16 December 2021 English-medium main-key table. The paper's 22 December internal creation timestamp is therefore not its exam date.",
+              "officialKeyMatches": [
+                {
+                  "date": "2021-12-16",
+                  "medium": "english",
+                  "matchedCount": 12,
+                  "probeCount": 12,
+                  "exact": true,
+                  "matchedPositions": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12
+                  ]
+                },
+                {
+                  "date": "2021-12-16",
+                  "medium": "hindi",
+                  "matchedCount": 11,
+                  "probeCount": 12,
+                  "exact": false,
+                  "matchedPositions": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    11,
+                    12
+                  ]
+                },
+                {
+                  "date": "2022-01-04",
+                  "medium": "english",
+                  "matchedCount": 7,
+                  "probeCount": 12,
+                  "exact": false,
+                  "matchedPositions": [
+                    2,
+                    3,
+                    5,
+                    6,
+                    7,
+                    9,
+                    12
+                  ]
+                },
+                {
+                  "date": "2022-01-04",
+                  "medium": "hindi",
+                  "matchedCount": 7,
+                  "probeCount": 12,
+                  "exact": false,
+                  "matchedPositions": [
+                    2,
+                    3,
+                    5,
+                    6,
+                    7,
+                    9,
+                    12
+                  ]
+                },
+                {
+                  "date": "2022-01-07",
+                  "medium": "english",
+                  "matchedCount": 7,
+                  "probeCount": 12,
+                  "exact": false,
+                  "matchedPositions": [
+                    3,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    12
+                  ]
+                }
+              ]
+            }
+          ],
+          "sourceDisposition": "matches-catalogued-date-by-official-key-sequence",
           "recoveredText": "bank-v2/source-recovery/ctet-p1-2021-2022/text/2021-12-16--preppcatalogpdf.txt"
         },
         {
@@ -145,17 +294,170 @@
           "paperName": "P1 English and Hindi Comb19",
           "subjectName": "P1 English and Hindi",
           "internalCreationDateTime": "2021-12-22 13:16:45",
-          "internalDateMatchesForm": false,
+          "internalCreationDate": "2021-12-22",
+          "internalCreationDateMatchesForm": false,
+          "explicitTestDate": null,
+          "explicitTestDateMatchesForm": null,
           "pageCount": 155,
           "textCharacters": 84510,
           "uniqueQuestionIdCount": 154,
+          "ocrApplied": false,
+          "sequenceProbes": [
+            {
+              "id": "prepp-catalogued-2021-12-16-main-first-12",
+              "cataloguedFormDate": "2021-12-16",
+              "sources": [
+                "preppCatalogPdf",
+                "collegeDekhoPdfMirror"
+              ],
+              "candidateQuestionIds": [
+                "5052124159",
+                "5052124160",
+                "5052124161",
+                "5052124162",
+                "5052124163",
+                "5052124164",
+                "5052124165",
+                "5052124166",
+                "5052124167",
+                "5052124168",
+                "5052124169",
+                "5052124170"
+              ],
+              "positions": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12
+              ],
+              "observedCorrectOptions": [
+                3,
+                1,
+                2,
+                3,
+                2,
+                2,
+                1,
+                1,
+                2,
+                4,
+                4,
+                1
+              ],
+              "notes": "All 12 positions exactly match only the official 16 December 2021 English-medium main-key table. The paper's 22 December internal creation timestamp is therefore not its exam date.",
+              "officialKeyMatches": [
+                {
+                  "date": "2021-12-16",
+                  "medium": "english",
+                  "matchedCount": 12,
+                  "probeCount": 12,
+                  "exact": true,
+                  "matchedPositions": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12
+                  ]
+                },
+                {
+                  "date": "2021-12-16",
+                  "medium": "hindi",
+                  "matchedCount": 11,
+                  "probeCount": 12,
+                  "exact": false,
+                  "matchedPositions": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    11,
+                    12
+                  ]
+                },
+                {
+                  "date": "2022-01-04",
+                  "medium": "english",
+                  "matchedCount": 7,
+                  "probeCount": 12,
+                  "exact": false,
+                  "matchedPositions": [
+                    2,
+                    3,
+                    5,
+                    6,
+                    7,
+                    9,
+                    12
+                  ]
+                },
+                {
+                  "date": "2022-01-04",
+                  "medium": "hindi",
+                  "matchedCount": 7,
+                  "probeCount": 12,
+                  "exact": false,
+                  "matchedPositions": [
+                    2,
+                    3,
+                    5,
+                    6,
+                    7,
+                    9,
+                    12
+                  ]
+                },
+                {
+                  "date": "2022-01-07",
+                  "medium": "english",
+                  "matchedCount": 7,
+                  "probeCount": 12,
+                  "exact": false,
+                  "matchedPositions": [
+                    3,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    12
+                  ]
+                }
+              ]
+            }
+          ],
+          "sourceDisposition": "matches-catalogued-date-by-official-key-sequence",
           "recoveredText": "bank-v2/source-recovery/ctet-p1-2021-2022/text/2021-12-16--collegedekhopdfmirror.txt"
         }
       ],
       "additionalPaperMirrors": [
         {
-          "id": "careerpower-english-hindi",
+          "id": "careerpower-response-english-punjabi",
           "url": "https://www.careerpower.in/2019/CTET_Paper1_16_Dec.pdf"
+        },
+        {
+          "id": "careerpower-response-oriya-english",
+          "url": "https://www.careerpower.in/2019/CTET_Paper1_16_Dec_oriya.pdf"
         }
       ]
     },
@@ -174,7 +476,7 @@
       "preppCatalogPdf": "https://cdn-images.prepp.in/public/image/6d42630623637e289317f35629314b26.pdf",
       "aglasemPaperMirror": null,
       "collegeDekhoPdfMirror": null,
-      "candidateVariantStatus": "internal-date-matched-answer-sequence-pending",
+      "candidateVariantStatus": "internal-date-matched-key-sequence-pending",
       "officialAvailableTargetLanguages": [
         "english",
         "hindi",
@@ -196,10 +498,16 @@
           "paperName": "P1 English and Hindi Comb19",
           "subjectName": "P1 English and Hindi",
           "internalCreationDateTime": "2021-12-20 15:59:01",
-          "internalDateMatchesForm": true,
+          "internalCreationDate": "2021-12-20",
+          "internalCreationDateMatchesForm": true,
+          "explicitTestDate": null,
+          "explicitTestDateMatchesForm": null,
           "pageCount": 94,
           "textCharacters": 80588,
           "uniqueQuestionIdCount": 154,
+          "ocrApplied": false,
+          "sequenceProbes": [],
+          "sourceDisposition": "internal-creation-date-matched-key-sequence-pending",
           "recoveredText": "bank-v2/source-recovery/ctet-p1-2021-2022/text/2021-12-20--preppcatalogpdf.txt"
         }
       ]
@@ -219,7 +527,7 @@
       "preppCatalogPdf": "https://cdn-images.prepp.in/public/image/e84b3334e8c9726f0a68a38479a3f15b.pdf",
       "aglasemPaperMirror": "https://docs.aglasem.com/view/71092f30-81a7-11ec-aa74-0a5e36bc6706",
       "collegeDekhoPdfMirror": "https://static.collegedekho.com/media/django-summernote/2022-01-29/3d129c7c-33d6-4093-adf8-2a6a0c37b364.pdf",
-      "candidateVariantStatus": "requires-ocr-or-alternate-variant",
+      "candidateVariantStatus": "alternate-variant-required",
       "officialAvailableTargetLanguages": [
         "english",
         "hindi",
@@ -241,10 +549,16 @@
           "paperName": null,
           "subjectName": null,
           "internalCreationDateTime": null,
-          "internalDateMatchesForm": null,
+          "internalCreationDate": null,
+          "internalCreationDateMatchesForm": null,
+          "explicitTestDate": null,
+          "explicitTestDateMatchesForm": null,
           "pageCount": 98,
           "textCharacters": 2580,
           "uniqueQuestionIdCount": 0,
+          "ocrApplied": false,
+          "sequenceProbes": [],
+          "sourceDisposition": "date-evidence-unresolved",
           "recoveredText": "bank-v2/source-recovery/ctet-p1-2021-2022/text/2021-12-21--preppcatalogpdf.txt"
         },
         {
@@ -254,16 +568,164 @@
           "paperName": "Set A P1 English and Hindi Comb19",
           "subjectName": "P1 English and Hindi",
           "internalCreationDateTime": "2022-01-21 17:44:15",
-          "internalDateMatchesForm": false,
+          "internalCreationDate": "2022-01-21",
+          "internalCreationDateMatchesForm": false,
+          "explicitTestDate": null,
+          "explicitTestDateMatchesForm": null,
           "pageCount": 90,
           "textCharacters": 79646,
           "uniqueQuestionIdCount": 154,
+          "ocrApplied": false,
+          "sequenceProbes": [
+            {
+              "id": "collegedekho-catalogued-2021-12-21-main-first-12",
+              "cataloguedFormDate": "2021-12-21",
+              "sources": [
+                "collegeDekhoPdfMirror"
+              ],
+              "candidateQuestionIds": [
+                "953357163701",
+                "953357163702",
+                "953357163703",
+                "953357163704",
+                "953357163705",
+                "953357163706",
+                "953357163707",
+                "953357163708",
+                "953357163709",
+                "953357163710",
+                "953357163711",
+                "953357163712"
+              ],
+              "positions": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12
+              ],
+              "observedCorrectOptions": [
+                1,
+                3,
+                2,
+                1,
+                3,
+                2,
+                2,
+                2,
+                2,
+                3,
+                4,
+                3
+              ],
+              "notes": "All 12 positions match the official 21 January 2022 main-key ordering (both medium tables have the same 12-option prefix) and do not match 21 December 2021. This is a miscatalogued 21 January Set A mirror.",
+              "officialKeyMatches": [
+                {
+                  "date": "2022-01-21",
+                  "medium": "english",
+                  "matchedCount": 12,
+                  "probeCount": 12,
+                  "exact": true,
+                  "matchedPositions": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12
+                  ]
+                },
+                {
+                  "date": "2022-01-21",
+                  "medium": "hindi",
+                  "matchedCount": 12,
+                  "probeCount": 12,
+                  "exact": true,
+                  "matchedPositions": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12
+                  ]
+                },
+                {
+                  "date": "2022-01-03",
+                  "medium": "english",
+                  "matchedCount": 7,
+                  "probeCount": 12,
+                  "exact": false,
+                  "matchedPositions": [
+                    2,
+                    3,
+                    5,
+                    6,
+                    7,
+                    10,
+                    12
+                  ]
+                },
+                {
+                  "date": "2022-01-03",
+                  "medium": "hindi",
+                  "matchedCount": 7,
+                  "probeCount": 12,
+                  "exact": false,
+                  "matchedPositions": [
+                    2,
+                    3,
+                    4,
+                    5,
+                    7,
+                    10,
+                    12
+                  ]
+                },
+                {
+                  "date": "2022-01-04",
+                  "medium": "english",
+                  "matchedCount": 6,
+                  "probeCount": 12,
+                  "exact": false,
+                  "matchedPositions": [
+                    1,
+                    3,
+                    4,
+                    6,
+                    8,
+                    9
+                  ]
+                }
+              ]
+            }
+          ],
+          "sourceDisposition": "matches-different-official-date-by-key-sequence",
           "recoveredText": "bank-v2/source-recovery/ctet-p1-2021-2022/text/2021-12-21--collegedekhopdfmirror.txt"
         }
       ],
       "additionalPaperMirrors": [
         {
-          "id": "careerpower-english-hindi",
+          "id": "careerpower-response-hindi-sanskrit",
           "url": "https://www.careerpower.in/2019/CTET_Paper1_21_Dec.pdf"
         }
       ]
@@ -280,7 +742,7 @@
       "preppCatalogPdf": "https://cdn-images.prepp.in/public/image/ba3112558c317ce9cdde255b3d3b8e70.pdf",
       "aglasemPaperMirror": "https://docs.aglasem.com/view/73da3c54-81a7-11ec-84cc-0a5e36bc6706",
       "collegeDekhoPdfMirror": "https://static.collegedekho.com/media/django-summernote/2022-01-29/37718011-fa6a-4cad-a19c-a3b260ba3084.pdf",
-      "candidateVariantStatus": "internal-date-matched-answer-sequence-pending",
+      "candidateVariantStatus": "internal-date-matched-key-sequence-pending",
       "officialAvailableTargetLanguages": [
         "english",
         "hindi",
@@ -302,10 +764,16 @@
           "paperName": "Set B P1 English and Hindi Comb19",
           "subjectName": "P1 English and Hindi",
           "internalCreationDateTime": "2021-12-22 15:24:17",
-          "internalDateMatchesForm": true,
+          "internalCreationDate": "2021-12-22",
+          "internalCreationDateMatchesForm": true,
+          "explicitTestDate": null,
+          "explicitTestDateMatchesForm": null,
           "pageCount": 155,
           "textCharacters": 83513,
           "uniqueQuestionIdCount": 154,
+          "ocrApplied": false,
+          "sequenceProbes": [],
+          "sourceDisposition": "internal-creation-date-matched-key-sequence-pending",
           "recoveredText": "bank-v2/source-recovery/ctet-p1-2021-2022/text/2021-12-22--preppcatalogpdf.txt"
         },
         {
@@ -315,10 +783,16 @@
           "paperName": "Set B P1 English and Hindi Comb19",
           "subjectName": "P1 English and Hindi",
           "internalCreationDateTime": "2021-12-22 15:24:17",
-          "internalDateMatchesForm": true,
+          "internalCreationDate": "2021-12-22",
+          "internalCreationDateMatchesForm": true,
+          "explicitTestDate": null,
+          "explicitTestDateMatchesForm": null,
           "pageCount": 153,
           "textCharacters": 83392,
           "uniqueQuestionIdCount": 154,
+          "ocrApplied": false,
+          "sequenceProbes": [],
+          "sourceDisposition": "internal-creation-date-matched-key-sequence-pending",
           "recoveredText": "bank-v2/source-recovery/ctet-p1-2021-2022/text/2021-12-22--collegedekhopdfmirror.txt"
         }
       ]
@@ -335,7 +809,7 @@
       "preppCatalogPdf": "https://cdn-images.prepp.in/public/image/093d0ca04035dbb35236c015501e9704.pdf",
       "aglasemPaperMirror": "https://docs.aglasem.com/view/7464fc5e-81a7-11ec-8f7a-0a5e36bc6706",
       "collegeDekhoPdfMirror": "https://static.collegedekho.com/media/django-summernote/2022-01-29/11bc7836-7da1-4c44-af7f-524b4b8499ff.pdf",
-      "candidateVariantStatus": "internal-date-matched-answer-sequence-pending",
+      "candidateVariantStatus": "internal-date-matched-key-sequence-pending",
       "officialAvailableTargetLanguages": [
         "english",
         "hindi",
@@ -357,10 +831,16 @@
           "paperName": "SET F P1 English and Hindi Comb19",
           "subjectName": "P1 English and Hindi",
           "internalCreationDateTime": "2021-12-23 16:15:38",
-          "internalDateMatchesForm": true,
+          "internalCreationDate": "2021-12-23",
+          "internalCreationDateMatchesForm": true,
+          "explicitTestDate": null,
+          "explicitTestDateMatchesForm": null,
           "pageCount": 154,
           "textCharacters": 80135,
           "uniqueQuestionIdCount": 154,
+          "ocrApplied": false,
+          "sequenceProbes": [],
+          "sourceDisposition": "internal-creation-date-matched-key-sequence-pending",
           "recoveredText": "bank-v2/source-recovery/ctet-p1-2021-2022/text/2021-12-23--preppcatalogpdf.txt"
         },
         {
@@ -370,10 +850,16 @@
           "paperName": "SET F P1 English and Hindi Comb19",
           "subjectName": "P1 English and Hindi",
           "internalCreationDateTime": "2021-12-23 16:15:38",
-          "internalDateMatchesForm": true,
+          "internalCreationDate": "2021-12-23",
+          "internalCreationDateMatchesForm": true,
+          "explicitTestDate": null,
+          "explicitTestDateMatchesForm": null,
           "pageCount": 152,
           "textCharacters": 80039,
           "uniqueQuestionIdCount": 154,
+          "ocrApplied": false,
+          "sequenceProbes": [],
+          "sourceDisposition": "internal-creation-date-matched-key-sequence-pending",
           "recoveredText": "bank-v2/source-recovery/ctet-p1-2021-2022/text/2021-12-23--collegedekhopdfmirror.txt"
         }
       ]
@@ -390,7 +876,7 @@
       "preppCatalogPdf": "https://cdn-images.prepp.in/public/image/9419b75d4eed13784e4dc91eb13078ea.pdf",
       "aglasemPaperMirror": "https://docs.aglasem.com/view/78478ddc-81a7-11ec-a7a9-0a5e36bc6706",
       "collegeDekhoPdfMirror": "https://static.collegedekho.com/media/django-summernote/2022-01-29/3971c197-166e-4d59-891f-015b54790c8d.pdf",
-      "candidateVariantStatus": "internal-date-matched-answer-sequence-pending",
+      "candidateVariantStatus": "internal-date-matched-key-sequence-pending",
       "officialAvailableTargetLanguages": [
         "english",
         "hindi",
@@ -412,10 +898,16 @@
           "paperName": "Set G P1 English and Hindi Comb19",
           "subjectName": "P1 English and Hindi",
           "internalCreationDateTime": "2021-12-24 17:59:19",
-          "internalDateMatchesForm": true,
+          "internalCreationDate": "2021-12-24",
+          "internalCreationDateMatchesForm": true,
+          "explicitTestDate": null,
+          "explicitTestDateMatchesForm": null,
           "pageCount": 156,
           "textCharacters": 83323,
           "uniqueQuestionIdCount": 154,
+          "ocrApplied": false,
+          "sequenceProbes": [],
+          "sourceDisposition": "internal-creation-date-matched-key-sequence-pending",
           "recoveredText": "bank-v2/source-recovery/ctet-p1-2021-2022/text/2021-12-24--preppcatalogpdf.txt"
         },
         {
@@ -425,10 +917,16 @@
           "paperName": "Set G P1 English and Hindi Comb19",
           "subjectName": "P1 English and Hindi",
           "internalCreationDateTime": "2021-12-24 17:59:19",
-          "internalDateMatchesForm": true,
+          "internalCreationDate": "2021-12-24",
+          "internalCreationDateMatchesForm": true,
+          "explicitTestDate": null,
+          "explicitTestDateMatchesForm": null,
           "pageCount": 154,
           "textCharacters": 83227,
           "uniqueQuestionIdCount": 154,
+          "ocrApplied": false,
+          "sequenceProbes": [],
+          "sourceDisposition": "internal-creation-date-matched-key-sequence-pending",
           "recoveredText": "bank-v2/source-recovery/ctet-p1-2021-2022/text/2021-12-24--collegedekhopdfmirror.txt"
         }
       ]
@@ -445,7 +943,7 @@
       "preppCatalogPdf": "https://cdn-images.prepp.in/public/image/a316f348fc0c78cd977d36487e79ed31.pdf",
       "aglasemPaperMirror": "https://docs.aglasem.com/view/78aaf8a4-81a7-11ec-b2ef-0a5e36bc6706",
       "collegeDekhoPdfMirror": "https://static.collegedekho.com/media/django-summernote/2022-01-29/f1ba55dc-661d-4b48-b35c-cb3058d2b0ad.pdf",
-      "candidateVariantStatus": "internal-date-matched-answer-sequence-pending",
+      "candidateVariantStatus": "internal-date-matched-key-sequence-pending",
       "officialAvailableTargetLanguages": [
         "english",
         "hindi",
@@ -467,10 +965,16 @@
           "paperName": "Set H P1 English and Hindi Comb19",
           "subjectName": "P1 English and Hindi",
           "internalCreationDateTime": "2021-12-27 15:00:59",
-          "internalDateMatchesForm": true,
+          "internalCreationDate": "2021-12-27",
+          "internalCreationDateMatchesForm": true,
+          "explicitTestDate": null,
+          "explicitTestDateMatchesForm": null,
           "pageCount": 153,
           "textCharacters": 81005,
           "uniqueQuestionIdCount": 154,
+          "ocrApplied": false,
+          "sequenceProbes": [],
+          "sourceDisposition": "internal-creation-date-matched-key-sequence-pending",
           "recoveredText": "bank-v2/source-recovery/ctet-p1-2021-2022/text/2021-12-27--preppcatalogpdf.txt"
         },
         {
@@ -480,10 +984,16 @@
           "paperName": "Set H P1 English and Hindi Comb19",
           "subjectName": "P1 English and Hindi",
           "internalCreationDateTime": "2021-12-27 15:00:59",
-          "internalDateMatchesForm": true,
+          "internalCreationDate": "2021-12-27",
+          "internalCreationDateMatchesForm": true,
+          "explicitTestDate": null,
+          "explicitTestDateMatchesForm": null,
           "pageCount": 151,
           "textCharacters": 80909,
           "uniqueQuestionIdCount": 154,
+          "ocrApplied": false,
+          "sequenceProbes": [],
+          "sourceDisposition": "internal-creation-date-matched-key-sequence-pending",
           "recoveredText": "bank-v2/source-recovery/ctet-p1-2021-2022/text/2021-12-27--collegedekhopdfmirror.txt"
         }
       ],
@@ -526,7 +1036,7 @@
       "preppCatalogPdf": "https://cdn-images.prepp.in/public/image/c077d08629128157602c569811ea4ef9.pdf",
       "aglasemPaperMirror": "https://docs.aglasem.com/view/7aef0ba0-81a7-11ec-929f-0a5e36bc6706",
       "collegeDekhoPdfMirror": "https://static.collegedekho.com/media/django-summernote/2022-01-29/cfb94275-24cf-4eb3-9836-b0222325253a.pdf",
-      "candidateVariantStatus": "internal-date-matched-answer-sequence-pending",
+      "candidateVariantStatus": "internal-date-matched-key-sequence-pending",
       "officialAvailableTargetLanguages": [
         "english",
         "hindi",
@@ -548,10 +1058,16 @@
           "paperName": "SET I P1 English and Hindi Comb19",
           "subjectName": "P1 English and Hindi",
           "internalCreationDateTime": "2021-12-28 19:21:25",
-          "internalDateMatchesForm": true,
+          "internalCreationDate": "2021-12-28",
+          "internalCreationDateMatchesForm": true,
+          "explicitTestDate": null,
+          "explicitTestDateMatchesForm": null,
           "pageCount": 154,
           "textCharacters": 85294,
           "uniqueQuestionIdCount": 154,
+          "ocrApplied": false,
+          "sequenceProbes": [],
+          "sourceDisposition": "internal-creation-date-matched-key-sequence-pending",
           "recoveredText": "bank-v2/source-recovery/ctet-p1-2021-2022/text/2021-12-28--preppcatalogpdf.txt"
         },
         {
@@ -561,10 +1077,16 @@
           "paperName": "SET I P1 English and Hindi Comb19",
           "subjectName": "P1 English and Hindi",
           "internalCreationDateTime": "2021-12-28 19:21:25",
-          "internalDateMatchesForm": true,
+          "internalCreationDate": "2021-12-28",
+          "internalCreationDateMatchesForm": true,
+          "explicitTestDate": null,
+          "explicitTestDateMatchesForm": null,
           "pageCount": 152,
           "textCharacters": 85198,
           "uniqueQuestionIdCount": 154,
+          "ocrApplied": false,
+          "sequenceProbes": [],
+          "sourceDisposition": "internal-creation-date-matched-key-sequence-pending",
           "recoveredText": "bank-v2/source-recovery/ctet-p1-2021-2022/text/2021-12-28--collegedekhopdfmirror.txt"
         }
       ]
@@ -581,7 +1103,7 @@
       "preppCatalogPdf": "https://cdn-images.prepp.in/public/image/6a9f37bb756e6c6bb11a71d49783cc33.pdf",
       "aglasemPaperMirror": "https://docs.aglasem.com/view/7bc7c09e-81a7-11ec-8674-0a5e36bc6706",
       "collegeDekhoPdfMirror": "https://static.collegedekho.com/media/django-summernote/2022-01-29/f9e0ffaf-db9f-4697-8632-738ce16f9b23.pdf",
-      "candidateVariantStatus": "internal-date-matched-answer-sequence-pending",
+      "candidateVariantStatus": "internal-date-matched-key-sequence-pending",
       "officialAvailableTargetLanguages": [
         "english",
         "hindi",
@@ -603,10 +1125,16 @@
           "paperName": "SET J P1 English and Hindi Comb19",
           "subjectName": "P1 English and Hindi",
           "internalCreationDateTime": "2021-12-29 14:30:57",
-          "internalDateMatchesForm": true,
+          "internalCreationDate": "2021-12-29",
+          "internalCreationDateMatchesForm": true,
+          "explicitTestDate": null,
+          "explicitTestDateMatchesForm": null,
           "pageCount": 158,
           "textCharacters": 84794,
           "uniqueQuestionIdCount": 154,
+          "ocrApplied": false,
+          "sequenceProbes": [],
+          "sourceDisposition": "internal-creation-date-matched-key-sequence-pending",
           "recoveredText": "bank-v2/source-recovery/ctet-p1-2021-2022/text/2021-12-29--preppcatalogpdf.txt"
         },
         {
@@ -616,10 +1144,16 @@
           "paperName": "SET J P1 English and Hindi Comb19",
           "subjectName": "P1 English and Hindi",
           "internalCreationDateTime": "2021-12-29 14:30:57",
-          "internalDateMatchesForm": true,
+          "internalCreationDate": "2021-12-29",
+          "internalCreationDateMatchesForm": true,
+          "explicitTestDate": null,
+          "explicitTestDateMatchesForm": null,
           "pageCount": 156,
           "textCharacters": 84698,
           "uniqueQuestionIdCount": 154,
+          "ocrApplied": false,
+          "sequenceProbes": [],
+          "sourceDisposition": "internal-creation-date-matched-key-sequence-pending",
           "recoveredText": "bank-v2/source-recovery/ctet-p1-2021-2022/text/2021-12-29--collegedekhopdfmirror.txt"
         }
       ]
@@ -636,7 +1170,7 @@
       "preppCatalogPdf": "https://cdn-images.prepp.in/public/image/43d8630cf1f9ea49e8236ada518f321d.pdf",
       "aglasemPaperMirror": "https://docs.aglasem.com/view/7e5b0e4c-81a7-11ec-a84a-0a5e36bc6706",
       "collegeDekhoPdfMirror": "https://static.collegedekho.com/media/django-summernote/2022-01-29/cb80cdbc-8226-4fa4-a540-4321d0ab70b5.pdf",
-      "candidateVariantStatus": "internal-date-matched-answer-sequence-pending",
+      "candidateVariantStatus": "internal-date-matched-key-sequence-pending",
       "officialAvailableTargetLanguages": [
         "english",
         "hindi",
@@ -658,10 +1192,16 @@
           "paperName": "SET K P1 English and Hindi Comb19",
           "subjectName": "P1 English and Hindi",
           "internalCreationDateTime": "2021-12-30 20:47:39",
-          "internalDateMatchesForm": true,
+          "internalCreationDate": "2021-12-30",
+          "internalCreationDateMatchesForm": true,
+          "explicitTestDate": null,
+          "explicitTestDateMatchesForm": null,
           "pageCount": 97,
           "textCharacters": 82821,
           "uniqueQuestionIdCount": 154,
+          "ocrApplied": false,
+          "sequenceProbes": [],
+          "sourceDisposition": "internal-creation-date-matched-key-sequence-pending",
           "recoveredText": "bank-v2/source-recovery/ctet-p1-2021-2022/text/2021-12-30--preppcatalogpdf.txt"
         },
         {
@@ -671,10 +1211,16 @@
           "paperName": "SET K P1 English and Hindi Comb19",
           "subjectName": "P1 English and Hindi",
           "internalCreationDateTime": "2021-12-30 20:47:39",
-          "internalDateMatchesForm": true,
+          "internalCreationDate": "2021-12-30",
+          "internalCreationDateMatchesForm": true,
+          "explicitTestDate": null,
+          "explicitTestDateMatchesForm": null,
           "pageCount": 95,
           "textCharacters": 82727,
           "uniqueQuestionIdCount": 154,
+          "ocrApplied": false,
+          "sequenceProbes": [],
+          "sourceDisposition": "internal-creation-date-matched-key-sequence-pending",
           "recoveredText": "bank-v2/source-recovery/ctet-p1-2021-2022/text/2021-12-30--collegedekhopdfmirror.txt"
         }
       ]
@@ -691,7 +1237,7 @@
       "preppCatalogPdf": "https://cdn-images.prepp.in/public/image/5f35b2a7c7b5f3b16df5310073243304.pdf",
       "aglasemPaperMirror": "https://docs.aglasem.com/view/7febf820-81a7-11ec-9003-0a5e36bc6706",
       "collegeDekhoPdfMirror": "https://static.collegedekho.com/media/django-summernote/2022-01-29/bc744b3c-3428-4071-b3d6-a018fffcb9de.pdf",
-      "candidateVariantStatus": "internal-date-matched-answer-sequence-pending",
+      "candidateVariantStatus": "internal-date-matched-key-sequence-pending",
       "officialAvailableTargetLanguages": [
         "english",
         "hindi",
@@ -713,10 +1259,16 @@
           "paperName": "SET L P1 Hindi and English Comb45",
           "subjectName": "P1 Hindi and English",
           "internalCreationDateTime": "2021-12-31 14:48:11",
-          "internalDateMatchesForm": true,
+          "internalCreationDate": "2021-12-31",
+          "internalCreationDateMatchesForm": true,
+          "explicitTestDate": null,
+          "explicitTestDateMatchesForm": null,
           "pageCount": 78,
           "textCharacters": 79757,
           "uniqueQuestionIdCount": 154,
+          "ocrApplied": false,
+          "sequenceProbes": [],
+          "sourceDisposition": "internal-creation-date-matched-key-sequence-pending",
           "recoveredText": "bank-v2/source-recovery/ctet-p1-2021-2022/text/2021-12-31--preppcatalogpdf.txt"
         },
         {
@@ -726,10 +1278,16 @@
           "paperName": "SET L P1 Hindi and English Comb45",
           "subjectName": "P1 Hindi and English",
           "internalCreationDateTime": "2021-12-31 14:48:11",
-          "internalDateMatchesForm": true,
+          "internalCreationDate": "2021-12-31",
+          "internalCreationDateMatchesForm": true,
+          "explicitTestDate": null,
+          "explicitTestDateMatchesForm": null,
           "pageCount": 76,
           "textCharacters": 79663,
           "uniqueQuestionIdCount": 154,
+          "ocrApplied": false,
+          "sequenceProbes": [],
+          "sourceDisposition": "internal-creation-date-matched-key-sequence-pending",
           "recoveredText": "bank-v2/source-recovery/ctet-p1-2021-2022/text/2021-12-31--collegedekhopdfmirror.txt"
         }
       ]
@@ -745,7 +1303,7 @@
       "preppCatalogPdf": "https://cdn-images.prepp.in/public/image/4fa36225ff9f8f1207f13cc89a654565.pdf",
       "aglasemPaperMirror": "https://docs.aglasem.com/view/7e76cd68-81f6-11ec-87ed-0a5e36bc6706",
       "collegeDekhoPdfMirror": "https://static.collegedekho.com/media/django-summernote/2022-01-29/e2b134cf-3fbe-4a8e-8386-71d4910ec98a.pdf",
-      "candidateVariantStatus": "internal-date-matched-answer-sequence-pending",
+      "candidateVariantStatus": "internal-date-matched-key-sequence-pending",
       "officialAvailableTargetLanguages": [
         "english",
         "hindi"
@@ -764,10 +1322,16 @@
           "paperName": "SET P P1 English and Hindi Comb19",
           "subjectName": "P1 English and Hindi",
           "internalCreationDateTime": "2022-01-01 14:17:16",
-          "internalDateMatchesForm": true,
+          "internalCreationDate": "2022-01-01",
+          "internalCreationDateMatchesForm": true,
+          "explicitTestDate": null,
+          "explicitTestDateMatchesForm": null,
           "pageCount": 158,
           "textCharacters": 82923,
           "uniqueQuestionIdCount": 154,
+          "ocrApplied": false,
+          "sequenceProbes": [],
+          "sourceDisposition": "internal-creation-date-matched-key-sequence-pending",
           "recoveredText": "bank-v2/source-recovery/ctet-p1-2021-2022/text/2022-01-01--preppcatalogpdf.txt"
         },
         {
@@ -777,10 +1341,16 @@
           "paperName": "SET P P1 English and Hindi Comb19",
           "subjectName": "P1 English and Hindi",
           "internalCreationDateTime": "2022-01-01 14:17:16",
-          "internalDateMatchesForm": true,
+          "internalCreationDate": "2022-01-01",
+          "internalCreationDateMatchesForm": true,
+          "explicitTestDate": null,
+          "explicitTestDateMatchesForm": null,
           "pageCount": 156,
           "textCharacters": 82827,
           "uniqueQuestionIdCount": 154,
+          "ocrApplied": false,
+          "sequenceProbes": [],
+          "sourceDisposition": "internal-creation-date-matched-key-sequence-pending",
           "recoveredText": "bank-v2/source-recovery/ctet-p1-2021-2022/text/2022-01-01--collegedekhopdfmirror.txt"
         }
       ]
@@ -796,7 +1366,7 @@
       "preppCatalogPdf": "https://cdn-images.prepp.in/public/image/cfe6fffec60624f3982972ef0b053b91.pdf",
       "aglasemPaperMirror": "https://docs.aglasem.com/view/463625fa-81a8-11ec-81db-0a5e36bc6706",
       "collegeDekhoPdfMirror": "https://static.collegedekho.com/media/django-summernote/2022-01-29/9ffe07ca-2145-43fd-bf14-b0518cc2d41b.pdf",
-      "candidateVariantStatus": "internal-date-matched-answer-sequence-pending",
+      "candidateVariantStatus": "internal-date-matched-key-sequence-pending",
       "officialAvailableTargetLanguages": [
         "english",
         "hindi"
@@ -815,10 +1385,16 @@
           "paperName": "SET Q P1 English and Hindi Comb19",
           "subjectName": "P1 English and Hindi",
           "internalCreationDateTime": "2022-01-03 14:26:14",
-          "internalDateMatchesForm": true,
+          "internalCreationDate": "2022-01-03",
+          "internalCreationDateMatchesForm": true,
+          "explicitTestDate": null,
+          "explicitTestDateMatchesForm": null,
           "pageCount": 155,
           "textCharacters": 82136,
           "uniqueQuestionIdCount": 154,
+          "ocrApplied": false,
+          "sequenceProbes": [],
+          "sourceDisposition": "internal-creation-date-matched-key-sequence-pending",
           "recoveredText": "bank-v2/source-recovery/ctet-p1-2021-2022/text/2022-01-03--preppcatalogpdf.txt"
         },
         {
@@ -828,10 +1404,16 @@
           "paperName": "SET Q P1 English and Hindi Comb19",
           "subjectName": "P1 English and Hindi",
           "internalCreationDateTime": "2022-01-03 14:26:14",
-          "internalDateMatchesForm": true,
+          "internalCreationDate": "2022-01-03",
+          "internalCreationDateMatchesForm": true,
+          "explicitTestDate": null,
+          "explicitTestDateMatchesForm": null,
           "pageCount": 153,
           "textCharacters": 82042,
           "uniqueQuestionIdCount": 154,
+          "ocrApplied": false,
+          "sequenceProbes": [],
+          "sourceDisposition": "internal-creation-date-matched-key-sequence-pending",
           "recoveredText": "bank-v2/source-recovery/ctet-p1-2021-2022/text/2022-01-03--collegedekhopdfmirror.txt"
         }
       ]
@@ -847,7 +1429,7 @@
       "preppCatalogPdf": "https://cdn-images.prepp.in/public/image/bd7e58ac09e6c985f23a448f652fe985.pdf",
       "aglasemPaperMirror": "https://docs.aglasem.com/view/47e97b9a-81a8-11ec-ab6e-0a5e36bc6706",
       "collegeDekhoPdfMirror": "https://static.collegedekho.com/media/django-summernote/2022-01-29/2e72809b-037e-4dcf-90b4-85c31c713912.pdf",
-      "candidateVariantStatus": "internal-date-matched-answer-sequence-pending",
+      "candidateVariantStatus": "internal-date-matched-key-sequence-pending",
       "officialAvailableTargetLanguages": [
         "english",
         "hindi"
@@ -866,10 +1448,16 @@
           "paperName": "SET O P1 English and Hindi Comb19",
           "subjectName": "P1 English and Hindi",
           "internalCreationDateTime": "2022-01-04 14:22:27",
-          "internalDateMatchesForm": true,
+          "internalCreationDate": "2022-01-04",
+          "internalCreationDateMatchesForm": true,
+          "explicitTestDate": null,
+          "explicitTestDateMatchesForm": null,
           "pageCount": 155,
           "textCharacters": 80234,
           "uniqueQuestionIdCount": 154,
+          "ocrApplied": false,
+          "sequenceProbes": [],
+          "sourceDisposition": "internal-creation-date-matched-key-sequence-pending",
           "recoveredText": "bank-v2/source-recovery/ctet-p1-2021-2022/text/2022-01-04--preppcatalogpdf.txt"
         },
         {
@@ -879,10 +1467,16 @@
           "paperName": "SET O P1 English and Hindi Comb19",
           "subjectName": "P1 English and Hindi",
           "internalCreationDateTime": "2022-01-04 14:22:27",
-          "internalDateMatchesForm": true,
+          "internalCreationDate": "2022-01-04",
+          "internalCreationDateMatchesForm": true,
+          "explicitTestDate": null,
+          "explicitTestDateMatchesForm": null,
           "pageCount": 153,
           "textCharacters": 80140,
           "uniqueQuestionIdCount": 154,
+          "ocrApplied": false,
+          "sequenceProbes": [],
+          "sourceDisposition": "internal-creation-date-matched-key-sequence-pending",
           "recoveredText": "bank-v2/source-recovery/ctet-p1-2021-2022/text/2022-01-04--collegedekhopdfmirror.txt"
         }
       ]
@@ -904,7 +1498,7 @@
           "url": "https://blogmedia.testbook.com/blog/wp-content/uploads/2022/12/ctet-paper-1-5th-jan-2022-english-hindi-15499e82.pdf"
         }
       ],
-      "candidateVariantStatus": "internal-date-matched-answer-sequence-pending",
+      "candidateVariantStatus": "internal-date-matched-key-sequence-pending",
       "officialAvailableTargetLanguages": [
         "english",
         "hindi"
@@ -923,10 +1517,16 @@
           "paperName": "SET N P1 English and Hindi Comb19",
           "subjectName": "P1 English and Hindi",
           "internalCreationDateTime": "2022-01-05 14:15:49",
-          "internalDateMatchesForm": true,
+          "internalCreationDate": "2022-01-05",
+          "internalCreationDateMatchesForm": true,
+          "explicitTestDate": null,
+          "explicitTestDateMatchesForm": null,
           "pageCount": 155,
           "textCharacters": 81619,
           "uniqueQuestionIdCount": 154,
+          "ocrApplied": false,
+          "sequenceProbes": [],
+          "sourceDisposition": "internal-creation-date-matched-key-sequence-pending",
           "recoveredText": "bank-v2/source-recovery/ctet-p1-2021-2022/text/2022-01-05--preppcatalogpdf.txt"
         },
         {
@@ -936,10 +1536,16 @@
           "paperName": "SET N P1 English and Hindi Comb19",
           "subjectName": "P1 English and Hindi",
           "internalCreationDateTime": "2022-01-05 14:15:49",
-          "internalDateMatchesForm": true,
+          "internalCreationDate": "2022-01-05",
+          "internalCreationDateMatchesForm": true,
+          "explicitTestDate": null,
+          "explicitTestDateMatchesForm": null,
           "pageCount": 153,
           "textCharacters": 81523,
           "uniqueQuestionIdCount": 154,
+          "ocrApplied": false,
+          "sequenceProbes": [],
+          "sourceDisposition": "internal-creation-date-matched-key-sequence-pending",
           "recoveredText": "bank-v2/source-recovery/ctet-p1-2021-2022/text/2022-01-05--collegedekhopdfmirror.txt"
         },
         {
@@ -949,10 +1555,16 @@
           "paperName": "SET N P1 English and Hindi Comb19",
           "subjectName": "P1 English and Hindi",
           "internalCreationDateTime": "2022-01-05 14:15:49",
-          "internalDateMatchesForm": true,
+          "internalCreationDate": "2022-01-05",
+          "internalCreationDateMatchesForm": true,
+          "explicitTestDate": null,
+          "explicitTestDateMatchesForm": null,
           "pageCount": 155,
           "textCharacters": 126247,
           "uniqueQuestionIdCount": 154,
+          "ocrApplied": false,
+          "sequenceProbes": [],
+          "sourceDisposition": "internal-creation-date-matched-key-sequence-pending",
           "recoveredText": "bank-v2/source-recovery/ctet-p1-2021-2022/text/2022-01-05--testbook-english-hindi.txt"
         }
       ]
@@ -974,7 +1586,7 @@
           "url": "https://blogmedia.testbook.com/blog/wp-content/uploads/2022/12/ctet-paper-1-6th-jan-2022-english-hindi-353ac7f0.pdf"
         }
       ],
-      "candidateVariantStatus": "internal-date-matched-answer-sequence-pending",
+      "candidateVariantStatus": "internal-date-matched-key-sequence-pending",
       "officialAvailableTargetLanguages": [
         "english",
         "hindi"
@@ -993,10 +1605,16 @@
           "paperName": "SET M P1 English and Hindi Comb19",
           "subjectName": "P1 English and Hindi",
           "internalCreationDateTime": "2022-01-06 15:12:39",
-          "internalDateMatchesForm": true,
+          "internalCreationDate": "2022-01-06",
+          "internalCreationDateMatchesForm": true,
+          "explicitTestDate": null,
+          "explicitTestDateMatchesForm": null,
           "pageCount": 152,
           "textCharacters": 83096,
           "uniqueQuestionIdCount": 154,
+          "ocrApplied": false,
+          "sequenceProbes": [],
+          "sourceDisposition": "internal-creation-date-matched-key-sequence-pending",
           "recoveredText": "bank-v2/source-recovery/ctet-p1-2021-2022/text/2022-01-06--preppcatalogpdf.txt"
         },
         {
@@ -1006,10 +1624,16 @@
           "paperName": "SET M P1 English and Hindi Comb19",
           "subjectName": "P1 English and Hindi",
           "internalCreationDateTime": "2022-01-06 15:12:39",
-          "internalDateMatchesForm": true,
+          "internalCreationDate": "2022-01-06",
+          "internalCreationDateMatchesForm": true,
+          "explicitTestDate": null,
+          "explicitTestDateMatchesForm": null,
           "pageCount": 150,
           "textCharacters": 83000,
           "uniqueQuestionIdCount": 154,
+          "ocrApplied": false,
+          "sequenceProbes": [],
+          "sourceDisposition": "internal-creation-date-matched-key-sequence-pending",
           "recoveredText": "bank-v2/source-recovery/ctet-p1-2021-2022/text/2022-01-06--collegedekhopdfmirror.txt"
         },
         {
@@ -1019,10 +1643,16 @@
           "paperName": "SET M P1 English and Hindi Comb19",
           "subjectName": "P1 English and Hindi",
           "internalCreationDateTime": "2022-01-06 15:12:39",
-          "internalDateMatchesForm": true,
+          "internalCreationDate": "2022-01-06",
+          "internalCreationDateMatchesForm": true,
+          "explicitTestDate": null,
+          "explicitTestDateMatchesForm": null,
           "pageCount": 152,
           "textCharacters": 126780,
           "uniqueQuestionIdCount": 154,
+          "ocrApplied": false,
+          "sequenceProbes": [],
+          "sourceDisposition": "internal-creation-date-matched-key-sequence-pending",
           "recoveredText": "bank-v2/source-recovery/ctet-p1-2021-2022/text/2022-01-06--testbook-english-hindi.txt"
         }
       ]
@@ -1038,7 +1668,7 @@
       "preppCatalogPdf": "https://cdn-images.prepp.in/public/image/7c9aa502c9fe9560b4ead5d90312bb6b.pdf",
       "aglasemPaperMirror": "https://docs.aglasem.com/view/551df5e8-81a8-11ec-8d2d-0a5e36bc6706",
       "collegeDekhoPdfMirror": "https://static.collegedekho.com/media/django-summernote/2022-01-29/f7f80511-2a44-45c8-abac-f9fabe3034df.pdf",
-      "candidateVariantStatus": "internal-date-matched-answer-sequence-pending",
+      "candidateVariantStatus": "internal-date-matched-key-sequence-pending",
       "officialAvailableTargetLanguages": [
         "english",
         "hindi"
@@ -1057,10 +1687,16 @@
           "paperName": "SET T P1 English and Hindi Comb19",
           "subjectName": "P1 English and Hindi",
           "internalCreationDateTime": "2022-01-07 14:28:06",
-          "internalDateMatchesForm": true,
+          "internalCreationDate": "2022-01-07",
+          "internalCreationDateMatchesForm": true,
+          "explicitTestDate": null,
+          "explicitTestDateMatchesForm": null,
           "pageCount": 160,
           "textCharacters": 82962,
           "uniqueQuestionIdCount": 154,
+          "ocrApplied": false,
+          "sequenceProbes": [],
+          "sourceDisposition": "internal-creation-date-matched-key-sequence-pending",
           "recoveredText": "bank-v2/source-recovery/ctet-p1-2021-2022/text/2022-01-07--preppcatalogpdf.txt"
         },
         {
@@ -1070,10 +1706,16 @@
           "paperName": "SET T P1 English and Hindi Comb19",
           "subjectName": "P1 English and Hindi",
           "internalCreationDateTime": "2022-01-07 14:28:06",
-          "internalDateMatchesForm": true,
+          "internalCreationDate": "2022-01-07",
+          "internalCreationDateMatchesForm": true,
+          "explicitTestDate": null,
+          "explicitTestDateMatchesForm": null,
           "pageCount": 158,
           "textCharacters": 82866,
           "uniqueQuestionIdCount": 154,
+          "ocrApplied": false,
+          "sequenceProbes": [],
+          "sourceDisposition": "internal-creation-date-matched-key-sequence-pending",
           "recoveredText": "bank-v2/source-recovery/ctet-p1-2021-2022/text/2022-01-07--collegedekhopdfmirror.txt"
         }
       ]
@@ -1089,7 +1731,7 @@
       "preppCatalogPdf": "https://cdn-images.prepp.in/public/image/1eae2e2ffb59e8274ce870ae812e0970.pdf",
       "aglasemPaperMirror": "https://docs.aglasem.com/view/58922172-81a8-11ec-80cc-0a5e36bc6706",
       "collegeDekhoPdfMirror": "https://static.collegedekho.com/media/django-summernote/2022-01-29/8f1357fa-5686-4dae-a949-257bf8a37d83.pdf",
-      "candidateVariantStatus": "internal-date-matched-answer-sequence-pending",
+      "candidateVariantStatus": "internal-date-matched-key-sequence-pending",
       "officialAvailableTargetLanguages": [
         "english",
         "hindi"
@@ -1108,10 +1750,16 @@
           "paperName": "SET S P1 English and Hindi Comb19",
           "subjectName": "P1 English and Hindi",
           "internalCreationDateTime": "2022-01-08 15:25:57",
-          "internalDateMatchesForm": true,
+          "internalCreationDate": "2022-01-08",
+          "internalCreationDateMatchesForm": true,
+          "explicitTestDate": null,
+          "explicitTestDateMatchesForm": null,
           "pageCount": 152,
           "textCharacters": 86126,
           "uniqueQuestionIdCount": 154,
+          "ocrApplied": false,
+          "sequenceProbes": [],
+          "sourceDisposition": "internal-creation-date-matched-key-sequence-pending",
           "recoveredText": "bank-v2/source-recovery/ctet-p1-2021-2022/text/2022-01-08--preppcatalogpdf.txt"
         },
         {
@@ -1121,10 +1769,16 @@
           "paperName": "SET S P1 English and Hindi Comb19",
           "subjectName": "P1 English and Hindi",
           "internalCreationDateTime": "2022-01-08 15:25:57",
-          "internalDateMatchesForm": true,
+          "internalCreationDate": "2022-01-08",
+          "internalCreationDateMatchesForm": true,
+          "explicitTestDate": null,
+          "explicitTestDateMatchesForm": null,
           "pageCount": 150,
           "textCharacters": 86030,
           "uniqueQuestionIdCount": 154,
+          "ocrApplied": false,
+          "sequenceProbes": [],
+          "sourceDisposition": "internal-creation-date-matched-key-sequence-pending",
           "recoveredText": "bank-v2/source-recovery/ctet-p1-2021-2022/text/2022-01-08--collegedekhopdfmirror.txt"
         }
       ]
@@ -1140,7 +1794,7 @@
       "preppCatalogPdf": "https://cdn-images.prepp.in/public/image/cd0089aeb512772b092240b0b0d9548f.pdf",
       "aglasemPaperMirror": "https://docs.aglasem.com/view/b7352620-81a8-11ec-b09d-0a5e36bc6706",
       "collegeDekhoPdfMirror": "https://static.collegedekho.com/media/django-summernote/2022-01-29/5abf034a-6d83-4d84-8ddb-512cef5c0d7a.pdf",
-      "candidateVariantStatus": "internal-date-matched-answer-sequence-pending",
+      "candidateVariantStatus": "internal-date-matched-key-sequence-pending",
       "officialAvailableTargetLanguages": [
         "english",
         "hindi"
@@ -1159,10 +1813,16 @@
           "paperName": "SET W P1 English and Hindi Comb19",
           "subjectName": "P1 English and Hindi",
           "internalCreationDateTime": "2022-01-10 14:24:32",
-          "internalDateMatchesForm": true,
+          "internalCreationDate": "2022-01-10",
+          "internalCreationDateMatchesForm": true,
+          "explicitTestDate": null,
+          "explicitTestDateMatchesForm": null,
           "pageCount": 158,
           "textCharacters": 85448,
           "uniqueQuestionIdCount": 154,
+          "ocrApplied": false,
+          "sequenceProbes": [],
+          "sourceDisposition": "internal-creation-date-matched-key-sequence-pending",
           "recoveredText": "bank-v2/source-recovery/ctet-p1-2021-2022/text/2022-01-10--preppcatalogpdf.txt"
         },
         {
@@ -1172,10 +1832,16 @@
           "paperName": "SET W P1 English and Hindi Comb19",
           "subjectName": "P1 English and Hindi",
           "internalCreationDateTime": "2022-01-10 14:24:32",
-          "internalDateMatchesForm": true,
+          "internalCreationDate": "2022-01-10",
+          "internalCreationDateMatchesForm": true,
+          "explicitTestDate": null,
+          "explicitTestDateMatchesForm": null,
           "pageCount": 156,
           "textCharacters": 85352,
           "uniqueQuestionIdCount": 154,
+          "ocrApplied": false,
+          "sequenceProbes": [],
+          "sourceDisposition": "internal-creation-date-matched-key-sequence-pending",
           "recoveredText": "bank-v2/source-recovery/ctet-p1-2021-2022/text/2022-01-10--collegedekhopdfmirror.txt"
         }
       ]
@@ -1192,7 +1858,7 @@
       "preppCatalogPdf": "https://cdn-images.prepp.in/public/image/bbd8a101cbc1d4330273d357b5ecdd55.pdf",
       "aglasemPaperMirror": "https://docs.aglasem.com/view/b73dca1e-81a8-11ec-8e44-0a5e36bc6706",
       "collegeDekhoPdfMirror": "https://static.collegedekho.com/media/django-summernote/2022-01-29/ebaffb22-99c7-4eea-b425-0dc9c65147a2.pdf",
-      "candidateVariantStatus": "internal-date-matched-answer-sequence-pending",
+      "candidateVariantStatus": "internal-date-matched-key-sequence-pending",
       "officialAvailableTargetLanguages": [
         "english",
         "hindi",
@@ -1214,10 +1880,16 @@
           "paperName": "SET U P1 English and Hindi Comb19",
           "subjectName": "P1 English and Hindi",
           "internalCreationDateTime": "2022-01-11 14:49:46",
-          "internalDateMatchesForm": true,
+          "internalCreationDate": "2022-01-11",
+          "internalCreationDateMatchesForm": true,
+          "explicitTestDate": null,
+          "explicitTestDateMatchesForm": null,
           "pageCount": 155,
           "textCharacters": 83768,
           "uniqueQuestionIdCount": 154,
+          "ocrApplied": false,
+          "sequenceProbes": [],
+          "sourceDisposition": "internal-creation-date-matched-key-sequence-pending",
           "recoveredText": "bank-v2/source-recovery/ctet-p1-2021-2022/text/2022-01-11--preppcatalogpdf.txt"
         },
         {
@@ -1227,10 +1899,16 @@
           "paperName": "SET U P1 English and Hindi Comb19",
           "subjectName": "P1 English and Hindi",
           "internalCreationDateTime": "2022-01-11 14:49:46",
-          "internalDateMatchesForm": true,
+          "internalCreationDate": "2022-01-11",
+          "internalCreationDateMatchesForm": true,
+          "explicitTestDate": null,
+          "explicitTestDateMatchesForm": null,
           "pageCount": 153,
           "textCharacters": 83672,
           "uniqueQuestionIdCount": 154,
+          "ocrApplied": false,
+          "sequenceProbes": [],
+          "sourceDisposition": "internal-creation-date-matched-key-sequence-pending",
           "recoveredText": "bank-v2/source-recovery/ctet-p1-2021-2022/text/2022-01-11--collegedekhopdfmirror.txt"
         }
       ]
@@ -1247,7 +1925,7 @@
       "preppCatalogPdf": "https://cdn-images.prepp.in/public/image/bffc8d629b96e0de056c2fd8488516f3.pdf",
       "aglasemPaperMirror": "https://docs.aglasem.com/view/bbf41360-81a8-11ec-bc93-0a5e36bc6706",
       "collegeDekhoPdfMirror": "https://static.collegedekho.com/media/django-summernote/2022-01-29/e5f8242d-1ccc-47e8-ae65-ea1d6ce7d004.pdf",
-      "candidateVariantStatus": "internal-date-matched-answer-sequence-pending",
+      "candidateVariantStatus": "internal-date-matched-key-sequence-pending",
       "officialAvailableTargetLanguages": [
         "english",
         "hindi",
@@ -1269,10 +1947,16 @@
           "paperName": "SET R P1 English and Sanskrit Comb29",
           "subjectName": "P1 English and Sanskrit",
           "internalCreationDateTime": "2022-01-12 15:01:29",
-          "internalDateMatchesForm": true,
+          "internalCreationDate": "2022-01-12",
+          "internalCreationDateMatchesForm": true,
+          "explicitTestDate": null,
+          "explicitTestDateMatchesForm": null,
           "pageCount": 156,
           "textCharacters": 84550,
           "uniqueQuestionIdCount": 154,
+          "ocrApplied": false,
+          "sequenceProbes": [],
+          "sourceDisposition": "internal-creation-date-matched-key-sequence-pending",
           "recoveredText": "bank-v2/source-recovery/ctet-p1-2021-2022/text/2022-01-12--preppcatalogpdf.txt"
         },
         {
@@ -1282,10 +1966,16 @@
           "paperName": "SET R P1 English and Sanskrit Comb29",
           "subjectName": "P1 English and Sanskrit",
           "internalCreationDateTime": "2022-01-12 15:01:29",
-          "internalDateMatchesForm": true,
+          "internalCreationDate": "2022-01-12",
+          "internalCreationDateMatchesForm": true,
+          "explicitTestDate": null,
+          "explicitTestDateMatchesForm": null,
           "pageCount": 154,
           "textCharacters": 84454,
           "uniqueQuestionIdCount": 154,
+          "ocrApplied": false,
+          "sequenceProbes": [],
+          "sourceDisposition": "internal-creation-date-matched-key-sequence-pending",
           "recoveredText": "bank-v2/source-recovery/ctet-p1-2021-2022/text/2022-01-12--collegedekhopdfmirror.txt"
         }
       ]
@@ -1302,7 +1992,7 @@
       "preppCatalogPdf": "https://cdn-images.prepp.in/public/image/2126e0b5b545e61bf7fed1d317dad2e2.pdf",
       "aglasemPaperMirror": "https://docs.aglasem.com/view/c3d92ad4-81a8-11ec-a28d-0a5e36bc6706",
       "collegeDekhoPdfMirror": null,
-      "candidateVariantStatus": "internal-date-matched-answer-sequence-pending",
+      "candidateVariantStatus": "internal-date-matched-key-sequence-pending",
       "officialAvailableTargetLanguages": [
         "english",
         "hindi",
@@ -1324,10 +2014,16 @@
           "paperName": "SET V P1 Hindi and English Comb45",
           "subjectName": "P1 Hindi and English",
           "internalCreationDateTime": "2022-01-17 18:35:02",
-          "internalDateMatchesForm": true,
+          "internalCreationDate": "2022-01-17",
+          "internalCreationDateMatchesForm": true,
+          "explicitTestDate": null,
+          "explicitTestDateMatchesForm": null,
           "pageCount": 95,
           "textCharacters": 80026,
           "uniqueQuestionIdCount": 154,
+          "ocrApplied": false,
+          "sequenceProbes": [],
+          "sourceDisposition": "internal-creation-date-matched-key-sequence-pending",
           "recoveredText": "bank-v2/source-recovery/ctet-p1-2021-2022/text/2022-01-17--preppcatalogpdf.txt"
         }
       ],
@@ -1354,7 +2050,7 @@
       "preppCatalogPdf": "https://cdn-images.prepp.in/public/image/8859a983a5f1b4e4b4d03bc47cc68bd0.pdf",
       "aglasemPaperMirror": "https://docs.aglasem.com/view/6ffea8c2-81a7-11ec-ad3e-0a5e36bc6706",
       "collegeDekhoPdfMirror": null,
-      "candidateVariantStatus": "internal-date-matched-answer-sequence-pending",
+      "candidateVariantStatus": "internal-date-matched-key-sequence-pending",
       "officialAvailableTargetLanguages": [
         "english",
         "hindi",
@@ -1376,10 +2072,16 @@
           "paperName": "Set A P1 English and Hindi Comb19",
           "subjectName": "P1 English and Hindi",
           "internalCreationDateTime": "2022-01-21 17:44:15",
-          "internalDateMatchesForm": true,
+          "internalCreationDate": "2022-01-21",
+          "internalCreationDateMatchesForm": true,
+          "explicitTestDate": null,
+          "explicitTestDateMatchesForm": null,
           "pageCount": 92,
           "textCharacters": 79740,
           "uniqueQuestionIdCount": 154,
+          "ocrApplied": false,
+          "sequenceProbes": [],
+          "sourceDisposition": "internal-creation-date-matched-key-sequence-pending",
           "recoveredText": "bank-v2/source-recovery/ctet-p1-2021-2022/text/2022-01-21--preppcatalogpdf.txt"
         }
       ],
@@ -1395,5 +2097,6 @@
       ]
     }
   ],
-  "officialFinalKeyData": "bank-v2/sources/ctet-p1-2021-2022-final-keys.json"
+  "officialFinalKeyData": "bank-v2/sources/ctet-p1-2021-2022-final-keys.json",
+  "candidateSequenceProbeData": "bank-v2/sources/ctet-p1-2021-2022-sequence-probes.json"
 }

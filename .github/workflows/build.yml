@@ -102,7 +102,10 @@ jobs:
           python-version: '3.11'
 
       - name: Install PDF recovery dependencies
-        run: python -m pip install --disable-pip-version-check requests==2.32.5 PyMuPDF==1.26.4
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends tesseract-ocr-eng tesseract-ocr-hin tesseract-ocr-san
+          python -m pip install --disable-pip-version-check requests==2.32.5 PyMuPDF==1.26.4
 
       - name: Recover public paper text and metadata
         continue-on-error: true

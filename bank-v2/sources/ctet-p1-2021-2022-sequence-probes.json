@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "id": "ctet-p1-2021-2022-sequence-probes",
+  "purpose": "Human-verified semantic answers used only to match recovered candidate-paper ordering to official final-key date/medium tables. These probes are source-reconciliation evidence and are not imported as question-bank answers.",
+  "method": "For each listed position, the correct option was independently determined from the complete visible stem and all four visible options in the recovered candidate export. The reconciliation tool compares these observed option numbers against every official date/medium main-key sequence.",
+  "probes": [
+    {
+      "id": "prepp-catalogued-2021-12-16-main-first-12",
+      "cataloguedFormDate": "2021-12-16",
+      "sources": [
+        "preppCatalogPdf",
+        "collegeDekhoPdfMirror"
+      ],
+      "candidateQuestionIds": [
+        "5052124159",
+        "5052124160",
+        "5052124161",
+        "5052124162",
+        "5052124163",
+        "5052124164",
+        "5052124165",
+        "5052124166",
+        "5052124167",
+        "5052124168",
+        "5052124169",
+        "5052124170"
+      ],
+      "positions": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      "observedCorrectOptions": [3, 1, 2, 3, 2, 2, 1, 1, 2, 4, 4, 1],
+      "notes": "All 12 positions exactly match only the official 16 December 2021 English-medium main-key table. The paper's 22 December internal creation timestamp is therefore not its exam date."
+    },
+    {
+      "id": "collegedekho-catalogued-2021-12-21-main-first-12",
+      "cataloguedFormDate": "2021-12-21",
+      "sources": [
+        "collegeDekhoPdfMirror"
+      ],
+      "candidateQuestionIds": [
+        "953357163701",
+        "953357163702",
+        "953357163703",
+        "953357163704",
+        "953357163705",
+        "953357163706",
+        "953357163707",
+        "953357163708",
+        "953357163709",
+        "953357163710",
+        "953357163711",
+        "953357163712"
+      ],
+      "positions": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      "observedCorrectOptions": [1, 3, 2, 1, 3, 2, 2, 2, 2, 3, 4, 3],
+      "notes": "All 12 positions match the official 21 January 2022 main-key ordering (both medium tables have the same 12-option prefix) and do not match 21 December 2021. This is a miscatalogued 21 January Set A mirror."
+    }
+  ]
+}

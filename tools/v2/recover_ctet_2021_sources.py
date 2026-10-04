@@ -13,6 +13,8 @@ from __future__ import annotations
 import hashlib
 import json
 import re
+import shutil
+import subprocess
 import tempfile
 import time
 from pathlib import Path
@@ -61,16 +63,58 @@ def download(session: requests.Session, url: str, destination: Path) -> tuple[in
     raise last_error
 
 
+def ocr_page(page: fitz.Page, image_path: Path) -> str:
+    """OCR one raster-only page without retaining the rendered image."""
+    pixmap = page.get_pixmap(matrix=fitz.Matrix(2, 2), colorspace=fitz.csGRAY, alpha=False)
+    pixmap.save(image_path)
+    completed = subprocess.run(
+        [
+            "tesseract",
+            str(image_path),
+            "stdout",
+            "-l",
+            "eng+hin+san",
+            "--psm",
+            "6",
+        ],
+        check=True,
+        capture_output=True,
+        text=True,
+        timeout=180,
+    )
+    image_path.unlink(missing_ok=True)
+    return completed.stdout.replace("\x00", "")
+
+
 def extract_pdf(pdf_path: Path, text_path: Path) -> dict[str, Any]:
     document = fitz.open(pdf_path)
-    page_texts: list[str] = []
+    native_texts: list[str] = []
     image_counts: list[int] = []
-    pages_with_text = 0
-    for page_index, page in enumerate(document):
-        text = page.get_text("text", sort=True).replace("\x00", "")
-        pages_with_text += bool(text.strip())
-        page_texts.append(f"===== PDF PAGE {page_index + 1} =====\n{text.rstrip()}\n")
+    for page in document:
+        native_texts.append(page.get_text("text", sort=True).replace("\x00", ""))
         image_counts.append(len(page.get_images(full=True)))
+
+    native_pages_with_text = sum(bool(text.strip()) for text in native_texts)
+    native_text_characters = sum(len(text) for text in native_texts)
+    ocr_applied = (
+        native_pages_with_text <= max(1, document.page_count // 20)
+        and native_text_characters < document.page_count * 100
+    )
+    if ocr_applied and shutil.which("tesseract") is None:
+        raise RuntimeError("Raster-only PDF requires tesseract, but it is not installed")
+
+    page_texts: list[str] = []
+    extracted_texts: list[str] = []
+    ocr_pages = 0
+    image_path = pdf_path.with_suffix(".ocr.png")
+    for page_index, (page, native_text) in enumerate(zip(document, native_texts, strict=True)):
+        text = native_text
+        if ocr_applied and not native_text.strip():
+            text = ocr_page(page, image_path)
+            ocr_pages += 1
+        extracted_texts.append(text)
+        page_texts.append(f"===== PDF PAGE {page_index + 1} =====\n{text.rstrip()}\n")
+
     text_path.parent.mkdir(parents=True, exist_ok=True)
     text_path.write_text("\n".join(page_texts), encoding="utf-8")
     full_text = "\n".join(page_texts)
@@ -81,7 +125,12 @@ def extract_pdf(pdf_path: Path, text_path: Path) -> dict[str, Any]:
         "pageCount": document.page_count,
         "metadata": metadata,
         "textCharacters": len(full_text),
-        "pagesWithText": pages_with_text,
+        "pagesWithText": sum(bool(text.strip()) for text in extracted_texts),
+        "nativeTextCharacters": native_text_characters,
+        "nativePagesWithText": native_pages_with_text,
+        "ocrApplied": ocr_applied,
+        "ocrLanguage": "eng+hin+san" if ocr_applied else None,
+        "ocrPageCount": ocr_pages,
         "embeddedImageCount": sum(image_counts),
         "pagesWithEmbeddedImages": sum(value > 0 for value in image_counts),
         "questionNumberOccurrences": len(question_numbers),
@@ -91,6 +140,7 @@ def extract_pdf(pdf_path: Path, text_path: Path) -> dict[str, Any]:
         "frontMatterText": "\n".join(page_texts[:3])[:12_000],
     }
     document.close()
+    image_path.unlink(missing_ok=True)
     return result
 
 
