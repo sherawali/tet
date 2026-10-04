@@ -1830,5 +1830,77 @@
   "errors": [],
   "started": "2026-10-04 03:59:49",
   "elapsed_min": 6.8
+ },
+ "run9": {
+  "papers": [
+   {
+    "label": "feb2026_07feb_S",
+    "fid": "1suavWoDsydGcTk_alVmKhwmyH9GuUJ48",
+    "via": "direct",
+    "zip_files": [
+     "Set-S/",
+     "Set-S/Assamese-S.pdf",
+     "Set-S/Bengali-S.pdf",
+     "Set-S/Main-S.pdf",
+     "Set-S/Marathi-S.pdf",
+     "Set-S/Sanskrit-S.pdf",
+     "Set-S/Urdu-S.pdf"
+    ],
+    "picked": [
+     "Main-S.pdf"
+    ],
+    "status": "done",
+    "extracted": [
+     {
+      "pdf": "Main-S.pdf",
+      "method": "ocr(48p)",
+      "pages": 48,
+      "chars": 105758
+     }
+    ]
+   },
+   {
+    "label": "feb2026_08feb_C",
+    "fid": "1wbsYGwEMnmQyj5eiZ5ZcdHiCGtIeam60",
+    "via": "direct",
+    "zip_files": [
+     "Set-C/",
+     "Set-C/FSC Paper I Assamese CCCC.pdf",
+     "Set-C/FSC Paper I Bengali CCCC.pdf",
+     "Set-C/FSC Paper I Eng+Hin CCCC.pdf",
+     "Set-C/FSC Paper I Garo CCCC.pdf",
+     "Set-C/FSC Paper I Gujarati CCCC.pdf",
+     "Set-C/FSC Paper I Kannada CCCC.pdf",
+     "Set-C/FSC Paper I Khasi CCCC.pdf",
+     "Set-C/FSC Paper I Malayalam CCCC.pdf",
+     "Set-C/FSC Paper I Manipuri CCCC.pdf",
+     "Set-C/FSC Paper I Marathi CCCC.pdf",
+     "Set-C/FSC Paper I Mizo CCCC.pdf",
+     "Set-C/FSC Paper I Nepali CCCC.pdf",
+     "Set-C/FSC Paper I Odia CCCC.pdf",
+     "Set-C/FSC Paper I Punjabi CCCC.pdf",
+     "Set-C/FSC Paper I Sanskrit CCCC.pdf",
+     "Set-C/FSC Paper I Tamil CCCC.pdf",
+     "Set-C/FSC Paper I Telugu CCCC.pdf",
+     "Set-C/FSC Paper I Urdu CCCC.pdf",
+     "Set-C/FSC Tibetan  PAPER-I  CCCC.pdf"
+    ],
+    "picked": [
+     "FSC Paper I Eng+Hin CCCC.pdf"
+    ],
+    "status": "done",
+    "extracted": [
+     {
+      "pdf": "FSC Paper I Eng+Hin CCCC.pdf",
+      "method": "ocr(48p)",
+      "pages": 48,
+      "chars": 109328
+     }
+    ]
+   }
+  ],
+  "errors": [],
+  "started": "2026-10-04 04:09:20",
+  "elapsed_min": 3.3
  }
 }

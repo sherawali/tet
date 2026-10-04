@@ -1,5 +1,3 @@
-  feb2026_07feb_S/Main-S.pdf: ocr(44p) pages=44 chars=95275
-  feb2026_08feb_C/FSC Paper I Eng+Hin CCCC.pdf: ocr(44p) pages=44 chars=98751
-  july2024_A/JSS-24-I Paper I Eng+Hin AAAA.pdf: ocr(44p) pages=44 chars=92375
-  dec2024_H/SED-24-I Eng+Hin HHHH.pdf: ocr(44p) pages=44 chars=99125
-DONE in 6.8 min; errors=0
+  feb2026_07feb_S/Main-S.pdf: ocr(48p) pages=48 chars=105758
+  feb2026_08feb_C/FSC Paper I Eng+Hin CCCC.pdf: ocr(48p) pages=48 chars=109328
+DONE in 3.3 min; errors=0
