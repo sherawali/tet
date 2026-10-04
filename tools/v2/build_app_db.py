@@ -65,9 +65,11 @@ def main():
     conn = sqlite3.connect(DB_PATH)
     cur = conn.cursor()
 
+    cur.execute("PRAGMA user_version = 1")
+
     # Create tables
     cur.execute("""
-        CREATE TABLE questions (
+        CREATE TABLE IF NOT EXISTS questions (
             id TEXT PRIMARY KEY,
             exams TEXT,
             section TEXT,
@@ -88,7 +90,7 @@ def main():
     """)
 
     cur.execute("""
-        CREATE TABLE passages (
+        CREATE TABLE IF NOT EXISTS passages (
             id TEXT PRIMARY KEY,
             kind TEXT,
             dir_text TEXT,
@@ -97,7 +99,7 @@ def main():
     """)
 
     cur.execute("""
-        CREATE TABLE paper_forms (
+        CREATE TABLE IF NOT EXISTS paper_forms (
             id TEXT PRIMARY KEY,
             exam TEXT,
             paper INTEGER,
@@ -110,7 +112,7 @@ def main():
     """)
 
     cur.execute("""
-        CREATE TABLE appearances (
+        CREATE TABLE IF NOT EXISTS appearances (
             id TEXT PRIMARY KEY,
             question_id TEXT,
             paper_form_id TEXT,
@@ -121,14 +123,14 @@ def main():
     """)
 
     cur.execute("""
-        CREATE TABLE meta (
+        CREATE TABLE IF NOT EXISTS meta (
             key TEXT PRIMARY KEY,
             val TEXT
         )
     """)
 
     cur.execute("""
-        CREATE TABLE test_history (
+        CREATE TABLE IF NOT EXISTS test_history (
             id TEXT PRIMARY KEY,
             timestamp INTEGER,
             mode TEXT,
@@ -141,7 +143,7 @@ def main():
     """)
 
     cur.execute("""
-        CREATE TABLE mistake_records (
+        CREATE TABLE IF NOT EXISTS mistake_records (
             question_id TEXT PRIMARY KEY,
             section TEXT,
             topic_name TEXT,
