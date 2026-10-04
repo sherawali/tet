@@ -1422,5 +1422,265 @@
   ],
   "started": "2026-10-04 03:40:13",
   "elapsed_min": 0.9
+ },
+ "run7": {
+  "papers": [
+   {
+    "label": "feb2026_07feb_S",
+    "fid": "1suavWoDsydGcTk_alVmKhwmyH9GuUJ48",
+    "via": "direct",
+    "zip_files": [
+     "Set-S/",
+     "Set-S/Assamese-S.pdf",
+     "Set-S/Bengali-S.pdf",
+     "Set-S/Main-S.pdf",
+     "Set-S/Marathi-S.pdf",
+     "Set-S/Sanskrit-S.pdf",
+     "Set-S/Urdu-S.pdf"
+    ],
+    "picked": [
+     "Main-S.pdf"
+    ],
+    "status": "done",
+    "extracted": [
+     {
+      "pdf": "Main-S.pdf",
+      "method": "text",
+      "pages": 48,
+      "chars": 106331
+     }
+    ]
+   },
+   {
+    "label": "feb2026_07feb_U",
+    "fid": "1jdwb05v_GzPJAuyNKJ6WKzhbG1iwTosy",
+    "via": "direct",
+    "zip_files": [
+     "Set-U/",
+     "Set-U/Assamese-U.pdf",
+     "Set-U/Bengali-U.pdf",
+     "Set-U/Main-U.pdf",
+     "Set-U/Marathi-U.pdf",
+     "Set-U/Sanskrit-U.pdf",
+     "Set-U/Urdu-U.pdf"
+    ],
+    "picked": [
+     "Main-U.pdf"
+    ],
+    "status": "done",
+    "extracted": [
+     {
+      "pdf": "Main-U.pdf",
+      "method": "text",
+      "pages": 48,
+      "chars": 106419
+     }
+    ]
+   },
+   {
+    "label": "feb2026_08feb_C",
+    "fid": "1wbsYGwEMnmQyj5eiZ5ZcdHiCGtIeam60",
+    "via": "direct",
+    "zip_files": [
+     "Set-C/",
+     "Set-C/FSC Paper I Assamese CCCC.pdf",
+     "Set-C/FSC Paper I Bengali CCCC.pdf",
+     "Set-C/FSC Paper I Eng+Hin CCCC.pdf",
+     "Set-C/FSC Paper I Garo CCCC.pdf",
+     "Set-C/FSC Paper I Gujarati CCCC.pdf",
+     "Set-C/FSC Paper I Kannada CCCC.pdf",
+     "Set-C/FSC Paper I Khasi CCCC.pdf",
+     "Set-C/FSC Paper I Malayalam CCCC.pdf",
+     "Set-C/FSC Paper I Manipuri CCCC.pdf",
+     "Set-C/FSC Paper I Marathi CCCC.pdf",
+     "Set-C/FSC Paper I Mizo CCCC.pdf",
+     "Set-C/FSC Paper I Nepali CCCC.pdf",
+     "Set-C/FSC Paper I Odia CCCC.pdf",
+     "Set-C/FSC Paper I Punjabi CCCC.pdf",
+     "Set-C/FSC Paper I Sanskrit CCCC.pdf",
+     "Set-C/FSC Paper I Tamil CCCC.pdf",
+     "Set-C/FSC Paper I Telugu CCCC.pdf",
+     "Set-C/FSC Paper I Urdu CCCC.pdf",
+     "Set-C/FSC Tibetan  PAPER-I  CCCC.pdf"
+    ],
+    "picked": [
+     "FSC Paper I Eng+Hin CCCC.pdf"
+    ],
+    "status": "done",
+    "extracted": [
+     {
+      "pdf": "FSC Paper I Eng+Hin CCCC.pdf",
+      "method": "text",
+      "pages": 48,
+      "chars": 114039
+     }
+    ]
+   },
+   {
+    "label": "feb2026_08feb_E",
+    "fid": "1NZiXv9hXKqvU1pyCkCxHB7400CYNPfRO",
+    "via": "direct",
+    "zip_files": [
+     "Set-E/",
+     "Set-E/FSC Paper I Assamese EEEE.pdf",
+     "Set-E/FSC Paper I Bengali EEEE.pdf",
+     "Set-E/FSC Paper I Eng+Hin EEEE.pdf",
+     "Set-E/FSC Paper I Garo EEEE.pdf",
+     "Set-E/FSC Paper I Gujarati EEEE.pdf",
+     "Set-E/FSC Paper I Kannada EEEE.pdf",
+     "Set-E/FSC Paper I Khasi EEEE.pdf",
+     "Set-E/FSC Paper I Malayalam EEEE.pdf",
+     "Set-E/FSC Paper I Manipuri EEEE.pdf",
+     "Set-E/FSC Paper I Marathi EEEE.pdf",
+     "Set-E/FSC Paper I Mizo EEEE.pdf",
+     "Set-E/FSC Paper I Nepali EEEE.pdf",
+     "Set-E/FSC Paper I Odia EEEE.pdf",
+     "Set-E/FSC Paper I Punjabi EEEE.pdf",
+     "Set-E/FSC Paper I Sanskrit EEEE.pdf",
+     "Set-E/FSC Paper I Tamil EEEE.pdf",
+     "Set-E/FSC Paper I Telugu EEEE.pdf",
+     "Set-E/FSC Paper I Urdu EEEEE.pdf",
+     "Set-E/FSC Tibetan  PAPER-I  EEEE.pdf"
+    ],
+    "picked": [
+     "FSC Paper I Eng+Hin EEEE.pdf"
+    ],
+    "status": "done",
+    "extracted": [
+     {
+      "pdf": "FSC Paper I Eng+Hin EEEE.pdf",
+      "method": "text",
+      "pages": 48,
+      "chars": 114039
+     }
+    ]
+   },
+   {
+    "label": "july2024_A",
+    "fid": "1i61Br_kq-YiSqL-0u_obVV0j0RC_beeL",
+    "via": "direct",
+    "zip_files": [
+     "JSS-24-I Paper I Assamese AAAA.pdf",
+     "JSS-24-I Paper I Bengali AAAA.pdf",
+     "JSS-24-I Paper I Eng+Hin AAAA.pdf",
+     "JSS-24-I Paper I Garo AAAA.pdf",
+     "JSS-24-I Paper I Gujarati AAAA.pdf",
+     "JSS-24-I Paper I Kannada AAAA.pdf",
+     "JSS-24-I Paper I Khasi AAAA.pdf",
+     "JSS-24-I Paper I Malayalam AAAA.pdf",
+     "JSS-24-I Paper I Manipuri AAAA.pdf",
+     "JSS-24-I Paper I Marathi AAAA.pdf",
+     "JSS-24-I Paper I Mizo AAAA.pdf",
+     "JSS-24-I Paper I Nepali AAAA.pdf",
+     "JSS-24-I Paper I Odia AAAA.pdf",
+     "JSS-24-I Paper I Punjabi AAAA.pdf",
+     "JSS-24-I Paper I Sanskrit AAAA.pdf",
+     "JSS-24-I Paper I Tamil AAAA.pdf",
+     "JSS-24-I Paper I Telugu AAAA.pdf",
+     "JSS-24-I Paper I Tibetan AAAA.pdf",
+     "JSS-24-I Paper I Urdu AAAA.pdf"
+    ],
+    "picked": [
+     "JSS-24-I Paper I Eng+Hin AAAA.pdf"
+    ],
+    "status": "done",
+    "extracted": [
+     {
+      "pdf": "JSS-24-I Paper I Eng+Hin AAAA.pdf",
+      "method": "text",
+      "pages": 48,
+      "chars": 107517
+     }
+    ]
+   },
+   {
+    "label": "dec2024_H",
+    "fid": "17kvon5hwlXZiJyOaOHaFUO3zY_Gg6kn5",
+    "via": "direct",
+    "zip_files": [
+     "SED-24-I Assamese HHHH.pdf",
+     "SED-24-I Bengali HHHH.pdf",
+     "SED-24-I Eng+Hin HHHH.pdf",
+     "SED-24-I Garo HHHH.pdf",
+     "SED-24-I Gujarati HHHH.pdf",
+     "SED-24-I Kannada HHHH.pdf",
+     "SED-24-I Khasi HHHH.pdf",
+     "SED-24-I Malayalam HHHH.pdf",
+     "SED-24-I Manipuri HHHH.pdf",
+     "SED-24-I Marathi HHHH.pdf",
+     "SED-24-I Mizo HHHH.pdf",
+     "SED-24-I Nepali HHHH.pdf",
+     "SED-24-I Odia HHHH.pdf",
+     "SED-24-I Punjabi HHHHH.pdf",
+     "SED-24-I Sanskrit H.pdf",
+     "SED-24-I Set 208 Tibetan HHHH.pdf",
+     "SED-24-I Tamil HHHH.pdf",
+     "SED-24-I Telugu HHHH.pdf",
+     "SED-24-I Urdu HHHH.pdf"
+    ],
+    "picked": [
+     "SED-24-I Eng+Hin HHHH.pdf"
+    ],
+    "status": "done",
+    "extracted": [
+     {
+      "pdf": "SED-24-I Eng+Hin HHHH.pdf",
+      "method": "text",
+      "pages": 48,
+      "chars": 114104
+     }
+    ]
+   },
+   {
+    "label": "jan2024_I",
+    "fid": "1zvLZtZEIhvqoooU88uXmgbHTmDHpfQd1",
+    "via": "direct",
+    "zip_files": [
+     "paper1_setI/",
+     "paper1_setI/desktop.ini",
+     "paper1_setI/SAS-24-I Paper I Assamese IIII.pdf",
+     "paper1_setI/SAS-24-I Paper I Bengali IIII.pdf",
+     "paper1_setI/SAS-24-I Paper I Eng+Hin IIII.pdf",
+     "paper1_setI/SAS-24-I Paper I Garo IIII.pdf",
+     "paper1_setI/SAS-24-I Paper I Gujarati IIII.pdf",
+     "paper1_setI/SAS-24-I Paper I Kannada IIII.pdf",
+     "paper1_setI/SAS-24-I Paper I Khasi IIII.pdf",
+     "paper1_setI/SAS-24-I Paper I Malayalam IIII.pdf",
+     "paper1_setI/SAS-24-I Paper I Manipuri IIII.pdf",
+     "paper1_setI/SAS-24-I Paper I Marathi IIII.pdf",
+     "paper1_setI/SAS-24-I Paper I Mizo IIII.pdf",
+     "paper1_setI/SAS-24-I Paper I Nepali IIII.pdf",
+     "paper1_setI/SAS-24-I Paper I Odia IIII.pdf",
+     "paper1_setI/SAS-24-I Paper I Punjabi IIII.pdf",
+     "paper1_setI/SAS-24-I Paper I Sanskrit IIII.pdf",
+     "paper1_setI/SAS-24-I Paper I Tamil IIII.pdf",
+     "paper1_setI/SAS-24-I Paper I Telugu IIII.pdf",
+     "paper1_setI/SAS-24-I Paper I Tibetan IIII.pdf",
+     "paper1_setI/SAS-24-I Paper I Urdu IIII.pdf"
+    ],
+    "picked": [
+     "SAS-24-I Paper I Eng+Hin IIII.pdf"
+    ],
+    "status": "done",
+    "extracted": [
+     {
+      "pdf": "SAS-24-I Paper I Eng+Hin IIII.pdf",
+      "method": "text",
+      "pages": 48,
+      "chars": 111750
+     }
+    ]
+   },
+   {
+    "label": "dec2022_13jan",
+    "fid": "15G4FF1qtpMot8KZS_VZCXoQVUYepdrY9",
+    "status": "drive-fail"
+   }
+  ],
+  "errors": [
+   "drive fail: dec2022_13jan"
+  ],
+  "started": "2026-10-04 03:50:25",
+  "elapsed_min": 1.6
  }
 }

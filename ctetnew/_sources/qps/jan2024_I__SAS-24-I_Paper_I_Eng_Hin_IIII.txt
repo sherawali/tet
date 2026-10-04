@@ -1,0 +1,2156 @@
+SAS-24-I
+This booklet contains 48 Printed pages. Main Test Booklet No. / ◊ÈÅÿ ¬⁄UËˇÊÊ ¬ÈÁSÃ∑§Ê ‚¥ÅÿÊ
+ß‚ ¬ÈÁSÃ∑§Ê ◊¥ 48 ◊ÈÁŒ˝Ã ¬Îc∆U „Ò¥–
+PAPER-I / ¬˝‡Ÿ-¬òÊ-I
+MAIN TEST BOOKLET/◊ÈÅÿ ¬⁄UËˇÊÊ ¬ÈÁSÃ∑§Ê
+Do not open this Test Booklet until you are asked to do so. Main Test Booklet CoIde / ◊ÈÅÿ ¬⁄UËˇÊÊ ¬ÈÁSÃ∑§Ê ∑§Ê«U
+ß‚ ¬⁄UËˇÊÊ ¬ÈÁSÃ∑§Ê ∑§Ê Ã’ Ã∑§ Ÿ πÊ‹¥ ¡’ Ã∑§ ∑§„Ê Ÿ ¡Ê∞–
+Read carefully the Instructions on the Back Cover of this Test Booklet.
+ß‚ ¬⁄UËˇÊÊ ¬ÈÁSÃ∑§Ê ∑§ Á¬¿U‹ •Êfl⁄UáÊ ¬⁄U ÁŒ∞ ª∞ ÁŸŒ¸‡ÊÊ¥ ∑§Ê äÿÊŸ ‚ ¬…∏¥–
+INSTRUCTIONS FOR CANDIDATES ¬⁄UËˇÊÊÁÕ¸ÿÊ¥ ∑§ Á‹∞ ÁŸŒ¸‡Ê
+1. The OMR Answer Sheet is inside this Test Booklet. When you are directed 1. OMR ©ûÊ⁄U ¬òÊ ß‚ ¬⁄UËˇÊÊ ¬ÈÁSÃ∑§Ê ∑§ •ãŒ⁄U ⁄UπÊ „Ò– ¡’ •Ê¬∑§Ê ¬⁄UËˇÊÊ
+to open the Test Booklet, take out the Answer Sheet and fill in the particulars ¬ÈÁSÃ∑§Ê πÊ‹Ÿ ∑§Ê ∑§„Ê ¡Ê∞, ÃÊ ©ûÊ⁄U ¬òÊ ÁŸ∑§Ê‹ ∑§⁄U ¬Îc∆U-1 ∞fl¥ ¬Îc∆-U2 ¬⁄U
+on Side-1 and Side-2 carefully with blue/black ball point pen only. äÿÊŸ ‚ ∑§fl‹ ŸË‹/∑§Ê‹ ’ÊÚ‹ ¬ÊÚß¥≈U ¬Ÿ ‚ Áflfl⁄UáÊ ÷⁄¥U–
+2. The test is of 2½ hours duration and consists of 150 questions. There is no 2. ¬⁄UËˇÊÊ ∑§Ë •flÁœ 2½ ÉÊ¥≈ „Ò¥ ∞fl¥ ¬⁄UËˇÊÊ ◊¥ 150 ¬˝‡Ÿ „Ò¥– ∑§Êß¸ ´§áÊÊà◊∑§
+negative marking. •¥∑§Ÿ Ÿ„Ë¥ „Ò–
+3. Use Blue/Black Ball Point Pen only for writing particulars on this page/ 3. ß‚ ¬Îc∆U ¬⁄U Áflfl⁄UáÊ •¥Á∑§Ã ∑§⁄UŸ ∞fl¥ ©ûÊ⁄U ¬òÊ ¬⁄U ÁŸ‡ÊÊŸ ‹ªÊŸ ∑§ Á‹∞
+marking responses in the Answer Sheet. ∑§fl‹ ŸË‹/∑§Ê‹ ’ÊÚ‹ ¬ÊÚß¥≈U ¬Ÿ ∑§Ê ¬˝ÿÊª ∑§⁄¥U–
+I
+I
+4. The CODE for this Booklet is . Make sure that the CODE printed on 4. ß‚ ¬ÈÁSÃ∑§Ê ∑§Ê ∑§Ê«U „Ò– ÿ„ ‚ÈÁŸÁ‡øÃ ∑§⁄U ‹¥ Á∑§ ß‚ ¬ÈÁSÃ∑§Ê ∑§Ê ∑§Ê«U,
+Side-2 of the Answer Sheet is the same as that on this Booklet. Also ensure
+©ûÊ⁄U ¬òÊ ∑§ ¬Îc∆U-2 ¬⁄U ¿U¬ ∑§Ê«U ‚ Á◊‹ÃÊ „Ò– ÿ„ ÷Ë ‚ÈÁŸÁ‡øÃ ∑§⁄U ‹¥ Á∑§
+that your Test Booklet No. and Answer Sheet No. are the same. In case of
+¬⁄UËˇÊÊ ¬ÈÁSÃ∑§Ê ‚¥ÅÿÊ •ÊÒ⁄U ©ûÊ⁄U ¬òÊ ‚¥ÅÿÊ Á◊‹Ã „Ò¥– •ª⁄U ÿ„ Á÷ÛÊ „Ê¥ ÃÊ
+discrepancy, the candidate should immediately report the matter to the
+¬⁄UËˇÊÊÕË¸ ŒÍ‚⁄UË ¬⁄UËˇÊÊ ¬ÈÁSÃ∑§Ê •ÊÒ⁄U ©ûÊ⁄U ¬òÊ ‹Ÿ ∑§ Á‹∞ ÁŸ⁄UËˇÊ∑§ ∑§Ê
+Invigilator for replacement of both the Test Booklet and the Answer Sheet.
+ÃÈ⁄UãÃ •flªÃ ∑§⁄UÊ∞°–
+5. This Test Booklet has five Parts, I, II, III, IV and V, consisting of 150
+Objective Type Questions and each carries 1 mark : 5. ß‚ ¬⁄UËˇÊÊ ¬ÈÁSÃ∑§Ê ◊¥ ¬Ê°ø ÷Êª I, II, III, IV •ÊÒ⁄U V „Ò¥, Á¡Ÿ◊¥ 150 flSÃÈÁŸc∆U
+¬˝‡Ÿ „Ò¥, ÃÕÊ ¬˝àÿ∑§ 1 •¥∑§ ∑§Ê „Ò —
+Part-I : Child Development and Pedagogy (Q.Nos. 1-30)
+÷Êª-I : ’Ê‹ Áfl∑§Ê‚ fl Á‡ÊˇÊÊ‡ÊÊSòÊ (¬˝‡Ÿ ‚¥. 1-30)
+Part-II : Mathematics (Q.Nos. 31-60)
+÷Êª-II : ªÁáÊÃ (¬˝‡Ÿ ‚¥. 31-60)
+Part-III : Environmental Studies (Q.Nos. 61-90)
+÷Êª-III : ¬ÿÊ¸fl⁄UáÊ •äÿÿŸ (¬˝‡Ÿ ‚¥. 61-90)
+Part-IV : Language-I (English/Hindi) (Q.Nos. 91-120)
+÷Êª-IV : ÷Ê·Ê-I (•¥ª˝$¡Ë/Á„ãŒË) (¬˝‡Ÿ ‚¥. 91-120)
+Part-V : Language-II (English/Hindi) (Q.Nos. 121-150)
+÷Êª-V : ÷Ê·Ê-II (•¥ª˝$¡Ë/Á„ãŒË) (¬˝‡Ÿ ‚¥. 121-150)
+6. Part-IV contains 30 questions for Language-I and Part-V contains 30 questions
+for Language-II. In this Test Booklet, only questions pertaining to English 6. ÷Êª-IV ◊¥ ÷Ê·Ê-I ∑§ Á‹∞ 30 ¬˝‡Ÿ •ÊÒ⁄U ÷Êª-V ◊¥ ÷Ê·Ê-II ∑§ Á‹∞ 30 ¬˝‡Ÿ
+ÁŒ∞ ª∞ „Ò¥– ß‚ ¬⁄UËˇÊÊ ¬ÈÁSÃ∑§Ê ◊¥ ∑§fl‹ •¥ª˝$¡Ë fl Á„ãŒË ÷Ê·Ê ‚ ‚¥’¥ÁœÃ
+and Hindi language have been given. In case the language/s you have
+opted for as Language-I and/or Language-II is a language other than ¬˝‡Ÿ ÁŒ∞ ª∞ „Ò¥– ÿÁŒ ÷Ê·Ê-I •ÊÒ⁄U/ÿÊ ÷Ê·Ê-II ◊¥ •Ê¬∑§ mÊ⁄UÊ øÈŸË ªß¸
+I
+English or Hindi, please ask for a Supplement (Language) Test ÷Ê·Ê(∞°) •¥ª˝$¡Ë ÿÊ Á„ãŒË ∑§ •‹ÊflÊ „Ò/„Ò¥ ÃÊ ∑Î§¬ÿÊ ∑§Ê«U flÊ‹Ë ©‚ ÷Ê·Ê flÊ‹Ë
+I
+Booklet of Code that contains questions on that language. The ¬Á⁄UÁ‡Êc≈U (÷Ê·Ê) ¬⁄UËˇÊÊ ¬ÈÁSÃ∑§Ê ◊Ê°ª ‹ËÁ¡∞– Á¡Ÿ ÷Ê·Ê•Ê¥ ∑§ ¬˝‡ŸÊ¥ ∑§ ©ûÊ⁄U
+languages being answered must tally with the languages opted for •Ê¬ Œ ⁄U„ „Ò¥ fl„ •ÊflŒŸ ¬òÊ ◊¥ øÈŸË ªß¸ ÷Ê·Ê•Ê¥ ‚ •fl‡ÿ ◊‹ πÊŸË øÊÁ„∞–
+in your Application Form. No change in languages is allowed. ÷Ê·Ê•Ê¥ ∑§Ê ¬Á⁄UflÃ¸Ÿ •ŸÈ◊ãÿ Ÿ„Ë¥ „Ò–
+7. Candidates are required to attempt questions in Language-II 7. ¬⁄UËˇÊÊÕË¸ ÷Ê·Ê-II (÷Êª-V) ∑§ Á‹∞, ÷Ê·Ê ‚ÍøË ‚ ∞‚Ë ÷Ê·Ê øÈŸ¥ ¡Ê ©Ÿ∑§
+(Part-V) in a language other than the one chosen as Language-I
+mÊ⁄UÊ ÷Ê·Ê-I (÷Êª-IV) ◊¥ øÈŸË ªß¸ ÷Ê·Ê ‚ Á÷ÛÊ „Ê–
+(Part-IV) from the list of languages.
+8. ⁄U»§ ∑§Êÿ¸ ¬⁄UËˇÊÊ ¬ÈÁSÃ∑§Ê ◊¥ ß‚ ¬˝ÿÊ¡Ÿ ∑§ Á‹∞ ŒË ªß¸ πÊ‹Ë ¡ª„ ¬⁄U „Ë
+8. Rough work should be done only in the space provided in the Test Booklet
+∑§⁄¥U–
+for the same.
+9. ‚÷Ë ©ûÊ⁄U ∑§fl‹ OMR ©ûÊ⁄U ¬òÊ ¬⁄U „Ë •¥Á∑§Ã ∑§⁄¥U– •¬Ÿ ©ûÊ⁄U äÿÊŸ¬Ífl¸∑§
+9. The answers are to be recorded on the OMR Answer Sheet only. Mark
+•¥Á∑§Ã ∑§⁄¥U– ©ûÊ⁄U ’Œ‹Ÿ „ÃÈ ‡flÃ ⁄¥U¡∑§ ∑§Ê ¬˝ÿÊª ÁŸÁ·h „Ò–
+your responses carefully. No whitener is allowed for changing answers.
+10. ÿÁŒ •¥ª˝$¡Ë •ÊÒ⁄U Á„ãŒË ‚¥S∑§⁄UáÊ ∑§ ¬˝‡ŸÊ¥/©ûÊ⁄UÊ¥ ◊¥ ∑§Êß¸ Áfl‚¥ªÁÃ „Ê ÃÊ
+10. In case of any discrepancy in the English and Hindi versions of questions/
+•¥ª˝$¡Ë ‚¥S∑§⁄UáÊ •¥ÁÃ◊ ◊ÊŸÊ ¡ÊÿªÊ–
+answers, English version will be taken as final.
+Name of the Candidate (in Capital Letters) : ___________________________________________________________________________________________________
+¬⁄UËˇÊÊÕË¸ ∑§Ê ŸÊ◊ (’«∏ •ˇÊ⁄UÊ¥ ◊¥) —
+Roll Number (•ŸÈ∑˝§◊Ê¥∑§) — in figures (•∑¥ §Ê ¥◊)¥ ________________________________________________________________________________________________
+— in words (‡ÊéŒÊ ¥◊)¥ ________________________________________________________________________________________________
+Centre of Examination (in Capital Letters) : _____________________________________________________________________________________________________
+¬⁄UËˇÊÊ ∑§ãŒ˝ (’«∏ •ˇÊ⁄UÊ¥ ◊¥) —
+Candidate’s Signature : _______________________________________________ Invigilator’s Signature : _________________________________________________
+¬⁄UËˇÊÊÕË¸ ∑§ „SÃÊˇÊ⁄U — ÁŸ⁄UËˇÊ∑§ ∑§ „SÃÊˇÊ⁄U —
+Facsimile signature stamp of Centre Superintendent : ____________________________________________________________________________________________
+!SAS-24-I!
+PART - I / ÷Êª - I
+CHILD DEVELOPMENT AND PEDAGOGY / ’Ê‹ Áfl∑§Ê‚ fl Á‡ÊˇÊÊ‡ÊÊSòÊ
+Direction : Answer the following questions (Q. Nos 1 to 30) by selecting the correct/most appropriate options.
+ÁŸŒ¸‡Ê — ÁŸêŸÁ‹ÁπÃ ¬˝‡ŸÊ¥ (¬˝. ‚¥ÅÿÊ ‚ ∑§ ©ûÊ⁄U ŒŸ ∑§ Á‹∞ ‚„Ë ‚’‚ ©¬ÿÈÄÃ Áfl∑§À¬ øÈÁŸ∞–
+1 30) /
+1. While participating in a sports competition in class, Tanuj tells his friend that he will participate in
+the javelin throw and his sister can participate in jump rope because she is a girl and girls cannot
+throw javelin. This depicts :
+(1) Gender constancy (2) Gender equality
+(3) Gender equity (4) Gender stereotyping
+∑§ˇÊÊ ◊¥ π‹ ¬˝ÁÃÿÊÁªÃÊ ◊¥ Á„S‚Ê ‹Ã ‚◊ÿ ÃŸÈ¡ •¬Ÿ ŒÊSÃ ‚ ∑§„ÃÊ „Ò Á∑§ fl„ ÷Ê‹Ê »¥§∑§Ÿ ◊¥ Á„S‚Ê ‹ªÊ •ÊÒ⁄U ⁄US‚Ë
+∑Í§ŒŸ ◊¥ ©‚∑§Ë ’„Ÿ Á„S‚Ê ‹ ‚∑§ÃË „Ò¥ ÄÿÊ¥Á∑§ fl„ ∞∑§ ‹«∏∑§Ë „Ò •ÊÒ⁄U ‹«∏Á∑§ÿÊ¥ ÷Ê‹Ê Ÿ„Ë¥ »¥§∑§ ‚∑§ÃË– ÿ„
+∑§Ê ¬˝ŒÁ‡Ê¸Ã ∑§⁄UÃÊ „Ò–
+__________
+¡¥«U⁄U ‚¥’¥œÃÊ ¡¥«U⁄U ‚◊ÊŸÃÊ
+(1) (2)
+¡¥«U⁄U ‚◊ÃÊ ¡¥«U⁄U M§Á…∏flÊÁŒÃÊ
+(3) (4)
+2. While divergent thinking __________ convergent thinking __________.
+(1) encourages multiple answers; is fixed on one correct solution
+(2) is fixed on one correct solution; encourages multiple answers
+(3) Promotes mathematical abilities; promotes verbal abilities
+(4) Promotes verbal abilities; promotes mathematical abilities
+•¬‚Ê⁄UË Áø¥ÃŸ ¡’Á∑§ •Á÷‚Ê⁄UË Áø¥ÃŸ –
+__________ __________
+∑§ß¸ ©ûÊ⁄UÊ¥ ∑§Ê ¬˝Êà‚ÊÁ„Ã ∑§⁄UÃÊ „Ò; ∞∑§ ‚„Ë ‚◊ÊœÊŸ ¬⁄U ÁSÕ⁄U „Ò
+(1)
+∞∑§ ‚„Ë ‚◊ÊœÊŸ ¬⁄U ÁSÕ⁄U „Ò; ∑§ß¸ ©ûÊ⁄UÊ¥ ∑§Ê ¬˝Êà‚ÊÁ„Ã ∑§⁄UÃÊ „Ò
+(2)
+ªÁáÊÃËÿ ˇÊ◊ÃÊ•Ê¥ ∑§Ê ’…∏ÊflÊ ŒÃÊ „Ò; ◊ÊÒÁπ∑§ ˇÊ◊ÃÊ•Ê¥ ∑§Ê ’…∏ÊflÊ ŒÃÊ „Ò
+(3)
+◊ÊÒÁπ∑§ ˇÊ◊ÃÊ•Ê¥ ∑§Ê ’…∏ÊflÊ ŒÃÊ „Ò; ªÁáÊÃËÿ ˇÊ◊ÃÊ•Ê¥ ∑§Ê ’…∏ÊflÊ ŒÃÊ „Ò
+(4)
+3. Which of the following statements about inclusive education is not correct ?
+(1) Inclusive teaching means “teaching in ways that do not exclude”.
+(2) Inclusive teaching means “adopting pedagogies that support needs of all learners”.
+(3) An inclusive classroom “accommodates differences in language styles and promotes
+collaboration”.
+(4) An inclusive classroom centres around “fixed curricula and standard assessment”.
+ÁŸêŸÁ‹ÁπÃ ◊¥ ‚ ∑§ÊÒŸ ‚Ê ∑§ÕŸ ‚◊Êfl‡ÊË Á‡ÊˇÊÊ ∑§ ’Ê⁄U ◊¥ ‚„Ë Ÿ„Ë¥ „Ò?
+‚◊Êfl‡ÊË Á‡ÊˇÊáÊ ∑§Ê •Õ¸ „Ò ““∞‚ Ã⁄UË∑§Ê¥ ‚ Á‡ÊˇÊáÊ ¡Ê ’Á„c∑Î§Ã Ÿ ∑§⁄¥U””–
+(1)
+‚◊Êfl‡ÊË Á‡ÊˇÊáÊ ∑§Ê •Õ¸ „Ò ““©‚ Á‡ÊˇÊÊ‡ÊÊSòÊ ∑§Ê •¬ŸÊŸÊ ¡Ê ‚÷Ë Á‡ÊˇÊÊÁÕ¸ÿÊ¥ ∑§Ë •Êfl‡ÿ∑§ÃÊ•Ê¥ ∑§Ê ‚◊Õ¸Ÿ ∑§⁄UÃÊ
+(2)
+„”Ò ”–
+∞∑§ ‚◊Êfl‡ÊË ∑§ˇÊÊ ““÷Ê·Ê ‡ÊÒ‹Ë ◊¥ •¥Ã⁄U ∑§Ê ‚◊ÊÿÊÁ¡Ã ∑§⁄UÃË „Ò •ÊÒ⁄U ‚„ÿÊª ∑§Ê ’…∏ÊflÊ ŒÃË „Ò””–
+(3)
+““ÁŸÁ‡øÃ ¬Ê∆KøÿÊ¸ •ÊÒ⁄U ◊ÊŸ∑§ ◊ÍÀÿÊ¥∑§Ÿ”” ∑§ •Ê‚¬Ê‚ „Ë ∞∑§ ‚◊Êfl‡ÊË ∑§ˇÊÊ ∑§Ê ∑¥§Œ˝ „ÊÃÊ „Ò–
+(4)
+P-I !SAS-24-I! 2 I
+4. Assertion (A) : Learners construct their own knowledge based on what they already know.
+Reason (R) : Finding patterns and making linkages with previous knowledge helps learners to
+process information meaningfully.
+Choose the correct option :
+(1) Both (A) and (R) are true and (R) is the correct explanation of (A).
+(2) Both (A) and (R) are true but (R) is not the correct explanation of (A).
+(3) (A) is true but (R) is false.
+(4) Both (A) and (R) are false.
+•Á÷∑§ÕŸ (A) — Á‡ÊˇÊÊÕË¸ ¡Ê ¬„‹ ‚ ¡ÊŸÃ „Ò¥ ©‚∑§ •ÊœÊ⁄U ¬⁄U •¬Ÿ ôÊÊŸ ∑§Ê ÁŸ◊Ê¸áÊ ∑§⁄UÃ „Ò¥–
+∑§Ê⁄UáÊ (R)— ¬Ò≈UŸ¸ …Í°U…ŸÊ •ÊÒ⁄U Á¬¿U‹ ôÊÊŸ ∑§ ‚ÊÕ ¡È«∏Êfl ’ŸÊŸ ‚ Á‡ÊˇÊÊÁÕ¸ÿÊ¥ ∑§Ê ¡ÊŸ∑§Ê⁄UË ∑§Ê ‚ÊÕ¸∑§ M§¬ ‚
+‚¥‚ÊÁœÃ ∑§⁄UŸ ◊¥ ◊ŒŒ Á◊‹ÃË „Ò–
+‚„Ë Áfl∑§À¬ øÈŸ¥ —
+(1) (A) •ÊÒ⁄U (R) ŒÊŸÊ¥ ‚„Ë „Ò¥ •ÊÒ⁄U (A) ∑§Ë (R) ‚„Ë √ÿÊÅÿÊ ∑§⁄UÃÊ „Ò–
+(2) (A) •ÊÒ⁄U (R) ŒÊŸÊ¥ ‚„Ë „Ò¥ ‹Á∑§Ÿ (A) ∑§Ë (R) ‚„Ë √ÿÊÅÿÊ Ÿ„Ë¥ ∑§⁄UÃÊ „Ò–
+(3) (A) ‚„Ë „Ò ‹Á∑§Ÿ (R) ª‹Ã „Ò–
+(4) (A) •ÊÒ⁄U (R) ŒÊŸÊ¥ ª‹Ã „Ò¥–
+5. Assertion (A) : Childhood is experienced differently by children across cultures.
+Reason (R) : Childrens’ development is universal.
+Choose the correct option :
+(1) Both (A) and (R) are true and (R) is the correct explanation of (A).
+(2) Both (A) and (R) are true but (R) is not the correct explanation of (A).
+(3) (A) is true but (R) is false.
+(4) Both (A) and (R) are false.
+•Á÷∑§ÕŸ (A) — ’ìÊÊ¥ mÊ⁄UÊ ’ø¬Ÿ •‹ª-•‹ª ‚¥S∑Î§ÁÃÿÊ¥ ◊¥ •‹ª-•‹ª Ã⁄U„ ‚ •ŸÈ÷fl Á∑§ÿÊ ¡ÊÃÊ „Ò–
+∑§Ê⁄UáÊ (R) — ’ìÊÊ¥ ∑§Ê Áfl∑§Ê‚ ‚Êfl¸÷ÊÒÁ◊∑§ „Ò¥–
+‚„Ë Áfl∑§À¬ øÈŸ¥ —
+(1) (A) •ÊÒ⁄U (R) ŒÊŸÊ¥ ‚„Ë „Ò¥ •ÊÒ⁄U (A) ∑§Ë (R) ‚„Ë √ÿÊÅÿÊ ∑§⁄UÃÊ „Ò–
+(2) (A) •ÊÒ⁄U (R) ŒÊŸÊ¥ ‚„Ë „Ò¥ ‹Á∑§Ÿ (A) ∑§Ë (R) ‚„Ë √ÿÊÅÿÊ Ÿ„Ë¥ ∑§⁄UÃÊ „Ò–
+(3) (A) ‚„Ë „Ò ‹Á∑§Ÿ (R) ª‹Ã „Ò–
+(4) (A) •ÊÒ⁄U (R) ŒÊŸÊ¥ ª‹Ã „Ò¥–
+6. According to attribution theory of motivation which of the following is more likely to result in
+persistent effort and improved performance ?
+(1) An internal attribution for success and an external attribution for failure
+(2) An external attribution for success and an internal attribution for failure
+(3) Internal attribution for failure as well as success
+(4) External attribution for failure as well as success
+•Á÷¬˝⁄UáÊÊ ∑§ •Ê⁄UÊ¬áÊ Á‚hÊ¥Ã ∑§ •ŸÈ‚Ê⁄U ÁŸêŸÁ‹ÁπÃ ◊¥ ‚ Á∑§‚‚ ‹ªÊÃÊ⁄U ∑§ÊÁ‡Ê‡Ê •ÊÒ⁄U ’„Ã⁄U ¬˝Œ‡Ê¸Ÿ ∑§Ë ‚¥÷ÊflŸÊ „Ò?
+‚»§‹ÃÊ ∑§ Á‹∞ •Ê¥ÃÁ⁄U∑§ •Ê⁄Ê¬áÊ •ÊÒ⁄U •‚»§‹ÃÊ ∑§ Á‹∞ ’Ê„⁄UË •Ê⁄UÊ¬áÊ
+(1)
+‚»§‹ÃÊ ∑§ Á‹∞ ’Ê„⁄UË •Ê⁄UÊ¬áÊ •ÊÒ⁄U •‚»§‹ÃÊ ∑§ Á‹∞ •Ê¥ÃÁ⁄U∑§ •Ê⁄UÊ¬áÊ
+(2)
+•‚»§‹ÃÊ •ÊÒ⁄U ‚»§‹ÃÊ ŒÊŸÊ¥ ∑§ Á‹∞ •Ê¥ÃÁ⁄U∑§ •Ê⁄Ê¬áÊ
+(3)
+•‚»§‹ÃÊ •ÊÒ⁄U‚»§‹ÃÊ ŒÊŸÊ¥ ∑§ Á‹∞ ’Ê„⁄UË •Ê⁄Ê¬áÊ
+(4)
+P-I !SAS-24-I! 3 I
+7. Which of the following is a key principle of progressive education ?
+(1) Standardized testing is the best way to measure student learning
+(2) Students should be passive recipients of knowledge from their teachers
+(3) Learning should be based on authentic tasks
+(4) Curriculum should be predetermined and universal
+ÁŸêŸÁ‹ÁπÃ ◊¥ ‚ ∑§ÊÒŸ ‚Ê ¬˝ªÁÃ‡ÊË‹ Á‡ÊˇÊÊ ∑§Ê ∞∑§ ¬˝◊Èπ Á‚hÊ¥Ã „Ò?
+¿UÊòÊÊ¥ ∑§ ‚ËπŸ ∑§Ê ◊Ê¬Ÿ ∑§ Á‹∞ ◊ÊŸ∑§Ë∑Î§Ã ¬⁄UËˇÊáÊ ‚’‚ •ë¿UÊ Ã⁄UË∑§Ê „Ò–
+(1)
+¿UÊòÊÊ¥ ∑§Ê •¬Ÿ Á‡ÊˇÊ∑§Ê¥ ‚ ôÊÊŸ ∑§Ê ÁŸÁc∑˝§ÿ ¬˝ÊåÃ∑§ÃÊ¸ „ÊŸÊ øÊÁ„∞–
+(2)
+‚ËπŸÊ ¬˝Ê◊ÊÁáÊ∑§ ∑§ÊÿÊZ ¬⁄U •ÊœÊÁ⁄UÃ „ÊŸÊ øÊÁ„∞–
+(3)
+¬Ê∆KøÿÊ¸ ¬Ífl¸ ÁŸœÊ¸Á⁄UÃ •ÊÒ⁄U ‚Êfl¸÷ÊÒÁ◊∑§ „ÊŸË øÊÁ„∞–
+(4)
+8. Reasoning, thinking and problem-solving are explained in which aspect of development ?
+(1) Social Development (2) Cognitive Development
+(3) Moral Development (4) Motor Development
+Áfl∑§Ê‚ ∑§ Á∑§‚ ¬„‹Í ◊¥ Ã∑¸§, Áø¥ÃŸ •ÊÒ⁄U ‚◊SÿÊ ‚◊ÊœÊŸ ∑§Ë √ÿÊÅÿÊ ∑§Ë ¡ÊÃË „Ò?
+‚Ê◊ÊÁ¡∑§ Áfl∑§Ê‚ ‚¥ôÊÊŸÊà◊∑§ Áfl∑§Ê‚
+(1) (2)
+ŸÒÁÃ∑§ Áfl∑§Ê‚ ªÁÃ∑§ Áfl∑§Ê‚
+(3) (4)
+9. Lev Vygotsky proposes that __________ is important for self-regulation in children.
+(1) Disequilibrium (2) Inner speech
+(3) Adaptation (4) Organization
+‹fl flÊÿªÊàS∑§Ë ¬˝SÃÊÁflÃ ∑§⁄UÃ „Ò¥ Á∑§ ’ìÊÊ¥ ◊¥ Sfl-ÁŸÿ◊Ÿ ∑§ Á‹∞ ◊„àfl¬ÍáÊ¸ „¥Ò–
+__________
+•‚¥ÃÈ‹Ÿ ÁŸ¡Ë flÊ∑˜§
+(1) (2)
+•ŸÈ∑Í§‹Ÿ ‚¥ª∆UŸ
+(3) (4)
+10. Assertion (A) : In Lawrence Kohlberg’s moral development theory children move from
+understanding consequences of acts to determine whether they are good or bad
+to understanding that rules and laws are flexible and can be changed.
+Reason (R) : Lawrence Kohlberg argues that moral development occurs progressively in stages.
+Choose the correct option :
+(1) Both (A) and (R) are true and (R) is the correct explanation of (A).
+(2) Both (A) and (R) are true but (R) is not the correct explanation of (A).
+(3) (A) is true but (R) is false.
+(4) Both (A) and (R) are false.
+•Á÷∑§ÕŸ (A) — ‹ÚÊ⁄¥U‚ ∑§Ê„‹’ª¸ ∑§ ŸÒÁÃ∑§ Áfl∑§Ê‚ Á‚hÊ¥Ã ◊¥ ’ìÊ ∑§ÊÿÊZ ∑§Ê ©Ÿ∑§ ¬Á⁄UáÊÊ◊ ∑§ •ÊœÊ⁄U ¬⁄U •ë¿UÊ ÿÊ ’È⁄UÊ
+‚◊¤ÊŸ ‚, ß‚ ‚◊¤Ê ¬⁄U ¬„È°øÃ „¥Ò Á∑§ ÁŸÿ◊ •ÊÒ⁄U ∑§ÊŸÍŸ Ÿêÿ „¥Ò •ÊÒ⁄U ’Œ‹ ¡Ê ‚∑§Ã „Ò¥–
+∑§Ê⁄UáÊ (R) — ‹ÚÊ⁄¥U‚ ∑§Ê„‹’ª¸ ∑§Ê Ã∑¸§ „Ò Á∑§ ŸÒÁÃ∑§ Áfl∑§Ê‚ ∑˝§Á◊∑§ M§¬ ‚ ø⁄UáÊÊ¥ ◊¥ „ÊÃÊ „Ò–
+‚„Ë Áfl∑§À¬ øÈŸ¥ —
+(1) (A) •ÊÒ⁄U (R) ŒÊŸÊ¥ ‚àÿ „Ò¥ •ÊÒ⁄U (R), (A) ∑§Ë ‚„Ë √ÿÊÅÿÊ ∑§⁄UÃÊ „Ò–
+(2) (A) •ÊÒ⁄U (R) ŒÊŸÊ¥ ‚àÿ „Ò¥ ‹Á∑§Ÿ (R), (A) ∑§Ë ‚„Ë √ÿÊÅÿÊ Ÿ„Ë¥ ∑§⁄UÃÊ „Ò–
+(3) (A) ‚àÿ „Ò ‹Á∑§Ÿ (R) ª‹Ã „Ò–
+(4) (A) •ÊÒ⁄U (R) ŒÊŸÊ¥ ª‹Ã „Ò¥–
+P-I !SAS-24-I! 4 I
+11. As per Howard Gardner’s theory of multiple intelligence, which of the following set represents
+correct match of intelligence and associated characteristics ?
+(1) Intrapersonal : skill in understanding and relating to others
+(2) Logical-Mathematical : skill of dance or athletic abilities
+(3) Musical : performance or composition skills
+(4) Spatial : skill of appreciating the natural world
+„Êfl«¸U ªÊ«¸UŸ⁄U ∑§ ’„È’ÈÁh ∑§ Á‚h¥ÊÃ ∑§ •ŸÈ‚Ê⁄U, ÁŸêŸÁ‹ÁπÃ ◊¥ ‚ ∑§ÊÒŸ ‚Ê ‚≈U ’ÈÁh •ÊÒ⁄U ©‚∑§ ‚¥’¥ÁœÃ Áfl‡Ê·ÃÊ•Ê¥ ∑§ ‚„Ë
+◊‹ ∑§Ê ¬˝ÁÃÁŸÁœàfl ∑§⁄UÃÊ „Ò?
+•¥ÃflÒÿÁÄÃ∑§ — ŒÍ‚⁄UÊ¥ ∑§Ê ‚◊¤ÊŸ •ÊÒ⁄U ©Ÿ∑§ ‚ÊÕ ‚¥’¥œ SÕÊÁ¬Ã ∑§⁄UŸ ∑§ ∑§ÊÒ‡Ê‹
+(1)
+ÃÊÁ∑¸§∑§-ªÁáÊÃËÿ — ŸÎàÿ ÿÊ ∑˝§Ë«∏Ê-‚¥’¥œË ˇÊ◊ÃÊ∞°
+(2)
+‚¥ªËÃ◊ÿ — ¬˝Œ‡Ê¸Ÿ ÿÊ ⁄UøŸÊ ∑§⁄UŸ ∑§ ∑§ÊÒ‡Ê‹
+(3)
+SÕÊÁŸ∑§ — ¬˝Ê∑Î§ÁÃ∑§ flÊÃÊfl⁄UáÊ ∑§Ë ‚⁄UÊ„ŸÊ ∑§⁄UŸ ∑§ ∑§ÊÒ‡Ê‹
+(4)
+12. Which of the following statements is not correct about learning ?
+(1) Learning depends on learner’s previous knowledge
+(2) Learning implies reorganisation of prior conceptual schemes
+(3) Learning is facilitated by social action
+(4) Learning as a product rather than a process
+ÁŸêŸÁ‹ÁπÃ ◊¥ ‚ ∑§ÊÒŸ ‚Ê ∑§ÕŸ •Áœª◊ ∑§ ’Ê⁄U ◊¥ ‚„Ë Ÿ„Ë¥ „Ò?
+•Áœª◊ Á‡ÊˇÊÊÕË¸ ∑§ ¬Ífl¸ ôÊÊŸ ¬⁄U ÁŸ÷¸⁄U ∑§⁄UÃÊ „Ò
+(1)
+•Áœª◊ ∑§Ê ÃÊà¬ÿ¸ ¬Ífl¸ flÒøÊÁ⁄U∑§ S∑§Ëê‚ ∑§ ¬ÈŸª¸∆UŸ ‚ „Ò
+(2)
+•Áœª◊ ‚Ê◊ÊÁ¡∑§ Á∑˝§ÿÊ mÊ⁄UÊ ‚¥‚ÊÁœÃ „ÊÃË „Ò
+(3)
+•Áœª◊ ∞∑§ ¬˝Á∑˝§ÿÊ Ÿ„Ë¥ •Á¬ÃÈ ∞∑§ ©à¬ÊŒ „Ò
+(4)
+13. Problem solving is fostered by :
+(1) Divergent thinking (2) Functional fixedness
+(3) Passive imitation (4) Response Set
+ÁŸêŸÁ‹ÁπÃ ◊¥ ‚ ∑§ÊÒŸ ‚Ê ∑§Ê⁄U∑§ ‚◊SÿÊ ‚◊ÊœÊŸ ∑§Ê ’…∏ÊflÊ ŒÃÊ „Ò?
+•¬‚Ê⁄UË Áø¥ÃŸ ∑§ÊÿÊ¸à◊∑§ ÁSÕ⁄UÃÊ
+(1) (2)
+ÁŸÁc∑˝§ÿ •ŸÈ‚⁄UáÊ ¬˝ÁÃÁ∑˝§ÿÊ ‚≈U
+(3) (4)
+14. According to Kohlberg’s theory of moral development, at what stage are children self-centered
+and see their own benefit in doing something ?
+(1) at the first stage in the first level
+(2) at the second stage in the first level
+(3) at the third stage in the second level
+(4) at the fifth stage in the third level
+∑§Ê„‹’ª¸ ∑§ ŸÒÁÃ∑§ Áfl∑§Ê‚ Á‚hÊ¥Ã ∑§ •ŸÈ‚Ê⁄U Á∑§‚ SÃ⁄U ¬⁄U ’ìÊ •Êà◊∑§ÁãŒ˝Ã „ÊÃ „Ò¥ •ÊÒ⁄U Á∑§‚Ë ∑§Êÿ¸ ∑§Ê ∑§⁄UŸ ◊¥ •¬ŸÊ
+„Ë ‹Ê÷ ŒπÃ „Ò¥?
+¬„‹ SÃ⁄U ∑§ ¬„‹ ø⁄UáÊ ◊¥
+(1)
+¬„‹ SÃ⁄U ∑§ ŒÍ‚⁄U ø⁄UáÊ ◊¥
+(2)
+ŒÍ‚⁄U SÃ⁄U ∑§ ÃË‚⁄U ø⁄UáÊ ◊¥
+(3)
+ÃË‚⁄U SÃ⁄U ∑§ ¬Ê°øfl ø⁄UáÊ ◊¥
+(4)
+P-I !SAS-24-I! 5 I
+15. Inclusion of students belonging to disadvantaged groups demands :
+(1) awareness and sensitization towards diverse traditions.
+(2) evidencing and encouraging identity-based stereotypes.
+(3) isolation in the classroom on the basis of social affiliation.
+(4) same-ability grouping of students in the classroom.
+fl¥ÁøÃ flªÊZ ‚ ‚¥’¥ÁœÃ ÁfllÊÁÕ¸ÿÊ¥ ∑§ ‚◊Êfl‡ÊŸ ∑§ Á‹∞ —
+ÁflÁflœ ¬⁄Uê¬⁄UÊ•Ê¥ ∑§ ¬˝ÁÃ ¡ÊªM§∑§ÃÊ •ÊÒ⁄U ‚¥flŒŸ‡ÊË‹ÃÊ ∑§Ê ’…∏ÊflÊ ŒŸÊ øÊÁ„∞–
+(1)
+¬„øÊŸ-•ÊœÊÁ⁄UÃ L§Á…∏ÿÊ¥ ∑§Ê ¬˝◊ÊÁáÊÃ •ÊÒ⁄U ¬˝Êà‚ÊÁ„Ã Á∑§ÿÊ ¡ÊŸÊ øÊÁ„∞–
+(2)
+‚Ê◊ÊÁ¡∑§ ‚¥’hÃÊ ∑§ •ÊœÊ⁄U ¬⁄U ∑§ˇÊÊ ◊¥ •‹ªÊfl ∑§⁄UŸÊ øÊÁ„∞–
+(3)
+‚◊ÊŸ ˇÊ◊ÃÊ•Ê¥ ∑§ •ÊœÊ⁄U ¬⁄U ÁfllÊÁÕ¸ÿÊ¥ ∑§Ê ‚◊Í„Ê¥ ◊¥ Áfl÷ÊÁ¡Ã ∑§⁄UŸÊ øÊÁ„∞–
+(4)
+16. Which of the following is a characteristic of effective feedback in the classroom ?
+(1) It is given only at the end of the task.
+(2) It is broad and generic.
+(3) It is only focused on the outcomes.
+(4) It is timely and specific.
+ÁŸêŸÁ‹ÁπÃ ◊¥ ‚ ©¬ÿÊªË ¬˝ÁÃ¬ÈÁc≈U ∑§Ë ∞∑§ Áfl‡Ê·ÃÊ ∑§ÊÒŸ-‚Ë „Ò?
+ÿ„ ∑§fl‹ ∑§Êÿ¸ ∑§ •¥Ã ◊¥ „Ë ŒË ¡ÊÃË „Ò–
+(1)
+ÿ„ √ÿÊ¬∑§ •ÊÒ⁄U ‚Ê◊Êãÿ „ÊÃË „Ò–
+(2)
+ÿ„ ∑§fl‹ ¬Á⁄UáÊÊ◊Ê¥ ¬⁄U ∑¥§ÁŒ˝Ã „ÊÃË „Ò¥–
+(3)
+ÿ„ ‚Ê◊Áÿ∑§ •ÊÒ⁄U ÁflÁ‡Êc≈U „ÊÃË „Ò–
+(4)
+17. Proximodistal principle states that in infancy :
+(1) the limbs continue to grow faster than the hands and feet.
+(2) development proceeds from head to toe.
+(3) development of language occurs rapidly as it is a sensitive period for development.
+(4) Physical development occurs rapidly with the development of fine motor skills.
+‚◊Ë¬SÕ Á‚hÊ¥Ã ∑§„ÃÊ „Ò Á∑§ ‡ÊÒ‡ÊflÊflSÕÊ ◊¥ —
+•¥ª - „ÊÕÊ¥ •ÊÒ⁄U ¬Ò⁄UÊ¥ ∑§Ë ÃÈ‹ŸÊ ◊¥ Ã¡Ë ‚ ’…∏Ã ⁄U„ÃU „Ò¥–
+(1)
+Áfl∑§Ê‚ Á‚⁄U ‚ ¬Ê°fl Ã∑§ „ÊÃÊ „Ò–
+(2)
+÷Ê·Ê ∑§Ê Áfl∑§Ê‚ Ã¡Ë ‚ „ÊÃÊ „Ò ÄÿÊ¥Á∑§ fl„ Áfl∑§Ê‚ ∑§ Á‹∞ ‚¥flŒŸ‡ÊË‹ •flÁœ „Ò–
+(3)
+‚Íˇ◊ ªÁÃ∑§ ∑§ÊÒ‡Ê‹ ∑§ Áfl∑§Ê‚ ∑§ ‚ÊÕ ‡ÊÊ⁄UËÁ⁄U∑§ Áfl∑§Ê‚ Ã¡Ë ‚ „ÊÃÊ „Ò–
+(4)
+18. Assertion (A) : School curriculum should give reasonable space and value to learner’s cultural
+knowledges.
+Reason (R) : Supporting students to uphold their cultural identities facilitates learning.
+Choose the correct option :
+(1) Both (A) and (R) are true and (R) is the correct explanation of (A).
+(2) Both (A) and (R) are true but (R) is not the correct explanation of (A).
+(3) (A) is true but (R) is false.
+(4) Both (A) and (R) are false.
+•Á÷∑§ÕŸ (A) — ÁfllÊ‹ÿË ¬Ê∆K∑˝§◊ ∑§Ê ÁfllÊÁÕ¸ÿÊ¥ ∑§ ‚Ê¥S∑Î§ÁÃ∑§ ôÊÊŸ ∑§Ê ©ÁøÃ SÕÊŸ •ÊÒ⁄U ◊ÍÀÿ ŒŸÊ øÊÁ„∞–
+∑§Ê⁄UáÊ (R) — ÁfllÊÁÕ¸ÿÊ¥ ∑§Ê ©Ÿ∑§Ë ‚Ê¥S∑Î§ÁÃ∑§ ¬„øÊŸ ∑§Ê ’ŸÊ∞ ⁄UπŸ ∑§ Á‹∞ ‚◊Õ¸Ÿ ¬˝ŒÊŸ ∑§⁄UŸÊ, ‚ËπŸ ∑§Ë
+¬˝Á∑˝§ÿÊ ∑§Ê ‚Èª◊ ’ŸÊÃÊ „Ò–
+‚„Ë Áfl∑§À¬ øÈŸ¥ —
+(1) (A) •ÊÒ⁄U (R) ŒÊŸÊ¥ ‚„Ë „Ò¥ •ÊÒ⁄U (A) ∑§Ë (R) ‚„Ë √ÿÊÅÿÊ ∑§⁄UÃÊ „Ò–
+(2) (A) •ÊÒ⁄U (R) ŒÊŸÊ¥ ‚„Ë „Ò¥ ‹Á∑§Ÿ (A) ∑§Ë (R) ‚„Ë √ÿÊÅÿÊ Ÿ„Ë¥ ∑§⁄UÃÊ „Ò–
+(3) (A) ‚„Ë „Ò ‹Á∑§Ÿ (R) ª‹Ã „Ò–
+(4) (A) •ÊÒ⁄U (R) ŒÊŸÊ¥ ª‹Ã „Ò¥–
+P-I !SAS-24-I! 6 I
+19. Which of the following would not be characterised as formative assessment ?
+(1) An assessment given at the beginning of a new concept to determine students’ prior
+knowledge.
+(2) An assessment given during the class to provide ongoing feedback to students and teachers.
+(3) An assessment task that is helpful in comparing students as per a standard set of criteria.
+(4) An assessment used to identify misconceptions in a student’s learning.
+ÁŸêŸÁ‹ÁπÃ ◊¥ ‚ Á∑§‚ ⁄UøŸÊà◊∑§ ◊ÍÀÿÊ¥∑§Ÿ Ÿ„Ë¥ ◊ÊŸÊ ¡Ê∞ªÊ?
+¿UÊòÊÊ¥ ∑§ ¬Ífl¸ ôÊÊŸ ∑§Ê ÁŸœÊ¸Á⁄UÃ ∑§⁄UŸ ∑§ Á‹∞ ∞∑§ Ÿß¸ •flœÊ⁄UáÊÊ ∑§Ë ‡ÊÈL§•ÊÃ ◊¥ ÁŒÿÊ ªÿÊ •Ê∑§‹Ÿ–
+(1)
+¿UÊòÊÊ¥ •ÊÒ⁄U Á‡ÊˇÊ∑§Ê¥ ∑§Ê •ª˝ªÊ◊Ë ¬˝ÁÃ¬ÈÁc≈U ¬˝ŒÊŸ ∑§⁄UŸ ∑§ Á‹∞ ∑§ˇÊÊ ∑§ ŒÊÒ⁄UÊŸ ÁŒÿÊ ªÿÊ ◊ÍÀÿÊ¥∑§Ÿ–
+(2)
+∞∑§ ◊ÍÀÿÊ¥∑§Ÿ ∑§Êÿ¸ ¡Ê ◊ÊŸŒ¥«U ∑§ ∞∑§ ◊ÊŸ∑§ ¬Ò◊ÊŸ ∑§ •ŸÈ‚Ê⁄U ¿UÊòÊÊ¥ ∑§Ë ÃÈ‹ŸÊ ∑§⁄UŸ ◊¥ ‚„Êÿ∑§ „ÊÃÊ „Ò–
+(3)
+∞∑§ •Ê∑§‹Ÿ ∞∑§ ¿UÊòÊ ∑§ ‚ËπŸ ◊¥ ª‹Ã œÊ⁄UáÊÊ•Ê¥ ∑§Ë ¬„øÊŸ ∑§⁄UŸ ∑§ Á‹∞ ¬˝ÿÊª Á∑§ÿÊ ¡ÊÃÊ „Ò–
+(4)
+20. Which of the following is a typical characteristic of Dyslexia ?
+(1) Difficulty in creative problem solving
+(2) Difficulty in phonological processing
+(3) Difficulty in physical coordination
+(4) Difficulty in spatial awareness
+ÁŸêŸÁ‹ÁπÃ ◊¥ ‚ ¬∆UŸ flÒ∑§Àÿ ∑§Ë ∞∑§ ÁflÁ‡Êc≈U Áfl‡Ê·ÃÊ ∑§ÊÒŸ-‚Ë „Ò?
+⁄UøŸÊà◊∑§ ‚◊SÿÊ ‚◊ÊœÊŸ ◊¥ ∑§Á∆UŸÊß¸
+(1)
+äflãÿÊà◊∑§ ¬˝‚¥S∑§⁄UáÊ ◊¥ ∑§Á∆UŸÊß¸
+(2)
+‡ÊÊ⁄UËÁ⁄U∑§ ‚◊ãflÿ ◊¥ ∑§Á∆UŸÊß¸
+(3)
+SÕÊÁŸ∑§ ‚◊¤Ê ¡ÊŸ∑§Ê⁄UË ◊¥ ∑§Á∆UŸÊß¸
+(4) /
+21. Which of the following types of questions can help assess a student’s ability to evaluate information
+critically ?
+(1) Questions that ask for a simple definition of a term
+(2) Questions that ask for the student’s personal opinion
+(3) Questions that ask for examples that validate the text
+(4) Questions that ask for a summary of a text
+ÁŸêŸ ◊¥ ‚ Á∑§‚ ¬˝∑§Ê⁄U ∑§ ¬˝‡Ÿ ∞∑§ ¿UÊòÊ ∑§Ë ¡ÊŸ∑§Ê⁄UË ∑§Ê ª¥÷Ë⁄U M§¬ ‚ ◊ÍÀÿÊ¥∑§Ÿ ∑§⁄UŸ ∑§Ë ÿÊÇÿÃÊ ∑§Ê •Ê∑§‹Ÿ ∑§⁄UŸ ◊¥
+◊ŒŒ ∑§⁄UÃÊ „Ò?
+fl ¬˝‡Ÿ ¡Ê ‡ÊéŒ ∑§Ë ‚⁄U‹ ¬Á⁄U÷Ê·Ê ∑§ Á‹∞ ¬Í¿UÃ „Ò¥
+(1)
+fl ¬˝‡Ÿ ¡Ê ¿UÊòÊ ∑§Ë √ÿÁÄÃªUÃ ⁄UÊÿ ¬Í¿UÃ „Ò¥
+(2)
+fl ¬˝‡Ÿ ¡Ê ¬Ê∆U ∑§Ê ◊Êãÿ ∑§⁄UŸ flÊ‹ ©ŒÊ„⁄UáÊÊ¥ ∑§ Á‹∞ ¬Í¿UÃ „Ò¥
+(3)
+fl ¬˝‡Ÿ ¡Ê Á∑§‚Ë ¬Ê∆U ∑§Ê ‚Ê⁄UÊ¥‡Ê ◊Ê°ªÃ „Ò¥
+(4)
+22. Impairment is a __________ condition, while disability is a __________ condition.
+(1) biological, functional (2) functional, biological
+(3) operative, physical (4) social, psychological
+’ÊÁœÃÊ ∞∑§ ÁSÕÁÃ „Ò, ¡’Á∑§ •ˇÊ◊ÃÊ ∞∑§ ÁSÕÁÃ „Ò–
+__________ __________
+¡ÒÁfl∑§, ∑§ÊÿÊ¸à◊∑§ ∑§ÊÿÊ¸à◊∑§, ¡ÒÁfl∑§
+(1) (2)
+Á∑˝§ÿÊà◊∑§, ‡ÊÊ⁄UËÁ⁄U∑§ ‚Ê◊ÊÁ¡∑§, ◊ŸÊflÒôÊÊÁŸ∑§
+(3) (4)
+P-I !SAS-24-I! 7 I
+23. Which of the following aptly defines relationship between cognition and emotion ?
+(1) Cognition and emotion are two independent systems.
+(2) Emotion and cognition are interdependent on each other.
+(3) Cognition influences emotions but reverse is not true.
+(4) Emotions influence cognition but reverse is not true.
+ÁŸêŸÁ‹ÁπÃ ◊¥ ‚ ∑§ÊÒŸ-‚Ê ∑§ÕŸ ‚¥ôÊÊŸ •ÊÒ⁄U ÷ÊflŸÊ•Ê¥ ∑§ ’Ëø ∑§ ‚¥’¥œ ∑§Ê ©¬ÿÈÄÃ M§¬ ‚ ¬Á⁄U÷ÊÁ·Ã ∑§⁄UÃÊ „Ò?
+‚¥ôÊÊŸ •ÊÒ⁄U ÷ÊflŸÊ∞°, ŒÊŸÊ¥ SflÃ¥òÊ ¬˝áÊÊÁ‹ÿÊ° „Ò¥–
+(1)
+÷ÊflŸÊ∞° •ÊÒ⁄U ‚¥ôÊÊŸ •Ê¬‚ ◊¥ ∞∑§-ŒÍ‚⁄U ¬⁄U ¬Ê⁄US¬Á⁄U∑§ M§¬ ‚ ÁŸ÷¸⁄U ∑§⁄UÃ „Ò¥–
+(2)
+‚¥ôÊÊŸ ÷ÊflŸÊ•Ê¥ ∑§Ê ¬˝÷ÊÁflÃ ∑§⁄UÃÊ „Ò ‹Á∑§Ÿ ß‚∑§Ê Áfl¬⁄UËÃ ‚àÿ Ÿ„Ë¥ „Ò–
+(3)
+÷ÊflŸÊ∞° ‚¥ôÊÊŸ ∑§Ê ¬˝÷ÊÁflÃ ∑§⁄UÃË „Ò¥ ‹Á∑§Ÿ ß‚∑§Ê Áfl¬⁄UËÃ ‚àÿ Ÿ„Ë¥ „Ò–
+(4)
+24. Language development in primary classes is facilitated :
+(1) When teachers use concrete examples to refer to abstract concepts.
+(2) When teachers stress upon and enforce the use of formal language.
+(3) When teachers ignore and dismiss the mother tongue of the children.
+(4) When teachers begin from signs and symbols rather than concrete objects.
+¬˝ÊÕÁ◊∑§ ∑§ˇÊÊ•Ê¥ ◊¥ ÷Ê·Ê ∑§Ê Áfl∑§Ê‚ Á∑§‚ ¬˝∑§Ê⁄U ‚¥‚ÊÁœÃ „ÊÃÊ „Ò?
+¡’ Á‡ÊˇÊ∑§ •◊ÍÃ¸ •flœÊ⁄UáÊÊ•Ê¥ ∑§Ê ‚¥ŒÁ÷¸Ã ∑§⁄UŸ ∑§ Á‹∞ ∆UÊ‚ ©ŒÊ„⁄UáÊÊ¥ ∑§Ê ©¬ÿÊª ∑§⁄UÃ „Ò¥–
+(1)
+¡’ Á‡ÊˇÊ∑§ •ÊÒ¬øÊÁ⁄U∑§ ÷Ê·Ê ∑§ ¬˝ÿÊª ¬⁄U ¡Ê⁄U ŒÃ „Ò¥ •ÊÒ⁄U ©‚ ‹ÊªÍ ∑§⁄UÃ „Ò¥–
+(2)
+¡’ Á‡ÊˇÊ∑§ ’ìÊÊ¥ ∑§Ë ◊ÊÃÎ÷Ê·Ê ∑§Ë •fl„‹ŸÊ •ÊÒ⁄U ©¬ˇÊÊ ∑§⁄UÃ „Ò¥–
+(3)
+¡’ Á‡ÊˇÊ∑§ ◊ÍÃ¸ flSÃÈ•Ê¥ ∑§ ’¡Êÿ ‚¥∑§ÃÊ¥ •ÊÒ⁄U ¬˝ÁÃ∑§Ê¥ ‚ ‡ÊÈM§ ∑§⁄UÃ „Ò¥–
+(4)
+25. Which of the following correctly describes intrinsic motivation ?
+(1) Motivation that comes from external rewards
+(2) Motivation that comes from personal enjoyment of the task
+(3) Motivation that comes from competition with others
+(4) Motivation that comes from a fear of punishment
+ÁŸêŸÁ‹ÁπÃ ◊¥ ‚ ∑§ÊÒŸ •Ê¥ÃÁ⁄U∑§ •Á÷¬˝⁄UáÊÊ ∑§Ê ‚„Ë fláÊ¸Ÿ ∑§⁄UÃÊ „Ò?
+•Á÷¬˝⁄UáÊÊ ¡Ê ’Ê„⁄UË ¬È⁄US∑§Ê⁄UÊ¥ ‚ •ÊÃË „Ò
+(1)
+•Á÷¬˝⁄UáÊÊ ¡Ê ∑§Êÿ¸ ∑§ √ÿÁÄÃªÃ-•ÊŸ¥Œ ‚ •ÊÃË „Ò
+(2)
+•Á÷¬˝⁄UáÊÊ ¡Ê ŒÍ‚⁄UÊ¥ ∑§ ‚ÊÕ ¬˝ÁÃS¬œÊ¸ ‚ •ÊÃË „Ò
+(3)
+•Á÷¬˝⁄UáÊÊ ¡Ê Œ¥«U ∑§ ÷ÿ ‚ •ÊÃË „Ò
+(4)
+26. Which of the following are examples of scaffolding ?
+(a) Think-aloud (b) Prompts and cues (c) Questions
+(d) Half-solved example (e) Rote Rehearsal
+(1) (a), (b) (2) (a), (b), (c)
+(3) (a), (b), (c), (d) (4) (a), (b), (c), (d), (e)
+ÁŸêŸ ◊¥ ‚ ∑§ÊÒŸ ‚Ê •Ê‹ê’Ÿ ∑§ ©ŒÊ„⁄UáÊ „Ò¥?
+’Ê‹ ∑§⁄U ‚ÊøÊ ‚¥∑§Ã •ÊÒ⁄U ß¸‡ÊÊ⁄U ¬˝‡Ÿ
+(a) (b) (c)
+•ÊœÊ „‹ Á∑§ÿÊ „È•Ê ©ŒÊ„⁄UáÊ ⁄U≈U∑§⁄U ŒÊ„⁄UÊfl
+(d) (e)
+(1) (a), (b) (2) (a), (b), (c)
+(3) (a), (b), (c), (d) (4) (a), (b), (c), (d), (e)
+P-I !SAS-24-I! 8 I
+27. In the course of development, children achieve gross motor skills before fine motor skills. This
+indicates that development is :
+(1) Anarchic (2) Cephalocaudal
+(3) Linear (4) Proximodistal
+Áfl∑§Ê‚ ∑§ ∑˝§◊ ◊¥, ’ìÊ ‚Íˇ◊ ¬‡ÊËÿ ∑§ÊÒ‡Ê‹ ‚ ¬„‹ ‚∑§‹ ¬‡ÊËÿ ∑§ÊÒ‡Ê‹ Áfl∑§Á‚Ã ∑§⁄UÃ „Ò¥– ÿ„ Œ‡ÊÊ¸ÃÊ „Ò Á∑§ Áfl∑§Ê‚ —
+•⁄UÊ¡∑§ ‡ÊË·¸ªÊ◊Ë
+(1) (2)
+⁄UπËÿ ‚◊Ë¬-ŒÍ⁄UÊÁ÷◊Èπ
+(3) (4)
+28. As per Jean Piaget’s theory of cognitive development, which of the following ability distinguishes
+concrete operational thinking from Pre-operational thinking ?
+(1) Coordination of senses (2) Decentering
+(3) Hypothetical reasoning (4) Object permanence
+¡ËŸ Á¬ÿÊ¡ ∑§ ‚¥ôÊÊŸÊà◊∑§ Áfl∑§Ê‚ ∑§ Á‚hÊ¥Ã ∑§ •ŸÈ‚Ê⁄U, ÁŸêŸÁ‹ÁπÃ ◊¥ ‚ ∑§ÊÒŸ-‚Ë ˇÊ◊ÃÊ ◊ÍÃ¸-‚¥Á∑˝§ÿÊà◊∑§ ‚Êø ∑§Ê
+¬Ífl¸-‚¥Á∑˝§ÿÊà◊∑§ ‚Êø ‚ •‹ª ∑§⁄UÃË „Ò?
+ß¥ÁŒ˝ÿÊ¥ ∑§Ê ‚◊ãflÿ Áfl∑¥§Œ˝áÊ
+(1) (2)
+¬Á⁄U∑§ÁÀ¬Ã ÃÊÁ∑¸§∑§ÃÊ flSÃÈ SÕÊÁÿàfl
+(3) (4)
+29. After getting ‘out’ in the game due to the rope getting stuck in her leg while jumping Aru says that
+the rope deliberately got her out. At what stage of Jean Piaget’s theory of cognitive development
+do children reason like this ?
+(1) Concrete Operational stage (2) Formal Operational stage
+(3) Sensory-motor stage (4) Pre-operation stage
+⁄US‚Ë ∑Í§ŒÃ ‚◊ÿ ¬Ò⁄U ◊¥ ⁄US‚Ë »°§‚Ÿ ∑§ ∑§Ê⁄UáÊ “•Ê©≈U” „ÊŸ ∑§ ’ÊŒ •M§ ∑§„ÃË „Ò Á∑§ ©‚ ⁄US‚Ë Ÿ ¡ÊŸ’Í¤Ê∑§⁄U “•Ê©≈U” Á∑§ÿÊ
+„Ò– ¡ËŸ Á¬ÿÊ¡ ∑§ ‚¥ôÊÊŸÊà◊∑§ Áfl∑§Ê‚ Á‚hÊãÃ ∑§Ë Á∑§‚ •flSÕÊ ◊¥ ’ìÊ ß‚ Ã⁄U„ ∑§ Ã∑¸§ ŒÃ „Ò¥?
+◊ÍÃ¸ ‚¥Á∑˝§ÿÊà◊∑§ •flSÕÊ •ÊÒ¬øÊÁ⁄U∑§ ‚¥Á∑˝§ÿÊà◊∑§ •flSÕÊ
+(1) (2)
+‚¥flŒË øÊ‹∑§ •flSÕÊ ¬Ífl¸-ø‹Ÿ •flSÕÊ
+(3) (4)
+30. Socio-constructivist views of learning advocate that -
+(1) Learners receive knowledge passively from others
+(2) Learners actively construct knowledge
+(3) Effective learning is activated by lecturing and explaining
+(4) Effective learning takes place through the process of recall and rehearsal
+‚ËπŸ ∑§ ‚Ê◊ÊÁ¡∑§-‚¥⁄UøŸÊflÊŒË ÁfløÊ⁄U ß‚ ’ÊÃ ∑§Ë fl∑§Ê‹Ã ∑§⁄UÃ „Ò¥ Á∑§ —
+Á‡ÊˇÊÊÕË¸ ŒÍ‚⁄UÊ¥ ‚ ÁŸÁc∑˝§ÿ M§¬ ‚ ôÊÊŸ ¬˝ÊåÃ ∑§⁄UÃ „Ò¥
+(1)
+Á‡ÊˇÊÊÕË¸ ‚Á∑˝§ÿ M§¬ ‚ ôÊÊŸ ∑§Ê ÁŸ◊Ê¸áÊ ∑§⁄UÃ „Ò¥
+(2)
+√ÿÊÅÿÊŸ ŒŸ •ÊÒ⁄U ‚◊¤ÊÊŸ ‚ ¬˝÷ÊflË Á‡ÊˇÊáÊ ‚Á∑˝§ÿ „ÊÃÊ „Ò
+(3)
+¬˝àÿÊ„Ê⁄U •ÊÒ⁄U ŒÊ„⁄UÊfl ∑§Ë Áø¥ÃŸ ¬˝Á∑˝§ÿÊ ‚ ¬˝÷ÊflË Á‡ÊˇÊáÊ „ÊÃË „Ò
+(4)
+P-I !SAS-24-I! 9 I
+PART - II / ÷Êª - II
+MATHEMATICS / ªÁáÊÃ
+Direction : Answer the following questions by selecting the correct/most appropriate options.
+ÁŸŒ¸‡Ê — ÁŸêŸÁ‹ÁπÃ ¬˝‡ŸÊ¥ ∑§ ©ûÊ⁄U ŒŸ ∑§ Á‹∞ ‚„Ë ‚’‚ ©¬ÿÈÄÃ Áfl∑§À¬ øÈÁŸ∞–
+/
+31. Which of the following should be the characteristics of mathematical language at primary level ?
+(a) It should be precise.
+(b) It must be ambiguous as it can add openness in the subject.
+(c) It should be reinforced through child’s language used in everyday life.
+(d) It must be highly technical as it will help students to communicate accurately in mathematics.
+Choose the correct option :
+(1) (a) and (d) (2) (a), (b) and (c) (3) (a) and (c) (4) (a), (c) and (d)
+ÁŸêŸÁ‹ÁπÃ ◊¥ ‚ ∑§ÊÒŸ-‚Ë ¬˝ÊÕÁ◊∑§ SÃ⁄U ¬⁄U ªÁáÊÃËÿ ÷Ê·Ê ∑§Ë Áfl‡Ê·ÃÊ∞° „ÊŸË øÊÁ„∞?
+ÿ„ ‚≈UË∑§ „ÊŸË øÊÁ„∞–
+(a)
+ÿ„ •S¬c≈U „ÊŸË øÊÁ„∞ ÃÊÁ∑§ ÿ„ Áfl·ÿ ◊¥ πÈ‹Ê¬Ÿ ¡Ê«∏ ‚∑§–
+(b)
+’ìÊ ∑§Ë ŒÒÁŸ∑§ ¡ËflŸ ◊¥ ©¬ÿÊª ∑§Ë ¡ÊŸ flÊ‹Ë ÷Ê·Ê ∑§ ◊Êäÿ◊ ‚ ß‚ ¬˝’Á‹Ã Á∑§ÿÊ ¡ÊŸÊ øÊÁ„∞–
+(c)
+ÿ„ •àÿÁœ∑§ ¬˝ÊÁflÁœ∑§ „ÊŸË øÊÁ„∞ ÄÿÊ¥Á∑§ ß‚‚ ÁfllÊÁÕ¸ÿÊ¥ ∑§Ë ªÁáÊÃ ◊¥ ‚„Ë ‚ê¬˝·áÊ ∑§⁄UŸ ◊¥ ‚„ÊÿÃÊ „ÊªË–
+(d)
+‚„Ë Áfl∑§À¬ øÈŸ¥ —
+•ÊÒ⁄U •ÊÒ⁄U •ÊÒ⁄U •ÊÒ⁄U
+(1) (a) (d) (2) (a), (b) (c) (3) (a) (c) (4) (a), (c) (d)
+32. A student of class III solved 26×5 as 2 6
+× 5
+1030
+Revisiting which of the following will best remediate this misconception ?
+(1) Multiplication of one digit by one digit (2) Concept of regrouping
+(3) Recalling multiplication tables (4) One to one correspondence
+∑§ˇÊÊ III ∑§ ∞∑§ ÁfllÊÕË¸ Ÿ 26×5 ∑§Ê ß‚ ¬˝∑§Ê⁄U „‹ Á∑§ÿÊ 2 6
+×
+5
+1030
+ÁŸêŸÁ‹ÁπÃ ◊¥ ‚ ÄÿÊ ŒÊ„⁄UÊŸÊ ß‚ ÷˝Ê¥ÁÃ ∑§Ê ‚ÈœÊ⁄UŸ ∑§ Á‹∞ ‚’‚ ©¬ÿÈÄÃ „ÊªÊ?
+∞∑§ •¥∑§ ∑§Ë ∞∑§ •¥∑§ ‚ ªÈáÊÊ– ¬ÈŸ‚¸◊Í„Ë∑§⁄UáÊ ∑§Ë •flœÊ⁄UáÊÊ–
+(1) (2)
+¬„Ê«∏Ê¥ ∑§Ê ¬˝àÿÊS◊⁄UáÊ– ∞∑Ò§∑§Ë ‚¥ªÁÃ–
+(3) (4)
+SPACE FOR ROUGH WORK / ⁄U»§ ∑§Êÿ¸ ∑§ Á‹∞ ¡ª„
+P-I !SAS-24-I! 10 I
+33. A number becomes double if it is increased by 8. What is the number ?
+(1) 6 (2) 8 (3) 12 (4) 16
+∞∑§ ‚¥ÅÿÊ ◊¥ •Ê∆U ¡Ê«∏ ÁŒÿÊ ¡Ê∞, ÃÊ fl„ ŒÈªÈŸË „Ê ¡ÊÃË „Ò– fl„ ‚¥ÅÿÊ ÄÿÊ „ÊªË?
+(1) 6 (2) 8 (3) 12 (4) 16
+34. One millimetre is the same as :
+(1) 0.01 cm (2) 0.1 cm (3) 0.01 m (4) 0.1 m
+∞∑§ Á◊‹Ë◊Ë≈U⁄U ’⁄UÊ’⁄U „Ò —
+(1) 0.01 cm (2) 0.1 cm (3) 0.01 m (4) 0.1 m
+35. A __________ is always a regular polygon.
+(1) Isosceles triangle (2) Square
+(3) Pentagon (4) Circle
+∞∑§ ‚ŒÒfl ‚◊ ’„È÷È¡ „ÊÃÊ „Ò–
+__________
+‚◊Ám’Ê„È ÁòÊ÷È¡ flª¸
+(1) (2)
+¬¥ø÷È¡ flÎûÊ
+(3) (4)
+36. The sum of all angles of a triangle is :
+(1) 608 (2) 908 (3) 1808 (4) 3608
+ÁòÊ÷È¡ ∑§ ‚÷Ë ∑§ÊáÊÊ¥ ∑§Ê ÿÊª „Ò —
+(1) 608 (2) 908 (3) 1808 (4) 3608
+37. Which of the following is/are related to early number concept formation ?
+(a) One to one correspondence
+(b) Hierarchical inclusion
+(c) Basic operations
+Choose the correct option :
+(1) Only (a) (2) (a) and (c) (3) (a) and (b) (4) (b) and (c)
+ÁŸêŸÁ‹ÁπÃ ◊¥ ‚ ∑§ÊÒŸ ‚Ê ‚ •Ê⁄¥UÁ÷∑§ ‚¥ÅÿÊ •flœÊ⁄UáÊÊ ∑§ ’ŸŸ ‚ ‚¥’¥ÁœÃ „Ò?
+/
+∞∑Ò§∑§Ë ‚¥ªÁÃ
+(a)
+¬ŒÊŸÈ∑˝§Á◊∑§ ‚◊Êfl‡ÊŸ
+(b)
+◊Í‹÷ÍÃ ‚¥Á∑˝§ÿÊ∞°
+(c)
+‚„Ë Áfl∑§À¬ øÈŸ¥ —
+∑§fl‹ •ÊÒ⁄U •ÊÒ⁄U •ÊÒ⁄U
+(1) (a) (2) (a) (c) (3) (a) (b) (4) (b) (c)
+SPACE FOR ROUGH WORK / ⁄U»§ ∑§Êÿ¸ ∑§ Á‹∞ ¡ª„
+P-I !SAS-24-I! 11 I
+38. Which of the following statements is/are most appropriate for the idea of cognitive conflict in
+teaching mathematics ?
+(a) Thoughtful efforts of a teacher to expose children to cognitive conflict can enhance their
+mathematical understanding.
+(b) It is not useful for promoting mathematical understanding in children.
+(c) Children get confused so cognitive conflict must be avoided.
+Choose the correct option :
+(1) (b) and (c) (2) (a) and (c) (3) Only (a) (4) Only (c)
+ªÁáÊÃ Á‡ÊˇÊáÊ ◊¥ ‚¥ôÊÊŸÊà◊∑§ ‚¥ÉÊ·¸ ∑§ ÁfløÊ⁄U ∑§ Á‹∞ ÁŸêŸÁ‹ÁπÃ ◊¥ ‚ ∑§ÊÒŸ ‚Ê ‚ ∑§ÕŸ ‚’‚ ©¬ÿÈÄÃ „Ò?
+/
+‚¥ôÊÊŸÊà◊∑§ ‚¥ÉÊ·¸ ∑§ ¬˝ÁÃ ’ìÊÊ¥ ∑§Ê ‚Èªêÿ ’ŸÊŸ ∑§ Á‡ÊˇÊ∑§ ∑§ ÁfløÊ⁄U¬ÍáÊ¸ ¬˝ÿÊ‚Ê¥ ‚ ©Ÿ∑§Ë ªÁáÊÃËÿ ‚◊¤Ê ∑§Ê ’…∏ÊflÊ
+(a)
+Á◊‹ ‚∑§ÃÊ „Ò–
+ÿ„ ’ìÊÊ¥ ◊¥ ªÁáÊÃËÿ ‚◊¤Ê ∑§Ê ’…∏ÊflÊ ŒŸ ∑§ Á‹∞ ¬˝÷ÊflË Ÿ„Ë¥ „Ò–
+(b)
+‚¥ôÊÊŸÊà◊∑§ ‚¥ÉÊ·¸ ‚ ’øŸÊ øÊÁ„∞ ÄÿÊ¥Á∑§ ß‚‚ ’ìÊ ÷˝Á◊Ã „Ê ¡ÊÃ „Ò¥–
+(c)
+‚„Ë Áfl∑§À¬ øÈŸ¥ —
+•ÊÒ⁄U •ÊÒ⁄U ∑§fl‹ ∑§fl‹
+(1) (b) (c) (2) (a) (c) (3) (a) (4) (c)
+39. Which aspect of evaluation is used when a teacher ensures that test made by her fulfils the objectives
+and criteria of that test ?
+(1) Validity (2) Practicality (3) Reliability (4) Consistency
+¡’ Á‡ÊÁˇÊ∑§Ê ÿ„ ‚ÈÁŸÁ‡øÃ ∑§⁄UÃË „Ò Á∑§ ©‚∑§ mÊ⁄UÊ ’ŸÊÿÊ ªÿÊ ≈ÒUS≈U, ©‚ ≈ÒUS≈U ∑§ ©g‡ÿÊ¥ ∞fl¥ ∑§‚ÊÒ≈UË ∑§Ê ¬Í⁄UÊ ∑§⁄UÃ „Ò¥ Ã’
+◊ÍÀÿÊ¥∑§Ÿ ∑§ Á∑§‚ ¬ˇÊ ∑§Ê ©¬ÿÊª Á∑§ÿÊ ªÿÊ „Ò?
+flÒœÃÊ √ÿÊfl„ÊÁ⁄U∑§ÃÊ Áfl‡fl‚ŸËÿÃÊ ‚È‚¥ªÁÃ
+(1) (2) (3) (4)
+40. What should be subtracted from the sum of 9909, 9099 and 9009 to obtain 25454 ?
+(1) 2356 (2) 2365 (3) 2536 (4) 2563
+¬˝ÊåÃ ∑§⁄UŸ ∑§ Á‹∞ •ÊÒ⁄U ∑§ ÿÊª ◊¥ ‚ ÄÿÊ ÉÊ≈UÊŸÊ „ÊªÊ?
+25454 9909, 9099 9009
+(1) 2356 (2) 2365 (3) 2536 (4) 2563
+SPACE FOR ROUGH WORK / ⁄U»§ ∑§Êÿ¸ ∑§ Á‹∞ ¡ª„
+P-I !SAS-24-I! 12 I
+41. Which of the following statements is correct ?
+(1) 1 is a prime number
+(2) 1 is a composite number
+(3) 1 is both, a prime and a composite number
+(4) 1 is neither prime nor a composite number
+ÁŸêŸÁ‹ÁπÃ ∑§ÕŸÊ¥ ◊¥ ‚ ∑§ÊÒŸ-‚Ê ∑§ÕŸ ‚„Ë „Ò?
+∞∑§ •÷Êíÿ ‚¥ÅÿÊ „Ò–
+(1) 1,
+∞∑§ ÷Êíÿ ‚¥ÅÿÊ „Ò–
+(2) 1,
+ŒÊŸÊ¥ „Ò, ∞∑§ ÷Êíÿ •ÊÒ⁄U •÷Êíÿ ‚¥ÅÿÊ–
+(3) 1
+Ÿ ÃÊ •÷Êíÿ „Ò •ÊÒ⁄U Ÿ „Ë ÷Êíÿ „Ò–
+(4) 1
+42. See the number pattern given below :
+1, 8, 27, 64, 125, __________ , _________
+What will be the next two terms ?
+(1) 256 and 289 (2) 216 and 289 (3) 256 and 343 (4) 216 and 343
+ŸËø ÁŒ∞ ª∞ ‚¥ÅÿÊ ¬Ò≈UŸ¸ ∑§Ê ŒÁπ∞ —
+1, 8, 27, 64, 125, __________ , _________
+•ª‹ ŒÊ ¬Œ ÄÿÊ „Ê¥ª?
+•ÊÒ⁄U •ÊÒ⁄U •ÊÒ⁄U •ÊÒ⁄U
+(1) 256 289 (2) 216 289 (3) 256 343 (4) 216 343
+43. Which of the following statement is least appropriate for encouraging mathematical learning ?
+(1) Failure does not imply that students cannot do mathematics.
+(2) Everyone can learn mathematics.
+(3) Mathematics learning is not gender specific.
+(4) Discourage intuition as it hampers the development of mathematical ideas.
+ÁŸêŸÁ‹ÁπÃ ◊¥ ‚ ∑§ÊÒŸ-‚Ê ∑§ÕŸ ªÁáÊÃËÿ •Áœª◊ ∑§Ê ¬˝Êà‚ÊÁ„Ã ∑§⁄UŸ ∑§ Á‹∞ ‚’‚ ∑§◊ ©¬ÿÈÄÃ „Ò?
+•‚»§‹ÃÊ ∑§Ê •Õ¸ ÿ„ Ÿ„Ë¥ „ÊÃÊ Á∑§ ÁfllÊÕË¸ ªÁáÊÃ Ÿ„Ë¥ ∑§⁄U ‚∑§Ã–
+(1)
+‚÷Ë ªÁáÊÃ ‚Ëπ ‚∑§Ã „Ò¥–
+(2)
+ªÁáÊÃ •Áœª◊ ¡¥«U⁄U-ÁflÁ‡Êc≈U Ÿ„Ë¥ „ÊÃÊ „Ò–
+(3)
+•ãÃôÊÊ¸Ÿ ∑§Ê „ÃÊà‚ÊÁ„Ã ∑§⁄UŸÊ øÊÁ„∞ ÄÿÊ¥Á∑§ ÿ„ ªÁáÊÃËÿ ÁfløÊ⁄UÊ¥ ∑§Ê Áfl∑§Á‚Ã ∑§⁄UŸ ◊¥ ’ÊœÊ «UÊ‹ÃÊ „Ò–
+(4)
+SPACE FOR ROUGH WORK / ⁄U»§ ∑§Êÿ¸ ∑§ Á‹∞ ¡ª„
+P-I !SAS-24-I! 13 I
+44. The value of 25.3×5−35÷5−3×18.5 is :
+(1) 283.05 (2) 64.0 (3) 95.0 (4) −26.5
+25.3×5−35÷5−3×18.5 ∑§Ê ◊ÊŸ „Ò —
+(1) 283.05 (2) 64.0 (3) 95.0 (4) −26.5
+45. According to National Education Policy (NEP) 2020, assessment of learners include :
+(1) Cognitive and physical domains
+(2) Cognitive, affective and psychomotor domains
+(3) Cognitive, social and spiritual domains
+(4) Physical and psychological domains
+⁄UÊc≈˛UËÿ Á‡ÊˇÊÊ ŸËÁÃ ∑§ •ŸÈ‚Ê⁄U, Á‡ÊˇÊÊÁÕ¸ÿÊ¥ ∑§Ê •Ê∑§‹Ÿ ∑§Ê ‡ÊÊÁ◊‹ ∑§⁄UÃÊ „Ò–
+2020, __________
+‚¥ôÊÊŸÊà◊∑§ •ÊÒ⁄U ÷ÊÒÁÃ∑§ •ÊÿÊ◊
+(1)
+‚¥ôÊÊŸÊà◊∑§, ÷ÊflÊà◊∑§ •ÊÒ⁄U ◊ŸÊªàÿÊà◊∑§ •ÊÿÊ◊
+(2)
+‚¥ôÊÊŸÊà◊∑§, ‚Ê◊ÊÁ¡∑§, •ÊäÿÊÁà◊∑§ •ÊÿÊ◊
+(3)
+÷ÊÒÁÃ∑§ •ÊÒ⁄U ◊ŸÊflÒôÊÊÁŸ∑§ •ÊÿÊ◊
+(4)
+46. A frog jumps 3 steps and a rabbit jumps 7 steps at a time starting from a place O. At which of the
+following steps, they both will be jumping together ?
+(1) 343 (2) 371 (3) 378 (4) 354
+Á∑§‚Ë SÕÊŸ ‚ •Ê⁄¥U÷ ∑§⁄U∑§ ∞∑§ ◊…∏∑§ ∑§Œ◊ •ÊÒ⁄U ∞∑§ π⁄UªÊ‡Ê ∑§Œ◊ ∑§Ë ¿U‹Ê¥ª ‹ªÊÃ „Ò¥– ÁŸêŸ ◊¥ ‚ Á∑§‚ ∑§Œ◊
+O 3 7
+¬⁄U fl ŒÊŸÊ¥ ∞∑§ ‚ÊÕ ¿U‹Ê¥ª ‹ªÊ∞°ª?
+(1) 343 (2) 371 (3) 378 (4) 354
+2
+2
+47. The number of degrees in right angles is :
+3
+(1) 210 (2) 285 (3) 240 (4) 330
+2
+2 ‚◊∑§ÊáÊÊ¥ ◊¥ Á«UÁª˝ÿÊ¥ ∑§Ë ‚¥ÅÿÊ „Ò —
+3
+(1) 210 (2) 285 (3) 240 (4) 330
+SPACE FOR ROUGH WORK / ⁄U»§ ∑§Êÿ¸ ∑§ Á‹∞ ¡ª„
+P-I !SAS-24-I! 14 I
+48. Which one of the following costs least ?
+(1) 75 packets of ` 750 each (2) 750 packets of ` 7.50 each
+(3) 7.5 dozen items of ` 750 each item (4) 75 dozen items of ` 7.50 each item
+ÁŸêŸÁ‹ÁπÃ ◊¥ ‚ Á∑§‚∑§Ë ‹ÊªÃ ‚’‚ ∑§◊ „Ò?
+(1) ` 750 ¬˝àÿ∑§ ¬Ò∑§≈U flÊ‹ 75 ¬Ò∑§≈U (2) ` 7.50 ¬˝àÿ∑§ ¬Ò∑§≈U flÊ‹ 750 ¬Ò∑§≈U
+(3) ` 750 ¬˝àÿ∑§ flSÃÈ flÊ‹Ë 7.5 Œ¡¸Ÿ flSÃÈ∞° (4) ` 7.50 ¬˝àÿ∑§ flSÃÈ flÊ‹Ë 75 Œ¡¸Ÿ flSÃÈ∞°
+49. National Education Policy (NEP) - 2020 talks about “Knowledge of India”. Which of the following
+are not included in it ?
+(1) Knowledge from ancient India and its contributions to modern India.
+(2) Tribal knowledge, indigenous and traditional ways of learning as part of various subjects
+like Mathematics, Astronomy, Medicine, Agriculture etc.
+(3) Field visits to different states as part of cultural exchange programmes.
+(4) Formal examination to assess the knowledge gained by the students.
+⁄UÊc≈˛UËÿ Á‡ÊˇÊÊ ŸËÁÃ-(∞Ÿ.ß¸.¬Ë) ““÷Ê⁄UÃ ∑§Ê ôÊÊŸ”” ∑§ ’Ê⁄U ◊¥ ’ÊÃ ∑§⁄UÃË „Ò– ÁŸêŸÁ‹ÁπÃ ◊¥ ‚ ÄÿÊ ß‚◊¥ ‚Áê◊Á‹Ã
+- 2020
+Ÿ„Ë¥ „Ò?
+•ÊœÈÁŸ∑§ ÷Ê⁄UÃ ∑§ ¬˝ÁÃ ¬˝ÊøËŸ ÷Ê⁄UÃ ∑§Ê ôÊÊŸ •ÊÒ⁄U ©‚∑§Ê ÿÊªŒÊŸ–
+(1)
+ÁflÁ÷ÛÊ Áfl·ÿÊ¥ ¡Ò‚ ªÁáÊÃ, πªÊ‹ ÁflôÊÊŸ, ÁøÁ∑§à‚Ê, ∑Î§Á· ßàÿÊÁŒ ∑§ Á„S‚ ∑§ M§¬ ◊¥ •ÊÁŒflÊ‚Ë ôÊÊŸ, •Áœª◊ ∑§
+(2)
+SflŒ‡ÊË •ÊÒ⁄U ¬Ê⁄¥U¬Á⁄U∑§ Ã⁄UË∑§–
+‚Ê¥S∑Î§ÁÃ∑§ •ÊŒÊŸ-¬˝ŒÊŸ ∑§Êÿ¸∑˝§◊Ê¥ ∑§ Á„S‚ ∑§ M§¬ ◊¥ ÁflÁ÷ÛÊ ⁄UÊíÿÊ¥ ∑§Ê ŒÊÒ⁄UÊ–
+(3)
+ÁfllÊÁÕ¸ÿÊ¥ ∑§ ôÊÊŸ ◊¥ flÎÁh ∑§ •Ê∑§‹Ÿ ∑§ Á‹∞ •ÊÒ¬øÊÁ⁄U∑§ ¬⁄UËˇÊÊ∞°–
+(4)
+50. Which of the following model is least appropriate to develop the conceptual understanding
+regarding the relationships of ones, tens and hundreds in early grade learners ?
+(1) Dienes blocks (2) Money
+(3) Abacus (4) Place value chart
+ÁŸêŸÁ‹ÁπÃ ◊¥ ‚ ∑§ÊÒŸ ‚Ê ◊ÊÚ«U‹ ‡ÊÈL§•ÊÃË ∑§ˇÊÊ ∑§ Á‡ÊˇÊÊÁÕ¸ÿÊ¥ ◊¥ ß∑§Êß¸, Œ„Êß¸ •ÊÒ⁄U ‚Ò∑§«∏ ∑§ ‚¥’¥œ ∑§ ’Ê⁄U ◊¥ •flœÊ⁄UáÊÊà◊∑§
+‚◊¤Ê Áfl∑§Á‚Ã ∑§⁄UŸ ∑§ Á‹∞ ‚’‚ ∑§◊ ©¬ÿÈÄÃ „Ò?
+«UËã‚ é‹ÊÚÄ‚ ◊ÈŒ˝Ê
+(1) (2)
+ÁªŸÃÊ⁄UÊ SÕÊŸËÿ ◊ÊŸ øÊ≈¸U
+(3) (4)
+SPACE FOR ROUGH WORK / ⁄U»§ ∑§Êÿ¸ ∑§ Á‹∞ ¡ª„
+P-I !SAS-24-I! 15 I
+51. Brij had a wire of length 100 metres to cover the land of his choice. He wanted to take the biggest
+land. Which of the following measurements should he choose to take the biggest area ?
+(1) 15 m × 35 m (2) 30 m × 20 m (3) 25 m × 25 m (4) 5 m × 45 m
+’Î¡ ∑§ ¬Ê‚ •¬ŸË ¬‚¥Œ ∑§Ë $¡◊ËŸ ÉÊ⁄UŸ ∑§ Á‹∞ ◊Ë≈U⁄U ∑§Ê ÃÊ⁄U ÕÊ– fl„ ‚’‚ ’«∏Ê $¡◊ËŸ ∑§Ê ≈ÈU∑§«∏Ê ‹ŸÊ øÊ„ÃÊ ÕÊ–
+100
+ÁŸêŸÁ‹ÁπÃ ◊¥ ‚ ©‚ Á∑§‚ ◊Ê¬ ∑§Ê ≈ÈU∑§«∏Ê ‹ŸÊ øÊÁ„∞ ÃÊÁ∑§ ©‚∑§Ë $¡◊ËŸ ∑§Ê ˇÊòÊ»§‹ •Áœ∑§Ã◊ „Ê?
+(1) 15 m × 35 m (2) 30 m × 20 m (3) 25 m × 25 m (4) 5 m × 45 m
+52. Which of the following is not true about ‘multiplicity of approaches’ in teaching mathematics ?
+(1) Very often, there are many ways of solving a problem.
+(2) It hampers the learning of child as it leads to confusion.
+(3) Offering such a choice allows children to explore and use the approach that is most natural
+and easy for them.
+(4) It is crucial for liberating school mathematics from the tyranny of the one correct answer.
+ªÁáÊÃ ∑§ Á‡ÊˇÊáÊ ◊¥ “ÁflÁ÷ÛÊ ¬˝∑§Ê⁄U ∑§ Ã⁄UË∑§Ê¥” ∑§ Á‹∞ ÁŸêŸÁ‹ÁπÃ ◊¥ ‚ ∑§ÊÒŸ-‚Ê ‚àÿ Ÿ„Ë¥ „Ò?
+∞‚Ê ’„ÈÃ ’Ê⁄U „ÊÃÊ „Ò Á∑§ ∞∑§ ‚◊SÿÊ ∑§Ê ‚◊ÊœÊŸ ∑§⁄UŸ ∑§ ∑§ß¸ Ã⁄UË∑§ „Ê¥–
+(1)
+ÿ„ ’ìÊ ∑§ •Áœª◊ ◊¥ ’ÊœÊ «UÊ‹ÃÊ „Ò ÄÿÊ¥Á∑§ ÿ„ ÷˝◊ ∑§Ë •ªÈ•Êß¸ ∑§⁄UÃÊ „Ò–
+(2)
+ß‚ Ã⁄U„ ∑§ Áfl∑§À¬ ¬˝SÃÈÃ ∑§⁄UŸ ‚ ’ìÊÊ¥ ∑§Ê ©‚ ©¬Êª◊ ∑§Ê •ãfl·áÊ ∑§⁄UŸ •ÊÒ⁄U ©¬ÿÊª ∑§⁄UŸ ∑§Ê •fl‚⁄U Á◊‹ÃÊ „Ò
+(3)
+¡Ê ©Ÿ∑§ Á‹∞ ‚’‚ Sfl÷ÊÁfl∑§ •ÊÒ⁄U •Ê‚ÊŸ „Ê–
+ÿ„ S∑Í§‹Ë ªÁáÊÃ ∑§Ê ∞∑§ „Ë ‚„Ë ©ûÊ⁄U „ÊŸ ∑§Ë ¬⁄¥U¬⁄UÊ ‚ ◊ÈÄÃ ∑§⁄UŸ ∑§ Á‹∞ ◊„àfl¬ÍáÊ¸ „Ò–
+(4)
+53. Which of the following statement is most appropriate ?
+(1) Mathematics lab is essential as it provides opportunities for hands on activities for students.
+(2) Charts are used in mathematics class as an effective teaching-learning material.
+(3) Use of teaching-learning material in mathematics class consume students’ time for practice.
+(4) Students do not enjoy riddles in mathematics class.
+ÁŸêŸÁ‹ÁπÃ ◊¥ ‚ ∑§ÊÒŸ ‚Ê ∑§ÕŸ ‚’‚ •Áœ∑§ ©¬ÿÈÄÃ „Ò?
+ªÁáÊÃ ∑§Ë ‹Ò’ ¡L§⁄UË „Ò ÄÿÊ¥Á∑§ ÿ„ Á∑˝§ÿÊ‡ÊË‹ ªÁÃÁflÁœÿÊ¥ ∑§Ê •fl‚⁄U ¬˝ŒÊŸ ∑§⁄UÃË „Ò–
+(1)
+øÊ≈¸U‚˜ ªÁáÊÃ ∑§Ë ∑§ˇÊÊ ◊¥ ∞∑§ ¬˝÷ÊflË Á‡ÊˇÊáÊ-•Áœª◊ ‚Ê◊ª˝Ë „Ò–
+(2)
+Á‡ÊˇÊáÊ-•Áœª◊ ‚Ê◊ª˝Ë ∑§Ê ©¬ÿÊª ªÁáÊÃ ∑§Ë ∑§ˇÊÊ ◊¥ ÁfllÊÁÕ¸ÿÊ¥ ∑§ •èÿÊ‚ ∑§Ê ‚◊ÿ √ÿÿ ∑§⁄U ŒÃÊ „Ò–
+(3)
+ÁfllÊÕË¸ ªÁáÊÃ ∑§Ë ∑§ˇÊÊ ◊¥ ¬„Á‹ÿÊ¥ ◊¥ •ÊŸ¥Œ Ÿ„Ë¥ ‹Ã–
+(4)
+SPACE FOR ROUGH WORK / ⁄U»§ ∑§Êÿ¸ ∑§ Á‹∞ ¡ª„
+P-I !SAS-24-I! 16 I
+1 1
+54. How many packets of kg salt can be made from 7 kg of salt ?
+12 2
+(1) 45 (2) 60 (3) 72 (4) 90
+1 1
+Ÿ◊∑§ ‚ Ÿ◊∑§ ∑§ Á∑§ÃŸ ¬Ò∑§≈U ’ŸÊ∞ ¡Ê ‚∑§Ã „Ò¥?
+7 kg kg
+2 12
+(1) 45 (2) 60 (3) 72 (4) 90
+55. While solving 182
+−6 7
+in class II, a teacher explained that we have to subtract 7 from 2 and 2 is smaller than 7. So we will
+borrow one from 8 and then we can subtract 7 from 12. One student told teacher : Mam ! why we
+are borrowing from eight, as borrowing is not good. What a teacher should do in such a situation?
+(1) Teacher should scold the student and make him sit.
+(2) Teacher should change the word ‘borrowing’ to ‘regrouping’ and then show the process of
+regrouping.
+(3) Teacher should tell the student to focus on learning the algorithm of subtraction.
+(4) Teacher should ignore the student’s question and continue with her work.
+∑§ˇÊÊ ◊¥ 182
+II
+−6 7
+∑§Ê „‹ ∑§⁄UflÊÃ „È∞ ∞∑§ •äÿÊÁ¬∑§Ê Ÿ S¬c≈U Á∑§ÿÊ Á∑§ „◊¥ ∑§Ê ◊¥ ‚ ÉÊ≈UÊŸÊ „Ò •ÊÒ⁄U ¿UÊ≈UÊ „Ò ‚– ß‚Á‹∞ „◊¥ ‚
+7 2 2, 7 8
+∞∑§ ©œÊ⁄U ‹ŸÊ ¬«∏ªÊ •ÊÒ⁄U Ã’ „◊ ◊¥ ‚ ∑§Ê ÉÊ≈UÊ ∑§⁄U ¬Ê∞°ª– ∞∑§ ’ìÊ Ÿ •äÿÊÁ¬∑§Ê ‚ ¬Í¿UÊ — ◊Ò«U◊! „◊ ‚ ©œÊ⁄U
+12 7 8
+ÄÿÊ¥ ‹ ⁄U„ „Ò¥– ©œÊ⁄U ‹ŸÊ •ë¿UÊ Ÿ„Ë¥ „ÊÃÊ– ß‚ ¬Á⁄UÁSÕÁÃ ◊¥ •äÿÊÁ¬∑§Ê ∑§Ê ÄÿÊ ∑§⁄UŸÊ øÊÁ„∞?
+•äÿÊÁ¬∑§Ê ∑§Ê ’ìÊ ∑§Ê «UÊ°≈U ∑§⁄U ’Ò∆UÊ ŒŸÊ øÊÁ„∞–
+(1)
+•äÿÊÁ¬∑§Ê ∑§Ê “©œÊ⁄U” ‡ÊéŒ ∑§Ê ’Œ‹∑§⁄U “¬ÈŸ‚¸◊Í„Ë∑§⁄UáÊ” ∑§Ê ©¬ÿÊª ∑§⁄UŸÊ øÊÁ„∞ •ÊÒ⁄U ¬ÈŸ‚¸◊Í„Ë∑§⁄UáÊ ∑§Ë ¬˝Á∑˝§ÿÊ
+(2)
+ÁŒπÊŸË øÊÁ„∞–
+•äÿÊÁ¬∑§Ê ∑§Ê ’ìÊ ∑§Ê ∑§„ŸÊ øÊÁ„∞ Á∑§ ÉÊ≈UÊfl ∑§Ë ∑§‹Ÿ ÁflÁœ ‚ËπŸ ¬⁄U äÿÊŸ Œ¥–
+(3)
+•äÿÊÁ¬∑§Ê ∑§Ê ’ìÊ ∑§ ¬˝‡Ÿ ∑§Ê Ÿ$¡⁄U•ãŒÊ$¡ ∑§⁄U∑§ •¬ŸÊ ∑§Ê◊ ¡Ê⁄UË ⁄UπŸÊ øÊÁ„∞–
+(4)
+SPACE FOR ROUGH WORK / ⁄U»§ ∑§Êÿ¸ ∑§ Á‹∞ ¡ª„
+P-I !SAS-24-I! 17 I
+56. Yamina threw a die 10 times and got the following results :
+5, 3, 6, 6, 1, 4, 5, 3, 3, 2
+Which of the following numbers she got the maximum number of times ?
+(1) 6 (2) 3 (3) 1 (4) 5
+ÿÊÁ◊ŸÊ Ÿ ∞∑§ ¬Ê‚Ê ’Ê⁄U ©¿UÊ‹Ê •ÊÒ⁄U ©‚ ÁŸêŸÁ‹ÁπÃ ¬Á⁄UáÊÊ◊ ¬˝ÊåÃ „È∞ —
+10
+5, 3, 6, 6, 1, 4, 5, 3, 3, 2
+ÁŸêŸÁ‹ÁπÃ ‚¥ÅÿÊ•Ê¥ ◊¥ ‚ ©‚ •Áœ∑§Ã◊ ’Ê⁄U ∑§ÊÒŸ ‚Ë ‚¥ÅÿÊ ¬˝ÊåÃ „Èß¸?
+(1) 6 (2) 3 (3) 1 (4) 5
+57. Which of the following is true for word problems in school mathematics ?
+(1) Word problems refer to exercises where the child formalises the situation into a form where
+a specific mathematical technique can be applied.
+(2) Word problems are not examples of mathematical modelling.
+(3) Word problems are important in secondary classes only.
+(4) Word problems focus more on procedural knowledge in mathematics.
+ÁŸêŸÁ‹ÁπÃ ◊¥ ‚ ∑§ÊÒŸ-‚Ê S∑Í§‹Ë ªÁáÊÃ ◊¥ ß’Ê⁄UÃË ‚flÊ‹Ê¥ ∑§ Á‹∞ ‚„Ë „Ò?
+ß’Ê⁄UÃË ‚flÊ‹ ©Ÿ •èÿÊ‚Ê¥ ∑§Ê ‚¥ŒÁ÷¸Ã ∑§⁄UÃ „Ò¥ ¡„Ê° ’ìÊÊ ¬Á⁄UÁSÕÁÃ ∑§Ê ∞∑§ ∞‚Ê •ÊÒ¬øÊÁ⁄U∑§ M§¬ ŒÃÊ „Ò Á¡‚◊¥
+(1)
+ªÁáÊÃËÿ Ã∑§ŸË∑§ ∑§Ê ‹ÊªÍ Á∑§ÿÊ ¡Ê ‚∑§–
+ß’Ê⁄UÃË ‚flÊ‹ ªÁáÊÃËÿ ÁŸŒ‡Ê¸Ÿ ∑§ ©ŒÊ„⁄UáÊ Ÿ„Ë¥ „ÊÃ–
+(2)
+ß’Ê⁄UÃË ‚flÊ‹ ∑§fl‹ ◊ÊäÿÁ◊∑§ ∑§ˇÊÊ•Ê¥ ◊¥ ◊„àfl¬ÍáÊ¸ „ÊÃ „Ò¥–
+(3)
+ß’Ê⁄UÃË ‚flÊ‹ ªÁáÊÃ ◊¥ ∑§Êÿ¸ÁflÁœ∑§ ôÊÊŸ ¬⁄U •Áœ∑§ ∑¥§ÁŒ˝Ã „ÊÃ „Ò¥–
+(4)
+SPACE FOR ROUGH WORK / ⁄U»§ ∑§Êÿ¸ ∑§ Á‹∞ ¡ª„
+P-I !SAS-24-I! 18 I
+58. The parcel sending rates are given below —
+Parcel weighing (50 grams or less) : ` 15.00 parcel weighing (for every additional 50 grams) : ` 7.00
+Meena wants to send a parcel to her friend Charu in Delhi. The parcel weighs 350 g. Look at the
+charges and select the correct cost of sending the parcel :
+(1) ` 42 (2) ` 50 (3) ` 55 (4) ` 57
+¬Ê‚¸‹ ÷¡Ÿ ∑§Ë Œ⁄¥U ŸËø ŒË ªß¸ „Ò¥ —
+¬Ê‚¸‹ ∑§Ê ÷Ê⁄U ( 50 ª˝Ê◊ •ÊÒ⁄U ©‚‚ ∑§◊) : ` 15.00 ¬Ê‚¸‹ ∑§Ê ÷Ê⁄U (¬˝àÿ∑§ •ÁÃÁ⁄UÄÃ 50 ª˝Ê◊ ∑§ Á‹∞) : ` 7.00
+◊ËŸÊ •¬ŸË ‚„‹Ë øÊM§ ∑§Ê ¬Ê‚¸‹ ÷¡ŸÊ øÊ„ÃË „Ò, ¡Ê ÁŒÀ‹Ë ◊¥ „Ò– ¬Ê‚¸‹ ∑§Ê ÷Ê⁄U „Ò– Œ⁄UÊ¥ ∑§Ê Œπ∑§⁄U ¬Ê‚¸‹ ÷¡Ÿ
+350 g
+∑§Ë ‚„Ë ⁄UÊÁ‡Ê ∑§Ê øÈŸÊfl ∑§ËÁ¡∞ —
+(1) ` 42 (2) ` 50 (3) ` 55 (4) ` 57
+59. Which of the following is most appropriate to introduce ‘Data Handling’ at primary stage ?
+(1) Asking the students to read time tables of bus and train timings.
+(2) Within classroom, collecting statistics of students’ height; favourite food; colour; cartoon etc.
+and asking questions related to data.
+(3) Showing population census of a city for five years and asking students to compare population
+growth.
+(4) Drawing a bar graph on the blackboard and asking students to read the data from it.
+¬˝ÊÕÁ◊∑§ SÃ⁄U ¬⁄U “•Ê°∑§«∏Ê¥ ∑§Ê ¬˝’¥œŸ” ∑§ ¬Á⁄Uøÿ ∑§ Á‹∞ ÁŸêŸÁ‹ÁπÃ ◊¥ ‚ ÄÿÊ ‚’‚ ©¬ÿÈÄÃ „Ò?
+ÁfllÊÁÕ¸ÿÊ¥ ∑§Ê ’‚ •ÊÒ⁄U ≈˛UŸ ∑§ ‚◊ÿ ∑§Ë ‚◊ÿ-‚Ê⁄UÁáÊÿÊ¥ ∑§Ê ¬…∏Ÿ ∑§ Á‹∞ ∑§„ŸÊ–
+(1)
+∑§ˇÊÊ ◊¥ ÁfllÊÁÕ¸ÿÊ¥ ∑§Ë ‹ê’Êß¸, ©Ÿ∑§Ê ¬‚¥ŒËŒÊ πÊŸÊ, ⁄¥Uª, ∑§Ê≈¸ÍUŸ ßàÿÊÁŒ ¬⁄U •Ê°∑§«∏¥ ß∑§_ ∑§⁄UŸÊ •ÊÒ⁄U •Ê°∑§«∏Ê¥ ¬⁄U
+(2)
+•ÊœÊÁ⁄UÃ ¬˝‡Ÿ ¬Í¿UŸÊ–
+ÁfllÊÁÕ¸ÿÊ¥ ∑§Ê ∞∑§ ‡Ê„⁄U ∑§Ë ¬Ê°ø ‚Ê‹ ∑§Ë ¡Ÿ‚¥ÅÿÊ ªáÊŸÊ ÁŒπÊŸÊ •ÊÒ⁄U ÁfllÊÁÕ¸ÿÊ¥ ∑§Ê ¡Ÿ‚¥ÅÿÊ flÎÁh ∑§Ë ÃÈ‹ŸÊ ∑§⁄UŸ
+(3)
+∑§Ê ∑§„ŸÊ–
+‡ÿÊ◊¬^ ¬⁄U ∞∑§ Œ¥«U-•Ê⁄Uπ ÁøòÊÊ¥Á∑§Ã ∑§⁄UŸÊ •ÊÒ⁄U ÁfllÊÁÕ¸ÿÊ¥ ∑§Ê ©‚◊¥ ‚ •Ê°∑§«∏Ê¥ ∑§Ê ¬…∏Ÿ ∑§ Á‹∞ ∑§„ŸÊ–
+(4)
+60. According to National Curriculum Framework, 2005, which of the following processes are least
+relevant in a primary mathematics classroom ?
+(1) Memorising formulae (2) Use of patterns
+(3) Visualization (4) Making connections and representations
+⁄UÊc≈˛UËÿ ¬Ê∆˜UÿøÿÊ¸ M§¬⁄UπÊ, ∑§ •ŸÈ‚Ê⁄U, ∞∑§ ¬˝ÊÕÁ◊∑§ ªÁáÊÃ ∑§ˇÊÊ ◊¥ ÁŸêŸÁ‹ÁπÃ ◊¥ ‚ ∑§ÊÒŸ-‚Ë ¬˝Á∑˝§ÿÊ∞° ‚’‚ ∑§◊
+2005
+M§¬ ‚ ¬˝Ê‚¥Áª∑§ „Ò¥?
+‚ÍòÊÊ¥ ∑§Ê ÿÊŒ ∑§⁄UŸÊ ¬Ò≈UŸ¸ (¬˝ÁÃ◊ÊŸÊ¥) ∑§Ê ©¬ÿÊª ∑§⁄UŸÊ
+(1) (2)
+ŒÎ‡ÿË∑§⁄UáÊ ‚¥’¥œ SÕÊÁ¬Ã ∑§⁄UŸÊ •ÊÒ⁄U ÁŸM§¬áÊ
+(3) (4)
+SPACE FOR ROUGH WORK / ⁄U»§ ∑§Êÿ¸ ∑§ Á‹∞ ¡ª„
+P-I !SAS-24-I! 19 I
+PART - III / ÷Êª - III
+ENVIRONMENTAL STUDIES / ¬ÿÊ¸fl⁄UáÊ •äÿÿŸ
+Direction : Answer the following questions by selecting the correct/most appropriate options.
+ÁŸŒ¸‡Ê — ÁŸêŸÁ‹ÁπÃ ¬˝‡ŸÊ¥ ∑§ ©ûÊ⁄U ŒŸ ∑§ Á‹∞ ‚„Ë ‚’‚ ©¬ÿÈÄÃ Áfl∑§À¬ øÈÁŸ∞–
+/
+61. Which one of the following regarding Johad is correct ? Choose the correct option.
+(1) It is a community based rain water harvesting system.
+(2) It filters impurities from water.
+(3) It pumps groundwater into nearby wells.
+(4) Stores water from rivers.
+¡Ê„«∏ ‚ ‚ê’¥ÁœÃ, ÁŸêŸÁ‹ÁπÃ ◊¥ ‚ ∑§ÊÒŸ-‚Ê ∞∑§ ∑§ÕŸ ‚„Ë „Ò? ‚„Ë ©ûÊ⁄U øÈŸ¥–
+ÿ„ ‚◊ÈŒÊÿ •ÊœÊÁ⁄UÃ fl·Ê¸ ¡‹ ‚¥øÿŸ ¬˝áÊÊ‹Ë „Ò–
+(1)
+ÿ„ ¬ÊŸË ‚ •‡ÊÈÁhÿÊ¥ ∑§Ê Á»§À≈U⁄U ∑§⁄UÃÊ „Ò–
+(2)
+ÿ„ •Ê‚¬Ê‚ ∑§ ∑È§•Ê¥ ◊¥ ¡◊ËŸ ∑§Ê ¬ÊŸË ß∑§≈˜U∆UÊ ∑§⁄UÃÊ „Ò–
+(3)
+ÿ„ ŸÁŒÿÊ¥ ‚ ¬ÊŸË ß∑§≈˜U∆UÊ ∑§⁄UÃÊ „Ò–
+(4)
+62. Which of the following strategies promotes inquiry while teaching the theme ‘Food’ ?
+(1) Asking students to collect pictures of various food items.
+(2) Demonstrating fireless cooking of sandwiches, shikanji (lemon water) etc.
+(3) Asking students to find out food preferences of their family members.
+(4) Showing pictures of various preserved food items used in different regions of India.
+ÁŸêŸÁ‹ÁπÃ ◊¥ ‚ ∑§ÊÒŸ ‚Ë ⁄UáÊŸËÁÃ “÷Ê¡Ÿ” ÕË◊ ∑§Ê ¬…∏ÊÃ ‚◊ÿ ¬Í¿UÃÊ¿U ∑§Ê ’…∏ÊflÊ ŒÃË „Ò?
+¿UÊòÊÊ¥ ‚ ÁflÁ÷ãŸ πÊl ¬ŒÊÕÊZ ∑§ ÁøòÊ ∞∑§òÊ ∑§⁄UŸ ∑§ Á‹∞ ∑§„ŸÊ–
+(1)
+‚Ò¥«UÁflø, Á‡Ê∑¥§¡Ë (‹◊Ÿ flÊ≈U⁄U) flªÒ⁄U„ ∑§Ê Á’ŸÊ •Êª ∑§ ¬∑§ÊŸ ∑§Ê ¬˝Œ‡Ê¸Ÿ–
+(2)
+¿UÊòÊÊ¥ ‚ ©Ÿ∑§ ¬Á⁄UflÊ⁄U ∑§ ‚ŒSÿÊ¥ ∑§Ë πÊŸ ∑§Ë ¬‚¥Œ ∑§Ê ¬ÃÊ ‹ªÊŸ ∑§ Á‹∞ ∑§„ŸÊ–
+(3)
+÷Ê⁄UÃ ∑§ ÁflÁ÷ãŸ ˇÊòÊÊ¥ ◊¥ ©¬ÿÊª Á∑§∞ ¡ÊŸ flÊ‹ ÁflÁ÷ãŸ ¬Á⁄U⁄UÁˇÊÃ πÊl ¬ŒÊÕÊZ ∑§ ÁøòÊ ÁŒπÊŸÊ–
+(4)
+63. An EVS teacher asks her students to think and answer “Why do we feel comfortable in woollens
+clothes during winter”. This question is a :
+(1) convergent question (2) analytical question
+(3) hypothetical question (4) factual question
+∞∑§ ß¸flË∞‚ Á‡ÊÁˇÊ∑§Ê •¬Ÿ ¿UÊòÊÊ¥ ‚ ‚ÊøŸ •ÊÒ⁄U ¡flÊ’ ŒŸ ∑§ Á‹∞ ∑§„ÃË „Ò Á∑§ ““„◊ ‚ÁŒ¸ÿÊ¥ ∑§ ŒÊÒ⁄UÊŸ ™§ŸË ∑§¬«∏Ê¥ ◊¥ ÄÿÊ¥
+‚„¡ ◊„‚Í‚ ∑§⁄UÃ „Ò¥””– ß‚ Ã⁄U„ ∑§Ê ¬˝‡Ÿ „Ò —
+•Á÷‚Ê⁄UË ¬˝‡Ÿ Áfl‡‹·áÊÊà◊∑§ ¬˝‡Ÿ
+(1) (2)
+∑§ÊÀ¬ÁŸ∑§ ¬˝‡Ÿ ÃâÿÊà◊∑§ ¬˝‡Ÿ
+(3) (4)
+P-I !SAS-24-I! 20 I
+64. A chapter in EVS textbook of NCERT describes Wahida Prism and her experience in the Navy as
+a doctor. What are the reasons for including this chapter ?
+(a) Her experience challenges gender stereotypes
+(b) Her story gives a peep into the life of a medical officer in the armed forces
+(c) Understanding that prism reflects 7 colours
+(d) Understanding the difficulties faced by her and her ways of tackling them
+(1) (a), (b) and (c) (2) (b), (c) and (d)
+(3) (c) and (d) (4) (b), (d) and (a)
+∞Ÿ.‚Ë.ß¸.•Ê⁄U.≈UË. ∑§Ë ß¸.flË.∞‚. ¬Ê∆K¬ÈSÃ∑§ ∑§ ∞∑§ •äÿÊÿ ◊¥ fl„ËŒÊ ∑§Ê Á¬˝í◊ •ÊÒ⁄U ŸÊÒ‚ŸÊ ◊¥ «UÊÚÄ≈U⁄U ∑§ M§¬ ◊¥ ©Ÿ∑§
+•ŸÈ÷fl ∑§Ê fláÊ¸Ÿ „Ò– ß‚ ‡ÊÊÁ◊‹ ∑§⁄UŸ ∑§ ÄÿÊ ∑§Ê⁄UáÊ „Ò¥?
+©Ÿ∑§Ê •ŸÈ÷fl ‹Ò¥Áª∑§ M§Á…∏ÿÊ¥ ∑§Ê øÈŸÊÒÃË ŒÃÊ „Ò–
+(a)
+©‚∑§Ë ∑§„ÊŸË ‚‡ÊSòÊ ’‹Ê¥ ◊¥ ∞∑§ ÁøÁ∑§à‚Ê •Áœ∑§Ê⁄UË ∑§ ¡ËflŸ ∑§Ë ∞∑§ ¤Ê‹∑§ ŒÃË „Ò–
+(b)
+ÿ„ ‚◊¤ÊŸÊ Á∑§ Á¬˝í◊ ⁄¥UªÊ¥ ∑§Ê Œ‡ÊÊ¸ÃÊ „Ò–
+(c) 7
+©‚∑§ ‚Ê◊Ÿ •ÊŸ flÊ‹Ë ∑§Á∆UŸÊßÿÊ¥ •ÊÒ⁄U ©Ÿ‚ ÁŸ¬≈UŸ ∑§ Ã⁄UË∑§Ê¥ ∑§Ê ‚◊¤ÊŸÊ–
+(d)
+•ÊÒ⁄U •ÊÒ⁄U
+(1) (a), (b) (c) (2) (b), (c) (d)
+•ÊÒ⁄U •ÊÒ⁄U
+(3) (c) (d) (4) (b), (d) (a)
+65. Alex, an EVS teacher of class 3 while introducing the theme ‘Work We Do’ helps his students to
+cut colourful strips of paper and weave the strips to make a mat. The edges are glued together to
+make a beautiful mat. Which of the following objectives should Alex help his students focus ?
+(a) learning about colours, patterns and developing an aesthetic sense.
+(b) relating the activity to weaving done by weavers.
+(c) memorising the steps of making mat.
+(d) choosing papers of attractive colours and learning cutting of strips perfectly.
+(1) (a), (b) and (d) (2) (b), (c) and (d)
+(3) (a), (c) and (d) (4) (a) and (c)
+∑§ˇÊÊ ∑§ ∞∑§ ß¸flË∞‚ Á‡ÊˇÊ∑§ ∞‹Ä‚ Ÿ “„◊ øË¡¥ ∑Ò§‚ ’ŸÊÃ „Ò¥” ÕË◊ ∑§Ë ‡ÊÈL§•ÊÃ ∑§⁄UÃ „È∞ •¬Ÿ ¿UÊòÊÊ¥ ∑§Ê ∑§Êª¡ ∑§Ë
+3
+⁄¥UªËŸ ¬Á≈˜U≈UÿÊ¥ ∑§Ê ∑§Ê≈UŸ •ÊÒ⁄U ¬Á^ÿÊ¥ ∑§Ê ø≈UÊß¸ ’ŸÊŸ ◊¥ ◊ŒŒ ∑§Ë– ∞∑§ ‚È¥Œ⁄U ø≈UÊß¸ ’ŸÊŸ ∑§ Á‹∞ Á∑§ŸÊ⁄UÊ¥ ∑§Ê ∞∑§ ‚ÊÕ
+Áø¬∑§ÊÿÊ ¡ÊÃÊ „Ò– ÁŸêŸÁ‹ÁπÃ ◊¥ ‚ Á∑§‚ ©g‡ÿ ‚ ∞‹Ä‚ ∑§Ê •¬Ÿ ¿UÊòÊÊ¥ ∑§Ê äÿÊŸ ∑¥§ÁŒ˝Ã ∑§⁄UŸ ◊¥ ◊ŒŒ ∑§⁄UŸË øÊÁ„∞?
+⁄¥Uª, ¬Ò≈UŸ¸ ∑§ ’Ê⁄U ◊¥ ‚ËπŸÊ •ÊÒ⁄U ‚ÊÒãŒÿ¸ ’Êœ Áfl∑§Á‚Ã ∑§⁄UŸÊ–
+(a)
+ß‚ ªÁÃÁflÁœ ∑§Ê ’ÈŸ∑§⁄UÊ¥ mÊ⁄UÊ ∑§Ë ¡ÊŸ flÊ‹Ë ’ÈŸÊß¸ ‚ ‚¥’¥ÁœÃ ∑§⁄UŸÊ–
+(b)
+ø≈UÊß¸ ∑§Ê ’ŸÊŸ ∑§Ë ÁflÁœ ∑§ ø⁄UáÊÊ¥ ∑§Ê ÿÊŒ ∑§⁄UŸÊ–
+(c)
+•Ê∑§·¸∑§ ⁄¥UªÊ¥ ∑§ ¬¬⁄U øÈŸŸÊ •ÊÒ⁄U ÁS≈˛Uå‚ ∑§Ê ¬Í⁄UË Ã⁄U„ ‚ ∑§Ê≈UŸÊ ‚ËπŸÊ–
+(d)
+•ÊÒ⁄U •ÊÒ⁄U
+(1) (a), (b) (d) (2) (b), (c) (d)
+•ÊÒ⁄U •ÊÒ⁄U
+(3) (a), (c) (d) (4) (a) (c)
+P-I !SAS-24-I! 21 I
+66. Students conduct a survey in their homes and neighbourhood to find out the number of members
+and approximate amount of water used in each family. What skills and processes are developed
+through this activity ?
+(1) questioning, experimentation, sensitivity towards environment
+(2) questioning, inferring, expression
+(3) hypothesising, inferring, expression
+(4) prediction, experimentation, observing
+¬˝àÿ∑§ ¬Á⁄UflÊ⁄U ◊¥ ‚ŒSÿÊ¥ ∑§Ë ‚¥ÅÿÊ •ÊÒ⁄U ¬ÊŸË ∑§Ë •ŸÈ◊ÊÁŸÃ ◊ÊòÊÊ ∑§Ë π¬Ã ∑§Ê ¬ÃÊ ‹ªÊŸ ∑§ Á‹∞ ¿UÊòÊ •¬Ÿ ÉÊ⁄U •ÊÒ⁄U ¬«∏Ê‚
+◊¥ ∞∑§ ‚fl¸ˇÊáÊ ∑§⁄UÃ „Ò¥– ß‚ ªÁÃÁflÁœ ∑§ ◊Êäÿ◊ ‚ ∑§ÊÒŸ ‚ ∑§ÊÒ‡Ê‹ •ÊÒ⁄U ¬˝Á∑˝§ÿÊ∞° Áfl∑§Á‚Ã ∑§Ë ¡ÊÃË „Ò¥?
+¬˝‡Ÿ ¬Í¿UŸÊ, ¬˝ÿÊª ∑§⁄UŸÊ, ¬ÿÊ¸fl⁄UáÊ ∑§ ¬˝ÁÃ ‚¥flŒŸ‡ÊË‹ÃÊ
+(1)
+¬Í¿UÃÊ¿U, ¬Á⁄UáÊÊ◊ ÁŸ∑§Ê‹ŸÊ, •Á÷√ÿÁÄÃ
+(2)
+¬Á⁄U∑§À¬ŸÊ, ¬Á⁄UáÊÊ◊ ÁŸ∑§Ê‹ŸÊ, •Á÷√ÿÁÄÃ
+(3)
+•ŸÈ◊ÊŸ, ¬˝ÿÊª, •fl‹Ê∑§Ÿ
+(4)
+67. Doctors prescribe blood test for patients to confirm malaria. Blood test is done to :
+(1) check for haemoglobin in blood
+(2) check iron in blood
+(3) check for eggs of female anopheles mosquitoes in blood
+(4) check for microbes in blood
+«UÊÚÄ≈U⁄U ◊⁄UË¡Ê¥ ◊¥ ◊‹Á⁄UÿÊ ∑§Ë ¬„øÊŸ ∑§ Á‹∞ πÍŸ ∑§Ë ¡Ê°ø ∑§⁄ÊŸ ∑§ Á‹∞ ÁŸŒ¸Á‡ÊÃ ∑§⁄UÃ „Ò¥– πÍŸ ∑§Ë ¡Ê°ø ‚ —
+©‚◊¥ ©¬ÁSÕÃ „Ë◊ÊÇ‹ÊÁ’Ÿ ∑§Ê ¬ÃÊ ø‹ªÊ–
+(1)
+©‚◊¥ ©¬ÁSÕÃ ‹ÊÒ„ Ãàfl ∑§Ë ◊ÊòÊÊ ∑§Ê ¬ÃÊ ø‹ªÊ–
+(2)
+©‚◊¥ ◊ÊŒÊ ◊ë¿U⁄U ∑§ •¥«UÊ¥ ∑§Ë ©¬ÁSÕÁÃ ∑§Ê ¬ÃÊ ø‹ªÊ–
+(3)
+©‚◊¥ ©¬ÁSÕÃ ¡ËflÊáÊÈ•Ê¥ ∑§Ê ¬ÃÊ ø‹ªÊ–
+(4)
+68. Consider the following statements about beehives :
+(a) Honey bees live in beehives. Every beehive has one queen Bee that lays eggs.
+(b) There are only a few males bees in the hive which have special roles as workers.
+(c) Most of the female bees in the hive are worker bees who work all the day in making the hive
+and also looking after the baby bees.
+(d) The worker bees fly around Litchi flowers in search of nectar for honey.
+The correct statements are :
+(1) (a) and (b) (2) (c) and (d) (3) (a) and (c) (4) (a) and (d)
+◊œÈ◊ÁÄπÿÊ¥ ∑§ ¿UûÊÊ¥ ∑§ ’Ê⁄U ◊¥ ŸËø ÁŒ∞ ª∞ ∑§ÕŸÊ¥ ¬⁄U ÁfløÊ⁄U ∑§ËÁ¡∞ —
+◊œÈ◊ÁÄπÿÊ° ‡Ê„Œ ∑§ ¿UûÊÊ¥ ◊¥ ⁄U„ÃË „Ò¥– „⁄U ¿UûÊ ◊¥ ∞∑§ ⁄UÊŸË ◊ÄπË „ÊÃË „Ò ¡Ê •á«U ŒÃË „Ò–
+(a)
+¿UûÊ ◊¥ ∑È§¿U Ÿ⁄U ◊ÄπË ÷Ë „ÊÃ „Ò¥ ¡Ê ¿UûÊ ∑§ Á‹∞ üÊÁ◊∑§ ∑§ M§¬ ◊¥ Áfl‡Ê· ∑§Êÿ¸ ∑§⁄UÃ „Ò¥–
+(b)
+¿UûÊ ◊¥ •Áœ∑§Ê¥‡Ê ◊ÊŒÊ ◊ÁÄπÿÊ° üÊÁ◊∑§ ◊ÁÄπÿÊ° „ÊÃË „Ò¥ ¡Ê ÁŒŸ ÷⁄U ¿UûÊ ∑§Ê ’ŸÊŸ •ÊÒ⁄U ’ìÊÊ¥ ∑§Ê ¬Ê‹Ÿ ∑§Ê ∑§Êÿ¸ ÷Ë
+(c)
+∑§⁄UÃË „Ò¥–
+üÊÁ◊∑§ ◊ÄπË ‡Ê„Œ ∑§ Á‹∞ ⁄U‚ ∑§Ë πÊ¡ ∑§ Á‹∞ ‹ËøË ∑§ »Í§‹Ê¥ ∑§ øÊ⁄UÊ¥ •Ê⁄U øÄ∑§⁄U ‹ªÊÃ „Ò¥–
+(d)
+ßŸ◊¥ ‚ ‚„Ë ∑§ÕŸ „Ò¥ —
+•ÊÒ⁄U •ÊÒ⁄U •ÊÒ⁄U •ÊÒ⁄U
+(1) (a) (b) (2) (c) (d) (3) (a) (c) (4) (a) (d)
+P-I !SAS-24-I! 22 I
+69. Textbooks of EVS should reflect the recommendation of NCF 2005 of linking students’ life at school
+to their life outside. This implies :
+(1) Students are compelled to memorise few important concepts of EVS.
+(2) Textbook is the only source of knowledge.
+(3) Textbooks supports students to construct knowledge through all the given activities.
+(4) Teachers need to use textbooks as one of the teaching learning resource.
+ß¸flË∞‚ ∑§Ë ¬Ê∆UK¬ÈSÃ∑§Ê¥ ∑§Ê ÁfllÊÕË¸ S∑Í§‹ ∑§ ¡ËflŸ ∑§Ê ©Ÿ∑§ ’Ê„⁄U ∑§ ¡ËflŸ ‚ ¡Ê«∏Ÿ ∑§Ë ∞Ÿ‚Ë∞»§, ∑§Ë Á‚»§ÊÁ⁄U‡Ê
+2005
+∑§Ê ¬˝ÁÃÁ’¥Á’Ã ∑§⁄UŸÊ øÊÁ„∞– ß‚∑§Ê •Õ¸ „Ò —
+ÁfllÊÕË¸ ∑§ ◊„ûfl¬ÍáÊ¸ •flœÊ⁄UáÊÊ•Ê¥ ∑§Ê ÿÊŒ ∑§⁄UŸ ∑§ Á‹∞ ’Êäÿ „Ò¥–
+(1) EVS
+¬Ê∆UK¬ÈSÃ∑§ ôÊÊŸ ∑§Ê ∞∑§◊ÊòÊ dÊÃ „Ò–
+(2)
+¬Ê∆UK¬ÈSÃ∑¥§ ÁfllÊÁÕ¸ÿÊ¥ ∑§Ê ©Ÿ∑§ •Ê‚¬Ê‚ ∑§ ‚÷Ë dÊÃÊ¥ ∑§ ◊Êäÿ◊ ‚ ôÊÊŸ ∑§Ê ÁŸ◊Ê¸áÊ ∑§⁄UŸ ◊¥ ‚„ÊÿÃÊ ∑§⁄UÃË „Ò¥–
+(3)
+Á‡ÊˇÊ∑§Ê¥ ∑§Ê ¬Ê∆UK¬ÈSÃ∑§Ê¥ ∑§Ê Á‡ÊˇÊáÊ-•Áœª◊ ‚¥‚ÊœŸÊ¥ ◊¥ ∞∑§ ‚¥‚ÊœŸ ∑§ M§¬ ◊¥ ©¬ÿÊª ∑§⁄UŸ ∑§Ë •Êfl‡ÿ∑§ÃÊ „Ò–
+(4)
+70. It has been observed by bird watchers that there is a peculiar species of birds. The male bird make
+their own nests and the female bird looks at all the nests and selects the one she likes the best and
+decides in which nest to lay her eggs. The name of the bird is :
+(1) Tailor bird (2) Weaver bird (3) Indian Robin (4) Sun bird
+¬ÁˇÊÿÊ¥ ∑§Ê •äÿÿŸ ∑§⁄UŸ flÊ‹Ê¥ Ÿ ÿ„ ¬˝ˇÊáÊ Á∑§ÿÊ „Ò Á∑§ ¬ÁˇÊÿÊ¥ ∑§Ë ∞∑§ Áfl‡Ê· ¬˝¡ÊÁÃ ◊¥ Ÿ⁄U ¬ˇÊË •¬Ÿ-•¬Ÿ ÉÊÊ‚‹ ’ŸÊÃ
+„Ò¥– ◊ÊŒÊ ¬ˇÊË ©Ÿ ‚÷Ë ÉÊÊ¥‚‹Ê¥ ∑§Ê ŒπÃË „Ò– ©Ÿ◊¥ ‚ ©‚ ¡Ê ‚’‚ •ë¿UÊ ‹ªÃÊ „Ò ©‚◊¥ „Ë fl„ •á«U ŒŸ ∑§Ê ÁŸ‡øÿ
+∑§⁄UÃË „Ò– ß‚ ¬ˇÊË ∑§Ê ŸÊ◊ „Ò —
+ŒÁ¡¸Ÿ ÁøÁ«∏ÿÊ flËfl⁄U ¬ˇÊË ∑§‹Áø«UË ‡ÊÄ∑§⁄U πÊ⁄UÊ
+(1) (2) (3) (4)
+71. Read the following Statement (A) and Statement (B) below and choose the correct option :
+(A) : About 4700 years ago, some of the earliest cities flourished on the banks of river Indus and its
+tributaries.
+(B) : About 1500 years ago, cities developed on the banks of the Ganga and its tributaries.
+(1) Both (A) and (B) are true. (2) Both (A) and (B) are not true.
+(3) (A) is true but (B) is false. (4) (A) is false but (B) is true.
+ÁŸêŸÁ‹ÁπÃ ∑§ÕŸ (A) ÃÕÊ ∑§ÕŸ (B) ∑§Ê äÿÊŸ ‚ ¬…∏¥ ÃÕÊ ‚„Ë Áfl∑§À¬ ∑§Ê øÈŸÊfl ∑§⁄¥U–
+(A) : ‹ª÷ª 4700 fl·¸ ¬Ífl¸ Á‚¥œÈ ÃÕÊ ß‚∑§Ë ‚„Êÿ∑§ ŸÁŒÿÊ¥ ∑§ Á∑§ŸÊ⁄U ∑È§¿U •Ê⁄¥UÁ÷∑§ Ÿª⁄U »§‹-»Í§‹–
+(B) : ª¥ªÊ ÃÕÊ ß‚∑§Ë ‚„Êÿ∑§ ŸÁŒÿÊ¥ ∑§ Á∑§ŸÊ⁄U Ÿª⁄UÊ¥ ∑§Ê Áfl∑§Ê‚ ‹ª÷ª 1500 fl·¸ ¬Ífl¸ „È•Ê–
+(1) ŒÊŸÊ¥ (A) ∞fl¥ (B) ‚„Ë „Ò¥– (2) ŒÊŸÊ¥ (A) ∞fl¥ (B) ‚„Ë Ÿ„Ë¥ „Ò¥–
+(3) (A) ‚„Ë „Ò Á∑§ãÃÈ (B) ª‹Ã „Ò– (4) (A) ª‹Ã „Ò Á∑§ãÃÈ (B) ‚„Ë „Ò–
+72. Which of the following best reflects child -centred strategies in teaching EVS at primary level ?
+(a) Discussion (b) Demonstration (c) Lecture (d) Survey
+(1) (a) and (b) (2) (b) and (c) (3) (c) and (d) (4) (a) and (d)
+ÁŸêŸÁ‹ÁπÃ ◊¥ ‚ ∑§ÊÒŸ ’Ê‹-∑§ÁãŒ˝Ã ⁄UáÊŸËÁÃÿÊ¥ ∑§Ê ‚’‚ •ë¿UÊ Œ‡ÊÊ¸ÃÊ „Ò?
+øøÊ¸ ¬˝Œ‡Ê¸Ÿ √ÿÊÅÿÊŸ ‚fl¸ˇÊáÊ
+(a) (b) (c) (d)
+•ÊÒ⁄U •ÊÒ⁄U •ÊÒ⁄U •ÊÒ⁄U
+(1) (a) (b) (2) (b) (c) (3) (c) (d) (4) (a) (d)
+P-I !SAS-24-I! 23 I
+73. “Pochampalli” is famous district for its beautifully designed bright coloured sarees and for the
+special kind of weave which is also called Pochampalli. It is a part of :
+(1) Tamil Nadu (2) Karnataka (3) Maharashtra (4) Telangana
+““¬Êø◊¬À‹Ë”” πÍ’‚Í⁄UÃ Á«U¡ÊßŸ ∑§Ë ø◊∑§ŒÊ⁄U ⁄¥UªÊ¥ ∑§Ë ‚ÊÁ«∏UÿÊ¥ •ÊÒ⁄U Áfl‡Ê· ¬˝∑§Ê⁄U ∑§Ë ’ÈŸÊß¸ Á¡‚ ÷Ë ¬Êø◊¬À‹Ë „Ë ∑§„Ã
+„Ò¥ ∑§ Á‹∞ ÁflÅÿÊÃ Á¡‹Ê „Ò– ÿ„ ÁŸêŸÁ‹ÁπÃ ◊¥ ‚ Á∑§‚∑§Ê ÷Êª „Ò?
+ÃÁ◊‹ŸÊ«ÈU ∑§ŸÊ¸≈U∑§ ◊„Ê⁄UÊc≈˛U Ã‹¥ªÊŸÊ
+(1) (2) (3) (4)
+74. Seema, an EVS teacher organised a field trip to zoo for her students. Which of the following are
+the most appropriate objectives of the trip to the zoo ?
+(a) Recall names of animals in the zoo
+(b) To relate concepts related to animals
+(c) To promote process skills
+(d) Assessment of students’ learning at the zoo
+(1) (a), (b) and (c) (2) (b), (c) and (d)
+(3) (a), (c) and (d) (4) (a) and (b)
+‚Ë◊Ê, ∞∑§ ß¸flË∞‚ Á‡ÊÁˇÊ∑§Ê Ÿ •¬Ÿ ¿UÊòÊÊ¥ ∑§ Á‹∞ ÁøÁ«∏ÿÊÉÊ⁄U ∞∑§ ˇÊòÊ ÷˝◊áÊ (»§ËÀ«U Á≈˛U¬) ∑§Ê •ÊÿÊ¡Ÿ Á∑§ÿÊ–
+ÁŸêŸÁ‹ÁπÃ ◊¥ ‚ ∑§ÊÒŸ ÁøÁ«∏ÿÊÉÊ⁄U ∑§Ë ÿÊòÊÊ ∑§ ‚’‚ ©¬ÿÈÄÃ ©g‡ÿ „Ò¥?
+ÁøÁ«∏ÿÊÉÊ⁄U ∑§ ¡ÊŸfl⁄UÊ¥ ∑§ ŸÊ◊ ÿÊŒ ∑§⁄UŸÊ
+(a)
+¡ÊŸfl⁄UÊ¥ ‚ ‚¥’¥ÁœÃ •flœÊ⁄UáÊÊ•Ê¥ ∑§Ê ¡Ê«∏ŸÊ
+(b)
+¬˝Á∑˝§ÿÊ ∑§ÊÒ‡Ê‹ ∑§Ê ’…∏ÊflÊ ŒŸÊ
+(c)
+ÁøÁ«∏ÿÊÉÊ⁄U ◊¥ ¿UÊòÊÊ¥ ∑§ ‚ËπŸ ∑§Ê •Ê∑§‹Ÿ
+(d)
+•ÊÒ⁄U •ÊÒ⁄U
+(1) (a), (b) (c) (2) (b), (c) (d)
+•ÊÒ⁄U •ÊÒ⁄U
+(3) (a), (c) (d) (4) (a) (b)
+75. An EVS teacher taught about animals to her students and ask them to do the following task :
+(a) Write names of various animals around them
+(b) Observe activities of different animals
+(c) Classify animals into categories based on observations
+(d) Define the term ‘Animal’
+Which of the above is NOT appropriate for students of primary level as per the nature of EVS at
+primary level ?
+(1) (a) and (c) (2) (b) and (c) (3) Only (c) (4) Only (d)
+∞∑§ ß¸flË∞‚ Á‡ÊÁˇÊ∑§Ê Ÿ •¬Ÿ ¿UÊòÊÊ¥ ∑§Ê ¡ÊŸfl⁄UÊ¥ ∑§ ’Ê⁄U ◊¥ ¬…∏ÊÿÊ •ÊÒ⁄U ©ã„¥ ÁŸêŸÁ‹ÁπÃ ∑§Êÿ¸ ∑§⁄UŸ ∑§ Á‹∞ ∑§„Ê —
+•Ê‚-¬Ê‚ ∑§ ÁflÁ÷ãŸ ¡ÊŸfl⁄UÊ¥ ∑§ ŸÊ◊ Á‹Áπ∞–
+(a)
+ÁflÁ÷ãŸ ¡ÊŸfl⁄UÊ¥ ∑§Ë ªÁÃÁflÁœÿÊ¥ ∑§Ê •fl‹Ê∑§Ÿ ∑§⁄UÊ–
+(b)
+•fl‹Ê∑§Ÿ ∑§ •ÊœÊ⁄U ¬⁄U ¡ÊŸfl⁄UÊ¥ ∑§Ê üÊÁáÊÿÊ¥ ◊¥ flªË¸∑Î§Ã ∑§⁄UÊ–
+(c)
+¡ÊŸfl⁄U ∑§Ê ¬Á⁄U÷ÊÁ·Ã ∑§⁄UÊ–
+(d)
+©¬⁄UÊÄÃ ◊¥ ‚ ∑§ÊÒŸ ‚Ê ¬˝ÊÕÁ◊∑§ SÃ⁄U ∑§ ¿UÊòÊÊ¥ ∑§ Á‹∞ ©¬ÿÈÄÃ Ÿ„Ë¥ „Ò?
+•ÊÒ⁄U •ÊÒ⁄U ∑§fl‹ ∑§fl‹
+(1) (a) (c) (2) (b) (c) (3) (c) (4) (d)
+P-I !SAS-24-I! 24 I
+76. The territorial states of Haryana are :
+(1) Himachal Pradesh, Rajasthan, Uttar Pradesh
+(2) Uttar Pradesh, Uttarakhand, Madhya Pradesh
+(3) Himachal Pradesh, Punjab, Bihar
+(4) Bihar, Punjab, Uttar Pradesh
+„Á⁄UÿÊáÊÊ ∑§ ‚Ë◊ÊãÃflÃË¸ ⁄UÊíÿ „Ò¥ —
+Á„◊Êø‹ ¬˝Œ‡Ê, ⁄UÊ¡SÕÊŸ, ©ûÊ⁄U ¬˝Œ‡Ê
+(1)
+©ûÊ⁄U ¬˝Œ‡Ê, ©ûÊ⁄UÊπá«U, ◊äÿ ¬˝Œ‡Ê
+(2)
+Á„◊Êø‹ ¬˝Œ‡Ê, ¬¥¡Ê’, Á’„Ê⁄U
+(3)
+Á’„Ê⁄U, ¬¥¡Ê’, ©ûÊ⁄U ¬˝Œ‡Ê
+(4)
+77. Read statements (A) and (R) properly and then answer the following questions.
+(A) : Silkworm can find his female worm from many kilometers away by her smell.
+(R) : Some female insects release ‘Pheromones’ which can be recognised by their males by smell.
+Choose the correct answer :
+(1) Both (A) and (R) are correct and (R) explains (A).
+(2) Both (A) and (R) are correct but (R) does not explains (A).
+(3) (A) is correct but (R) is incorrect.
+(4) (A) is incorrect but (R) is correct.
+∑§ÕŸ (A) ÃÕÊ (R) ∑§Ê äÿÊŸ ‚ ¬…∏¥ ÃÕÊ ÁŸêŸÁ‹ÁπÃ ¬˝‡ŸÊ¥ ∑§Ê ©ûÊ⁄U Œ¥–
+(A) : ⁄U‡Ê◊ ∑§Ê ∑§Ë«∏Ê •¬ŸË ◊ÊŒÊ ∑§Ê ©‚∑§Ë ª¥œ ‚ ∑§ß¸ Á∑§‹Ê◊Ë≈U⁄U ŒÍ⁄U ‚ „Ë ¬„øÊŸ ‹ÃÊ „Ò–
+(R) : ∑È§¿U ◊ÊŒÊ ∑§Ë«∏ “»Ò§⁄UË◊ÊŸ‚˜” ¿UÊ«∏Ã „Ò¥ Á¡‚∑§ ª¥œ ∑§Ê Ÿ⁄U ∑§Ë«∏ ¬„øÊŸ ‹Ã „Ò¥–
+ÁŸêŸÁ‹ÁπÃ ◊¥ ‚ ‚„Ë ©ûÊ⁄U ∑§Ê øÈŸÊfl ∑§⁄¥U —
+(1) ŒÊŸÊ¥ ∑§ÕŸ (A) ∞fl¥ (R) ‚„Ë „Ò ÃÕÊ (R) , (A) ∑§Ë ‚„Ë √ÿÊÅÿÊ ∑§⁄UÃÊ „Ò–
+(2) ŒÊŸÊ¥ ∑§ÕŸ (A) ∞fl¥ (R) ‚„Ë „Ò¥ Á∑§ãÃÈ (R), (A) ∑§Ë ‚„Ë √ÿÊÅÿÊ Ÿ„Ë¥ ∑§⁄UÃÊ „Ò–
+(3) (A) ‚„Ë „Ò Á∑§ãÃÈ (R) ª‹Ã „Ò–
+(4) (A) ª‹Ã „Ò Á∑§ãÃÈ (R) ‚„Ë „Ò–
+P-I !SAS-24-I! 25 I
+78. Read the following statements carefully :
+Statement (I) : EVS syllabus is divided into 6 themes Water, Relationships, Food, Transport,
+Shelter, and How things work.
+Statements (II) :The themes of EVS are close to children’s life.
+(1) Both Statements (I) and (II) are true
+(2) Both Statements (I) and (II) are false
+(3) Statement (I) is true and Statement (II) is false.
+(4) Statement (I) is false and Statement (II) is true
+ÁŸêŸÁ‹ÁπÃ ∑§ÕŸÊ¥ ∑§Ê äÿÊŸ ‚ ¬Á…∏∞ —
+∑§ÕŸ (I) : ß¸.flË.∞‚ ¬Ê∆UK∑˝§◊ ∑§Ê 6 ÕË◊ ◊¥ ’Ê°≈UÊ ªÿÊ „Ò ¬ÊŸË, •Ê¬‚Ë ‚¥’¥œ, ÷Ê¡Ÿ, ÿÊÃÊÿÊÃ, •ÊflÊ‚ ∞fl¥ flSÃÈ∞° ∑Ò§‚
+∑§Êÿ¸ ∑§⁄UÃË „Ò¥–
+∑§ÕŸ (II) : ß¸.flË.∞‚ ∑§ ÕË◊ ’ìÊÊ¥ ∑§ ¡ËflŸ ∑§ ’„ÈÃ ∑§⁄UË’ „Ò¥–
+(1) ŒÊŸÊ¥ ∑§ÕŸ (I) ∞fl¥ (II) ‚„Ë „Ò–
+(2) ŒÊŸÊ¥ ∑§ÕŸ (I) ∞fl¥ (II) ª‹Ã „Ò–
+(3) ∑§ÕŸ (I) ‚„Ë „Ò ∞fl¥ ∑§ÕŸ (II) ª‹Ã „Ò–
+(4) ∑§ÕŸ (I) ª‹Ã „Ò ∞fl¥ ∑§ÕŸ (II) ‚„Ë „Ò–
+79. Read the following statements carefully and choose the correct options :
+Statement (A) : Xylem transports water and minerals from roots to rest of the plant.
+Statement (B) : Phloem translocates food from leaves to various parts of the plant.
+(1) Both (A) and (B) are true (2) Both (A) and (B) are false
+(3) (A) is true, but (B) is false (4) (A) is false, but (B) is true
+ÁŒ∞ ª∞ ∑§ÕŸÊ¥ ∑§Ê äÿÊŸ¬Ífl¸∑§ ¬…∏¥ ∞fl¥ ‚„Ë Áfl∑§À¬ øÈŸ¥ —
+∑§ÕŸ (A) : $¡Êß‹◊ ¡‹ •ÊÒ⁄U πÁŸ$¡Ê¥ ∑§Ê ¡«∏Ê¥ ‚ ¬ÊÒœ-∑§ ’Ê∑§Ë Á„S‚Ê¥ Ã∑§ ¬„È°øÊÃÊ „Ò–
+∑§ÕŸ (B) : $$ç‹Ê∞◊ ÷Ê¡Ÿ ∑§Ê ¬ÁûÊÿÊ¥ ‚ ¬ÊÒœ ∑§ ÁflÁ÷ãŸ ÷ÊªÊ¥ ◊¥ SÕÊŸÊ¥ÃÁ⁄UÃ ∑§⁄UÃÊ „Ò–
+(1) ŒÊŸÊ¥ (A) •ÊÒ⁄U (B) ‚„Ë „¥Ò– (2) ŒÊŸÊ¥ (A) •ÊÒ⁄U (B) ‚„Ë Ÿ„Ë¥ „Ò¥–
+(3) (A) ‚„Ë „Ò •ÊÒ⁄U (B) ª‹Ã „Ò– (4) (A) ª‹Ã „Ò •ÊÒ⁄U (B) ‚„Ë „Ò–
+80. Comprehensive evaluation means holistic way of evaluating a student. The ways in which an
+EVS teacher can assess her students for comprehensive evaluation in EVS are :
+(1) teachers’ observation
+(2) half yearly and annual exams
+(3) rating scale during assessment of activities
+(4) portfolio
+√ÿÊ¬∑§ ◊ÍÀÿÊ¥∑§Ÿ ∑§Ê •Õ¸ „Ò ∞∑§ ¿UÊòÊ ∑§Ê ◊ÍÀÿÊ¥∑§Ÿ ∑§⁄UŸ ∑§Ê ‚◊ª˝ Ã⁄UË∑§Ê– Á¡‚ Ã⁄UË∑§ ‚ ∞∑§ ß¸flË∞‚ Á‡ÊˇÊ∑§ ß¸flË∞‚ ◊¥
+√ÿÊ¬∑§ ◊ÍÀÿÊ¥∑§Ÿ ∑§ Á‹∞ •¬Ÿ ¿UÊòÊÊ¥ ∑§Ê •Ê∑§‹Ÿ ∑§⁄U ‚∑§ÃÊ „Ò fl„ „Ò —
+Á‡ÊˇÊ∑§Ê¥ ∑§Ê •fl‹Ê∑§Ÿ
+(1)
+•œ¸flÊÁ·¸∑§ •ÊÒ⁄U flÊÁ·¸∑§ ¬⁄UËˇÊÊ
+(2)
+ªÁÃÁflÁœÿÊ¥ ∑§ ◊ÍÀÿÊ¥∑§Ÿ ∑§ Á‹∞ ⁄UÁ≈¥Uª S∑§‹
+(3)
+¬Ê≈¸U$»§ÊÁ‹ÿÊ
+(4)
+P-I !SAS-24-I! 26 I
+81. Ravi took some water in a glass. He puts a lemon in it. Then, he keeps adding a lot of salt into the
+water, half a spoon at a time. After some time, he notices that :
+(1) Lemon sinks in water. (2) Lemon floats in water.
+(3) Lemon splits in water. (4) Lemon remains mid-way in glass of water.
+⁄UÁfl Ÿ ∞∑§ Áª‹Ê‚ ◊¥ ¡‹ Á‹ÿÊ– ©‚◊¥ ©‚Ÿ ∞∑§ ‚Ê’ÍÃ ŸË¥’Í «UÊ‹ ÁŒÿÊ– Á»§⁄U, fl„ ©‚ Áª‹Ê‚ ◊¥ ’„ÈÃ ‚Ê⁄UÊ Ÿ◊∑§ «UÊ‹ÃÊ
+„Ò, •ÊœÊ øê◊ø ∞∑§ ’Ê⁄U ◊¥– ∑È§¿U ‚◊ÿ ¬‡øÊÃ, ©‚Ÿ ¬ÊÿÊ Á∑§ —
+ŸË¥’Í ¡‹ ◊¥ «ÍU’ ªÿÊ– ŸË¥’Í ¡‹ ◊¥ ÃÒ⁄UŸ ‹ªÊ–
+(1) (2)
+ŸË¥’Í ¡‹ ◊¥ ŒÊ ÷ÊªÊ¥ ◊¥ ≈ÍU≈U ªÿÊ– ŸË¥’Í Áª‹Ê‚ ∑§ ’ËøÊ¥’Ëø ø‹Ê ªÿÊ–
+(3) (4)
+82. Which of the following sets depicts the themes of EVS at primary level ?
+(1) Weather, Water, Travel
+(2) Food, Material, Shelter
+(3) Family and Friends, Travel, Natural resources
+(4) Shelter, Travel, Things we make and do
+ÁŸêŸÁ‹ÁπÃ ◊¥ ‚ ∑§ÊÒŸ ‚Ê ‚◊Í„ ¬˝ÊÕÁ◊∑§ SÃ⁄U ¬⁄U ß¸flË∞‚ ∑§ ÕË◊Ê¥ ∑§Ê Œ‡ÊÊ¸ÃÊ „Ò?
+◊ÊÒ‚◊, ¬ÊŸË, ÿÊòÊÊ
+(1)
+÷Ê¡Ÿ, ¬ŒÊÕ¸, •ÊflÊ‚
+(2)
+¬Á⁄UflÊ⁄U •ÊÒ⁄U Á◊òÊ, ÿÊòÊÊ, ¬˝Ê∑Î§ÁÃ∑§ ‚¥‚ÊœŸ
+(3)
+•ÊflÊ‚, ÿÊòÊÊ, øË¡¥ ¡Ê „◊ ’ŸÊÃ „Ò •ÊÒ⁄U ∑§⁄UÃ „Ò–
+(4)
+83. Which one of the following statements regarding Al-Biruni is NOT true ? Choose the correct
+answer.
+(1) The place that Al-Biruni came from is now called Uzbekistan.
+(2) More than a thousand years ago, he came to India.
+(3) He did not write anything about ponds in India.
+(4) He has praised the making of ponds in India.
+•‹-Á’M§ŸË ∑§ ’Ê⁄U ◊¥ ÁŸêŸÁ‹ÁπÃ ∑§ÕŸÊ¥ ◊¥ ‚ ∑§ÊÒŸ-‚Ê ∞∑§ ∑§ÕŸ ‚„Ë Ÿ„Ë¥ „Ò? ‚„Ë ©ûÊ⁄U øÈŸ¥ —
+•‹-Á’M§ŸË ¡„Ê° ‚ •Êÿ Õ ©‚ •Ê¡∑§‹ ©ï’Á∑§SÃÊŸ ∑§„Ã „Ò¥–
+(1)
+„¡Ê⁄ ‚ ÷Ë íÿÊŒÊ ‚Ê‹ ¬„‹ fl„ ÷Ê⁄UÃ •Êÿ Õ–
+(2)
+©‚Ÿ ÷Ê⁄UÃ ∑§ ©‚ ‚◊ÿ ∑§ ÃÊ‹Ê’Ê¥ ∑§ ’Ê⁄U ◊¥ ∑È§¿U ÷Ë Ÿ„Ë¥ Á‹πÊ „Ò–
+(3)
+©‚Ÿ •¬Ÿ ‹πÊ¥ ◊¥ ÷Ê⁄UÃ ◊¥ ÃÊ‹Ê’ ’ŸÊŸ ∑§Ë Ã∑§ŸË∑§ ∑§Ë ¬˝‡Ê¥‚Ê ∑§Ë „Ò–
+(4)
+84. Consider the following statements (A) and (B).
+Statement (A) : Bora is a common variety of rice used in Assam.
+Statement (B) : Paddy grows well in clayey soil and requires a lot of water.
+Select the correct code from the following.
+(1) (A) and (B) both are correct (2) (A) and (B) both are wrong
+(3) (A) is correct but (B) is wrong (4) (A) is wrong but (B) is correct
+ŸËø ÁŒ∞ ª∞ ∑§ÕŸÊ¥ (A) •ÊÒ⁄U (B) ¬⁄U ÁfløÊ⁄U ∑§ËÁ¡∞ —
+∑§ÕŸ (A) : ’Ê⁄UÊ •‚◊ ◊¥ ©¬ÿÊª ∑§Ë ¡ÊŸ flÊ‹ œÊŸ ∑§Ê ∞∑§ ‚Ê◊Êãÿ ¬˝∑§Ê⁄U „Ò–
+∑§ÕŸ (B) : œÊŸ ∑§Ë πÃË Áø∑§ŸË Á◊^Ë ◊¥ •ë¿UË „ÊÃË „Ò ∞fl¥ ß‚ »§‚‹ ∑§Ê ¬˝øÈ⁄U ◊ÊòÊÊ ◊¥ ¬ÊŸË øÊÁ„∞–
+ÁŸêŸÁ‹ÁπÃ ◊¥ ‚ ‚„Ë ∑§Ê«U øÈÁŸ∞ —
+(1) (A) •ÊÒ⁄U (B) ŒÊŸÊ¥ ‚„Ë „Ò (2) (A) •ÊÒ⁄U (B) ŒÊŸÊ¥ ª‹Ã „Ò
+(3) (A) ‚„Ë „Ò ¬⁄UãÃÈ (B) ª‹Ã „Ò (4) (A) ª‹Ã „Ò ¬⁄UãÃÈ (B) ‚„Ë „Ò
+P-I !SAS-24-I! 27 I
+85. What is the mass of an object with a density of 12 g/ml and a volume of 3 ml ?
+(1) 15 g (2) 24 g (3) 36 g (4) 4 g
+©‚ flSÃÈ ∑§Ê Œ˝√ÿ◊ÊŸ ôÊÊÃ ∑§Á⁄U∞ Á¡‚∑§Ê ÉÊŸàfl ª˝Ê Á◊‹Ë ‹Ë≈U⁄U „Ò ÃÕÊ •ÊÿÃŸ Á◊‹Ë ‹Ë≈U⁄U „¥Ò–
+12 / 3
+ª˝Ê. ª˝Ê. ª˝Ê. ª˝Ê.
+(1) 15 (2) 24 (3) 36 (4) 4
+86. You wish that students learn by peer-learning strategies. Which strategy will you adopt to form
+groups ?
+(1) Make a roll number-wise groups of 4/5 students
+(2) Make a homogeneous group of students according to their scores in examination
+(3) Make a heterogeneous group based on participation and cooperation
+(4) Form a group of 5 students of same gender and socio-economic background
+•Ê¬ øÊ„Ã „Ò¥ Á∑§ ¿UÊòÊ ‚„¬Ê∆UË-Á‡ÊˇÊáÊ ⁄UáÊŸËÁÃÿÊ¥ mÊ⁄UÊ ‚Ëπ¥– •Ê¬ ‚◊Í„ ∑Ò§‚ ’ŸÊ∞°ª ?
+¿UÊòÊÊ¥ ∑§ ⁄UÊ‹ Ÿ¥’⁄U ∑§ •ŸÈ‚Ê⁄U ‚◊Í„ ’ŸÊ∞°–
+(1) 4/5
+¬⁄UËˇÊÊ ◊¥ ¬˝ÊåÃ •¥∑§Ê¥ ∑§ •ŸÈ‚Ê⁄U ¿UÊòÊÊ¥ ∑§Ê ∞∑§ ‚◊ÊŸ ‚◊Í„ ’ŸÊ∞°–
+(2)
+÷ÊªËŒÊ⁄UË •ÊÒ⁄U ‚„ÿÊª ∑§ •ÊœÊ⁄U ¬⁄U ∞∑§ Áfl·◊ ‚◊Í„ ’ŸÊ∞°–
+(3)
+‚◊ÊŸ Á‹¥ª •ÊÒ⁄U ‚Ê◊ÊÁ¡∑§-•ÊÁÕ¸∑§ ¬Îc∆U÷ÍÁ◊ ∑§ ¿UÊòÊÊ¥ ∑§Ê ∞∑§ ‚◊Í„ ’ŸÊ∞°–
+(4) 5
+87. Which one of the following statements regarding Ghadsisar Lake is NOT true ?
+(1) King Ghadsi of Jaisalmer got it made.
+(2) It was built around 650 years ago.
+(3) It was connected with nine lakes.
+(4) It is in use till today.
+ÉÊ«∏‚Ë‚⁄ ‚ ‚¥’¥ÁœÃ ÁŸêŸÁ‹ÁπÃ ∑§ÕŸÊ¥ ◊¥ ‚ ∑§ÊÒŸ-‚Ê ∞∑§ ∑§ÕŸ ‚„Ë Ÿ„Ë¥ „Ò? ‚„Ë ©ûÊ⁄U øÈŸ¥–
+¡Ò‚‹◊⁄U ⁄UÊ¡Ê ÉÊ«∏‚Ë Ÿ ß‚ ’ŸÊÿÊ ÕÊ–
+(1)
+ÿ„ ‹ª÷ª ‚Ê‹ ¬„‹ ’ŸÊÿÊ ªÿÊ ÕÊ–
+(2) 650
+ÿ„ ŸÊÒ ÃÊ‹Ê’Ê¥ ‚ ¡È«∏Ê „È•Ê ÕÊ–
+(3)
+ÿ„ ÃÊ‹Ê’ •Ê¡ ÷Ë ¬˝ÿÊª ◊¥ „Ò–
+(4)
+88. Assertion : The theme ‘Family and Friends’ is a major theme in EVS and ‘Plants and Animals’
+are presented as a subtheme of ‘Family and Friends’.
+Reason : The interdependence of human beings and other forms of life is highlighted
+through themes.
+(1) Both the assertion and reason are correct and the Reason is the correct explanation of the
+Assertion.
+(2) The assertion and the reason are correct but the Reason is not the correct explanation of the
+Assertion.
+(3) Assertion is true but the reason is false.
+(4) The statement of the assertion is false but the reason is true.
+•Á÷∑§ÕŸ : ÕË◊ “¬Á⁄UflÊ⁄U •ÊÒ⁄U Á◊òÊ” ß¸flË∞‚ ◊¥ ∞∑§ ¬˝◊Èπ ÕË◊ „Ò •ÊÒ⁄U “¬ÊÒœÊ¥ •ÊÒ⁄U ¡ÊŸfl⁄UÊ¥” ∑§Ê “¬Á⁄UflÊ⁄U •ÊÒ⁄U Á◊òÊ” ∑§
+©¬-ÕË◊ ∑§ M§¬ ◊¥ ¬˝SÃÈÃ Á∑§ÿÊ ¡ÊÃÊ „Ò–
+∑§Ê⁄UáÊ — ÕË◊ ∑§ mÊ⁄UÊ ◊ŸÈcÿ •ÊÒ⁄U ¡ËflŸ ∑§ •ãÿ M§¬Ê¥ ∑§Ë •ãÿÊãÿÊÁüÊÃÃÊ ¬⁄U ¬˝∑§Ê‡Ê «UÊ‹Ê ªÿÊ „Ò–
+•Á÷∑§ÕŸ •ÊÒ⁄U ∑§Ê⁄UáÊ ŒÊŸÊ¥ ‚„Ë „Ò¥ •ÊÒ⁄U ∑§Ê⁄UáÊ •Á÷∑§ÕŸ ∑§Ë ‚„Ë √ÿÊÅÿÊ „Ò–
+(1)
+•Á÷∑§ÕŸ •ÊÒ⁄U ∑§Ê⁄UáÊ ‚„Ë „Ò¥ ‹Á∑§Ÿ ∑§Ê⁄UáÊ, •Á÷∑§ÕŸ ∑§Ë ‚„Ë √ÿÊÅÿÊ Ÿ„Ë¥ ∑§⁄UÃÊ „Ò–
+(2)
+•Á÷∑§ÕŸ ‚„Ë „Ò ‹Á∑§Ÿ ∑§Ê⁄UáÊ ª‹Ã „Ò–
+(3)
+•Á÷∑§ÕŸ ª‹Ã „Ò ¬⁄UãÃÈ ∑§Ê⁄UáÊ ‚„Ë „Ò–
+(4)
+P-I !SAS-24-I! 28 I
+89. Read the given statements carefully and choose the correct option.
+Assertion (A) : We can cook food easily at sea level as compared to higher altitudes.
+Reason (R) : At high altitudes, boiling point of water increases.
+(1) Both (A) and (R) are true and (R) is the correct explanation of (A).
+(2) Both (A) and (R) are true but (R) is not the correct explanation of (A).
+(3) (A) is true but (R) is false.
+(4) (A) is false but (R) is true.
+ÁŒ∞ ª∞ ∑§ÕŸÊ¥ ∑§Ê äÿÊŸ¬Ífl¸∑§ ¬…∏¥ •ÊÒ⁄U ‚„Ë Áfl∑§À¬ øÈŸ¥ —
+•Á÷∑§ÕŸ (A) : „◊ •Áœ∑§ ™°§øÊß¸ ∑§Ë ÃÈ‹ŸÊ ◊¥ ‚◊ÈŒ˝ Ã‹ ¬⁄U •Ê‚ÊŸË ‚ πÊŸÊ ¬∑§Ê ‚∑§Ã „Ò¥–
+∑§Ê⁄UáÊ (R) : •Áœ∑§ ™°§øÊß¸ ¬⁄U ¬ÊŸË ∑§Ê ÄflÕŸÊ°∑§ ’…∏ ¡ÊÃÊ „Ò–
+(1) ŒÊŸÊ¥ (A) •ÊÒ⁄U (R) ‚àÿ „Ò¥ •ÊÒ⁄U (R), (A) ∑§Ê ‚„Ë S¬c≈UË∑§⁄UáÊ „Ò–
+(2) ŒÊŸÊ¥ (A) •ÊÒ⁄U (R) ‚àÿ „Ò¥ ‹Á∑§Ÿ (R), (A) ∑§Ê ‚„Ë S¬c≈UË∑§⁄UáÊ Ÿ„Ë¥ „Ò–
+(3) (A) ‚àÿ „Ò ‹Á∑§Ÿ (R) •‚àÿ „Ò–
+(4) (A) •‚àÿ „Ò ‹Á∑§Ÿ (R) ‚àÿ „Ò–
+90. Nina, an EVS teacher of class 5 gives a group assignment to her students that they have to visit
+nearby agricultural farms and find out information about the implements used by farmers during
+agriculture and the type of crops they grow. They also have to collect photographs and prepare a
+report. What process skills and learning indicators are involved here ?
+(1) Questioning, Expression, Inferring
+(2) Questioning, Experimentation, sensitivity towards environment
+(3) Hypothesising, inferring, expression
+(4) Prediction, experimentation, observing
+∑§ˇÊÊ ∑§Ë ß¸flË∞‚ Á‡ÊÁˇÊ∑§Ê ŸËŸÊ •¬Ÿ ¿UÊòÊÊ¥ ∑§Ê ∞∑§ ‚◊Í„ •‚ÊßŸ◊¥≈U ŒÃË „Ò Á∑§ ©ã„¥ ¬Ê‚ ∑§ ∑Î§Á· »§Ê◊ÊZ ∑§Ê ŒÊÒ⁄UÊ ∑§⁄UŸÊ „Ò
+5
+•ÊÒ⁄U ∑Î§Á· ∑§ ŒÊÒ⁄UÊŸ Á∑§‚ÊŸÊ¥ mÊ⁄UÊ ©¬ÿÊª Á∑§∞ ¡ÊŸ flÊ‹ ©¬∑§⁄UáÊÊ¥ •ÊÒ⁄U ©Ÿ∑§ mÊ⁄UÊ ©ªÊß¸ ¡ÊŸ flÊ‹Ë »§‚‹Ê¥ ∑§ ’Ê⁄U ◊¥
+¡ÊŸ∑§Ê⁄UË ¬˝ÊåÃ ∑§⁄UŸË „Ò– ©ã„¥ »§Ê≈UÊ ÷Ë ∑§‹Ä≈U ∑§⁄U Á⁄U¬Ê≈¸U ÃÒÿÊ⁄U ∑§⁄UŸË „Ò– ÿ„Ê° ∑§ÊÒŸ ‚ ¬˝Á∑˝§ÿÊ ∑§ÊÒ‡Ê‹ •ÊÒ⁄U ‚ËπŸ ∑§
+‚¥∑§Ã∑§ ‡ÊÊÁ◊‹ „Ò¥?
+¬˝‡Ÿ ∑§⁄UŸÊ, •Á÷√ÿÁÄÃ ∑§⁄UŸÊ, ¬Á⁄UáÊÊ◊ ÁŸ∑§Ê‹ŸÊ
+(1)
+¬˝‡Ÿ ¬Í¿UŸÊ, ¬˝ÿÊª ∑§⁄UŸÊ, ¬ÿÊ¸fl⁄UáÊ ∑§ ¬˝ÁÃ ‚¥flŒŸ‡ÊË‹ÃÊ
+(2)
+¬Á⁄U∑§À¬ŸÊ, ¬Á⁄UáÊÊ◊ ÁŸ∑§Ê‹ŸÊ, •Á÷√ÿÁÄÃ
+(3)
+•ŸÈ◊ÊŸ, ¬˝ÿÊª, •fl‹Ê∑§Ÿ
+(4)
+P-I !SAS-24-I! 29 I
+PART - IV
+LANGUAGE – I : ENGLISH
+IMPORTANT : Candidates should attempt questions from Part-IV (Q. No. 91-120), if they have
+opted for ENGLISH as LANGUAGE-I only.
+Read the passage given below and answer the questions that follow. (91-99)
+Yet as soon as she saw him, she did not look as Alfred thought she would look : she smiled, her
+blue eyes never wavered, and with a calmness and dignity that made them forget that her clothes
+seemed to have been thrown on her, she put out her hand to Mr. Carr and said politely, “I’m
+Mrs. Higgins. I’m Alfred’s mother.”
+Mr. Carr was a bit embarrassed by her lack of terror and her simplicity and he hardly knew what
+to say to her, so she asked, “Is Alfred in trouble ?”
+“He is. He’s been taking things from the store. I caught him red-handed. Little things like compacts
+and toothpaste and lipsticks. Stuff he can sell easily,” the proprietor said.
+Mrs. Higgins put out her hand and touched Sam Carr’s arm with an understanding gentleness,
+and speaking as though afraid of disturbing him, she said, “If you would only listen to me before doing
+anything”. Her simple earnestness made her shy; her humility made her falter and look away, but in a
+moment she was smiling gravely again and she said with a kind of patient dignity, “What do you intend
+to do, Mr. Carr ?”
+“I am going to get a cop. That’s what I ought to do.”
+“Yes, I suppose so. It’s not for me to say, because he’s my son. Yet I sometimes think a little good
+advice is the best thing for a boy when he is at a certain period in his life,” she said.
+Alfred couldn’t understand his mother’s quiet composure, for if they had been at home and someone
+had suggested that he was going to be arrested, he knew she would be in a rage and would cry out
+against him.
+91. Study the following statements :
+(a) When she entered the drug store, Mrs. Higgins was not properly dressed.
+(b) She looked like the mother of a guilty person.
+(c) Mr. Carr did not expect her to be calm and dignified.
+(1) (a) and (b) are right but (c) is wrong.
+(2) (b) and (c) are right but (a) is wrong.
+(3) (a) and (c) are right but (b) is wrong.
+(4) (a) and (b) are wrong but (c) is right.
+92. Having looked at his mother, Alfred was :
+(1) shocked (2) scared
+(3) pleased (4) surprised
+P-I !SAS-24-I! 30 I
+93. Study the following statements :
+(a) Mr. Carr intended to get Alfred arrested.
+(b) Mrs. Higgins wanted him to be given a chance to reform himself.
+(1) (a) is right and (b) is wrong. (2) (b) is right and (a) is wrong.
+(3) Both (a) and (b) are right. (4) Both (a) and (b) are wrong.
+94. ‘... her humility made her falter....’
+Choose the word opposite in meaning to the underlined one.
+(1) pride (2) frankness (3) intrigue (4) hitch
+95. ‘.... her blue eyes never wavered'.
+Choose the word nearest in meaning to the underlined one.
+(1) advanced (2) hesitated (3) waved (4) snickered
+96. ‘..... he hardly knew whattosaytoher.'
+The underlined is a/an __________ clause.
+(1) Principal (2) Noun (3) Adjective (4) Adverb
+97. Which of the following statements is not correct ?
+(1) Alfred was a petty thief.
+(2) He stole cream, compact and lipstick from the store.
+(3) At Mr. Carr’s accusation, Alfred’s mother felt intimidated.
+(4) Yet, she was very gentle in responding to him.
+98. ‘.... made them forget that her clothes seemed...’
+The underlined word is a/an __________.
+(1) Noun (2) Pronoun (3) Preposition (4) Conjunction
+99. Which of the following statements is not correct ?
+(1) At home, Mrs. Higgins would have been enraged.
+(2) Outside, her conduct was like that of a caring mother.
+(3) When she introduced herself, Mr. Carr felt stupefied
+(4) He felt that he would have to forgive Alfred.
+P-I !SAS-24-I! 31 I
+Read the extract given below and answer the questions that follow. (100-105)
+All the world is a stage,
+And all the men and women merely players;
+They have their exits and their entrances;
+And one man in his time plays many parts,
+His acts being seven ages. At first the infant,
+Mewling and puking in the nurse’s arms;
+Then the whining school-boy, with his satchel
+And shining morning face, creeping like snail
+Unwilling to school. And then the lover,
+Sighing like a furnace, with a woeful ballad
+Made to his mistress’ eyebrow. Then a soldier,
+Full of strange oaths, and bearded like a pard,
+Jealous in honour, sudden and quick in quarrel,
+Seeking the bubble-reputation
+Even in the cannon’s mouth.
+100. A soldier is jealous about his honour as :
+(1) he is jealous of his enemy. (2) he is very sensitive about his honour.
+(3) he is ferocious like a leopard. (4) he wants to win at any cost.
+101. ‘..... their exits and entrances.....’
+The figure of speech used here is :
+(1) Simile (2) Metaphor (3) Personification (4) Hyperbole
+102. A school-boy :
+(1) is reluctant to go to school. (2) looks beautiful in the morning.
+(3) likes his teachers. (4) both (1) and (2)
+103. What do all men and women do ?
+(1) perform various roles in life
+(2) indulge in indoor games like chess, cards, etc.
+(3) play outdoor games like football, cricket, etc.
+(4) fight wars
+104. Why is the lover’s sign compared to a furnace ?
+(1) He gets angry very soon.
+(2) He feels emotionally charged.
+(3) He offers warmth to his beloved.
+(4) He is writing a ballad.
+105. Identify the figure of speech used in the first line.
+(1) Simile (2) Metaphor (3) Personification (4) Hyperbole
+P-I !SAS-24-I! 32 I
+106. Which one of the following statements is NOT correct with respect to the given sentence ?
+Sentence : Rhymes, songs and chants are ways for children to :
+(1) extend vocabulary.
+(2) memorize words and sentence structure.
+(3) practise pronunciation.
+(4) enhance expression and the rhythm of sentences.
+107. Which one of the following is NOT true about using the library at the primary level ?
+The library should not just be seen as a storage space for books, rather
+(1) learners can be exposed to a variety of genres of children’s literature.
+(2) as an active environment for engagement with books.
+(3) teachers and other adults can also model reading behaviour in the libraries.
+(4) a read-aloud of the textbook can be best done in a library.
+108. Which one of the following should be mastered to be literate ?
+(1) Phonological awareness and fluency.
+(2) Sight vocabulary and pattern recognition.
+(3) Decoding and language comprehension.
+(4) Accuracy and phonological comprehension.
+109. Which one of the following is NOT correct about teaching grammar effectively ?
+(1) Promote genuine communication.
+(2) Elicit relevant rules of grammar.
+(3) Provide practice in communication.
+(4) Learn grammar by memorizing its rules.
+110. Literacy teaching approach that emphasise the relationship between letters and sounds is :
+(1) whole language Approach (2) grammar translation
+(3) situational approach (4) phonics instruction
+111. A teacher in class III asked her learners to ask their partners five questions about their abilities
+using the word ‘can’, e.g can you swim ? This type of activity enhances :
+(1) Oral fluency practice (2) Controlled oral practice
+(3) Free speaking (4) Passive listening
+112. A third-grade teacher wishes to establish a reading corner in her class. In making the judgements
+for selecting a children’s book, which one of the following questions would be most important to
+be considered first ?
+(1) Are the authors of these books well-known and respected authors of children’s literature ?
+(2) Are the books written for the independent reading level of most students in the class ?
+(3) Will the books help address the goals of the third-grade reading curriculum ?
+(4) Will these books be appropriate for use in more than one instructional context ?
+113. Which approach/method is geared towards the learner’s main goal of using language in a real-life
+context ?
+(1) Natural approach (2) Communicative approach
+(3) Direct method (4) Audio-lingual method
+P-I !SAS-24-I! 33 I
+114. A teacher asked the learners to exchange workbooks and check their partners work. The objective
+of this task is to :
+(1) give practice in extensive reading.
+(2) give practice in using new vocabulary.
+(3) give controlled practice of structures.
+(4) develop the skill of peer correction.
+115. Children in the foundational stage are more engaged in learning when :
+(1) they sing rhymes after the teacher.
+(2) they use multiple senses and actively use their hands.
+(3) they trace or write letters repeatedly in their notebooks.
+(4) they focus only on developing fine motor skills.
+116. A student of class V says, “I give my work a final check for accuracy before submitting it to the
+teacher.” The student is working at the writing stage of :
+(1) Drafting (2) Re-drafting (3) Proof reading (4) Peer-evaluation
+117. Which approach/method doesn’t encourage learners to use their native langauge in a language
+class ?
+(1) Natural approach (2) Communicative approach
+(3) Direct method (4) Audio-lingual method
+118. A teacher is planning to collect a variety of Teaching Learning Materials (TLM) for his class II
+students. Which one of the following is NOT a correct criterion for choosing TLMs ?
+(1) The material chosen should be attractive and safe for children of this age group to use.
+(2) The material chosen should provide adequate opportunities for the children to explore and
+experiment with curiosity.
+(3) The material chosen should be preferably locally made or locally available, as this would
+allow for easy replacement.
+(4) The material chosen should be made by the children only and have some roughness to avoid
+slipperiness.
+119. To create an inclusive, welcoming and joyful environment that supports every child’s participation
+in achieving the competencies outlined in the National Curriculum Framework (NCF) can be best
+done by :
+(1) conducting indoor activities and avoiding them from outdoor activities in scorching heat.
+(2) majorly focusing on the learners good health and well being.
+(3) displaying children’s work from different domains of development.
+(4) decorating the classroom for a colourful environment.
+120. Which one of the following is NOT the principle for textbook design at the foundational stage ?
+(1) Curriculum Principle (2) Presentation Principle
+(3) Concrete Principle (4) Technology Principle
+P-I !SAS-24-I! 34 I
+÷Êª - IV
+÷Ê·Ê - I : Á„ãŒË
+◊„àfl¬ÍáÊ¸ — ¬⁄UËˇÊÊÕË¸ ÷Êª-IV (¬˝.‚¥. 91 ‚ 120) ∑§ ¬˝‡ŸÊ¥ ∑§ ©ûÊ⁄U ∑§fl‹ Ã÷Ë Œ¥ ÿÁŒ ©ã„Ê¥Ÿ ÷Ê·Ê-I ∑§Ê Áfl∑§À¬ Á„ãŒË
+øÈŸÊ „Ê–
+ÁŸêŸÁ‹ÁπÃ ªlÊ¥‡Ê ∑§Ê ¬…∏∑§⁄U ¬Í¿U ª∞ ¬˝‡ŸÊ¥ ∑§ ‚„Ë/‚flÊ¸Áœ∑§ ©¬ÿÈÄÃ Áfl∑§À¬ ∑§Ê øÿŸ ∑§ËÁ¡∞– (91 - 99)
+•Ê¥ÃÁ⁄U∑§ •ÊÒ⁄U ’Ê„˜ÿ ŒÊŸÊ¥ M§¬Ê¥ ◊¥ Sflë¿UÃÊ •ÊÒ⁄U ÁŸ◊¸‹ÃÊ ∞∑§ ’ÈÁŸÿÊŒË •Êfl‡ÿ∑§ÃÊ „Ò– ◊Ÿ ∑§ ‡ÊÈh •ÊÒ⁄U ‚ÊÁàfl∑§ ÁfløÊ⁄U
+•Ê¥ÃÁ⁄U∑§ Sflë¿UÃÊ ∑§ •ÊÿÊ◊ „Ò¥– ’Ê„˜ÿ Sflë¿UÃÊ ∑§ •¥Ãª¸Ã SflÊSâÿ, Á‡ÊˇÊÊ-¬ÿÊ¸fl⁄UáÊ, •ë¿UË ‚Ê◊ÊÁ¡∑§ •ÊÒ⁄U •ÊÁÕ¸∑§ ÁSÕÁÃ ∑§Ê
+‚◊Êfl‡Ê „ÊÃÊ „Ò– ’Ê„˜ÿ Sflë¿UÃÊ ∑§Ê ◊Í‹ÊœÊ⁄U •Ê¥ÃÁ⁄U∑§ Sflë¿UÃÊ „Ò– ◊Ÿ ∑§Ë Sflë¿UÃÊ ◊ÊŸfl √ÿfl„Ê⁄U ∑§Ê Œ‡ÊÊ¸ÃË „Ò– ‚àÿ, ‡ÊÈhÃÊ,
+‡ÊÊ¥ÁÃ, ¬˝◊ •ÊÒ⁄U ‚ê◊ÊŸ ¡Ò‚ •Êà◊Ê ∑§ ¡ã◊¡ÊÃ ªÈáÊÊ¥ ∑§Ê ©À‹¥ÉÊŸ ¬˝Ê∑Î§ÁÃ∑§ ÁflÁœ, ÁflœÊŸ •ÊÒ⁄U √ÿflSÕÊ ∑§Ê ©À‹¥ÉÊŸ „Ò–
+91. •Ê¥ÃÁ⁄U∑§ Sflë¿UÃÊ ‚ ‚¥’¥ÁœÃ Ÿ„Ë¥ „Ò —
+ÁŸ◊¸‹ ÁfløÊ⁄U ‡ÊÊ¥ÁÃ ¬˝◊ Á‡ÊˇÊÊ
+(1) (2) (3) (4)
+92. ’ÈÁŸÿÊŒË •Êfl‡ÿ∑§ÃÊ „Ò —
+’Ê„⁄UË Sflë¿UÃÊ •ÊÒ⁄U ÁŸ◊¸‹ÃÊ
+(1)
+÷ËÃ⁄UË Sflë¿UÃÊ •ÊÒ⁄U ÁŸ◊¸‹ÃÊ
+(2)
+’Ê„⁄UË •ÊÒ⁄U ÷ËÃ⁄UË Sflë¿UÃÊ •ÊÒ⁄U ÁŸ◊¸‹ÃÊ
+(3)
+’Ê„⁄UË •ÊÒ⁄U ÷ËÃ⁄UË Sflë¿UÃÊ •ÊÒ⁄U ‡ÊÈh ÁfløÊ⁄U
+(4)
+93. “’Ê„˜ÿ Sflë¿UÃÊ ∑§Ê ◊Í‹ÊœÊ⁄U •Ê¥ÃÁ⁄U∑§ Sflë¿UÃÊ „Ò–”
+flÊÄÿ ∑§Ê •Ê‡Êÿ „Ò —
+’Ê„⁄UË •ÊÒ⁄U ÷ËÃ⁄UË Sflë¿UÃÊ ŒÊŸÊ¥ •Êfl‡ÿ∑§ „Ò¥–
+(1)
+÷ËÃ⁄UË Sflë¿UÃÊ ¬⁄U ’Ê„⁄UË Sflë¿UÃÊ •ÊœÊÁ⁄UÃU „Ò–
+(2)
+’Ê„⁄UË Sflë¿UÃÊ ¬⁄U „Ë ÷ËÃ⁄UË Sflë¿UÃÊ •ÊœÊÁ⁄UÃ „Ò–
+(3)
+’Ê„⁄UË •ÊÒ⁄U ÷ËÃ⁄UË Sflë¿UÃÊ ∞∑§ ŒÍ‚⁄U ‚ SflÃ¥òÊ „¥Ò–
+(4)
+94. “ÁflœÊŸ” ◊¥ ß∑§ ¬˝àÿÿ ‹ªÊŸ ¬⁄U ‡ÊéŒ ’ŸªÊ —
+ÁflœÊŸË∑§ ÁflœÊÁŸ∑§ flÒœÊÁŸ∑§ flÒœÊŸË∑§
+(1) (2) (3) (4)
+95. ÁŸêŸ ◊¥ ‚ Á∑§‚◊¥ Áfl‡Ê·áÊ-Áfl‡Êcÿ ∑§Ê ‚¥’¥œ Ÿ„Ë¥ „Ò?
+’Ê„˜ÿ Sflë¿UÃÊ ’ÈÁŸÿÊŒË •Êfl‡ÿ∑§ÃÊ
+(1) (2)
+Á‡ÊˇÊÊ - ¬ÿÊ¸fl⁄UáÊ ¡ã◊¡ÊÃ ªÈáÊ
+(3) (4)
+96. ‚◊Í„ ‚ Á÷ãŸ ‡ÊéŒ „Ò —
+Sflë¿UÃÊ ÁŸ◊¸‹ÃÊ ‚ê◊ÊŸ Sflë¿U
+(1) (2) (3) (4)
+97. “•Ê¥ÃÁ⁄U∑§ Sflë¿UÃÊ” ‚ ÃÊà¬ÿ¸ „Ò —
+◊Ÿ ◊¥ ∑§Ê◊‹ ÷Êfl ¡ªÊŸÊ– ◊Ÿ ∑§ ’È⁄U ÷ÊflÊ¥ ∑§Ê ŒÍ⁄U ∑§⁄UŸÊ–
+(1) (2)
+◊Ÿ ∑§Ë ∑§À¬ŸÊ ∑§Ê ©«∏ÊŸ ŒŸÊ– ◊Ÿ ∑§Ë ‚◊SÃ ÷ÊflŸÊ•Ê¥ ∑§Ê Œ◊Ÿ ∑§⁄UŸÊ–
+(3) (4)
+P-I !SAS-24-I! 35 I
+98. “’ÈÁŸÿÊŒË” ◊¥ ¬˝àÿÿ „Ò —
+ŒË ÿÊŒË ß¸ ß
+(1) (2) (3) (4)
+99. ªlÊ¥‡Ê ∑§ •ŸÈ‚Ê⁄U ◊ŸÈcÿ ∑§ Á‹∞ __________ ‚flÊ¸Áœ∑§ ◊„àfl¬ÍáÊ¸ „Ò–
+ÁfløÊ⁄UÊ¥ •ÊÒ⁄U ÷ÊflÊ¥ ∑§Ë ¬ÁflòÊÃÊ ‡ÊÊ⁄UËÁ⁄U∑§ Sflë¿UÃÊ ∞fl¥ ‡ÊÈhÃÊ
+(1) (2)
+‡ÊÊ¥ÁÃ, ¬˝◊ •ÊÒ⁄U ’Ê„˜ÿ Sflë¿UÃÊ ‡ÊÊ¥ÁÃ, ’Ê„˜ÿ Sflë¿UÃÊ •ÊÒ⁄U SflÊSâÿ
+(3) (4)
+ŸËø ŒË ªß¸ ∑§ÁflÃÊ ∑§Ë ¬¥ÁÄÃÿÊ¥ ∑§Ê ¬…∏∑§⁄U ‚’‚ ©ÁøÃ Áfl∑§À¬ ∑§Ê øÿŸ ∑§ËÁ¡∞– (100 - 105)
+„◊¥ Á◊‹Ë •Ê$¡ÊŒË flË⁄U ‡Ê„ËŒÊ¥ ∑§ ’Á‹ŒÊŸ ‚,
+•Ê$¡ÊŒË ∑§ Á‹∞ „◊Ê⁄UË ‹¥’Ë ø‹Ë ‹«∏Êß¸ ÕË–
+‹ÊπÊ¥ ‹ÊªÊ¥ Ÿ ¬˝ÊáÊÊ¥ ‚ ∑§Ë◊Ã ’«∏Ë øÈ∑§Êß¸ ÕË,
+√ÿÊ¬Ê⁄UË ’Ÿ∑§⁄U •Ê∞ •ÊÒ⁄U ¿U‹ ‚ „◊ ¬⁄U ⁄UÊ¡ Á∑§ÿÊ,
+„◊∑§Ê •Ê¬‚ ◊¥ ‹«∏flÊŸ ∑§Ë ŸËÁÃ •¬ŸÊß¸ ÕË–
+„◊Ÿ •¬ŸÊ ªÊÒ⁄Ufl ¬ÊÿÊ, •¬Ÿ SflÊÁ÷◊ÊŸ ‚
+„◊¥ Á◊‹Ë •Ê$¡ÊŒË flË⁄U ‡Ê„ËŒÊ¥ ∑§ ’Á‹ŒÊŸ ‚–
+100. ∑§ÁflÃÊ ◊¥ Á∑§‚ “¿U‹” ∑§Ë ’ÊÃ ∑§Ë ªß¸ „Ò?
+√ÿÊ¬Ê⁄UË ’Ÿ „◊¥ ªÈ‹Ê◊ ’ŸÊŸ ∑§ √ÿÊ¬Ê⁄UË ’Ÿ Á◊‹Êfl≈U ∑§⁄UŸ ∑§
+(1) (2)
+√ÿÊ¬Ê⁄UË ’Ÿ ¬Ò‚Ê¥ ∑§Ê „⁄U-»§⁄ ∑§⁄UŸU ∑§ √ÿÊ¬Ê⁄UË ’ŸŸ ∑§Ë fl‡Ê-÷Í·Ê œÊ⁄UáÊ ∑§⁄UŸ ∑§
+(3) (4)
+101. “ŸËÁÃ” ‡ÊéŒ ◊¥ Á∑§‚ ¬˝àÿÿ ∑§Ê ¬˝ÿÊª Á∑§ÿÊ ¡Ê ‚∑§ÃÊ „Ò?
+ÃÊ ß¸ ß∑§ ß¸ÿ
+(1) (2) (3) (4)
+102. “SflÊÁ÷◊ÊŸ” ∑§Ê ‚¥Áœ-Áflë¿UŒ „Ò —
+SflÊ + Á÷◊ÊŸ Sfl + Á÷◊ÊŸ Sfl + •ÊÁ÷◊ÊŸ Sfl + •Á÷◊ÊŸ
+(1) (2) (3) (4)
+103. Œ‡Ê ∑§Ê SflÃ¥òÊÃÊ ¬˝ÊåÃ ∑§⁄UŸ ◊¥ ∞∑§ ‹¥’Ê ‚◊ÿ ‹ªÊ ÕÊ– ÿ„ ÷Êfl ∑§ÁflÃÊ ∑§ Á∑§‚ •¥‡Ê ◊¥ ¬˝ÁÃÁ’¥Á’Ã „ÊÃÊ „Ò?
+flË⁄U ‡Ê„ËŒÊ¥ ∑§ ’Á‹ŒÊŸ ‚– ∑§Ë◊Ã ’«∏Ë øÈ∑§Êß¸ ÕË–
+(1) (2)
+ªÊÒ⁄Ufl ¬ÊÿÊ •¬Ÿ SflÊÁ÷◊ÊŸ ‚– ‹¥’Ë ø‹Ë ‹«∏Êß¸ ÕË–
+(3) (4)
+104. Œ‡Ê ∑§Ë SflÃ¥òÊÃÊ ∑§ Á‹∞ —
+‡ÊSòÊÊ¥ ∑§Ê ÁŸ◊Ê¸áÊ Á∑§ÿÊ ªÿÊ– •¬Ÿ ¡ËflŸ ∑§Ë •Ê„ÈÁÃ ŒË–
+(1) (2)
+flË⁄UÊ¥ ∑§Ë ÷ÃË¸ ∑§Ë ªß¸– ’„ÈÃ ‚Ê⁄UÊ œŸ ÁŒÿÊ ªÿÊ–
+(3) (4)
+105. •Ê$¡ÊŒË Á◊‹Ÿ ∑§Ê üÊÿ Á∑§‚ ÁŒÿÊ ªÿÊ „Ò?
+flË⁄UÊ¥ ∑§Ë ∑Í§≈U ŸËÁÃ ∑§Ê– flË⁄UÊ¥ ∑§ •SòÊ-‡ÊSòÊÊ¥ ∑§Ê–
+(1) (2)
+flË⁄UÊ¥U ∑§ ’Á‹ŒÊŸ ∑§Ê– √ÿÊ¬Ê⁄UË flª¸ ∑§ ‚„ÿÊª ∑§Ê–
+(3) (4)
+P-I !SAS-24-I! 36 I
+106. ÁŸêŸÁ‹ÁπÃ flÊÄÿ ∑§ ‚¥Œ÷¸ ◊¥ ∑§ÊÒŸ-‚Ê ∑§ÕŸ ‚„Ë Ÿ„Ë¥ „Ò?
+’ìÊÊ¥ mÊ⁄UÊ Á‡Ê‡ÊÈ ªËÃ, ªËÃ, •‹Ê¬ŸÊ Á∑§‚∑§ Ã⁄UË∑§ „Ò¥?
+‡ÊéŒÊfl‹Ë ∑§Ê ‚◊Îh ∑§⁄UŸ ∑§– ‡ÊéŒ •ÊÒ⁄U flÊÄÿ ‚¥⁄UøŸÊ ∑§Ê ∑¥§∆USÕ ∑§⁄UŸ ∑§–
+(1) (2)
+©ëøÊ⁄UáÊ ∑§Ê •èÿÊ‚ ∑§⁄UŸ ∑§– •Á÷√ÿÁÄÃ ∑§Ê ‚¥flh¸Ÿ •ÊÒ⁄U flÊÄÿÊ¥ ∑§Ë ‹ÿ ∑§–
+(3) (4)
+107. ÁŸêŸÁ‹ÁπÃ ◊¥ ‚ ∑§ÊÒŸ-‚Ê ¬˝ÊÕÁ◊∑§ SÃ⁄U ¬⁄U ¬ÈSÃ∑§Ê‹ÿ ∑§ ¬˝ÿÊª ∑§ ’Ê⁄U ◊¥ ‚„Ë Ÿ„Ë¥ „Ò?
+¬ÈSÃ∑§Ê‹ÿ ∞∑§ ÷¥«UÊ⁄U ªÎ„ ∑§ M§¬ ◊¥ Ÿ„Ë¥ ŒπÊ ¡ÊŸÊ øÊÁ„∞ ’ÁÀ∑§ —
+Á‡ÊˇÊÊÁÕ¸ÿÊ¥ ∑§Ê ’Ê‹ ‚ÊÁ„àÿ ∑§Ë ÁflÁflœ ¬˝∑§Ê⁄U ∑§Ë ÁflœÊ•Ê¥ ∑§Ê ŒπŸ ∑§ ◊ÊÒ∑§ Á◊‹Ÿ øÊÁ„∞–
+(1)
+¬ÈSÃ∑§Ê¥ ∑§ ‚ÊÕ ‚¥‹ÇŸÃÊ ∑§ ‚Á∑˝§ÿ ¬Á⁄Ufl‡Ê ∑§ M§¬ ◊¥ ŒπÊ ¡ÊŸÊ øÊÁ„∞–
+(2)
+•äÿÊ¬∑§ •ÊÒ⁄U ŒÍ‚⁄U flÿS∑§ ÷Ë ¬ÈSÃ∑§Ê‹ÿÊ¥ ◊¥ •ÊŒ‡Ê¸ ¬∆UŸ √ÿfl„Ê⁄U ¬˝ŒÁ‡Ê¸Ã ∑§⁄U ‚∑§Ã „Ò¥–
+(3)
+¬ÈSÃ∑§Ê‹ÿ ◊¥ ¬Ê∆K¬ÈSÃ∑§Ê¥ ∑§Ê ‚Sfl⁄U ¬∆UŸ ‚flÊ¸Áœ∑§ ©¬ÿÈÄÃ M§¬ ‚ „Ê ‚∑§ÃÊ „Ò–
+(4)
+108. ‚ÊˇÊ⁄UÃÊ •Á¡¸Ã ∑§⁄UŸ ∑§ Á‹∞ Á∑§‚◊¥ ÁŸ¬ÈáÊÃÊ (◊ÊS≈U⁄UË) „ÊŸË øÊÁ„∞?
+äflãÿÊà◊∑§ ¡ÊªM§∑§ÃÊ •ÊÒ⁄U ¬˝flÊ„ ŒÎ‡ÿ (‚Êß≈U) ‡ÊéŒÊfl‹Ë •ÊÒ⁄U ¬˝ÁÃ◊ÊŸÊ¥ ∑§Ë ¬„øÊŸ
+(1) (2)
+Á«U∑§ÊÁ«¥Uª •ÊÒ⁄U ÷Ê·Ê •fl’ÊœŸ ‚≈UË∑§ÃÊ •ÊÒ⁄U äflãÿÊà◊∑§ ’Êœ
+(3) (4)
+109. ÁŸêŸÁ‹ÁπÃ ◊¥ ‚ ∑§ÊÒŸ-‚Ê √ÿÊ∑§⁄UáÊ Á‡ÊˇÊáÊ ∑§Ê ¬˝÷Êfl‡ÊÊ‹Ë Ã⁄UË∑§ ‚ ¬…∏ÊŸ ∑§ ’Ê⁄U ◊¥ ‚„Ë Ÿ„Ë¥ „Ò?
+flÊSÃÁfl∑§ ‚ê¬˝·áÊ ¬˝SÃÈÃ ∑§⁄UŸÊ– √ÿÊ∑§⁄UáÊ ∑§ ¬˝Ê‚¥Áª∑§ ÁŸÿ◊ ¬˝SÃÈÃ ∑§⁄UŸÊ–
+(1) (2)
+‚ê¬˝·áÊ ∑§ •èÿÊ‚ ∑§ •fl‚⁄U ŒŸÊ– √ÿÊ∑§⁄UáÊ ∑§Ê ©‚∑§ ÁŸÿ◊ ∑¥§∆USÕ ∑§⁄U∑§ ‚ËπŸÊ–
+(3) (4)
+110. ÁŸêŸÁ‹ÁπÃ ◊¥ ‚ ∑§ÊÒŸ-‚Ê ‚ÊˇÊ⁄UÃÊ Á‡ÊˇÊáÊ ©¬Êª◊ •ˇÊ⁄UÊ¥ •ÊÒ⁄U äflÁŸ ∑§ ’Ëø ‚¥’¥œ ¬⁄U ’‹ ŒÃÊ „Ò?
+‚◊ª˝ ÷Ê·Ê ¬hÁÃ √ÿÊ∑§⁄UáÊ •ŸÈflÊŒ
+(1) (2)
+ÁSÕÁÃ¬⁄U∑§ ©¬Êª◊ äflÁŸ ÁflôÊÊŸ ÁŸŒ¸‡Ê
+(3) (4)
+111. ∑§ˇÊÊ ÃËŸ ∑§Ë •äÿÊÁ¬∑§Ê Ÿ •¬Ÿ Á‡ÊˇÊÊÁÕ¸ÿÊ¥ ‚ ∑§„Ê Á∑§ fl •¬Ÿ ‚„¬ÊÁ∆UÿÊ¥ ‚ “‚∑§ŸÊ” ‡ÊéŒ ∑§ ¬˝ÿÊª ∑§Ë ÿÊÇÿÃÊ ‚
+‚¥’¥ÁœÃ ¬Ê°ø ¬˝‡Ÿ ¬Í¿¥U, ¡Ò‚ Á∑§ - ÄÿÊ ÃÈ◊ ÃÒ⁄U ‚∑§Ã „Ê? ªÁÃÁflÁœ ∑§Ê ÿ„ ¬˝∑§Ê⁄U Á∑§‚Á‹∞ „Ò?
+◊ÊÒÁπ∑§ ¬˝flÊ„ •èÿÊ‚ ÁŸÿÁãòÊÃ ◊ÊÒÁπ∑§ •èÿÊ‚
+(1) (2)
+Sfl¿UãŒ ’Ê‹ŸÊ ÁŸÁc∑˝§ÿ üÊfláÊ
+(3) (4)
+112. ∑§ˇÊÊ ÃËŸ ∑§Ë •äÿÊÁ¬∑§Ê •¬ŸË ∑§ˇÊÊ ◊¥ ¬∆UŸ ∑§ÊŸÊ ‚ÎÁ¡Ã ∑§⁄UŸÊ øÊ„ÃË „Ò– ’ëøÊ¥ ∑§ Á‹∞ ¬ÈSÃ∑§Ê¥ ∑§Ê øÿŸ ∑§⁄UÃ ‚◊ÿ
+ÁŸêŸÁ‹ÁπÃ ◊¥ ‚ Á∑§‚ ¬˝‡Ÿ ∑§Ê ‚’‚ •Áœ∑§ ◊„àfl¬ÍáÊ¸ ◊ÊŸŸÊ øÊÁ„∞?
+ÄÿÊ ßŸ ¬ÈSÃ∑§Ê¥ ∑§ ‹π∑§ ¡ÊŸ-◊ÊŸ „Ò¥? ’Ê‹ ‚ÊÁ„àÿ ∑§ ◊ÊŸŸËÿ ‹π∑§ „Ò¥?
+(1)
+ÄÿÊ ¬ÈSÃ∑¥§ ∑§ˇÊÊ ∑§ •Áœ∑§Ê¥‡Ê ÁfllÊÁÕ¸ÿÊ¥ ∑§ SflÃ¥òÊ ¬∆UŸ SÃ⁄U ∑§ •ŸÈ‚Ê⁄U Á‹πË ªß¸ „Ò?
+(2)
+ÄÿÊ ¬ÈSÃ∑¥§ ÃË‚⁄UË ∑§ˇÊÊ ∑§Ë ¬∆UŸ ¬Ê∆KøÿÊ¸ ∑§ ‹ˇÿ ∑§Ê ‚¥’ÊÁœÃ ∑§⁄UŸ ◊¥ ◊ŒŒ ∑§⁄¥UªË?
+(3)
+ÄÿÊ ÿ ¬ÈSÃ∑¥§ ∞∑§ ‚ •Áœ∑§ ÁŸŒ¸‡ÊÊà◊∑§ ¬˝‚¥ª ◊¥ ¬˝ÿÊª ∑§ Á‹∞ ©¬ÿÈÄÃ „Ò¥?
+(4)
+113. ∑§ÊÒŸ‚Ê ©¬Êª◊ / ÁflÁœ Á‡ÊˇÊÊÕË¸ ∑§Ë ¡ËflŸ ∑§Ë flÊSÃÁfl∑§ ¬Á⁄UÁSÕÁÃÿÊ¥ ◊¥ ÷Ê·Ê ¬˝ÿÊª ∑§ ◊ÈÅÿ ‹ˇÿ ‚ ‚¥’¥ÁœÃ „Ò¥?
+¬˝Ê∑Î§ÁÃ∑§ ©¬Êª◊ ‚ê¬˝·áÊÊà◊∑§ ©¬Êª◊
+(1) (2)
+¬˝àÿˇÊ ÁflÁœ («UÊÿ⁄UÄ≈U) üÊ√ÿ ÷ÊÁ·∑§ ÁflÁœ
+(3) (4)
+P-I !SAS-24-I! 37 I
+114. ∞∑§ •äÿÊ¬∑§ Ÿ Á‡ÊˇÊÊÁÕ¸ÿÊ¥ ∑§Ê •¬Ÿ ‚„¬ÊÁ∆UÿÊ¥ ‚ •¬ŸË •èÿÊ‚ ¬ÈÁSÃ∑§Ê•Ê¥ ∑§Ë •Œ‹Ê-’Œ‹Ë ∑§⁄U ¡Ê°øŸ ∑§ Á‹∞ ∑§„Ê–
+ß‚ ∑§Êÿ¸ ∑§Ê ©g‡ÿ ÄÿÊ „Ò?
+ÁflSÃÎÃ ¬∆UŸ ∑§Ê •èÿÊ‚ ∑§⁄UflÊŸÊ– Ÿß¸ ‡ÊéŒÊfl‹Ë ∑§ ¬˝ÿÊª ∑§Ê •èÿÊ‚ ∑§⁄UflÊŸÊ–
+(1) (2)
+‚¥⁄UøŸÊ•Ê¥ ∑§Ê ÁŸÿÁãòÊÃ •èÿÊ‚ ∑§⁄UflÊŸÊ– ‚„¬Ê∆UË ∑§ ∑§Ê◊ ∑§Ë ¡Ê°ø ∑§ ∑§ÊÒ‡Ê‹ Áfl∑§Á‚Ã ∑§⁄UŸÊ–
+(3) (4)
+115. ’ÈÁŸÿÊŒË ø⁄UáÊ ∑§Ë •flSÕÊ flÊ‹ ’ëø •Áœª◊ ◊¥ Ã’ ∑§„Ë¥ •Áœ∑§ ‚¥‹ÇŸ „ÊÃ „Ò¥ ¡’ __________ –
+fl •äÿÊ¬∑§ ∑§ ¬Ë¿U-¬Ë¿U Á‡Ê‡ÊÈªËÃ ªÊÃ „Ò¥–
+(1)
+fl ‚÷Ë ßÁãŒ˝ÿÊ¥ ∑§Ê ¬˝ÿÊª ∑§⁄UÃ „Ò¥ •ÊÒ⁄U •¬Ÿ „ÊÕÊ¥ ∑§Ê ‚Á∑˝§ÿ ¬˝ÿÊª ∑§⁄UÃ „Ò¥–
+(2)
+fl •¬ŸË ∑§ÊÚ¬Ë ◊¥ •ˇÊ⁄UÊ¥ ∑§Ë ’Ê⁄U-’Ê⁄U ≈˛UÁ‚¥ª ∑§⁄UÃ „Ò¥ ÿÊ ’Ê⁄U-’Ê⁄U Á‹πÃ „Ò¥–
+(3)
+◊ÈÅÿ ∑§ãŒ˝ Á‚$$»¸§ ‚Íˇ◊ ªàÿÊà◊∑§ ∑§ÊÒ‡Ê‹Ê¥ ∑§ Áfl∑§Ê‚ ¬⁄U „ÊÃÊ „Ò–
+(4)
+116. ∑§ˇÊÊ ¬Ê°ø ∑§Ë ∞∑§ ÁfllÊÕË¸ ∑§„ÃË „Ò,
+““◊Ò¥ •¬ŸÊ ∑§Ê◊ •äÿÊ¬∑§ ∑§Ê ŒŸ ‚ ¬„‹ ‚≈UË∑§ÃÊ ∑§ Á‹∞ •ÁãÃ◊ (»§ÊßŸ‹) M§¬ ‚ ÷Ë ¡Ê°øÃË „Í°–””
+ÿ„ ÁfllÊÕË¸ ‹πŸ ∑§ Á∑§‚ ø⁄UáÊ ¬⁄U „Ò?
+¬˝ÊM§¬áÊ ¬ÈŸ— ¬˝ÊM§¬áÊ ¬˝Í$»§ ⁄UËÁ«¥Uª ‚„¬Ê∆UË ◊ÍÀÿÊ°∑§Ÿ
+(1) (2) (3) (4)
+117. ∑§ÊÒŸ-‚Ê ©¬Êª◊ / ÁflÁœ ’ëøÊ¥ ∑§Ê ÷Ê·Ê ∑§Ë ∑§ˇÊÊ ◊¥ ©Ÿ∑§Ë •¬ŸË ‚„¡ÊÃ ÷Ê·Ê (◊ÊÃÎ÷Ê·Ê) ∑§Ê ¬˝ÿÊª ∑§⁄UŸ ∑§ Á‹∞
+¬˝Êà‚ÊÁ„Ã Ÿ„Ë¥ ∑§⁄UÃÊ „Ò?
+¬˝Ê∑Î§ÁÃ∑§ ©¬Êª◊ ‚ê¬˝·áÊÊà◊∑§ ©¬Êª◊
+(1) (2)
+¬˝àÿˇÊ ÁflÁœ («UÊÿ⁄UÄ≈U) üÊ√ÿ÷ÊÁ·∑§ ÁflÁœ
+(3) (4)
+118. ∞∑§ •äÿÊÁ¬∑§Ê ∑§ˇÊÊ ŒÊ ∑§ ÁfllÊÁÕ¸ÿÊ¥ ∑§ Á‹∞ ÁflÁflœ ¬˝∑§Ê⁄U ∑§Ë Á‡ÊˇÊáÊ •Áœª◊ ‚Ê◊ª˝Ë ¡È≈UÊŸÊ øÊ„ ⁄U„Ë „Ò– ÁŸêŸÁ‹ÁπÃ ◊¥
+‚ ∑§ÊÒŸ-‚Ê ◊ÊŸŒ¥«U ≈UË∞‹∞◊ ∑§ øÿŸ ∑§ Á‹∞ ‚„Ë Ÿ„Ë¥ „Ò?
+øÿÁŸÃ ‚Ê◊ª˝Ë ß‚ •ÊÿÈ ‚◊Í„ ∑§ ’ëøÊ¥ ∑§ ¬˝ÿÊª ∑§ Á‹∞ •Ê∑§·¸∑§ •ÊÒ⁄U ‚È⁄UÁˇÊÃ „ÊŸË øÊÁ„∞–
+(1)
+øÿÁŸÃ ‚Ê◊ª˝Ë ∞‚Ë „Ê ¡Ê ’ëøÊ¥ ∑§Ê Á¡ôÊÊ‚Ê ∑§ ‚ÊÕ πÊ¡’ËŸ •ÊÒ⁄U ¬˝ÿÊª ∑§⁄UŸ ◊¥ ¬ÿÊ¸åÃ •fl‚⁄U Œ–
+(2)
+øÿÁŸÃ ‚Ê◊ª˝Ë •Áœ◊ÊŸÃ— SÕÊŸËÿ M§¬ ‚ ÁŸÁ◊¸Ã ÿÊ SÕÊŸËÿ M§¬ ‚ ©¬‹éœ „Ê Á¡‚‚ •Ê‚ÊŸË ‚ ’Œ‹Ê ¡Ê ‚∑§–
+(3)
+øÿÁŸÃ ‚Ê◊ª˝Ë Á‚$»¸§ ’ëøÊ¥ mÊ⁄UÊ ’ŸÊß¸ ªß¸ „ÊŸË øÊÁ„∞ •ÊÒ⁄U Á»§‚‹Ÿ ∑§Ê ’øÊŸ ∑§ Á‹∞ ∑È§¿U πÈ⁄UŒ⁄UË „ÊŸË øÊÁ„∞–
+(4)
+119. ⁄UÊc≈˛UËÿ ¬Ê∆KøÿÊ¸ M§¬⁄UπÊ mÊ⁄UÊ ⁄UπÊ¥Á∑§Ã ŒˇÊÃÊ•Ê¥ ∑§Ê ¬˝ÊåÃ ∑§⁄UŸ ◊¥ ¬˝àÿ∑§ ’ëø ∑§Ë ¬˝ÁÃ÷ÊÁªÃÊ ∑§Ê ‚◊Õ¸Ÿ ŒŸ flÊ‹Ê
+‚◊Êfl‡ÊË, SflÊªÃËÿ •ÊÒ⁄U •ÊŸ¥ŒŒÊÿË ¬Á⁄Ufl‡Ê ‚flÊ¸Áœ∑§ ©¬ÿÈÄÃ Ã⁄UË∑§ ‚ ∑Ò§‚ ‚ÎÁ¡Ã Á∑§ÿÊ ¡Ê ‚∑§ÃÊ „Ò?
+Ã¬ÃË „Èß¸ œÍ¬ ◊¥ ’Ês ªÁÃÁflÁœÿÊ¥ ∑§Ê Ÿ ∑§⁄U∑§ •ÊÒ⁄U •ÊãÃÁ⁄U∑§ ªÁÃÁflÁœÿÊ¥ ∑§Ê •ÊÿÊ¡Ÿ ∑§⁄U∑§
+(1)
+◊ÈÅÿÃ— Á‡ÊˇÊÊÕË¸ ∑§ •ë¿U SflÊSâÿ •ÊÒ⁄U πÈ‡Ê„Ê‹Ë ¬⁄U äÿÊŸ ∑§ÁãŒ˝Ã ∑§⁄U∑§
+(2)
+Áfl∑§Ê‚ ∑§ ÁflÁ÷ÛÊ •ÊÿÊ◊Ê¥ ‚ ’ëøÊ¥ ∑§ ∑§Êÿ¸ ∑§Ê ¬˝Œ‡Ê¸Ÿ ∑§⁄U∑§
+(3)
+⁄¥UªËŸ •Ê∑§·¸∑§ ¬Á⁄Ufl‡Ê ∑§ Á‹∞ ∑§ˇÊÊ-∑§ˇÊ ∑§Ë ‚¡Êfl≈U ∑§⁄U∑§
+(4)
+120. ÁŸêŸÁ‹ÁπÃ ◊¥ ‚ ∑§ÊÒŸ-‚Ê Á‚hÊãÃ ’ÈÁŸÿÊŒË ø⁄UáÊ ¬⁄U ¬Ê∆K¬ÈSÃ∑§ •Á÷∑§À¬ŸÊ ∑§Ê Ÿ„Ë¥ „Ò?
+¬Ê∆KøÿÊ¸ Á‚hÊãÃ ¬˝SÃÈÃË∑§⁄UáÊ Á‚hÊãÃ
+(1) (2)
+◊ÍÃ¸ Á‚hÊãÃ Ã∑§ŸË∑§Ë Á‚hÊãÃ
+(3) (4)
+P-I !SAS-24-I! 38 I
+PART - V
+LANGUAGE – II : ENGLISH
+IMPORTANT : Candidates should attempt questions from Part-V (Q. No. 121-150), if they have
+opted for ENGLISH as LANGUAGE-II only.
+Read the passage given below and answer the questions that follow. (121-128)
+But the Lion went into the forest and found his own supper and no one ever knew what it was, for
+he didn’t mention it. And the scarecrow found a tree full of nuts and filled Dorothy’s basket with them,
+so that she would not be hungry for a long time. She thought this was very kind and thoughtful of the
+scarecrow, but she laughed heartily at the awkward way in which the poor creature picked up the nuts.
+His padded hands were so clumsy and the nuts so small that he dropped almost as many as he put in the
+basket. But the scarecrow did not mind how long it took him to fill the basket, for it enabled him to keep
+away from the fire, as he feared a spark might get into his straw and burn him up. So he kept a good
+distance away from the flames, and only came near to cover Dorothy with dry leaves when she lay
+down to sleep. These kept her snug and warm and she slept soundly by until morning.
+When it was daylight, the girl bathed her face in a little rippling brook and soon after they all
+started toward the Emerald city.
+This was to be a wonderful day for the travellers. They had hardly been walking an hour when
+they saw before them a ditch that lay across the road and divided the forest as far as they could see on
+either side.
+121. Study the following statements :
+(a) The Scarecrow gathered nuts as the tree was full of them.
+(b) He feared for his life so he got busy in gathering nuts.
+(1) (a) is right and (b) is wrong. (2) (b) is right and (a) is wrong.
+(3) Both (a) and (b) are right. (4) Both (a) and (b) are wrong.
+122. Study the following statements :
+(a) Dorothy was obliged to the Scarecrow.
+(b) The Scarecrow vanquished his hunger with nuts.
+(c) He gathered so many nuts that no one would remain hungry.
+(1) (a) and (b) are wrong but (c) is right.
+(2) (b) and (c) are wrong but (a) is right.
+(3) (c) and (a) are wrong but (b) is right.
+(4) (a) and (b) are right but (c) is wrong.
+123. No one ever knew whatitwas .
+The underlined is a/an __________ clause.
+(1) Principal (2) Noun (3) Adjective (4) Adverb
+124. ‘... she would not be hungry’.
+The underlined word is a/an __________.
+(1) Preposition (2) Adverb (3) Conjunction (4) Interjection
+125. Which one of the following statements is not true ?
+(1) Scarecrow was afraid that the Lion might kill him.
+(2) Lion could not eat the nuts gathered by the Scarecrow.
+(3) He decided to hunt his prey.
+(4) Dorothy felt amused at the way Scarecrow gathered the nuts.
+P-I !SAS-24-I! 39 I
+126. They kept her snug.
+The underlined word nearly means the same as :
+(1) dizzy (2) messy (3) cosy (4) sordid
+127. Which one of the following statements is true ?
+(1) Scarecrow is not caring. (2) He knows that the nuts are good for Dorothy.
+(3) He shelled the nuts for Dorothy. (4) Nuts mostly grow on bushes.
+128. Which of the following statements is/are true ?
+(1) The Scarecrow was kind-hearted as he filled the basket with nuts.
+(2) He helped Dorothy to keep warm at night.
+(3) He kept the Lion away from Dorothy.
+(4) Both (1) and (2).
+Read the passage given below and answer the questions that follow. (129-135)
+Usually the first question I ask a newbie birder is, “What do you think is the most important
+physical requisite to be a birder ? Your eyes, your ears, your nose or any other ?”
+Most often, the answer is “eyes”, but several do home into what is the most important faculty - at
+least, according to me : your ears. Spotting birds in foliage is hard enough, but if you hear them, you
+know they are there.
+But early the other morning, I realised it went much beyond that. The first bird call I heard as I
+left the house for my walk was the madcap ringing laugh of black-rumped flameback, earlier known as
+the golden-backed woodpecker. It was a wild, exultant laugh that set the tone and mood for the entire
+day. And then I realised that every bird call evokes a different reaction, memory or emotion in the
+listener.
+Indian mynas, for example, invariably remind me of people in Delhi-always ready to argue and
+pick a fight, belligerent and in your face. Yet, they taught me not to make sweeping generalisations
+because when a pair perch on the window sill in the afternoons, they have meaningful civilised
+conversations with each other. There is inquiry, humour and affection in their voices.
+129. Why should a birder have sharp ears ?
+(1) One can easily distinguish their mating calls.
+(2) The birds greet each other with their morning calls.
+(3) One can easily locate them from their chirping.
+(4) Their shrill shrieking can tell one that they are in danger.
+130. Study the following statements :
+(a) Different chirpings of birds evoke different emotions in a birder.
+(b) Sometimes birds make their nests hidden from public view.
+(1) (a) is right and (b) is wrong. (2) (b) is right and (a) is wrong.
+(3) Both (a) and (b) are right. (4) Both (a) and (b) are wrong.
+131. Study the following statements :
+(a) The writer approves of the conduct of Delhi people.
+(b) Indian mynas are generally known for their noisy quarrels.
+(c) A myna couple can also be found enjoying themselves.
+(1) (a) and (b) are right but (c) is wrong.
+(2) (b) and (c) are right but (a) is wrong.
+(3) (a) and (c) are right but (b) is wrong.
+(4) (a) and (b) are wrong but (c) is right.
+P-I !SAS-24-I! 40 I
+132. Who is a birder ?
+(1) one who catches the birds (2) one who watches the birds
+(3) one who rears the birds (4) one who hunts the birds
+133. ‘It was a wild exultant laugh....’
+The underlined word is a/an __________.
+(1) Noun (2) Verb (3) Adverb (4) Adjective
+134. ‘..... belligerent in your face.’
+The underlined word nearly means the same as :
+(1) hostile (2) noisy (3) musical (4) different
+135. ‘The first bird call I heard as I left the house...’
+The underlined is a/an __________ clause.
+(1) Principal (2) Noun (3) Adjective (4) Adverb
+136. Assessment tools and processes at the foundation stage should be designed in a way that :
+(1) explicit tests and examinations become appropriate for learners.
+(2) they become a natural extension of the child’s learning experience.
+(3) learner’s progress is described and analysed with that of the overall class performance.
+(4) a teacher may use common single method to assess the achievement of all the learners.
+137. Children’s cognitive development and language :
+(1) is related to the principle of linking stimulus-response and a process of imitation.
+(2) is that an individual is born with a tool to master the language.
+(3) development bear no relationship.
+(4) is closely related to the culture and the community in which children live.
+138. One of the best way to learn a second language is :
+(1) being in a classroom where you can focus on the grammar and receive help from a teacher.
+(2) by constant contact with native speakers in their own society.
+(3) by repeating and practicing the dialogues as done in the audio-lingual method.
+(4) by joining a speaking course for the target language.
+139. “Language learning is an intensive process that begins at birth and continues throughtout life.”
+Do you agree or disagree with the above statement ?
+(1) I agree with this statement.
+(2) I disagree with this statement.
+(3) I partially agree with the statement.
+(4) I partially disagree with the statement.
+140. Along with print books and audio books the books that engage the tactile abilities of young children
+should be a part of the classroom because :
+(1) it brings variety to the class and children love variety.
+(2) it gives autonomy to teachers to use different books for assessment.
+(3) it makes books more accessible to diverse learners.
+(4) these books will not overly burden a teacher.
+141. A teacher asked the students of class V to read the story quickly and then put the four pictures in
+order. The purpose of this activity is to :
+(1) arrange the picture cards.
+(2) give them practice to reading for the gist.
+(3) give them practice in reading for specific information.
+(4) revise the new and difficult vocabulary of the story.
+P-I !SAS-24-I! 41 I
+142. This reading has certain learning aims and tasks, learners are supposed to read the text in detail
+with concentration and due care, It is called :
+(1) Extensive reading (2) Intensive reading
+(3) Guided reading (4) Pleasure reading
+143. The students learn patterns of language by repeating model sentences that the teacher provides.
+They memorise set phrases and receive positive reinforcement from their teacher when they perform
+the drills correctly. The teacher is using the :
+(1) Audio-lingual method (2) Communicative approach
+(3) Total physical response (4) Structural approach
+144. Learners are memorising grammar rules and vocabulary and large amount of work is done in their
+mother tongue. Which method is being used by the teacher into his language class ?
+(1) Direct method (2) Natural approach
+(3) Communicative teaching (4) Grammar Translation
+145. If children hear two languages spoken around them, this exposure will :
+(1) put the children at a disadvantage.
+(2) put the children at an advantage.
+(3) not make any difference to the children.
+(4) confuse the children, hindering understanding.
+146. A big challenge in learning to read is finding motivation and good children’s literature. To overcome
+this challenge :
+(1) Teachers should motivate them to read a book everyday as homework.
+(2) Encourage parents to establish a small library at home.
+(3) Provide easily accessible Children’s literature to motivate and generate interest in reading.
+(4) School authorities must take learners to book fairs to generate motivation and interest in
+reading books.
+147. To assess reading skills at primary level a language teacher should most importantly focus on :
+(1) identifying the letters of alphabet.
+(2) use of punctuation mark.
+(3) reading at a proper speed.
+(4) reading with understanding.
+148. A good speaking activity is the one during which :
+(1) teachers explains more
+(2) learners listens more
+(3) learners talk more
+(4) participation by outspoken students is the maximum
+149. At the beginning of the lesson, a teacher divided the class into groups and asked them to talk about
+an interesting newspaper article that they had just read. This type of speaking activity is for
+enhancing :
+(1) Oral fluency practice. (2) Controlled oral practice.
+(3) Guided oral practice. (4) Active listening.
+150. Whole language approach is :
+(1) Meaning based (2) Skill based
+(3) Blends sounds (4) Infers a sound-symbol relationship
+P-I !SAS-24-I! 42 I
+÷Êª - V
+÷Ê·Ê - II : Á„ãŒË
+◊„àfl¬ÍáÊ¸ — ¬⁄UËˇÊÊÕË¸ ÷Êª-V (¬˝.‚¥. 121 ‚ 150) ∑§ ¬˝‡ŸÊ¥ ∑§ ©ûÊ⁄U ∑§fl‹ Ã÷Ë Œ¥ ÿÁŒ ©ã„Ê¥Ÿ ÷Ê·Ê-II ∑§Ê Áfl∑§À¬ Á„ãŒË
+øÈŸÊ „Ê–
+ÁŸêŸÁ‹ÁπÃ ªlÊ¥‡Ê ∑§Ê ¬…∏∑§⁄U ¬Í¿U ª∞ ¬˝‡ŸÊ¥ ∑§ ‚„Ë/‚flÊ¸Áœ∑§ ©¬ÿÈÄÃ Áfl∑§À¬ ∑§Ê øÿŸ ∑§ËÁ¡∞– (121-128)
+ß‚ ’Ê⁄U ◊ÊÒ‚◊ ÁflôÊÊÁŸÿÊ¥ Ÿ ÉÊÊ·áÊÊ ∑§Ë „Èß¸ „Ò Á∑§ •‹ ŸËŸÊ ¬˝÷Êfl ∑§ ∑§Ê⁄UáÊ ◊ÊŸ‚ÍŸ ∑§◊$¡Ê⁄U ⁄U„ ‚∑§ÃÊ „Ò– øÒÃ ∑§ ◊„ËŸ ◊¥
+’ÊÁ⁄U‡Ê „ÊŸ ∑§ „Ê‹ÊÃ ¬⁄U ÉÊÊÉÊ Ÿ ÷Ë ÿ„Ë ∑§„Ê „Ò– øÒÃ ÿÊŸË ◊Êø¸-•¬˝Ò‹ ∑§ ÁŒŸÊ¥ ◊¥ •ª⁄U ’ÊÁ⁄U‡Ê „ÊÃË „Ò ÃÊ ‚ÊflŸ ‚ÍπÊ ¡Ê ‚∑§ÃÊ
+„Ò– ’ÊÃ Á‚$»¸§ ß‚ ’Ê⁄U ∑§ ◊ÊŸ‚ÍŸ ∑§Ë Ÿ„Ë¥ „Ò– •◊Á⁄U∑§Ê ◊¥ „Ê‹ „Ë ◊¥ ÃÊ¡ ¬ÊŸË ∑§ „Ê‹ÊÃ ¬⁄U „È∞ ∞∑§ ‚ê◊‹Ÿ ◊¥ ‚¥ÿÈÄÃ ⁄UÊc≈˛U ‚¥ÉÊ
+∑§ ◊„Ê‚Áøfl ∞¥≈UÊÁŸÿÊ ªÈÃ⁄U¡ Ÿ ∞∑§ Á⁄U¬Ê≈¸U ¡Ê⁄UË ∑§Ë „Ò– ß‚◊¥ ∑§„Ê ªÿÊ „Ò Á∑§ Ã∑§ ¬ÊŸË ∑§Ê ‚’‚ ’«∏Ê ‚¥∑§≈U ÷Ê⁄UÃ ◊¥ •ÊŸ
+2050
+flÊ‹Ê „Ò– ÷Ê⁄UÃ ¬⁄U ‚¥∑§≈U ß‚Á‹∞ „Ò ÄÿÊ¥Á∑§ ª¥ªÊ, ÿ◊ÈŸÊ, ’˝rÊ¬ÈòÊ •ÊÒ⁄U Á‚¥œÈ ¡Ò‚Ë ŸÁŒÿÊ¥ ∑§Ê ¬ÊŸË œË⁄U-œË⁄U ∑§◊ „ÊÃÊ ¡Ê∞ªÊ– Á‚$»¸§
+ª¥ªÊ ∑§Ë ’ÊÃ ∑§⁄¥U¥U ÃÊ Á∑§‹Ê◊Ë≈U⁄ ‹¥’Ë ÿ„ ŸŒË ©ûÊ⁄UÊπ¥«UU ‚ ’¥ªÊ‹ ∑§ ’Ëø ∑§ß¸ ⁄UÊíÿÊ¥ ‚ ªÈ¡⁄UÃË „Ò– ß‚∑§ Á∑§ŸÊ⁄UÊ¥ ¬⁄U ’‚
+2500
+◊„ÊŸª⁄UÊ¥, ∑§S’Ê¥ •ÊÒ⁄U ªÊ°flÊ¥ ∑§Ë ∑§⁄UË’ øÊ‹Ë‚ ∑§⁄UÊ«∏ ∑§Ë •Ê’ÊŒË ∑§Ë ¬ÊŸË ‚ ¡È«∏Ë ¡M§⁄UÃÊ¥ ∑§Ê ÿ„ ¬Í⁄UÊ ∑§⁄UÃË „Ò– ß‚∑§ ¬ÊŸË ∑§Ê dÊÃ
+ª¥ªÊòÊË Ç‹Á‡Êÿ⁄U „Ò– ¬ÿÊ¸fl⁄UáÊ ÁflôÊÊÁŸÿÊ¥ ∑§Ê ŒÊflÊ „Ò Á∑§ Á¬¿U‹ ‚Ê‹ ◊¥ ÃË‚ Á∑§‹Ê◊Ë≈U⁄U ‹¥’ ß‚ Ç‹Á‡Êÿ⁄U ∑§Ê ¬ÊÒŸ ŒÊ Á∑§‹Ê◊Ë≈U⁄U
+87
+Á„S‚Ê Á¬ÉÊ‹∑§⁄U ªÊÿ’ „Ê øÈ∑§Ê „Ò– •÷Ë ¡‹flÊÿÈ ¬Á⁄UflÃ¸Ÿ ∑§Ê ¡Ê „Ê‹ „Ò, fl„ ¬Í⁄U Á„◊Ê‹ÿ ˇÊòÊ ∑§ Á‹∞ πÃ⁄UŸÊ∑§ ◊ÊŸÊ ¡Ê ⁄U„Ê „Ò–
+÷Ê⁄UÃ ∑§ Á„S‚ flÊ‹ Á„◊Ê‹ÿ ◊¥ Ç‹Á‡Êÿ⁄U ’ÃÊ∞ ¡ÊÃ „Ò¥–U ßŸ◊¥ •∑§‹ ©ûÊ⁄UÊπ¥«U ◊¥ „Ò¥– •’ •ª⁄U ßŸ∑§ Á¬ÉÊ‹Ÿ ∑§Ë
+9775 968
+⁄U$$çÃÊ⁄U Ã¡ „ÊÃË ¡ÊÃË „Ò ÃÊ ÄÿÊ „ÊªÊ?
+121. ÷Ê⁄UÃ ∑§Ë ŸÁŒÿÊ¥ ◊¥ ¡‹ ∑§◊ „ÊÃÊ ¡Ê ⁄U„Ê „Ò– ß‚∑§Ê ∑§Ê⁄UáÊ „Ò —
+Ç‹Á‡Êÿ⁄UÊ¥ ∑§Ê Ÿ Á¬ÉÊ‹ŸÊ Ç‹Á‡Êÿ⁄UÊ¥ ∑§Ê Ã$¡Ë ‚ Á¬ÉÊ‹ŸÊ
+(1) (2)
+Ç‹Á‡Êÿ⁄UÊ¥ ∑§ ˇÊòÊ»§‹ ◊¥ ∑§◊Ë •ÊŸÊ Ç‹Á‡Êÿ⁄UÊ¥ ∑§ ˇÊòÊ»§‹ ◊¥ flÎÁh „ÊŸÊ
+(3) (4)
+122. ª¥ªÊ ∑§ Á∑§ŸÊ⁄U ’‚ ‹ÊªÊ¥ ∑§Ë •Ê’ÊŒË ‹ª÷ª „Ò —U
+∑§⁄UÊ«∏ ∑§⁄UÊ«∏ ∑§⁄UÊ«∏ ∑§⁄UÊ«∏
+(1) 87 (2) 30 (3) 40 (4) 96
+123. ŸÁŒÿÊ¥ ∑§Ê ¬ÊŸË œË⁄U-œË⁄U ∑§◊ „ÊÃÊ ¡Ê∞ªÊ– flÊÄÿ ◊¥ ⁄UπÊ¥Á∑§Ã ¬Œ „Ò¥ — U
+Áfl‡Ê·áÊ Á∑˝§ÿÊ Á∑˝§ÿÊ Áfl‡Ê·áÊ ¬˝Áfl‡Ê·áÊ
+(1) (2) (3) (4)
+124. ªlÊ¥‡Ê ◊¥ Á∑§‚ ‚¥∑§≈U ∑§Ë ’ÊÃ ∑§Ë ªß¸ „Ò?
+πÊl ‚¥∑§≈U ⁄UÊ$¡ªÊ⁄U ‚¥∑§≈U ¡‹ ‚¥∑§≈U ¬ÿÊ¸fl⁄UáÊ ‚¥∑§≈U
+(1) (2) (3) (4)
+125. •‹ ŸËŸÊ ∑§Ê ¬˝÷Êfl ¬«∏ÃÊ „Ò —
+¡‹flÊÿÈ ¬⁄U ¡‹ dÊÃÊ¥ ¬⁄U ◊ÊŸ‚ÍŸ ¬⁄U ◊ÊŸfl ¬⁄U
+(1) (2) (3) (4)
+126. “ß‚ Ç‹Á‡Êÿ⁄U ∑§Ê ¬ÊÒŸ ŒÊ Á∑§‹Ê◊Ë≈U⁄U Á„S‚Ê Á¬ÉÊ‹∑§⁄U ªÊÿ’ „Ê øÈ∑§Ê „Ò–” flÊÄÿ ◊¥ ⁄UπÊ¥Á∑§Ã ¬Œ „Ò —
+‚¥ÅÿÊflÊø∑§ Áfl‡Ê·áÊ ¬Á⁄U◊ÊáÊflÊø∑§ Áfl‡Ê·áÊ
+(1) (2)
+ªÈáÊflÊø∑§ Áfl‡Ê·áÊ ‚Êfl¸ŸÊÁ◊∑§ Áfl‡Ê·áÊ
+(3) (4)
+P-I !SAS-24-I! 43 I
+127. ªlÊ¥‡Ê ∑§ •ŸÈ‚Ê⁄U 2050 Ã∑§ ¬ÊŸË ∑§Ê ‚’‚ ’«∏Ê ‚¥∑§≈ •ÊŸflÊ‹Ê „Ò —
+•◊Á⁄U∑§Ê ◊¥ ÷Ê⁄UÃ ◊¥
+(1) (2)
+‚¥ÿÈÄÃ •⁄U’ •◊Ë⁄UÊÃ ◊¥ ¬ÊÁ∑§SÃÊŸ ◊¥
+(3) (4)
+128. “¬ÿÊ¸fl⁄UáÊ” ◊¥ ©¬‚ª¸ •ÊÒ⁄U ◊Í‹ ‡ÊéŒ „Ò¥ —
+¬ÿÊ¸ + •Êfl⁄UáÊ ¬Á⁄U + •fl⁄UáÊ ¬Á⁄U + •Êfl⁄UáÊ ¬⁄U + •Êfl⁄UáÊ
+(1) (2) (3) (4)
+ÁŸêŸÁ‹ÁπÃ ªlÊ¥‡Ê ∑§Ê ¬…∏∑§⁄U ¬Í¿U ª∞ ¬˝‡ŸÊ¥ ∑§ ‚„Ë/‚flÊ¸Áœ∑§ ©¬ÿÈÄÃ Áfl∑§À¬ ∑§Ê øÿŸ ∑§ËÁ¡∞– (129-135)
+ß‚ ‚¥‚Ê⁄U ◊¥ ‚’ ∑È§¿U •SÕÊÿË „Ò– ¬Ê¬ •ÊÒ⁄U ¬Èáÿ ŒÊŸÊ¥ ß‚ ‚¥‚Ê⁄U ‚ ‚¥’¥ÁœÃ „Ò¥, ß‚Á‹∞ ¬Ê¬ •ÊÒ⁄U ¬Èáÿ ÷Ë •SÕÊÿË „Ò¥–
+¬Èáÿ ‚Èπ Œ∑§⁄U •ÊÒ⁄U ¬Ê¬ ŒÈπ Œ∑§⁄U •¥Ã ∑§Ê ¬˝ÊåÃ „ÊÃÊ „Ò– ‹Á∑§Ÿ ¬Ê¬ •ÊÒ⁄U ¬Èáÿ ◊¥ ÕÊ«∏Ê •¥Ã⁄U ÿ„ „Ò Á∑§ ¬Èáÿ ∑§Ê »§‹ ÿÁŒ „◊
+Ÿ„Ë¥ øÊ„Ã ÃÊ ©‚ »§‹ ∑§Ê •SflË∑§Ê⁄U ∑§⁄UŸ ∑§ Á‹∞ SflÃ¥òÊ „Ò¥– ¬Ê¬ ‹Ê„ ∑§Ë ¡¥¡Ë⁄U „Ò ÃÊ ¬Èáÿ ‚ÊŸ ∑§Ë– ’¥œŸ ŒÊŸÊ¥ ◊¥ „Ò– ‹Ê„ ∑§Ë
+¡¥¡Ë⁄U ‚ ¿ÍU≈UŸ ∑§Ê •ÊŒ◊Ë ∑§Ê ◊Ÿ ÷Ë ∑§⁄UÃÊ „Ò ‹Á∑§Ÿ ‚ÊŸ ∑§Ë ¡¥¡Ë⁄U ‚ ¡Ê ’¥œÊ „È•Ê „Ê ©‚∑§Ê fl„ ’¥œŸ åÿÊ⁄UÊ ‹ªŸ ‹ªÃÊ „Ò–
+©‚◊¥ ©‚∑§Ê œŸ Ÿ¡⁄U •ÊÃÊ „Ò ©‚‚ ¿ÍU≈UŸ ∑§Ê ◊Ÿ Ÿ„Ë¥ ∑§⁄UÃÊ–
+129. ß‚ ‚¥‚Ê⁄U ◊¥ ∑È§¿U ÷Ë __________ Ÿ„Ë¥ „Ò–
+•¬ÍáÊ¸ ¬ÍáÊ¸ SÕÊÿË •SÕÊÿË
+(1) (2) (3) (4)
+130. ¬Ê¬ •ÊÒ⁄U ¬Èáÿ ŒÊŸÊ¥ __________ „Ò¥–
+SÕÊÿË •SÕÊÿË SflÊ÷ÊÁfl∑§ „ÊÁŸ∑§Ê⁄U∑§
+(1) (2) (3) (4)
+131. ¬Èáÿ ◊¥ ©‚∑§ »§‹ ∑§Ê —
+„◊ SflË∑§Ê⁄U Ÿ„Ë¥ ÷Ë ∑§⁄U ‚∑§Ã
+(1)
+„◊ SflË∑§Ê⁄U ∑§⁄UŸ ∑§ Á‹∞ ’Êäÿ „Ò¥
+(2)
+Á∑§‚Ë ŒÍ‚⁄U ∑§ Á‹∞ ©¬ÿÊª ◊¥ ‹Ê ‚∑§Ã „Ò¥
+(3)
+¬˝ÊåÃ ∑§⁄UŸÊ ’„ÈÃ üÊ◊‚Êäÿ „Ò
+(4)
+132. ªlÊ¥‡Ê ∑§ •ŸÈ‚Ê⁄U ¬Ê¬ •ÊÒ⁄U ¬Èáÿ —
+ŒÊŸÊ¥ ◊¥ SflÃ¥òÊÃÊ „Ò– ŒÊŸÊ¥ ◊¥ »§‹ ∑§Ë ßë¿UÊ ⁄U„ÃË „Ò–
+(1) (2)
+ŒÊŸÊ¥ ‚ ◊ÈÁÄÃ •ÁŸflÊÿ¸ „Ò– ŒÊŸÊ¥ ◊¥ ’¥œŸ „Ò–
+(3) (4)
+133. ¬Ê¬ •ÊÒ⁄U ¬Èáÿ ŒÊŸÊ¥ ∑§Ë ÃÈ‹ŸÊ ∑˝§◊‡Ê— __________ •ÊÒ⁄U __________ ∑§Ë ¡¥¡Ë⁄U ‚ ∑§Ë ªß¸ „Ò–
+SfláÊ¸, ‹Ê„ ‹Ê„, ¬ËÃ‹ ‹Ê„, SfláÊ¸ ¬ËÃ‹, ‹Ê„
+(1) (2) (3) (4)
+134. ‚◊Í„ ‚ Á÷ãŸ ‡ÊéŒ „Ò —
+»§‹ SflÃ¥òÊ •SÕÊÿË åÿÊ⁄UÊ
+(1) (2) (3) (4)
+135. “SflÃ¥òÊ” ∑§Ê Áfl‹Ê◊ „Ò —
+ªÈ‹Ê◊ ¬⁄UÃ¥òÊ ŒÊ‚ÃÊ ¬⁄UÃ¥òÊÃÊ
+(1) (2) (3) (4)
+136. ’ÈÁŸÿÊŒË ø⁄UáÊ ◊¥ •Ê∑§‹Ÿ ∑§ ©¬∑§⁄UáÊ •ÊÒ⁄U ¬˝Á∑˝§ÿÊ•Ê¥ ∑§Ë •Á÷∑§À¬ŸÊ ß‚ Ã⁄U„ „ÊŸË øÊÁ„∞ —
+Á¡‚‚ ¡Ê°ø¬òÊ fl ¬⁄UËˇÊÊ∞° Á‡ÊˇÊÊÁÕ¸ÿÊ¥ ∑§ Á‹∞ S¬c≈U fl ©ÁøÃ „Ê ‚∑§–
+(1)
+¡Ê ’ëø ∑§ •Áœª◊ •ŸÈ÷fl ∑§Ê ‚„¡ ÁflSÃÊ⁄U ’Ÿ ‚∑¥§–
+(2)
+Á‡ÊˇÊÊÕË¸ ∑§Ë ¬˝ªÁÃ ∑§Ê ©‚∑§ ‚◊ª˝ ∑§ˇÊÊ ¬˝Œ‡Ê¸Ÿ ∑§ ‚¥Œ÷¸ ◊¥ fláÊ¸Ÿ •ÊÒ⁄U Áfl‡‹·áÊ Á∑§ÿÊ ¡ÊŸÊ øÊÁ„∞–
+(3)
+•äÿÊ¬∑§ ‚÷Ë Á‡ÊˇÊÊÁÕ¸ÿÊ¥ ∑§Ë ©¬‹Áéœ ∑§Ê •Ê∑§‹Ÿ ∑§⁄UŸ ∑§ Á‹∞ ∞∑§ „Ë ÁflÁœ ∑§Ê ¬˝ÿÊª ∑§⁄U ‚∑§Ã „Ò¥–
+(4)
+P-I !SAS-24-I! 44 I
+137. ’ëøÊ¥ ∑§Ê ‚¥ôÊÊŸÊà◊∑§ Áfl∑§Ê‚ •ÊÒ⁄U ÷Ê·Ê —
+©gË¬∑§ ¬˝ÁÃÁ∑˝§ÿÊ ‚¥’¥œ ∑§ Á‚hÊãÃ •ÊÒ⁄U •ŸÈ∑§⁄UáÊ ∑§Ë ¬˝Á∑˝§ÿÊ ‚ ‚¥’¥ÁœÃ „Ò–
+(1)
+◊ŸÈcÿ ∑§Ê ‚„¡ÊÃ ©¬∑§⁄UáÊ „Ò Á¡‚∑§ mÊ⁄UÊ fl„ ÷Ê·Ê ◊¥ ÁŸ¬ÈáÊÃÊ ¬˝ÊåÃ ∑§⁄UÃÊ „Ò–
+(2)
+Áfl∑§Ê‚ ◊¥ ∑§Êß¸ ‚¥’¥œ Ÿ„Ë¥ „Ò–
+(3)
+©‚ ‚¥S∑Î§ÁÃ •ÊÒ⁄U ‚◊ÈŒÊÿÊ¥ ‚ ÉÊÁŸc∆U M§¬ ‚ ‚¥’¥ÁœÃ „Ò Á¡Ÿ◊¥ ’ëø ⁄U„Ã „Ò¥–
+(4)
+138. ∑§Êß¸ ÷Ë √ÿÁÄÃ Á∑§‚∑§ mÊ⁄UÊ ‚flÊ¸Áœ∑§ ©¬ÿÈÄÃ Ã⁄UË∑§ ‚ ÁmÃËÿ ÷Ê·Ê ‚Ëπ ‚∑§ÃÊ „Ò?
+∞‚Ë ∑§ˇÊÊ ¡„Ê° •Ê¬ √ÿÊ∑§⁄UáÊ ¬⁄U äÿÊŸ ∑§ÁãŒ˝Ã ∑§⁄UÃ „Ò¥ •ÊÒ⁄U •äÿÊ¬∑§ ‚ ‚„ÊÿÃÊ ¬˝ÊåÃ ∑§⁄UÃ „¥Ò–
+(1)
+•¬Ÿ ‚◊Ê¡ ◊¥ ‚„¡ÊÃ flÊø∑§Ê¥ (◊Í‹÷Ê·Ê ’Ê‹Ÿ flÊ‹Ê¥) ∑§ ‚ÃÃ ‚ê¬∑¸§ ∑§ ◊Êäÿ◊ ‚–
+(2)
+üÊ√ÿ ÷ÊÁ·∑§ ÁflÁœ ∑§ •ŸÈ‚Ê⁄U ‚¥flÊŒÊ¥ ∑§Ê ŒÊ„⁄UÊŸÊ •ÊÒ⁄U •èÿÊ‚ ∑§⁄UŸÊ–
+(3)
+‹ˇÿ ÷Ê·Ê ∑§ Á∑§‚Ë flÊøŸ ¬Ê∆K∑˝§◊ ◊¥ ŒÊÁπ‹Ê ‹∑§⁄U–
+(4)
+““÷Ê·Ê •Áœª◊ ∞∑§ ª„Ÿ ¬˝Á∑˝§ÿÊ „Ò ¡Ê ¡ã◊ ∑§ ‚◊ÿ ‚ ‡ÊÈM§ „ÊÃË „Ò •ÊÒ⁄U ¡ËflŸ ¬ÿ¸ãÃ ø‹ÃË „Ò–””
+139.
+ÄÿÊ •Ê¬ ß‚ ∑§ÕŸ ‚ ‚„◊Ã ÿÊ •‚„◊Ã „Ò¥?
+◊Ò¥ ß‚ ∑§ÕŸ ‚ ‚„◊Ã „Í°–
+(1)
+◊Ò¥ ß‚ ∑§ÕŸ ‚ •‚„◊Ã „Í°–
+(2)
+◊Ò¥ ß‚ ∑§ÕŸ ‚ •Ê¥Á‡Ê∑§ M§¬ ‚ ‚„◊Ã „Í°–
+(3)
+◊Ò¥ ß‚ ∑§ÕŸ ‚ •Ê¥Á‡Ê∑§ M§¬ ‚ •‚„◊Ã „Í°–
+(4)
+140. ∑§ˇÊÊ ◊¥ ¿UÊ≈U ’ëøÊ¥ ∑§ Á‹∞ ◊ÈÁŒ˝Ã ¬ÈSÃ∑§Ê¥ ∑§ ‚ÊÕ-‚ÊÕ üÊ√ÿ ¬ÈSÃ∑¥§ •ÊÒ⁄U ¿UÊ≈U ’ëøÊ¥ ∑§Ë S¬‡Ê¸ª˝Ê„Ë ÿÊÇÿÃÊ•Ê¥ ∑§Ê ßSÃ◊Ê‹
+∑§⁄UŸ flÊ‹Ë ¬ÈSÃ∑¥§ „ÊŸË øÊÁ„∞ ÄÿÊ¥Á∑§ -
+∑§ˇÊÊ ◊¥ ÁflÁflœÃÊ •ÊÃË „Ò •ÊÒ⁄U ’ëøÊ¥ ∑§Ê ÁflÁflœÃÊ ’„ÈÃ ¬‚¥Œ „Ò–
+(1)
+ÿ„ •äÿÊ¬∑§Ê¥ ∑§Ê •Ê∑§‹Ÿ ∑§ Á‹∞ ÁflÁ÷ãŸ ¬ÈSÃ∑§Ê¥ ∑§Ê ¬˝ÿÊª ∑§⁄UŸ ∑§Ë SflÊÿûÊÃÊ ŒÃË „Ò–
+(2)
+ÁflÁflœÃÊ flÊ‹ Á‡ÊˇÊÊÁÕ¸ÿÊ¥ Ã∑§ ¬ÈSÃ∑¥§ •Áœ∑§ ‚È‹÷ ’ŸÊÃË „Ò–
+(3)
+•äÿÊ¬∑§ ¬⁄U •Áœ∑§ ’Ê¤Ê Ÿ„Ë¥ «UÊ‹ÃË „Ò¥–
+(4)
+141. ∞∑§ •äÿÊ¬∑§ Ÿ ∑§ˇÊÊ ¬Ê°ø ∑§ ÁfllÊÁÕ¸ÿÊ¥ ∑§Ê ‡ÊËÉÊ˝ÃÊ ‚ ∞∑§ ∑§„ÊŸË ¬…∏Ÿ •ÊÒ⁄U ©‚∑§ ’ÊŒ øÊ⁄U ÁøòÊÊ¥ ∑§Ê ∑˝§◊ ◊¥ ‹ªÊŸ ∑§ Á‹∞
+∑§„Ê– ß‚ ªÁÃÁflÁœ ∑§Ê ÄÿÊ ©g‡ÿ „Ò?
+ÁøòÊ ∑§Ê«UÊZ ∑§Ê ∑˝§◊ ‚ ‹ªÊŸÊ–
+(1)
+‚Ê⁄UÊ¥‡ÊË∑§⁄UáÊ ∑§ Á‹∞ ¬∆UŸ ∑§Ê •èÿÊ‚ ∑§⁄UflÊŸÊ–
+(2)
+ÁflÁ‡Êc≈U ‚ÍøŸÊ ¡ÊŸŸ ∑§ Á‹∞ ¬∆UŸ ∑§Ê •èÿÊ‚ ∑§⁄UflÊŸÊ–
+(3)
+∑§„ÊŸË ◊¥ •Ê∞ Ÿ∞ •ÊÒ⁄U ∑§Á∆UŸ ‡ÊéŒÊ¥ ∑§Ë ¬ÈŸ⁄UÊflÎÁûÊ–
+(4)
+142. ß‚ ¬˝∑§Ê⁄U ∑§ ¬∆UŸ ∑§ ∑È§¿U •Áœª◊ ©g‡ÿ •ÊÒ⁄U ∑§Êÿ¸ „Ò¥– Á‡ÊˇÊÊÁÕ¸ÿÊ¥ ‚ •¬ˇÊÊ ⁄U„ÃË „Ò Á∑§ fl Áfl·ÿflSÃÈ ∑§Ê ÁflSÃÊ⁄U ‚
+äÿÊŸ¬Ífl¸∑§ •ÊÒ⁄U ‚ÊflœÊŸË¬Ífl¸∑§ ¬…∏¥, ÿ„ „Ò —
+ÁflSÃÎÃ ¬∆UŸ ª„Ÿ ¬∆UŸ (ß¥≈Ò¥UÁ‚fl)
+(1) (2)
+ÁŸŒ¸Á‡ÊÃ ¬∆UŸ •ÊŸãŒ ∑§ Á‹∞ ¬∆UŸ
+(3) (4)
+P-I !SAS-24-I! 45 I
+143. ÁfllÊÕË¸ •äÿÊ¬∑§ mÊ⁄UÊ ÁŒÿ ª∞ •ÊŒ‡Ê¸ flÊÄÿÊ¥ ∑§Ê ŒÊ„⁄UÊ∑§⁄U ÷Ê·Ê ∑§ ¬˝ÁÃ◊ÊŸ (¬Ò≈UŸ¸) ‚ËπÃ „Ò¥– fl flÊÄÿÊ¥ ∑§Ê ∑¥§∆USÕ ∑§⁄U
+‹Ã „Ò¥ •ÊÒ⁄U ‚„Ë Ã⁄UË∑§ ‚ Á«˛U‹ ∑§⁄UŸ ¬⁄U •¬Ÿ •äÿÊ¬∑§ mÊ⁄UÊ ‚∑§Ê⁄UÊà◊∑§ ¬ÈŸ’¸‹Ÿ ¬˝ÊåÃ ∑§⁄UÃ „Ò¥– •äÿÊ¬∑§ mÊ⁄UÊ ÄÿÊ Á∑§ÿÊ
+¡Ê ⁄U„Ê „Ò?
+üÊ√ÿ ÷ÊÁ·∑§ ÁflÁœ ‚ê¬˝·áÊÊà◊∑§ ©¬Êª◊
+(1) (2)
+∑È§‹ ÷ÊÒÁÃ∑§ ¬˝ÁÃÁ∑˝§ÿÊ ‚¥⁄UøŸÊà◊∑§ ©¬Êª◊
+(3) (4)
+144. Á‡ÊˇÊÊÕË¸ √ÿÊ∑§⁄UáÊ ∑§ ÁŸÿ◊ •ÊÒ⁄U ‡ÊéŒ ‚¥¬ŒÊ ∑§Ê ∑¥§∆USÕ ∑§⁄U ⁄U„ „Ò¥, •Áœ∑§Ê¥‡Ê ∑§Êÿ¸ ◊ÊÃÎ÷Ê·Ê ◊¥ „Ê ⁄U„Ê „Ò– ÷Ê·Ê •äÿÊ¬∑§ mÊ⁄UÊ
+•¬ŸË ∑§ˇÊÊ ◊¥ Á∑§‚ ÁflÁœ ∑§Ê ¬˝ÿÊª ∑§⁄UŸÊ øÊÁ„∞?
+¬˝àÿˇÊ («UÊÿ⁄UÄ≈U) ÁflÁœ ¬˝Ê∑Î§ÁÃ∑§ ©¬Êª◊
+(1) (2)
+‚ê¬˝·áÊÊà◊∑§ Á‡ÊˇÊáÊ √ÿÊ∑§⁄UáÊ •ŸÈflÊŒ
+(3) (4)
+145. ÿÁŒ ’ëø •¬Ÿ ¬Á⁄Ufl‡Ê ◊¥ ŒÊ ÷Ê·Ê•Ê¥ ∑§Ê ’Ê‹ŸÊ ‚ÈŸÃ „Ò¥, ŒÊ ÷Ê·Ê•Ê¥ ∑§Ê ‚ÈŸŸ ∑§ ÿ •fl‚⁄U —
+’ëøÊ¥ ∑§Ê ŸÈ∑§‚ÊŸ ¬„È°øÊÃ „Ò¥– ’ëøÊ¥ ∑§Ê ‹Ê÷ ¬„È°øÊÃ „Ò¥–
+(1) (2)
+∑§Êß¸ ¬˝÷Êfl Ÿ„Ë¥ «UÊ‹Ã „Ò¥– ‚◊¤Ê ◊¥ ÷˝Á◊Ã ∑§⁄UÃ „Ò¥–
+(3) (4)
+146. ¬∆UŸ ‚ËπŸ ◊¥ ‚’‚ ’«∏Ë øÈŸÊÒÃË ¬˝⁄UáÊÊ •ÊÒ⁄U •ë¿UÊ ’Ê‹‚ÊÁ„àÿ ¬ÊŸ ∑§Ë „Ò– ß‚ øÈŸÊÒÃË ∑§Ê ŒÍ⁄U ∑§⁄UŸ ∑§ Á‹∞ -
+•äÿÊ¬∑§Ê¥ ∑§Ê ªÎ„∑§Êÿ¸ ∑§ M§¬ ◊¥ ¬˝ÁÃÁŒŸ ∞∑§ ¬ÈSÃ∑§ ¬…∏Ÿ ∑§ Á‹∞ •Á÷¬˝Á⁄UÃ ∑§⁄UŸÊ øÊÁ„∞–
+(1)
+•Á÷÷Êfl∑§Ê¥ ∑§Ê •¬Ÿ ÉÊ⁄U ◊¥ ∞∑§ ¿UÊ≈UÊ ‚Ê ¬ÈSÃ∑§Ê‹ÿ ’ŸÊŸ ∑§ Á‹∞ ¬˝Êà‚ÊÁ„Ã ∑§⁄UŸÊ øÊÁ„∞–
+(2)
+’Ê‹ ‚ÊÁ„àÿ ∑§Ë ‚⁄U‹ÃÊ ‚ ©¬‹éœÃÊ Á¡‚‚ ¬∆UŸ ∑§ Á‹∞ ¬˝Êà‚Ê„Ÿ •ÊÒ⁄U L§Áø ¬ÒŒÊ „Ê–
+(3)
+ÁfllÊ‹ÿ ∑§ •Áœ∑§ÊÁ⁄UÿÊ¥ ∑§Ê øÊÁ„∞ Á∑§ fl ’ëøÊ¥ ∑§Ê ¬ÈSÃ∑§ ◊‹ ‹ ¡ÊÿÊ ∑§⁄¥U Á¡‚‚ Á∑§ fl ¬ÈSÃ∑¥§ ¬…∏Ÿ ∑§ Á‹∞
+(4)
+¬˝Êà‚ÊÁ„Ã „Ê¥ •ÊÒ⁄U L§Áø ¬ÒŒÊ „Ê–
+147. ¬˝ÊÕÁ◊∑§ SÃ⁄U ¬⁄U ÷Ê·Ê ∑§ÊÒ‡Ê‹ ∑§Ê •Ê∑§‹Ÿ ∑§⁄UŸ ∑§ Á‹∞ ÷Ê·Ê •äÿÊ¬∑§ ∑§Ê ◊ÈÅÿÃ— Á∑§‚ ¬⁄U äÿÊŸ ∑§ÁãŒ˝Ã ∑§⁄UŸÊ øÊÁ„∞?
+fláÊ¸◊Ê‹Ê ∑§ •ˇÊ⁄UÊ¥ ∑§Ë ¬„øÊŸ ∑§⁄UŸÊ– Áfl⁄UÊ◊ Áøã„Ê¥ ∑§Ê ¬˝ÿÊª–
+(1) (2)
+©ÁøÃ ªÁÃ ∑§ ‚ÊÕ ¬∆UŸ– ‚◊¤Ê ∑§ ‚ÊÕ ¬∆UŸ–
+(3) (4)
+148. ∞∑§ •ë¿UË flÊøŸ (’Ê‹ŸÊ) ªÁÃÁflÁœ fl„ „Ò Á¡‚◊¥ —
+•äÿÊ¬∑§ •Áœ∑§ √ÿÊÅÿÊ ∑§⁄UÃ „Ò¥– Á‡ÊˇÊÊÕË¸ •Áœ∑§ ‚ÈŸÃ „Ò¥–
+(1) (2)
+Á‡ÊˇÊÊÕË¸ •Áœ∑§ ’ÊÃøËÃ ∑§⁄UÃ „Ò¥– •Áœ∑§Ê¥‡ÊÃ— ◊ÈπÁ⁄UÃ ÁfllÊÁÕ¸ÿÊ¥ ∑§Ë „Ë ‚„÷ÊÁªÃÊ ⁄U„ÃË „Ò–
+(3) (4)
+149. ¬Ê∆U ∑§ •Ê⁄¥U÷ ◊¥ ∞∑§ •äÿÊ¬∑§ Ÿ •¬ŸË ∑§ˇÊÊ ∑§ Á‡ÊˇÊÊÁÕ¸ÿÊ¥ ∑§Ê ‚◊Í„Ê¥ ◊¥ ’Ê°≈UÊ •ÊÒ⁄U ∑§„Ê Á∑§ •÷Ë „Ê‹ „Ë ◊¥ ¬…∏ ª∞ ‚◊ÊøÊ⁄U
+¬òÊ ∑§ M§Áø∑§⁄U •Ê‹π ∑§ ’Ê⁄U ◊¥ ’ÊÃ ∑§⁄¥U– ’Ê‹Ÿ (flÊøŸ) ∑§Ë ÿ„ ªÁÃÁflÁœ Á∑§‚Á‹∞ „Ò?
+◊ÊÒÁπ∑§ ¬˝flÊ„ •èÿÊ‚ ÁŸÿ¥ÁòÊÃ ◊ÊÒÁπ∑§ •èÿÊ‚
+(1) (2)
+ÁŸŒ¸Á‡ÊÃ ◊ÊÒÁπ∑§ •èÿÊ‚ ‚Á∑˝§ÿ üÊfláÊ
+(3) (4)
+150. ‚◊ª˝ ÷Ê·Ê ©¬Êª◊ ÄÿÊ „Ò?
+•Õ¸ •ÊœÊÁ⁄UÃ ∑§ÊÒ‡Ê‹ •ÊœÊÁ⁄UÃ
+(1) (2)
+äflÁŸÿÊ¥ ∑§Ê Á◊üÊáÊ äflÁŸ-‚¥∑§Ã ‚¥’¥œ ◊¥ ÁŸc∑§·¸ ÁŸ∑§Ê‹ŸÊ
+(3) (4)
+- o 0 o -
+P-I !SAS-24-I! 46 I
+SPACE FOR ROUGH WORK / ⁄U»§ ∑§Êÿ¸ ∑§ Á‹∞ ¡ª„
+P-I !SAS-24-I! 47 I
+READ THE FOLLOWING INSTRUCTIONS CAREFULLY : ÁŸêŸÁ‹ÁπÃ ÁŸŒ¸‡ÊÊ¥ ∑§Ê äÿÊŸ ‚ ¬…∏¥ —
+1. The manner in which the different questions are to be answered has been 1. Á¡‚ ¬˝∑§Ê⁄U ‚ ÁflÁ÷ÛÊ ¬˝‡ŸÊ¥ ∑§ ©ûÊ⁄U ÁŒ∞ ¡ÊŸ „Ò¥ ©‚∑§Ê fláÊ¸Ÿ ¬⁄UËˇÊÊ
+explained in the Test Booklet which you should read carefully before actually ¬ÈÁSÃ∑§Ê ◊¥ Á∑§ÿÊ ªÿÊ „Ò, Á¡‚ •Ê¬ ¬˝‡ŸÊ¥ ∑§Ê ©ûÊ⁄U ŒŸ ‚ ¬„‹ äÿÊŸ ‚ ¬…∏
+answering the questions. ‹¥–
+2. Out of the four alternatives for each question, only one circle for the correct 2. ¬˝àÿ∑§ ¬˝‡Ÿ ∑§ Á‹∞ ÁŒ∞ ª∞ øÊ⁄U Áfl∑§À¬Ê¥ ◊¥ ‚ ‚„Ë ©ûÊ⁄U ∑§ Á‹∞ OMR
+answer is to be darkened completely with Blue / Black Ball Point Pen on ©ûÊ⁄U ¬òÊ ∑§ ¬Îc∆U-2 ¬⁄U ∑§fl‹ ∞∑§ flÎûÊ ∑§Ê „Ë ¬Í⁄UË Ã⁄U„ ŸË‹/∑§Ê‹ ’ÊÚ‹ ¬ÊÚßã≈U
+Side-2 of the OMR Answer Sheet. The answer once marked is not liable ¬Ÿ ‚ ÷⁄¥U– ∞∑§ ’Ê⁄U ©ûÊ⁄U •¥Á∑§Ã ∑§⁄UŸ ∑§ ’ÊŒ ©‚ ’Œ‹Ê Ÿ„Ë¥ ¡Ê ‚∑§ÃÊ
+to be changed.
+„–Ò
+3. The candidates should ensure that the Answer Sheet is not folded. Do not 3. ¬⁄UËˇÊÊÕË¸ ‚ÈÁŸÁ‡øÃ ∑§⁄¥U Á∑§ ß‚ ©ûÊ⁄U ¬òÊ ∑§Ê ◊Ê«∏Ê Ÿ ¡Ê∞ ∞fl¥ ©‚ ¬⁄U ∑§Êß¸
+make any stray marks on the Answer Sheet. Do not write your Roll No. •ãÿ ÁŸ‡ÊÊŸ Ÿ ‹ªÊ∞°– ¬⁄UËˇÊÊÕË¸ •¬ŸÊ •ŸÈ∑˝§◊Ê¥∑§ ©ûÊ⁄U-¬òÊ ◊¥ ÁŸœÊ¸Á⁄UÃ
+anywhere else except in the specified space in the Answer Sheet.
+SÕÊŸ ∑§ •ÁÃÁ⁄UÄÃ •ãÿòÊ Ÿ Á‹π¥–
+4. Handle the Test Booklet and Answer Sheet with care, as under no 4. ¬⁄UËˇÊÊ ¬ÈÁSÃ∑§Ê ∞fl¥ ©ûÊ⁄U ¬òÊ ∑§Ê äÿÊŸ¬Ífl¸∑§ ¬˝ÿÊª ∑§⁄¥U, ÄÿÊ¥Á∑§ Á∑§‚Ë ÷Ë
+circumstances (except for discrepancy in Test Booklet Code or Number
+¬Á⁄UÁSÕÁÃ ◊¥ (∑§fl‹ ¬⁄UËˇÊÊ ¬ÈÁSÃ∑§Ê ∞fl¥ ©ûÊ⁄U ¬òÊ ∑§ ∑§Ê«U ÿÊ ‚¥ÅÿÊ ◊¥
+and Answer Sheet Code or Number), another set will be provided.
+Á÷ãŸÃÊ ∑§Ë ÁSÕÁÃ ∑§Ê ¿UÊ«∏∑§⁄U) ŒÍ‚⁄UË ¬⁄UËˇÊÊ ¬ÈÁSÃ∑§Ê ©¬‹éœ Ÿ„Ë¥ ∑§⁄UÊÿË
+5. The candidates will write the correct Test Booklet Code and Number as ¡Ê∞ªË–
+given in the Test Booklet/Answer Sheet in the Attendance Sheet.
+5. ¬⁄UËˇÊÊ ¬ÈÁSÃ∑§Ê/©ûÊ⁄U ¬òÊ ◊¥ ÁŒ∞ ª∞ ¬⁄UËˇÊÊ ¬ÈÁSÃ∑§Ê ∑§Ê«U fl ‚¥ÅÿÊ ∑§Ê
+6. A machine will read the coded information in the OMR Answer Sheet. ¬⁄UËˇÊÊÕË¸ ‚„Ë Ã⁄UË∑§ ‚ ©¬ÁSÕÁÃ-¬òÊ ◊¥ Á‹π¥–
+Hence, no information should be left incomplete and it should not be different
+6. OMR ©ûÊ⁄U ¬òÊ ◊¥ ∑§ÊÁ«UÃ ¡ÊŸ∑§Ê⁄UË ∑§Ê ∞∑§ ◊‡ÊËŸ ¬…∏ªË– ß‚Á‹∞ ∑§Êß¸
+from the information given in the Admit Card.
+÷Ë ‚ÍøŸÊ •œÍ⁄UË Ÿ ¿UÊ«∏¥ •ÊÒ⁄U ÿ„ ¬˝fl‡Ê-¬òÊ ◊¥ ŒË ªß¸ ‚ÍøŸÊ ‚ Á÷ãŸ Ÿ„Ë¥
+7. Candidates are not allowed to carry any textual material, printed or written, „ÊŸË øÊÁ„∞–
+bits of papers, pager, mobile phone, electronic device or any other material
+7. ¬⁄UËˇÊÊÕË¸ mÊ⁄UÊ ¬⁄UËˇÊÊ „ÊÚ‹/∑§ˇÊ ◊¥ ¬˝fl‡Ê-¬òÊ ∑§ Á‚flÊÿ Á∑§‚Ë ¬˝∑§Ê⁄U ∑§Ë
+except the Admit Card inside the examination hall/room.
+¬Ê∆K-‚Ê◊ª˝Ë, ◊ÈÁŒ˝Ã ÿÊ „SÃÁ‹ÁπÃ, ∑§Êª$¡ ∑§Ë ¬Áø¸ÿÊ°, ¬¡⁄U, ◊Ê’Êß‹
+8. Mobile phones, wireless communication devices (even in switched off
+»§ÊŸ, ß‹Ä≈˛UÊÚÁŸ∑§ ©¬∑§⁄UáÊ ÿÊ Á∑§‚Ë •ãÿ ¬˝∑§Ê⁄U ∑§Ë ‚Ê◊ª˝Ë ∑§Ê ‹ ¡ÊŸ ÿÊ
+mode) and the other banned items should not be brought in the examination
+©¬ÿÊª ∑§⁄UŸ ∑§Ë •ŸÈ◊ÁÃ Ÿ„Ë¥ „Ò–
+halls/rooms. Failing to comply with this instruction, it will be considered as
+using unfair means in the examination and action will be taken against the 8. ◊Ê’Êß‹ »§ÊŸ, ’ÃÊ⁄U ‚¥øÊ⁄U ÿÈÁÄÃÿÊ° (ÁSflø •ÊÚ»§ •flSÕÊ ◊¥ ÷Ë) •ÊÒ⁄U •ãÿ
+candidate including cancellation of examination. ¬˝ÁÃ’¥ÁœÃ flSÃÈ∞° ¬⁄UËˇÊÊ „ÊÚ‹/∑§ˇÊ ◊¥ Ÿ„Ë¥ ‹Êß¸ ¡ÊŸË øÊÁ„∞– ß‚ ‚ÍøŸÊ ∑§Ê
+¬Ê‹Ÿ Ÿ „ÊŸ ¬⁄U ß‚ ¬⁄UËˇÊÊ ◊¥ •ŸÈÁøÃ ‚ÊœŸÊ¥ ∑§Ê ¬˝ÿÊª ◊ÊŸÊ ¡Ê∞ªÊ •ÊÒ⁄U
+9. Each candidate must show on demand his/her Admit Card to the Invigilator.
+¬⁄UËˇÊÊÕË¸ ÁflL§h ∑§Êÿ¸flÊ„Ë ∑§Ë ¡Ê∞ªË, ¬⁄UËˇÊÊ ⁄Ug ∑§⁄UŸ ‚Á„Ã–
+10. No candidate, without special permission of the Centre Superintendent or
+9. ¬Í¿U ¡ÊŸ ¬⁄U ¬˝àÿ∑§ ¬⁄UËˇÊÊÕË¸, ÁŸ⁄UËˇÊ∑§ ∑§Ê •¬ŸÊ ¬˝fl‡Ê-¬òÊ ÁŒπÊ∞°–
+Invigilator, should leave his/her seat.
+10. ∑§ãŒ˝ •œËˇÊ∑§ ÿÊ ÁŸ⁄UËˇÊ∑§ ∑§Ë Áfl‡Ê· •ŸÈ◊ÁÃ ∑§ Á’ŸÊ ∑§Êß¸ ¬⁄UËˇÊÊÕË¸
+11. The candidates should not leave the Examination Hall/Room without handing
+•¬ŸÊ SÕÊŸ Ÿ ¿UÊ«∏¥–
+over their Answer Sheet to the Invigilator on duty and sign the Attendance
+Sheet twice. Cases where candidate has not signed the Attendance Sheet 11. ∑§Êÿ¸⁄UÃ ÁŸ⁄UËˇÊ∑§ ∑§Ê •¬ŸÊ ©ûÊ⁄U ¬òÊ ÁŒ∞ Á’ŸÊ ∞fl¥ ©¬ÁSÕÁÃ-¬òÊ ¬⁄U ŒÈ’Ê⁄UÊ
+second time will be deemed not to have handed over the Answer Sheet and „SÃÊˇÊ⁄U Á∑§∞ Á’ŸÊ ¬⁄UËˇÊÊÕË¸ ¬⁄UËˇÊÊ „ÊÚ‹/∑§ˇÊ Ÿ„Ë¥ ¿UÊ«∏¥ª– ÿÁŒ Á∑§‚Ë
+dealt with as an unfair means case. The candidates are also required to ¬⁄UËˇÊÊÕË¸ Ÿ ŒÍ‚⁄UË ’Ê⁄U ©¬ÁSÕÁÃ-¬òÊ ¬⁄U „SÃÊˇÊ⁄U Ÿ„Ë¥ Á∑§∞, ÃÊ ÿ„ ◊ÊŸÊ
+put their left hand THUMB impression in the space provided in the ¡Ê∞ªÊ Á∑§ ©‚Ÿ ©ûÊ⁄U ¬òÊ Ÿ„Ë¥ ‹ÊÒ≈UÊÿÊ „Ò •ÊÒ⁄U ÿ„ •ŸÈÁøÃ ‚ÊœŸ ∑§Ê
+Attendance Sheet.
+◊Ê◊‹Ê ◊ÊŸÊ ¡Ê∞ªÊ– ¬⁄UËˇÊÊÕË¸ •¬Ÿ ’Ê∞° „ÊÕ ∑§ •¥ªÍ∆U ∑§Ê ÁŸ‡ÊÊŸ ©¬ÁSÕÁÃ-
+12. Use of Electronic/Manual Calculator is prohibited. ¬òÊ ◊¥ ÁŒ∞ ª∞ SÕÊŸ ¬⁄U •fl‡ÿ ‹ªÊ∞°–
+13. The candidates are governed by all Rules and Regulations of the Examining 12. ß‹Ä≈˛UÊÚÁŸ∑§/„SÃøÊÁ‹Ã ¬Á⁄U∑§‹∑§ ∑§Ê ©¬ÿÊª flÁ¡¸Ã „Ò–
+Body with regard to their conduct in the Examination Hall/Room. All cases 13. ¬⁄UËˇÊÊ „ÊÚ‹/∑§ˇÊ ◊¥ •Êø⁄UáÊ ∑§ Á‹∞ ¬⁄UËˇÊÊÕË¸ ¬⁄UËˇÊáÊ ‚¥SÕÊ ∑§ ‚÷Ë
+of unfair means will be dealt with as per Rules and Regulations of the ÁŸÿ◊Ê¥ ∞fl¥ ÁflÁŸÿ◊Ê¥ mÊ⁄UÊ ÁŸÿÁ◊Ã „Ò¥– •ŸÈÁøÃ ‚ÊœŸÊ¥ ∑§ ‚÷Ë ◊Ê◊‹Ê¥ ∑§Ê
+Examining Body.
+»Ò§‚‹Ê ¬⁄UËˇÊáÊ ‚¥SÕÊ ∑§ ÁŸÿ◊Ê¥ ∞fl¥ ÁflÁŸÿ◊Ê¥ ∑§ •ŸÈ‚Ê⁄U „ÊªÊ–
+14. No part of the Test Booklet and Answer Sheet shall be detached under any 14. Á∑§‚Ë ÷Ë ¬Á⁄UÁSÕÁÃ ◊¥ ¬⁄UËˇÊÊ ¬ÈÁSÃ∑§Ê •ÊÒ⁄U ©ûÊ⁄U ¬òÊ ∑§Ê ∑§Êß¸ ÷Êª •‹ª
+circumstances.
+Ÿ ∑§⁄¥U–
+15. On completion of the test, the candidate must hand over the Answer 15. ¬⁄UËˇÊÊ ‚ê¬ãŸ „ÊŸ ¬⁄U, ¬⁄UËˇÊÊÕË¸ „ÊÚ‹/∑§ˇÊ ¿UÊ«∏Ÿ ‚ ¬Ífl¸ ©ûÊ⁄U ¬òÊ ÁŸ⁄UËˇÊ∑§
+Sheet to the Invigilator in the Hall / Room. The candidates are
+∑§Ê •fl‡ÿ ‚ÊÒ¥¬ Œ¥– ¬⁄UËˇÊÊÕË¸ •¬Ÿ ‚ÊÕ ß‚ ¬⁄UËˇÊÊ ¬ÈÁSÃ∑§Ê ∑§Ê ‹ ¡Ê ‚∑§Ã
+allowed to take away this Test Booklet with them.
+„–¥Ò
+P-I !SAS-24-I! 48 I
