@@ -676,5 +676,497 @@
   "gdown fail: dec2022 04FEB2023",
   "gdown fail: dec2022 06FEB2023",
   "gdown fail: dec2022 07FEB2023"
- ]
+ ],
+ "run3": {
+  "keys": [
+   {
+    "name": "jan2024_p1_final_key.pdf",
+    "url": "https://cdnbbsr.s3waas.gov.in/s3443dec3062d0286986e21dc0631734c9/uploads/2024/02/2024021954.pdf",
+    "status": "ok",
+    "chars": 181123
+   }
+  ],
+  "papers": [
+   {
+    "label": "dec2022_13jan2023",
+    "fid": "15G4FF1qtpMot8KZS_VZCXoQVUYepdrY9",
+    "status": "drive-fail"
+   },
+   {
+    "label": "july2024_setA",
+    "fid": "1i61Br_kq-YiSqL-0u_obVV0j0RC_beeL",
+    "via": "usercontent",
+    "pdfs_in_zip": 19,
+    "p1_pdfs": [
+     "JSS-24-I Paper I Assamese AAAA.pdf",
+     "JSS-24-I Paper I Bengali AAAA.pdf",
+     "JSS-24-I Paper I Eng+Hin AAAA.pdf",
+     "JSS-24-I Paper I Garo AAAA.pdf",
+     "JSS-24-I Paper I Gujarati AAAA.pdf",
+     "JSS-24-I Paper I Kannada AAAA.pdf",
+     "JSS-24-I Paper I Khasi AAAA.pdf",
+     "JSS-24-I Paper I Malayalam AAAA.pdf",
+     "JSS-24-I Paper I Manipuri AAAA.pdf",
+     "JSS-24-I Paper I Marathi AAAA.pdf",
+     "JSS-24-I Paper I Mizo AAAA.pdf",
+     "JSS-24-I Paper I Nepali AAAA.pdf",
+     "JSS-24-I Paper I Odia AAAA.pdf",
+     "JSS-24-I Paper I Punjabi AAAA.pdf",
+     "JSS-24-I Paper I Sanskrit AAAA.pdf",
+     "JSS-24-I Paper I Tamil AAAA.pdf",
+     "JSS-24-I Paper I Telugu AAAA.pdf",
+     "JSS-24-I Paper I Tibetan AAAA.pdf",
+     "JSS-24-I Paper I Urdu AAAA.pdf"
+    ],
+    "status": "done",
+    "extracted": [
+     {
+      "zip": "july2024_setA",
+      "pdf": "JSS-24-I Paper I Assamese AAAA.pdf",
+      "pages": 20,
+      "chars": 57,
+      "status": "ocr"
+     },
+     {
+      "zip": "july2024_setA",
+      "pdf": "JSS-24-I Paper I Bengali AAAA.pdf",
+      "pages": 20,
+      "chars": 0,
+      "status": "scanned-defer"
+     }
+    ]
+   },
+   {
+    "label": "dec2024_setH",
+    "fid": "17kvon5hwlXZiJyOaOHaFUO3zY_Gg6kn5",
+    "via": "usercontent",
+    "pdfs_in_zip": 19,
+    "p1_pdfs": [
+     "SED-24-I Assamese HHHH.pdf",
+     "SED-24-I Bengali HHHH.pdf",
+     "SED-24-I Eng+Hin HHHH.pdf",
+     "SED-24-I Garo HHHH.pdf",
+     "SED-24-I Gujarati HHHH.pdf",
+     "SED-24-I Kannada HHHH.pdf",
+     "SED-24-I Khasi HHHH.pdf",
+     "SED-24-I Malayalam HHHH.pdf",
+     "SED-24-I Manipuri HHHH.pdf",
+     "SED-24-I Marathi HHHH.pdf",
+     "SED-24-I Mizo HHHH.pdf",
+     "SED-24-I Nepali HHHH.pdf",
+     "SED-24-I Odia HHHH.pdf",
+     "SED-24-I Punjabi HHHHH.pdf",
+     "SED-24-I Sanskrit H.pdf",
+     "SED-24-I Set 208 Tibetan HHHH.pdf",
+     "SED-24-I Tamil HHHH.pdf",
+     "SED-24-I Telugu HHHH.pdf",
+     "SED-24-I Urdu HHHH.pdf"
+    ],
+    "status": "done",
+    "extracted": [
+     {
+      "zip": "dec2024_setH",
+      "pdf": "SED-24-I Assamese HHHH.pdf",
+      "pages": 20,
+      "chars": 57,
+      "status": "ocr"
+     },
+     {
+      "zip": "dec2024_setH",
+      "pdf": "SED-24-I Bengali HHHH.pdf",
+      "pages": 20,
+      "chars": 0,
+      "status": "scanned-defer"
+     }
+    ]
+   },
+   {
+    "label": "feb2026_p1_07feb_S",
+    "fid": "1suavWoDsydGcTk_alVmKhwmyH9GuUJ48",
+    "via": "usercontent",
+    "pdfs_in_zip": 6,
+    "p1_pdfs": [
+     "Assamese-S.pdf",
+     "Bengali-S.pdf",
+     "Main-S.pdf",
+     "Marathi-S.pdf",
+     "Sanskrit-S.pdf",
+     "Urdu-S.pdf"
+    ],
+    "status": "done",
+    "extracted": [
+     {
+      "zip": "feb2026_p1_07feb_S",
+      "pdf": "Assamese-S.pdf",
+      "pages": 16,
+      "chars": 32914,
+      "status": "ocr"
+     },
+     {
+      "zip": "feb2026_p1_07feb_S",
+      "pdf": "Bengali-S.pdf",
+      "pages": 16,
+      "chars": 0,
+      "status": "scanned-defer"
+     }
+    ]
+   },
+   {
+    "label": "feb2026_p1_08feb_C",
+    "fid": "1wbsYGwEMnmQyj5eiZ5ZcdHiCGtIeam60",
+    "via": "usercontent",
+    "pdfs_in_zip": 19,
+    "p1_pdfs": [
+     "FSC Paper I Assamese CCCC.pdf",
+     "FSC Paper I Bengali CCCC.pdf",
+     "FSC Paper I Eng+Hin CCCC.pdf",
+     "FSC Paper I Garo CCCC.pdf",
+     "FSC Paper I Gujarati CCCC.pdf",
+     "FSC Paper I Kannada CCCC.pdf",
+     "FSC Paper I Khasi CCCC.pdf",
+     "FSC Paper I Malayalam CCCC.pdf",
+     "FSC Paper I Manipuri CCCC.pdf",
+     "FSC Paper I Marathi CCCC.pdf",
+     "FSC Paper I Mizo CCCC.pdf",
+     "FSC Paper I Nepali CCCC.pdf",
+     "FSC Paper I Odia CCCC.pdf",
+     "FSC Paper I Punjabi CCCC.pdf",
+     "FSC Paper I Sanskrit CCCC.pdf",
+     "FSC Paper I Tamil CCCC.pdf",
+     "FSC Paper I Telugu CCCC.pdf",
+     "FSC Paper I Urdu CCCC.pdf",
+     "FSC Tibetan  PAPER-I  CCCC.pdf"
+    ],
+    "status": "done",
+    "extracted": [
+     {
+      "zip": "feb2026_p1_08feb_C",
+      "pdf": "FSC Paper I Assamese CCCC.pdf",
+      "pages": 20,
+      "chars": 57,
+      "status": "ocr"
+     },
+     {
+      "zip": "feb2026_p1_08feb_C",
+      "pdf": "FSC Paper I Bengali CCCC.pdf",
+      "pages": 20,
+      "chars": 0,
+      "status": "scanned-defer"
+     }
+    ]
+   },
+   {
+    "label": "feb2026_p1_07feb_U",
+    "fid": "1jdwb05v_GzPJAuyNKJ6WKzhbG1iwTosy",
+    "via": "usercontent",
+    "pdfs_in_zip": 6,
+    "p1_pdfs": [
+     "Assamese-U.pdf",
+     "Bengali-U.pdf",
+     "Main-U.pdf",
+     "Marathi-U.pdf",
+     "Sanskrit-U.pdf",
+     "Urdu-U.pdf"
+    ],
+    "status": "done",
+    "extracted": [
+     {
+      "zip": "feb2026_p1_07feb_U",
+      "pdf": "Assamese-U.pdf",
+      "pages": 16,
+      "chars": 33020,
+      "status": "ocr"
+     },
+     {
+      "zip": "feb2026_p1_07feb_U",
+      "pdf": "Bengali-U.pdf",
+      "pages": 16,
+      "chars": 0,
+      "status": "scanned-defer"
+     }
+    ]
+   },
+   {
+    "label": "feb2026_p1_08feb_E",
+    "fid": "1NZiXv9hXKqvU1pyCkCxHB7400CYNPfRO",
+    "via": "usercontent",
+    "pdfs_in_zip": 19,
+    "p1_pdfs": [
+     "FSC Paper I Assamese EEEE.pdf",
+     "FSC Paper I Bengali EEEE.pdf",
+     "FSC Paper I Eng+Hin EEEE.pdf",
+     "FSC Paper I Garo EEEE.pdf",
+     "FSC Paper I Gujarati EEEE.pdf",
+     "FSC Paper I Kannada EEEE.pdf",
+     "FSC Paper I Khasi EEEE.pdf",
+     "FSC Paper I Malayalam EEEE.pdf",
+     "FSC Paper I Manipuri EEEE.pdf",
+     "FSC Paper I Marathi EEEE.pdf",
+     "FSC Paper I Mizo EEEE.pdf",
+     "FSC Paper I Nepali EEEE.pdf",
+     "FSC Paper I Odia EEEE.pdf",
+     "FSC Paper I Punjabi EEEE.pdf",
+     "FSC Paper I Sanskrit EEEE.pdf",
+     "FSC Paper I Tamil EEEE.pdf",
+     "FSC Paper I Telugu EEEE.pdf",
+     "FSC Paper I Urdu EEEEE.pdf",
+     "FSC Tibetan  PAPER-I  EEEE.pdf"
+    ],
+    "status": "done",
+    "extracted": [
+     {
+      "zip": "feb2026_p1_08feb_E",
+      "pdf": "FSC Paper I Assamese EEEE.pdf",
+      "pages": 20,
+      "chars": 57,
+      "status": "ocr"
+     },
+     {
+      "zip": "feb2026_p1_08feb_E",
+      "pdf": "FSC Paper I Bengali EEEE.pdf",
+      "pages": 20,
+      "chars": 0,
+      "status": "scanned-defer"
+     }
+    ]
+   },
+   {
+    "label": "jan2024_setI",
+    "fid": "1zvLZtZEIhvqoooU88uXmgbHTmDHpfQd1",
+    "via": "usercontent",
+    "pdfs_in_zip": 19,
+    "p1_pdfs": [
+     "SAS-24-I Paper I Assamese IIII.pdf",
+     "SAS-24-I Paper I Bengali IIII.pdf",
+     "SAS-24-I Paper I Eng+Hin IIII.pdf",
+     "SAS-24-I Paper I Garo IIII.pdf",
+     "SAS-24-I Paper I Gujarati IIII.pdf",
+     "SAS-24-I Paper I Kannada IIII.pdf",
+     "SAS-24-I Paper I Khasi IIII.pdf",
+     "SAS-24-I Paper I Malayalam IIII.pdf",
+     "SAS-24-I Paper I Manipuri IIII.pdf",
+     "SAS-24-I Paper I Marathi IIII.pdf",
+     "SAS-24-I Paper I Mizo IIII.pdf",
+     "SAS-24-I Paper I Nepali IIII.pdf",
+     "SAS-24-I Paper I Odia IIII.pdf",
+     "SAS-24-I Paper I Punjabi IIII.pdf",
+     "SAS-24-I Paper I Sanskrit IIII.pdf",
+     "SAS-24-I Paper I Tamil IIII.pdf",
+     "SAS-24-I Paper I Telugu IIII.pdf",
+     "SAS-24-I Paper I Tibetan IIII.pdf",
+     "SAS-24-I Paper I Urdu IIII.pdf"
+    ],
+    "status": "done",
+    "extracted": [
+     {
+      "zip": "jan2024_setI",
+      "pdf": "SAS-24-I Paper I Assamese IIII.pdf",
+      "pages": 16,
+      "chars": 0,
+      "status": "scanned-defer"
+     },
+     {
+      "zip": "jan2024_setI",
+      "pdf": "SAS-24-I Paper I Bengali IIII.pdf",
+      "pages": 20,
+      "chars": 0,
+      "status": "scanned-defer"
+     }
+    ]
+   },
+   {
+    "label": "jan2024_setJ",
+    "fid": "1G9dTNyzk3t2w6PW7ybZiE9KyQJaF_mTD",
+    "via": "usercontent",
+    "pdfs_in_zip": 19,
+    "p1_pdfs": [
+     "SAS-24-I Paper I Assamese JJJJ.pdf",
+     "SAS-24-I Paper I Bengali JJJJ.pdf",
+     "SAS-24-I Paper I Eng+Hin JJJJ.pdf",
+     "SAS-24-I Paper I Garo JJJJ.pdf",
+     "SAS-24-I Paper I Gujarati JJJJ.pdf",
+     "SAS-24-I Paper I Kannada JJJJ.pdf",
+     "SAS-24-I Paper I Khasi JJJJ.pdf",
+     "SAS-24-I Paper I Malayalam JJJJ.pdf",
+     "SAS-24-I Paper I Manipuri JJJJ.pdf",
+     "SAS-24-I Paper I Marathi JJJJ.pdf",
+     "SAS-24-I Paper I Mizo JJJJ.pdf",
+     "SAS-24-I Paper I Nepali JJJJ.pdf",
+     "SAS-24-I Paper I Odia JJJJ.pdf",
+     "SAS-24-I Paper I Punjabi JJJJ.pdf",
+     "SAS-24-I Paper I Sanskrit JJJJ.pdf",
+     "SAS-24-I Paper I Tamil JJJJ.pdf",
+     "SAS-24-I Paper I Telugu JJJJ.pdf",
+     "SAS-24-I Paper I Tibetan JJJJ.pdf",
+     "SAS-24-I Paper I Urdu JJJJ.pdf"
+    ],
+    "status": "done",
+    "extracted": [
+     {
+      "zip": "jan2024_setJ",
+      "pdf": "SAS-24-I Paper I Assamese JJJJ.pdf",
+      "pages": 16,
+      "chars": 0,
+      "status": "scanned-defer"
+     },
+     {
+      "zip": "jan2024_setJ",
+      "pdf": "SAS-24-I Paper I Bengali JJJJ.pdf",
+      "pages": 20,
+      "chars": 0,
+      "status": "scanned-defer"
+     }
+    ]
+   },
+   {
+    "label": "jan2024_setK",
+    "fid": "1gSQxrQGKx5SjUMjcjT-BbCP61sk-rZKN",
+    "via": "usercontent",
+    "pdfs_in_zip": 19,
+    "p1_pdfs": [
+     "SAS-24-I Paper I Assamese KKKK.pdf",
+     "SAS-24-I Paper I Bengali KKKK.pdf",
+     "SAS-24-I Paper I Eng+Hin KKKK.pdf",
+     "SAS-24-I Paper I Garo KKKK.pdf",
+     "SAS-24-I Paper I Gujarati KKKK.pdf",
+     "SAS-24-I Paper I Kannada KKKK.pdf",
+     "SAS-24-I Paper I Khasi KKKK.pdf",
+     "SAS-24-I Paper I Malayalam KKKK.pdf",
+     "SAS-24-I Paper I Manipuri KKKK.pdf",
+     "SAS-24-I Paper I Marathi KKKK.pdf",
+     "SAS-24-I Paper I Mizo KKKK.pdf",
+     "SAS-24-I Paper I Nepali KKKK.pdf",
+     "SAS-24-I Paper I Odia KKKK.pdf",
+     "SAS-24-I Paper I Punjabi KKKK.pdf",
+     "SAS-24-I Paper I Sanskrit KKKK.pdf",
+     "SAS-24-I Paper I Tamil KKKK.pdf",
+     "SAS-24-I Paper I Telugu KKKK.pdf",
+     "SAS-24-I Paper I Tibetan KKKK.pdf",
+     "SAS-24-I Paper I Urdu KKKK.pdf"
+    ],
+    "status": "done",
+    "extracted": [
+     {
+      "zip": "jan2024_setK",
+      "pdf": "SAS-24-I Paper I Assamese KKKK.pdf",
+      "pages": 16,
+      "chars": 0,
+      "status": "scanned-defer"
+     },
+     {
+      "zip": "jan2024_setK",
+      "pdf": "SAS-24-I Paper I Bengali KKKK.pdf",
+      "pages": 20,
+      "chars": 0,
+      "status": "scanned-defer"
+     }
+    ]
+   },
+   {
+    "label": "jan2024_setL",
+    "fid": "1ELHGrhxxFAVfUh4q6KhxRL_NvYYew8i3",
+    "via": "usercontent",
+    "pdfs_in_zip": 19,
+    "p1_pdfs": [
+     "SAS-24-I Paper I Assamese LLLL.pdf",
+     "SAS-24-I Paper I Bengali LLLL.pdf",
+     "SAS-24-I Paper I Eng+Hin LLLL.pdf",
+     "SAS-24-I Paper I Garo LLLL.pdf",
+     "SAS-24-I Paper I Gujarati LLLL.pdf",
+     "SAS-24-I Paper I Kannada LLLL.pdf",
+     "SAS-24-I Paper I Khasi LLLL.pdf",
+     "SAS-24-I Paper I Malayalam LLLL.pdf",
+     "SAS-24-I Paper I Manipuri LLLL .pdf",
+     "SAS-24-I Paper I Marathi LLLL.pdf",
+     "SAS-24-I Paper I Mizo LLLL.pdf",
+     "SAS-24-I Paper I Nepali LLLL.pdf",
+     "SAS-24-I Paper I Odia LLLL.pdf",
+     "SAS-24-I Paper I Punjabi LLLL.pdf",
+     "SAS-24-I Paper I Sanskrit LLLL.pdf",
+     "SAS-24-I Paper I Tamil LLLL.pdf",
+     "SAS-24-I Paper I Telugu LLLL.pdf",
+     "SAS-24-I Paper I Tibetan LLLL.pdf",
+     "SAS-24-I Paper I Urdu LLLL.pdf"
+    ],
+    "status": "done",
+    "extracted": [
+     {
+      "zip": "jan2024_setL",
+      "pdf": "SAS-24-I Paper I Assamese LLLL.pdf",
+      "pages": 16,
+      "chars": 0,
+      "status": "scanned-defer"
+     },
+     {
+      "zip": "jan2024_setL",
+      "pdf": "SAS-24-I Paper I Bengali LLLL.pdf",
+      "pages": 20,
+      "chars": 0,
+      "status": "scanned-defer"
+     }
+    ]
+   },
+   {
+    "label": "adda247_7feb_codeU",
+    "url": "https://www.adda247.com/jobs/wp-content/uploads/sites/13/2026/02/07183549/Code-U.pdf",
+    "zip": "adda247_7feb_codeU",
+    "pdf": "adda247_7feb_codeU.pdf",
+    "pages": 0,
+    "status": "unreadable"
+   },
+   {
+    "label": "adda247_7feb_codeV",
+    "url": "https://www.adda247.com/jobs/wp-content/uploads/sites/13/2026/02/07183547/Code-V.pdf",
+    "zip": "adda247_7feb_codeV",
+    "pdf": "adda247_7feb_codeV.pdf",
+    "pages": 0,
+    "status": "unreadable"
+   },
+   {
+    "label": "adda247_8feb_setC",
+    "url": "https://www.adda247.com/jobs/wp-content/uploads/sites/13/2026/02/08180518/PRT-08-02-26-Set-C.pdf",
+    "zip": "adda247_8feb_setC",
+    "pdf": "adda247_8feb_setC.pdf",
+    "pages": 0,
+    "status": "unreadable"
+   },
+   {
+    "label": "careerpower_7feb_X",
+    "url": "https://www.careerpower.in/blog/wp-content/uploads/2026/05/12122733/CTET-7-Feb-Code-X-Paper-1.pdf",
+    "zip": "careerpower_7feb_X",
+    "pdf": "careerpower_7feb_X.pdf",
+    "pages": 0,
+    "status": "unreadable"
+   },
+   {
+    "label": "careerpower_7feb_V",
+    "url": "https://www.careerpower.in/blog/wp-content/uploads/2026/05/12122746/CTET-Question-Paper-1-Shift-2-7-Feb-2026-Code-V.pdf",
+    "zip": "careerpower_7feb_V",
+    "pdf": "careerpower_7feb_V.pdf",
+    "pages": 0,
+    "status": "unreadable"
+   },
+   {
+    "label": "careerpower_8feb_C",
+    "url": "https://www.careerpower.in/blog/wp-content/uploads/2026/05/12122845/CTET-Question-Paper-1-Shift-2-8-Feb-2026-Code-C.pdf",
+    "zip": "careerpower_8feb_C",
+    "pdf": "careerpower_8feb_C.pdf",
+    "pages": 0,
+    "status": "unreadable"
+   },
+   {
+    "label": "careerpower_8feb_E",
+    "url": "https://www.careerpower.in/blog/wp-content/uploads/2026/05/12122850/CTET-Question-Paper-1-Shift-2-8-Feb-2026-Code-E.pdf",
+    "zip": "careerpower_8feb_E",
+    "pdf": "careerpower_8feb_E.pdf",
+    "pages": 0,
+    "status": "unreadable"
+   }
+  ],
+  "errors": [
+   "drive dl fail: dec2022_13jan2023"
+  ],
+  "started": "2026-10-04 03:17:22",
+  "elapsed_min": 1.8
+ }
 }
