@@ -64,6 +64,118 @@ def get_stimulus_body_and_dir(s: dict) -> tuple[str, str, str]:
     return kind, dir_text, body
 
 
+def classify_topic(sec: str, qh: str, qe: str | None, pid: str | None) -> str:
+    if pid:
+        return "अपठित पद्यांश" if "poem" in (pid or "").lower() else "अपठित गद्यांश"
+    text = (qh + " " + (qe or "")).lower()
+    if sec == "cdp":
+        if any(w in text for w in ["समावेशी", "विशेष आवश्यकता", "वंचित", "disability", "inclusive", "अक्षमता", "डिस्लेक्सिया", "dyslexia"]):
+            return "समावेशी शिक्षा"
+        elif any(w in text for w in ["पियाजे", "वाइगोत्स्की", "कोहलबर्ग", "piaget", "vygotsky", "kohlberg", "संज्ञानात्मक", "समीपस्थ", "scaffolding", "पाड़"]):
+            return "संज्ञानात्मक विकास"
+        elif any(w in text for w in ["बुद्धि", "intelligence", "iq", "गार्डनर", "gardner", "बीने", "binet"]):
+            return "बुद्धि"
+        elif any(w in text for w in ["मूल्यांकन", "आकलन", "सतत", "assessment", "evaluation", "cce", "पोर्टफोलियो", "रुब्रिक"]):
+            return "मूल्यांकन"
+        elif any(w in text for w in ["अधिगम", "सीखना", "learning", "थार्नडाइक", "पावलोव", "स्किनर", "पुनर्बलन", "reinforcement"]):
+            return "अधिगम सिद्धांत"
+        elif any(w in text for w in ["अभिप्रेरणा", "motivation", "मास्लो", "maslow", "आंतरिक अभिप्रेरणा"]):
+            return "अभिप्रेरणा"
+        elif any(w in text for w in ["व्यक्तित्व", "personality", "प्रक्षेपी"]):
+            return "व्यक्तित्व"
+        elif any(w in text for w in ["सृजनात्मकता", "creativity", "अपसारी", "divergent"]):
+            return "स्मृति/सृजनात्मकता"
+        elif any(w in text for w in ["लिंग", "gender", "रूढ़िवादिता", "समानता"]):
+            return "लिंग एवं समानता"
+        elif any(w in text for w in ["वैयक्तिक भिन्नता", "individual difference"]):
+            return "वैयक्तिक भिन्नता"
+        elif any(w in text for w in ["शिक्षण विधि", "teaching method", "विधि", "शिक्षण अधिगम"]):
+            return "शिक्षण विधियाँ"
+        elif any(w in text for w in ["भाषा विकास", "चॉम्स्की", "chomsky", "lad"]):
+            return "भाषा विकास"
+        elif any(w in text for w in ["nep", "rte", "ncf", "अधिनियम", "नीति", "policy"]):
+            return "नीति एवं अधिनियम"
+        else:
+            return "बाल विकास एवं अधिगम"
+    elif sec == "math":
+        if any(w in text for w in ["शिक्षण", "अधिगम", "वैन हील", "van hiele", "त्रुटि", "गणित की प्रकृति", "pedagogy", "पाठ्यक्रम", "tictac"]):
+            return "गणित शिक्षाशास्त्र"
+        elif any(w in text for w in ["संख्या", "अभाज्य", "भाज्य", "गुणनखंड", "ल.स.", "म.स.", "भिन्न", "स्थान मान", "fraction", "number", "prime"]):
+            return "संख्या पद्धति"
+        elif any(w in text for w in ["कोण", "त्रिभुज", "आयत", "वर्ग", "वृत्त", "geometry", "triangle", "angle", "समान्तर"]):
+            return "ज्यामिति"
+        elif any(w in text for w in ["क्षेत्रफल", "परिमाप", "आयतन", "mensuration", "area", "perimeter", "volume"]):
+            return "क्षेत्रमिति"
+        elif any(w in text for w in ["पैटर्न", "शृंखला", "क्रम", "pattern", "series"]):
+            return "पैटर्न/शृंखला"
+        elif any(w in text for w in ["प्रतिशत", "लाभ", "हानि", "बट्टा", "percentage", "profit", "loss"]):
+            return "प्रतिशत/लाभ-हानि"
+        elif any(w in text for w in ["औसत", "माध्य", "औसत चाल", "average", "mean"]):
+            return "औसत"
+        elif any(w in text for w in ["समय", "दूरी", "चाल", "ट्रेन", "रेलगाड़ी", "speed", "distance", "time"]):
+            return "गति-दूरी-समय"
+        elif any(w in text for w in ["कार्य", "दिन", "मजदूर", "work", "days"]):
+            return "समय एवं कार्य"
+        elif any(w in text for w in ["ब्याज", "साधारण ब्याज", "चक्रवृद्धि", "interest"]):
+            return "ब्याज"
+        elif any(w in text for w in ["आँकड़ा", "आलेख", "तालिका", "दंड", "data", "graph"]):
+            return "आँकड़ा निर्वचन"
+        else:
+            return "अंकगणित एवं संख्या"
+    elif sec == "evs":
+        if any(w in text for w in ["शिक्षण", "थीम", "उद्देश्य", "गतिविधि", "भ्रमण", "pedagogy", "evs", "परियोजना", "पाठ्यचर्या"]):
+            return "EVS शिक्षाशास्त्र"
+        elif any(w in text for w in ["प्रदूषण", "अपशिष्ट", "प्लास्टिक", "pollution", "स्मॉग"]):
+            return "प्रदूषण"
+        elif any(w in text for w in ["पारिस्थितिकी", "पारितंत्र", "खाद्य शृंखला", "ecosystem", "food chain", "उत्पादक", "उपभोक्ता"]):
+            return "पारिस्थितिकी"
+        elif any(w in text for w in ["जैव-विविधता", "राष्ट्रीय उद्यान", "अभयारण्य", "रेड डेटा", "biodiversity", "national park", "प्रजाति"]):
+            return "जैव-विविधता"
+        elif any(w in text for w in ["उत्तराखण्ड", "जिम कॉर्बेट", "नंदा देवी", "चिपको", "गौरा देवी", "फूलों की घाटी", "उत्तराखंड"]):
+            return "उत्तराखण्ड विशेष"
+        elif any(w in text for w in ["ऊर्जा", "जलवायु", "ग्लोबल वार्मिंग", "ग्रीनहाउस", "सौर ऊर्जा", "climate", "energy"]):
+            return "ऊर्जा एवं जलवायु"
+        elif any(w in text for w in ["मृदा", "मिट्टी", "कृषि", "फसल", "झूम", "soil", "crop", "agriculture"]):
+            return "कृषि एवं मृदा"
+        elif any(w in text for w in ["नदी", "पर्वत", "पठार", "झील", "जल", "river", "water", "lake"]):
+            return "भूगोल एवं नदियाँ"
+        elif any(w in text for w in ["वन", "जंगल", "संसाधन", "खनिज", "forest", "resource"]):
+            return "वन एवं संसाधन"
+        elif any(w in text for w in ["अनुकूलन", "पक्षी", "घोंसला", "जानवर", "कीट", "हाथी", "स्लॉथ", "adaptation", "animal"]):
+            return "जीव अनुकूलन"
+        else:
+            return "पर्यावरण एवं जीवन"
+    elif sec == "hindi":
+        if any(w in text for w in ["शिक्षण", "अधिगम", "कौशल", "भाषा अर्जन", "मातृभाषा", "त्रुटि", "व्याकरण शिक्षण", "उपचारात्मक"]):
+            return "भाषा शिक्षण"
+        elif any(w in text for w in ["संधि", "समास", "उपसर्ग", "प्रत्यय", "संज्ञा", "सर्वनाम", "विशेषण", "क्रिया", "कारक", "लिंग", "वचन"]):
+            return "व्याकरण"
+        elif any(w in text for w in ["पर्यायवाची", "विलोम", "तद्भव", "तत्सम", "मुहावरा", "लोकोक्ति", "अनेकार्थी", "शब्द"]):
+            return "शब्द-भंडार"
+        elif any(w in text for w in ["वर्ण", "स्वर", "व्यंजन", "उच्चारण", "अल्पप्राण", "महाप्राण"]):
+            return "वर्ण-विचार"
+        elif any(w in text for w in ["रस", "छंद", "अलंकार"]):
+            return "छंद/अलंकार/रस"
+        elif any(w in text for w in ["कवि", "लेखक", "रचना", "साहित्य", "उपन्यास", "कविता"]):
+            return "हिन्दी साहित्य"
+        else:
+            return "हिन्दी भाषा एवं व्याकरण"
+    elif sec == "english":
+        if any(w in text for w in ["teaching", "pedagogy", "acquisition", "learning", "method", "skill", "remedial", "error", "language"]):
+            return "ELT Methods & Skills"
+        elif any(w in text for w in ["tense", "preposition", "verb", "noun", "pronoun", "conjunction", "adjective", "passive", "direct", "indirect", "clause"]):
+            return "Grammar"
+        elif any(w in text for w in ["synonym", "antonym", "vocabulary", "spelling", "idiom", "phrase", "meaning"]):
+            return "Vocabulary & Idioms"
+        elif any(w in text for w in ["metaphor", "simile", "personification", "alliteration", "figure of speech"]):
+            return "Figures of Speech"
+        elif any(w in text for w in ["phoneme", "sound", "diphthong", "stress", "syllable", "phonology"]):
+            return "Phonology"
+        else:
+            return "English Language"
+    return sec.capitalize()
+
+
 def main():
     print(f"Building SQLite database from {BANK}...")
     if DB_PATH.exists():
@@ -285,6 +397,8 @@ def main():
                 if qnum:
                     seq_in_passage = qnum
 
+            topic_name = classify_topic(sec, q_hi, q_en, passage_id)
+
             cur.execute("""
                 INSERT INTO questions (
                     id, exams, section, topic_index, topic_name, difficulty,
@@ -292,7 +406,7 @@ def main():
                     answer, p_score, years, source_tag, passage_id, seq_in_passage
                 ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """, (
-                qid, exams_tag, sec, 0, sec.capitalize(), 2,
+                qid, exams_tag, sec, 0, topic_name, 2,
                 q_hi, json.dumps(opts_hi, ensure_ascii=False),
                 q_en, final_opts_en,
                 ans_int, 0.85, year, source_tag, passage_id, seq_in_passage
