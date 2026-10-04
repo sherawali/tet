@@ -41,7 +41,28 @@ def load_existing_ndjson(path: Path) -> list[dict[str, Any]]:
 
 
 def clean_markdown_text(t: str) -> str:
+    if not t:
+        return ""
+    # Strip leading markdown headers like '### 110.\n\n', '## Q.12', etc.
+    t = re.sub(r'^\s*#{1,6}\s*(?:Q\.?\s*)?\d+[\.\:\-]?\s*\n*', '', t)
+    # Strip leaked Options headers like '**Options / विकल्प**' or '**Options:**'
+    t = re.sub(r'\s*\*\*Options\s*(?:/\s*विकल्प)?\*\*\s*', '', t, flags=re.IGNORECASE)
+    # Strip checkmarks
+    t = re.sub(r'[✅✓]', '', t)
+    # Strip leaked prompt prefixes like '(B). ' or '(A). ' at start if followed by question text
+    t = re.sub(r'^\s*\([A-Da-d1-4]\)\s*[\.\:\-]\s+(?=[अ-हA-Za-z])', '', t)
+    # Strip standalone '### ' if any remains
+    t = re.sub(r'^\s*#{1,6}\s*', '', t)
     return t.strip()
+
+
+def clean_option_text(t: str) -> str:
+    t = clean_markdown_text(t)
+    # Strip (a) / (1) / a. / 1. if it is redundant at start of option
+    m = re.match(r'^\s*(?:\([1-4A-Da-d]\)|[1-4A-Da-d][\.\:\)])\s+(?!\b(?:और|and|तथा|व)\b)', t)
+    if m and not re.match(r'^\s*\d+\.\d+', t):
+        t = t[m.end():].strip()
+    return t
 
 
 def extract_options_and_q(b: str, year_mode: str) -> tuple[str, str, dict[str, str], dict[str, str], str]:
@@ -81,6 +102,7 @@ def extract_options_and_q(b: str, year_mode: str) -> tuple[str, str, dict[str, s
         if not m_ans: m_ans = re.search(r'उत्तर\s*:\s*\(?([a-d1-4])\)?', b, re.I)
         ans = m_ans.group(1).lower() if m_ans else 'a'
         ans_letter = LETTERS[int(ans)-1] if ans.isdigit() else ans
+        has_dev = lambda s: bool(re.search(r'[\u0900-\u097F]', s))
         bullet_opts = {}
         for l in LETTERS:
             m = re.search(rf'-\s*\*\*\(?{l}\)?\*\*\s*([^\n]+)', b, re.I)
@@ -90,9 +112,15 @@ def extract_options_and_q(b: str, year_mode: str) -> tuple[str, str, dict[str, s
                 txt = bullet_opts[l]
                 if ' / ' in txt:
                     parts = txt.split(' / ', 1)
-                    oe[l], oh[l] = clean_markdown_text(parts[0]), clean_markdown_text(parts[1])
+                    p0, p1 = parts[0].strip(), parts[1].strip()
+                    if has_dev(p1) and not has_dev(p0):
+                        oe[l], oh[l] = clean_option_text(p0), clean_option_text(p1)
+                    elif has_dev(p0) and not has_dev(p1):
+                        oh[l], oe[l] = clean_option_text(p0), clean_option_text(p1)
+                    else:
+                        oe[l], oh[l] = clean_option_text(p0), clean_option_text(p1)
                 else:
-                    oh[l], oe[l] = clean_markdown_text(txt), clean_markdown_text(txt)
+                    oh[l], oe[l] = clean_option_text(txt), clean_option_text(txt)
         else:
             m_inline = re.search(r'\(a\)\s*(.*?)\s*\(b\)\s*(.*?)\s*\(c\)\s*(.*?)\s*\(d\)\s*(.*?)(?=\n\s*\*\*उत्तर|\n\s*\*\*Ans|\n\s*उत्तर|$)', b, re.DOTALL)
             if m_inline:
@@ -100,19 +128,35 @@ def extract_options_and_q(b: str, year_mode: str) -> tuple[str, str, dict[str, s
                     txt = m_inline.group(idx).strip()
                     if ' / ' in txt:
                         parts = txt.split(' / ', 1)
-                        oe[l], oh[l] = clean_markdown_text(parts[0]), clean_markdown_text(parts[1])
+                        p0, p1 = parts[0].strip(), parts[1].strip()
+                        if has_dev(p1) and not has_dev(p0):
+                            oe[l], oh[l] = clean_option_text(p0), clean_option_text(p1)
+                        elif has_dev(p0) and not has_dev(p1):
+                            oh[l], oe[l] = clean_option_text(p0), clean_option_text(p1)
+                        else:
+                            oe[l], oh[l] = clean_option_text(p0), clean_option_text(p1)
                     else:
-                        oh[l], oe[l] = clean_markdown_text(txt), clean_markdown_text(txt)
-        lines = [l.strip() for l in b.splitlines() if l.strip() and not l.startswith('##') and not l.startswith('-') and not l.startswith('(') and not l.startswith('**उत्तर')]
-        if len(lines) >= 2 and any(ord(c) > 127 for c in lines[1]) and not any(ord(c) > 127 for c in lines[0]):
-            q_en, q_hi = lines[0], lines[1]
+                        oh[l], oe[l] = clean_option_text(txt), clean_option_text(txt)
+        lines = [l.strip() for l in b.splitlines() if l.strip() and not l.startswith('##') and not l.startswith('-') and not l.startswith('(') and not l.startswith('**उत्तर') and not l.startswith('**व्याख्या')]
+        q_en_found = ""
+        q_hi_found = ""
+        for l in lines:
+            if not q_en_found and not has_dev(l) and re.search(r'[A-Za-z]', l):
+                q_en_found = clean_markdown_text(l)
+            elif not q_hi_found and has_dev(l):
+                q_hi_found = clean_markdown_text(l)
+        if q_en_found and q_hi_found:
+            q_en, q_hi = q_en_found, q_hi_found
         elif lines:
-            q_hi, q_en = lines[0], lines[0]
+            clean_l0 = clean_markdown_text(lines[0])
+            q_hi = clean_l0
+            q_en = q_en_found if q_en_found else clean_l0
 
     elif year_mode == "2019":
         m_ans = re.search(r'Ans\.\s*\(?([a-d1-4])\)?', b, re.I)
         ans = m_ans.group(1).lower() if m_ans else 'a'
         ans_letter = LETTERS[int(ans)-1] if ans.isdigit() else ans
+        has_dev = lambda s: bool(re.search(r'[\u0900-\u097F]', s))
         parts = re.split(r'\*\*(?:हिन्दी|Hindi)\*\*|####\s*(?:हिन्दी|Hindi)', b)
         if len(parts) >= 2:
             en_part, hi_part = parts[0], parts[1]
@@ -121,17 +165,41 @@ def extract_options_and_q(b: str, year_mode: str) -> tuple[str, str, dict[str, s
             if m_en: q_en = clean_markdown_text(m_en.group(1))
             if m_hi: q_hi = clean_markdown_text(m_hi.group(1))
             for l in LETTERS:
-                m = re.search(rf'-\s*\*\*\(?{l}\)?\*\*\s*([^\n]+)', en_part, re.I)
-                if m: oe[l] = clean_markdown_text(m.group(1))
-                m = re.search(rf'-\s*\*\*\(?{l}\)?\*\*\s*([^\n]+)', hi_part, re.I)
-                if m: oh[l] = clean_markdown_text(m.group(1))
+                m_e = re.search(rf'-\s*\*\*\(?{l}\)?\*\*\s*([^\n]+)', en_part, re.I)
+                if m_e: oe[l] = clean_option_text(m_e.group(1))
+                m_h = re.search(rf'-\s*\*\*\(?{l}\)?\*\*\s*([^\n]+)', hi_part, re.I)
+                if m_h:
+                    raw_opt = clean_option_text(m_h.group(1))
+                    if not oe[l] and (' / ' in raw_opt or '/' in raw_opt):
+                        subparts = re.split(r'\s*/\s*', raw_opt, maxsplit=1)
+                        p0, p1 = subparts[0].strip(), subparts[1].strip()
+                        if has_dev(p1) and not has_dev(p0):
+                            oe[l], oh[l] = p0, p1
+                        elif has_dev(p0) and not has_dev(p1):
+                            oh[l], oe[l] = p0, p1
+                        else:
+                            oe[l], oh[l] = p0, p1
+                    else:
+                        oh[l] = raw_opt
         else:
             m_stem = re.search(r'\*\*Q\d+\.\*\*\s*(.*?)(?=\n- \*\*\(|$)', b, re.DOTALL)
             q_text = clean_markdown_text(m_stem.group(1)) if m_stem else ''
             q_hi, q_en = q_text, q_text
             for l in LETTERS:
                 m = re.search(rf'-\s*\*\*\(?{l}\)?\*\*\s*([^\n]+)', b, re.I)
-                if m: oh[l], oe[l] = clean_markdown_text(m.group(1)), clean_markdown_text(m.group(1))
+                if m:
+                    raw_opt = clean_option_text(m.group(1))
+                    if ' / ' in raw_opt or '/' in raw_opt:
+                        subparts = re.split(r'\s*/\s*', raw_opt, maxsplit=1)
+                        p0, p1 = subparts[0].strip(), subparts[1].strip()
+                        if has_dev(p1) and not has_dev(p0):
+                            oe[l], oh[l] = p0, p1
+                        elif has_dev(p0) and not has_dev(p1):
+                            oh[l], oe[l] = p0, p1
+                        else:
+                            oe[l], oh[l] = p0, p1
+                    else:
+                        oh[l], oe[l] = raw_opt, raw_opt
 
     elif year_mode == "2021_dec":
         m_ans = re.search(r'\*\*Answer:\*\*\s*\(?([a-d1-4])\)?', b, re.I)
@@ -179,11 +247,11 @@ def extract_options_and_q(b: str, year_mode: str) -> tuple[str, str, dict[str, s
 
         for let in LETTERS:
             m_opt_hi = re.search(rf'\({let}\)\s*([^\n]+)', b)
-            if m_opt_hi: oh[let] = clean_markdown_text(m_opt_hi.group(1))
+            if m_opt_hi: oh[let] = clean_option_text(m_opt_hi.group(1))
             if "#### English" in b:
                 en_part = b.split("#### English")[1]
                 m_opt_en = re.search(rf'\({let}\)\s*([^\n]+)', en_part)
-                if m_opt_en: oe[let] = clean_markdown_text(m_opt_en.group(1))
+                if m_opt_en: oe[let] = clean_option_text(m_opt_en.group(1))
             else:
                 oe[let] = oh[let]
 
@@ -201,7 +269,10 @@ def extract_options_and_q(b: str, year_mode: str) -> tuple[str, str, dict[str, s
 
         if not q_hi and not q_en:
             lines = [l.strip() for l in b.splitlines() if l.strip() and not l.startswith("###") and not l.startswith(">") and not l.startswith("- **")]
-            if lines: q_hi = lines[0]
+            if lines: q_hi = clean_markdown_text(lines[0])
+
+        q_hi = clean_markdown_text(q_hi)
+        q_en = clean_markdown_text(q_en)
 
         m_ans = re.search(r'\*\*(?:Answer|Ans\.|उत्तर)\s*[:.]?\*\*\s*\(?([1-4A-Da-d])\)?', b, re.IGNORECASE)
         if m_ans:
@@ -211,10 +282,10 @@ def extract_options_and_q(b: str, year_mode: str) -> tuple[str, str, dict[str, s
         for let in LETTERS:
             m_opt_en = re.search(rf'[-*]\s*\*\*\(?{let}\)?\*\*\s*([^\n✓✅]+)', en_part, re.IGNORECASE)
             if m_opt_en:
-                oe[let] = clean_markdown_text(m_opt_en.group(1))
+                oe[let] = clean_option_text(m_opt_en.group(1))
             m_opt_hi = re.search(rf'[-*]\s*\*\*\(?{let}\)?\*\*\s*([^\n✓✅]+)', hi_part, re.IGNORECASE)
             if m_opt_hi:
-                oh[let] = clean_markdown_text(m_opt_hi.group(1))
+                oh[let] = clean_option_text(m_opt_hi.group(1))
 
     elif year_mode == "2026":
         parts = re.split(r'\*\*(?:हिन्दी|Hindi)\*\*|####\s*(?:हिन्दी|Hindi)', b)
@@ -227,6 +298,22 @@ def extract_options_and_q(b: str, year_mode: str) -> tuple[str, str, dict[str, s
         if m_en: q_en = clean_markdown_text(m_en.group(1))
         m_hi = re.search(r'(?:^\s*|\n)(.*?)(?=\n- \*\*\(|\*\*English\*\*|>\s*\*\*Ans|$)', hi_part, re.DOTALL)
         if m_hi: q_hi = clean_markdown_text(m_hi.group(1))
+
+        q_hi = clean_markdown_text(q_hi)
+        q_en = clean_markdown_text(q_en)
+
+        m_ans = re.search(r'\*\*(?:Answer|Ans\.|उत्तर)\s*[:.]?\*\*\s*\(?([1-4A-Da-d])\)?', b, re.IGNORECASE)
+        if m_ans:
+            val = m_ans.group(1).lower()
+            ans_letter = LETTERS[int(val) - 1] if val.isdigit() else val
+
+        for let in LETTERS:
+            m_opt_en = re.search(rf'[-*]\s*\*\*\(?{let}\)?\*\*\s*([^\n✓✅]+)', en_part, re.IGNORECASE)
+            if m_opt_en:
+                oe[let] = clean_option_text(m_opt_en.group(1))
+            m_opt_hi = re.search(rf'[-*]\s*\*\*\(?{let}\)?\*\*\s*([^\n✓✅]+)', hi_part, re.IGNORECASE)
+            if m_opt_hi:
+                oh[let] = clean_option_text(m_opt_hi.group(1))
 
         if not q_hi and not q_en:
             m_single = re.search(r'\*\*Q\d+\.\*\*\s*([^\n]+)', b)
@@ -253,9 +340,21 @@ def extract_options_and_q(b: str, year_mode: str) -> tuple[str, str, dict[str, s
     # Clean fallbacks
     if not q_hi and q_en: q_hi = q_en
     if not q_en and q_hi: q_en = q_hi
+    has_dev = lambda s: bool(re.search(r'[\u0900-\u097F]', s))
     for let in LETTERS:
         if not oh[let] and oe[let]: oh[let] = oe[let]
         if not oe[let] and oh[let]: oe[let] = oh[let]
+        # If option in English still has slash with Devanagari, split it cleanly
+        for opt_ref in [oe[let], oh[let]]:
+            if (' / ' in opt_ref or '/' in opt_ref) and has_dev(opt_ref) and re.search(r'[A-Za-z]', opt_ref):
+                subparts = re.split(r'\s*/\s*', opt_ref, maxsplit=1)
+                p0, p1 = subparts[0].strip(), subparts[1].strip()
+                if has_dev(p1) and not has_dev(p0):
+                    oe[let], oh[let] = p0, p1
+                    break
+                elif has_dev(p0) and not has_dev(p1):
+                    oh[let], oe[let] = p0, p1
+                    break
         if not oh[let]: oh[let] = f"विकल्प {let.upper()}"
         if not oe[let]: oe[let] = f"Option {let.upper()}"
 
