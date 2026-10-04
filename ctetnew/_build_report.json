@@ -13,19 +13,14 @@
    "n_math": 30,
    "n_evs": 30,
    "n_lang": 60,
-   "flags": [
-    "Q71: book=3 official=1",
-    "Q71: sirf 0 विकल्प"
-   ]
+   "flags": []
   },
   "report": {
-   "book_vs_official_mismatch": 1,
-   "bad_opts": 1
+   "book_vs_official_mismatch": 0,
+   "bad_opts": 0,
+   "repaired_manually": 1
   },
-  "flags": [
-   "Q71: book=3 official=1",
-   "Q71: sirf 0 विकल्प"
-  ]
+  "flags": []
  },
  "2021-12": {
   "meta": {
@@ -61,8 +56,6 @@
    "n_evs": 30,
    "n_lang": 30,
    "flags": [
-    "Q44: sirf 0 विकल्प",
-    "Q45: sirf 0 विकल्प",
     "Q46: book=2 official=4",
     "Q46: stem damaged ('8')",
     "Q46: sirf 0 विकल्प",
@@ -71,13 +64,12 @@
    ]
   },
   "report": {
-   "bad_opts": 3,
-   "book_vs_official_mismatch": 3,
-   "broken_stem": 1
+   "bad_opts": 1,
+   "book_vs_official_mismatch": 1,
+   "broken_stem": 0,
+   "repaired_manually": 2
   },
   "flags": [
-   "Q44: sirf 0 विकल्प",
-   "Q45: sirf 0 विकल्प",
    "Q46: book=2 official=4",
    "Q46: stem damaged ('8')",
    "Q46: sirf 0 विकल्प",

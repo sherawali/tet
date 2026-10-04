@@ -1339,15 +1339,22 @@ Shame ________/शर्मिंदगी ...............
 
 ### प्रश्न 71
 
-**EN:** Your house is located at X and your school is located at Y. Although your school is just opposite but you cannot go straight because of the busy highway in between. So, you first go 125m due south, then cross a 100m long subway which is due east and finally reach your school at Y which is 125m due north. With respect to school at Y your house at X is
+**EN:** Your house is located at X and your school is located at Y. Although your school is just opposite but you cannot go straight because of the busy highway in between. So, you first go 125 m due south, then cross a 100 m long subway which is due east and finally reach your school at Y which is 125 m due north. With respect to school at Y, your house at X is :
 
-**HI:** आपका घर X पर स्थित है तथा आपका विद्यालय Y पर स्थित है। यद्यपि आपका विद्यालय ठीक सामने है परन्तु बीच में व्यस्त राजमार्ग होने के कारण आप सीधे नहीं जा सकते हैं। अत: पहले आप ठीक दक्षिण में 125m दूर जाते हैं, फिर ठीक पूर्व में 100m लम्बा सुरंग पथ पार करते हैं और अन्त में आप ठीक उत्तर में 125m दूरी पर Y पर अपने विद्यालय पहुँचते हैं। Y पर विद्यालय के सापेक्ष X पर आपका घर कहाँ स्थित है? (a) 100m due west/100m ठीक पश्चिम (b) 125m due north/125m ठीक
+**HI:** आपका घर X पर स्थित है तथा आपका विद्यालय Y पर स्थित है। यद्यपि आपका विद्यालय ठीक सामने है परन्तु बीच में व्यस्त राजमार्ग होने के कारण आप सीधे नहीं जा सकते हैं। अतः पहले आप ठीक दक्षिण में 125 m दूर जाते हैं, फिर ठीक पूर्व में 100 m लम्बा सुरंग पथ पार करते हैं और अन्त में आप ठीक उत्तर में 125 m दूरी पर Y पर अपने विद्यालय पहुँचते हैं। Y पर विद्यालय के सापेक्ष X पर आपका घर कहाँ स्थित है?
 
+- **(1)** 100 m ठीक पश्चिम
+  - *EN:* 100 m due west
+- **(2)** 125 m ठीक उत्तर
+  - *EN:* 125 m due north
+- **(3)** 125 m ठीक दक्षिण
+  - *EN:* 125 m due south
+- **(4)** 100 m ठीक पूर्व
+  - *EN:* 100 m due east
 
-**उत्तर: (1)**
-> ⚠️ स्रोत-पुस्तक का उत्तर (3) अधिकारिक key से भिन्न था — अधिकारिक ही रखा गया।
+**उत्तर: (1)** —  | repair: options raw text me stem/explanation me inline the; official Set-K key se ans (a) सत्यापित
 
-**व्याख्या:** 125 m due suoth/125m ठीक दक्षिण (d) 100m due east/100m ठीक पूर्व Ans. (a) : चूंकि आप घर X से दक्षिण दिशा में 125 मी. चलते हैं फिर वहाँ से पूर्व दिशा में 100 मी. चलते हैं तत्पश्चात् पुन: उत्तर दिशा में मुड़कर 125 मी. चलकर विद्यालय Y पहुँचते हैं। अत: आपके विद्यालय Y के सापेक्ष घर X से दूरी 100 मी. एवं दिशा ठीक पश्चिम में होगा।
+**व्याख्या:** घर X से 125 m दक्षिण, फिर 100 m पूर्व, फिर 125 m उत्तर चलने पर विद्यालय Y, घर से 100 m पूर्व में है। अतः विद्यालय के सापेक्ष घर 100 m पश्चिम में है।
 
 ### प्रश्न 72
 

@@ -271,6 +271,57 @@ def build_exam(ex):
 
     return out_questions, lang_out, report, flags
 
+# ------------------------------------------------------------- manual repairs
+# Raw PDF-extraction me kuch questions toote the. Ye overrides final built question par
+# lagte hain (source: official paper / testbook-verified options — _build_report me note).
+REPAIRS = {
+    ("2021-01", 71): dict(
+        q_hi="आपका घर X पर स्थित है तथा आपका विद्यालय Y पर स्थित है। यद्यपि आपका विद्यालय ठीक सामने है परन्तु बीच में व्यस्त राजमार्ग होने के कारण आप सीधे नहीं जा सकते हैं। अतः पहले आप ठीक दक्षिण में 125 m दूर जाते हैं, फिर ठीक पूर्व में 100 m लम्बा सुरंग पथ पार करते हैं और अन्त में आप ठीक उत्तर में 125 m दूरी पर Y पर अपने विद्यालय पहुँचते हैं। Y पर विद्यालय के सापेक्ष X पर आपका घर कहाँ स्थित है?",
+        q_en="Your house is located at X and your school is located at Y. Although your school is just opposite but you cannot go straight because of the busy highway in between. So, you first go 125 m due south, then cross a 100 m long subway which is due east and finally reach your school at Y which is 125 m due north. With respect to school at Y, your house at X is :",
+        options_hi=["100 m ठीक पश्चिम", "125 m ठीक उत्तर", "125 m ठीक दक्षिण", "100 m ठीक पूर्व"],
+        options_en=["100 m due west", "125 m due north", "125 m due south", "100 m due east"],
+        explanation="घर X से 125 m दक्षिण, फिर 100 m पूर्व, फिर 125 m उत्तर चलने पर विद्यालय Y, घर से 100 m पूर्व में है। अतः विद्यालय के सापेक्ष घर 100 m पश्चिम में है।",
+        repair_note="options raw text me stem/explanation me inline the; official Set-K key se ans (a) सत्यापित",
+    ),
+    ("2022-12", 44): dict(
+        q_hi="प्रथम दस विषम अभाज्य संख्याओं का माध्य है :",
+        q_en="The mean of first ten odd prime numbers is :",
+        options_hi=["12.9", "15.8", "17.8", "16.8"],
+        options_en=["12.9", "15.8", "17.8", "16.8"],
+        explanation="प्रथम 10 विषम अभाज्य संख्याएँ: 3, 5, 7, 11, 13, 17, 19, 23, 29, 31 → योग = 158 → माध्य = 158/10 = 15.8",
+        repair_note="options extraction me toote the; official key (13-Jan-2023) ans (b)=15.8 सत्यापित",
+    ),
+    ("2022-12", 45): dict(
+        q_hi="गणित के एक टेस्ट में 30 विद्यार्थियों द्वारा प्राप्त किए गए अंक नीचे दिए गए हैं : 7, 1, 3, 6, 5, 5, 5, 0, 7, 8, 1, 9, 0, 5, 8, 3, 1, 8, 10, 10, 4, 3, 8, 6, 8, 9, 2, 1, 0, 4 । 5 से अधिक या उसके बराबर अंक प्राप्त करने वाले विद्यार्थियों की संख्या है :",
+        q_en="The marks obtained by 30 students in a mathematics test are as shown below : 7, 1, 3, 6, 5, 5, 5, 0, 7, 8, 1, 9, 0, 5, 8, 3, 1, 8, 10, 10, 4, 3, 8, 6, 8, 9, 2, 1, 0, 4. The number of students obtaining more than or equal to 5 marks is :",
+        options_hi=["17", "16", "15", "13"],
+        options_en=["17", "16", "15", "13"],
+        explanation="आरोही क्रम: 0,0,0,1,1,1,1,2,3,3,3,4,4,5,5,5,5,6,6,7,7,8,8,8,8,8,9,9,10,10 → 5 या अधिक अंक वाले = 17 विद्यार्थी।",
+        repair_note="stem extraction me kho gaya tha (block-shift); book ke explanation se पुनर्निर्मित; official key ans (a)=17 सत्यापित",
+    ),
+}
+
+def apply_repairs(ex, questions, flags, rep):
+    did = []
+    for q in questions:
+        r_ = REPAIRS.get((ex["id"], q["qno"]))
+        if not r_:
+            continue
+        q.update({k: v for k, v in r_.items() if k != "repair_note"})
+        q["n_opts"] = len(q["options_hi"])
+        q["book_ans"] = None
+        q["ans_note"] = (q.get("ans_note") or "") + " | repair: " + r_["repair_note"]
+        did.append(q["qno"])
+    if did:
+        flags[:] = [f for f in flags if not any(f.startswith(f"Q{n}:") for n in did)]
+        rep["repaired_manually"] = len(did)
+        for n in did:
+            for k in ("bad_opts", "broken_stem", "book_vs_official_mismatch"):
+                if rep.get(k):
+                    rep[k] -= 1
+    return did
+
+
 # ------------------------------------------------------------------ outputs
 CSV_HDR = ["exams", "section", "topic", "difficulty", "pid", "pseq", "p_kind", "p_dir", "p_body",
            "q_hi", "a_hi", "b_hi", "c_hi", "d_hi", "q_en", "a_en", "b_en", "c_en", "d_en",
@@ -280,6 +331,7 @@ all_rows = []
 master_report = {}
 for ex in EXAMS:
     core, langs, rep, flags = build_exam(ex)
+    repaired = apply_repairs(ex, core + langs, flags, rep)
     d = os.path.join(OUTROOT, ex["id"])
     os.makedirs(d, exist_ok=True)
     meta = dict(id=ex["id"], name=ex["name"], exam_date=ex["date"], paper="1",
