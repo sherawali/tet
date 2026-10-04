@@ -32,7 +32,15 @@ COMPREHENSION_HEADER = re.compile(
     r"(?:(?!Question Id\s*:).){0,800}?Question Numbers\s*:\s*\(\s*(\d+)\s+to\s+(\d+)\s*\)",
     flags=re.IGNORECASE | re.DOTALL,
 )
-OPTION_MARKER = re.compile(r"(?m)^\s*([1-4])\.\s*")
+# Full-page OCR commonly reads an option separator as a comma (``1,``) or
+# emits ``1)``/``1.`` without a following space. These markers are only used
+# inside an explicit Options block, or to split the answer choices embedded in
+# language-question text, so accepting the common OCR variants is safe.
+OPTION_MARKER = re.compile(r"(?m)^[ \t]*([1-4])\s*[\.,\)]\s*")
+COMPREHENSION_BOUNDARY = re.compile(
+    r"(?m)^[ \t]*Question Id\s*:\s*\d+\s+Question Type\s*:\s*COMPREHENSION\b",
+    flags=re.IGNORECASE,
+)
 
 SECTION_RANGES = {
     "cdp": (1, 30),
@@ -69,8 +77,17 @@ def clean_fragment(value: str) -> str:
     return value.strip()
 
 
+def option_markers(value: str) -> list[re.Match[str]]:
+    """Return likely option markers while rejecting decimal continuations."""
+    return [
+        marker
+        for marker in OPTION_MARKER.finditer(value)
+        if marker.start() == 0 or value[marker.start() - 1] == "\n"
+    ]
+
+
 def parse_options(value: str) -> list[dict[str, Any]]:
-    markers = list(OPTION_MARKER.finditer(value))
+    markers = option_markers(value)
     options: list[dict[str, Any]] = []
     for index, marker in enumerate(markers):
         end = markers[index + 1].start() if index + 1 < len(markers) else len(value)
@@ -80,6 +97,18 @@ def parse_options(value: str) -> list[dict[str, Any]]:
                 "text": clean_fragment(value[marker.end():end]),
             }
         )
+
+    # Tesseract occasionally loses or misreads only the first option number,
+    # while recognizing 2, 3 and 4 correctly. Recover the option boundary but
+    # preserve the OCR text verbatim; this does not invent answer content.
+    if len(options) == 3 and [item["index"] for item in options] == [2, 3, 4]:
+        prefix = clean_fragment(value[:markers[0].start()])
+        prefix = re.sub(r"^[\s,.;:|]+", "", prefix).strip()
+        if prefix:
+            options.insert(0, {"index": 1, "text": prefix})
+    elif len(options) >= 4 and [item["index"] for item in options[:4]] == [4, 2, 3, 4]:
+        options[0]["index"] = 1
+
     # A malformed extraction can contain duplicate option markers. Keep the
     # first four-option run only; never synthesize missing option text.
     for start in range(max(1, len(options) - 3)):
@@ -97,13 +126,47 @@ def parse_occurrence(
     text: str, match: re.Match[str], end: int, origin: str
 ) -> dict[str, Any]:
     payload = text[match.end():end]
+    # A repeated comprehension-group header and its stimulus can occur between
+    # the group's final sub-question and the next numbered question. It is not
+    # part of the final option and must remain stimulus evidence only.
+    comprehension_boundary = COMPREHENSION_BOUNDARY.search(payload)
+    if comprehension_boundary:
+        payload = payload[:comprehension_boundary.start()]
+
     options_split = re.split(r"\bOptions\s*:\s*", payload, maxsplit=1, flags=re.I)
-    stem = clean_fragment(options_split[0])
+    raw_stem = options_split[0]
     options = parse_options(options_split[1]) if len(options_split) == 2 else []
+
+    # In CBSE language sections the actual option strings are printed with the
+    # question, followed by an Options block containing only 1/2/3/4 selector
+    # labels. Promote the embedded strings to the real options.
+    selector_only = (
+        len(options) == 4
+        and all(
+            option["text"].splitlines()[0].strip() == str(option["index"])
+            for option in options
+            if option["text"].splitlines()
+        )
+    )
+    unresolved_selector_options = selector_only
+    if selector_only:
+        embedded = parse_options(raw_stem)
+        markers = option_markers(raw_stem)
+        if len(embedded) == 4 and [item["index"] for item in embedded] == [1, 2, 3, 4] and markers:
+            options = embedded
+            raw_stem = raw_stem[:markers[0].start()]
+            unresolved_selector_options = False
+
+    stem = clean_fragment(raw_stem)
     meaningful_stem = textual_characters(stem)
     meaningful_options = [textual_characters(option["text"]) for option in options]
-    complete_option_count = sum(count >= 1 for count in meaningful_options)
-    if meaningful_stem >= 12 and complete_option_count == 4:
+    # Numeric and symbolic answer choices (for example ``132`` or ``270°``)
+    # are complete options even though they contain no alphabetic character.
+    complete_option_count = sum(
+        bool(re.search(r"[0-9A-Za-z\u0900-\u097f]", option["text"]))
+        for option in options
+    )
+    if meaningful_stem >= 4 and complete_option_count == 4 and not unresolved_selector_options:
         status = "text-complete"
     elif meaningful_stem >= 5 or complete_option_count:
         status = "text-partial"
@@ -177,8 +240,16 @@ def detected_common_language(value: dict[str, Any]) -> str | None:
 
 
 def occurrence_quality(value: dict[str, Any]) -> int:
+    # Structural completeness must outrank raw text length. Otherwise a broken
+    # option that swallowed the following section/stimulus boilerplate appears
+    # "better" merely because it contains more characters.
+    status_bonus = {
+        "text-complete": 10_000,
+        "text-partial": 1_000,
+        "image-encoded": 0,
+    }[value["extractionStatus"]]
     native_bonus = 60 if value["origin"] == "native" and value["extractionStatus"] == "text-complete" else 0
-    return value["score"] + native_bonus
+    return status_bonus + min(value["score"], 2_000) + native_bonus
 
 
 def normalized_presentations(
