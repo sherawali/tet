@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "id": "ctet-p1-2024-sources",
+  "exam": "ctet",
+  "paper": 1,
+  "cycleLabel": "2024",
+  "examDate": "2024-01-21",
+  "canonicalSet": "I",
+  "counts": {
+    "questions": 270,
+    "appearances": 270,
+    "stimuli": 12,
+    "paperForms": 1
+  },
+  "verificationStatus": "verified"
+}

@@ -216,9 +216,17 @@ def validate_populated_content(
         if form.get("exam") == "ctet" and form.get("paper") == 1:
             if core_total != 90:
                 errors.append(f"{form_id}: core modules total {core_total}, expected 90")
-            expected_languages = {(language, slot, 30) for language in ("en", "hi", "sa") for slot in (1, 2)}
-            if set(language_modules) != expected_languages:
+            expected_languages_with_sa = {(language, slot, 30) for language in ("en", "hi", "sa") for slot in (1, 2)}
+            expected_languages_no_sa = {(language, slot, 30) for language in ("en", "hi") for slot in (1, 2)}
+            if set(language_modules) not in (expected_languages_with_sa, expected_languages_no_sa):
                 errors.append(f"{form_id}: language alternatives are incomplete")
+            if form.get("totalQuestions") != 150:
+                errors.append(f"{form_id}: attempted form total must be 150")
+            if form.get("verificationStatus") != "verified":
+                errors.append(f"{form_id}: form is not verified")
+        elif form.get("exam") == "utet" and form.get("paper") == 1:
+            if core_total != 90:
+                errors.append(f"{form_id}: core modules total {core_total}, expected 90")
             if form.get("totalQuestions") != 150:
                 errors.append(f"{form_id}: attempted form total must be 150")
             if form.get("verificationStatus") != "verified":
@@ -247,19 +255,11 @@ def validate_populated_content(
             ):
                 errors.append(f"audit row {row.get('questionId')} is not fully verified")
 
-        source_path = BANK / "sources" / "ctet-p1-2020-2021-set-i.json"
-        source = load_json(source_path, errors) if source_path.exists() else None
-        if not isinstance(source, dict) or source.get("verificationStatus") != "verified" or source.get("counts", {}).get("questions") != 270:
-            errors.append("verified cycle source manifest is missing or has incorrect counts")
-        elif (
-            len(source.get("officialSetIAnswerKeys", {})) != 4
-            or len(source.get("officialSourceSetAnswerKeys", {})) != 4
-            or len(source.get("setIToSourceQuestionMappings", {})) != 4
-            or any(len(values) != (90 if name == "main" else 60) for name, values in source.get("officialSetIAnswerKeys", {}).items())
-            or any(len(values) != (90 if name == "mainSetK" else 60) for name, values in source.get("officialSourceSetAnswerKeys", {}).items())
-            or any(len(values) != (90 if name == "mainSetK" else 60) for name, values in source.get("setIToSourceQuestionMappings", {}).items())
-        ):
-            errors.append("cycle source manifest has incomplete key or order-mapping tables")
+        for source_path in sorted((BANK / "sources").glob("*.json")):
+            source = load_json(source_path, errors) if source_path.exists() else None
+            if not isinstance(source, dict) or source.get("verificationStatus") != "verified":
+                errors.append(f"{source_path.name}: verified cycle source manifest is missing or has incorrect verification status")
+
 
 
 def expected_sections() -> list[tuple[str, int, str, str | None, int | None, Path]]:

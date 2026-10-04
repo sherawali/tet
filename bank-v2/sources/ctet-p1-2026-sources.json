@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "id": "ctet-p1-2026-sources",
+  "exam": "ctet",
+  "paper": 1,
+  "cycleLabel": "2026",
+  "examDate": "2026-02-08",
+  "canonicalSet": "E",
+  "counts": {
+    "questions": 210,
+    "appearances": 210,
+    "stimuli": 8,
+    "paperForms": 1
+  },
+  "verificationStatus": "verified"
+}

@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "id": "utet-p1-2025-sources",
+  "exam": "utet",
+  "paper": 1,
+  "cycleLabel": "2025",
+  "examDate": "2025-10-24",
+  "canonicalSet": "A",
+  "counts": {
+    "questions": 150,
+    "appearances": 150,
+    "stimuli": 4,
+    "paperForms": 1
+  },
+  "verificationStatus": "verified"
+}
