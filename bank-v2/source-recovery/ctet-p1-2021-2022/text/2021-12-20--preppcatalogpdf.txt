@@ -1,0 +1,5032 @@
+===== PDF PAGE 1 =====
+CTET     Exam
+
+Paper I (English and Hindi)
+
+===== PDF PAGE 2 =====
+                    CBSE
+
+
+
+Question Paper Name :                                        P1 English and Hindi Comb19
+Subject Name :                                              P1 English and Hindi
+Creation Date :                                                    2021-12-20 15:59:01
+Duration :                                                     150
+Total Marks :                                                  150
+Display Marks:                                                  Yes
+
+
+                         P1 English and Hindi
+Group Number :                                               1
+Group Id :                                                     9533572940
+Group Maximum Duration :                                     0
+Group Minimum Duration :                                      150
+Show Attended Group? :                                 No
+Edit Attended Group? :                                  No
+Break time :                                                   0
+Group Marks :                                                 150
+Is this Group for Examiner? :                              No
+
+
+                        Child Development and Pedagogy
+Section Id :                                                    95335710063
+Section Number :                                               1
+Section type :                                                       Online
+Mandatory or Optional :                                          Mandatory
+Number of Questions :                                          30
+Number of Questions to be attempted :                             30
+Section Marks :                                                30
+Enable Mark as Answered Mark for Review and Clear Response :      Yes
+Sub-Section Number :                                           1
+Sub-Section Id :                                                95335717747
+Question Shuffling Allowed :                                      Yes
+
+
+Question Number : 1 Question Id : 953357298605 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+Which of the following is NOT a principle of the development?
+Options :
+1. Development occurs along a single course and is not uni-dimensional.
+2. Development proceeds from the top-down and from centre outwards.
+3. Development is influenced by both 'nature' and 'nurture'.
+4. Development occurs in socio-cultural contexts.
+
+
+Question Number : 1 Question Id : 953357298605 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+Options :
+
+1.
+
+===== PDF PAGE 3 =====
+2.
+
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 2 Question Id : 953357298606 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+Cephalocaudal principle is applicable in the sphere of -
+Options :
+1. motor Development
+2. language Development
+3. cognitive Development
+4. moral Development
+
+
+Question Number : 2 Question Id : 953357298606 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 3 Question Id : 953357298607 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+_________________ is a 'sensitive period' pertaining to language development.
+Options :
+1. Pre-natal period
+2. Early childhood period
+3. Middle childhood
+4. Adolescence
+
+
+Question Number : 3 Question Id : 953357298607 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+Options :
+
+
+1.
+
+
+2.
+
+
+3.
+
+===== PDF PAGE 4 =====
+4.
+
+
+
+Question Number : 4 Question Id : 953357298608 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+___________ occurs within the family when children first learn their individual identity, acquire language and develop initial cognitive
+skills.
+Options :
+1. Primary socialization
+2. Secondary socialization
+3. Latent socialization
+4. Active socialization
+
+
+Question Number : 4 Question Id : 953357298608 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 5 Question Id : 953357298609 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+According to the theory of Lawrence Kohlberg, at which level is moral thinking based on taking initial perspective of the society?
+Options :
+1. Pre conventional
+2. Conventional
+3. Post-conventional
+4. Late-conventional
+
+
+Question Number : 5 Question Id : 953357298609 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+Options :
+
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+===== PDF PAGE 5 =====
+Question Number : 6 Question Id : 953357298610 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+From a Piagetian perspective, the process of taking new information into the existing body of knowledge is called -
+Options :
+1. Accommodation
+2. Socialization
+3. Assimilation
+4. Organization
+
+
+Question Number : 6 Question Id : 953357298610 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 7 Question Id : 953357298611 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+Meena has begun to use 'words' and started understanding that words represent objects.
+She is also beginning to reason logically though she cannot perform conservation. According to Jean Piaget, which stage of cognitive
+development is Meena in?
+Options :
+1. Pre-operational
+2. Formal operational
+3. Sensori-motor
+4. Concrete operational
+
+
+Question Number : 7 Question Id : 953357298611 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+
+
+1.
+
+
+
+2.
+
+
+3.
+
+
+
+4.
+
+===== PDF PAGE 6 =====
+Question Number : 8 Question Id : 953357298612 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+The concept of 'zone of Proximal Development' has been proposed by -
+Options :
+1. Jerome Bruner
+2. David Ausubel
+3. Robert M. Gagne
+4. Lev Vygotsky
+
+
+Question Number : 8 Question Id : 953357298612 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+Options :
+
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 9 Question Id : 953357298613 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+Which statement correctly lays out the fundamental principle of Lev Vygotsky's theory?
+Options :
+1. Learning is a un-conscious process
+2. Learning is a social activity
+3. Learning is genetically programmed.
+4. Learning is a discontinuous process that occurs in four stages.
+
+
+Question Number : 9 Question Id : 953357298613 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+Options :
+
+1.
+
+
+2.
+
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 10 Question Id : 953357298614 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+An example of pedagogical strategy that would promote meaningful learning is -
+
+===== PDF PAGE 7 =====
+Options :
+1. regular individual competitions.
+2. use of verbal punishment.
+3. uniform rigidly structured curriculum.
+4. focusing on 'assessment for learning' rather than only 'assessment of learning'.
+
+
+Question Number : 10 Question Id : 953357298614 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+
+
+4.
+
+
+
+Question Number : 11 Question Id : 953357298615 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+Which one of the following developmental theory advocates that 'cognitive development precedes symbolic language development in a
+child'?
+Options :
+1. Piaget's cognitive development theory
+2. Vygotsky's socio-cultural theory
+3. Erikson's theory of psychosocial development
+4. Bandura's social learning theory
+
+
+Question Number : 11 Question Id : 953357298615 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+
+
+4.
+
+
+
+Question Number : 12 Question Id : 953357298616 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+Which of the following is not an effective practice adopted by a teacher in the classroom to address gender stereotypes?
+Options :
+1. Counter gender bias.
+
+===== PDF PAGE 8 =====
+2. Separate seating arrangement for boys and girls in the class.
+3. Discussions on gender discrimination.
+4. Use of examples which show boys and girls in non-conformist roles.
+
+
+Question Number : 12 Question Id : 953357298616 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+Options :
+
+
+1.
+
+
+2.
+
+
+3.
+
+
+
+4.
+
+
+
+Question Number : 13 Question Id : 953357298617 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+Paro helps her father in his carpentry shop where she sucessfully measures wooden blocks using techniques taught by her father. She is
+recently admitted to a public school under EWS scheme, where she is unable to cope up with the academic demands especially in this
+situation, the teacher should -
+Options :
+1. tell Paro that she does not have the ability to study.
+2. give tests and encourage repeated drill and practice.
+3. contextualize the curriculum and study material for Paro integrating her mathematical experiences gained outside the school.
+4. ask Paro to keep her knowledge gained at home separate from knowledge gained in school.
+
+
+Question Number : 13 Question Id : 953357298617 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+
+1.
+
+
+2.
+
+
+
+
+3.
+
+
+
+4.
+
+
+
+Question Number : 14 Question Id : 953357298618 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+Sensitivity to the sounds, rhythms and meaning of words characterize which type of intelligence?
+
+===== PDF PAGE 9 =====
+Options :
+1. Interpersonal
+2. Intrapersonal
+3. Linguistic
+4. Spatial
+
+
+Question Number : 14 Question Id : 953357298618 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 15 Question Id : 953357298619 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+In a socio- constructivist classroom which methods of assessment would be preferred?
+Options :
+1. Collaborative projects
+2. Objective questions having one word answers
+3. Standardized tests.
+4. Tests based on mere recall.
+
+
+Question Number : 15 Question Id : 953357298619 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+Options :
+
+1.
+
+
+
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 16 Question Id : 953357298620 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+The 'continuous' aspect in continuous and comprehensive evaluation implies -
+Options :
+1. continuous observation and support to children during teaching -learning, employing different tools.
+2. continuous comparison of learner's performances with one another through marks, grades and other means.
+3. conducting formal 'paper-pencil' tests in fixed intervals throughout the academic session.
+4. periodic testing of children to gauge their ability of memorisation and recall.
+
+===== PDF PAGE 10 =====
+Question Number : 16 Question Id : 953357298620 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+Options :
+
+
+1.
+
+
+
+2.
+
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 17 Question Id : 953357298621 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+Students should be encouraged to set __________ goals.
+Options :
+1. Mastery oriented
+2. Failure oriented
+3. Failure accepting
+4. Self defeating
+
+
+Question Number : 17 Question Id : 953357298621 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+Options :
+
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 18 Question Id : 953357298622 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+Which of the following is a principle of inclusion?
+Options :
+1. Discrimination
+2. Standardized instruction
+3. Acceptance of individual differences
+4. Segregation and labelling
+
+
+Question Number : 18 Question Id : 953357298622 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+===== PDF PAGE 11 =====
+Options :
+
+1.
+
+
+
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 19 Question Id : 953357298623 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+A child who has partial vision:
+Options :
+1. should be encouraged to opt for home based education.
+2. needs to be in a separate institution.
+3. should become a part of a regular school with inclusive provisions.
+4. should be in a regular school with no special provisions to encouraging coping behaviours.
+
+
+Question Number : 19 Question Id : 953357298623 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+Options :
+
+1.
+
+
+2.
+
+
+
+3.
+
+
+
+4.
+
+
+
+Question Number : 20 Question Id : 953357298624 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+Which of the following practices will support creativity in a classroom?
+
+i) acceptance of imaginative answers
+
+ii) emphasis on brainstorming
+
+iii) emphasis on convergent thinking
+
+iv) tolerance to dissent
+Options :
+1. i, ii
+2. i, ii, iii
+3. ii, iv
+4. i, ii, iv
+
+===== PDF PAGE 12 =====
+Question Number : 20 Question Id : 953357298624 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 21 Question Id : 953357298625 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+Which of the following strategy is NOT in line with the philosophy of inclusion to help a child with autism in your class who is finding it
+difficult to cope up with group activities?
+Options :
+1. Giving appropriate visual and written material to be used during the group work.
+2. Allowing the child to work in pairs in a relaxing atmosphere with less noise.
+3. sending the child to study in special school.
+4. seeking the support of remedial teacher in regular classroom itself.
+
+
+Question Number : 21 Question Id : 953357298625 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+Options :
+
+
+1.
+
+
+
+2.
+
+
+
+3.
+
+
+
+4.
+
+
+
+Question Number : 22 Question Id : 953357298626 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+In a primary classroom, the teacher must ___________ students to ask questions.
+Options :
+1. encourage
+
+===== PDF PAGE 13 =====
+2. discourage
+3. never allow
+4. punish
+
+
+Question Number : 22 Question Id : 953357298626 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+Options :
+
+1.
+
+
+2.
+
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 23 Question Id : 953357298627 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+Assertion (A): Schools must enable children to find their voices, nurture their curiosity- to do things, to ask questions, to engage in
+discussions and do group work-rather than building their ability to reproduce textual knowledge.
+
+
+
+Reason (R) : Learning is active and social in its character.
+
+Choose the correct option.
+Options :
+1. Both (A) and (R) are true and (R) is the correct explanation of (A).
+2. Both (A) and (R) are true but (R) is not the correct explanation of (A).
+3. (A) is true but (R) is false.
+4. Both (A) and (R) are false.
+
+
+Question Number : 23 Question Id : 953357298627 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+===== PDF PAGE 14 =====
+Question Number : 24 Question Id : 953357298628 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+Graphical tools for organizing and representing knowledge and relationships within a particular topic are known as ___________.
+Options :
+1. chunks
+2. advance organizers
+3. mnemonics
+4. concept maps
+
+
+Question Number : 24 Question Id : 953357298628 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 25 Question Id : 953357298629 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+Choose the example that illustrates intrinsic motivation.
+Options :
+1. Roshni is working hard to score well in exams as her parents have promised her a watch on getting above 90%.
+2. Rumi completing her homework so that his parents let him watch T.V.
+3. Rama reading more books so that her name is first on the 'reading stars' to win her teacher's appreciation.
+4. Ravi exploring various resources for his project because he loves learning new things.
+
+
+Question Number : 25 Question Id : 953357298629 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+Options :
+1.
+
+
+
+
+
+2.
+
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 26 Question Id : 953357298630 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+
+===== PDF PAGE 15 =====
+Correct Marks : 1 Wrong Marks : 0
+Which of these strategies is not effective in helping students cope with anxiety?
+Options :
+1. Teaching them methods for effective and meaningful learning.
+2. Helping them set realistic short term goals.
+3. Helping them recognize the source of their anxious feelings.
+4. Comparing student's performance with one another in the classroom.
+
+
+Question Number : 26 Question Id : 953357298630 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+Options :
+
+
+1.
+
+
+
+2.
+
+
+
+3.
+
+
+
+4.
+
+
+
+Question Number : 27 Question Id : 953357298631 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+Rachita a Mathematics teacher, tries to analyse the errors made by her students in identifying the correct operation to be applied for
+statement sum. She does this to -
+Options :
+1. segregate students who make more errors in comparison to others.
+2. give more questions to them as a punishment.
+3. correct the errors by giving them more practice.
+4. understand the errors since they are a window to children's thinking.
+
+
+Question Number : 27 Question Id : 953357298631 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+Options :
+
+
+1.
+
+
+
+2.
+
+
+
+3.
+
+
+
+4.
+
+
+
+Question Number : 28 Question Id : 953357298632 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+===== PDF PAGE 16 =====
+National Education Policy 2020 lays emphasis on -
+Options :
+1. learning-for-exams.
+2. rote learning
+3. practice and drill
+4. conceptual understanding
+
+
+Question Number : 28 Question Id : 953357298632 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 29 Question Id : 953357298633 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+Children learn most meaningfully
+Options :
+1. through lectures and direct instruction.
+2. by repeated mechanical practice.
+3. when they are actively engaged in tasks and activities.
+4. appropriate rewards are offered at every step in completion of the tasks.
+
+
+Question Number : 29 Question Id : 953357298633 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+Options :
+
+
+1.
+
+
+2.
+
+
+3.
+
+
+
+4.
+
+
+
+Question Number : 30 Question Id : 953357298634 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+Giving students access to a range of suitable materials and the scope to self direct their learning is a way of promoting -
+Options :
+1. rote learning
+2. competitive learning
+
+===== PDF PAGE 17 =====
+3. discovery learning
+4. learning through instruction
+
+
+Question Number : 30 Question Id : 953357298634 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+
+
+                                Mathematics
+Section Id :                                                    95335710064
+Section Number :                                               2
+Section type :                                                       Online
+Mandatory or Optional :                                          Mandatory
+Number of Questions :                                          30
+Number of Questions to be attempted :                             30
+Section Marks :                                                30
+Enable Mark as Answered Mark for Review and Clear Response :      Yes
+Sub-Section Number :                                           1
+Sub-Section Id :                                                95335717748
+Question Shuffling Allowed :                                      Yes
+
+
+Question Number : 31 Question Id : 953357298635 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 31 Question Id : 953357298635 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+Options :
+
+1.
+
+===== PDF PAGE 18 =====
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 32 Question Id : 953357298636 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 32 Question Id : 953357298636 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 33 Question Id : 953357298637 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 33 Question Id : 953357298637 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+===== PDF PAGE 19 =====
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 34 Question Id : 953357298638 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+Options :
+
+
+1.
+
+
+
+2.
+
+
+
+3.
+
+
+
+4.
+
+
+
+Question Number : 34 Question Id : 953357298638 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+
+
+1.
+
+
+
+2.
+
+
+
+3.
+
+
+
+4.
+
+===== PDF PAGE 20 =====
+Question Number : 35 Question Id : 953357298639 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 35 Question Id : 953357298639 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 36 Question Id : 953357298640 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 36 Question Id : 953357298640 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+Options :
+
+1.
+
+
+2.
+
+===== PDF PAGE 21 =====
+3.
+
+
+4.
+
+
+
+Question Number : 37 Question Id : 953357298641 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 37 Question Id : 953357298641 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 38 Question Id : 953357298642 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 38 Question Id : 953357298642 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+
+===== PDF PAGE 22 =====
+Correct Marks : 1 Wrong Marks : 0
+
+
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 39 Question Id : 953357298643 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 39 Question Id : 953357298643 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+===== PDF PAGE 23 =====
+4.
+
+
+
+Question Number : 40 Question Id : 953357298644 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 40 Question Id : 953357298644 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 41 Question Id : 953357298645 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 41 Question Id : 953357298645 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+===== PDF PAGE 24 =====
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 42 Question Id : 953357298646 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 42 Question Id : 953357298646 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 43 Question Id : 953357298647 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+Options :
+
+1.
+
+
+2.
+
+===== PDF PAGE 25 =====
+3.
+
+
+4.
+
+
+
+Question Number : 43 Question Id : 953357298647 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 44 Question Id : 953357298648 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 44 Question Id : 953357298648 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+===== PDF PAGE 26 =====
+Question Number : 45 Question Id : 953357298649 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 45 Question Id : 953357298649 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+
+
+1.
+
+
+
+2.
+
+
+
+3.
+
+
+
+4.
+
+
+
+Question Number : 46 Question Id : 953357298650 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+Options :
+
+===== PDF PAGE 27 =====
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 46 Question Id : 953357298650 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 47 Question Id : 953357298651 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 47 Question Id : 953357298651 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+
+===== PDF PAGE 28 =====
+1.
+
+
+
+2.
+
+
+
+3.
+
+
+
+4.
+
+
+
+Question Number : 48 Question Id : 953357298652 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 48 Question Id : 953357298652 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+Options :
+
+1.
+
+
+
+2.
+
+
+
+3.
+
+
+
+4.
+
+
+
+Question Number : 49 Question Id : 953357298653 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+===== PDF PAGE 29 =====
+4.
+
+
+
+Question Number : 49 Question Id : 953357298653 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 50 Question Id : 953357298654 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+Options :
+1.
+
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 50 Question Id : 953357298654 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 51 Question Id : 953357298655 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+===== PDF PAGE 30 =====
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 51 Question Id : 953357298655 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 52 Question Id : 953357298656 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+===== PDF PAGE 31 =====
+Question Number : 52 Question Id : 953357298656 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 53 Question Id : 953357298657 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 53 Question Id : 953357298657 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+===== PDF PAGE 32 =====
+4.
+
+
+
+Question Number : 54 Question Id : 953357298658 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 54 Question Id : 953357298658 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 55 Question Id : 953357298659 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 55 Question Id : 953357298659 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+===== PDF PAGE 33 =====
+Options :
+
+
+1.
+
+
+2.
+
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 56 Question Id : 953357298660 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 56 Question Id : 953357298660 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+Options :
+
+
+1.
+
+
+2.
+
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 57 Question Id : 953357298661 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+Options :
+
+1.
+
+===== PDF PAGE 34 =====
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 57 Question Id : 953357298661 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+Options :
+
+1.
+
+
+
+2.
+
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 58 Question Id : 953357298662 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 58 Question Id : 953357298662 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+
+1.
+
+===== PDF PAGE 35 =====
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 59 Question Id : 953357298663 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 59 Question Id : 953357298663 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+Options :
+
+
+1.
+
+
+
+2.
+
+
+
+3.
+
+
+
+4.
+
+
+
+Question Number : 60 Question Id : 953357298664 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+===== PDF PAGE 36 =====
+Question Number : 60 Question Id : 953357298664 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+
+
+                            Environmental Studies
+Section Id :                                                    95335710065
+Section Number :                                               3
+Section type :                                                       Online
+Mandatory or Optional :                                          Mandatory
+Number of Questions :                                          30
+Number of Questions to be attempted :                             30
+Section Marks :                                                30
+Enable Mark as Answered Mark for Review and Clear Response :      Yes
+Sub-Section Number :                                           1
+Sub-Section Id :                                                95335717749
+Question Shuffling Allowed :                                      Yes
+
+
+Question Number : 61 Question Id : 953357298665 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+Which is the following methods of solid waste disposal method releases air pollutants :
+Options :
+1. Landfill
+2. Composting
+3. Vermi composting
+4. Incineration
+
+
+Question Number : 61 Question Id : 953357298665 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+Options :
+
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+===== PDF PAGE 37 =====
+Question Number : 62 Question Id : 953357298666 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+A place which has experienced prolonged floods will cause ___________ of people.
+Options :
+1. Resettlement
+2. Displacement
+3. Repatriation
+4. Rehabilitation
+
+
+Question Number : 62 Question Id : 953357298666 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+Options :
+
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 63 Question Id : 953357298667 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+Tapioca is another name for :
+Options :
+1. Radish
+2. Kappa
+3. Ginger
+4. Sweet Potato
+
+
+Question Number : 63 Question Id : 953357298667 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 64 Question Id : 953357298668 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+Which of the following dish is popular in Hong Kong?
+
+===== PDF PAGE 38 =====
+Options :
+1. Som Jam
+2. Ling-hu-fen
+3. Mapu Tofu
+4. Sushi
+
+
+Question Number : 64 Question Id : 953357298668 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+Options :
+
+1.
+
+
+
+2.
+
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 65 Question Id : 953357298669 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+Which type of bird's beak is used to tear and eat meat?
+Options :
+1. Cone shaped beak
+2. Straight & thin beak
+3. Hooked beak
+4. Long, thin needle like beak
+
+
+Question Number : 65 Question Id : 953357298669 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+Options :
+
+1.
+
+
+2.
+
+
+
+3.
+
+
+
+4.
+
+
+
+Question Number : 66 Question Id : 953357298670 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+A teacher has to teach grade 4 students related to 'quick snack' in her classroom. Which dish will be prepared quickly?
+Options :
+1. Egg sandwich
+2. Custard
+3. Dosa
+
+===== PDF PAGE 39 =====
+4. Bhelpuri
+
+
+Question Number : 66 Question Id : 953357298670 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+
+
+4.
+
+
+
+Question Number : 67 Question Id : 953357298671 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+The art of 'Pata chitra' is a traditional painting/handicraft of which State?
+Options :
+1. Madhya Pradesh
+2. Odisha
+3. Gujrat
+4. Maharashtra
+
+
+Question Number : 67 Question Id : 953357298671 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 68 Question Id : 953357298672 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+During the pandemic doctors are advising to consume vitamin-C rich food. Select the group rich in Vitamin-C.
+Options :
+1. Broccoli, soyabeans, peppers.
+2. Strawberries, orange, soyabeans.
+3. Milk, strawberries, lemon.
+4. Broccoli, strawberries, lemon.
+
+
+Question Number : 68 Question Id : 953357298672 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+===== PDF PAGE 40 =====
+Options :
+
+1.
+
+
+2.
+
+
+
+3.
+
+
+
+4.
+
+
+
+Question Number : 69 Question Id : 953357298673 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+Which state has a common practice of 'Jhum cultivation'.
+Options :
+1. Odisha
+2. Mizoram
+3. Bihar
+4. UttaraKhand
+
+
+Question Number : 69 Question Id : 953357298673 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 70 Question Id : 953357298674 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+Select the group of harvest festivals celebrated in South India:
+Options :
+1. Pongal, Ugadi, Bihu and Lohri
+2. Onam, Pongal, Bihu and Vishu
+3. Onam, Pongal, Ugadi and Vishu
+4. Onam, Bihu, Ugadi and Vishu
+
+
+Question Number : 70 Question Id : 953357298674 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+Options :
+
+===== PDF PAGE 41 =====
+1.
+
+
+
+2.
+
+
+
+3.
+
+
+
+4.
+
+
+
+Question Number : 71 Question Id : 953357298675 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+Warli Tribe is well known for Warli Art which is made by using:
+Options :
+1. Grass & stones
+2. Bamboo sticks & stones
+3. Cowdung & earth
+4. Earth & stones
+
+
+Question Number : 71 Question Id : 953357298675 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 72 Question Id : 953357298676 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+From which of the following group of states in India, tropic of cancer passes :
+Options :
+1. Uttar Pradesh, Chattisgarh, Odisha
+2. Chhattisgarh, Gujarat, Jharkhand
+3. Uttar Pradesh, Chattisgarh, Jharkhand
+4. Odisha, Andhra Pradesh, Jharkhand
+
+
+Question Number : 72 Question Id : 953357298676 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+Options :
+
+1.
+
+===== PDF PAGE 42 =====
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 73 Question Id : 953357298677 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+Ajay is in Bhopal and he wants to attend conferences in Gangtok and Puducherry. What is the position of Gangtok and Puducherry from
+where Ajay is :
+Options :
+1. North west and South west
+2. North west and South east
+3. North east and South east
+4. North East and South west
+
+
+Question Number : 73 Question Id : 953357298677 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+Options :
+
+1.
+
+
+
+2.
+
+
+
+3.
+
+
+
+4.
+
+
+
+Question Number : 74 Question Id : 953357298678 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+Which is the smallest migratory bird to travel from Arctic region to India :
+Options :
+1. Pintail Duck
+2. Little Osprey
+3. Flamingo
+4. Little Stint
+
+
+Question Number : 74 Question Id : 953357298678 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+Options :
+
+1.
+
+===== PDF PAGE 43 =====
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 75 Question Id : 953357298679 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+Roni plans to travel from Italy to India. His friends asked him to bring the special Italian cheese. What technique would be the best way to
+preserve the cheese and bring it to India:
+Options :
+1. Canning
+2. Dehydrating
+3. Salting
+4. Vaccum packing
+
+
+Question Number : 75 Question Id : 953357298679 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 76 Question Id : 953357298680 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+During online classes, how will an EVS teacher teach visually challenged students ?
+
+[A]By sharing voice messages
+
+[B]Using lots of oral explanation
+
+[C]By peer explanation
+
+[D]Using concrete experiences
+Options :
+1. A, B and C
+2. B, C and D
+3. B and D
+4. A, B, C and D
+
+
+Question Number : 76 Question Id : 953357298680 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+===== PDF PAGE 44 =====
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 77 Question Id : 953357298681 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+For catering to the educational needs of hearing impaired children, a teacher can modify her online teaching by :
+
+[A]taking support from special educator during online class
+
+[B]Providing offline class exclusively for them
+
+[C]Introducing subtitles and instant captions in her videos and ppts
+
+[D]Using more visuals.
+Options :
+1. A, B and C
+2. A and B
+3. A, B, C and D
+4. C only
+
+
+Question Number : 77 Question Id : 953357298681 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+===== PDF PAGE 45 =====
+Question Number : 78 Question Id : 953357298682 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+In order for pre-service teachers to know his/her values, personality, interest & aptitude. They will use:
+Options :
+1. Formative Assessment tools
+2. Summative Assessment tools
+3. Self Assessment tools
+4. Formative & Summative Assessment tools.
+
+
+Question Number : 78 Question Id : 953357298682 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 79 Question Id : 953357298683 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+An EVS teacher has decided to give a home activity for students to understand the process of germination. Which among the following is
+the most suitable activity:
+Options :
+1. Preparing charts with diagram.
+2. Planting seed in pot.
+3. Observation of germinating sprouts from moong.
+4. Watching video clips
+
+
+Question Number : 79 Question Id : 953357298683 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+Options :
+
+1.
+
+
+2.
+
+
+
+3.
+
+
+4.
+
+===== PDF PAGE 46 =====
+Question Number : 80 Question Id : 953357298684 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+An EVS teacher asked her 3rd grade students to put food feeder on their terrace or open area. She than asked them to prepare a data sheet
+of different birds that visit their feeding spot. The objective of this activity is to :-
+Options :
+1. Engage the student at home.
+2. Sensitize the students about birds which are extinct.
+3. Develop observation skill regarding the species of birds & their feeding habits.
+4. Inculcate compassion for living creatures.
+
+
+Question Number : 80 Question Id : 953357298684 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+
+1.
+
+
+
+2.
+
+
+3.
+
+
+
+4.
+
+
+
+Question Number : 81 Question Id : 953357298685 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+A teacher in the class discusses the festivals of our country. Irrespective of different cultures, some festivals are common and celebrated all
+over the country. Which concept is he or she trying to deal in the class?
+
+A. The value of festivals in our life.
+
+B. Unity in diverse culture
+
+C. Festivals do not have the cultural or regional barriers.
+
+D. Festival gives us peace & pleasure.
+Options :
+1. A,B, C and D
+2. A, B and C
+3. B, C and D
+4. A, C and D
+
+
+Question Number : 81 Question Id : 953357298685 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+Options :
+
+
+1.
+
+===== PDF PAGE 47 =====
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 82 Question Id : 953357298686 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+A teacher in a rural school is teaching food preservation techniques. The best strategy for her will be to:
+Options :
+1. Use self prepared chart with image of various preservation techniques.
+2. Display sample of food items that are preserved.
+3. Show power point presentation or short video clips of various preservation techniques.
+4. Arrange a field trip in the neighbourhood to observe preservation techniques practised at home.
+
+
+Question Number : 82 Question Id : 953357298686 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+Options :
+
+1.
+
+
+
+2.
+
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 83 Question Id : 953357298687 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+An EVS teacher is teaching about Valley of Flowers of NCERT textbook. She can use resources for teaching.
+
+[A] Map of India
+
+[B] Madhubani Painting
+
+[C] Different Local Flower
+
+[D] Worksheets
+Options :
+1. A, B, C and D
+2. A, B and C
+3. B, C and D
+4. C and D
+
+
+Question Number : 83 Question Id : 953357298687 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+===== PDF PAGE 48 =====
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 84 Question Id : 953357298688 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+Which of the following methods would be an effective way to sensitize the students of 4th Grade regarding 'poaching' during a class :
+Options :
+1. Debate
+2. Showing newspaper clipping
+3. Poster Presentation
+4. Slogan Writing
+
+
+Question Number : 84 Question Id : 953357298688 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+Options :
+
+1.
+
+
+2.
+
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 85 Question Id : 953357298689 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+Effective way to sensitize the students of EVS the issue of 'stereotypes in occupation' is
+Options :
+1. Social Media
+2. Street plays
+3. Newspaper
+4. Radio
+
+===== PDF PAGE 49 =====
+Question Number : 85 Question Id : 953357298689 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 86 Question Id : 953357298690 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+To achieve the goals of environmental education. The curriculum should be based on:
+
+∙ Learning _______ the environment.
+
+∙ Learning _______ the environment.
+
+∙ Learning _______ the environment.
+Options :
+1. with, for, by
+2. about, through, for
+3. in, for, with
+4. for, in, by
+
+
+Question Number : 86 Question Id : 953357298690 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 87 Question Id : 953357298691 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+A teacher asked his student to find out rose plant in the school garden. Some student noticed that all flowers have not bloomed. He
+instructed them to observe daily to find out the days they will take to bloom. Here the teacher trying to develop which of the following :
+
+===== PDF PAGE 50 =====
+A. Skill of taking readings for experiment
+
+B. Curiosity among the students
+
+C. Wonder at beauty of nature
+
+D. Enjoyment of process of blooming of flowers
+Options :
+1. C only
+2. A and B
+3. C and D
+4. A Only
+
+
+Question Number : 87 Question Id : 953357298691 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 88 Question Id : 953357298692 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+"At traffic post or at level crossing some people do not switch off the engine of their vehicle even while waiting". An EVS teacher
+discussed this issue in the class. What did she want to convey to the students :
+
+(A) Air and noise pollution
+
+(B) Judicious use of non-renewable resources
+
+(C) Misuse of nature resources
+
+(D) Government is not taking steps to prevent this
+Options :
+1. A and B
+2. A, B and C
+3. A & D
+4. A, B, C and D
+
+===== PDF PAGE 51 =====
+Question Number : 88 Question Id : 953357298692 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 89 Question Id : 953357298693 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+A teachers is talking to the children about the ways in which their houses are decorated during festivals and that they must use locally used
+materials during celebration of festivals. The purpose of this discussion is/are
+
+(A) To enhance to students creativity
+
+(B) To use local items to preserve our art and culture
+
+(C) To give support to local vendors
+
+(D) To share that local items are cheaper.
+Options :
+1. A, C and D
+2. A, B and C
+3. A and D
+4. A, B, C and D
+
+
+Question Number : 89 Question Id : 953357298693 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+
+1.
+
+===== PDF PAGE 52 =====
+2.
+
+
+3.
+
+
+4.
+
+
+
+Question Number : 90 Question Id : 953357298694 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+Which of the following tool can collect the qualitative data for the assessment of EVS student.
+Options :
+1. Anecdotal records
+2. Paper pencil test
+3. Worksheet
+4. Rating Scale
+
+
+Question Number : 90 Question Id : 953357298694 Question Type : MCQ Option Shuffling : Yes Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+Options :
+
+1.
+
+
+2.
+
+
+3.
+
+
+4.
+
+
+
+                               Language I
+Section Id :                                                    95335710066
+Section Number :                                               4
+Section type :                                                       Online
+Mandatory or Optional :                                          Mandatory
+Number of Questions :                                          17
+Number of Questions to be attempted :                             17
+Section Marks :                                                30
+Enable Mark as Answered Mark for Review and Clear Response :      Yes
+Sub-Section Number :                                           1
+Sub-Section Id :                                                95335717750
+Question Shuffling Allowed :                                      Yes
+
+
+Question Id : 953357298695 Question Type : COMPREHENSION Sub Question Shuffling Allowed : Yes Group Comprehension
+Questions : No
+Question Numbers : (91 to 99)
+Question Label : Comprehension
+
+===== PDF PAGE 53 =====
+Sub questions
+
+Question Number : 91 Question Id : 953357298696 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+===== PDF PAGE 54 =====
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+Question Number : 92 Question Id : 953357298697 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+Question Number : 93 Question Id : 953357298698 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+Question Number : 94 Question Id : 953357298699 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+Question Number : 95 Question Id : 953357298700 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+
+===== PDF PAGE 55 =====
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+Question Number : 96 Question Id : 953357298701 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+Question Number : 97 Question Id : 953357298702 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+Question Number : 98 Question Id : 953357298703 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+
+===== PDF PAGE 56 =====
+1. 1
+2. 2
+3. 3
+4. 4
+
+Question Number : 99 Question Id : 953357298704 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+
+Question Id : 953357298695 Question Type : COMPREHENSION Sub Question Shuffling Allowed : Yes Group Comprehension
+Questions : No
+Question Numbers : (91 to 99)
+Question Label : Comprehension
+
+===== PDF PAGE 57 =====
+Sub questions
+
+Question Number : 91 Question Id : 953357298696 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+===== PDF PAGE 58 =====
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+Question Number : 92 Question Id : 953357298697 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+Question Number : 93 Question Id : 953357298698 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+Question Number : 94 Question Id : 953357298699 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+Question Number : 95 Question Id : 953357298700 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+
+===== PDF PAGE 59 =====
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+Question Number : 96 Question Id : 953357298701 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+Question Number : 97 Question Id : 953357298702 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+Question Number : 98 Question Id : 953357298703 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+
+===== PDF PAGE 60 =====
+1. 1
+2. 2
+3. 3
+4. 4
+
+Question Number : 99 Question Id : 953357298704 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+Sub-Section Number :                                           2
+Sub-Section Id :                                                95335717751
+Question Shuffling Allowed :                                      Yes
+
+
+Question Id : 953357298705 Question Type : COMPREHENSION Sub Question Shuffling Allowed : Yes Group Comprehension
+Questions : No
+Question Numbers : (100 to 105)
+Question Label : Comprehension
+
+
+
+
+
+Sub questions
+
+Question Number : 100 Question Id : 953357298706 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+===== PDF PAGE 61 =====
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+Question Number : 101 Question Id : 953357298707 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+Question Number : 102 Question Id : 953357298708 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+Question Number : 103 Question Id : 953357298709 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+Question Number : 104 Question Id : 953357298710 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+
+===== PDF PAGE 62 =====
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+Question Number : 105 Question Id : 953357298711 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+
+Question Id : 953357298705 Question Type : COMPREHENSION Sub Question Shuffling Allowed : Yes Group Comprehension
+Questions : No
+Question Numbers : (100 to 105)
+Question Label : Comprehension
+
+===== PDF PAGE 63 =====
+Sub questions
+
+Question Number : 100 Question Id : 953357298706 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+Question Number : 101 Question Id : 953357298707 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+Question Number : 102 Question Id : 953357298708 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+Question Number : 103 Question Id : 953357298709 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+
+===== PDF PAGE 64 =====
+3. 3
+4. 4
+
+Question Number : 104 Question Id : 953357298710 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+Question Number : 105 Question Id : 953357298711 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+Sub-Section Number :                                           3
+Sub-Section Id :                                                95335717752
+Question Shuffling Allowed :                                      Yes
+
+
+Question Number : 106 Question Id : 953357298712 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+
+Question Number : 106 Question Id : 953357298712 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+===== PDF PAGE 65 =====
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+
+Question Number : 107 Question Id : 953357298713 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+
+Question Number : 107 Question Id : 953357298713 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+
+Question Number : 108 Question Id : 953357298714 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+===== PDF PAGE 66 =====
+Question Number : 108 Question Id : 953357298714 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+
+Question Number : 109 Question Id : 953357298715 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+
+Question Number : 109 Question Id : 953357298715 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+
+Question Number : 110 Question Id : 953357298716 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+
+===== PDF PAGE 67 =====
+3. 3
+4. 4
+
+
+Question Number : 110 Question Id : 953357298716 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+
+Question Number : 111 Question Id : 953357298717 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+
+Question Number : 111 Question Id : 953357298717 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+
+Question Number : 112 Question Id : 953357298718 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+===== PDF PAGE 68 =====
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+
+Question Number : 112 Question Id : 953357298718 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+
+Question Number : 113 Question Id : 953357298719 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+
+Question Number : 113 Question Id : 953357298719 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+
+Question Number : 114 Question Id : 953357298720 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+===== PDF PAGE 69 =====
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+
+Question Number : 114 Question Id : 953357298720 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+
+Question Number : 115 Question Id : 953357298721 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+
+Question Number : 115 Question Id : 953357298721 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+===== PDF PAGE 70 =====
+Question Number : 116 Question Id : 953357298722 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+
+Question Number : 116 Question Id : 953357298722 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+
+Question Number : 117 Question Id : 953357298723 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+
+Question Number : 117 Question Id : 953357298723 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+
+===== PDF PAGE 71 =====
+4. 4
+
+
+Question Number : 118 Question Id : 953357298724 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+
+Question Number : 118 Question Id : 953357298724 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+
+Question Number : 119 Question Id : 953357298725 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+
+Question Number : 119 Question Id : 953357298725 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+
+===== PDF PAGE 72 =====
+3. 3
+4. 4
+
+
+Question Number : 120 Question Id : 953357298726 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+
+Question Number : 120 Question Id : 953357298726 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+
+                              Language II
+Section Id :                                                    95335710067
+Section Number :                                               5
+Section type :                                                       Online
+Mandatory or Optional :                                          Mandatory
+Number of Questions :                                          17
+Number of Questions to be attempted :                             17
+Section Marks :                                                30
+Enable Mark as Answered Mark for Review and Clear Response :      Yes
+Sub-Section Number :                                           1
+Sub-Section Id :                                                95335717753
+Question Shuffling Allowed :                                      Yes
+
+
+Question Id : 953357298727 Question Type : COMPREHENSION Sub Question Shuffling Allowed : Yes Group Comprehension
+Questions : No
+Question Numbers : (121 to 128)
+Question Label : Comprehension
+
+===== PDF PAGE 73 =====
+Sub questions
+
+Question Number : 121 Question Id : 953357298728 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+Question Number : 122 Question Id : 953357298729 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+===== PDF PAGE 74 =====
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+Question Number : 123 Question Id : 953357298730 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+Question Number : 124 Question Id : 953357298731 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+Question Number : 125 Question Id : 953357298732 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+
+===== PDF PAGE 75 =====
+3. 3
+4. 4
+
+Question Number : 126 Question Id : 953357298733 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+Question Number : 127 Question Id : 953357298734 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+Question Number : 128 Question Id : 953357298735 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+
+Question Id : 953357298727 Question Type : COMPREHENSION Sub Question Shuffling Allowed : Yes Group Comprehension
+Questions : No
+Question Numbers : (121 to 128)
+
+===== PDF PAGE 76 =====
+Question Label : Comprehension
+
+
+
+
+
+Sub questions
+
+Question Number : 121 Question Id : 953357298728 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+Question Number : 122 Question Id : 953357298729 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+===== PDF PAGE 77 =====
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+Question Number : 123 Question Id : 953357298730 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+Question Number : 124 Question Id : 953357298731 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+Question Number : 125 Question Id : 953357298732 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+
+===== PDF PAGE 78 =====
+3. 3
+4. 4
+
+Question Number : 126 Question Id : 953357298733 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+Question Number : 127 Question Id : 953357298734 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+Question Number : 128 Question Id : 953357298735 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+Sub-Section Number :                                           2
+Sub-Section Id :                                                95335717754
+Question Shuffling Allowed :                                      Yes
+
+===== PDF PAGE 79 =====
+Question Id : 953357298736 Question Type : COMPREHENSION Sub Question Shuffling Allowed : Yes Group Comprehension
+Questions : No
+Question Numbers : (129 to 135)
+Question Label : Comprehension
+
+
+
+
+
+Sub questions
+
+Question Number : 129 Question Id : 953357298737 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+
+===== PDF PAGE 80 =====
+3. 3
+4. 4
+
+Question Number : 130 Question Id : 953357298738 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+Question Number : 131 Question Id : 953357298739 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+Question Number : 132 Question Id : 953357298740 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+Question Number : 133 Question Id : 953357298741 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+===== PDF PAGE 81 =====
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+Question Number : 134 Question Id : 953357298742 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+Question Number : 135 Question Id : 953357298743 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+
+Question Id : 953357298736 Question Type : COMPREHENSION Sub Question Shuffling Allowed : Yes Group Comprehension
+Questions : No
+Question Numbers : (129 to 135)
+Question Label : Comprehension
+
+===== PDF PAGE 82 =====
+Sub questions
+
+Question Number : 129 Question Id : 953357298737 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+Question Number : 130 Question Id : 953357298738 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+
+===== PDF PAGE 83 =====
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+Question Number : 131 Question Id : 953357298739 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+Question Number : 132 Question Id : 953357298740 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+Question Number : 133 Question Id : 953357298741 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+===== PDF PAGE 84 =====
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+Question Number : 134 Question Id : 953357298742 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+Question Number : 135 Question Id : 953357298743 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+Sub-Section Number :                                           3
+Sub-Section Id :                                                95335717755
+Question Shuffling Allowed :                                      Yes
+
+
+Question Number : 136 Question Id : 953357298744 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+===== PDF PAGE 85 =====
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+
+Question Number : 136 Question Id : 953357298744 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+
+Question Number : 137 Question Id : 953357298745 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+
+Question Number : 137 Question Id : 953357298745 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+===== PDF PAGE 86 =====
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+
+Question Number : 138 Question Id : 953357298746 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+
+Question Number : 138 Question Id : 953357298746 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+
+Question Number : 139 Question Id : 953357298747 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+===== PDF PAGE 87 =====
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+
+Question Number : 139 Question Id : 953357298747 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+
+Question Number : 140 Question Id : 953357298748 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+
+Question Number : 140 Question Id : 953357298748 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+
+===== PDF PAGE 88 =====
+2. 2
+3. 3
+4. 4
+
+
+Question Number : 141 Question Id : 953357298749 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+
+Question Number : 141 Question Id : 953357298749 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+
+Question Number : 142 Question Id : 953357298750 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+
+Question Number : 142 Question Id : 953357298750 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+===== PDF PAGE 89 =====
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+
+Question Number : 143 Question Id : 953357298751 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+
+Question Number : 143 Question Id : 953357298751 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+
+Question Number : 144 Question Id : 953357298752 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+
+===== PDF PAGE 90 =====
+2. 2
+3. 3
+4. 4
+
+
+Question Number : 144 Question Id : 953357298752 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+
+Question Number : 145 Question Id : 953357298753 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+
+Question Number : 145 Question Id : 953357298753 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+
+Question Number : 146 Question Id : 953357298754 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+===== PDF PAGE 91 =====
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+
+Question Number : 146 Question Id : 953357298754 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+
+Question Number : 147 Question Id : 953357298755 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+
+Question Number : 147 Question Id : 953357298755 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+
+===== PDF PAGE 92 =====
+3. 3
+4. 4
+
+
+Question Number : 148 Question Id : 953357298756 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+
+Question Number : 148 Question Id : 953357298756 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+
+Question Number : 149 Question Id : 953357298757 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+
+Question Number : 149 Question Id : 953357298757 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+===== PDF PAGE 93 =====
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+
+Question Number : 150 Question Id : 953357298758 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+
+Question Number : 150 Question Id : 953357298758 Question Type : MCQ Option Shuffling : No Is Question Mandatory : No
+Correct Marks : 1 Wrong Marks : 0
+
+
+
+
+
+Options :
+1. 1
+2. 2
+3. 3
+4. 4
+
+===== PDF PAGE 94 =====
+
