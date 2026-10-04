@@ -66,6 +66,26 @@ def main() -> int:
         print(f"PROBE_URL {url}")
         response = page.goto(url, wait_until="domcontentloaded", timeout=120_000)
         print(f"DOCUMENT_STATUS {response.status if response else 'none'}")
+
+        print("\n=== DIRECT PUBLIC ASSET PROBES ===")
+        asset_urls = [
+            "https://cdn-images.prepp.in/public/image/5f35b2a7c7b5f3b16df5310073243304.pdf",
+            "https://static.collegedekho.com/media/django-summernote/2022-01-29/bc744b3c-3428-4071-b3d6-a018fffcb9de.pdf",
+            "https://blogmedia.testbook.com/blog/wp-content/uploads/2022/12/ctet-paper-1-5th-jan-2022-english-hindi-15499e82.pdf",
+            "https://cdnbbsr.s3waas.gov.in/s3443dec3062d0286986e21dc0631734c9/uploads/2022/08/2022082370.pdf",
+        ]
+        for asset_url in asset_urls:
+            try:
+                asset_response = page.request.get(asset_url, timeout=120_000)
+                body = asset_response.body()
+                print(
+                    f"{asset_response.status}\t{len(body)}\t"
+                    f"{asset_response.headers.get('content-type', '')}\t"
+                    f"{body[:8]!r}\t{asset_url}"
+                )
+            except Exception as exc:
+                print(f"ERROR\t{type(exc).__name__}: {exc}\t{asset_url}")
+
         try:
             page.wait_for_load_state("networkidle", timeout=60_000)
         except Exception as exc:
