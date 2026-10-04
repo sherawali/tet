@@ -3,7 +3,7 @@ name: Fetch CTET sources
 on:
   push:
     branches: [arena/01a10471-tet]
-    paths: ['.github/workflows/fetch-ctet-sources.yml', 'tools/fetch_ctet_run9.py']
+    paths: ['.github/workflows/fetch-ctet-sources.yml', 'tools/fetch_ctet_run10.py']
   workflow_dispatch:
 
 permissions:
@@ -36,7 +36,7 @@ jobs:
 
       - name: Fetch and extract
         run: |
-          python tools/fetch_ctet_run9.py 2>&1 | tee /tmp/fetchlog.txt
+          python tools/fetch_ctet_run10.py 2>&1 | tee /tmp/fetchlog.txt
           cp /tmp/fetchlog.txt ctetnew/_sources/_fetchlog.txt || true
 
       - name: Commit results
