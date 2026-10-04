@@ -527,7 +527,7 @@
       "preppCatalogPdf": "https://cdn-images.prepp.in/public/image/e84b3334e8c9726f0a68a38479a3f15b.pdf",
       "aglasemPaperMirror": "https://docs.aglasem.com/view/71092f30-81a7-11ec-aa74-0a5e36bc6706",
       "collegeDekhoPdfMirror": "https://static.collegedekho.com/media/django-summernote/2022-01-29/3d129c7c-33d6-4093-adf8-2a6a0c37b364.pdf",
-      "candidateVariantStatus": "alternate-variant-required",
+      "candidateVariantStatus": "official-key-sequence-matched",
       "officialAvailableTargetLanguages": [
         "english",
         "hindi",
@@ -546,19 +546,174 @@
           "source": "preppCatalogPdf",
           "url": "https://cdn-images.prepp.in/public/image/e84b3334e8c9726f0a68a38479a3f15b.pdf",
           "sha256": "494aa869e0e5d72b2471e5b790ea4ea6d95848d9239a65a1a62019254bfb481c",
-          "paperName": null,
-          "subjectName": null,
-          "internalCreationDateTime": null,
-          "internalCreationDate": null,
-          "internalCreationDateMatchesForm": null,
+          "paperName": "Set D P1 English and Hindi Comb19",
+          "subjectName": "PI English and Hindi",
+          "internalCreationDateTime": "2021-12-21 14:02:09",
+          "internalCreationDate": "2021-12-21",
+          "internalCreationDateMatchesForm": true,
           "explicitTestDate": null,
           "explicitTestDateMatchesForm": null,
           "pageCount": 98,
-          "textCharacters": 2580,
-          "uniqueQuestionIdCount": 0,
-          "ocrApplied": false,
-          "sequenceProbes": [],
-          "sourceDisposition": "date-evidence-unresolved",
+          "textCharacters": 143198,
+          "uniqueQuestionIdCount": 154,
+          "ocrApplied": true,
+          "sequenceProbes": [
+            {
+              "id": "ocr-recovered-prepp-2021-12-21-main-first-15",
+              "cataloguedFormDate": "2021-12-21",
+              "sources": [
+                "preppCatalogPdf"
+              ],
+              "candidateQuestionIds": [
+                "953357293215",
+                "953357293216",
+                "953357293217",
+                "953357293218",
+                "953357293219",
+                "953357293220",
+                "953357293221",
+                "953357293222",
+                "953357293223",
+                "953357293224",
+                "953357293225",
+                "953357293226",
+                "953357293227",
+                "953357293228",
+                "953357293229"
+              ],
+              "positions": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15
+              ],
+              "observedCorrectOptions": [
+                3,
+                2,
+                4,
+                2,
+                1,
+                2,
+                2,
+                2,
+                3,
+                4,
+                2,
+                3,
+                4,
+                3,
+                3
+              ],
+              "notes": "OCR recovered Set D's complete bilingual stems, four options and question IDs. All 15 independently verified answers match the official 21 December 2021 main-key ordering in both medium tables and discriminate it from every other official date/medium sequence.",
+              "officialKeyMatches": [
+                {
+                  "date": "2021-12-21",
+                  "medium": "english",
+                  "matchedCount": 15,
+                  "probeCount": 15,
+                  "exact": true,
+                  "matchedPositions": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12,
+                    13,
+                    14,
+                    15
+                  ]
+                },
+                {
+                  "date": "2021-12-21",
+                  "medium": "hindi",
+                  "matchedCount": 15,
+                  "probeCount": 15,
+                  "exact": true,
+                  "matchedPositions": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12,
+                    13,
+                    14,
+                    15
+                  ]
+                },
+                {
+                  "date": "2021-12-23",
+                  "medium": "english",
+                  "matchedCount": 6,
+                  "probeCount": 15,
+                  "exact": false,
+                  "matchedPositions": [
+                    1,
+                    2,
+                    3,
+                    5,
+                    9,
+                    11
+                  ]
+                },
+                {
+                  "date": "2021-12-23",
+                  "medium": "hindi",
+                  "matchedCount": 6,
+                  "probeCount": 15,
+                  "exact": false,
+                  "matchedPositions": [
+                    1,
+                    2,
+                    3,
+                    5,
+                    9,
+                    11
+                  ]
+                },
+                {
+                  "date": "2022-01-03",
+                  "medium": "hindi",
+                  "matchedCount": 6,
+                  "probeCount": 15,
+                  "exact": false,
+                  "matchedPositions": [
+                    4,
+                    7,
+                    11,
+                    12,
+                    14,
+                    15
+                  ]
+                }
+              ]
+            }
+          ],
+          "sourceDisposition": "matches-catalogued-date-by-official-key-sequence",
           "recoveredText": "bank-v2/source-recovery/ctet-p1-2021-2022/text/2021-12-21--preppcatalogpdf.txt"
         },
         {

@@ -28,12 +28,12 @@
   },
   "summary": {
     "candidateDocumentCount": 45,
-    "documentsWithAll150Positions": 44,
-    "documentsWithoutQuestionIds": 1,
+    "documentsWithAll150Positions": 45,
+    "documentsWithoutQuestionIds": 0,
     "duplicateQuestionIdSequenceGroupCount": 20,
-    "totalNormalizedQuestionRecords": 6600,
-    "totalTextComplete": 2543,
-    "totalTextPartial": 503,
+    "totalNormalizedQuestionRecords": 6750,
+    "totalTextComplete": 2605,
+    "totalTextPartial": 591,
     "totalImageEncoded": 3554
   },
   "duplicateQuestionIdSequenceGroups": [
@@ -19520,208 +19520,4569 @@
     {
       "cataloguedDate": "2021-12-21",
       "source": "preppCatalogPdf",
-      "sourceDisposition": "date-evidence-unresolved",
+      "sourceDisposition": "matches-catalogued-date-by-official-key-sequence",
       "url": "https://cdn-images.prepp.in/public/image/e84b3334e8c9726f0a68a38479a3f15b.pdf",
       "sourceSha256": "494aa869e0e5d72b2471e5b790ea4ea6d95848d9239a65a1a62019254bfb481c",
       "sourceTextPath": "bank-v2/source-recovery/ctet-p1-2021-2022/text/2021-12-21--preppcatalogpdf.txt",
-      "paperName": null,
-      "subjectName": null,
-      "creationDateTime": null,
+      "paperName": "Set D P1 English and Hindi Comb19",
+      "subjectName": "PI English and Hindi",
+      "creationDateTime": "2021-12-21 14:02:09",
       "testDate": null,
       "pageCount": 98,
-      "ocrApplied": false,
-      "parsedQuestionCount": 0,
-      "missingPositions": [
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        8,
-        9,
-        10,
-        11,
-        12,
-        13,
-        14,
-        15,
-        16,
-        17,
-        18,
-        19,
-        20,
-        21,
-        22,
-        23,
-        24,
-        25,
-        26,
-        27,
-        28,
-        29,
-        30,
-        31,
-        32,
-        33,
-        34,
-        35,
-        36,
-        37,
-        38,
-        39,
-        40,
-        41,
-        42,
-        43,
-        44,
-        45,
-        46,
-        47,
-        48,
-        49,
-        50,
-        51,
-        52,
-        53,
-        54,
-        55,
-        56,
-        57,
-        58,
-        59,
-        60,
-        61,
-        62,
-        63,
-        64,
-        65,
-        66,
-        67,
-        68,
-        69,
-        70,
-        71,
-        72,
-        73,
-        74,
-        75,
-        76,
-        77,
-        78,
-        79,
-        80,
-        81,
-        82,
-        83,
-        84,
-        85,
-        86,
-        87,
-        88,
-        89,
-        90,
-        91,
-        92,
-        93,
-        94,
-        95,
-        96,
-        97,
-        98,
-        99,
-        100,
-        101,
-        102,
-        103,
-        104,
-        105,
-        106,
-        107,
-        108,
-        109,
-        110,
-        111,
-        112,
-        113,
-        114,
-        115,
-        116,
-        117,
-        118,
-        119,
-        120,
-        121,
-        122,
-        123,
-        124,
-        125,
-        126,
-        127,
-        128,
-        129,
-        130,
-        131,
-        132,
-        133,
-        134,
-        135,
-        136,
-        137,
-        138,
-        139,
-        140,
-        141,
-        142,
-        143,
-        144,
-        145,
-        146,
-        147,
-        148,
-        149,
-        150
-      ],
+      "ocrApplied": true,
+      "parsedQuestionCount": 150,
+      "missingPositions": [],
       "positionConflicts": [],
-      "textCompleteCount": 0,
-      "textPartialCount": 0,
+      "textCompleteCount": 62,
+      "textPartialCount": 88,
       "imageEncodedCount": 0,
-      "questionIdSequenceSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "questionIdSequenceSha256": "7dc41dcb26f1d3552d17336621a92bf850c341a23c06df2e069b616dea4b02f2",
       "sections": {
         "cdp": {
-          "positionCount": 0,
-          "textComplete": 0,
-          "textPartial": 0,
+          "positionCount": 30,
+          "textComplete": 29,
+          "textPartial": 1,
           "imageEncoded": 0
         },
         "mathematics": {
-          "positionCount": 0,
-          "textComplete": 0,
-          "textPartial": 0,
+          "positionCount": 30,
+          "textComplete": 3,
+          "textPartial": 27,
           "imageEncoded": 0
         },
         "evs": {
-          "positionCount": 0,
-          "textComplete": 0,
+          "positionCount": 30,
+          "textComplete": 30,
           "textPartial": 0,
           "imageEncoded": 0
         },
         "language-1": {
-          "positionCount": 0,
+          "positionCount": 30,
           "textComplete": 0,
-          "textPartial": 0,
+          "textPartial": 30,
           "imageEncoded": 0
         },
         "language-2": {
-          "positionCount": 0,
+          "positionCount": 30,
           "textComplete": 0,
-          "textPartial": 0,
+          "textPartial": 30,
           "imageEncoded": 0
         }
       },
-      "stimuli": [],
-      "questions": []
+      "stimuli": [
+        {
+          "questionId": "953357293305",
+          "firstPosition": 91,
+          "lastPosition": 99,
+          "page": 54
+        },
+        {
+          "questionId": "953357293315",
+          "firstPosition": 100,
+          "lastPosition": 105,
+          "page": 62
+        },
+        {
+          "questionId": "953357293337",
+          "firstPosition": 121,
+          "lastPosition": 128,
+          "page": 75
+        },
+        {
+          "questionId": "953357293346",
+          "firstPosition": 129,
+          "lastPosition": 135,
+          "page": 83
+        }
+      ],
+      "questions": [
+        {
+          "position": 1,
+          "section": "cdp",
+          "questionId": "953357293215",
+          "occurrenceCount": 2,
+          "pages": [
+            2
+          ],
+          "stemText": "Development is -",
+          "options": [
+            {
+              "index": 1,
+              "text": "unidimensional."
+            },
+            {
+              "index": 2,
+              "text": "uni-directional."
+            },
+            {
+              "index": 3,
+              "text": "modifiable."
+            },
+            {
+              "index": 4,
+              "text": "totally genetically pre-programmed."
+            }
+          ],
+          "meaningfulStemCharacters": 13,
+          "nonemptyOptionCount": 4,
+          "extractionStatus": "text-complete"
+        },
+        {
+          "position": 2,
+          "section": "cdp",
+          "questionId": "953357293216",
+          "occurrenceCount": 2,
+          "pages": [
+            3
+          ],
+          "stemText": "Which of the following is definitely predetermined by genetics / heredity?",
+          "options": [
+            {
+              "index": 1,
+              "text": "Choice of friends"
+            },
+            {
+              "index": 2,
+              "text": "Colour of the eyes"
+            },
+            {
+              "index": 3,
+              "text": "Academic success"
+            },
+            {
+              "index": 4,
+              "text": "Interest in studies"
+            }
+          ],
+          "meaningfulStemCharacters": 62,
+          "nonemptyOptionCount": 4,
+          "extractionStatus": "text-complete"
+        },
+        {
+          "position": 3,
+          "section": "cdp",
+          "questionId": "953357293217",
+          "occurrenceCount": 2,
+          "pages": [
+            3
+          ],
+          "stemText": "refers to the learning that children undergo when they enter social institutions such as school.",
+          "options": [
+            {
+              "index": 1,
+              "text": "Maturation"
+            },
+            {
+              "index": 2,
+              "text": "Passive socialisation"
+            },
+            {
+              "index": 3,
+              "text": "Primary socialisation"
+            },
+            {
+              "index": 4,
+              "text": "Secondary socialisation"
+            }
+          ],
+          "meaningfulStemCharacters": 81,
+          "nonemptyOptionCount": 4,
+          "extractionStatus": "text-complete"
+        },
+        {
+          "position": 4,
+          "section": "cdp",
+          "questionId": "953357293218",
+          "occurrenceCount": 2,
+          "pages": [
+            4
+          ],
+          "stemText": "In Kohlberg's moral development theory, stage 3 at level 2, conventional morality is referred to as-",
+          "options": [
+            {
+              "index": 1,
+              "text": "The obedience and punishment orientation"
+            },
+            {
+              "index": 2,
+              "text": "\"Good boy- good girl” orientation"
+            },
+            {
+              "index": 3,
+              "text": "The Law and order orientation"
+            },
+            {
+              "index": 4,
+              "text": "The Social contract and individual rights orientation"
+            }
+          ],
+          "meaningfulStemCharacters": 79,
+          "nonemptyOptionCount": 4,
+          "extractionStatus": "text-complete"
+        },
+        {
+          "position": 5,
+          "section": "cdp",
+          "questionId": "953357293219",
+          "occurrenceCount": 2,
+          "pages": [
+            4
+          ],
+          "stemText": "In Jean Piaget's theory, creation of a new scheme on account of inability to understand the environment with the existing schema is known\nas-",
+          "options": [
+            {
+              "index": 1,
+              "text": "accomodation."
+            },
+            {
+              "index": 2,
+              "text": "assimilation."
+            },
+            {
+              "index": 3,
+              "text": "adaptation."
+            },
+            {
+              "index": 4,
+              "text": "organisation."
+            }
+          ],
+          "meaningfulStemCharacters": 115,
+          "nonemptyOptionCount": 4,
+          "extractionStatus": "text-complete"
+        },
+        {
+          "position": 6,
+          "section": "cdp",
+          "questionId": "953357293220",
+          "occurrenceCount": 2,
+          "pages": [
+            5
+          ],
+          "stemText": "According to Jean Piaget, is a concept/ framework that organizes and interprets information.",
+          "options": [
+            {
+              "index": 1,
+              "text": "expository model"
+            },
+            {
+              "index": 2,
+              "text": "schema"
+            },
+            {
+              "index": 3,
+              "text": "advance organizer"
+            },
+            {
+              "index": 4,
+              "text": "sensory register"
+            }
+          ],
+          "meaningfulStemCharacters": 77,
+          "nonemptyOptionCount": 4,
+          "extractionStatus": "text-complete"
+        },
+        {
+          "position": 7,
+          "section": "cdp",
+          "questionId": "953357293221",
+          "occurrenceCount": 2,
+          "pages": [
+            5
+          ],
+          "stemText": "Rashmi uses a variety of tasks to cater to the different learning potential of learners in her class and often makes groups to facilitate peer\nlearning. Which of the following theory supports her actions?",
+          "options": [
+            {
+              "index": 1,
+              "text": "Sigmund Freud's psycho-sexual theory"
+            },
+            {
+              "index": 2,
+              "text": "Lev Vygotsky's socio- cultural theory"
+            },
+            {
+              "index": 3,
+              "text": "Lawrence Kohlberg's moral development-theory"
+            },
+            {
+              "index": 4,
+              "text": "B.F. Skinner's behavioristic theory"
+            }
+          ],
+          "meaningfulStemCharacters": 169,
+          "nonemptyOptionCount": 4,
+          "extractionStatus": "text-complete"
+        },
+        {
+          "position": 8,
+          "section": "cdp",
+          "questionId": "953357293222",
+          "occurrenceCount": 2,
+          "pages": [
+            5,
+            6
+          ],
+          "stemText": "1/1/22, 5:32 PM\n\nWhich of the following is NOT an example of scaffolding by the teacher?",
+          "options": [
+            {
+              "index": 1,
+              "text": "Modelling skills for imitation"
+            },
+            {
+              "index": 2,
+              "text": "Rote memorization"
+            },
+            {
+              "index": 3,
+              "text": "Prompts and cues"
+            },
+            {
+              "index": 4,
+              "text": "Peer tutoring"
+            }
+          ],
+          "meaningfulStemCharacters": 60,
+          "nonemptyOptionCount": 4,
+          "extractionStatus": "text-complete"
+        },
+        {
+          "position": 9,
+          "section": "cdp",
+          "questionId": "953357293223",
+          "occurrenceCount": 2,
+          "pages": [
+            6
+          ],
+          "stemText": "Which of the following does NOT depict appropriate strategies for learning in a constructivist classroom?",
+          "options": [
+            {
+              "index": 1,
+              "text": "Encouraging multiple perspectives"
+            },
+            {
+              "index": 2,
+              "text": "Group collaboration"
+            },
+            {
+              "index": 3,
+              "text": "Drill and Recall"
+            },
+            {
+              "index": 4,
+              "text": "Experimentation"
+            }
+          ],
+          "meaningfulStemCharacters": 90,
+          "nonemptyOptionCount": 4,
+          "extractionStatus": "text-complete"
+        },
+        {
+          "position": 10,
+          "section": "cdp",
+          "questionId": "953357293224",
+          "occurrenceCount": 2,
+          "pages": [
+            6,
+            7
+          ],
+          "stemText": "Who dismissed the idea of general intelligence and defined intelligence in terms of several distinct set of processing operations?",
+          "options": [
+            {
+              "index": 1,
+              "text": "Charles Spearman"
+            },
+            {
+              "index": 2,
+              "text": "Alfred Binet\nLatest Sarkari Jobs, Govt Exam Results, a 5/96\noo\n\n1/1/22, 5:32 PM"
+            },
+            {
+              "index": 3,
+              "text": "Theodore Simon"
+            },
+            {
+              "index": 4,
+              "text": "Howard Gardner"
+            }
+          ],
+          "meaningfulStemCharacters": 111,
+          "nonemptyOptionCount": 4,
+          "extractionStatus": "text-complete"
+        },
+        {
+          "position": 11,
+          "section": "cdp",
+          "questionId": "953357293225",
+          "occurrenceCount": 2,
+          "pages": [
+            7
+          ],
+          "stemText": "Ina constructivist classroom, emphasis should be placed on:",
+          "options": [
+            {
+              "index": 1,
+              "text": "Summative assessment"
+            },
+            {
+              "index": 2,
+              "text": "Formative assessment"
+            },
+            {
+              "index": 3,
+              "text": "Singular assessment"
+            },
+            {
+              "index": 4,
+              "text": "Standardized and uniform assessment"
+            }
+          ],
+          "meaningfulStemCharacters": 50,
+          "nonemptyOptionCount": 4,
+          "extractionStatus": "text-complete"
+        },
+        {
+          "position": 12,
+          "section": "cdp",
+          "questionId": "953357293226",
+          "occurrenceCount": 2,
+          "pages": [
+            7,
+            8
+          ],
+          "stemText": "‘Private speech‘ in Vygotsky's theory-",
+          "options": [
+            {
+              "index": 1,
+              "text": "is indicative of children's egocentricism."
+            },
+            {
+              "index": 2,
+              "text": "hinders children's actions and behaviour."
+            },
+            {
+              "index": 3,
+              "text": "helps children to regulate their behaviour while doing complex tasks."
+            },
+            {
+              "index": 4,
+              "text": "is an indication that cognition is never internalized.\nLatest Sarkari Jobs, Govt & Results, ज तकु 6/96\noo\n\n1/1/22, 5:32 PM"
+            }
+          ],
+          "meaningfulStemCharacters": 30,
+          "nonemptyOptionCount": 4,
+          "extractionStatus": "text-complete"
+        },
+        {
+          "position": 13,
+          "section": "cdp",
+          "questionId": "953357293227",
+          "occurrenceCount": 2,
+          "pages": [
+            8
+          ],
+          "stemText": "Dolls and pink dresses are usually associated with girls while cars and blue dresses are usually associated with boys. This is a\ndemonstration of -",
+          "options": [
+            {
+              "index": 1,
+              "text": "gender constancy."
+            },
+            {
+              "index": 2,
+              "text": "gender empowerment."
+            },
+            {
+              "index": 3,
+              "text": "gender diversity."
+            },
+            {
+              "index": 4,
+              "text": "gender stereotyping."
+            }
+          ],
+          "meaningfulStemCharacters": 121,
+          "nonemptyOptionCount": 4,
+          "extractionStatus": "text-complete"
+        },
+        {
+          "position": 14,
+          "section": "cdp",
+          "questionId": "953357293228",
+          "occurrenceCount": 2,
+          "pages": [
+            8,
+            9
+          ],
+          "stemText": "Assertion (A): Education fails the child when children are expected to reproduce knowledge in more or less the same way it was received.\nReason (R): Reproduction of information is a meaningful indicator of children's learning.\nChoose the correct option,",
+          "options": [
+            {
+              "index": 1,
+              "text": "Both(A) and (र्‌) are true and (R) is the correct explanation of (A)."
+            },
+            {
+              "index": 2,
+              "text": "Both(A) and (R) are true but (R) is not the correct explanation of (A)."
+            },
+            {
+              "index": 3,
+              "text": "(A) is true but (R) is false."
+            },
+            {
+              "index": 4,
+              "text": "Both (A) and (R) are false.\nLatest Sarkari Jobs, Govt & Results, ज तकु\nप्यक mu\n\n1/1/22, 5:32 PM"
+            }
+          ],
+          "meaningfulStemCharacters": 205,
+          "nonemptyOptionCount": 4,
+          "extractionStatus": "text-complete"
+        },
+        {
+          "position": 15,
+          "section": "cdp",
+          "questionId": "953357293229",
+          "occurrenceCount": 2,
+          "pages": [
+            9
+          ],
+          "stemText": "What is the role of teacher and students in constructivist classroom?",
+          "options": [
+            {
+              "index": 1,
+              "text": "Both students and teachers are passive."
+            },
+            {
+              "index": 2,
+              "text": "Students are active but teachers are passive."
+            },
+            {
+              "index": 3,
+              "text": "Both teacher and students are active."
+            },
+            {
+              "index": 4,
+              "text": "Teacher is active but students are passive."
+            }
+          ],
+          "meaningfulStemCharacters": 58,
+          "nonemptyOptionCount": 4,
+          "extractionStatus": "text-complete"
+        },
+        {
+          "position": 16,
+          "section": "cdp",
+          "questionId": "953357293230",
+          "occurrenceCount": 2,
+          "pages": [
+            9,
+            10
+          ],
+          "stemText": "How can a teacher create an inclusive environment for learners from different caste groups in classroom?\n(i) By reflecting on her own stereotypes and beliefs that constraint learning experiences of children.\n(ii) Include diversity of children’s experiences in classroom.\n(iii) Create an institutional ethos that has a strong emphasis on equality.\n(iv) Encourage children to adapt to existing standard curriculum.",
+          "options": [
+            {
+              "index": 1,
+              "text": "(i), (0), (iii)"
+            },
+            {
+              "index": 2,
+              "text": "(i), (ii), (iv)"
+            },
+            {
+              "index": 3,
+              "text": "(i), (iii), (iv)"
+            },
+            {
+              "index": 4,
+              "text": "(i), (iii)"
+            }
+          ],
+          "meaningfulStemCharacters": 339,
+          "nonemptyOptionCount": 4,
+          "extractionStatus": "text-complete"
+        },
+        {
+          "position": 17,
+          "section": "cdp",
+          "questionId": "953357293231",
+          "occurrenceCount": 2,
+          "pages": [
+            10
+          ],
+          "stemText": "Ramneek has a student with visual impairment in her class. In this context, what instructional adaptations should she make in an inclusive\nclassroom?",
+          "options": [
+            {
+              "index": 1,
+              "text": "Using a variety of visual presentations"
+            },
+            {
+              "index": 2,
+              "text": "Providing lot of print books"
+            },
+            {
+              "index": 3,
+              "text": "Making use of tactile materials such as three dimensional maps and charts"
+            },
+            {
+              "index": 4,
+              "text": "Giving lot of small print worksheets"
+            }
+          ],
+          "meaningfulStemCharacters": 124,
+          "nonemptyOptionCount": 4,
+          "extractionStatus": "text-complete"
+        },
+        {
+          "position": 18,
+          "section": "cdp",
+          "questionId": "953357293232",
+          "occurrenceCount": 2,
+          "pages": [
+            10,
+            11
+          ],
+          "stemText": "1/1/22, 5:32 PM\nReena always thinks of varied solutions for any problem given in the class. This is a characteristic of -",
+          "options": [
+            {
+              "index": 1,
+              "text": "Mental impairment"
+            },
+            {
+              "index": 2,
+              "text": "Low comprehension"
+            },
+            {
+              "index": 3,
+              "text": "Convergent thinking"
+            },
+            {
+              "index": 4,
+              "text": "Divergent thinking"
+            }
+          ],
+          "meaningfulStemCharacters": 87,
+          "nonemptyOptionCount": 4,
+          "extractionStatus": "text-complete"
+        },
+        {
+          "position": 19,
+          "section": "cdp",
+          "questionId": "953357293233",
+          "occurrenceCount": 2,
+          "pages": [
+            11
+          ],
+          "stemText": "Raju writes '61' as '16' and often gets confused between the letters 'b' and '0', These are primary characteristics of -",
+          "options": [
+            {
+              "index": 1,
+              "text": "Dyslexia"
+            },
+            {
+              "index": 2,
+              "text": "Autism spectrum disorder"
+            },
+            {
+              "index": 3,
+              "text": "Leamed helplessness"
+            },
+            {
+              "index": 4,
+              "text": "Dysgraphia"
+            }
+          ],
+          "meaningfulStemCharacters": 85,
+          "nonemptyOptionCount": 4,
+          "extractionStatus": "text-complete"
+        },
+        {
+          "position": 20,
+          "section": "cdp",
+          "questionId": "953357293234",
+          "occurrenceCount": 2,
+          "pages": [
+            11,
+            12
+          ],
+          "stemText": "Specially abled children in an inclusive classrooms can benefit from -\n(i) Setting of Individualized goal\n(ii) Competitive ethos\nLatest Sarkari Jobs, Govt & Results, ज तकु\n\n1/1/22, 5:32 PM\n(iii) Cooperative learning\n(iv) Standard instruction",
+          "options": [
+            {
+              "index": 1,
+              "text": "(i), (iv)"
+            },
+            {
+              "index": 2,
+              "text": "(ii), (iv)"
+            },
+            {
+              "index": 3,
+              "text": "(i), (iii)"
+            },
+            {
+              "index": 4,
+              "text": "(iii), (iv)"
+            }
+          ],
+          "meaningfulStemCharacters": 181,
+          "nonemptyOptionCount": 4,
+          "extractionStatus": "text-complete"
+        },
+        {
+          "position": 21,
+          "section": "cdp",
+          "questionId": "953357293235",
+          "occurrenceCount": 2,
+          "pages": [
+            12
+          ],
+          "stemText": "How are children understood in a constructivist frame?",
+          "options": [
+            {
+              "index": 1,
+              "text": "Passive beings"
+            },
+            {
+              "index": 2,
+              "text": "Miniature adults"
+            },
+            {
+              "index": 3,
+              "text": "As being born evil who have to be civilized"
+            },
+            {
+              "index": 4,
+              "text": "As being born with a curiosity to explore the world"
+            }
+          ],
+          "meaningfulStemCharacters": 46,
+          "nonemptyOptionCount": 4,
+          "extractionStatus": "text-complete"
+        },
+        {
+          "position": 22,
+          "section": "cdp",
+          "questionId": "953357293236",
+          "occurrenceCount": 2,
+          "pages": [
+            13
+          ],
+          "stemText": "Which of the following statements about children’s ‘failure’ is correct?",
+          "options": [
+            {
+              "index": 1,
+              "text": "Child’s failure can always be attributed to genitic defects."
+            },
+            {
+              "index": 2,
+              "text": "Child’s failure is a reflection of the system’s inability to cater to her individual needs."
+            },
+            {
+              "index": 3,
+              "text": "Children whose parents have themselves never been to school are not interested in the education of their children."
+            },
+            {
+              "index": 4,
+              "text": "Children belonging to marginalized communities ate not capable of achieving academic success."
+            }
+          ],
+          "meaningfulStemCharacters": 59,
+          "nonemptyOptionCount": 4,
+          "extractionStatus": "text-complete"
+        },
+        {
+          "position": 23,
+          "section": "cdp",
+          "questionId": "953357293237",
+          "occurrenceCount": 2,
+          "pages": [
+            13
+          ],
+          "stemText": "How can a teacher enhance effective learning in her elementary classroom?",
+          "options": [
+            {
+              "index": 1,
+              "text": "By drill and practice"
+            },
+            {
+              "index": 2,
+              "text": "By encouraging competition"
+            },
+            {
+              "index": 3,
+              "text": "By connecting the context to the lives of the students"
+            },
+            {
+              "index": 4,
+              "text": "By offering rewards at every step in learning"
+            }
+          ],
+          "meaningfulStemCharacters": 62,
+          "nonemptyOptionCount": 4,
+          "extractionStatus": "text-complete"
+        },
+        {
+          "position": 24,
+          "section": "cdp",
+          "questionId": "953357293238",
+          "occurrenceCount": 2,
+          "pages": [
+            13,
+            14
+          ],
+          "stemText": "1/1/22, 5:32 PM\nAnupama, a science teacher, often makes linkages in her classrooms with the concepts students are studying in Mathematics. This kind of\npedagogy -",
+          "options": [
+            {
+              "index": 1,
+              "text": "would help in transfer of learning and promote inter - disciplinarity."
+            },
+            {
+              "index": 2,
+              "text": "would hinder in acquisition of knowledge."
+            },
+            {
+              "index": 3,
+              "text": "would hinder learning as it would increase the students burden."
+            },
+            {
+              "index": 4,
+              "text": "would promote misconceptions amongst children."
+            }
+          ],
+          "meaningfulStemCharacters": 122,
+          "nonemptyOptionCount": 4,
+          "extractionStatus": "text-complete"
+        },
+        {
+          "position": 25,
+          "section": "cdp",
+          "questionId": "953357293239",
+          "occurrenceCount": 2,
+          "pages": [
+            14
+          ],
+          "stemText": "The information related to the procedure of riding a bike, folding laundry and experience of climbing a tree as a7 years old is stored in -",
+          "options": [
+            {
+              "index": 1,
+              "text": "short term memory"
+            },
+            {
+              "index": 2,
+              "text": "long term memory"
+            },
+            {
+              "index": 3,
+              "text": "sensory memory"
+            },
+            {
+              "index": 4,
+              "text": "working memory"
+            }
+          ],
+          "meaningfulStemCharacters": 111,
+          "nonemptyOptionCount": 4,
+          "extractionStatus": "text-complete"
+        },
+        {
+          "position": 26,
+          "section": "cdp",
+          "questionId": "953357293240",
+          "occurrenceCount": 2,
+          "pages": [
+            14,
+            15
+          ],
+          "stemText": "‘kari Jobs, its, now More |\n| ५०५५० | 1396\n\n1/1/22, 5:32 PM\n\nWhich of the following statements about understanding of children's errors is NOT correct?",
+          "options": [
+            {
+              "index": 1,
+              "text": "It helps in assigning grades and positions to the students in class."
+            },
+            {
+              "index": 2,
+              "text": "It makes the teacher aware of conceptual understanding of children."
+            },
+            {
+              "index": 3,
+              "text": "Understanding of errors is meaningful in teaching learing process as natural part of learning ."
+            },
+            {
+              "index": 4,
+              "text": "It gives insight into children's thinking."
+            }
+          ],
+          "meaningfulStemCharacters": 96,
+          "nonemptyOptionCount": 4,
+          "extractionStatus": "text-complete"
+        },
+        {
+          "position": 27,
+          "section": "cdp",
+          "questionId": "953357293241",
+          "occurrenceCount": 2,
+          "pages": [
+            15
+          ],
+          "stemText": "Which type of motivation is associated with activities that are enjoyable or satisfying in themselves?",
+          "options": [
+            {
+              "index": 1,
+              "text": "Intrinsic motivation"
+            },
+            {
+              "index": 2,
+              "text": "Trait motivation"
+            },
+            {
+              "index": 3,
+              "text": "Extrinsic motivation"
+            },
+            {
+              "index": 4,
+              "text": "State motivation"
+            }
+          ],
+          "meaningfulStemCharacters": 87,
+          "nonemptyOptionCount": 4,
+          "extractionStatus": "text-complete"
+        },
+        {
+          "position": 28,
+          "section": "cdp",
+          "questionId": "953357293242",
+          "occurrenceCount": 2,
+          "pages": [
+            15,
+            16
+          ],
+          "stemText": "Teacher's expectations from her students -",
+          "options": [
+            {
+              "index": 1,
+              "text": "have a significant impact on their learning.\n=o me\nv = | crow ore |\n\n1/1/22, 5:32 PM"
+            },
+            {
+              "index": 2,
+              "text": "should not he correlated with the students' learning."
+            },
+            {
+              "index": 3,
+              "text": "do not have any effect on the students' learning and self-efficacy."
+            },
+            {
+              "index": 4,
+              "text": "are a sole determinent of the childrens’ learning."
+            }
+          ],
+          "meaningfulStemCharacters": 35,
+          "nonemptyOptionCount": 4,
+          "extractionStatus": "text-complete"
+        },
+        {
+          "position": 29,
+          "section": "cdp",
+          "questionId": "953357293243",
+          "occurrenceCount": 2,
+          "pages": [
+            16
+          ],
+          "stemText": "A child-centered classroom can be created by -",
+          "options": [
+            {
+              "index": 1,
+              "text": "providing timely feedback to the learners about their performance."
+            },
+            {
+              "index": 2,
+              "text": "discouraging questions and keeping learners passive."
+            },
+            {
+              "index": 3,
+              "text": "providing frequent tests and keeping learners in an intermittent state of fear."
+            },
+            {
+              "index": 4,
+              "text": "promoting competition between learners."
+            }
+          ],
+          "meaningfulStemCharacters": 37,
+          "nonemptyOptionCount": 4,
+          "extractionStatus": "text-complete"
+        },
+        {
+          "position": 30,
+          "section": "cdp",
+          "questionId": "953357293244",
+          "occurrenceCount": 2,
+          "pages": [
+            16,
+            17
+          ],
+          "stemText": "राष्ट्रीय शिक्षा नीति 2020 क्या प्रस्तावित करती हैं?\n(0) विद्यालय की पाठ्यचर्या की विषयवस्तु में कटौती।\n(11) विद्यालय की पाढ़्यचर्या के लचीलेपन में वृद्धि।\n(iii) रटन्त अधिगम को महत्व देना।\n(५) विवेचनात्मक चिंतन को महत्व देना।",
+          "options": [
+            {
+              "index": 1,
+              "text": "(ii), (iv)"
+            },
+            {
+              "index": 2,
+              "text": "(i, (ii) और (iii)\n3, (), Gi) और (iv)\n4, (ii), (ii) और (iv)\nMathematics\nSection Id : 9533579889\nSection Number : 2\nSection type : Online\nMandatory or Optional : Mandatory\nNumber of Questions : 30\nNumber of Questions to be attempted : 30\nSection Marks : 30\nEnable Mark as Answered Mark for Review and Clear Response : Yes\nSub-Section Number : 1\nSub-Section Id : 95335717433\nQuestion Shuffling Allowed : Yes"
+            }
+          ],
+          "meaningfulStemCharacters": 102,
+          "nonemptyOptionCount": 2,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 31,
+          "section": "mathematics",
+          "questionId": "953357293245",
+          "occurrenceCount": 2,
+          "pages": [
+            17,
+            18
+          ],
+          "stemText": "Geetanjali purchased some beads to make a garland. She had some packs of beads which contain 10 beads and some\nloose beads. Each bead costs 50 paise. On the purchase of 1 pack of 10 beads, she gets a reduction of र 1. She\npurchased beads such that the total number of beads is the largest two digit even number. If she has got maximum\npossible discount, how much money she has paid to shopkeeper?",
+          "options": [
+            {
+              "index": 1,
+              "text": "49\n2, 32"
+            },
+            {
+              "index": 3,
+              "text": "36\n\n1/1/22, 5:32 PM"
+            },
+            {
+              "index": 4,
+              "text": "40"
+            }
+          ],
+          "meaningfulStemCharacters": 306,
+          "nonemptyOptionCount": 1,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 32,
+          "section": "mathematics",
+          "questionId": "953357293246",
+          "occurrenceCount": 2,
+          "pages": [
+            18
+          ],
+          "stemText": "जब किसी संख्या को शून्य से विभाजित किया जाता है, तो परिणाम मिलता है :",
+          "options": [
+            {
+              "index": 1,
+              "text": "0"
+            },
+            {
+              "index": 2,
+              "text": "स्वयं संख्या"
+            },
+            {
+              "index": 3,
+              "text": "1\n५. ज्ञात नहीं किया जा सकता"
+            }
+          ],
+          "meaningfulStemCharacters": 30,
+          "nonemptyOptionCount": 2,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 33,
+          "section": "mathematics",
+          "questionId": "953357293247",
+          "occurrenceCount": 2,
+          "pages": [
+            18,
+            19
+          ],
+          "stemText": "1/1/22, 5:32 PM\nFind the difference between the largest and smallest four digit numbers formed by the digits 0, 1, 4 and 7 without\nrepeating the digits, using all of them at a time.",
+          "options": [
+            {
+              "index": 2,
+              "text": "7410\n3, 6777"
+            },
+            {
+              "index": 4,
+              "text": "7263"
+            }
+          ],
+          "meaningfulStemCharacters": 129,
+          "nonemptyOptionCount": 0,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 34,
+          "section": "mathematics",
+          "questionId": "953357293248",
+          "occurrenceCount": 2,
+          "pages": [
+            19
+          ],
+          "stemText": "Find the difference between the largest and the smallest fractions amongst the following fractions:\nBo EO De\n4'2'4'3's’6",
+          "options": [
+            {
+              "index": 2,
+              "text": ""
+            },
+            {
+              "index": 1,
+              "text": "22\n2\n2, 12\n13\n3, 12\nध"
+            },
+            {
+              "index": 4,
+              "text": "12"
+            }
+          ],
+          "meaningfulStemCharacters": 92,
+          "nonemptyOptionCount": 1,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 35,
+          "section": "mathematics",
+          "questionId": "953357293249",
+          "occurrenceCount": 2,
+          "pages": [
+            20
+          ],
+          "stemText": "The prices of fruits per kg are given below:\nMango: Rs. 80.60\nApple: Rs. 120.50\nWatermelon: Rs. 22.50\nGrapes: Rs. 110.40\nSneha bought कर kg watermelon, 2 kg mangoes, Le kg apples, and= kg grapes. She gave a Rs. 2000 note to the\nshopkeeper. How much did she get back?",
+          "options": [
+            {
+              "index": 1,
+              "text": "Rs. 1496"
+            },
+            {
+              "index": 2,
+              "text": "Rs. 1496.50\n3, Rs. 1469"
+            },
+            {
+              "index": 4,
+              "text": "Rs. 1469.50"
+            }
+          ],
+          "meaningfulStemCharacters": 173,
+          "nonemptyOptionCount": 3,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 36,
+          "section": "mathematics",
+          "questionId": "953357293250",
+          "occurrenceCount": 2,
+          "pages": [
+            21
+          ],
+          "stemText": "On the Independence Day, teacher conducted chalk piece picking competition. The students have to pick as many\nchalks within a given time. Hena, Leena, Beena, Biju and Migy were the top five students.\n1. Hena has more chalks than Migy.\n2. Migy cannot collect more chalks than that of Beena.\n3. Leena got less chalks than Beena but more than that of Migy.\n4. Biju is the winner but Hena is not on the second position.\nWho got second prize?",
+          "options": [],
+          "meaningfulStemCharacters": 338,
+          "nonemptyOptionCount": 0,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 37,
+          "section": "mathematics",
+          "questionId": "953357293251",
+          "occurrenceCount": 2,
+          "pages": [
+            21,
+            22
+          ],
+          "stemText": "How many decimal numbers are there between 0.50 and 0.70?",
+          "options": [
+            {
+              "index": 3,
+              "text": "1"
+            },
+            {
+              "index": 4,
+              "text": "Infinite"
+            }
+          ],
+          "meaningfulStemCharacters": 39,
+          "nonemptyOptionCount": 1,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 38,
+          "section": "mathematics",
+          "questionId": "953357293252",
+          "occurrenceCount": 2,
+          "pages": [
+            22
+          ],
+          "stemText": "For a right angled triangle ABC, read the following statements:\n\n(1) Ina triangle, Angle B is of 90 degree and it's area is same as area of a rectangle having sides 6 cm and 4 ता).\n(Il) The difference between hypotenuse and base is 6 cm and hypotenuse and perpendicular is 3 cm.\n\nSelect the correct option for measuring the hypotenuse of triangle ABC.",
+          "options": [
+            {
+              "index": 2,
+              "text": "Data in only statement (II) is sufficient to answer the question.\n3, Data in both statements (|) and (II) together are necessary to answer the question.\n4, Data in both statements (1) and (Il) together are not sufficient to answer the question."
+            }
+          ],
+          "meaningfulStemCharacters": 266,
+          "nonemptyOptionCount": 1,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 39,
+          "section": "mathematics",
+          "questionId": "953357293253",
+          "occurrenceCount": 2,
+          "pages": [
+            23
+          ],
+          "stemText": "एक ठोस आकृति जिसकी सभी सतहें एक समान है। वह आकृति नहीं हो सकती, एक :",
+          "options": [
+            {
+              "index": 1,
+              "text": "घन\nचतष्फलक"
+            },
+            {
+              "index": 2,
+              "text": "७"
+            },
+            {
+              "index": 3,
+              "text": "ब्रिकोणीय प्रिज़्म"
+            },
+            {
+              "index": 4,
+              "text": "अष्टफलक"
+            }
+          ],
+          "meaningfulStemCharacters": 34,
+          "nonemptyOptionCount": 3,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 40,
+          "section": "mathematics",
+          "questionId": "953357293254",
+          "occurrenceCount": 2,
+          "pages": [
+            23
+          ],
+          "stemText": "Area of a rectangular sheet of a paper is 208 cm? and its perimeter is 58 cm. What will be its length and breadth?",
+          "options": [
+            {
+              "index": 1,
+              "text": "(14, 14)"
+            },
+            {
+              "index": 2,
+              "text": "(16, 13)\n3, (15, 14)\n4, (13, 16)"
+            }
+          ],
+          "meaningfulStemCharacters": 83,
+          "nonemptyOptionCount": 0,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 41,
+          "section": "mathematics",
+          "questionId": "953357293255",
+          "occurrenceCount": 2,
+          "pages": [
+            24
+          ],
+          "stemText": "Two wall clocks hanging at New Delhi metro station are set correctly at 21:00 Hours on Tuesday. Both the wall clocks\ngain 3 minutes and 5 minutes respectively in an hour. What time will the second wall clock register if the first wall clock\nwhich gains 3 minutes in an hour shows the time 6:27 Hours on Wednesday?",
+          "options": [],
+          "meaningfulStemCharacters": 241,
+          "nonemptyOptionCount": 0,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 42,
+          "section": "mathematics",
+          "questionId": "953357293256",
+          "occurrenceCount": 2,
+          "pages": [
+            24,
+            25
+          ],
+          "stemText": "The Auto rickshaw fare rate in a city is as follows:\nMinimum Charge — ₹ 25 (Up to 1.5 km)\nFor more than 1.5 km—% 9.5 per kilometre.\nRaju hired an auto rickshaw to go back to his home, which is 7.5 km away from city. How much money does he have to\npay after completing the journey?",
+          "options": [
+            {
+              "index": 1,
+              "text": "२82\n\n1/1/22, 5:32 PM"
+            },
+            {
+              "index": 2,
+              "text": "₹125\n3, ₹ 74.25"
+            },
+            {
+              "index": 4,
+              "text": "२85"
+            }
+          ],
+          "meaningfulStemCharacters": 198,
+          "nonemptyOptionCount": 1,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 43,
+          "section": "mathematics",
+          "questionId": "953357293257",
+          "occurrenceCount": 2,
+          "pages": [
+            25
+          ],
+          "stemText": "अगली संख्या पहचानिए\n2, 3, 4, 6, 6, 9, 8, 12, 10,",
+          "options": [
+            {
+              "index": 1,
+              "text": "11\n\n1/1/22, 5:32 PM\n\n2, 12\n3, 14\n4,15"
+            }
+          ],
+          "meaningfulStemCharacters": 11,
+          "nonemptyOptionCount": 1,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 44,
+          "section": "mathematics",
+          "questionId": "953357293258",
+          "occurrenceCount": 2,
+          "pages": [
+            26
+          ],
+          "stemText": "The heights of 9 students in a class are given below.\n\n128 cm, 124 cm, 131 cm, 124 cm, 130 cm, 126 cm, 128 cm, 124 cm, 130 cm.\n\nWhat will be the value of टिका >\n\nMedian -Mode",
+          "options": [],
+          "meaningfulStemCharacters": 91,
+          "nonemptyOptionCount": 0,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 45,
+          "section": "mathematics",
+          "questionId": "953357293259",
+          "occurrenceCount": 2,
+          "pages": [
+            26,
+            27
+          ],
+          "stemText": "एक 120 से.मी. लम्बी तार को एक आयत का रूप दिया गया जिसकी लम्बाई उसकी चौड़ाई से 2 से.मी. अधिक है। आयत का क्षेत्रफल\nक्या होगा?",
+          "options": [
+            {
+              "index": 1,
+              "text": "899 वर्ग सेमी,"
+            },
+            {
+              "index": 2,
+              "text": "900 वर्ग से.मी."
+            },
+            {
+              "index": 3,
+              "text": "120 वर्ग से.मी."
+            },
+            {
+              "index": 4,
+              "text": "240 वर्ग से.मी."
+            }
+          ],
+          "meaningfulStemCharacters": 56,
+          "nonemptyOptionCount": 4,
+          "extractionStatus": "text-complete"
+        },
+        {
+          "position": 46,
+          "section": "mathematics",
+          "questionId": "953357293260",
+          "occurrenceCount": 2,
+          "pages": [
+            27
+          ],
+          "stemText": "While teaching in class I mathematics classroom, Radha introduces a concept by sharing the following context with the\nstudents, “There were four children in the car, then, one child got out. Now, there are three children in the car”.\nWhich of the following statement is correct with respect to the above context?",
+          "options": [
+            {
+              "index": 3,
+              "text": "Children will develop an understanding of subtraction as reduction.\n4, Children will relate augmentation and reduction as inverse operations."
+            }
+          ],
+          "meaningfulStemCharacters": 251,
+          "nonemptyOptionCount": 1,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 47,
+          "section": "mathematics",
+          "questionId": "953357293261",
+          "occurrenceCount": 2,
+          "pages": [
+            28
+          ],
+          "stemText": "Formative assessment in mathematics at Primary stage includes:",
+          "options": [
+            {
+              "index": 2,
+              "text": "Identification of gaps in mathematics learning and improving pedagogy.\n3, Grading and ranking the students.\n4, Testing procedural knowledge."
+            }
+          ],
+          "meaningfulStemCharacters": 54,
+          "nonemptyOptionCount": 1,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 48,
+          "section": "mathematics",
+          "questionId": "953357293262",
+          "occurrenceCount": 2,
+          "pages": [
+            28
+          ],
+          "stemText": "Which among the following is NOT a feature of the Deductive method of teaching mathematics?",
+          "options": [
+            {
+              "index": 1,
+              "text": "This method saves time and energy both for students and teachers."
+            },
+            {
+              "index": 2,
+              "text": "It encourages memorisation of facts and formulae.\n3, In this method, learner proceeds from general to particular."
+            },
+            {
+              "index": 4,
+              "text": "This method helps the learner to discover laws, formulae and to generalise."
+            }
+          ],
+          "meaningfulStemCharacters": 76,
+          "nonemptyOptionCount": 3,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 49,
+          "section": "mathematics",
+          "questionId": "953357293263",
+          "occurrenceCount": 2,
+          "pages": [
+            29
+          ],
+          "stemText": "Mathematics is hierarchical in nature and the concepts are logically structured and connected. Which of the following\nstatements most appropriately explains this?\n\n(a) Multiplication follows and builds on the concept of addition.\n\n(b) Addition and multiplication are distinct concepts independent of each other.\n\n(c) Mathematical concepts should only be assessed through summative assessments.\n\n(d) Number sense needs to be developed before the concept of addition and subtraction.\n\nChoose the correct option.",
+          "options": [
+            {
+              "index": 1,
+              "text": "(9) and (८)"
+            },
+            {
+              "index": 2,
+              "text": "(a) and (0)"
+            },
+            {
+              "index": 3,
+              "text": "(a), (9) and (१)\n4, (०) and (d)"
+            }
+          ],
+          "meaningfulStemCharacters": 419,
+          "nonemptyOptionCount": 3,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 50,
+          "section": "mathematics",
+          "questionId": "953357293264",
+          "occurrenceCount": 2,
+          "pages": [
+            30
+          ],
+          "stemText": "The participation of female students in higher mathematics classes is less than male students, it may be because:\n(a) Male students are better at mathematics as compared to female students.\n\n(b) Mathematics is a very difficult subject and female students do not have an aptitude for studying mathematics.\n(c) Societal and teacher's expectation are gendered.",
+          "options": [
+            {
+              "index": 2,
+              "text": "only (b)"
+            },
+            {
+              "index": 3,
+              "text": "only (c)\n4, (b) and (c)"
+            }
+          ],
+          "meaningfulStemCharacters": 290,
+          "nonemptyOptionCount": 2,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 51,
+          "section": "mathematics",
+          "questionId": "953357293265",
+          "occurrenceCount": 2,
+          "pages": [
+            30,
+            31
+          ],
+          "stemText": "Which of the following tool(s) is/are NOT helpful in diagnosing specific nature of the learning difficulty?\n\n(a) Classroom observations\n\n(b) Analysis of oral responses\n\n(c) Written work of the students\n\n(d) Cumulative and anecdotal record\n\n(e) Aptitude test",
+          "options": [
+            {
+              "index": 1,
+              "text": "(a) and (b)"
+            },
+            {
+              "index": 2,
+              "text": "(a) and (€)\n\n1/1/22, 5:32 PM"
+            },
+            {
+              "index": 3,
+              "text": "(०) and (d)\n4, Only (e)"
+            }
+          ],
+          "meaningfulStemCharacters": 201,
+          "nonemptyOptionCount": 3,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 52,
+          "section": "mathematics",
+          "questionId": "953357293266",
+          "occurrenceCount": 2,
+          "pages": [
+            31
+          ],
+          "stemText": "34x6 को हल करने के लिए, एक विद्यार्थी नीचे दी गई प्रणाली का प्रयोग करती है -\n(30+4)x6 = (306) + (4x6) = 180+24 = 204\nउपर्युक्त प्रणाली के लिए निम्नलिखित में से कौन-सा कथन सही है?",
+          "options": [
+            {
+              "index": 2,
+              "text": "यह गुणन की एक मानक कलनविधि नहीं है इसलिए विद्यार्थियों को इसके उपयोग के लिए हतोत्साहित करना चाहिए|\n3 विद्यार्थी को गुणन का अवधारणात्मक ज्ञान नहीं है।\n५. बह गुणन की समस्या को हल करने की एक तात्कालिक अनुमान और प्रयास (हित और ट्रायल) प्रणाली है।\nQuestion Number ; 53 Question Id : 953357293267 Question Type : MCQ\n\nWhich of the following skills are associated with teaching of ‘shapes, space and measures’ in mathematics?\n(a) Discovering symmetries and acquiring a sense of aesthetics.\n\n(b) Quantisation, i.e., associating numbers with concepts like area, perimeter etc.\n\n(c) Promoting early numeracy among learners.\n\n(d) Integrating mathematics with science only.\n\nChoose the correct option.\nOptions :"
+            },
+            {
+              "index": 1,
+              "text": "(a) and (ध)\n2, (a) and (b)"
+            },
+            {
+              "index": 3,
+              "text": "(a), (b) and (०)"
+            },
+            {
+              "index": 4,
+              "text": "(c) and (d)"
+            }
+          ],
+          "meaningfulStemCharacters": 67,
+          "nonemptyOptionCount": 4,
+          "extractionStatus": "text-complete"
+        },
+        {
+          "position": 53,
+          "section": "mathematics",
+          "questionId": "953357293267",
+          "occurrenceCount": 1,
+          "pages": [
+            32
+          ],
+          "stemText": "निम्नलिखित में से कौन-से कौशल गणित में “आकार, दिक्स्थान और माप' के शिक्षण से जुड़े हैं?\n\n(a) सममितियाँ खोजना और सौंदर्यशासत्रीय भाव प्राप्त करना\n\n(b) सांख्यकीकरण (अंकगणितीकरण) यानी अंकों को अवधारणाओं ; जैसे - क्षेत्रफल, परिमाप आदि से जोड़ना\n\n(०) शिक्षार्थियों में प्रारंभिक अंकगणित को बढ़ावा देना\n\n(d) केवल विज्ञान के साथ गणित को समाकलित करना\n\nसही विकल्प चुनें।",
+          "options": [
+            {
+              "index": 2,
+              "text": "(a) और (0)"
+            },
+            {
+              "index": 3,
+              "text": "(a), (४) और (०)\n4, (०) और (0)\n\n1/1/22, 5:32 PM"
+            }
+          ],
+          "meaningfulStemCharacters": 167,
+          "nonemptyOptionCount": 2,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 54,
+          "section": "mathematics",
+          "questionId": "953357293268",
+          "occurrenceCount": 2,
+          "pages": [
+            33
+          ],
+          "stemText": "सूक्ति “गणित अधिगम का प्रारंभ घर से होता है” का अर्थ है",
+          "options": [
+            {
+              "index": 1,
+              "text": "बच्चों को गणित पढ़ाने का उत्तरदायित्व अभिभावकों का है।"
+            },
+            {
+              "index": 2,
+              "text": "चर ओर वातावरण में प्रचुरता में संसाधन उपलब्ध होते हैं जिनका उपयोग गणित के अधिगम में प्रभावी ढंग से किया जा सकता है\n3 गृहकार्य, गणित अधिगम का महत्वपूर्ण हिस्सा है।\n4 अधिगमकर्ताओं के गणितीय कौशलों में वृद्धि के लिए घर में निजी शिक्षक सहायता कर सकते हैं।"
+            }
+          ],
+          "meaningfulStemCharacters": 26,
+          "nonemptyOptionCount": 2,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 55,
+          "section": "mathematics",
+          "questionId": "953357293269",
+          "occurrenceCount": 2,
+          "pages": [
+            33
+          ],
+          "stemText": "जब बच्चों को शाब्दिक प्रश्न हल करने के लिए दिया जाता है तब बहुधा वे टिप्पणी करते हैं, “यदि आप मुझको बताओगे कि कौन सी\nसंक्रिया करनी है, तो मैं हल करूंगा।” इस प्रकार के उत्तर का क्या कारण हो सकता है?",
+          "options": [
+            {
+              "index": 2,
+              "text": "शाब्दिक प्रश्नों के प्रति छात्रों को दुर्भीति होती है"
+            },
+            {
+              "index": 3,
+              "text": "बच्चों में परिज्ञान कौशल की कमी होती है।"
+            },
+            {
+              "index": 4,
+              "text": "बच्चे आलसी हैं और प्रश्नों को पढ़ना नहीं चाहते a"
+            }
+          ],
+          "meaningfulStemCharacters": 93,
+          "nonemptyOptionCount": 3,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 56,
+          "section": "mathematics",
+          "questionId": "953357293270",
+          "occurrenceCount": 2,
+          "pages": [
+            34
+          ],
+          "stemText": "For teaching regular geometric shapes in a primary classroom, a mathematics teacher devised certain order of\n\nactivities. They are arranged in a random sequence.\n\n(a) Students exploring the specific characteristics of different shapes.\n\n(b) Students drawing 2-D shapes of objects in their surroundings.\n\n(c) Students are given cut-outs of different shapes and are asked to recognize similar looking objects from their\n\nsurroundings.\n\n(d) Students are able to classify shapes according to their characteristics and names.\n\nChoose the correct sequence.",
+          "options": [
+            {
+              "index": 2,
+              "text": "(त), (b), (a), (१)"
+            },
+            {
+              "index": 3,
+              "text": "(०) (a), (०), (0)"
+            },
+            {
+              "index": 4,
+              "text": "(त), (१), ७), (a)"
+            }
+          ],
+          "meaningfulStemCharacters": 446,
+          "nonemptyOptionCount": 3,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 57,
+          "section": "mathematics",
+          "questionId": "953357293271",
+          "occurrenceCount": 2,
+          "pages": [
+            35
+          ],
+          "stemText": "For teaching addition of numbers to class ॥ students, a teacher has organised an activity using coloured beads. This\nactivity will help to develop among students the following:\n\na. Estimation\n\nb. Visualisation\n\nc. Representation\n\nChoose the correct option.",
+          "options": [
+            {
+              "index": 1,
+              "text": "aandb\n2, aandc\n3, bandc\n4, only b"
+            }
+          ],
+          "meaningfulStemCharacters": 207,
+          "nonemptyOptionCount": 1,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 58,
+          "section": "mathematics",
+          "questionId": "953357293272",
+          "occurrenceCount": 2,
+          "pages": [
+            35,
+            36
+          ],
+          "stemText": "For a subtraction problem 83-56, few students have given answer as 33. What is the most appropriate strategy to\naddress the students’ error?",
+          "options": [
+            {
+              "index": 2,
+              "text": "Ask students to solve the problem once again and recheck their answers.\n3, Provide examples having one digit numbers and then move to two digits.\n4, Revisiting the concept of place value to build an understanding of regrouping of numbers."
+            }
+          ],
+          "meaningfulStemCharacters": 107,
+          "nonemptyOptionCount": 1,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 59,
+          "section": "mathematics",
+          "questionId": "953357293273",
+          "occurrenceCount": 2,
+          "pages": [
+            36
+          ],
+          "stemText": "Which among the following is/are most appropriate for introducing the topic “comparison of size of different objects”\nin class | :\n\na: Observe different objects and compare.\n\nb: Measure using non-standard units and compare.\n\nc: Measure using standard units and compare.\n\nd: Superimpose the objects and compare.",
+          "options": [
+            {
+              "index": 1,
+              "text": "aandb"
+            },
+            {
+              "index": 2,
+              "text": "bandc"
+            },
+            {
+              "index": 3,
+              "text": "bonly\n4, aandd"
+            }
+          ],
+          "meaningfulStemCharacters": 246,
+          "nonemptyOptionCount": 3,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 60,
+          "section": "mathematics",
+          "questionId": "953357293274",
+          "occurrenceCount": 2,
+          "pages": [
+            37
+          ],
+          "stemText": "निम्न में से कौन-सा/से सही है।हैं?\na. प्राथमिक कक्षा के छात्रों में मानसिक परिकलन कौशल के विकास को प्रोत्साहन दिया जाना चाहिए|\n0. केवल इलि और अभ्यास के द्वारा मानसिक परिकलन कौशल को सुधारा जा सकता है।\n०. मानसिक परिकलन कौशल, प्रश्न को हल करने के लिए औपचारिक और अनौपचारिक रणनीतियों के प्रयोग को प्रोत्साहित करता है।",
+          "options": [
+            {
+              "index": 1,
+              "text": "६ ओर"
+            },
+            {
+              "index": 2,
+              "text": "0 ओर"
+            },
+            {
+              "index": 3,
+              "text": "३ और ७"
+            },
+            {
+              "index": 4,
+              "text": "केवल 9\nEnvironmental Studies\nSection Id : 9533579890\nSection Number : 3\nSection type : Online\nMandatory or Optional : Mandatory\nNumber of Questions : 30\n\n1/1/22, 5:32 PM\n\nNumber of Questions to be attempted : 30\nSection Marks : 30\nEnable Mark as Answered Mark for Review and Clear Response : ‘Yes\nSub-Section Number : 1\nSub-Section Id : 95335717434\nQuestion Shuffling Allowed : Yes"
+            }
+          ],
+          "meaningfulStemCharacters": 152,
+          "nonemptyOptionCount": 4,
+          "extractionStatus": "text-complete"
+        },
+        {
+          "position": 61,
+          "section": "evs",
+          "questionId": "953357293275",
+          "occurrenceCount": 2,
+          "pages": [
+            38
+          ],
+          "stemText": "Consider the following list Spring, Lake, Pond, Hill, River\n\nIn this list which one of the following is different from the others?",
+          "options": [
+            {
+              "index": 1,
+              "text": "Lake"
+            },
+            {
+              "index": 2,
+              "text": "Spring"
+            },
+            {
+              "index": 3,
+              "text": "Pond"
+            },
+            {
+              "index": 4,
+              "text": "Hill"
+            }
+          ],
+          "meaningfulStemCharacters": 103,
+          "nonemptyOptionCount": 4,
+          "extractionStatus": "text-complete"
+        },
+        {
+          "position": 62,
+          "section": "evs",
+          "questionId": "953357293276",
+          "occurrenceCount": 2,
+          "pages": [
+            38
+          ],
+          "stemText": "Consider he following statements\n\n(A) In Gujarat people eat chapati with dal and in dal they put sugar\n\n(B) In Kerala most people eat boiled tapioca with any Cory\n\n(C) People of Kashmir eat sea fish cooked in coconut oil\n\n(D) People of Goa eat fish cooked in mustard oil\n\nThe correct statements are",
+          "options": [
+            {
+              "index": 1,
+              "text": "A and ए only"
+            },
+            {
+              "index": 2,
+              "text": "Band C only"
+            },
+            {
+              "index": 3,
+              "text": "Cand D only"
+            },
+            {
+              "index": 4,
+              "text": "A.B and 0"
+            }
+          ],
+          "meaningfulStemCharacters": 232,
+          "nonemptyOptionCount": 4,
+          "extractionStatus": "text-complete"
+        },
+        {
+          "position": 63,
+          "section": "evs",
+          "questionId": "953357293277",
+          "occurrenceCount": 2,
+          "pages": [
+            39
+          ],
+          "stemText": "Which one of the following birds species has eyes infront of its head like in human beings",
+          "options": [
+            {
+              "index": 1,
+              "text": "Tailor bird"
+            },
+            {
+              "index": 2,
+              "text": "Weaver bird"
+            },
+            {
+              "index": 3,
+              "text": "Indian Robin"
+            },
+            {
+              "index": 4,
+              "text": "Owl"
+            }
+          ],
+          "meaningfulStemCharacters": 74,
+          "nonemptyOptionCount": 4,
+          "extractionStatus": "text-complete"
+        },
+        {
+          "position": 64,
+          "section": "evs",
+          "questionId": "953357293278",
+          "occurrenceCount": 2,
+          "pages": [
+            39,
+            40
+          ],
+          "stemText": "Match the locations with correct descriptions of common house in villages of that area\nLocation Description of houses\n(A) Molan village (Assam) (i) Thick Muddy wals with roofs of tharny bushes\n(B) Laddakh (ii) Shikara (House boat)\n9C) Manali (Himachal Pradesh) (iii) Elevated, Made of bamboo pillars floor 3 to 4 metre high\n(D) Rajasthan (iv) Stones with walls coated with mud and lime, wooden floors and flat wooden roofs (v) Stone or wood with slanting roofs",
+          "options": [
+            {
+              "index": 1,
+              "text": "A- iii, B- ५, 0-1७, 0-1"
+            },
+            {
+              "index": 2,
+              "text": "&- iii, B- iv, 0- ७, 0-1\nke bs, its, 6\n=o “es\n\n1/1122, 5:32 PM"
+            },
+            {
+              "index": 3,
+              "text": "Ac ii, B- iv, C- v, D-i"
+            },
+            {
+              "index": 4,
+              "text": "A-iii, B-iv, C-ii, D-v"
+            }
+          ],
+          "meaningfulStemCharacters": 356,
+          "nonemptyOptionCount": 4,
+          "extractionStatus": "text-complete"
+        },
+        {
+          "position": 65,
+          "section": "evs",
+          "questionId": "953357293279",
+          "occurrenceCount": 2,
+          "pages": [
+            40
+          ],
+          "stemText": "Consider the following statements about elephants\n(A) Elephants live together in groups called herds.\n(B) An elephant herd has only females and baby elephants.\n(C) A herd may have any number female elephants with their young ones.\n(D) Male elephants live in the herd till they are 4-5 years old, then they leave their herd and join the herds of male elephants.\nThe correct statements are",
+          "options": [
+            {
+              "index": 1,
+              "text": "A,B and C"
+            },
+            {
+              "index": 2,
+              "text": "B,C and D"
+            },
+            {
+              "index": 3,
+              "text": "A and B only"
+            },
+            {
+              "index": 4,
+              "text": "A.C and D"
+            }
+          ],
+          "meaningfulStemCharacters": 306,
+          "nonemptyOptionCount": 4,
+          "extractionStatus": "text-complete"
+        },
+        {
+          "position": 66,
+          "section": "evs",
+          "questionId": "953357293280",
+          "occurrenceCount": 2,
+          "pages": [
+            41
+          ],
+          "stemText": "A person boarded an express train on 29th September 2019 at Surat (Gujarat) for Nagarcoil (Kerala). The train departed from surat at\n20:45 hours and reached Nagarcoil at 12:45 hours on 11 October 2019. If the distance between Surat and Nararcoil by train route is nearly\n2200km, the average speed of the train during this journey was",
+          "options": [
+            {
+              "index": 1,
+              "text": "137.5 km/h"
+            },
+            {
+              "index": 2,
+              "text": "82km/h"
+            },
+            {
+              "index": 3,
+              "text": "55km/h"
+            },
+            {
+              "index": 4,
+              "text": "50km/h"
+            }
+          ],
+          "meaningfulStemCharacters": 244,
+          "nonemptyOptionCount": 4,
+          "extractionStatus": "text-complete"
+        },
+        {
+          "position": 67,
+          "section": "evs",
+          "questionId": "953357293281",
+          "occurrenceCount": 2,
+          "pages": [
+            41,
+            42
+          ],
+          "stemText": "In the gardens of which one of the following states the plants of Tejpatta, small and big cardamoms and black pepper grow.",
+          "options": [
+            {
+              "index": 1,
+              "text": "West Bengal"
+            },
+            {
+              "index": 2,
+              "text": "Gujarat"
+            },
+            {
+              "index": 3,
+              "text": "Kerala"
+            },
+            {
+              "index": 4,
+              "text": "Madhya Pradesh"
+            }
+          ],
+          "meaningfulStemCharacters": 99,
+          "nonemptyOptionCount": 4,
+          "extractionStatus": "text-complete"
+        },
+        {
+          "position": 68,
+          "section": "evs",
+          "questionId": "953357293282",
+          "occurrenceCount": 2,
+          "pages": [
+            42
+          ],
+          "stemText": "Consider the following statements about Nepenthes.\n(A) This plant can trap and eat insects, frogs and even nice.\n(B) This plant is not found in our country.\n(C) This plant emits a pleasant sound to attract insects\n(0) It has a picture like shape with mouth covered with a leaf. Any insect that lands on its mouth gets trapped and can not get out\nThe correct statements are",
+          "options": [
+            {
+              "index": 1,
+              "text": "A and B only"
+            },
+            {
+              "index": 2,
+              "text": "^ भात 7)"
+            },
+            {
+              "index": 3,
+              "text": "A,B and C"
+            },
+            {
+              "index": 4,
+              "text": "A.C and D"
+            }
+          ],
+          "meaningfulStemCharacters": 291,
+          "nonemptyOptionCount": 4,
+          "extractionStatus": "text-complete"
+        },
+        {
+          "position": 69,
+          "section": "evs",
+          "questionId": "953357293283",
+          "occurrenceCount": 2,
+          "pages": [
+            43
+          ],
+          "stemText": "डंडी यात्रा भारत की आज़ादी से पहले की महात्मा गांधी के जीवन की एक महत्वपूर्ण घटना है। यह घटना घटी थी-",
+          "options": [
+            {
+              "index": 1,
+              "text": "1940 में"
+            },
+            {
+              "index": 2,
+              "text": "1932 में"
+            },
+            {
+              "index": 3,
+              "text": "1927 में"
+            },
+            {
+              "index": 4,
+              "text": "1913 में"
+            }
+          ],
+          "meaningfulStemCharacters": 49,
+          "nonemptyOptionCount": 4,
+          "extractionStatus": "text-complete"
+        },
+        {
+          "position": 70,
+          "section": "evs",
+          "questionId": "953357293284",
+          "occurrenceCount": 2,
+          "pages": [
+            43
+          ],
+          "stemText": "In case of which one of the following diseases doctors suggest the patients to eat 'jaggery' amla and more leafy vegetables?",
+          "options": [
+            {
+              "index": 1,
+              "text": "Typhoid"
+            },
+            {
+              "index": 2,
+              "text": "Anaemia"
+            },
+            {
+              "index": 3,
+              "text": "Chikungunya"
+            },
+            {
+              "index": 4,
+              "text": "Dengue"
+            }
+          ],
+          "meaningfulStemCharacters": 101,
+          "nonemptyOptionCount": 4,
+          "extractionStatus": "text-complete"
+        },
+        {
+          "position": 71,
+          "section": "evs",
+          "questionId": "953357293285",
+          "occurrenceCount": 2,
+          "pages": [
+            44
+          ],
+          "stemText": "Consider the following statements about \"Mount Everest\"\n(A) It is a part of our country\n(8) The height of its peak is 900m\n(C) Bachhendri pal became the first Indian women to reach the peak of this mountain\n(D) Our national flag was first pitched at the peak of this mountain in the afternoon of 23\" May 1994\nThe correct statements are",
+          "options": [
+            {
+              "index": 1,
+              "text": "A and 8 only"
+            },
+            {
+              "index": 2,
+              "text": "Band C only"
+            },
+            {
+              "index": 3,
+              "text": "A,B and C"
+            },
+            {
+              "index": 4,
+              "text": "B,C and 0"
+            }
+          ],
+          "meaningfulStemCharacters": 253,
+          "nonemptyOptionCount": 4,
+          "extractionStatus": "text-complete"
+        },
+        {
+          "position": 72,
+          "section": "evs",
+          "questionId": "953357293286",
+          "occurrenceCount": 2,
+          "pages": [
+            44
+          ],
+          "stemText": "A doctor is located at X and his hospital is located at Y. There is no straight lane from the directions house to the hospital. Therefore the\ndoctor first goes to A which is 500m due east of X, then goes to B which is 400m due south of A, then to C which is 90m due west of B\nand finally reach the hospital at Y which is 80m due north of C. With respect to the hospital the correct direction of the doctor's house is",
+          "options": [
+            {
+              "index": 1,
+              "text": "North-east"
+            },
+            {
+              "index": 2,
+              "text": "north-west"
+            },
+            {
+              "index": 3,
+              "text": "south-east"
+            },
+            {
+              "index": 4,
+              "text": "south-west"
+            }
+          ],
+          "meaningfulStemCharacters": 314,
+          "nonemptyOptionCount": 4,
+          "extractionStatus": "text-complete"
+        },
+        {
+          "position": 73,
+          "section": "evs",
+          "questionId": "953357293287",
+          "occurrenceCount": 2,
+          "pages": [
+            45
+          ],
+          "stemText": "Which of the following statements about the tree 'Desert Oak' is not correct?",
+          "options": [
+            {
+              "index": 1,
+              "text": "It has thrones in place of leaves"
+            },
+            {
+              "index": 2,
+              "text": "It has shallow roots"
+            },
+            {
+              "index": 3,
+              "text": "It stores water in its trunk"
+            },
+            {
+              "index": 4,
+              "text": "It grows more than 8m tall"
+            }
+          ],
+          "meaningfulStemCharacters": 62,
+          "nonemptyOptionCount": 4,
+          "extractionStatus": "text-complete"
+        },
+        {
+          "position": 74,
+          "section": "evs",
+          "questionId": "953357293288",
+          "occurrenceCount": 2,
+          "pages": [
+            45
+          ],
+          "stemText": "Kuduk is the language of people of",
+          "options": [
+            {
+              "index": 1,
+              "text": "Mizoram"
+            },
+            {
+              "index": 2,
+              "text": "Manipur"
+            },
+            {
+              "index": 3,
+              "text": "Meghalaya"
+            },
+            {
+              "index": 4,
+              "text": "Jharkhand"
+            }
+          ],
+          "meaningfulStemCharacters": 28,
+          "nonemptyOptionCount": 4,
+          "extractionStatus": "text-complete"
+        },
+        {
+          "position": 75,
+          "section": "evs",
+          "questionId": "953357293289",
+          "occurrenceCount": 2,
+          "pages": [
+            46
+          ],
+          "stemText": "The neighbouring states of Gujarat are",
+          "options": [
+            {
+              "index": 1,
+              "text": "Maharashtra, Karnataka, Rajasthan"
+            },
+            {
+              "index": 2,
+              "text": "Madhya Pradesh, Maharashtra, Haryana"
+            },
+            {
+              "index": 3,
+              "text": "Rajasthan, Madhya Pradesh, Chhattisgarh"
+            },
+            {
+              "index": 4,
+              "text": "Maharashra, Madhya Pradesh, Rajasthan"
+            }
+          ],
+          "meaningfulStemCharacters": 33,
+          "nonemptyOptionCount": 4,
+          "extractionStatus": "text-complete"
+        },
+        {
+          "position": 76,
+          "section": "evs",
+          "questionId": "953357293290",
+          "occurrenceCount": 2,
+          "pages": [
+            46
+          ],
+          "stemText": "Which of the following is the objective of teaching EVS at primary level?",
+          "options": [
+            {
+              "index": 1,
+              "text": "To develop an awareness about environmental issues"
+            },
+            {
+              "index": 2,
+              "text": "To develop quantitative skill among children"
+            },
+            {
+              "index": 3,
+              "text": "To develop only psychomotor skills of children"
+            },
+            {
+              "index": 4,
+              "text": "To prepare children for specialised studies."
+            }
+          ],
+          "meaningfulStemCharacters": 60,
+          "nonemptyOptionCount": 4,
+          "extractionStatus": "text-complete"
+        },
+        {
+          "position": 77,
+          "section": "evs",
+          "questionId": "953357293291",
+          "occurrenceCount": 2,
+          "pages": [
+            47
+          ],
+          "stemText": "Class v chapter \" A seed tells a farmers story\" begins with key questions like who produces the food we eat?\nThe key question\n(A) triggers the children thinking in new directions\n(B) supports children to learning process\n(C) supports children to develop memory based skills\n(D) supports teacher in maintaining discipline in class",
+          "options": [
+            {
+              "index": 1,
+              "text": "A and B only"
+            },
+            {
+              "index": 2,
+              "text": "Cand D only"
+            },
+            {
+              "index": 3,
+              "text": "A and C only"
+            },
+            {
+              "index": 4,
+              "text": "B and D only"
+            }
+          ],
+          "meaningfulStemCharacters": 265,
+          "nonemptyOptionCount": 4,
+          "extractionStatus": "text-complete"
+        },
+        {
+          "position": 78,
+          "section": "evs",
+          "questionId": "953357293292",
+          "occurrenceCount": 2,
+          "pages": [
+            47
+          ],
+          "stemText": "Which of the following is the subtheme of the proposed themes of EVS syllabus?",
+          "options": [
+            {
+              "index": 1,
+              "text": "Family and Friends"
+            },
+            {
+              "index": 2,
+              "text": "Things we make and do"
+            },
+            {
+              "index": 3,
+              "text": "Shelter"
+            },
+            {
+              "index": 4,
+              "text": "Animals and plants"
+            }
+          ],
+          "meaningfulStemCharacters": 64,
+          "nonemptyOptionCount": 4,
+          "extractionStatus": "text-complete"
+        },
+        {
+          "position": 79,
+          "section": "evs",
+          "questionId": "953357293293",
+          "occurrenceCount": 2,
+          "pages": [
+            48
+          ],
+          "stemText": "In EVS meaningful learning can not be provided by",
+          "options": [
+            {
+              "index": 1,
+              "text": "stories and narratives"
+            },
+            {
+              "index": 2,
+              "text": "opportunities to children to explore their environment"
+            },
+            {
+              "index": 3,
+              "text": "asking the questions at the beginning of each subtheme."
+            },
+            {
+              "index": 4,
+              "text": "involving children in memory based learning"
+            }
+          ],
+          "meaningfulStemCharacters": 41,
+          "nonemptyOptionCount": 4,
+          "extractionStatus": "text-complete"
+        },
+        {
+          "position": 80,
+          "section": "evs",
+          "questionId": "953357293294",
+          "occurrenceCount": 2,
+          "pages": [
+            48
+          ],
+          "stemText": "EVS is based on which of the following principle of learning?",
+          "options": [
+            {
+              "index": 1,
+              "text": "Concrete to abstract"
+            },
+            {
+              "index": 2,
+              "text": "Abstract to concrete"
+            },
+            {
+              "index": 3,
+              "text": "Global to local"
+            },
+            {
+              "index": 4,
+              "text": "Unknown to known"
+            }
+          ],
+          "meaningfulStemCharacters": 50,
+          "nonemptyOptionCount": 4,
+          "extractionStatus": "text-complete"
+        },
+        {
+          "position": 81,
+          "section": "evs",
+          "questionId": "953357293295",
+          "occurrenceCount": 2,
+          "pages": [
+            49
+          ],
+          "stemText": "Which of the following should not be a characteristic of EVS?",
+          "options": [
+            {
+              "index": 1,
+              "text": "Itis an integrated subject area"
+            },
+            {
+              "index": 2,
+              "text": "It is contextual"
+            },
+            {
+              "index": 3,
+              "text": "It is child centred"
+            },
+            {
+              "index": 4,
+              "text": "It is single subject area."
+            }
+          ],
+          "meaningfulStemCharacters": 50,
+          "nonemptyOptionCount": 4,
+          "extractionStatus": "text-complete"
+        },
+        {
+          "position": 82,
+          "section": "evs",
+          "questionId": "953357293296",
+          "occurrenceCount": 2,
+          "pages": [
+            49
+          ],
+          "stemText": "An EVS teacher facilitates children in the conduction of experiment related to - How does food get spoilt?\nWhich of the following will not be the process based learning objective of their experiment?",
+          "options": [
+            {
+              "index": 1,
+              "text": "Observing and reading"
+            },
+            {
+              "index": 2,
+              "text": "Analysing"
+            },
+            {
+              "index": 3,
+              "text": "Experimenting"
+            },
+            {
+              "index": 4,
+              "text": "Remembering"
+            }
+          ],
+          "meaningfulStemCharacters": 164,
+          "nonemptyOptionCount": 4,
+          "extractionStatus": "text-complete"
+        },
+        {
+          "position": 83,
+          "section": "evs",
+          "questionId": "953357293297",
+          "occurrenceCount": 2,
+          "pages": [
+            50
+          ],
+          "stemText": "Which of the following will not be effective resources for children to construct knowledge in EVS?\n(A) Real life incidents\n(B) community members\n(C) Four walls of the classrooms\n(D) use of local resources of the children",
+          "options": [
+            {
+              "index": 1,
+              "text": "A and B only"
+            },
+            {
+              "index": 2,
+              "text": "Conly"
+            },
+            {
+              "index": 3,
+              "text": "Cand D only"
+            },
+            {
+              "index": 4,
+              "text": "A.B and D"
+            }
+          ],
+          "meaningfulStemCharacters": 175,
+          "nonemptyOptionCount": 4,
+          "extractionStatus": "text-complete"
+        },
+        {
+          "position": 84,
+          "section": "evs",
+          "questionId": "953357293298",
+          "occurrenceCount": 2,
+          "pages": [
+            50
+          ],
+          "stemText": "Which of the following strategies an EVS teacher can meaning fully transact the topic \"walls tell stories\" of class 5\n(A) Maps and pictures\n(B) Lecture and discussion\n(C) Survey followed by decision\n(D) Asking children to write slogans.",
+          "options": [
+            {
+              "index": 1,
+              "text": "A and C only"
+            },
+            {
+              "index": 2,
+              "text": "Band 0 only"
+            },
+            {
+              "index": 3,
+              "text": "A,B and D"
+            },
+            {
+              "index": 4,
+              "text": "A,C and 0"
+            }
+          ],
+          "meaningfulStemCharacters": 186,
+          "nonemptyOptionCount": 4,
+          "extractionStatus": "text-complete"
+        },
+        {
+          "position": 85,
+          "section": "evs",
+          "questionId": "953357293299",
+          "occurrenceCount": 2,
+          "pages": [
+            51
+          ],
+          "stemText": "Anecdotal records of learning process of the children is based on",
+          "options": [
+            {
+              "index": 1,
+              "text": "Oral technique"
+            },
+            {
+              "index": 2,
+              "text": "Project technique"
+            },
+            {
+              "index": 3,
+              "text": "Observation technique"
+            },
+            {
+              "index": 4,
+              "text": "Assignment technique"
+            }
+          ],
+          "meaningfulStemCharacters": 55,
+          "nonemptyOptionCount": 4,
+          "extractionStatus": "text-complete"
+        },
+        {
+          "position": 86,
+          "section": "evs",
+          "questionId": "953357293300",
+          "occurrenceCount": 2,
+          "pages": [
+            51,
+            52
+          ],
+          "stemText": "As per CCE, self assessment in EVS is related to",
+          "options": [
+            {
+              "index": 1,
+              "text": "Assessment as learning"
+            },
+            {
+              "index": 2,
+              "text": "Assessment for learning"
+            },
+            {
+              "index": 3,
+              "text": "Assessment of learning"
+            },
+            {
+              "index": 4,
+              "text": "Assessment in learning\n\n1/1/22, 5:32 PM"
+            }
+          ],
+          "meaningfulStemCharacters": 38,
+          "nonemptyOptionCount": 4,
+          "extractionStatus": "text-complete"
+        },
+        {
+          "position": 87,
+          "section": "evs",
+          "questionId": "953357293301",
+          "occurrenceCount": 2,
+          "pages": [
+            52
+          ],
+          "stemText": "Portfolio is often used by the teachers for the assessment of the progress of the learning of the children. Portfolio\n(A) is a cumulative record of the learning progress of the children\n(B) enables the child to demonstrate his/her own work to other\n(C) is only statement regarding the attendance of the children in a year in school.\n(D) enables the child to become active participants in learning and assessment",
+          "options": [
+            {
+              "index": 1,
+              "text": "A and C only"
+            },
+            {
+              "index": 2,
+              "text": "Cand D only"
+            },
+            {
+              "index": 3,
+              "text": "B,C and 0"
+            },
+            {
+              "index": 4,
+              "text": "A,B and D"
+            }
+          ],
+          "meaningfulStemCharacters": 331,
+          "nonemptyOptionCount": 4,
+          "extractionStatus": "text-complete"
+        },
+        {
+          "position": 88,
+          "section": "evs",
+          "questionId": "953357293302",
+          "occurrenceCount": 2,
+          "pages": [
+            52,
+            53
+          ],
+          "stemText": "Sensitive issues in EVS like gender discrimination- can be meaningfully transacted for children by -",
+          "options": [
+            {
+              "index": 1,
+              "text": "conducting dialogues among children"
+            },
+            {
+              "index": 2,
+              "text": "organisation of lecture\n\n1/1/22, 5:32 PM"
+            },
+            {
+              "index": 3,
+              "text": "organisation of lecture followed by discussion"
+            },
+            {
+              "index": 4,
+              "text": "organisation of exhibition"
+            }
+          ],
+          "meaningfulStemCharacters": 84,
+          "nonemptyOptionCount": 4,
+          "extractionStatus": "text-complete"
+        },
+        {
+          "position": 89,
+          "section": "evs",
+          "questionId": "953357293303",
+          "occurrenceCount": 2,
+          "pages": [
+            53
+          ],
+          "stemText": "Which of the following is least suited for assessment of children in EVS?",
+          "options": [
+            {
+              "index": 1,
+              "text": "Close ended questions"
+            },
+            {
+              "index": 2,
+              "text": "Open ended questions"
+            },
+            {
+              "index": 3,
+              "text": "Elaborative questions"
+            },
+            {
+              "index": 4,
+              "text": "Creative questions"
+            }
+          ],
+          "meaningfulStemCharacters": 60,
+          "nonemptyOptionCount": 4,
+          "extractionStatus": "text-complete"
+        },
+        {
+          "position": 90,
+          "section": "evs",
+          "questionId": "953357293304",
+          "occurrenceCount": 2,
+          "pages": [
+            53
+          ],
+          "stemText": "Latest Sarkari Jobs, Govt & Results, am poe\n\n1/1/22, 5:32 PM\n\nनिम्नलिखित में से क्या पर्यावरण-अध्ययन में आकलन का संकेतक होना चाहिए?",
+          "options": [
+            {
+              "index": 1,
+              "text": "सहयोग"
+            },
+            {
+              "index": 2,
+              "text": "स्मरण करना"
+            },
+            {
+              "index": 3,
+              "text": "पेपर पैंसिल परीक्षण\nपाठय्‌ -पुस्तके"
+            },
+            {
+              "index": 4,
+              "text": "~\n\nLanguage I\nSection Id : 9533579891\nSection Number : 4\nSection type : Online\nMandatory or Optional : Mandatory\nNumber of Questions : 17\nNumber of Questions to be attempted : 17\nSection Marks : 30\nEnable Mark as Answered Mark for Review and Clear Response : Yes\nSub-Section Number : 1\nSub-Section Id : 95335717435\nQuestion Shuffling Allowed : Yes\nQuestion Id : 953357293305 Question Type : COMPREHENSION Sub Question Shuffling Allowed : Yes Group Comprehension\nQuestions : No\nQuestion Numbers : (91 to 99)\nQuestion Label : Comprehension\n\nव्व =\nv = | knee tore |\n\n1/1/22, 5:32 PM\nDirections : Read the passage given below and answer the\nquestions that follow by choosing the correct/most appropriate\noptions :"
+            }
+          ],
+          "meaningfulStemCharacters": 71,
+          "nonemptyOptionCount": 4,
+          "extractionStatus": "text-complete"
+        },
+        {
+          "position": 91,
+          "section": "language-1",
+          "questionId": "953357293306",
+          "occurrenceCount": 2,
+          "pages": [
+            55,
+            59
+          ],
+          "stemText": "Which of the following statements is not true?\n\nAccording to the author a generous person\n\n1. never lacks anything.\n\n2. never expects anything in return.\n\n3. is immune from suffering.\n\n4. is always happy and contented.",
+          "options": [
+            {
+              "index": 1,
+              "text": "1"
+            },
+            {
+              "index": 2,
+              "text": "2"
+            },
+            {
+              "index": 3,
+              "text": "3"
+            },
+            {
+              "index": 4,
+              "text": "4\n\n1/1/22, 5:32 PM\nQuestion Number : 92 Question Id : 953357293307 Question Type : (©\n\nSolomon in para | of the passage talks about :"
+            }
+          ],
+          "meaningfulStemCharacters": 165,
+          "nonemptyOptionCount": 1,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 92,
+          "section": "language-1",
+          "questionId": "953357293307",
+          "occurrenceCount": 1,
+          "pages": [
+            60
+          ],
+          "stemText": "Solomon in para | of the passage talks about :\n1. man’s responsibility towards others.\n2. lack of generosity.\n3. benefits of generosity.\n4. the need to be generous towards only deserving\npersons.",
+          "options": [
+            {
+              "index": 1,
+              "text": "1"
+            },
+            {
+              "index": 2,
+              "text": "2"
+            },
+            {
+              "index": 3,
+              "text": "3"
+            },
+            {
+              "index": 4,
+              "text": "4"
+            }
+          ],
+          "meaningfulStemCharacters": 148,
+          "nonemptyOptionCount": 0,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 93,
+          "section": "language-1",
+          "questionId": "953357293308",
+          "occurrenceCount": 2,
+          "pages": [
+            56,
+            60
+          ],
+          "stemText": "The expression : ‘magic wand’ in para 2 implies a wand\nwhich\n1. helps us perform entertaining feats.\n2. solves our problem quickly.\n3. adds to our popularity.\n4. ensures ever-increasing prosperity.",
+          "options": [
+            {
+              "index": 1,
+              "text": "1"
+            },
+            {
+              "index": 2,
+              "text": "2"
+            },
+            {
+              "index": 3,
+              "text": "3"
+            },
+            {
+              "index": 4,
+              "text": "4"
+            }
+          ],
+          "meaningfulStemCharacters": 149,
+          "nonemptyOptionCount": 0,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 94,
+          "section": "language-1",
+          "questionId": "953357293309",
+          "occurrenceCount": 2,
+          "pages": [
+            56,
+            60
+          ],
+          "stemText": "Which of the following option is false?\nThe noble, generous janitor helped people with his\n1. kind words\n2. money\n3. considerate acts\n4. time",
+          "options": [
+            {
+              "index": 1,
+              "text": "1"
+            },
+            {
+              "index": 2,
+              "text": "2"
+            },
+            {
+              "index": 3,
+              "text": "3"
+            },
+            {
+              "index": 4,
+              "text": "4"
+            }
+          ],
+          "meaningfulStemCharacters": 107,
+          "nonemptyOptionCount": 0,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 95,
+          "section": "language-1",
+          "questionId": "953357293310",
+          "occurrenceCount": 2,
+          "pages": [
+            56,
+            60
+          ],
+          "stemText": "1/1/22, 5:32 PM\nRead the following statement :\nA. Desire for gain and fear of loss are two greatest\nmotivating forces in a person’s life.\nB. You have to be rich to be generous.\n1. Ais true B is false\n2. Bis true A is false\n3. Both A and B are false\n4. Both A and B are true",
+          "options": [
+            {
+              "index": 1,
+              "text": "1"
+            },
+            {
+              "index": 2,
+              "text": "2"
+            },
+            {
+              "index": 3,
+              "text": "3"
+            },
+            {
+              "index": 4,
+              "text": "4"
+            }
+          ],
+          "meaningfulStemCharacters": 189,
+          "nonemptyOptionCount": 0,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 96,
+          "section": "language-1",
+          "questionId": "953357293311",
+          "occurrenceCount": 2,
+          "pages": [
+            57,
+            61
+          ],
+          "stemText": "Which one of the following words is similar in meaning to\nthe word, ‘attributes’ (para 1) as used in the passage?\n1. sensibilities\n2. capabilities\n3. qualities\n4. abilities",
+          "options": [
+            {
+              "index": 1,
+              "text": "1"
+            },
+            {
+              "index": 2,
+              "text": "2"
+            },
+            {
+              "index": 3,
+              "text": "3"
+            },
+            {
+              "index": 4,
+              "text": "4"
+            }
+          ],
+          "meaningfulStemCharacters": 129,
+          "nonemptyOptionCount": 0,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 97,
+          "section": "language-1",
+          "questionId": "953357293312",
+          "occurrenceCount": 2,
+          "pages": [
+            57,
+            61
+          ],
+          "stemText": "Which one of the following words is opposite in meaning to\nthe word, ‘genuine’ (para 3) as used in the passage?\n1. tricky\n2. fake\n3. clever\n4. hidden",
+          "options": [
+            {
+              "index": 1,
+              "text": "1"
+            },
+            {
+              "index": 2,
+              "text": "2"
+            },
+            {
+              "index": 3,
+              "text": "3"
+            },
+            {
+              "index": 4,
+              "text": "4"
+            }
+          ],
+          "meaningfulStemCharacters": 106,
+          "nonemptyOptionCount": 0,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 98,
+          "section": "language-1",
+          "questionId": "953357293313",
+          "occurrenceCount": 2,
+          "pages": [
+            57,
+            61
+          ],
+          "stemText": "1/1/22, 5:32 PM\nWhich part of speech is the underlined word in the\nfollowing sentence?\nNothing could be further from the truth\n1. Adverb\n2. Conjunction\n3. Pronoun\n4, Noun",
+          "options": [
+            {
+              "index": 1,
+              "text": "1"
+            },
+            {
+              "index": 2,
+              "text": "2"
+            },
+            {
+              "index": 3,
+              "text": "3"
+            },
+            {
+              "index": 4,
+              "text": "4"
+            }
+          ],
+          "meaningfulStemCharacters": 121,
+          "nonemptyOptionCount": 0,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 99,
+          "section": "language-1",
+          "questionId": "953357293314",
+          "occurrenceCount": 2,
+          "pages": [
+            58,
+            62
+          ],
+          "stemText": "Which part of the following sentence contains an error?\nHe had the audacity to tell his boss\n(a) (b)\non his face that he was lying.\n(c) (d)\n1. (6)\n2. (०)\n3. (8)\n4. (0)",
+          "options": [
+            {
+              "index": 1,
+              "text": "1"
+            },
+            {
+              "index": 2,
+              "text": "2"
+            },
+            {
+              "index": 3,
+              "text": "3"
+            },
+            {
+              "index": 4,
+              "text": "4\nSub-Section Number : 2\nSub-Section Id : 95335717436\nQuestion Shuffling Allowed : Yes\nQuestion Id : 953357293315 Question Type : COMPREHENSION Sub Question Shuffling Allowed : Yes Group Comprehension\nQuestions : No\nQuestion Numbers : (100 to 105)\nQuestion Label : Comprehension\n\n1/1/22, 5:32 PM\nDirections : Read the poem given below and answer the\nquestions that follow by choosing the correct/most appropriate\noptions :\nNo man is an island,\nEntire of itself,\nEvery man is a piece of the continent,\nA part of the main.\nIf a clod be washed away by the sea,\nEurope is the less.\nAs well as if a promontory were.\nAs well as if a manor of thy friend’s\nOr of thine own were :\nAny man’s death diminishes me,\nBecause I am involved in mankind,\nAnd therefore never send to know for whom the bell tolls;\nIt tolls for thee.\nSub questions"
+            }
+          ],
+          "meaningfulStemCharacters": 102,
+          "nonemptyOptionCount": 1,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 100,
+          "section": "language-1",
+          "questionId": "953357293316",
+          "occurrenceCount": 2,
+          "pages": [
+            63,
+            65
+          ],
+          "stemText": "In the context of the poem, an island symbolizes\n1. solitude\n2. isolation\n3. challenges\n4. bleakness",
+          "options": [
+            {
+              "index": 1,
+              "text": "1"
+            },
+            {
+              "index": 2,
+              "text": "2"
+            },
+            {
+              "index": 3,
+              "text": "3"
+            },
+            {
+              "index": 4,
+              "text": "4"
+            }
+          ],
+          "meaningfulStemCharacters": 75,
+          "nonemptyOptionCount": 0,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 101,
+          "section": "language-1",
+          "questionId": "953357293317",
+          "occurrenceCount": 2,
+          "pages": [
+            63,
+            65
+          ],
+          "stemText": "The various images used in the poem emphasize the idea of\n1. disintegration\n2. loss\n3. interconnectedness\n4. doom and gloom",
+          "options": [
+            {
+              "index": 1,
+              "text": "1"
+            },
+            {
+              "index": 2,
+              "text": "2\n(4;\n\n1/1/22, 5:32 PM"
+            },
+            {
+              "index": 3,
+              "text": "3"
+            },
+            {
+              "index": 4,
+              "text": "4"
+            }
+          ],
+          "meaningfulStemCharacters": 95,
+          "nonemptyOptionCount": 1,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 102,
+          "section": "language-1",
+          "questionId": "953357293318",
+          "occurrenceCount": 2,
+          "pages": [
+            63,
+            66
+          ],
+          "stemText": "1/1/22, 5:32 PM\nThe poet feels diminished when he hears of someone’s\ndeath because\n1. itreminds him of his own morality.\n2. the mourner’s cries make his heart sink.\n3. he is connected with people.\n4. he cannot bear the sight of a dead man.",
+          "options": [
+            {
+              "index": 1,
+              "text": "1"
+            },
+            {
+              "index": 2,
+              "text": "2"
+            },
+            {
+              "index": 3,
+              "text": "3"
+            },
+            {
+              "index": 4,
+              "text": "4"
+            }
+          ],
+          "meaningfulStemCharacters": 170,
+          "nonemptyOptionCount": 0,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 103,
+          "section": "language-1",
+          "questionId": "953357293319",
+          "occurrenceCount": 2,
+          "pages": [
+            64,
+            66
+          ],
+          "stemText": "The bell tolls to\n1. mark the end of church festivities.\n2. announce the end of the day’s work.\n3. invite the faithful to reach the church.\n4. announce the death of a person.",
+          "options": [
+            {
+              "index": 1,
+              "text": "1"
+            },
+            {
+              "index": 2,
+              "text": "2"
+            },
+            {
+              "index": 3,
+              "text": "3"
+            },
+            {
+              "index": 4,
+              "text": "4"
+            }
+          ],
+          "meaningfulStemCharacters": 128,
+          "nonemptyOptionCount": 0,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 104,
+          "section": "language-1",
+          "questionId": "953357293320",
+          "occurrenceCount": 2,
+          "pages": [
+            64,
+            66
+          ],
+          "stemText": "The figure of speech used in the line , ‘Every man is a piece\nof the continent,’ :\n1. Simile\n2. Alternative\n3. Metaphor\n4. Synecdoche",
+          "options": [
+            {
+              "index": 1,
+              "text": "1"
+            },
+            {
+              "index": 2,
+              "text": "2"
+            },
+            {
+              "index": 3,
+              "text": "3"
+            },
+            {
+              "index": 4,
+              "text": "4"
+            }
+          ],
+          "meaningfulStemCharacters": 95,
+          "nonemptyOptionCount": 0,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 105,
+          "section": "language-1",
+          "questionId": "953357293321",
+          "occurrenceCount": 2,
+          "pages": [
+            64,
+            66
+          ],
+          "stemText": "Name the figure of speech used in , ‘If a clod be washed\naway by the sea\nEurope is the less.’\n1. Simile\n2. Metaphor\n3. Hyperbole\n4. Alliteration",
+          "options": [
+            {
+              "index": 1,
+              "text": "1"
+            },
+            {
+              "index": 2,
+              "text": "2"
+            },
+            {
+              "index": 3,
+              "text": "3\n\n1/1/22, 5:32 PM"
+            },
+            {
+              "index": 4,
+              "text": "4\nQuestion Id : 953357293315 Question Type : COMPREHENSION Sub Question Shuffling Allowed : Yes Group Comprehension\nQuestions : No\nQuestion Numbers : (100 to 105)\nQuestion Label : Comprehension\nDirections : Read the poem given below and answer the\nquestions that follow by choosing the correct/most appropriate\noptions :\nNo man is an island,\nEntire of itself,\nEvery man is a piece of the continent,\nA part of the main.\nIf a clod be washed away by the sea,\nEurope is the less.\nAs well as if a promontory were.\nAs well as if a manor of thy friend’s\nOr of thine own were :\nAny man’s death diminishes me,\nBecause I am involved in mankind,\nAnd therefore never send to know for whom the bell tolls;\nIt tolls for thee.\nSub questions"
+            }
+          ],
+          "meaningfulStemCharacters": 104,
+          "nonemptyOptionCount": 2,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 106,
+          "section": "language-1",
+          "questionId": "953357293322",
+          "occurrenceCount": 2,
+          "pages": [
+            67
+          ],
+          "stemText": "A teacher of class II is matching students to do actions and use gestures while reciting a poem. This style will most suit\nthe\n1) Auditory learners\n2) Visual learners\n3) kinaesthetic learners\n4) Sociometric learners",
+          "options": [
+            {
+              "index": 1,
+              "text": "1"
+            },
+            {
+              "index": 2,
+              "text": "2"
+            },
+            {
+              "index": 3,
+              "text": "3"
+            },
+            {
+              "index": 4,
+              "text": "4"
+            }
+          ],
+          "meaningfulStemCharacters": 171,
+          "nonemptyOptionCount": 0,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 107,
+          "section": "language-1",
+          "questionId": "953357293323",
+          "occurrenceCount": 2,
+          "pages": [
+            67,
+            68
+          ],
+          "stemText": "Phonemes refers to =\n1) minimal meaningful units\n2) vowels in a language\n3) sounds in a language\n4) grammatical structure of a language",
+          "options": [
+            {
+              "index": 1,
+              "text": "1\n\n1/1/22, 5:32 PM"
+            },
+            {
+              "index": 2,
+              "text": "2"
+            },
+            {
+              "index": 3,
+              "text": "3"
+            },
+            {
+              "index": 4,
+              "text": "4"
+            }
+          ],
+          "meaningfulStemCharacters": 103,
+          "nonemptyOptionCount": 1,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 108,
+          "section": "language-1",
+          "questionId": "953357293324",
+          "occurrenceCount": 2,
+          "pages": [
+            68
+          ],
+          "stemText": "A good language teacher should begin the teaching of language at class I with\n1) writing the letters of alphabet\n2) making the learners to repeat the letters of alphabet after the teacher\n3) aural-oral practice such as telling and listening to stories, rhymes, poems, riddles etc.\n4) teaching the spelling and giving dictations to strengthen active vocabulary",
+          "options": [
+            {
+              "index": 1,
+              "text": "1"
+            },
+            {
+              "index": 2,
+              "text": "2"
+            },
+            {
+              "index": 3,
+              "text": "3"
+            },
+            {
+              "index": 4,
+              "text": "4"
+            }
+          ],
+          "meaningfulStemCharacters": 289,
+          "nonemptyOptionCount": 0,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 109,
+          "section": "language-1",
+          "questionId": "953357293325",
+          "occurrenceCount": 2,
+          "pages": [
+            68,
+            69
+          ],
+          "stemText": "A language teacher gives a task of group story writing. She started the story with\n‘Once upon a time there was a little girl’ Then she asked the groups to add on a sentence to the story. One student will\nrecord the responses in a group. This activity is used to enhance\n1) BICS (Basic Interpersonal Communication Skills)\n2) CALP (Cognitive Academic Language Proficiency)\n3) PPPP (Present-Practice-Product)\n4) ELT (English Language Teaching)",
+          "options": [
+            {
+              "index": 1,
+              "text": "1"
+            },
+            {
+              "index": 2,
+              "text": "2"
+            },
+            {
+              "index": 3,
+              "text": "3"
+            },
+            {
+              "index": 4,
+              "text": "4"
+            }
+          ],
+          "meaningfulStemCharacters": 346,
+          "nonemptyOptionCount": 0,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 110,
+          "section": "language-1",
+          "questionId": "953357293326",
+          "occurrenceCount": 2,
+          "pages": [
+            69
+          ],
+          "stemText": "Discourse is the study of :\n1) chunks of language which are bigger than a single sentence\n2) sound system of a language\n3) mental process , process of thought and concept formation\n4) evolution of language in human society and its role in the formation of culture",
+          "options": [
+            {
+              "index": 1,
+              "text": "1"
+            },
+            {
+              "index": 2,
+              "text": "2"
+            },
+            {
+              "index": 3,
+              "text": "3"
+            },
+            {
+              "index": 4,
+              "text": "4"
+            }
+          ],
+          "meaningfulStemCharacters": 206,
+          "nonemptyOptionCount": 0,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 111,
+          "section": "language-1",
+          "questionId": "953357293327",
+          "occurrenceCount": 2,
+          "pages": [
+            69,
+            70
+          ],
+          "stemText": "1/1/22, 5:32 PM\nThe approach that allows a language teacher to absorb the best techniques of all the well-known language teaching\nmethods into their classroom is :\n1) Communicative Language Teaching approach\n2) Structural approach\n3) Constructive approach\n4) Eclectic approach",
+          "options": [
+            {
+              "index": 1,
+              "text": "1"
+            },
+            {
+              "index": 2,
+              "text": "2"
+            },
+            {
+              "index": 3,
+              "text": "3"
+            },
+            {
+              "index": 4,
+              "text": "4"
+            }
+          ],
+          "meaningfulStemCharacters": 215,
+          "nonemptyOptionCount": 0,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 112,
+          "section": "language-1",
+          "questionId": "953357293328",
+          "occurrenceCount": 2,
+          "pages": [
+            70
+          ],
+          "stemText": "The principal of selection of structures in a structural approach should be based on\n1) Practice, preparedness and performance\n2) Process, product and pronunciation\n3) Usefulness, simplicity and untouchability\n4) Collection, selection and usefulness",
+          "options": [
+            {
+              "index": 1,
+              "text": "1"
+            },
+            {
+              "index": 2,
+              "text": "2"
+            },
+            {
+              "index": 3,
+              "text": "3"
+            },
+            {
+              "index": 4,
+              "text": "4"
+            }
+          ],
+          "meaningfulStemCharacters": 204,
+          "nonemptyOptionCount": 0,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 113,
+          "section": "language-1",
+          "questionId": "953357293329",
+          "occurrenceCount": 2,
+          "pages": [
+            70,
+            71
+          ],
+          "stemText": "1/1/22, 5:32 PM\nThe main role of children’s literature at primary level is ~\n1) its simple and easy\n2) its full of colourful picture\n3) it provide the variety of languages\n4) its taught in the school",
+          "options": [
+            {
+              "index": 1,
+              "text": "1"
+            },
+            {
+              "index": 2,
+              "text": "2"
+            },
+            {
+              "index": 3,
+              "text": "3"
+            },
+            {
+              "index": 4,
+              "text": "4"
+            }
+          ],
+          "meaningfulStemCharacters": 141,
+          "nonemptyOptionCount": 0,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 114,
+          "section": "language-1",
+          "questionId": "953357293330",
+          "occurrenceCount": 2,
+          "pages": [
+            71
+          ],
+          "stemText": "A language teacher writes the outline of the essay plan on the black board. Then she asks the students to discuss in\ngroup how to logically order the points before writing its draft. This discussion being carried out in a class before\nwriting an essay is\n1. transcription\n2. composition\n3. brainstorming\n4. follow up",
+          "options": [
+            {
+              "index": 1,
+              "text": "1\n\n1/1/22, 5:32 PM"
+            },
+            {
+              "index": 2,
+              "text": "2"
+            },
+            {
+              "index": 3,
+              "text": "3"
+            },
+            {
+              "index": 4,
+              "text": "4"
+            }
+          ],
+          "meaningfulStemCharacters": 252,
+          "nonemptyOptionCount": 1,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 115,
+          "section": "language-1",
+          "questionId": "953357293331",
+          "occurrenceCount": 2,
+          "pages": [
+            72
+          ],
+          "stemText": "Astudent of class V is facing some difficulty in reading a text. This child may have\n1) dyslexia\n2) dysgraphia\n3) dyscalculia\n4) dysmorphia",
+          "options": [
+            {
+              "index": 1,
+              "text": "1"
+            },
+            {
+              "index": 2,
+              "text": "2"
+            },
+            {
+              "index": 3,
+              "text": "3"
+            },
+            {
+              "index": 4,
+              "text": "4"
+            }
+          ],
+          "meaningfulStemCharacters": 107,
+          "nonemptyOptionCount": 0,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 116,
+          "section": "language-1",
+          "questionId": "953357293332",
+          "occurrenceCount": 2,
+          "pages": [
+            72
+          ],
+          "stemText": "The sub discipline of linguistics which refer to the study of meaning is\n1. syntax\n2. discourse\n3. morpheme\n4. semantics",
+          "options": [
+            {
+              "index": 1,
+              "text": "1\n\n1/1/22, 5:32 PM"
+            },
+            {
+              "index": 2,
+              "text": "2"
+            },
+            {
+              "index": 3,
+              "text": "3"
+            },
+            {
+              "index": 4,
+              "text": "4"
+            }
+          ],
+          "meaningfulStemCharacters": 92,
+          "nonemptyOptionCount": 1,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 117,
+          "section": "language-1",
+          "questionId": "953357293333",
+          "occurrenceCount": 2,
+          "pages": [
+            73
+          ],
+          "stemText": "Which one of the following is not true about Role Plays?\n1) The role play brings a situation from real life into the classroom.\n2) Students feel that they are really using the language for a communicative purpose.\n3) Students experiment with language they have learned.\n4) Students are supported to do the role plays of their textbook.",
+          "options": [
+            {
+              "index": 1,
+              "text": "1"
+            },
+            {
+              "index": 2,
+              "text": "2"
+            },
+            {
+              "index": 3,
+              "text": "3"
+            },
+            {
+              "index": 4,
+              "text": "4"
+            }
+          ],
+          "meaningfulStemCharacters": 265,
+          "nonemptyOptionCount": 0,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 118,
+          "section": "language-1",
+          "questionId": "953357293334",
+          "occurrenceCount": 2,
+          "pages": [
+            73
+          ],
+          "stemText": "Read the words carefully. One word in each of the given sets is different from the others circle the odd one out. This\nactivities will enrich their\n1) reading skill\n2) writing skill\n3) speaking skill\n4) vocabulary\n\n1/1/22, 5:32 PM",
+          "options": [
+            {
+              "index": 1,
+              "text": "1"
+            },
+            {
+              "index": 2,
+              "text": "2"
+            },
+            {
+              "index": 3,
+              "text": "3"
+            },
+            {
+              "index": 4,
+              "text": "4"
+            }
+          ],
+          "meaningfulStemCharacters": 168,
+          "nonemptyOptionCount": 0,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 119,
+          "section": "language-1",
+          "questionId": "953357293335",
+          "occurrenceCount": 2,
+          "pages": [
+            74
+          ],
+          "stemText": "A teacher gave a root word and then asked students to make new words by adding prefixes and suffixes. This activity\nwill enhance their\n1) grammar\n2) listening\n3) reading\n4) vocabulary",
+          "options": [
+            {
+              "index": 1,
+              "text": "1"
+            },
+            {
+              "index": 2,
+              "text": "2"
+            },
+            {
+              "index": 3,
+              "text": "3"
+            },
+            {
+              "index": 4,
+              "text": "4"
+            }
+          ],
+          "meaningfulStemCharacters": 143,
+          "nonemptyOptionCount": 0,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 120,
+          "section": "language-1",
+          "questionId": "953357293336",
+          "occurrenceCount": 2,
+          "pages": [
+            74
+          ],
+          "stemText": "1/1/22, 5:32 PM\nThe “Input rich environment” where the language is seen, noticed and used by the children helps them\n1) to master the grammatical rules.\n2) to generate more rules of grammar\n3) to learn and increase their proficiency in language\n4) to learn but cannot increase their proficiency in language",
+          "options": [
+            {
+              "index": 1,
+              "text": "1"
+            },
+            {
+              "index": 2,
+              "text": "2"
+            },
+            {
+              "index": 3,
+              "text": "3"
+            },
+            {
+              "index": 4,
+              "text": "4\nLanguage II\nSection Id : 9533579892\nSection Number : 5\nSection type : Online\nMandatory or Optional : Mandatory\nNumber of Questions : 17\nNumber of Questions to be attempted : 17\nSection Marks : 30\nEnable Mark as Answered Mark for Review and Clear Response : Yes\nSub-Section Number : 1\nSub-Section Id : 95335717438\nQuestion Shuffling Allowed : Yes\nQuestion Id : 953357293337 Question Type : COMPREHENSION Sub Question Shuffling Allowed : Yes Group Comprehension\nQuestions : No\nQuestion Numbers : (121 to 128)\nQuestion Label : Comprehension\n\n1/1/22, 5:32 PM\nनीचे दिए गए अनुच्छेद को पढ़कर पूछे गए प्रश्नों के सही/सबसे उपयुक्त उत्तर\nवाले विकल्प चुनिए |\nचिनार में पर्यावरण के साथ अनुकूलन करने की विशिष्ट क्षमता होती है। यह\nपर्यावरण प्रदूषण को भी सरलता से सहन कर लेता है । यही कारण है कि एक\nविस्तृत क्षेत्र में फैलने वाला वृक्ष बन गया है | वर्तमान समय में इसे एशिया के\nअधिकांश देशों के साथ ही यूरोप और अमेरिका के बहुत से भागों में भी देखा\nजा सकता है | इंग्लैंड में, विशेष रूप से लंदन में एक बहुत बड़े क्षेत्र में चिनार से\nमिलते-जुलते वृक्ष पाए जाते है । इन वृक्षों में चिनार के सभी गुण देखने को\nमिलते हैं, किंतु कुछ भिन्‍नताएँ भी हैं | इनके संबंध में यह कहा जा सकता है कि\nइन्हें अंग्रेज़ी शासन काल में अंग्रेजों द्वारा भारत से ले जाया गया है अथवा यह\nभी हो सकता है कि ये चिनार की संकर प्रजातियां हों |\n30-40 मीटर ऊँचा और लगभग 1.2 मीटर घेरे वाला यह भव्य एवं शानदार\nवृक्ष कश्मीर की शोभा है | चिनार की गणना विश्व की सर्वाधिक तेजी से बढ़ने\nवाले वृक्षों मं की जाती है । इसकी आयु भी बहुत लंबी होती है । यह वृक्ष 100\nवर्षों में लगभग 30 मीटर की ऊँचाई प्राप्त कर लेता है एवं इसका तना 1 मीटर\nघेरे वाला हो जाता है | चिनार के वृक्षों को प्राकृतिक क्षति भी बहुत कम होती है\n| इसमें विभिन्‍न प्रकार की मिट्टी में अपना अस्तित्व बनाए रखने की क्षमता होती\nहै तथा यह तेज हवाएँ भी सहन कर लेता है । इसकी जड़ों से यदि कोई छेड़छाड़\nकी जाए तो भी यह नष्ट नहीं होता | चिनार की एक प्रमुख विशेषता यह है कि\nइसके पाँच मीटर ऊँचे वृक्ष को भी एक स्थान से उखाड़ कर दूसरे स्थान पर\nलगा सकते हैं।\nउत्तर भारत का यह शानदार विशाल वृक्ष पूरे वर्ष भर बहुत सुंदर दिखता है,\nकिंतु सर्दियों के मौसम में अपने तने और फूलों के कारण यह सर्वाधिक सुंदर\nदिखाई देता है।\nआजकल चिनार को उत्तर भारत के कुछ अन्य स्थानों पर लगाने के प्रयास किए\nजा रहे है । इस कार्य में कुछ सफलता भी प्राप्त हुई है। अब हमें कश्मीर के साथ\nही नई दिल्ली, मेरठ, देहरादून, चंडीगढ़ आदि स्थानों पर चिनार वृक्ष देखने को\nमिल जाएँगे, किंतु इन वृक्षों में कश्मीर के चिनार वृक्षों जैसी ऊँचाई और फैलाव\nनहीं है।\nSub questions"
+            }
+          ],
+          "meaningfulStemCharacters": 232,
+          "nonemptyOptionCount": 1,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 121,
+          "section": "language-2",
+          "questionId": "953357293338",
+          "occurrenceCount": 2,
+          "pages": [
+            76,
+            80
+          ],
+          "stemText": "1/1/22, 5:32 PM\nविश्व में सबसे तेजी से बढ़ने वाला वृक्ष है -\n1. पीपल\n2. चिनार\n3. बरगद\n4. देवदार",
+          "options": [
+            {
+              "index": 1,
+              "text": "1"
+            },
+            {
+              "index": 2,
+              "text": "2"
+            },
+            {
+              "index": 3,
+              "text": "3"
+            },
+            {
+              "index": 4,
+              "text": "4"
+            }
+          ],
+          "meaningfulStemCharacters": 35,
+          "nonemptyOptionCount": 0,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 122,
+          "section": "language-2",
+          "questionId": "953357293339",
+          "occurrenceCount": 2,
+          "pages": [
+            77,
+            81
+          ],
+          "stemText": "चिनार वृक्ष की विशेषता नहीं है -\n1. तेज हवाएँ सहन करना\n2. अलग-अलग तरह की मिट्टी में जड़े जमाना\n3. प्राकृतिक क्षति का अधिक न होना\n4. एक स्थान से दूसरे स्थान पर न लगना",
+          "options": [
+            {
+              "index": 1,
+              "text": "1"
+            },
+            {
+              "index": 2,
+              "text": "2"
+            },
+            {
+              "index": 3,
+              "text": "3"
+            },
+            {
+              "index": 4,
+              "text": "4"
+            }
+          ],
+          "meaningfulStemCharacters": 77,
+          "nonemptyOptionCount": 0,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 123,
+          "section": "language-2",
+          "questionId": "953357293340",
+          "occurrenceCount": 2,
+          "pages": [
+            77,
+            81
+          ],
+          "stemText": "चिनार वृक्ष कब सर्वाधिक सुंदर दिखता है?\n1. सर्दियों में\n2. गर्मियों में\n3. वर्षा में\n4. वर्षभर",
+          "options": [
+            {
+              "index": 1,
+              "text": "1"
+            },
+            {
+              "index": 2,
+              "text": "2"
+            },
+            {
+              "index": 3,
+              "text": "3"
+            },
+            {
+              "index": 4,
+              "text": "4"
+            }
+          ],
+          "meaningfulStemCharacters": 39,
+          "nonemptyOptionCount": 0,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 124,
+          "section": "language-2",
+          "questionId": "953357293341",
+          "occurrenceCount": 2,
+          "pages": [
+            77,
+            81
+          ],
+          "stemText": "उत्तर भारत में चिनार के वृक्ष कहाँ मिलेंगे?\n1. पुरानी दिल्‍ली\n2. पंचकला\nपचतु\n3. देहरादून\n4. हरियाणा",
+          "options": [
+            {
+              "index": 1,
+              "text": "1"
+            },
+            {
+              "index": 2,
+              "text": "2\n\n1/1/22, 5:32 PM"
+            },
+            {
+              "index": 3,
+              "text": "3"
+            },
+            {
+              "index": 4,
+              "text": "4"
+            }
+          ],
+          "meaningfulStemCharacters": 42,
+          "nonemptyOptionCount": 1,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 125,
+          "section": "language-2",
+          "questionId": "953357293342",
+          "occurrenceCount": 2,
+          "pages": [
+            78,
+            82
+          ],
+          "stemText": "पर्यावरण के साथ अनुकूलन क्षमता के कारण चिनार -\n\n1. अपनी जड़ें गहरी कर लेता है\n\n2. पर्यावरण प्रदूषण का प्रभाव नहीं पड़ता\n\n3. अपने तने को लंबा करता है\n\n4. 500 वर्षों तक रहता है",
+          "options": [
+            {
+              "index": 1,
+              "text": "1"
+            },
+            {
+              "index": 2,
+              "text": "2"
+            },
+            {
+              "index": 3,
+              "text": "3"
+            },
+            {
+              "index": 4,
+              "text": "4"
+            }
+          ],
+          "meaningfulStemCharacters": 80,
+          "nonemptyOptionCount": 0,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 126,
+          "section": "language-2",
+          "questionId": "953357293343",
+          "occurrenceCount": 2,
+          "pages": [
+            78,
+            82
+          ],
+          "stemText": "इनमें से कौन-सा शब्द समूह से भिन है -\n\n1. तेज़ हवा\n\n2. लंबी आयु\n\n=I\n\n3. विशाल वृक्ष\n\n4. सर्वाधिक सुंदर",
+          "options": [
+            {
+              "index": 1,
+              "text": "1"
+            },
+            {
+              "index": 2,
+              "text": "2"
+            },
+            {
+              "index": 3,
+              "text": "3"
+            },
+            {
+              "index": 4,
+              "text": "4"
+            }
+          ],
+          "meaningfulStemCharacters": 40,
+          "nonemptyOptionCount": 0,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 127,
+          "section": "language-2",
+          "questionId": "953357293344",
+          "occurrenceCount": 2,
+          "pages": [
+            78,
+            82
+          ],
+          "stemText": "\"सर्वाधिकः शब्द में प्रत्यय है -\n\n1. धिक\n\n2.क\n\n3. इक\n\n4. अधिक",
+          "options": [
+            {
+              "index": 1,
+              "text": "1"
+            },
+            {
+              "index": 2,
+              "text": "2"
+            },
+            {
+              "index": 3,
+              "text": "3"
+            },
+            {
+              "index": 4,
+              "text": "4"
+            }
+          ],
+          "meaningfulStemCharacters": 23,
+          "nonemptyOptionCount": 0,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 128,
+          "section": "language-2",
+          "questionId": "953357293345",
+          "occurrenceCount": 2,
+          "pages": [
+            78,
+            82
+          ],
+          "stemText": "1/1/22, 5:32 PM\n\n\"ऊंचाई शब्द है -\n\n1. विशेषण\n\n2. क्रिया विशेषण\n\n3. भाववाचक संज्ञा\n\n4. जातिवाचक संज्ञा",
+          "options": [
+            {
+              "index": 1,
+              "text": "1"
+            },
+            {
+              "index": 2,
+              "text": "2"
+            },
+            {
+              "index": 3,
+              "text": "3"
+            },
+            {
+              "index": 4,
+              "text": "4\nQuestion Id ; 953357293337 Question Type : COMPREHENSION Sub Question Shuffling Allowed : Yes Group Comprehension\nQuestions : No\nQuestion Numbers : (121 to 128)\nQuestion Label : Comprehension\nms\n\n1/1/22, 5:32 PM\nनीचे दिए गए अनुच्छेद को पढ़कर पूछे गए प्रश्नों के सही/सबसे उपयुक्त उत्तर\nवाले विकल्प चुनिए |\nचिनार में पर्यावरण के साथ अनुकूलन करने की विशिष्ट क्षमता होती है। यह\nपर्यावरण प्रदूषण को भी सरलता से सहन कर लेता है । यही कारण है कि एक\nविस्तृत क्षेत्र में फैलने वाला वृक्ष बन गया है | वर्तमान समय में इसे एशिया के\nअधिकांश देशों के साथ ही यूरोप और अमेरिका के बहुत से भागों में भी देखा\nजा सकता है | इंग्लैंड में, विशेष रूप से लंदन में एक बहुत बड़े क्षेत्र में चिनार से\nमिलते-जुलते वृक्ष पाए जाते है । इन वृक्षों में चिनार के सभी गुण देखने को\nमिलते हैं, किंतु कुछ भिन्‍नताएँ भी हैं | इनके संबंध में यह कहा जा सकता है कि\nइन्हें अंग्रेज़ी शासन काल में अंग्रेजों द्वारा भारत से ले जाया गया है अथवा यह\nभी हो सकता है कि ये चिनार की संकर प्रजातियां हों |\n30-40 मीटर ऊँचा और लगभग 1.2 मीटर घेरे वाला यह भव्य एवं शानदार\nवृक्ष कश्मीर की शोभा है | चिनार की गणना विश्व की सर्वाधिक तेजी से बढ़ने\nवाले वृक्षों मं की जाती है । इसकी आयु भी बहुत लंबी होती है । यह वृक्ष 100\nवर्षों में लगभग 30 मीटर की ऊँचाई प्राप्त कर लेता है एवं इसका तना 1 मीटर\nघेरे वाला हो जाता है | चिनार के वृक्षों को प्राकृतिक क्षति भी बहुत कम होती है\n| इसमें विभिन्‍न प्रकार की मिट्टी में अपना अस्तित्व बनाए रखने की क्षमता होती\nहै तथा यह तेज हवाएँ भी सहन कर लेता है । इसकी जड़ों से यदि कोई छेड़छाड़\nकी जाए तो भी यह नष्ट नहीं होता | चिनार की एक प्रमुख विशेषता यह है कि\nइसके पाँच मीटर ऊँचे वृक्ष को भी एक स्थान से उखाड़ कर दूसरे स्थान पर\nलगा सकते हैं।\nउत्तर भारत का यह शानदार विशाल वृक्ष पूरे वर्ष भर बहुत सुंदर दिखता है,\nकिंतु सर्दियों के मौसम में अपने तने और फूलों के कारण यह सर्वाधिक सुंदर\nदिखाई देता है।\nआजकल चिनार को उत्तर भारत के कुछ अन्य स्थानों पर लगाने के प्रयास किए\nजा रहे है । इस कार्य में कुछ सफलता भी प्राप्त हुई है। अब हमें कश्मीर के साथ\nही नई दिल्ली, मेरठ, देहरादून, चंडीगढ़ आदि स्थानों पर चिनार वृक्ष देखने को\nमिल जाएँगे, किंतु इन वृक्षों में कश्मीर के चिनार वृक्षों जैसी ऊँचाई और फैलाव\nनहीं है।\nSub questions"
+            }
+          ],
+          "meaningfulStemCharacters": 36,
+          "nonemptyOptionCount": 1,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 129,
+          "section": "language-2",
+          "questionId": "953357293347",
+          "occurrenceCount": 2,
+          "pages": [
+            83,
+            86
+          ],
+          "stemText": "1/1/22, 5:32 PM\nबचपन की स्वाभाविकता बनाए रखने में सबसे कम महत्वपूर्ण\nभूमिका है\n1. बच्चे की\n2. परिवार की\n3. शिक्षक की\n4. समाज की",
+          "options": [
+            {
+              "index": 1,
+              "text": "1"
+            },
+            {
+              "index": 2,
+              "text": "2"
+            },
+            {
+              "index": 3,
+              "text": "3"
+            },
+            {
+              "index": 4,
+              "text": "4"
+            }
+          ],
+          "meaningfulStemCharacters": 54,
+          "nonemptyOptionCount": 0,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 130,
+          "section": "language-2",
+          "questionId": "953357293348",
+          "occurrenceCount": 2,
+          "pages": [
+            84,
+            86
+          ],
+          "stemText": "1/1/22, 5:32 PM\nसभी बच्चों के बचपन का स्वरूप होता है\n1. एक सामान\n2. भिन्‍न\n3. सरल\n4. जटिल",
+          "options": [
+            {
+              "index": 1,
+              "text": "1"
+            },
+            {
+              "index": 2,
+              "text": "2"
+            },
+            {
+              "index": 3,
+              "text": "3"
+            },
+            {
+              "index": 4,
+              "text": "4"
+            }
+          ],
+          "meaningfulStemCharacters": 34,
+          "nonemptyOptionCount": 0,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 131,
+          "section": "language-2",
+          "questionId": "953357293349",
+          "occurrenceCount": 2,
+          "pages": [
+            84,
+            87
+          ],
+          "stemText": "देश के आर्थिक विकास और प्रौद्योगिक प्रगति में सबसे महत्वपूर्ण\nकारक है\n1. शासन\n2. शिक्षा\n3. समाज\n4. पूँजी\nपा",
+          "options": [
+            {
+              "index": 1,
+              "text": "1"
+            },
+            {
+              "index": 2,
+              "text": "2"
+            },
+            {
+              "index": 3,
+              "text": "3"
+            },
+            {
+              "index": 4,
+              "text": "4"
+            }
+          ],
+          "meaningfulStemCharacters": 49,
+          "nonemptyOptionCount": 0,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 132,
+          "section": "language-2",
+          "questionId": "953357293350",
+          "occurrenceCount": 2,
+          "pages": [
+            84,
+            87
+          ],
+          "stemText": "बाल संरक्षण अधिनियम का उद्देश्य है\n1. बालकों को विभिन्‍न खतरों से बचाना\n2. बाल अपराधों की रोकथाम\n3. बाल अपराधियों को सजा देना\n4. बालकों को सुधार गृह भेजना\n\n1/1/22, 5:32 PM",
+          "options": [
+            {
+              "index": 1,
+              "text": "1"
+            },
+            {
+              "index": 2,
+              "text": "2"
+            },
+            {
+              "index": 3,
+              "text": "3"
+            },
+            {
+              "index": 4,
+              "text": "4"
+            }
+          ],
+          "meaningfulStemCharacters": 71,
+          "nonemptyOptionCount": 0,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 133,
+          "section": "language-2",
+          "questionId": "953357293351",
+          "occurrenceCount": 2,
+          "pages": [
+            85,
+            87
+          ],
+          "stemText": "अनुच्छेद में बचपन को प्रभावित करने वाले कारकों में किसका\nउल्लेख नहीं है?\n1. परिवार\n2. परम्पराएँ\n3. आर्थिक स्थिति\n4. स्कूल\n८६\n\n1/1/22, 5:32 PM",
+          "options": [
+            {
+              "index": 1,
+              "text": "1"
+            },
+            {
+              "index": 2,
+              "text": "2"
+            },
+            {
+              "index": 3,
+              "text": "3"
+            },
+            {
+              "index": 4,
+              "text": "4"
+            }
+          ],
+          "meaningfulStemCharacters": 57,
+          "nonemptyOptionCount": 0,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 134,
+          "section": "language-2",
+          "questionId": "953357293352",
+          "occurrenceCount": 2,
+          "pages": [
+            85,
+            88
+          ],
+          "stemText": "“प्रारंभिक' में उपसर्ग है\n1.प्रा\n2.प्र\n3. प्रार\n4. प्रारंभ",
+          "options": [
+            {
+              "index": 1,
+              "text": "1"
+            },
+            {
+              "index": 2,
+              "text": "2"
+            },
+            {
+              "index": 3,
+              "text": "3"
+            },
+            {
+              "index": 4,
+              "text": "4"
+            }
+          ],
+          "meaningfulStemCharacters": 23,
+          "nonemptyOptionCount": 0,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 135,
+          "section": "language-2",
+          "questionId": "953357293353",
+          "occurrenceCount": 2,
+          "pages": [
+            85,
+            88
+          ],
+          "stemText": "\"विश्वासः का विलोम शब्द है\n1. विश्वसनीय\n2. अविश्वसनीय\n3. अविश्वास\n4. अविस्मरणीय",
+          "options": [
+            {
+              "index": 1,
+              "text": "1"
+            },
+            {
+              "index": 2,
+              "text": "2"
+            },
+            {
+              "index": 3,
+              "text": "3"
+            },
+            {
+              "index": 4,
+              "text": "4\nQuestion Id : 953357293346 Question Type : COMPREHENSION Sub Question Shuffling Allowed : Yes Group Comprehension\nQuestions : No\nQuestion Numbers : (129 to 135)\nLatest Sarkari Jobs, Govt & Results, am poe\n\n1/1/22, 5:32 PM\nQuestion Label : Comprehension\nदिए गए अनुच्छेद को पढ़कर पूछे गए प्रश्नों के सही/सबसे उपयुक्त उत्तर वाले\nविकल्प को चुनिए]\nबचपन के अनुभवों को विभिन्‍न कारक प्रभावित करते हैं | उदाहरण के लिए\nपरिवार में सदस्यों की संख्या और आर्थिक स्थिति, परिवार तथा समुदाय के\nरीति-रिवाज, परम्पराएँ, उनके नैतिक मूल्य और विश्वास, आवास, क्षेत्र आदि |\nजिस प्रकार से समाज में हम रहते हैं, वह हमारे बचपन को प्रभावित करता है।\nपाँच वर्ष का एक बालक स्कूल जाने लगता है, उसी उम्र का दूसरा बालक दूध\nदोहने तथा खेतीबाड़ी में अपने पिता की मदद करता है और पाँच वर्षीय अन्य\nबालक सड़कों पर अखबार बेचता है।\nभारत में बचपन को अधिक रचनात्मक अवसर देने एवं उसे शिक्षा से जोड़ने का\nइतिहास काफ़ी समृद्ध रहा है। बाल श्रम पर रोक लगाने तथा बच्चों का\nसृजनात्मक जीवन सुनिश्चित किए जाने के लिए बालश्रम निरोधक कानून बनाया\nगया | वर्ष 2000 में बचपन को विविध खतरों से बचाने के लिए बाल संरक्षण\nअधिनियम अस्तित्व में आया | भारतीय योजना आयोग (नीति आयोग) ने\nअपनी तीसरी पंचवर्षीय योजना के प्रारूप में भी शिक्षा के बारे में कहा था कि\nबह द्रुत आर्थिक विकास और प्रौद्योगिक प्रगति प्राप्त कने और ऐसी सामाजिक\nव्यवस्था का निर्माण करने में एक अकेला सबसे महत्वपूर्ण कारक है, जो बच्चों\nको शैक्षणिक विकास के साथ पूर्ण नयी न्याय कर सकता है।\nSub questions"
+            }
+          ],
+          "meaningfulStemCharacters": 37,
+          "nonemptyOptionCount": 1,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 136,
+          "section": "language-2",
+          "questionId": "953357293354",
+          "occurrenceCount": 2,
+          "pages": [
+            88
+          ],
+          "stemText": "1/1/22, 5:32 PM\n\nबच्चों की भाषा इस बात के लिए पर्याप्त संकेत देती है कि -\n1. वे अपनी भाषा नहीं जानते\n2. वे अपनी भाषा का व्याकरण जानते हैं\n3. वे अपनी भाषा का व्याकरण नहीं जानते\n4. वे अपनी भाषा का साहित्य जानते हैं",
+          "options": [
+            {
+              "index": 1,
+              "text": "1"
+            },
+            {
+              "index": 2,
+              "text": "2"
+            },
+            {
+              "index": 3,
+              "text": "3"
+            },
+            {
+              "index": 4,
+              "text": "4"
+            }
+          ],
+          "meaningfulStemCharacters": 86,
+          "nonemptyOptionCount": 0,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 137,
+          "section": "language-2",
+          "questionId": "953357293355",
+          "occurrenceCount": 2,
+          "pages": [
+            89
+          ],
+          "stemText": "बाइगोतस्की ---------- का समर्थन करते हैं -\n1. भाषा-अर्जन-क्षमता\n2. सामाजिक अंतःक्रिया\n3. अनुकरण\nननु\n4. दंड ओर पुरस्कार",
+          "options": [
+            {
+              "index": 1,
+              "text": "1"
+            },
+            {
+              "index": 2,
+              "text": "2"
+            },
+            {
+              "index": 3,
+              "text": "3"
+            },
+            {
+              "index": 4,
+              "text": "4"
+            }
+          ],
+          "meaningfulStemCharacters": 51,
+          "nonemptyOptionCount": 0,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 138,
+          "section": "language-2",
+          "questionId": "953357293356",
+          "occurrenceCount": 2,
+          "pages": [
+            89,
+            90
+          ],
+          "stemText": "“मातृभाषा में ही बच्चे का मस्तिष्क सबसे पहले क्रियाशील होता है ।* यह कथन -\n1. पूर्णतः सत्य है।\n2. पूर्णतः सत्य नहीं है।\n3. आंशिक रूप से सत्य है।\n4. पूर्णतः असत्य है |",
+          "options": [
+            {
+              "index": 1,
+              "text": "1"
+            },
+            {
+              "index": 2,
+              "text": "2"
+            },
+            {
+              "index": 3,
+              "text": "3"
+            },
+            {
+              "index": 4,
+              "text": "4"
+            }
+          ],
+          "meaningfulStemCharacters": 71,
+          "nonemptyOptionCount": 0,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 139,
+          "section": "language-2",
+          "questionId": "953357293357",
+          "occurrenceCount": 2,
+          "pages": [
+            90
+          ],
+          "stemText": "कहानियाँ बच्चों के भाषा-विकास के किस पक्ष को सर्वाधिक प्रभावित करती हैं?\n1. केवल मौखिक अभिव्यक्ति\n2. कल्पनाशीलता एवं सृजनात्मकता\n3. केवल लिखित अभिव्यक्ति\n4. व्याकरण एवं मानक भाषा",
+          "options": [
+            {
+              "index": 1,
+              "text": "1"
+            },
+            {
+              "index": 2,
+              "text": "2"
+            },
+            {
+              "index": 3,
+              "text": "3"
+            },
+            {
+              "index": 4,
+              "text": "4"
+            }
+          ],
+          "meaningfulStemCharacters": 86,
+          "nonemptyOptionCount": 0,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 140,
+          "section": "language-2",
+          "questionId": "953357293358",
+          "occurrenceCount": 2,
+          "pages": [
+            90,
+            91
+          ],
+          "stemText": "Option Shufiling : No\n\nपढ़ना सीखने की प्रक्रिया में साहित्य ------------ के रूप में कार्य करता है।\n1. प्रामाणिक स्रोत\n2. प्रेरणात्मक स्रोत\n3. बाधक तत्व\n4. अतिरिक्त बोझ",
+          "options": [
+            {
+              "index": 1,
+              "text": "1"
+            },
+            {
+              "index": 2,
+              "text": "2"
+            },
+            {
+              "index": 3,
+              "text": "3"
+            },
+            {
+              "index": 4,
+              "text": "4"
+            }
+          ],
+          "meaningfulStemCharacters": 76,
+          "nonemptyOptionCount": 0,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 141,
+          "section": "language-2",
+          "questionId": "953357293359",
+          "occurrenceCount": 2,
+          "pages": [
+            91
+          ],
+          "stemText": "प्राथमिक स्तर पर बच्चों की मौखिक अभिव्यक्ति का आकलन करने के संदर्भ में आप किसे सर्वाधिक महत्व देंगे?\n1. हिंदी पत्रिका पढ़ना\n2. समाचार-पत्र पढ़ना\n3. कहानी को दोहराना\n4. नाटक का मंचन",
+          "options": [
+            {
+              "index": 1,
+              "text": "1"
+            },
+            {
+              "index": 2,
+              "text": "2\n\n1/1/22, 5:32 PM"
+            },
+            {
+              "index": 3,
+              "text": "3"
+            },
+            {
+              "index": 4,
+              "text": "4"
+            }
+          ],
+          "meaningfulStemCharacters": 86,
+          "nonemptyOptionCount": 1,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 142,
+          "section": "language-2",
+          "questionId": "953357293360",
+          "occurrenceCount": 2,
+          "pages": [
+            92
+          ],
+          "stemText": "सुनने की कुशलता में एक महत्वपूर्ण उद्देश्य है -\n1. सुनना और दोहराना\n2. कविता सुनना\n3. सुनने में रूचि और धैर्य\n4. कहानी सुनना",
+          "options": [
+            {
+              "index": 1,
+              "text": "1"
+            },
+            {
+              "index": 2,
+              "text": "2"
+            },
+            {
+              "index": 3,
+              "text": "3"
+            },
+            {
+              "index": 4,
+              "text": "4"
+            }
+          ],
+          "meaningfulStemCharacters": 56,
+          "nonemptyOptionCount": 0,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 143,
+          "section": "language-2",
+          "questionId": "953357293361",
+          "occurrenceCount": 2,
+          "pages": [
+            92
+          ],
+          "stemText": "1/1/22, 5:32 PM\nप्राथमिक स्तर पर कविता शिक्षण का सर्वाधिक महत्वपूर्ण उद्देश्य है -\n1. कविता का भावार्थ बताना\n2. कविता का शब्दार्थ बताना\n3. कविता में छंद और अलंकार बताना\n4. कविता पाठ का आनंद लेना",
+          "options": [
+            {
+              "index": 1,
+              "text": "1"
+            },
+            {
+              "index": 2,
+              "text": "2"
+            },
+            {
+              "index": 3,
+              "text": "3"
+            },
+            {
+              "index": 4,
+              "text": "4"
+            }
+          ],
+          "meaningfulStemCharacters": 87,
+          "nonemptyOptionCount": 0,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 144,
+          "section": "language-2",
+          "questionId": "953357293362",
+          "occurrenceCount": 2,
+          "pages": [
+            93
+          ],
+          "stemText": "पढ़ना सीखने की प्रक्रिया में सबसे कम प्रभावी है -\n1. चित्रात्मकता\n2. अनुमान लगाना\n3. पुनरावृत्ति\n4. दो अक्षर वाले शब्द",
+          "options": [
+            {
+              "index": 1,
+              "text": "1"
+            },
+            {
+              "index": 2,
+              "text": "2"
+            },
+            {
+              "index": 3,
+              "text": "3"
+            },
+            {
+              "index": 4,
+              "text": "4"
+            }
+          ],
+          "meaningfulStemCharacters": 53,
+          "nonemptyOptionCount": 0,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 145,
+          "section": "language-2",
+          "questionId": "953357293363",
+          "occurrenceCount": 2,
+          "pages": [
+            93,
+            94
+          ],
+          "stemText": "“चित्रकारी को स्वयं की अभिव्यक्ति का माध्यम बनाना |`\nप्राथमिक स्तर पर -\n1. एक महत्वपूर्ण उद्देश्य नहीं है।\n2. एक महत्वपूर्ण उद्देश्य है।\n3. बच्चों की लेखन क्षमता में बाधक है।\n4. लेखन-क्षमता का अवभूतयन है।",
+          "options": [
+            {
+              "index": 1,
+              "text": "1"
+            },
+            {
+              "index": 2,
+              "text": "2"
+            },
+            {
+              "index": 3,
+              "text": "3"
+            },
+            {
+              "index": 4,
+              "text": "4"
+            }
+          ],
+          "meaningfulStemCharacters": 97,
+          "nonemptyOptionCount": 0,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 146,
+          "section": "language-2",
+          "questionId": "953357293364",
+          "occurrenceCount": 2,
+          "pages": [
+            94
+          ],
+          "stemText": "भाषा और विचार -\n1. एक-दूसरे से संबंधित नहीं हैं ।\n2. एक-दूसरे को प्रभावित नहीं करते\n3. परस्पर एक-दूसरे को पोषित करते हैं।\n4. परस्पर एक-दूसरे के विरोधी हैं।",
+          "options": [
+            {
+              "index": 1,
+              "text": "1"
+            },
+            {
+              "index": 2,
+              "text": "2"
+            },
+            {
+              "index": 3,
+              "text": "3"
+            },
+            {
+              "index": 4,
+              "text": "4"
+            }
+          ],
+          "meaningfulStemCharacters": 69,
+          "nonemptyOptionCount": 0,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 147,
+          "section": "language-2",
+          "questionId": "953357293365",
+          "occurrenceCount": 2,
+          "pages": [
+            94,
+            95
+          ],
+          "stemText": "1/1/22, 5:32 PM\nहिंदी भाषा -\n1. राष्ट्र भाषा है।\n2. राज भाषा है।\n3. देशज भाषा है।\n4. बोली है।",
+          "options": [
+            {
+              "index": 1,
+              "text": "1"
+            },
+            {
+              "index": 2,
+              "text": "2"
+            },
+            {
+              "index": 3,
+              "text": "3"
+            },
+            {
+              "index": 4,
+              "text": "4"
+            }
+          ],
+          "meaningfulStemCharacters": 27,
+          "nonemptyOptionCount": 0,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 148,
+          "section": "language-2",
+          "questionId": "953357293366",
+          "occurrenceCount": 2,
+          "pages": [
+            95
+          ],
+          "stemText": "साहिल तीसरी कक्षा में पढ़ता है वह हिंदी भाषा लिखते समय अपनी मातृभाषा के शब्दों का प्रयोग करता | यह -\n1. एक स्वाभाविक प्रक्रिया है।\n2. एक घातक प्रक्रिया है।\n3. हिंदी भाषा सीखने में बाधक है।\n4. हिंदी भाषा सीखने के लिए अनिवार्य है।",
+          "options": [
+            {
+              "index": 1,
+              "text": "1\n\n1/1/22, 5:32 PM"
+            },
+            {
+              "index": 2,
+              "text": "2"
+            },
+            {
+              "index": 3,
+              "text": "3"
+            },
+            {
+              "index": 4,
+              "text": "4"
+            }
+          ],
+          "meaningfulStemCharacters": 99,
+          "nonemptyOptionCount": 1,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 149,
+          "section": "language-2",
+          "questionId": "953357293367",
+          "occurrenceCount": 2,
+          "pages": [
+            96
+          ],
+          "stemText": "प्राथमिक स्तर पर भाषा सीखने-सिखाने की प्रक्रिया में सर्वाधिक महत्वपूर्ण है, बच्चों को\n1. अपने मन की बात कहने के अवसर देना\n2. पढ़ने-लिखने के सीमित अवसर देना\n3. कक्षा को चार्ट, पोस्टर से सजाना\n4. कक्षा में दृश्य-श्रव्य सामग्री का प्रयोग करना",
+          "options": [
+            {
+              "index": 1,
+              "text": "1"
+            },
+            {
+              "index": 2,
+              "text": "2"
+            },
+            {
+              "index": 3,
+              "text": "3"
+            },
+            {
+              "index": 4,
+              "text": "4"
+            }
+          ],
+          "meaningfulStemCharacters": 114,
+          "nonemptyOptionCount": 0,
+          "extractionStatus": "text-partial"
+        },
+        {
+          "position": 150,
+          "section": "language-2",
+          "questionId": "953357293368",
+          "occurrenceCount": 2,
+          "pages": [
+            96
+          ],
+          "stemText": "1/1/22, 5:32 PM\nआकाश की कक्षा के कुछ बच्चे कक्षा में हो रही गतिविधियों में हिस्सा लेने में संकोच करते हैं| लेकिन आपस में अपनी भाषा में खूब\nबात करते हैं| इसका संभावित कारण है -\n1. उनकी भाषा को कक्षा में स्थान न मिलना\n2. उनकी भाषा में समस्त गतिविधियों का होना\n3. उनका बात करने में दिलचस्पी न लेना\n4. उनका यह मानना कि गतिविधियाँ उबाऊ हैं।",
+          "options": [
+            {
+              "index": 1,
+              "text": "1"
+            },
+            {
+              "index": 2,
+              "text": "2"
+            },
+            {
+              "index": 3,
+              "text": "3"
+            },
+            {
+              "index": 4,
+              "text": "4\n\nprepp\n\nLatest Sarkari jobs,\nGovt Exam alerts,\nResults and Vacancies\n> Latest News and Notification\n\n>» Exam Paper Analysis\n\n> Topic-wise weightage\n\n> Previous Year Papers with Answer Key\n\n> Preparation Strategy & Subject-wise Books\nTo know more Click Here\n७७७७७ ७)"
+            }
+          ],
+          "meaningfulStemCharacters": 143,
+          "nonemptyOptionCount": 1,
+          "extractionStatus": "text-partial"
+        }
+      ]
     },
     {
       "cataloguedDate": "2021-12-22",
