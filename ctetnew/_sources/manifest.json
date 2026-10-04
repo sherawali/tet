@@ -1682,5 +1682,153 @@
   ],
   "started": "2026-10-04 03:50:25",
   "elapsed_min": 1.6
+ },
+ "run8": {
+  "papers": [
+   {
+    "label": "feb2026_07feb_S",
+    "fid": "1suavWoDsydGcTk_alVmKhwmyH9GuUJ48",
+    "via": "direct",
+    "zip_files": [
+     "Set-S/",
+     "Set-S/Assamese-S.pdf",
+     "Set-S/Bengali-S.pdf",
+     "Set-S/Main-S.pdf",
+     "Set-S/Marathi-S.pdf",
+     "Set-S/Sanskrit-S.pdf",
+     "Set-S/Urdu-S.pdf"
+    ],
+    "picked": [
+     "Main-S.pdf"
+    ],
+    "status": "done",
+    "extracted": [
+     {
+      "pdf": "Main-S.pdf",
+      "method": "ocr(44p)",
+      "pages": 44,
+      "chars": 95275
+     }
+    ]
+   },
+   {
+    "label": "feb2026_08feb_C",
+    "fid": "1wbsYGwEMnmQyj5eiZ5ZcdHiCGtIeam60",
+    "via": "direct",
+    "zip_files": [
+     "Set-C/",
+     "Set-C/FSC Paper I Assamese CCCC.pdf",
+     "Set-C/FSC Paper I Bengali CCCC.pdf",
+     "Set-C/FSC Paper I Eng+Hin CCCC.pdf",
+     "Set-C/FSC Paper I Garo CCCC.pdf",
+     "Set-C/FSC Paper I Gujarati CCCC.pdf",
+     "Set-C/FSC Paper I Kannada CCCC.pdf",
+     "Set-C/FSC Paper I Khasi CCCC.pdf",
+     "Set-C/FSC Paper I Malayalam CCCC.pdf",
+     "Set-C/FSC Paper I Manipuri CCCC.pdf",
+     "Set-C/FSC Paper I Marathi CCCC.pdf",
+     "Set-C/FSC Paper I Mizo CCCC.pdf",
+     "Set-C/FSC Paper I Nepali CCCC.pdf",
+     "Set-C/FSC Paper I Odia CCCC.pdf",
+     "Set-C/FSC Paper I Punjabi CCCC.pdf",
+     "Set-C/FSC Paper I Sanskrit CCCC.pdf",
+     "Set-C/FSC Paper I Tamil CCCC.pdf",
+     "Set-C/FSC Paper I Telugu CCCC.pdf",
+     "Set-C/FSC Paper I Urdu CCCC.pdf",
+     "Set-C/FSC Tibetan  PAPER-I  CCCC.pdf"
+    ],
+    "picked": [
+     "FSC Paper I Eng+Hin CCCC.pdf"
+    ],
+    "status": "done",
+    "extracted": [
+     {
+      "pdf": "FSC Paper I Eng+Hin CCCC.pdf",
+      "method": "ocr(44p)",
+      "pages": 44,
+      "chars": 98751
+     }
+    ]
+   },
+   {
+    "label": "july2024_A",
+    "fid": "1i61Br_kq-YiSqL-0u_obVV0j0RC_beeL",
+    "via": "direct",
+    "zip_files": [
+     "JSS-24-I Paper I Assamese AAAA.pdf",
+     "JSS-24-I Paper I Bengali AAAA.pdf",
+     "JSS-24-I Paper I Eng+Hin AAAA.pdf",
+     "JSS-24-I Paper I Garo AAAA.pdf",
+     "JSS-24-I Paper I Gujarati AAAA.pdf",
+     "JSS-24-I Paper I Kannada AAAA.pdf",
+     "JSS-24-I Paper I Khasi AAAA.pdf",
+     "JSS-24-I Paper I Malayalam AAAA.pdf",
+     "JSS-24-I Paper I Manipuri AAAA.pdf",
+     "JSS-24-I Paper I Marathi AAAA.pdf",
+     "JSS-24-I Paper I Mizo AAAA.pdf",
+     "JSS-24-I Paper I Nepali AAAA.pdf",
+     "JSS-24-I Paper I Odia AAAA.pdf",
+     "JSS-24-I Paper I Punjabi AAAA.pdf",
+     "JSS-24-I Paper I Sanskrit AAAA.pdf",
+     "JSS-24-I Paper I Tamil AAAA.pdf",
+     "JSS-24-I Paper I Telugu AAAA.pdf",
+     "JSS-24-I Paper I Tibetan AAAA.pdf",
+     "JSS-24-I Paper I Urdu AAAA.pdf"
+    ],
+    "picked": [
+     "JSS-24-I Paper I Eng+Hin AAAA.pdf"
+    ],
+    "status": "done",
+    "extracted": [
+     {
+      "pdf": "JSS-24-I Paper I Eng+Hin AAAA.pdf",
+      "method": "ocr(44p)",
+      "pages": 44,
+      "chars": 92375
+     }
+    ]
+   },
+   {
+    "label": "dec2024_H",
+    "fid": "17kvon5hwlXZiJyOaOHaFUO3zY_Gg6kn5",
+    "via": "direct",
+    "zip_files": [
+     "SED-24-I Assamese HHHH.pdf",
+     "SED-24-I Bengali HHHH.pdf",
+     "SED-24-I Eng+Hin HHHH.pdf",
+     "SED-24-I Garo HHHH.pdf",
+     "SED-24-I Gujarati HHHH.pdf",
+     "SED-24-I Kannada HHHH.pdf",
+     "SED-24-I Khasi HHHH.pdf",
+     "SED-24-I Malayalam HHHH.pdf",
+     "SED-24-I Manipuri HHHH.pdf",
+     "SED-24-I Marathi HHHH.pdf",
+     "SED-24-I Mizo HHHH.pdf",
+     "SED-24-I Nepali HHHH.pdf",
+     "SED-24-I Odia HHHH.pdf",
+     "SED-24-I Punjabi HHHHH.pdf",
+     "SED-24-I Sanskrit H.pdf",
+     "SED-24-I Set 208 Tibetan HHHH.pdf",
+     "SED-24-I Tamil HHHH.pdf",
+     "SED-24-I Telugu HHHH.pdf",
+     "SED-24-I Urdu HHHH.pdf"
+    ],
+    "picked": [
+     "SED-24-I Eng+Hin HHHH.pdf"
+    ],
+    "status": "done",
+    "extracted": [
+     {
+      "pdf": "SED-24-I Eng+Hin HHHH.pdf",
+      "method": "ocr(44p)",
+      "pages": 44,
+      "chars": 99125
+     }
+    ]
+   }
+  ],
+  "errors": [],
+  "started": "2026-10-04 03:59:49",
+  "elapsed_min": 6.8
  }
 }

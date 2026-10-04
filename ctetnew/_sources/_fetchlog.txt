@@ -1,9 +1,5 @@
-  feb2026_07feb_S/Main-S.pdf: text pages=48 chars=106331
-  feb2026_07feb_U/Main-U.pdf: text pages=48 chars=106419
-  feb2026_08feb_C/FSC Paper I Eng+Hin CCCC.pdf: text pages=48 chars=114039
-  feb2026_08feb_E/FSC Paper I Eng+Hin EEEE.pdf: text pages=48 chars=114039
-  july2024_A/JSS-24-I Paper I Eng+Hin AAAA.pdf: text pages=48 chars=107517
-  dec2024_H/SED-24-I Eng+Hin HHHH.pdf: text pages=48 chars=114104
-  jan2024_I/SAS-24-I Paper I Eng+Hin IIII.pdf: text pages=48 chars=111750
-  dec2022_13jan drive-fail
-DONE in 1.6 min; errors=1
+  feb2026_07feb_S/Main-S.pdf: ocr(44p) pages=44 chars=95275
+  feb2026_08feb_C/FSC Paper I Eng+Hin CCCC.pdf: ocr(44p) pages=44 chars=98751
+  july2024_A/JSS-24-I Paper I Eng+Hin AAAA.pdf: ocr(44p) pages=44 chars=92375
+  dec2024_H/SED-24-I Eng+Hin HHHH.pdf: ocr(44p) pages=44 chars=99125
+DONE in 6.8 min; errors=0
