@@ -58,6 +58,18 @@ def drive_dl(fid, dest):
     u2 = f"https://docs.google.com/uc?export=download&id={fid}&confirm=t"
     if fetch(u2, dest, tries=2):
         return "docs.google.com"
+    # virus-scan interstitial: HTML se action+uuid nikaalo
+    try:
+        html = open(dest, encoding="utf-8", errors="ignore").read()
+        m = re.search(r'action="([^"]+)"', html)
+        if m:
+            params = dict(re.findall(r'name="([^"]+)" value="([^"]*)"', html))
+            q = "&".join(f"{k}={v}" for k, v in params.items()) if params else f"id={fid}&export=download&confirm=t"
+            u3 = m.group(1) + "?" + q
+            if fetch(u3, dest, tries=2):
+                return "interstitial"
+    except Exception as e:
+        R["errors"].append(f"interstitial parse: {e}")
     r = sh(f'gdown --fuzzy "https://drive.google.com/file/d/{fid}/view" -O "{dest}"', timeout=300)
     if r and r.returncode == 0 and (is_pdf(dest) or zipfile.is_zipfile(dest)):
         return "gdown"
@@ -69,11 +81,15 @@ def drive_dl(fid, dest):
     return None
 
 def n_pages(pdf):
-    r = sh(f'pdfinfo "{pdf}" | grep -i "^Pages" | awk "{{print $2}}"', timeout=120)
+    r = sh(f'python3 -c "import pdfplumber,sys; print(len(pdfplumber.open(sys.argv[1]).pages))" "{pdf}"', timeout=180)
     try:
         return int(r.stdout.strip())
     except Exception:
         return 0
+
+def pdf_text(pdf):
+    r = sh(f'python3 -c "import pdfplumber,sys; print(chr(10).join((p.extract_text() or \'\') for p in pdfplumber.open(sys.argv[1]).pages))" "{pdf}"', timeout=300)
+    return r.stdout if r and r.returncode == 0 else ""
 
 def ocr_pdf(pdf, max_pages=40, dpi=200):
     base = re.sub(r"[^A-Za-z0-9]+", "_", os.path.basename(pdf))[:60]
@@ -148,10 +164,15 @@ for label, fid, pick in ZIPS:
     ent["picked"] = [os.path.basename(p) for p in picked]
     ex_list = []
     for p in picked[:2]:           # max 2 PDF per zip
-        txt, n = ocr_pdf(p)
+        # text-layer pehle (Main variants digital ho sakte hain)
+        t0 = n_pages(p)
+        txt, how = pdf_text(p), "text"
+        if len(txt) < 400 * max(1, t0):   # scanned lagta hai → OCR
+            txt, t1 = ocr_pdf(p)
+            how, t0 = f"ocr({t1}p)", t1
         stem = re.sub(r"[^A-Za-z0-9_-]+", "_", label + "__" + os.path.basename(p).rsplit(".", 1)[0])[:120]
         open(os.path.join(QPS_DIR, stem + ".txt"), "w", encoding="utf-8").write(txt)
-        ex_list.append({"pdf": os.path.basename(p), "pages_ocr": n, "chars": len(txt)})
+        ex_list.append({"pdf": os.path.basename(p), "method": how, "pages": t0, "chars": len(txt)})
     ent["status"] = "done"; ent["extracted"] = ex_list
     R["papers"].append(ent)
     print(f"  {label}: {[(e['pages_ocr'], e['chars']) for e in ex_list]}", flush=True)
