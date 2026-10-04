@@ -4,7 +4,7 @@
   "purpose": "Source matching and transcription only; no recovered row is imported by this process.",
   "sourcePdfRetention": "not-retained",
   "recoveredCount": 47,
-  "failureCount": 0,
+  "failureCount": 12,
   "documents": [
     {
       "date": "2021-12-16",
@@ -1136,5 +1136,78 @@
       "frontMatterText": "===== PDF PAGE 1 =====\n                           CTET DEC-21 KEY\n    Exam Date:  16/12/2021              PAPER-I -MAIN                             Publish Date: 11/08/22\n              Med: Hindi\n\n QNO ANS       QNO ANS        QNO ANS        QNO ANS\n  1   3             26   1             51   2              76   2\n  2   1             27   1             52   4              77   4\n  3   2             28   3             53   4              78   4\n  4   3             29   3             54   3              79   3\n  5   2             30   2             55   3              80   3\n  6   2             31   2             56   2              81   3\n  7   1             32   3             57   1              82   4\n  8   1             33   1             58   2              83   3\n  9   2             34   2             59   2              84   3\n 10    1,2,3          35   1             60   1              85   3\n 11   4             36   4             61   4              86   4\n 12   1             37   3             62   3              87   2\n 13   2             38   2             63   9              88   4\n 14   2             39   3             64   2              89   4\n 15   3             40   3             65   3              90   3\n 16   2             41   3             66   4\n 17   2             42   2             67   1\n 18   4             43   1             68   2\n 19   1             44   2             69   1\n 20   2             45   4             70   4\n 21   3             46   4             71   3\n 22   2             47   2             72   4\n 23   2             48   3             73   3\n 24   3             49   3             74   2\n 25   1             50   4             75   4\n\nAnswer key 9 means marks awarded to all the candidates\n\n\n\n\n\n                                     Page 1/177\n\n===== PDF PAGE 2 =====\n                          CTET DEC-21 KEY\n   Exam Date:  16/12/2021           PAPER-I 01-ENGLISH                          Publish Date: 11/08/22\n             Med: Hindi\n\nQNO ANS       QNO ANS        QNO ANS        QNO ANS\n 91  3             116  4             141  1\n 92  3             117  3             142  3\n 93  4             118   1,2           143   1,2\n 94  3             119  3             144  2\n 95  2             120  2             145  1\n 96  2             121  4             146  3\n 97  1             122  4             147  2\n 98  1             123  4             148  4\n 99  4             124  2             149  4\n100  4             125  1             150  2\n101  4             126  3\n102  2             127  2\n103  3             128  4\n104  2             129  4\n105  3             130  2\n106  1             131  3\n107  4             132  4\n108  3             133  1\n109  4             134  4\n110  1             135  2\n111  3             136  1\n112  4             137  3\n113  3             138  3\n114  4             139  2\n115  3             140  2\n\n\n\n\n\n                                    Page 2/177\n\n===== PDF PAGE 3 =====\n                          CTET DEC-21 KEY\n   Exam Date:  16/12/2021             PAPER-I 02-HINDI                            Publish Date: 11/08/22\n             Med: Hindi\n\nQNO ANS       QNO ANS        QNO ANS        QNO ANS\n 91  4             116  4             141  1\n 92  1             117  3             142  3\n 93  2             118   1,2           143   1,2,4\n 94  2             119  3             144  2\n 95  3             120  2             145  1\n 96  2             121  3             146  3\n 97  3             122  4             147  2\n 98  1             123  1             148  4\n 99  4             124  1             149  4\n100  4             125  2             150  2\n101  1             126  3\n102  4             127  1\n103  1             128  3\n104  4             129  1\n105  3             130  1\n106  1             131  2\n107  4             132  4\n108  3             133  3\n109  4             134  3\n110  1             135  1\n111  3             136  1\n112  4             137  3\n113  3             138  3\n114  4             139  2\n115  3             140  2\n\n\n\n\n\n                                    Page 3/177\n"
     }
   ],
-  "failures": []
+  "failures": [
+    {
+      "date": "2021-12-16",
+      "source": "careerpower-english-hindi",
+      "url": "https://www.careerpower.in/2019/CTET_Paper1_16_Dec.pdf",
+      "error": "HTTPError: 403 Client Error: Forbidden for url: https://www.careerpower.in/2019/CTET_Paper1_16_Dec.pdf"
+    },
+    {
+      "date": "2021-12-21",
+      "source": "careerpower-english-hindi",
+      "url": "https://www.careerpower.in/2019/CTET_Paper1_21_Dec.pdf",
+      "error": "HTTPError: 403 Client Error: Forbidden for url: https://www.careerpower.in/2019/CTET_Paper1_21_Dec.pdf"
+    },
+    {
+      "date": "2021-12-27",
+      "source": "adda-english-hindi",
+      "url": "https://www.adda247.com/jobs/wp-content/uploads/sites/22/2025/11/17131648/CTET_P1_27_Dec_Eng_Hindi-2021.pdf",
+      "error": "HTTPError: 403 Client Error: Forbidden for url: https://www.adda247.com/jobs/wp-content/uploads/sites/22/2025/11/17131648/CTET_P1_27_Dec_Eng_Hindi-2021.pdf"
+    },
+    {
+      "date": "2021-12-27",
+      "source": "adda-english-sanskrit",
+      "url": "https://www.adda247.com/jobs/wp-content/uploads/sites/22/2025/11/17131657/CTET_P1_27_Dec_Eng_Sanskrit-2021.pdf",
+      "error": "HTTPError: 403 Client Error: Forbidden for url: https://www.adda247.com/jobs/wp-content/uploads/sites/22/2025/11/17131657/CTET_P1_27_Dec_Eng_Sanskrit-2021.pdf"
+    },
+    {
+      "date": "2021-12-27",
+      "source": "adda-hindi-english",
+      "url": "https://www.adda247.com/jobs/wp-content/uploads/sites/22/2025/11/17131704/CTET_P1_27_Dec_Hindi_Eng-2021.pdf",
+      "error": "HTTPError: 403 Client Error: Forbidden for url: https://www.adda247.com/jobs/wp-content/uploads/sites/22/2025/11/17131704/CTET_P1_27_Dec_Hindi_Eng-2021.pdf"
+    },
+    {
+      "date": "2021-12-27",
+      "source": "adda-hindi-sanskrit",
+      "url": "https://www.adda247.com/jobs/wp-content/uploads/sites/22/2025/11/17131714/CTET_P1_27_Dec_Hindi_Sanskrit-2021.pdf",
+      "error": "HTTPError: 403 Client Error: Forbidden for url: https://www.adda247.com/jobs/wp-content/uploads/sites/22/2025/11/17131714/CTET_P1_27_Dec_Hindi_Sanskrit-2021.pdf"
+    },
+    {
+      "date": "2021-12-27",
+      "source": "adda-sanskrit-english",
+      "url": "https://www.adda247.com/jobs/wp-content/uploads/sites/22/2025/11/17131721/CTET_P1_27_Dec_Sanskrit_Eng-2021.pdf",
+      "error": "HTTPError: 403 Client Error: Forbidden for url: https://www.adda247.com/jobs/wp-content/uploads/sites/22/2025/11/17131721/CTET_P1_27_Dec_Sanskrit_Eng-2021.pdf"
+    },
+    {
+      "date": "2021-12-27",
+      "source": "adda-sanskrit-hindi",
+      "url": "https://www.adda247.com/jobs/wp-content/uploads/sites/22/2025/11/17131729/CTET_P1_27_Dec_Sanskrit_Hindi-2021.pdf",
+      "error": "HTTPError: 403 Client Error: Forbidden for url: https://www.adda247.com/jobs/wp-content/uploads/sites/22/2025/11/17131729/CTET_P1_27_Dec_Sanskrit_Hindi-2021.pdf"
+    },
+    {
+      "date": "2022-01-17",
+      "source": "adda-english-hindi",
+      "url": "https://www.adda247.com/jobs/wp-content/uploads/sites/22/2025/11/17132553/CTET_P1_17_jan.pdf",
+      "error": "HTTPError: 403 Client Error: Forbidden for url: https://www.adda247.com/jobs/wp-content/uploads/sites/22/2025/11/17132553/CTET_P1_17_jan.pdf"
+    },
+    {
+      "date": "2022-01-17",
+      "source": "adda-hindi-sanskrit",
+      "url": "https://www.adda247.com/jobs/wp-content/uploads/sites/22/2025/11/17132603/CTET_P1_17_jan_hindi_Sanskrit.pdf",
+      "error": "HTTPError: 403 Client Error: Forbidden for url: https://www.adda247.com/jobs/wp-content/uploads/sites/22/2025/11/17132603/CTET_P1_17_jan_hindi_Sanskrit.pdf"
+    },
+    {
+      "date": "2022-01-21",
+      "source": "adda-english-hindi",
+      "url": "https://www.adda247.com/jobs/wp-content/uploads/sites/22/2025/11/17132615/CTET_P1_21_Jan.pdf",
+      "error": "HTTPError: 403 Client Error: Forbidden for url: https://www.adda247.com/jobs/wp-content/uploads/sites/22/2025/11/17132615/CTET_P1_21_Jan.pdf"
+    },
+    {
+      "date": "2022-01-21",
+      "source": "adda-sanskrit-variant",
+      "url": "https://www.adda247.com/jobs/wp-content/uploads/sites/13/2022/01/01122933/CTET_P1_21_Jan_Sanskrit.pdf",
+      "error": "HTTPError: 403 Client Error: Forbidden for url: https://www.adda247.com/jobs/wp-content/uploads/sites/13/2022/01/01122933/CTET_P1_21_Jan_Sanskrit.pdf"
+    }
+  ]
 }
