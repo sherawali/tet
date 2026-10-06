@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "bank_version": 20261004,
-  "generated": "2026-10-04T14:51:33Z",
+  "bank_version": 20261006,
+  "generated": "2026-10-06T00:00:00Z",
   "topics": [
     "बाल विकास एवं शिक्षणशास्त्र",
     "हिन्दी भाषा",
@@ -26,9 +26,9 @@
   "packs": [
     {
       "id": "0000",
-      "file": "packs/pack-0000-772faa8e38fb.json",
-      "sha256": "772faa8e38fb10ac132cf3b60f7bea64e28e79aa4f69e418f21ea95b64e15f99",
-      "bytes": 215760,
+      "file": "packs/pack-0000-2d89f318bc3d.json",
+      "sha256": "2d89f318bc3d12e6468d043d8c087f060f53da8d0cf01c30e7c0881d6b5b7cdd",
+      "bytes": 216110,
       "count": 200,
       "sections": [
         "cdp"
@@ -36,9 +36,9 @@
     },
     {
       "id": "0001",
-      "file": "packs/pack-0001-2e2bc25ccf6a.json",
-      "sha256": "2e2bc25ccf6a565ebf0d12761c2a41c1ca0d1532b9f3e74b436bc49510924420",
-      "bytes": 140082,
+      "file": "packs/pack-0001-69879e6a3631.json",
+      "sha256": "69879e6a3631a02d4d3743466bbab36e397083fd139afd50937946ad2e0d75fb",
+      "bytes": 140127,
       "count": 200,
       "sections": [
         "cdp",
@@ -47,9 +47,9 @@
     },
     {
       "id": "0002",
-      "file": "packs/pack-0002-7fc6f0a68554.json",
-      "sha256": "7fc6f0a685540b3c6ced036bb77702901d59c5b7f11d184ef87cb23666629523",
-      "bytes": 134880,
+      "file": "packs/pack-0002-47314992b672.json",
+      "sha256": "47314992b67272374f66b5998b64ecf34dcb46652bd419f8a5048d5af8d196b0",
+      "bytes": 135212,
       "count": 200,
       "sections": [
         "english"
@@ -57,9 +57,9 @@
     },
     {
       "id": "0003",
-      "file": "packs/pack-0003-6b91370b8c48.json",
-      "sha256": "6b91370b8c48c855a629c9f889d4b48560368c596cc68ec58310a899fc54c5d2",
-      "bytes": 183346,
+      "file": "packs/pack-0003-aecf5b585250.json",
+      "sha256": "aecf5b58525069bdc3babec404000fa49230fb0e5867dac1cc8556a5267e0b9a",
+      "bytes": 182325,
       "count": 200,
       "sections": [
         "english",
@@ -68,9 +68,9 @@
     },
     {
       "id": "0004",
-      "file": "packs/pack-0004-1a7d9bd2e588.json",
-      "sha256": "1a7d9bd2e5888896a0ca229eda1102d5805d49b10d2f69ffac9a8f622114e699",
-      "bytes": 200004,
+      "file": "packs/pack-0004-467a41b937f5.json",
+      "sha256": "467a41b937f512ca3e84c2c8acfce03f37ff93d1a020aac25c34f1e040031b43",
+      "bytes": 200038,
       "count": 200,
       "sections": [
         "evs",
@@ -79,9 +79,9 @@
     },
     {
       "id": "0005",
-      "file": "packs/pack-0005-40cd2860bc70.json",
-      "sha256": "40cd2860bc70fa649bd3d3a75bb2b12ce3c0af52d2a01347670a1c2326b9a5c3",
-      "bytes": 127008,
+      "file": "packs/pack-0005-74dc8b7871a9.json",
+      "sha256": "74dc8b7871a97fbc712c417a44526cf337ebe5a788f3fad4fcbe2fb0c52ce6db",
+      "bytes": 127075,
       "count": 200,
       "sections": [
         "hindi"
@@ -89,9 +89,9 @@
     },
     {
       "id": "0006",
-      "file": "packs/pack-0006-c7457e35b8bd.json",
-      "sha256": "c7457e35b8bd7ef495dfa1774ba913b2267a5f576704af87398c594d4077c735",
-      "bytes": 159225,
+      "file": "packs/pack-0006-e7409ba8fd38.json",
+      "sha256": "e7409ba8fd385b5e8a4287c4b7ba67f38928635171fb3ae00c8ed722dac0c633",
+      "bytes": 158736,
       "count": 200,
       "sections": [
         "hindi",
@@ -100,9 +100,9 @@
     },
     {
       "id": "0007",
-      "file": "packs/pack-0007-9c0476b6694d.json",
-      "sha256": "9c0476b6694d921f444e2c9aa111ecc33423388fb6b62266cce66697216e46cd",
-      "bytes": 199789,
+      "file": "packs/pack-0007-2e6fcb701a31.json",
+      "sha256": "2e6fcb701a312fb5d8b58b2810b96d4ef59fc7652a7d35a90c62cd3dfcd1dc2f",
+      "bytes": 199863,
       "count": 200,
       "sections": [
         "math"
@@ -110,9 +110,9 @@
     },
     {
       "id": "0008",
-      "file": "packs/pack-0008-41394e788c86.json",
-      "sha256": "41394e788c86f01665e2f66ae328de751c8aa719f5bd4e3b8584b9380cf1cfe5",
-      "bytes": 134105,
+      "file": "packs/pack-0008-e3b9ab8497cb.json",
+      "sha256": "e3b9ab8497cbbbd94c8ccd6db4804ecd94eca87b7ea24c1c6189aa28a13b8678",
+      "bytes": 134191,
       "count": 200,
       "sections": [
         "math",
@@ -121,9 +121,9 @@
     },
     {
       "id": "0009",
-      "file": "packs/pack-0009-66ad9605d7eb.json",
-      "sha256": "66ad9605d7ebb5b149a3b0dcd32cdf65af892f8f71ccda84a79e58d896301d1d",
-      "bytes": 150107,
+      "file": "packs/pack-0009-d7e56cc15262.json",
+      "sha256": "d7e56cc15262b4faa98eec84c5a5f8d5671cf25770a108e0758a88f3148725d6",
+      "bytes": 150087,
       "count": 200,
       "sections": [
         "cdp",
@@ -132,9 +132,9 @@
     },
     {
       "id": "0010",
-      "file": "packs/pack-0010-3a4fb7367620.json",
-      "sha256": "3a4fb7367620bc36d5fa7e776f8401a5f16e9f07a17720e0b65987ccf2340613",
-      "bytes": 136410,
+      "file": "packs/pack-0010-b24c1f5d66d9.json",
+      "sha256": "b24c1f5d66d98235b605318c738f7ea9414950e8937a6053d8ac4cf3e25e7c1e",
+      "bytes": 136440,
       "count": 200,
       "sections": [
         "cdp",
@@ -143,9 +143,9 @@
     },
     {
       "id": "0011",
-      "file": "packs/pack-0011-ed271c04e654.json",
-      "sha256": "ed271c04e654cb47e52c5d027e746ced7c95790e75a624786b37ffdaae1aebab",
-      "bytes": 118874,
+      "file": "packs/pack-0011-e164c5484375.json",
+      "sha256": "e164c5484375ab0c5ee18dfbc79c547ad7547cf028d155d9d9759ca367229977",
+      "bytes": 118860,
       "count": 200,
       "sections": [
         "english",
@@ -154,9 +154,9 @@
     },
     {
       "id": "0012",
-      "file": "packs/pack-0012-f3d2836c7888.json",
-      "sha256": "f3d2836c7888477f810e2a580b1a1eb931c2dcd1e9356dd6bd434c3533f4528b",
-      "bytes": 140798,
+      "file": "packs/pack-0012-c77246da9ca9.json",
+      "sha256": "c77246da9ca99137e419dc3ef9a061847ad11fac3d03b0b2efe91939e4345379",
+      "bytes": 140712,
       "count": 200,
       "sections": [
         "evs",
@@ -165,9 +165,9 @@
     },
     {
       "id": "0013",
-      "file": "packs/pack-0013-e2915b44308e.json",
-      "sha256": "e2915b44308ea62071aad6db31de9def1c9d179664fe776781b9fa1eeacf0714",
-      "bytes": 117453,
+      "file": "packs/pack-0013-518727c612a3.json",
+      "sha256": "518727c612a3a72d0c35f76162c8d26a9c700e1afef7205caae0867b53d69272",
+      "bytes": 117355,
       "count": 200,
       "sections": [
         "hindi",
@@ -176,9 +176,9 @@
     },
     {
       "id": "0014",
-      "file": "packs/pack-0014-989a858955a2.json",
-      "sha256": "989a858955a2f346d16cb28c49ab3d56de8c2d5f222fa2a7aae0f576891abab2",
-      "bytes": 46759,
+      "file": "packs/pack-0014-f4c9f2afdd60.json",
+      "sha256": "f4c9f2afdd60eed703ab0c4f9a3b1982654769cccb339996531c33bd09cf1eb0",
+      "bytes": 46767,
       "count": 80,
       "sections": [
         "math"
