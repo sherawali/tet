@@ -66,6 +66,30 @@ Run the structure and populated-content validator:
 python3 tools/v2/validate_structure.py
 ```
 
+## Sanitization and release build
+
+Sanitize the active NDJSON content and check the pending diff without writing:
+
+```bash
+python3 tools/v2/sanitize_bank.py --check
+python3 tools/v2/sanitize_bank.py
+```
+
+The sanitizer changes only localized display text. It preserves question IDs, option
+IDs/order, answer keys, forms, appearances, and source/audit provenance; malformed
+Markdown tables are left untouched rather than having cells guessed or discarded.
+Then build the SQLite app database and publish a fresh manifest/packs:
+
+```bash
+python3 tools/v2/build_app_db.py
+python3 tools/v2/build_cdn_packs.py
+```
+
+Builds use content version `20261006` from `tools/v2/build_config.py`. SQLite is
+built to a temporary file and atomically replaces the runtime database only after
+integrity/count checks pass. CDN packs are immutable and retained across releases;
+the manifest is atomically replaced only after all new content-addressed packs verify.
+
 The deterministic, source-limited importer is:
 
 ```bash

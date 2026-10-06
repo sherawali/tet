@@ -8,7 +8,17 @@ import os
 import re
 import sqlite3
 import sys
+import tempfile
 from pathlib import Path
+
+from build_config import BANK_VERSION
+from text_sanitizer import (
+    normalize_markdown_tables,
+    sanitize_display_text,
+    sanitize_option_text,
+    sanitize_question_stem,
+    sanitize_stimulus_text,
+)
 
 REPO_ROOT = Path(__file__).resolve().parents[2] # tet_repo
 BANK = REPO_ROOT / "bank-v2"
@@ -23,43 +33,65 @@ else:
     RUNTIME_DIR.mkdir(parents=True, exist_ok=True)
     DB_PATH = RUNTIME_DIR / "tet_mock_vault.db"
 
+# Useful for isolated builds; the normal app/runtime target remains the default.
+if os.environ.get("TET_DB_PATH"):
+    DB_PATH = Path(os.environ["TET_DB_PATH"]).expanduser().resolve()
+    DB_PATH.parent.mkdir(parents=True, exist_ok=True)
+
+
+def _localized_text(value: object, *locales: str) -> str:
+    if isinstance(value, dict):
+        for locale in locales:
+            text = value.get(locale)
+            if isinstance(text, str) and text:
+                return text
+        return ""
+    return str(value) if value is not None else ""
+
+
+def _clean_table_cell(value: object) -> str:
+    text = sanitize_display_text(str(value) if value is not None else "")
+    return text.replace("|", r"\|")
+
 
 def table_to_markdown(block: dict) -> str:
-    caption = block.get("caption", {}).get("hi") or block.get("caption", {}).get("en") or ""
+    caption = sanitize_display_text(_localized_text(block.get("caption", {}), "hi", "en"))
     cols = block.get("columns", [])
-    headers = [c.get("header", {}).get("hi") or c.get("header", {}).get("en") or c.get("id", "") for c in cols]
+    headers = [
+        _clean_table_cell(_localized_text(c.get("header", {}), "hi", "en") or c.get("id", ""))
+        for c in cols
+    ]
     col_ids = [c.get("id") for c in cols]
-    
+
     lines = []
     if caption:
-        lines.append(f"**{caption}**\n")
+        lines.append(caption)
     lines.append("| " + " | ".join(headers) + " |")
     lines.append("| " + " | ".join(["---"] * len(headers)) + " |")
-    for r in block.get("rows", []):
-        cells = r.get("cells", {})
-        row_vals = []
-        for cid in col_ids:
-            c_val = cells.get(cid, {})
-            val_str = c_val.get("hi") or c_val.get("en") or str(c_val)
-            row_vals.append(str(val_str))
-        lines.append("| " + " | ".join(row_vals) + " |")
-    return "\n".join(lines)
+    for row in block.get("rows", []):
+        cells = row.get("cells", {})
+        row_values = []
+        for column_id in col_ids:
+            cell = cells.get(column_id, {})
+            row_values.append(_clean_table_cell(_localized_text(cell, "hi", "en") or cell))
+        lines.append("| " + " | ".join(row_values) + " |")
+    return normalize_markdown_tables("\n".join(lines))
 
 
 def get_stimulus_body_and_dir(s: dict) -> tuple[str, str, str]:
     kind = s.get("type", "prose")
     instructions = s.get("instructions", {})
-    dir_text = instructions.get("hi") or instructions.get("en") or instructions.get("sa") or ""
-    
+    dir_text = sanitize_display_text(_localized_text(instructions, "hi", "en", "sa"))
+
     body_parts = []
     for block in s.get("content", []):
         if block.get("kind") == "table":
             body_parts.append(table_to_markdown(block))
         else:
             text_dict = block.get("text", {})
-            t = text_dict.get("hi") or text_dict.get("en") or text_dict.get("sa") or ""
-            if t:
-                body_parts.append(t)
+            text = _localized_text(text_dict, "hi", "en", "sa")
+            if text:
+                body_parts.append(sanitize_stimulus_text(text))
     body = "\n\n".join(body_parts)
     return kind, dir_text, body
 
@@ -176,12 +208,9 @@ def classify_topic(sec: str, qh: str, qe: str | None, pid: str | None) -> str:
     return sec.capitalize()
 
 
-def main():
+def _build_database(temp_db_path: Path) -> int:
     print(f"Building SQLite database from {BANK}...")
-    if DB_PATH.exists():
-        DB_PATH.unlink()
-
-    conn = sqlite3.connect(DB_PATH)
+    conn = sqlite3.connect(temp_db_path)
     cur = conn.cursor()
 
     cur.execute("PRAGMA user_version = 1")
@@ -274,6 +303,7 @@ def main():
 
     # 1. Collect all appearances for year & order lookup
     q_appearances: dict[str, dict] = {}
+    appearance_count = 0
     for app_file in sorted(BANK.rglob("appearances.ndjson")):
         for line in app_file.read_text(encoding="utf-8").splitlines():
             if not line.strip(): continue
@@ -286,13 +316,17 @@ def main():
                 app.get("questionNumber", 0), app.get("officialOptionId", "")
             ))
             q_appearances[app["questionId"]] = app
+            appearance_count += 1
 
     # 2. Collect paper forms
+    form_count = 0
     for form_file in sorted(BANK.rglob("forms.ndjson")):
         for line in form_file.read_text(encoding="utf-8").splitlines():
             if not line.strip(): continue
             f = json.loads(line)
-            title = f.get("title", {}).get("hi") or f.get("title", {}).get("en") or f.get("id", "")
+            title = sanitize_display_text(
+                f.get("title", {}).get("hi") or f.get("title", {}).get("en") or f.get("id", "")
+            )
             cur.execute("""
                 INSERT INTO paper_forms (id, exam, paper, exam_date, set_code, title, total_questions, modules_json)
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?)
@@ -300,6 +334,7 @@ def main():
                 f["id"], f["exam"], f["paper"], f["examDate"], f["setCode"],
                 title, f["totalQuestions"], json.dumps(f.get("modules", []), ensure_ascii=False)
             ))
+            form_count += 1
 
     # 3. Collect stimuli
     stimuli_seen = set()
@@ -369,21 +404,34 @@ def main():
             # Prompt text
             prompt_block = q.get("prompt", [{}])[0]
             text_map = prompt_block.get("text", {})
-            q_hi = text_map.get("hi") or text_map.get("sa") or text_map.get("en") or ""
-            q_en = text_map.get("en") if "en" in text_map else None
+            q_hi = sanitize_question_stem(
+                text_map.get("hi") or text_map.get("sa") or text_map.get("en") or ""
+            )
+            q_en = (
+                sanitize_question_stem(text_map.get("en"))
+                if isinstance(text_map.get("en"), str)
+                else None
+            )
 
             # Options text
             opts_hi = []
             opts_en = []
             has_en_opts = False
-            for opt in q.get("options", []):
+            for option_index, opt in enumerate(q.get("options", [])):
                 opt_content = opt.get("content", [{}])[0]
                 ot = opt_content.get("text", {})
-                hi_text = ot.get("hi") or ot.get("sa") or ot.get("en") or ""
+                option_id = opt.get("id")
+                hi_text = sanitize_option_text(
+                    ot.get("hi") or ot.get("sa") or ot.get("en") or "",
+                    option_id,
+                    option_index,
+                )
                 opts_hi.append(hi_text)
                 if "en" in ot:
                     has_en_opts = True
-                    opts_en.append(ot["en"])
+                    opts_en.append(
+                        sanitize_option_text(ot["en"], option_id, option_index)
+                    )
                 else:
                     opts_en.append(hi_text)
 
@@ -421,19 +469,49 @@ def main():
     cur.execute("CREATE INDEX idx_q_exams ON questions(exams)")
 
     # Meta
-    cur.execute("INSERT INTO meta (key, val) VALUES (?, ?)", ("bank_version", "20261004"))
+    cur.execute("INSERT INTO meta (key, val) VALUES (?, ?)", ("bank_version", str(BANK_VERSION)))
     cur.execute("INSERT INTO meta (key, val) VALUES (?, ?)", ("total_questions", str(total_q)))
     cur.execute("INSERT INTO meta (key, val) VALUES (?, ?)", ("total_passages", str(len(stimuli_seen))))
     cur.execute("INSERT INTO meta (key, val) VALUES (?, ?)", ("is_v2_migrated", "true"))
 
     conn.commit()
+    integrity_result = cur.execute("PRAGMA integrity_check").fetchone()
+    if integrity_result != ("ok",):
+        raise sqlite3.DatabaseError(f"SQLite integrity check failed: {integrity_result}")
+    expected_rows = {
+        "questions": total_q,
+        "passages": len(stimuli_seen),
+        "paper_forms": form_count,
+        "appearances": appearance_count,
+    }
+    for table_name, expected_count in expected_rows.items():
+        actual_count = cur.execute(f"SELECT COUNT(*) FROM {table_name}").fetchone()[0]
+        if actual_count != expected_count:
+            raise sqlite3.DatabaseError(
+                f"{table_name} count {actual_count} != expected {expected_count}"
+            )
     conn.close()
 
-    db_size = DB_PATH.stat().st_size
+    db_size = temp_db_path.stat().st_size
     print(f"Successfully built SQLite DB at {DB_PATH}")
     print(f"Total Questions: {total_q}")
     print(f"Total Passages: {len(stimuli_seen)}")
     print(f"Database size: {db_size / 1024:.1f} KB ({db_size / (1024*1024):.2f} MB)")
+    return 0
+
+
+def main() -> int:
+    DB_PATH.parent.mkdir(parents=True, exist_ok=True)
+    with tempfile.TemporaryDirectory(
+        prefix=f".{DB_PATH.name}.build-", dir=DB_PATH.parent
+    ) as staging_dir:
+        temp_db_path = Path(staging_dir) / DB_PATH.name
+        result = _build_database(temp_db_path)
+        if result != 0:
+            return result
+        # Replace only after a complete SQLite build; a previous database remains
+        # available if parsing, inserts, or integrity checks fail.
+        os.replace(temp_db_path, DB_PATH)
     return 0
 
 
