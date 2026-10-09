@@ -13,10 +13,6 @@
   stimulus `ctet-p1-2026-stimulus-en-pr-91` · `language-1/english`
 - ? `ctet-p1-2026-e-lang1-en-q094` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
   stimulus `ctet-p1-2026-stimulus-en-pr-91` · `language-1/english`
-- ? `ctet-p1-2026-e-lang1-en-q099` **fits-sibling-better** — fits `ctet-p1-2026-stimulus-en-po-100` far better (0.70) than its own stimulus (0.12) - possible swapped passage  
-  stimulus `ctet-p1-2026-stimulus-en-pr-91` · `language-1/english`
-- ? `ctet-p1-2026-e-lang1-en-q099` **better-fits-other-stimulus** — own score 0.12, but ctet-p1-2026-stimulus-en-po-100 score 0.70  
-  stimulus `ctet-p1-2026-stimulus-en-pr-91` · `language-1/english`
 - ? `ctet-p1-2026-e-lang1-en-q100` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
   stimulus `ctet-p1-2026-stimulus-en-po-100` · `language-1/english`
 - ? `ctet-p1-2026-e-lang1-en-q103` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
@@ -45,8 +41,6 @@
   stimulus `ctet-p1-2026-stimulus-en-pr-121` · `language-2/english`
 - ? `ctet-p1-2026-e-lang2-en-q127` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
   stimulus `ctet-p1-2026-stimulus-en-pr-121` · `language-2/english`
-- ? `ctet-p1-2026-e-lang2-en-q128` **fits-sibling-better** — fits `ctet-p1-2026-stimulus-en-pr-129` far better (0.92) than its own stimulus (0.00) - possible swapped passage  
-  stimulus `ctet-p1-2026-stimulus-en-pr-121` · `language-2/english`
 - ? `ctet-p1-2026-e-lang2-en-q128` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
   stimulus `ctet-p1-2026-stimulus-en-pr-121` · `language-2/english`
 - ? `ctet-p1-2026-e-lang2-en-q132` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
@@ -59,14 +53,10 @@
   stimulus `ctet-p1-2026-stimulus-hi-pr-121` · `language-2/hindi`
 - ? `ctet-p1-2026-e-lang2-hi-q126` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
   stimulus `ctet-p1-2026-stimulus-hi-pr-121` · `language-2/hindi`
-- ? `ctet-p1-2026-e-lang2-hi-q128` **fits-sibling-better** — fits `ctet-p1-2026-stimulus-hi-pr-129` far better (0.83) than its own stimulus (0.01) - possible swapped passage  
-  stimulus `ctet-p1-2026-stimulus-hi-pr-121` · `language-2/hindi`
-- ? `ctet-p1-2026-e-lang2-hi-q128` **better-fits-other-stimulus** — own score 0.01, but ctet-p1-2026-stimulus-hi-pr-129 score 0.83  
-  stimulus `ctet-p1-2026-stimulus-hi-pr-121` · `language-2/hindi`
 
 ---
 ## `language-1/english` — ctet-p1-2026-stimulus-en-pr-91
-**verdict: ठीक** · type=prose · प्रश्न=9 · बिना-मिलान=2 · median score=0.25
+**verdict: ठीक** · type=prose · प्रश्न=9 · बिना-मिलान=2 · median score=0.308
 
 निर्देश: Direction (91-99): Read the passage given below and answer the questions that follow by selecting the correct/most appropriate options.
 
@@ -84,7 +74,7 @@ The fact of the matter was that Roopa's parents differed on Roopa's upbringing a
 - ✓ `q096` score=0.55 — The next day, Roopa had to appear in her examination in [ ________ ] .
 - ✓ `q097` score=0.40 — Why did Tarawati’s husband ‘berate’ her?
 - ✓ `q098` score=0.14 — What social issue is highlighted in the passage?
-- ✓ `q099` score=0.12 — ‘Things were lying at sixes and sevens [ ________ ] ’ means [ ________ ]
+- ✓ `q099` score=0.36 — ‘Things were lying at sixes and sevens [ ________ ] ’ means [ ________ ]
 
 ---
 ## `language-1/english` — ctet-p1-2026-stimulus-en-po-100
@@ -229,7 +219,7 @@ But changes came in slowly. There were new kinds of work, especially on account 
 - ✓ `q125` score=0.10 — गद्यांश के अनुसार [ ________ ] अपने शरीर का राजा बनना चाहता है।
 - ✗ `q126` score=0.00 — गद्यांश के अनुसार [ ________ ] और [ ________ ] जीवन का सत्य हैं।
 - ✓ `q127` score=0.11 — गद्यांश के अनुसार एक व्यक्ति का जन्म [ ________ ] बनने के लिए हुआ है।
-- ~ `q128` score=0.01 — गद्यांश के अनुसार व्यक्ति [ ________ ] के लिए संघर्ष करता है।
+- ✓ `q128` score=0.08 — गद्यांश के अनुसार व्यक्ति [ ________ ] के लिए संघर्ष करता है।
 
 ---
 ## `language-2/hindi` — ctet-p1-2026-stimulus-hi-pr-129

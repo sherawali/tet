@@ -2,9 +2,9 @@
 
 `score` = प्रश्न के content शब्दों में से कितने अपने गद्यांश में मिलते हैं (0.00 = एक भी शब्द नहीं)। verdict पूरे ब्लॉक का है।
 
-- ठीक: **3** ब्लॉक
+- ठीक: **4** ब्लॉक
 - आधा-अधूरा मिलान: **1** ब्लॉक
-- गलत गद्यांश/कविता जुड़ा है: **4** ब्लॉक
+- गलत गद्यांश/कविता जुड़ा है: **3** ब्लॉक
 - ये पेडागॉजी प्रश्न हैं, गद्यांश पर निर्भर नहीं: **2** ब्लॉक
 - संस्कृत रूपों के कारण स्वतः जाँच संभव नहीं - पढ़कर देखें: **2** ब्लॉक
 
@@ -32,24 +32,6 @@
   stimulus `ctet-p1-2018-stimulus-hi-pr-97` · `language-1/hindi`
 - ? `ctet-p1-2018-m-lang1-hi-q103` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
   stimulus `ctet-p1-2018-stimulus-hi-pr-97` · `language-1/hindi`
-- ? `ctet-p1-2018-m-lang2-en-q121` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2018-stimulus-en-pr-121` · `language-2/english`
-- ? `ctet-p1-2018-m-lang2-en-q122` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2018-stimulus-en-pr-121` · `language-2/english`
-- ? `ctet-p1-2018-m-lang2-en-q123` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2018-stimulus-en-pr-121` · `language-2/english`
-- ? `ctet-p1-2018-m-lang2-en-q124` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2018-stimulus-en-pr-121` · `language-2/english`
-- ? `ctet-p1-2018-m-lang2-en-q125` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2018-stimulus-en-pr-121` · `language-2/english`
-- ? `ctet-p1-2018-m-lang2-en-q126` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2018-stimulus-en-pr-121` · `language-2/english`
-- ? `ctet-p1-2018-m-lang2-en-q127` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2018-stimulus-en-pr-121` · `language-2/english`
-- ? `ctet-p1-2018-m-lang2-en-q128` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2018-stimulus-en-pr-121` · `language-2/english`
-- ? `ctet-p1-2018-m-lang2-en-q129` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2018-stimulus-en-pr-121` · `language-2/english`
 - ? `ctet-p1-2018-m-lang2-hi-q122` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
   stimulus `ctet-p1-2018-stimulus-hi-pr-121` · `language-2/hindi`
 - ? `ctet-p1-2018-m-lang2-hi-q124` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
@@ -229,23 +211,27 @@ And be like him, an
 
 ---
 ## `language-2/english` — ctet-p1-2018-stimulus-en-pr-121
-**verdict: गलत गद्यांश/कविता जुड़ा है** · type=prose · प्रश्न=9 · बिना-मिलान=9 · median score=0.0
+**verdict: ठीक** · type=prose · प्रश्न=9 · बिना-मिलान=0 · median score=0.357
 
 निर्देश: Direction: Read the passage given below and answer the questions that follow (Q. Nos. 121 to 129) by selecting the correct/most appropriate options.
 
 ```
-Scientific temper is the willingness to question, investigate, and accept evidence. It frees the human mind from superstition and blind faith, enabling societies to progress on the path of reason and innovation.
+Man who is believed to have evolved from apes, is a curious mixture of varied motives. He is not only the subject of needs but also their creator. He not only seeks to satisfy his needs but also caters to his desire for beauty and grace. He is eager to satisfy his passion for more and more knowledge.
+
+Although in a general way, the maxim 'Necessity is the mother of invention' is true but by no means is the whole truth. Man is something much greater than an intelligent being using his intellect to make newer inventions from time to time. He has within him a spirit which is ever exhorting him to cut down his needs and learn to be happy with what he has.
+
+The real purpose underlying this maxim lies in its utility in the worldly sense. It tells us to be up and doing, not to be passive in our attitude to life. It asks us not to remain slaves of old habits and ways of life. We must face the new situations with a creative mind. Every new difficulty, every new problem, which confirms us in life can be tackled successfully with the spirit of inventiveness.
 ```
 
-- ✗ `q121` score=0.00 — Which one of the following is not the whole truth according to the passage?
-- ✗ `q122` score=0.00 — What does the maxim mentioned in the passage teach us?
-- ✗ `q123` score=0.00 — What does the spirit within man tell him to do?
-- ✗ `q124` score=0.00 — Which of the following statements is/are true in the context of the passage?
-- ✗ `q125` score=0.00 — Which one of the following is similar in meaning to the word 'maxim' as used in the passage?
-- ✗ `q126` score=0.00 — Which one of the following is not the characteristic of man as per the passage?
-- ✗ `q127` score=0.00 — Which one of the following statements is not true as per the passage?
-- ✗ `q128` score=0.00 — Choose the word which is opposite in meaning to the word 'seeks' as used in the passage.
-- ✗ `q129` score=0.00 — Which one of the following is similar in meaning to the word 'exhorting' as used in the passage?
+- ✓ `q121` score=0.79 — Which one of the following is not the whole truth according to the passage?
+- ✓ `q122` score=0.43 — What does the maxim mentioned in the passage teach us?
+- ✓ `q123` score=0.75 — What does the spirit within man tell him to do?
+- ✓ `q124` score=0.33 — Which of the following statements is/are true in the context of the passage?
+- ✓ `q125` score=0.11 — Which one of the following is similar in meaning to the word 'maxim' as used in the passage?
+- ✓ `q126` score=0.47 — Which one of the following is not the characteristic of man as per the passage?
+- ✓ `q127` score=0.36 — Which one of the following statements is not true as per the passage?
+- ✓ `q128` score=0.11 — Choose the word which is opposite in meaning to the word 'seeks' as used in the passage.
+- ✓ `q129` score=0.11 — Which one of the following is similar in meaning to the word 'exhorting' as used in the passage?
 
 ---
 ## `language-2/english` — ctet-p1-2018-stimulus-en-pr-129
