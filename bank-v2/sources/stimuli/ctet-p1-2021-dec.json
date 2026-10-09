@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "id": "ctet-p1-2021-dec-stimulus-sources",
+  "exam": "ctet",
+  "paper": 1,
+  "cycleLabel": "2021-dec",
+  "examDate": "2021-12-31",
+  "setCode": "d",
+  "provenance": {
+    "retrieved": "2026-10-09",
+    "source": "CTET Paper-I held 31 December 2021. Passage text: Testbook's Comprehension blocks for this paper.",
+    "url": "https://testbook.com/question-answer/ques--623c3dbfeaa973646540ea87",
+    "method": "the passage already in the bank was compared word for word against the rendering on the solved-paper page; they are identical, so this entry records provenance for text the importer happened to get right rather than replacing anything.",
+    "caveat": "Only the stimuli listed below have a source. The rest of this cycle - including the Q121-128 passage about बहती नदियाँ/गंगा-यमुना/हिमालय - is still without provenance. Note that this cycle is the 31 December 2021 paper, not the 31 January 2021 one; solved-paper pages for January 2021 carry different passages (पुस्तक-चयन and चिनार वृक्ष) and must not be applied here.",
+    "cycleNote": "Bank ids carry the set token 'd'. Testbook tags these questions 'CTET Paper 1 - 31st Dec 2021 (English-Hindi-Sanskrit)'."
+  },
+  "stimuli": [
+    {
+      "stimulusId": "ctet-p1-2021-dec-stimulus-hi-pr-121",
+      "section": "language-2/hindi",
+      "language": "hi",
+      "languageSlot": 2,
+      "type": "prose",
+      "questionRange": [
+        121,
+        128
+      ],
+      "instructions": "निर्देश (121-128): नीचे दिए गए गद्यांश को ध्यानपूर्वक पढ़िए तथा पूछे गए प्रश्नों के सबसे उपयुक्त उत्तर वाले विकल्प को चुनिए :",
+      "text": "अभी तक मैंने उन्हें दूर से देखा था। बड़ी गंभीर, शांत, अपने आप में खोई हुई लगती थीं। संभ्रांत महिला की भांति वे प्रतीत होती थीं। उनके प्रति मेरे दिल में आदर और श्रद्धा के भाव थे। परन्तु इस बार जब मैं हिमालय के कंधे पर चढ़ा तो वे कुछ और रूप में सामने थीं। मैं हैरान था कि यही दुबली-पतली गंगा, यही यमुना, यही सतलुज समतल मैदानों में उतरकर विशाल कैसे हो जाती हैं! इनका उछलना और कूदना, खिलखिलाकर लगातार हँसते जाना, इनकी यह भाव-भंगिमा, इनका यह उल्लास कहाँ गायब हो जाता है मैदान में जाकर? किसी लड़की को जब मैं देखता हूँ, किसी कली पर जब मेरा ध्यान अटक जाता है, तब भी इतना कौतूहल और विस्मय नहीं होता, जितना कि इन बेटियों की बाललीला देखकर।\n\nकहाँ ये भागी जा रही हैं? वह कौन लक्ष्य है जिसने इन्हें बेचैन कर रखा है? अपने महान पिता का विराट प्रेम पाकर भी अगर इनका हृदय अतृप्त ही है तो वह कौन होगा जो इनकी प्यास मिटा सकेगा। बरफ जली नंगी पहाड़ियाँ, छोटे-छोटे पौधों से भरी घाटियाँ, बंधुर अधित्यकाएँ, सरसब्ज उपत्यकाएँ- ऐसा है इनका लीला निकेतन। खेलते-खेलते जब जरा दूर निकल जाती हैं तो देवदार, चीड़, सरो, चिनार, सफेदा, कैल के जंगलों से पहुँचकर शायद इन्हें बीती बातें याद करने का मौका मिल जाता होगा। कौन जाने, बुड्ढा हिमालय अपनी इन नटखट बेटियों के लिए कितना सिर धुनता होगा!",
+      "note": "Replaces an invented placeholder about वैज्ञानिक अनुसंधान and प्रकृति के साथ संतुलन that had nothing to do with the questions, which are all about the Himalayan rivers as the writer's नटखट बेटियाँ. Source: Testbook's Comprehension block for CTET Paper 1 held 31 December 2021 at testbook.com/question-answer/ques--623c3547f986d9cc6c8df2db, which carries Q121 against this passage and gives 'बहती नदियों को' - the bank's option c. All eight bank answers were checked against the text: संभ्रांत महिलाओं को and बहती नदियों को (Q121); the गंगा-यमुना विशालता और सूक्ष्मता contrast (Q122); 'कहाँ ये भागी जा रही हैं' (Q123); उछलना और कूदना (Q124); 'इनका हृदय अतृप्त ही है' (Q125); and Q127 quotes the passage's own 'इतना कौतूहल और विस्मय नहीं होता'. Q126 and Q128 are word-formation items built on उल्लास and सरसब्ज, both words from the passage."
+    },
+    {
+      "stimulusId": "ctet-p1-2021-dec-stimulus-hi-pr-129",
+      "section": "language-2/hindi",
+      "language": "hi",
+      "languageSlot": 2,
+      "type": "prose",
+      "questionRange": [
+        129,
+        135
+      ],
+      "instructions": "निर्देश (129-135) नीचे दिए गए गद्यांश को ध्यानपूर्वक पढ़िए तथा पूछे गए प्रश्नों के सबसे उपयुक्त उत्तर वाले विकल्प को चुनिए :",
+      "text": "मेरे विचार से तो शिक्षा का सार तथ्यों का संकलन नहीं, बल्कि मन की एकाग्रता प्राप्त करना है। यदि मुझे फिर से अपनी शिक्षा आरम्भ करनी हो और इसमें मेरा वश चले, तो मैं तथ्यों का अध्ययन कदापि न करूँ। मैं मन की एकाग्रता और अनासक्ति की क्षमता अर्जित करूँगा और उपकरण के पूरी तौर से तैयार हो जाने पर उससे अपनी इच्छानुसार तथ्यों का संकलन करूँगा। बच्चे में मन की एकाग्रता तथा अनासक्ति का सामर्थ्य एक साथ विकसित होना चाहिए।",
+      "note": "Text unchanged - it already matched the source exactly. Recorded so that the block stops counting as an unproven placeholder. Every question in Q129-135 derives from it: Q129 शिक्षा का सार = मन की एकाग्रता, Q131 and Q132 एकाग्रता and शिक्षा, Q133 'कदापि न करूँ' = कभी न करूँ, Q134 'ज्ञात' का विलोम = अज्ञात, Q135 संज्ञा = बच्चा (the passage's own word). Q130 मानव-मन की शक्ति असीम is the one inference the passage supports rather than states. The audit had marked this block wrong-passage on lexical overlap alone; reading it shows the pairing is right and only the provenance was missing."
+    }
+  ]
+}
