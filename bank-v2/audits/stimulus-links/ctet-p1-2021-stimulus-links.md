@@ -3,14 +3,11 @@
 `score` = प्रश्न के content शब्दों में से कितने अपने गद्यांश में मिलते हैं (0.00 = एक भी शब्द नहीं)। verdict पूरे ब्लॉक का है।
 
 - ठीक: **5** ब्लॉक
-- आधा-अधूरा मिलान: **2** ब्लॉक
-- गलत गद्यांश/कविता जुड़ा है: **1** ब्लॉक
+- आधा-अधूरा मिलान: **3** ब्लॉक
 - संस्कृत रूपों के कारण स्वतः जाँच संभव नहीं - पढ़कर देखें: **2** ब्लॉक
 
 ## प्रश्न-स्तर की गड़बड़ियाँ
 
-- ✗ `ctet-p1-2021-dec-d-lang1-hi-q104` **quoted-text-not-in-stimulus** — question refers to 'सब स्वाँसों की स्वाँस में।' which does not occur in its own stimulus  
-  stimulus `ctet-p1-2021-dec-stimulus-hi-po-100` · `language-1/hindi`
 - ? `ctet-p1-2021-dec-d-lang1-en-q096` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
   stimulus `ctet-p1-2021-dec-stimulus-en-pr-91` · `language-1/english`
 - ? `ctet-p1-2021-dec-d-lang1-en-q097` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
@@ -19,9 +16,9 @@
   stimulus `ctet-p1-2021-dec-stimulus-en-po-100` · `language-1/english`
 - ? `ctet-p1-2021-dec-d-lang1-en-q105` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
   stimulus `ctet-p1-2021-dec-stimulus-en-po-100` · `language-1/english`
-- ? `ctet-p1-2021-dec-d-lang1-hi-q102` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
+- ? `ctet-p1-2021-dec-d-lang1-hi-q101` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
   stimulus `ctet-p1-2021-dec-stimulus-hi-po-100` · `language-1/hindi`
-- ? `ctet-p1-2021-dec-d-lang1-hi-q104` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
+- ? `ctet-p1-2021-dec-d-lang1-hi-q102` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
   stimulus `ctet-p1-2021-dec-stimulus-hi-po-100` · `language-1/hindi`
 - ? `ctet-p1-2021-dec-d-lang1-hi-q105` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
   stimulus `ctet-p1-2021-dec-stimulus-hi-po-100` · `language-1/hindi`
@@ -105,22 +102,23 @@ The stronger wind, the stronger trees.
 
 ---
 ## `language-1/hindi` — ctet-p1-2021-dec-stimulus-hi-po-100
-**verdict: गलत गद्यांश/कविता जुड़ा है** · type=poem · प्रश्न=6 · बिना-मिलान=4 · median score=0.0
+**verdict: आधा-अधूरा मिलान** · type=poem · प्रश्न=6 · बिना-मिलान=3 · median score=0.2
 
 निर्देश: निर्देश (100 से 105): नीचे दिए गए काव्यांश को पढ़कर पूछे गए प्रश्नों के सबसे उपयुक्त उत्तर वाले विकल्प को चुनिए :
 
 ```
-उड़ चल, हारिल, लिए हाथ में यही अकेला तिनका ओछा!
-ऊषा जाग उठी प्राची में, कैसी बाट, भरोसा कैसा?
-शक्ति रहे तेरे हाथों में, छूट न जाए यह पावन प्रण,
-ध्वंस हुआ तो क्या, फिर-फिर से रचता जा नव-सर्जन-क्षण।
+मौको कहाँ ढूँढ़े रे बँदे,
+मैं तो तेरे पास में। ना मैं देवल न मैं मसजिद, ना काबे कैलास में।
+ना तो कौनो क्रिया-करम में, नाहि जोग बैराग में।
+खोजी होय तो तुरतै मिलिहौं, पल भर की तालास में।
+कहै कबीर सुनो भाई साधो, सब स्वाँसों की स्वाँस में।
 ```
 
-- ✓ `q100` score=0.14 — ‘मैं तो तेरे पास में’ रेखांकित शब्द किसके लिए प्रयुक्त हुआ है?
-- ✓ `q101` score=0.06 — कवि के अनुसार ईश्वर को धार्मिक स्थलों में नहीं पाया जा सकता, क्योंकि वह निवास करता है –
+- ✓ `q100` score=0.21 — ‘मैं तो तेरे पास में’ रेखांकित शब्द किसके लिए प्रयुक्त हुआ है?
+- ✗ `q101` score=0.00 — कवि के अनुसार ईश्वर को धार्मिक स्थलों में नहीं पाया जा सकता, क्योंकि वह निवास करता है –
 - ✗ `q102` score=0.00 — कवि के अनुसार ईश्वर तुरंत किसे मिल सकता है?
-- ✗ `q103` score=0.00 — ‘ढूँढ़ें’ शब्द है –
-- ✗ `q104` score=0.00 — ‘सब स्वाँसों की स्वाँस में।’ का आशय है –
+- ✓ `q103` score=0.20 — ‘ढूँढ़ें’ शब्द है –
+- ✓ `q104` score=0.23 — ‘सब स्वाँसों की स्वाँस में।’ का आशय है –
 - ✗ `q105` score=0.00 — ‘कौनों’ का अर्थ है –
 
 ---

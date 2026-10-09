@@ -16,6 +16,20 @@
   },
   "stimuli": [
     {
+      "stimulusId": "ctet-p1-2021-dec-stimulus-hi-po-100",
+      "section": "language-1/hindi",
+      "language": "hi",
+      "languageSlot": 1,
+      "type": "poem",
+      "questionRange": [
+        100,
+        105
+      ],
+      "instructions": "निर्देश (100 से 105): नीचे दिए गए काव्यांश को पढ़कर पूछे गए प्रश्नों के सबसे उपयुक्त उत्तर वाले विकल्प को चुनिए :",
+      "text": "मौको कहाँ ढूँढ़े रे बँदे,\nमैं तो तेरे पास में। ना मैं देवल न मैं मसजिद, ना काबे कैलास में।\nना तो कौनो क्रिया-करम में, नाहि जोग बैराग में।\nखोजी होय तो तुरतै मिलिहौं, पल भर की तालास में।\nकहै कबीर सुनो भाई साधो, सब स्वाँसों की स्वाँस में।",
+      "note": "Replaces an invented placeholder beginning 'उड़ चल, हारिल, लिए हाथ में यही अकेला तिनका ओछा!', which contains none of the words the six questions ask about. The real text is Kabir's pad, as quoted by Testbook's Comprehension block for CTET Paper 1 held 31 December 2021 at testbook.com/question-answer/ques--6242d00db75cbb68ec477285. All six bank answers were checked against it: 'मैं तो तेरे पास में' is God speaking, so the underlined word refers to ईश्वर; God is in no देवल, मसजिद, काबा, कैलास, क्रिया-करम or जोग-वैराग, hence प्रत्येक प्राणी में; 'खोजी होय तो तुरतै मिलिहौं' gives समर्पित भक्त; 'ढूँढ़े' is a verb; 'सब स्वाँसों की स्वाँस में' means God is सर्वव्यापी; and Testbook's own solution for 'कौनों' is 'किसी भी', which is the bank's option a. Line breaks follow the web rendering, which runs the first two lines together."
+    },
+    {
       "stimulusId": "ctet-p1-2021-dec-stimulus-hi-pr-121",
       "section": "language-2/hindi",
       "language": "hi",
