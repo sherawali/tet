@@ -66,6 +66,22 @@ Run the structure and populated-content validator:
 python3 tools/v2/validate_structure.py
 ```
 
+`validate_structure.py` only proves the 2020 cycle is internally consistent. It does not
+check whether a passage really belongs to the questions wired to it. For that run the
+stimulus-link audit, which writes one report per exam+year under
+`audits/stimulus-links/` and exits non-zero on a provable defect:
+
+```bash
+python3 tools/v2/audit_stimulus_links.py
+python3 tools/v2/audit_stimulus_links.py --exam ctet --year 2016
+```
+
+Its findings are summarised in [`../docs/STIMULUS_LINK_AUDIT.md`](../docs/STIMULUS_LINK_AUDIT.md):
+every CTET cycle imported by `import_all_ctet.py` (2016, 2018, 2019, 2021-Dec, 2023, 2024,
+2026) carries placeholder passage/poem text hardcoded in `stimuli_specs`, so those stimuli
+do not match their questions. Only the 2020 cycle (31 January 2021), imported by
+`import_ctet_2020_paper1.py`, has genuine stimulus text.
+
 ## Sanitization and release build
 
 Sanitize the active NDJSON content and check the pending diff without writing:
