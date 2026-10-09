@@ -28,7 +28,10 @@
       "language": "hi",
       "languageSlot": 2,
       "type": "prose",
-      "questionRange": [121, 128],
+      "questionRange": [
+        121,
+        128
+      ],
       "instructions": "निर्देश (121-128): निम्नलिखित गद्यांश को ध्यानपूर्वक पढ़िए तथा पूछे गए प्रश्नों के उत्तर के रूप में उचित विकल्प का चयन कीजिए—",
       "text": "इस बार मौसम विज्ञानियों ने घोषणा की हुई है कि अल नीनो प्रभाव के कारण मानसून कमजोर रह सकता है। चैत के महीने में बारिश होने के हालात पर घाघा ने भी यही कहा है। चैत यानी मार्च-अप्रैल के दिनों में अगर बारिश होती है तो सावन सूखा जा सकता है, बात सिर्फ इस बार के मानसून की नहीं है। अमेरिका में हाल ही में ताजे पानी के हालात पर हुए एक सम्मेलन में संयुक्त राष्ट्र संघ के महासचिव एंटोनियो गुतेरेज ने एक रिपोर्ट जारी की है। इसमें कहा गया है कि 2050 तक पानी का सबसे बड़ा संकट भारत में आने वाला है। भारत पर संकट इसलिए है क्योंकि गंगा, यमुना, ब्रह्मपुत्र और सिंधु जैसी नदियों का पानी धीरे-धीरे कम होता जाएगा। सिर्फ गंगा की बात करें तो 2500 किलोमीटर लंबी यह नदी उत्तराखंड से बंगाल के बीच कई राज्यों से गुजरती है। इसके किनारों पर बसे नगरों, कस्बों और गाँवों की करीब चालीस करोड़ की आबादी की पानी से जुड़ी जरूरतों को यह पूरा करती है। इसके पानी का स्रोत गंगोत्री ग्लेशियर है। पर्यावरण विज्ञानियों का दावा है कि पिछले 87 साल में तीस किलोमीटर लंबे इस ग्लेशियर का पौने दो किलोमीटर हिस्सा पिघलकर गायब हो चुका है। अभी जलवायु परिवर्तन का जो हाल है, वह पूरे हिमालय क्षेत्र के लिए खतरनाक माना जा रहा है। भारत के हिस्से वाले हिमालय में 9775 ग्लेशियर बताए जाते हैं।",
       "note": "Q124 asks the population living on the Ganga's banks. The passage says 'करीब चालीस करोड़' (about 40 crore), so option (1) 40 करोड़ is correct; the bank currently stores answer 'c' (87 करोड़), which is the 87 years of glacier loss. Answer key needs review."
@@ -39,9 +42,123 @@
       "language": "hi",
       "languageSlot": 2,
       "type": "prose",
-      "questionRange": [129, 135],
+      "questionRange": [
+        129,
+        135
+      ],
       "instructions": "निर्देश (129-135): निम्नलिखित गद्यांश को ध्यानपूर्वक पढ़िए तथा पूछे गए प्रश्नों के उत्तर के रूप में उचित विकल्प का चयन कीजिए—",
       "text": "इस संसार में सब कुछ अस्थायी है। पाप और पुण्य दोनों इस संसार से संबंधित हैं, इसलिए पाप और पुण्य भी अस्थायी हैं। पुण्य सुख देकर और पाप दुख देकर अंत को प्राप्त होता है। लेकिन पाप और पुण्य में थोड़ा अंतर यह है कि पुण्य का फल यदि हम नहीं चाहते तो उस फल का अस्वीकार करने के लिए स्वतंत्र हैं। पाप लोहे की जंजीर है तो पुण्य सोने की। बंधन दोनों में है। लोहे की जंजीर से छूटने का आदमी का मन भी करता है लेकिन सोने की जंजीर से जो बँधा हुआ हो उसको वह बंधन प्यारा लगने लगता है। उसमें उसको धन नजर आता है, उससे छूटने का मन नहीं करता।"
+    },
+    {
+      "stimulusId": "ctet-p1-2024-stimulus-en-pr-121",
+      "section": "language-2/english",
+      "language": "en",
+      "languageSlot": 2,
+      "type": "prose",
+      "questionRange": [
+        121,
+        128
+      ],
+      "instructions": "Direction (121-128): Read the passage given below and answer the questions that follow by selecting the correct/most appropriate options.",
+      "text": "But the Lion went into the forest and found his own supper and no one ever knew what it was, for he didn't mention it. And the scarecrow found a tree full of nuts and filled Dorothy's basket with them, so that she would not be hungry for a long time. She thought this was very kind and thoughtful of the scarecrow, but she laughed heartily at the awkward way in which the poor creature picked up the nuts. His padded hands were so clumsy and the nuts so small that he dropped almost as many as he put in the basket. But the scarecrow did not mind how long it took him to fill the basket, for it enabled him to keep away from the fire, as he feared a spark might get into his straw and burn him up. So he kept a good distance away from the flames, and only came near to cover Dorothy with dry leaves when she lay down to sleep. These kept her snug and warm and she slept soundly until morning.",
+      "note": "L. Frank Baum, The Wonderful Wizard of Oz. The paper's Q127 option (2) is printed as 'Both (3) and (4)'; option (3) also reads 'tried the basket' where 'filled' is meant - OCR artefacts of the scanned paper, recorded here, not silently fixed."
+    },
+    {
+      "stimulusId": "ctet-p1-2024-stimulus-en-pr-129",
+      "section": "language-2/english",
+      "language": "en",
+      "languageSlot": 2,
+      "type": "prose",
+      "questionRange": [
+        129,
+        135
+      ],
+      "instructions": "Direction (129-135): Read the passage given below and answer the questions that follow by selecting the correct/most appropriate options.",
+      "text": "Usually the first question I ask a newbie birder is, “What do you think is the most important physical requisite to be a birder? Your eyes, your ears, your nose or any other?”\n\nMost often, the answer is “eyes”, but several do home into what is the most important faculty at least, according to me: your ears. Spotting birds in foliage is hard enough, but if you hear them, you know they are there.\n\nBut early the other morning, I realised it went much beyond that. The first bird call I heard as I left the house for my walk was the madcap ringing laugh of the black-rumped flameback, earlier known as the golden-backed woodpecker. It was a wild, exultant laugh that set the tone and mood for the entire day. And then I realised that every bird call evokes a different reaction, memory or emotion in the listener.\n\nIndian mynas, for example, invariably remind me of people in Delhi – always ready to argue and pick a fight, belligerent and in your face. Yet, they taught me not to make sweeping generalisation because when a pair perch on the window sill in the afternoons, they have meaningful civilised conversations with each other. There is inquiry, humour and affection in their voices.",
+      "note": "Adapted from 'How birdsong and bird calls can set the tone for the day', Indian Express, 15 March 2023. Spelling normalised where the scan was unreadable ('yo'->'you', 'a least'->'at least', 'known a'->'known as', 'heard and left'->'heard as I left'); the question stems in the paper use the normalised forms."
     }
-  ]
+  ],
+  "answerKey": {
+    "source": "CTET Solved Paper 21 Jan 2024 (Oswaal360), ANSWER KEY tables",
+    "url": "https://www.oswaal360.com/pluginfile.php/10939/mod_folder/content/0/CTET/Paper%201/2024/21%20Jan%202024.pdf",
+    "note": "Only the sections whose key table could be tied back to the passage text are included. Hindi-I and Sanskrit keys are NOT applied yet.",
+    "sections": {
+      "language-2/english": {
+        "range": [
+          121,
+          150
+        ],
+        "answers": {
+          "121": "d",
+          "122": "c",
+          "123": "a",
+          "124": "d",
+          "125": "d",
+          "126": "a",
+          "127": "b",
+          "128": "d",
+          "129": "d",
+          "130": "c",
+          "131": "a",
+          "132": "d",
+          "133": "d",
+          "134": "b",
+          "135": "a",
+          "136": "d",
+          "137": "d",
+          "138": "c",
+          "139": "d",
+          "140": "c",
+          "141": "c",
+          "142": "b",
+          "143": "c",
+          "144": "d",
+          "145": "c",
+          "146": "d",
+          "147": "b",
+          "148": "a",
+          "149": "a",
+          "150": "a"
+        }
+      },
+      "language-2/hindi": {
+        "range": [
+          121,
+          150
+        ],
+        "answers": {
+          "121": "d",
+          "122": "a",
+          "123": "d",
+          "124": "a",
+          "125": "a",
+          "126": "d",
+          "127": "a",
+          "128": "a",
+          "129": "d",
+          "130": "d",
+          "131": "c",
+          "132": "a",
+          "133": "b",
+          "134": "c",
+          "135": "c",
+          "136": "d",
+          "137": "d",
+          "138": "b",
+          "139": "d",
+          "140": "a",
+          "141": "b",
+          "142": "b",
+          "143": "b",
+          "144": "d",
+          "145": "c",
+          "146": "d",
+          "147": "b",
+          "148": "c",
+          "149": "a",
+          "150": "a"
+        }
+      }
+    }
+  }
 }

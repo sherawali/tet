@@ -2,8 +2,8 @@
 
 `score` = प्रश्न के content शब्दों में से कितने अपने गद्यांश में मिलते हैं (0.00 = एक भी शब्द नहीं)। verdict पूरे ब्लॉक का है।
 
-- ठीक: **3** ब्लॉक
-- गलत गद्यांश/कविता जुड़ा है: **5** ब्लॉक
+- ठीक: **5** ब्लॉक
+- गलत गद्यांश/कविता जुड़ा है: **3** ब्लॉक
 - संस्कृत रूपों के कारण स्वतः जाँच संभव नहीं - पढ़कर देखें: **4** ब्लॉक
 
 ## प्रश्न-स्तर की गड़बड़ियाँ
@@ -22,14 +22,6 @@
   stimulus `ctet-p1-2024-stimulus-sa-pr-91` · `language-1/sanskrit`
 - ✗ `ctet-p1-2024-i-lang1-sa-q098` **quoted-text-not-in-stimulus** — question refers to 'दुःसाध्यानि शारीरिकमानसिकरोगाणि निराकृत्य' which does not occur in its own stimulus  
   stimulus `ctet-p1-2024-stimulus-sa-pr-91` · `language-1/sanskrit`
-- ✗ `ctet-p1-2024-i-lang2-en-q124` **quoted-text-not-in-stimulus** — question refers to '[ ________ ] she would not be hungry' which does not occur in its own stimulus  
-  stimulus `ctet-p1-2024-stimulus-en-pr-121` · `language-2/english`
-- ✗ `ctet-p1-2024-i-lang2-en-q133` **quoted-text-not-in-stimulus** — question refers to 'It was a wild exultant laugh [ ________ ]' which does not occur in its own stimulus  
-  stimulus `ctet-p1-2024-stimulus-en-pr-129` · `language-2/english`
-- ✗ `ctet-p1-2024-i-lang2-en-q134` **quoted-text-not-in-stimulus** — question refers to '[ ________ ] belligerent in your face.' which does not occur in its own stimulus  
-  stimulus `ctet-p1-2024-stimulus-en-pr-129` · `language-2/english`
-- ✗ `ctet-p1-2024-i-lang2-en-q135` **quoted-text-not-in-stimulus** — question refers to 'The first bird call I heard as I left the house [ ________ ]' which does not occur in its own stimulus  
-  stimulus `ctet-p1-2024-stimulus-en-pr-129` · `language-2/english`
 - ✗ `ctet-p1-2024-i-lang2-sa-q124` **quoted-text-not-in-stimulus** — question refers to 'योगविषयका एतादृक्षा बहवो मन्त्राः' which does not occur in its own stimulus  
   stimulus `ctet-p1-2024-stimulus-sa-pr-121` · `language-2/sanskrit`
 - ✗ `ctet-p1-2024-i-lang2-sa-q126` **quoted-text-not-in-stimulus** — question refers to 'वेदव्यासेन व्यासभाष्यमिति नाम्ना लिखितमासीत्' which does not occur in its own stimulus  
@@ -70,34 +62,6 @@
   stimulus `ctet-p1-2024-stimulus-hi-po-100` · `language-1/hindi`
 - ? `ctet-p1-2024-i-lang1-hi-q105` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
   stimulus `ctet-p1-2024-stimulus-hi-po-100` · `language-1/hindi`
-- ? `ctet-p1-2024-i-lang2-en-q121` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2024-stimulus-en-pr-121` · `language-2/english`
-- ? `ctet-p1-2024-i-lang2-en-q122` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2024-stimulus-en-pr-121` · `language-2/english`
-- ? `ctet-p1-2024-i-lang2-en-q123` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2024-stimulus-en-pr-121` · `language-2/english`
-- ? `ctet-p1-2024-i-lang2-en-q124` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2024-stimulus-en-pr-121` · `language-2/english`
-- ? `ctet-p1-2024-i-lang2-en-q125` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2024-stimulus-en-pr-121` · `language-2/english`
-- ? `ctet-p1-2024-i-lang2-en-q126` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2024-stimulus-en-pr-121` · `language-2/english`
-- ? `ctet-p1-2024-i-lang2-en-q127` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2024-stimulus-en-pr-121` · `language-2/english`
-- ? `ctet-p1-2024-i-lang2-en-q128` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2024-stimulus-en-pr-121` · `language-2/english`
-- ? `ctet-p1-2024-i-lang2-en-q129` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2024-stimulus-en-pr-129` · `language-2/english`
-- ? `ctet-p1-2024-i-lang2-en-q130` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2024-stimulus-en-pr-129` · `language-2/english`
-- ? `ctet-p1-2024-i-lang2-en-q132` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2024-stimulus-en-pr-129` · `language-2/english`
-- ? `ctet-p1-2024-i-lang2-en-q133` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2024-stimulus-en-pr-129` · `language-2/english`
-- ? `ctet-p1-2024-i-lang2-en-q134` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2024-stimulus-en-pr-129` · `language-2/english`
-- ? `ctet-p1-2024-i-lang2-en-q135` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2024-stimulus-en-pr-129` · `language-2/english`
 
 ---
 ## `language-1/english` — ctet-p1-2024-stimulus-en-pr-91
@@ -221,40 +185,46 @@ Fluttering and dancing in the breeze.
 
 ---
 ## `language-2/english` — ctet-p1-2024-stimulus-en-pr-121
-**verdict: गलत गद्यांश/कविता जुड़ा है** · type=prose · प्रश्न=8 · बिना-मिलान=8 · median score=0.0
+**verdict: ठीक** · type=prose · प्रश्न=8 · बिना-मिलान=0 · median score=0.429
 
-निर्देश: Direction: Read the passage given below and answer the questions that follow by selecting the most appropriate option.
+निर्देश: Direction (121-128): Read the passage given below and answer the questions that follow by selecting the correct/most appropriate options.
 
 ```
-Reading opens doors to vast realms of knowledge and imagination. A person who reads widely cultivates empathy and sharpens their intellect.
+But the Lion went into the forest and found his own supper and no one ever knew what it was, for he didn't mention it. And the scarecrow found a tree full of nuts and filled Dorothy's basket with them, so that she would not be hungry for a long time. She thought this was very kind and thoughtful of the scarecrow, but she laughed heartily at the awkward way in which the poor creature picked up the nuts. His padded hands were so clumsy and the nuts so small that he dropped almost as many as he put in the basket. But the scarecrow did not mind how long it took him to fill the basket, for it enabled him to keep away from the fire, as he feared a spark might get into his straw and burn him up. So he kept a good distance away from the flames, and only came near to cover Dorothy with dry leaves when she lay down to sleep. These kept her snug and warm and she slept soundly until morning.
 ```
 
-- ✗ `q121` score=0.00 — Study the following statements : (A) The Scarecrow gathered nuts as the tree was full of them. (B) He feared for his life so he got busy in gathering nuts.
-- ✗ `q122` score=0.00 — Study the following statements : (A) Dorothy was obliged to the Scarecrow. (B) The Scarecrow vanquished his hunger with nuts. (C) He gathered so many nuts that 
-- ✗ `q123` score=0.00 — No one ever knew what it was.
-- ✗ `q124` score=0.00 — ' [ ________ ] she would not be hungry'. The underlined word is a/an [ ________ ] .
-- ✗ `q125` score=0.00 — Which one of the following statements is not true?
-- ✗ `q126` score=0.00 — They kept her snug. The underlined word nearly means the same as:
-- ✗ `q127` score=0.00 — Which one of the following statements is true?
-- ✗ `q128` score=0.00 — Which of the following statements is/are true?
+- ✓ `q121` score=0.50 — Study the following statements : (A) The Scarecrow gathered nuts as the tree was full of them. (B) He feared for his life so he got busy in gathering nuts.
+- ✓ `q122` score=0.55 — Study the following statements : (A) Dorothy was obliged to the Scarecrow. (B) The Scarecrow vanquished his hunger with nuts. (C) He gathered so many nuts that 
+- ✓ `q123` score=0.43 — No one ever knew what it was.
+- ✓ `q124` score=0.22 — ' [ ________ ] she would not be hungry'. The underlined word is a/an [ ________ ] .
+- ✓ `q125` score=0.43 — Which one of the following statements is not true?
+- ✓ `q126` score=0.31 — They kept her snug. The underlined word nearly means the same as:
+- ✓ `q127` score=0.39 — Which one of the following statements is true?
+- ✓ `q128` score=0.65 — Which of the following statements is/are true?
 
 ---
 ## `language-2/english` — ctet-p1-2024-stimulus-en-pr-129
-**verdict: गलत गद्यांश/कविता जुड़ा है** · type=prose · प्रश्न=7 · बिना-मिलान=6 · median score=0.0
+**verdict: ठीक** · type=prose · प्रश्न=7 · बिना-मिलान=0 · median score=0.333
 
-निर्देश: Direction: Read the passage given below and answer the questions that follow by selecting the most appropriate option.
+निर्देश: Direction (129-135): Read the passage given below and answer the questions that follow by selecting the correct/most appropriate options.
 
 ```
-Cooperation in communities fosters resilience during times of challenge. When people work together towards shared goals, society thrives.
+Usually the first question I ask a newbie birder is, “What do you think is the most important physical requisite to be a birder? Your eyes, your ears, your nose or any other?”
+
+Most often, the answer is “eyes”, but several do home into what is the most important faculty at least, according to me: your ears. Spotting birds in foliage is hard enough, but if you hear them, you know they are there.
+
+But early the other morning, I realised it went much beyond that. The first bird call I heard as I left the house for my walk was the madcap ringing laugh of the black-rumped flameback, earlier known as the golden-backed woodpecker. It was a wild, exultant laugh that set the tone and mood for the entire day. And then I realised that every bird call evokes a different reaction, memory or emotion in the listener.
+
+Indian mynas, for example, invariably remind me of people in Delhi – always ready to argue and pick a fight, belligerent and in your face. Yet, they taught me not to make sweeping generalisation because when a pair perch on the window sill in the afternoons, they have meaningful civilised conversations with each other. There is inquiry, humour and affection in their voices.
 ```
 
-- ✗ `q129` score=0.00 — Why should a birder have sharp ears?
-- ✗ `q130` score=0.00 — Study the following statements : (A) Different chirpings of birds evoke different emotions in a birder. (B) Sometime birds make their nests hidden from public v
-- ~ `q131` score=0.04 — Study the following statements : (A) The writer approves of the conduct of Delhi people. (B) Indian mynas are generally known for their noisy quarrels. (C) A my
-- ✗ `q132` score=0.00 — Who is a birder?
-- ✗ `q133` score=0.00 — 'It was a wild exultant laugh [ ________ ] ' The underlined word is a/an [ ________ ] .
-- ✗ `q134` score=0.00 — ' [ ________ ] belligerent in your face.' The underlined word nearly means the same as :
-- ✗ `q135` score=0.00 — 'The first bird call I heard as I left the house [ ________ ] ' The underlined is a/an [ ________ ] clause.
+- ✓ `q129` score=0.42 — Why should a birder have sharp ears?
+- ✓ `q130` score=0.33 — Study the following statements : (A) Different chirpings of birds evoke different emotions in a birder. (B) Sometime birds make their nests hidden from public v
+- ✓ `q131` score=0.30 — Study the following statements : (A) The writer approves of the conduct of Delhi people. (B) Indian mynas are generally known for their noisy quarrels. (C) A my
+- ✓ `q132` score=0.33 — Who is a birder?
+- ✓ `q133` score=0.30 — 'It was a wild exultant laugh [ ________ ] ' The underlined word is a/an [ ________ ] .
+- ✓ `q134` score=0.33 — ' [ ________ ] belligerent in your face.' The underlined word nearly means the same as :
+- ✓ `q135` score=0.46 — 'The first bird call I heard as I left the house [ ________ ] ' The underlined is a/an [ ________ ] clause.
 
 ---
 ## `language-2/hindi` — ctet-p1-2024-stimulus-hi-pr-121
