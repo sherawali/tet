@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "id": "ctet-p1-2026-stimulus-sources",
+  "exam": "ctet",
+  "paper": 1,
+  "cycleLabel": "2026",
+  "examDate": "2026-02-08",
+  "setCode": "e",
+  "provenance": {
+    "retrieved": "2026-10-09",
+    "source": "CTET Official Paper-I held on 08 Feb 2026 Shift 2, as reproduced by Testbook; Kalahandi from poemist.com",
+    "url": "https://testbook.com/question-answer/the-next-day-roopa-had-to-appear-in-her-examinati--6997f1961e8323a2dcc884dc",
+    "officialArchive": "https://ctet.nic.in/question-paper-feb-2026/",
+    "method": "question-by-question comprehension blocks quoted by the solved-paper pages",
+    "caveat": "the solved page reproduces the extract with some words dropped by its own OCR; re-verify against the official OMR paper PDF"
+  },
+  "stimuli": [
+    {
+      "stimulusId": "ctet-p1-2026-stimulus-en-pr-91",
+      "section": "language-1/english",
+      "language": "en",
+      "languageSlot": 1,
+      "type": "prose",
+      "questionRange": [
+        91,
+        99
+      ],
+      "instructions": "Direction (91-99): Read the passage given below and answer the questions that follow by selecting the correct/most appropriate options.",
+      "text": "Soon some idea struck her and she went to the window and hollered, 'Roopa! Roopa!' After calling Roopa, she had a look at the things that she had brought for her. Roopa had to sit for her home examination the next day and Tarawati had collected things like some kitchen items, a bucket, and a stool that Roopa required for the practical examination. While looking at the things that she had collected for Roopa, Tarawati recalled her husband who died a few years ago. She remembered him berating her for not treating Roopa well. 'Roopa's right! Do not think only sons deserve all love and care and not daughters. I'm determined to give good education so that she leads a happy and meaningful life.' Thinking of her husband's admonition on this account, Tarawati felt emotional.\n\nThe fact of the matter was that Roopa's parents differed on Roopa's upbringing and fought with each other on the issue. The fight continued for days together and often it was Roopa who intervened to broker peace between them. On his death-bed too, Roopa's father had cried and pleaded with her to treat Roopa in a fair manner. Hugging Roopa, he had told Tarawati, \"Take care of Roopa. Give her good education and let her decide the course of her life herself.\" While recalling the interaction, tears rolled down Tarawati's eyes.\n\nMeanwhile, the evening shadows were getting darker. Tarawati was exhausted and had a headache. She looked at her dust-laden feet and then around the room. Things were lying at sixes and sevens. In order to bring some semblance of order, she forced herself to get up and get going. Then she called her daughter again, \"Roopa! Roopa!\"",
+      "note": "Every Q91-99 stem is quoted by this extract: 'hollered', 'to broker peace between them', 'her husband's admonition', 'berating her', 'Things were lying at sixes and sevens', Roopa's home examination."
+    },
+    {
+      "stimulusId": "ctet-p1-2026-stimulus-hi-pr-91",
+      "section": "language-1/hindi",
+      "language": "hi",
+      "languageSlot": 1,
+      "type": "prose",
+      "questionRange": [
+        91,
+        99
+      ],
+      "instructions": "निर्देश (91-99): निम्नलिखित गद्यांश को ध्यानपूर्वक पढ़िए तथा पूछे गए प्रश्नों के उत्तर के रूप में उचित विकल्प का चयन कीजिए—",
+      "text": "अहंकार मनुष्य के चरित्र को पतन की ओर ले जाने वाली प्रवृत्ति है। प्रत्येक व्यक्ति को अहंकार भाव का त्याग कर समभाव और सद्भाव से जीवन जीने का प्रयत्न करना चाहिए। अच्छे उद्देश्य से किए गए कार्य भी मलिन हो जाते हैं जब वे अहंकार से ग्रसित होते हैं। अगर कोई अपने आपको सर्वश्रेष्ठ मानता है तो यह उसकी सबसे बड़ी भूल है, क्योंकि दुनिया में हर किसी से बड़ा कोई न कोई अवश्य होता है। सृष्टि के निर्माता ने ऐसा चक्र बनाया है कि कोई भी अपने आप को दुनिया में सर्वश्रेष्ठ नहीं समझ सकता। मान-सम्मान तब कम हो जाता है जब मनुष्य अहंकार में आकर दूसरों का अपमान करने लगता है।",
+      "note": "Reconstructed. The placeholder body already in the bank carried the same vocabulary (सृष्टि का चक्र, समभाव/सद्भाव, पतन, सर्वश्रेष्ठ मानना, सबसे बड़ी भूल), so the wording was expanded rather than replaced; re-verify against the official paper."
+    },
+    {
+      "stimulusId": "ctet-p1-2026-stimulus-en-po-100",
+      "section": "language-1/english",
+      "language": "en",
+      "languageSlot": 1,
+      "type": "poem",
+      "questionRange": [
+        100,
+        105
+      ],
+      "instructions": "Direction (100-105): Read the poem given below and answer the questions that follow by selecting the correct/most appropriate options.",
+      "text": "Put away the road maps now.\nTo go there, you do not need helicopters any more;\nwherever there is hunger, there Kalahandi is.\nThe god of rain turned away his face.\nThere was not one green leaf left on the trees for supper.\nThe whole village a graveyard.\nCracked ground, drab river sand.\nAll the plans failed; the poverty line receded further.\n\nWherever you stare, there Kalahandi is:\nin the sunken eyes of living skeletons,\nin rags which do not cover the frail bodies,\nin the utensils pawned off for food,\nin the crumbling huts with unthatched roofs,\nin the exclusive prosperity of having owned two earthen pots.\n\nKalahandi is there everywhere:\nin the gathering of famished crowds before charity kitchens,\nin market places where children are auctioned off,\nin the sighs of young girls sold to brothels,\nin the silent procession of helpless people leaving their hearth and home.\n\nKalahandi is very close to us:\nin the occasional contribution of our souls,\nin the unexpected nagging of conscience,\nin the rare repentance in empathy,\nin the nightmares appearing through sound sleep,\nin disease, in hunger, in helplessness,\nin the abject fear of an impending bloodshed.",
+      "note": "Jagannath Prasad Das, 'Kalahandi'. Two circulating versions differ: poemhunter has 'Come, look at Kalahandi closer: in the crocodile tears of false press statements...' and ends 'How could we then walk into the celebrated portals of the twenty-first century, leaving Kalahandi behind?'. The poemist version used here contains every line the questions quote: 'The god of rain turned away his face', 'The whole village a graveyard', 'the poverty line receded further'."
+    },
+    {
+      "stimulusId": "ctet-p1-2026-stimulus-en-pr-129",
+      "section": "language-2/english",
+      "language": "en",
+      "languageSlot": 2,
+      "type": "prose",
+      "questionRange": [
+        129,
+        135
+      ],
+      "instructions": "Direction (129-135): Read the passage given below and answer the questions that follow : (129-135)",
+      "text": "I have told you already about the formation of tribes. When agriculture came, and there was some division of work or labour, it became necessary for some person in the tribe to organise the work. Even before this, the tribes wanted someone to lead them to battle against another tribe. The leader was usually the oldest man in the group. He was called, or rather we call him now, the patriarch. As the oldest, he was supposed to be the most experienced and to have the most knowledge.\n\nThis patriarch was not very different from the other members of the tribe. He worked with the others, and all the food that was produced was divided between all the members of the tribe. Everything belonged to the tribe. It was not like we have now, each person having his separate house and money and many other things. Whatever a man earned was divided up as it all belonged to the tribe. The patriarch or the organiser of the tribe did this dividing.\n\nBut changes came in slowly. There were new kinds of work, especially on account of agriculture, and the patriarch had to spend most of his time in organising and seeing that work was properly done by all the members of the tribe. Little by little, the patriarch gave up doing the ordinary work or labour of the people. He thus became quite different from the rest of the people. We see now another kind of division of work or labour: the patriarch doing the organizing and ordering people about, and the other people working in the fields and hunting and going to battle, and obeying the orders of their leader, the patriarch.\n\nIf there was a war or fight between two tribes, the patriarch became even more powerful, for in wartime it was not possible to fight well without a leader. So the patriarch became very powerful.",
+      "note": "Recovered from inside the bank itself: the importer appended this passage to the last option of the previous block's final question (see docs/STIMULUS_LINK_AUDIT.md), so the text is the paper's own, not a reconstruction."
+    },
+    {
+      "stimulusId": "ctet-p1-2026-stimulus-hi-pr-129",
+      "section": "language-2/hindi",
+      "language": "hi",
+      "languageSlot": 2,
+      "type": "prose",
+      "questionRange": [
+        129,
+        135
+      ],
+      "instructions": "निर्देश (129-135): निम्नलिखित गद्यांश को ध्यानपूर्वक पढ़िए तथा पूछे गए प्रश्नों के उत्तर के रूप में उचित विकल्प का चयन कीजिए—",
+      "text": "इन दिनों फिर से हिंदी बनाम स्थानीय भाषाओं को लेकर शोर मचा है। इसमें कुछ चीजें समझने वाली हैं। सबसे पहले तो यही कि हिंदी हमारी राजभाषा जरूर है, लेकिन कर्नाटक, तमिलनाडु, केरल समेत अन्य प्रांत में जन्म लेने वाले व्यक्ति के लिए यह मातृभाषा नहीं हो सकती। जितना प्रेम हमें हिंदी से है, उतना ही प्रेम पंजाब में जन्मे व्यक्ति को पंजाबी से होगा, कर्नाटक में जन्मे शख्स को कन्नड़ से होगा, तमिलनाडु में जन्मे व्यक्ति को तमिल से होगा।\n\nहिंदी राजभाषा है, उसका सम्मान सर्वोपरि है, मगर हमें यह भी ध्यान देना होगा कि हिंदी का सम्मान करने के अति उत्साह में कहीं हम अन्य भाषाओं का अपमान तो नहीं कर रहे? जैसे हमारी माता, वैसे ही सबकी माता। हिंदी हमारी मातृभाषा है, तो कन्नड़, तमिल, मलयालम, तेलुगु भी किसी न किसी की मातृभाषा है। हिन्दुस्तान हमारा राष्ट्र है, हिंदी इसकी एक प्रमुख भाषा, लेकिन तमिल, कन्नड़, पंजाबी, तेलुगु, मलयालम आदि भी इसी राष्ट्र में बोली जाने वाली भाषाएँ हैं, जिनका बराबर सम्मान होना चाहिए। तभी हम गर्व से कह पाएँगे कि अनेकता में एकता हमारी सभ्यता है।",
+      "note": "Recovered from inside the bank itself: the importer appended this passage to the last option of the previous block's final question (see docs/STIMULUS_LINK_AUDIT.md), so the text is the paper's own, not a reconstruction."
+    }
+  ]
+}

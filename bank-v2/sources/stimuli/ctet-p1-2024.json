@@ -252,7 +252,126 @@
           "119": "d",
           "120": "b"
         }
+      },
+      "language-1/hindi": {
+        "range": [
+          91,
+          120
+        ],
+        "answers": {
+          "91": "a",
+          "92": "b",
+          "93": "d",
+          "94": "b",
+          "95": "d",
+          "96": "a",
+          "97": "d",
+          "98": "b",
+          "99": "c",
+          "100": "d",
+          "101": "d",
+          "102": "d",
+          "103": "d",
+          "104": "c",
+          "105": "b",
+          "106": "b",
+          "107": "a",
+          "108": "a",
+          "109": "a",
+          "110": "d",
+          "111": "a",
+          "112": "c",
+          "113": "b",
+          "114": "c",
+          "115": "b",
+          "116": "d",
+          "117": "b",
+          "118": "a",
+          "120": "b"
+        }
+      },
+      "language-1/sanskrit": {
+        "range": [
+          91,
+          120
+        ],
+        "answers": {
+          "91": "a",
+          "92": "d",
+          "93": "a",
+          "94": "c",
+          "95": "d",
+          "96": "a",
+          "97": "b",
+          "98": "c",
+          "99": "c",
+          "100": "a",
+          "101": "c",
+          "102": "c",
+          "103": "c",
+          "104": "b",
+          "105": "c",
+          "106": "a",
+          "108": "b",
+          "109": "a",
+          "110": "a",
+          "111": "c",
+          "112": "d",
+          "113": "d",
+          "114": "d",
+          "115": "c",
+          "116": "d",
+          "117": "d",
+          "118": "a",
+          "119": "b",
+          "120": "a"
+        }
+      },
+      "language-2/sanskrit": {
+        "range": [
+          121,
+          150
+        ],
+        "answers": {
+          "121": "c",
+          "122": "c",
+          "123": "a",
+          "124": "b",
+          "125": "c",
+          "126": "c",
+          "127": "d",
+          "128": "d",
+          "129": "a",
+          "130": "d",
+          "131": "c",
+          "132": "d",
+          "133": "a",
+          "134": "c",
+          "135": "b",
+          "136": "b",
+          "137": "d",
+          "138": "c",
+          "139": "c",
+          "140": "c",
+          "141": "d",
+          "142": "c",
+          "143": "b",
+          "144": "c",
+          "145": "a",
+          "146": "c",
+          "147": "b",
+          "148": "a",
+          "149": "a",
+          "150": "d"
+        }
       }
+    },
+    "official": {
+      "source": "CBSE / NTA official final answer key, CTET Jan-2024 Paper-I",
+      "url": "https://cdnbbsr.s3waas.gov.in/s3443dec3062d0286986e21dc0631734c9/uploads/2024/02/2024021954.pdf",
+      "index": "https://ctet.nic.in/previous-year-final-answer-key/",
+      "identified": "the official PDF holds one key table per (set, language); the third 91-150 table is this set, confirmed because its 121-135 values for language-2 english and language-2 hindi match the Oswaal solved paper exactly",
+      "omitted": "answers coded A-F/Z (multi-option) are not applied, so those questions keep their existing key"
     }
   }
 }
