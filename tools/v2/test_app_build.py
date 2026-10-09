@@ -162,6 +162,27 @@ class DatabaseTests(unittest.TestCase):
         )[0][0]
         self.assertEqual(orphans, 0)
 
+    def test_no_appearance_points_at_a_question_that_vanished(self) -> None:
+        """Tripwire for a truncated bank file. An editing script once opened questions.ndjson
+        for writing and crashed before writing anything, leaving the file at zero bytes; had it
+        been committed, the database would have built happily with fewer questions while the
+        appearances file still named all of them. Nothing caught that, so the loss would only
+        have shown up as missing questions in the app."""
+        orphans = self.q(
+            "SELECT COUNT(*) FROM appearances a LEFT JOIN questions q ON q.id = a.question_id "
+            "WHERE q.id IS NULL"
+        )[0][0]
+        self.assertEqual(orphans, 0, "an appearance references a question that is not in the bank")
+
+        bank_rows = 0
+        for path in (ROOT / "bank-v2" / "exams").rglob("questions.ndjson"):
+            with open(path, encoding="utf-8") as fh:
+                bank_rows += sum(1 for line in fh if line.strip())
+        in_db = self.q("SELECT COUNT(*) FROM questions")[0][0]
+        self.assertEqual(in_db, bank_rows,
+                         "database holds a different number of questions than the bank files")
+        self.assertEqual(in_db, self.q("SELECT COUNT(*) FROM appearances")[0][0],
+                         "every question should appear exactly once in a paper form")
 
     def test_text_verified_only_for_passages_with_provenance(self) -> None:
         """Both importers wrote review.textVerified: True for every stimulus, including
