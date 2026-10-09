@@ -2,9 +2,9 @@
 
 `score` = प्रश्न के content शब्दों में से कितने अपने गद्यांश में मिलते हैं (0.00 = एक भी शब्द नहीं)। verdict पूरे ब्लॉक का है।
 
-- ठीक: **3** ब्लॉक
+- ठीक: **4** ब्लॉक
 - आधा-अधूरा मिलान: **1** ब्लॉक
-- गलत गद्यांश/कविता जुड़ा है: **4** ब्लॉक
+- गलत गद्यांश/कविता जुड़ा है: **3** ब्लॉक
 - संस्कृत रूपों के कारण स्वतः जाँच संभव नहीं - पढ़कर देखें: **4** ब्लॉक
 
 ## प्रश्न-स्तर की गड़बड़ियाँ
@@ -24,10 +24,6 @@
 - ? `ctet-p1-2019-a-lang1-en-q099` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
   stimulus `ctet-p1-2019-stimulus-en-pr-91` · `language-1/english`
 - ? `ctet-p1-2019-a-lang1-en-q101` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2019-stimulus-en-po-100` · `language-1/english`
-- ? `ctet-p1-2019-a-lang1-en-q103` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2019-stimulus-en-po-100` · `language-1/english`
-- ? `ctet-p1-2019-a-lang1-en-q105` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
   stimulus `ctet-p1-2019-stimulus-en-po-100` · `language-1/english`
 - ? `ctet-p1-2019-a-lang1-hi-q095` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
   stimulus `ctet-p1-2019-stimulus-hi-pr-91` · `language-1/hindi`
@@ -100,27 +96,37 @@ The Langchen Khambab flows down from the red coloured mountains of the Kanglung 
 
 ---
 ## `language-1/english` — ctet-p1-2019-stimulus-en-po-100
-**verdict: गलत गद्यांश/कविता जुड़ा है** · type=poem · प्रश्न=6 · बिना-मिलान=4 · median score=0.0
+**verdict: ठीक** · type=poem · प्रश्न=6 · बिना-मिलान=1 · median score=0.143
 
 निर्देश: Direction: Read the extract given below and answer the questions that follow (Q. No. 100 to 105) by selecting the correct/most appropriate options:
 
 ```
-The sun descending in the west,
-The evening star does shine;
-The birds are silent in their nest,
-And I must seek for mine.
-The moon, like a flower
-In heaven's high bower,
-With silent delight
-Sits and smiles on the night.
+Half a league, half a league,
+Half a league onward,
+All in the valley of Death
+   Rode the six hundred.
+"Forward, the Light Brigade!
+Charge for the guns!" he said.
+Into the valley of Death
+   Rode the six hundred.
+
+"Forward, the Light Brigade!"
+Was there a man dismayed?
+Not though the soldier knew
+   Someone had blundered.
+Theirs not to make reply,
+Theirs not to reason why,
+Theirs but to do and die.
+Into the valley of Death
+   Rode the six hundred.
 ```
 
-- ✗ `q100` score=0.00 — Name the figure of speech used in 'the Valley of Death'.
+- ✓ `q100` score=0.09 — Name the figure of speech used in 'the Valley of Death'.
 - ✗ `q101` score=0.00 — Which literary device is used in the expression, 'to do and die'?
-- ~ `q102` score=0.04 — In the first stanza of the extract, the soldiers are:
-- ✗ `q103` score=0.00 — The expression 'the valley of death' refers to:
-- ✓ `q104` score=0.06 — Which of the following statements not true? The military discipline teaches the soldiers:
-- ✗ `q105` score=0.00 — Which of the following adjectives do not apply to the soldiers?
+- ✓ `q102` score=0.09 — In the first stanza of the extract, the soldiers are:
+- ✓ `q103` score=0.20 — The expression 'the valley of death' refers to:
+- ✓ `q104` score=0.19 — Which of the following statements not true? The military discipline teaches the soldiers:
+- ✓ `q105` score=0.14 — Which of the following adjectives do not apply to the soldiers?
 
 ---
 ## `language-1/hindi` — ctet-p1-2019-stimulus-hi-pr-91

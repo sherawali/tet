@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "ctet-p1-2019-stimulus-sources",
+  "exam": "ctet",
+  "paper": 1,
+  "cycleLabel": "2019",
+  "provenance": {
+    "retrieved": "2026-10-09",
+    "source": "CTET Jul-2019 Paper-I. Poem text: Alfred Lord Tennyson, 'The Charge of the Light Brigade' (1854), as printed by the Poetry Foundation and poets.org.",
+    "url": "https://www.poetryfoundation.org/poems/45319/the-charge-of-the-light-brigade",
+    "method": "the poem is identified from the questions themselves: Q100 asks for the figure of speech in 'the Valley of Death' and Q101 for the device in 'to do and die', both lines of Tennyson's poem, and Q102 asks what the soldiers are doing in the first stanza. Text taken from the published poem, not from a solved-paper rendering.",
+    "caveat": "text is only added for the stimuli listed below; every other 2019 stimulus is still the importer's placeholder. No answer key has been applied for this cycle.",
+    "cycleNote": "This cycle is the CTET December-2019 Paper-I, not July-2019: the Language-II English passage at Q129-135 ('Water is the core of life ... the bounty of the Himalayas', with the Uttarakhand perennial-streams paragraph) is the December-2019 one, and Testbook tags these questions 'CTET December 2019 Paper 1'.",
+    "officialKey": "The official final answer key for this paper is https://cdnbbsr.s3waas.gov.in/s3443dec3062d0286986e21dc0631734c9/uploads/2022/03/2022033144.pdf (linked from https://ctet.nic.in/document/ctet-december-2019-paper-1/). It has not been read yet, so no answer has been changed for this cycle. It is needed before the Q129-135 answers are trusted: theexampillar numbers the block 129 part-of-speech, 130 'central to our thinking', 131 'not been mentioned', 133 Uttarakhand, 134 'bounty', 135 'benevolent', while studyfry numbers the same questions 134, 135, 129, 131, 132, 133 - the two disagree, and the bank follows theexampillar's order. Only the official key can settle both the order and the answers."
+  },
+  "stimuli": [
+    {
+      "stimulusId": "ctet-p1-2019-stimulus-en-po-100",
+      "section": "language-1/english",
+      "language": "en",
+      "languageSlot": 1,
+      "type": "poem",
+      "questionRange": [
+        100,
+        105
+      ],
+      "text": "Half a league, half a league,\nHalf a league onward,\nAll in the valley of Death\n   Rode the six hundred.\n\"Forward, the Light Brigade!\nCharge for the guns!\" he said.\nInto the valley of Death\n   Rode the six hundred.\n\n\"Forward, the Light Brigade!\"\nWas there a man dismayed?\nNot though the soldier knew\n   Someone had blundered.\nTheirs not to make reply,\nTheirs not to reason why,\nTheirs but to do and die.\nInto the valley of Death\n   Rode the six hundred.",
+      "note": "The placeholder held Blake's 'Evening Star' - a real poem, but the wrong one: Q100 and Q101 quote 'the Valley of Death' and 'to do and die', which are Tennyson's. Stanzas I and II are given, which is the extract the questions run against (Q102 asks about the first stanza, Q104 about 'not to reason why' / 'to do and die'). Spelling follows the Poetry Foundation's modernised text ('dismayed', 'blundered', 'Theirs')."
+    }
+  ],
+  "examDate": "2019-12-08"
+}
