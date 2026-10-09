@@ -54,8 +54,22 @@ for others:
 | ctet-p1-2024 | not settled | one anchor is consistent (L2-hindi Q124 option a = जल संकट = official option 1) but that is one question out of 135 |
 
 So an official key must be applied **by option text**, never by letter, unless the cycle has
-been shown to keep the paper's order. `apply_stimulus_sources.py` matches on `optionId`
-alone and cannot do this yet; that is the next thing it needs.
+been shown to keep the paper's order. `apply_stimulus_sources.py` now supports the safe shape. A section may carry
+`answerTexts` instead of `answers`:
+
+```json
+"language-2/english": {
+  "answers": {},
+  "answerTexts": { "132": "father-figure" }
+}
+```
+
+The tool normalises both sides (case, whitespace, trailing punctuation) and looks the text up
+among the bank's four options. If it matches exactly one option it applies that option's id and
+sets `review.answerKeyVerified`. If it matches none, or more than one, it prints `UNRESOLVED`,
+leaves the question alone and exits 1 - a key that cannot be placed is a defect, never a guess.
+Letter tables (`answers`) still work, but only for a cycle that has been shown to keep the
+paper's option order.
 
 ## How to read a table
 

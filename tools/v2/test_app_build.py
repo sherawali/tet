@@ -42,6 +42,9 @@ def build_database(db_path: Path) -> sqlite3.Connection:
     return sqlite3.connect(db_path)
 
 
+import apply_stimulus_sources as A
+
+
 class DatabaseTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
@@ -270,6 +273,49 @@ class PackTests(unittest.TestCase):
         self.assertTrue(language_questions)
         missing = [q["k"] for q in language_questions if "sl" not in q]
         self.assertEqual(missing, [], "language slot missing from pack payload")
+
+
+class AnswerKeyTests(unittest.TestCase):
+    """The bank does not keep the paper's option order in every cycle, so an official
+    key must be applied by option text. These tests pin that behaviour."""
+
+    @staticmethod
+    def _row(options: dict[str, str]) -> dict:
+        return {"options": [{"id": k, "content": [{"text": {"en": v}}]}
+                            for k, v in options.items()]}
+
+    def test_key_option_text_finds_its_option_whatever_the_order(self) -> None:
+        row = self._row({"a": "relative", "b": "neighbour", "c": "friend",
+                         "d": "father-figure"})
+        self.assertEqual(A.resolve_by_text(row, "father-figure"), ("d", 1))
+        self.assertEqual(A.resolve_by_text(row, "neighbour"), ("b", 1))
+
+    def test_option_text_matching_ignores_case_and_punctuation(self) -> None:
+        row = self._row({"a": "Five times as strong."})
+        self.assertEqual(A.resolve_by_text(row, "  five   TIMES as strong ")[0], "a")
+
+    def test_unmatched_key_text_is_reported_not_guessed(self) -> None:
+        row = self._row({"a": "relative", "b": "neighbour"})
+        self.assertEqual(A.resolve_by_text(row, "banana"), (None, 0))
+
+    def test_duplicate_option_text_is_ambiguous_not_picked(self) -> None:
+        row = self._row({"a": "same", "b": "same"})
+        self.assertEqual(A.resolve_by_text(row, "same"), (None, 2))
+
+    def test_hindi_options_resolve_too(self) -> None:
+        row = {"options": [{"id": "a", "content": [{"text": {"hi": "खाद्य संकट"}}]},
+                           {"id": "b", "content": [{"text": {"hi": "जल संकट"}}]}]}
+        self.assertEqual(A.resolve_by_text(row, "जल संकट"), ("b", 1))
+
+    def test_2026_patriarch_answer_is_the_option_the_paper_calls_father_figure(self) -> None:
+        """Regression: this question was once set to b ('neighbour') by applying the
+        official key's option number 2 as a letter. The bank's order is shuffled."""
+        bank = ROOT / "bank-v2" / "exams" / "ctet" / "paper-1" / "language-2" / "english"
+        rows = [json.loads(l) for l in open(bank / "questions.ndjson", encoding="utf-8") if l.strip()]
+        row = next(r for r in rows if r["id"] == "ctet-p1-2026-e-lang2-en-q132")
+        want, hits = A.resolve_by_text(row, "father-figure")
+        self.assertEqual(hits, 1)
+        self.assertEqual(row["answer"]["optionId"], want)
 
 
 if __name__ == "__main__":
