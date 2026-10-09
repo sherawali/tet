@@ -98,6 +98,13 @@
           "132": "father-figure"
         },
         "source": "official key option 2, resolved by option text; see optionOrder/status notes"
+      },
+      "language-1/english": {
+        "answers": {},
+        "answerTexts": {
+          "96": "English"
+        },
+        "source": "Q96's option text is from Testbook's rendering of CTET Official Paper-I held 08 Feb 2026 Shift 2 ('Option 1: English'); the rest of this section still needs its option texts transcribed from the paper."
       }
     },
     "official": {
