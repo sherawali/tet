@@ -160,6 +160,20 @@ class DatabaseTests(unittest.TestCase):
         self.assertEqual(orphans, 0)
 
 
+    def test_text_verified_only_for_passages_with_provenance(self) -> None:
+        """Both importers wrote review.textVerified: True for every stimulus, including
+        the placeholder bodies, so the flag said 'checked' for text nobody checked.
+        Only a stimulus carrying sourceRef may be marked verified."""
+        with_ref = 0
+        for path in (ROOT / "bank-v2" / "exams").glob("**/stimuli.ndjson"):
+            with open(path, encoding="utf-8") as fh:
+                for line in fh:
+                    if line.strip() and json.loads(line).get("sourceRef"):
+                        with_ref += 1
+        marked = self.q("SELECT COUNT(*) FROM passages WHERE review_text_verified = 1")[0][0]
+        self.assertEqual(marked, with_ref,
+                         "review_text_verified must come from provenance, not the importer")
+
 class PackTests(unittest.TestCase):
     """Build packs from the freshly built database and check what a client receives."""
 

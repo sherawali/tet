@@ -387,7 +387,9 @@ def _build_database(temp_db_path: Path) -> int:
                 sid, kind, dir_text, body, title, language,
                 slot if isinstance(slot, int) else None,
                 min_q if isinstance(min_q, int) else None,
-                1 if review.get("textVerified") else 0,
+                # review.textVerified is a lie wherever the importer wrote it blind,
+                # so only a stimulus that carries provenance counts as verified.
+                1 if (review.get("textVerified") and s.get("sourceRef")) else 0,
                 s.get("selectionPolicy") or "atomic",
             ))
 

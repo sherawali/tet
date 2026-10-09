@@ -2,20 +2,11 @@
 
 `score` = प्रश्न के content शब्दों में से कितने अपने गद्यांश में मिलते हैं (0.00 = एक भी शब्द नहीं)। verdict पूरे ब्लॉक का है।
 
-- ठीक: **5** ब्लॉक
-- गलत गद्यांश/कविता जुड़ा है: **3** ब्लॉक
+- ठीक: **8** ब्लॉक
 - संस्कृत रूपों के कारण स्वतः जाँच संभव नहीं - पढ़कर देखें: **4** ब्लॉक
 
 ## प्रश्न-स्तर की गड़बड़ियाँ
 
-- ✗ `ctet-p1-2024-i-lang1-en-q095` **quoted-text-not-in-stimulus** — question refers to '[ ________ ] her blue eyes never wavered' which does not occur in its own stimulus  
-  stimulus `ctet-p1-2024-stimulus-en-pr-91` · `language-1/english`
-- ✗ `ctet-p1-2024-i-lang1-en-q096` **quoted-text-not-in-stimulus** — question refers to '[ ________ ] he hardly knew what to say to her.' which does not occur in its own stimulus  
-  stimulus `ctet-p1-2024-stimulus-en-pr-91` · `language-1/english`
-- ✗ `ctet-p1-2024-i-lang1-en-q098` **quoted-text-not-in-stimulus** — question refers to '[ ________ ] made them forget that her clothes seemed [ ________ ]' which does not occur in its own stimulus  
-  stimulus `ctet-p1-2024-stimulus-en-pr-91` · `language-1/english`
-- ✗ `ctet-p1-2024-i-lang1-en-q101` **quoted-text-not-in-stimulus** — question refers to '[ ________ ] their exits and entrances [ ________ ]' which does not occur in its own stimulus  
-  stimulus `ctet-p1-2024-stimulus-en-po-100` · `language-1/english`
 - ✗ `ctet-p1-2024-i-lang1-sa-q092` **quoted-text-not-in-stimulus** — question refers to 'योगः समाधिः स च सार्वभौमचित्तस्य धर्मः' which does not occur in its own stimulus  
   stimulus `ctet-p1-2024-stimulus-sa-pr-91` · `language-1/sanskrit`
 - ✗ `ctet-p1-2024-i-lang1-sa-q097` **quoted-text-not-in-stimulus** — question refers to 'योगः कर्मसु कौशलम्' which does not occur in its own stimulus  
@@ -32,118 +23,123 @@
   stimulus `ctet-p1-2024-stimulus-sa-pr-129` · `language-2/sanskrit`
 - ✗ `ctet-p1-2024-i-lang2-sa-q135` **quoted-text-not-in-stimulus** — question refers to 'तत्किमर्थ वयं कर्म कुर्मः' which does not occur in its own stimulus  
   stimulus `ctet-p1-2024-stimulus-sa-pr-129` · `language-2/sanskrit`
-- ? `ctet-p1-2024-i-lang1-en-q091` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2024-stimulus-en-pr-91` · `language-1/english`
-- ? `ctet-p1-2024-i-lang1-en-q092` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2024-stimulus-en-pr-91` · `language-1/english`
-- ? `ctet-p1-2024-i-lang1-en-q093` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2024-stimulus-en-pr-91` · `language-1/english`
-- ? `ctet-p1-2024-i-lang1-en-q094` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2024-stimulus-en-pr-91` · `language-1/english`
-- ? `ctet-p1-2024-i-lang1-en-q095` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2024-stimulus-en-pr-91` · `language-1/english`
-- ? `ctet-p1-2024-i-lang1-en-q096` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2024-stimulus-en-pr-91` · `language-1/english`
-- ? `ctet-p1-2024-i-lang1-en-q097` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2024-stimulus-en-pr-91` · `language-1/english`
-- ? `ctet-p1-2024-i-lang1-en-q098` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2024-stimulus-en-pr-91` · `language-1/english`
-- ? `ctet-p1-2024-i-lang1-en-q099` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2024-stimulus-en-pr-91` · `language-1/english`
-- ? `ctet-p1-2024-i-lang1-en-q100` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2024-stimulus-en-po-100` · `language-1/english`
-- ? `ctet-p1-2024-i-lang1-en-q102` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2024-stimulus-en-po-100` · `language-1/english`
-- ? `ctet-p1-2024-i-lang1-en-q104` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2024-stimulus-en-po-100` · `language-1/english`
-- ? `ctet-p1-2024-i-lang1-hi-q100` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2024-stimulus-hi-po-100` · `language-1/hindi`
-- ? `ctet-p1-2024-i-lang1-hi-q103` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2024-stimulus-hi-po-100` · `language-1/hindi`
-- ? `ctet-p1-2024-i-lang1-hi-q105` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2024-stimulus-hi-po-100` · `language-1/hindi`
 
 ---
 ## `language-1/english` — ctet-p1-2024-stimulus-en-pr-91
-**verdict: गलत गद्यांश/कविता जुड़ा है** · type=prose · प्रश्न=9 · बिना-मिलान=9 · median score=0.0
+**verdict: ठीक** · type=prose · प्रश्न=9 · बिना-मिलान=0 · median score=0.5
 
-निर्देश: Direction: Read the passage given below and answer the questions that follow by selecting the most appropriate option.
+निर्देश: Direction (91-99): Read the passage given below and answer the questions that follow by selecting the correct/most appropriate options.
 
 ```
-Human ingenuity has continually transformed the world. From the wheel to the modern computer, inventions have expanded the boundaries of human capacity and redefined how societies function.
+The drug store was beginning to close for the night. Young Alfred Higgins who worked in the store was putting on his coat, getting ready to go home. On his way out, he passed Mr. Sam Carr, the little gray-haired man who owned the store. Mr. Carr looked up at Alfred as he passed and said in a very soft voice, "Just a moment, Alfred, one moment before you go." Mr. Carr spoke so quietly that it worried Alfred.
+
+"Maybe you'd be good enough to take a few things out of your pockets and leave them here before you go," said Mr. Carr. "You've got a compact and a lipstick and at least two tubes of toothpaste in your pockets, Alfred." "Petty thieving, eh, Alfred? And maybe you'd be good enough to tell me how long this has been going on." "This is the first time I ever took anything." Mr. Carr did not believe him, and he was already telephoning Alfred's mother, telling her to come to the store in a hurry.
+
+Alfred thought his mother would come rushing in, eyes burning with anger. Maybe she would be crying and would push him away when he tried to explain to her. She would make him feel so small. Yet he longed that she might come before Mr. Carr saw the cop on the beat passing the door.
+
+Yet as s
 ```
 
-- ✗ `q091` score=0.00 — Study the following statements : (A) When she entered the drug store, Mrs. Higgins was not properly dressed. (B) She looked like the mother of a guilty person. 
-- ✗ `q092` score=0.00 — Having looked at his mother, Alfred was :
-- ✗ `q093` score=0.00 — Study the following statements : (A) Mr. Carr intended to get Alfred arrested. (B) Mrs. Higgins wanted him to be given a chance to reform himself.
-- ✗ `q094` score=0.00 — [ ________ ] her humility made her falter [ ________ ] ' Choose the word opposite in meaning to the underlined one.
-- ✗ `q095` score=0.00 — ' [ ________ ] her blue eyes never wavered'. Choose the word nearest in meaning to the underlined one.
-- ✗ `q096` score=0.00 — ' [ ________ ] he hardly knew what to say to her.' The underlined is a/an [ ________ ] clause.
-- ✗ `q097` score=0.00 — Which of the following statements is not correct?
-- ✗ `q098` score=0.00 — ' [ ________ ] made them forget that her clothes seemed [ ________ ] ' The underlined words is a/an [ ________ ] .
-- ✗ `q099` score=0.00 — Which of the following statements is not correct?
+- ✓ `q091` score=0.52 — Study the following statements : (A) When she entered the drug store, Mrs. Higgins was not properly dressed. (B) She looked like the mother of a guilty person. 
+- ✓ `q092` score=0.44 — Having looked at his mother, Alfred was :
+- ✓ `q093` score=0.50 — Study the following statements : (A) Mr. Carr intended to get Alfred arrested. (B) Mrs. Higgins wanted him to be given a chance to reform himself.
+- ✓ `q094` score=0.39 — [ ________ ] her humility made her falter [ ________ ] ' Choose the word opposite in meaning to the underlined one.
+- ✓ `q095` score=0.31 — ' [ ________ ] her blue eyes never wavered'. Choose the word nearest in meaning to the underlined one.
+- ✓ `q096` score=0.46 — ' [ ________ ] he hardly knew what to say to her.' The underlined is a/an [ ________ ] clause.
+- ✓ `q097` score=0.65 — Which of the following statements is not correct?
+- ✓ `q098` score=0.50 — ' [ ________ ] made them forget that her clothes seemed [ ________ ] ' The underlined words is a/an [ ________ ] .
+- ✓ `q099` score=0.61 — Which of the following statements is not correct?
 
 ---
 ## `language-1/english` — ctet-p1-2024-stimulus-en-po-100
-**verdict: गलत गद्यांश/कविता जुड़ा है** · type=poem · प्रश्न=6 · बिना-मिलान=5 · median score=0.0
+**verdict: ठीक** · type=poem · प्रश्न=6 · बिना-मिलान=0 · median score=0.273
 
-निर्देश: Direction: Read the poem given below and answer the questions that follow by selecting the most appropriate option.
+निर्देश: Direction (100-105): Read the poem given below and answer the questions that follow by selecting the correct/most appropriate options.
 
 ```
-I wandered lonely as a cloud
-That floats on high o'er vales and hills,
-When all at once I saw a crowd,
-A host, of golden daffodils;
-Beside the lake, beneath the trees,
-Fluttering and dancing in the breeze.
+All the world's a stage,
+And all the men and women merely players;
+They have their exits and their entrances;
+And one man in his time plays many parts,
+His acts being seven ages. At first the infant,
+Mewling and puking in the nurse's arms;
+And then the whining school-boy, with his satchel
+And shining morning face, creeping like snail
+Unwillingly to school. And then the lover,
+Sighing like furnace, with a woeful ballad
+Made to his mistress' eyebrow. Then a soldier,
+Full of strange oaths, and bearded like the pard,
+Jealous in honour, sudden and quick in quarrel,
+Seeking the bubble reputation
+Even in the cannon's mouth. And then the justice,
+In fair round belly with good capon lin'd,
+With eyes severe and beard of formal cut,
+Full of wise saws and modern instances;
+And so he plays his part. The sixth age shifts
+Into the lean and slipper'd pantaloon,
+With spectacles on nose and pouch on side;
+His youthful hose, well sav'd, a world too wide
+For his shrunk shank; and his big manly voice,
+Turning again toward childish treble, pipes
+And whistles in his sound. Last scene of all,
+That ends this strange eventful history,
+Is second childishness and mere oblivion;
+Sans teeth, sans eyes, sans tas
 ```
 
-- ✗ `q100` score=0.00 — A soldier is jealous about his honour as :
-- ✗ `q101` score=0.00 — ' [ ________ ] their exits and entrances [ ________ ] ' The figure of speech used here is :
-- ✗ `q102` score=0.00 — A school-boy :
-- ✓ `q103` score=0.05 — What do all men and women do?
-- ✗ `q104` score=0.00 — Why is the lover's sign compared to a furnace?
-- ✗ `q105` score=0.00 — Identify the figure of speech used in the first line.
+- ✓ `q100` score=0.38 — A soldier is jealous about his honour as :
+- ✓ `q101` score=0.27 — ' [ ________ ] their exits and entrances [ ________ ] ' The figure of speech used here is :
+- ✓ `q102` score=0.46 — A school-boy :
+- ✓ `q103` score=0.25 — What do all men and women do?
+- ✓ `q104` score=0.16 — Why is the lover's sign compared to a furnace?
+- ✓ `q105` score=0.10 — Identify the figure of speech used in the first line.
 
 ---
 ## `language-1/hindi` — ctet-p1-2024-stimulus-hi-pr-91
-**verdict: ठीक** · type=prose · प्रश्न=9 · बिना-मिलान=1 · median score=0.286
+**verdict: ठीक** · type=prose · प्रश्न=9 · बिना-मिलान=1 · median score=0.308
 
-निर्देश: निर्देश : निम्नलिखित गद्यांश को पढ़कर पूछे गए प्रश्नों के सही/सर्वाधिक उपयुक्त विकल्प का चयन कीजिए। (91-99)
+निर्देश: निर्देश (91-99): निम्नलिखित गद्यांश को ध्यानपूर्वक पढ़िए तथा पूछे गए प्रश्नों के उत्तर के रूप में उचित विकल्प का चयन कीजिए—
 
 ```
-आंतरिक और बाह्य दोनों रूपों में स्वच्छता और निर्मलता एक बुनियादी आवश्यकता है। मन के शुद्ध और सात्विक विचार आंतरिक स्वच्छता के आयाम हैं। बाह्य स्वच्छता के अंतर्गत स्वास्थ्य, शिक्षा-पर्यावरण, अच्छी सामाजिक और आर्थिक स्थिति का समावेश होता है। बाह्य स्वच्छता का मूलाधार आंतरिक स्वच्छता है। मन की स्वच्छता मानव व्यवहार को दर्शाती है।
+स्वच्छता और निर्मलता एक बुनियादी आवश्यकता है। मन के शुद्ध एवं सात्विक विचार आंतरिक स्वच्छता के आयाम हैं। बाह्य स्वच्छता के अंतर्गत स्वास्थ्य, शिक्षा-पर्यावरण, अच्छी सामाजिक और आर्थिक स्थिति का समावेश होता है। बाह्य स्वच्छता का मूलाधार आंतरिक स्वच्छता है। मन की स्वच्छता मानव व्यवहार के द्वारा है। सत्य, सरलता, शांति, प्रेम और समान जैसे आत्मा के जन्मजात गुणों का उल्लंघन प्राकृतिक विधि, विचार और व्यवस्था का उल्लंघन है।
 ```
 
-- ✓ `q091` score=0.44 — आंतरिक स्वच्छता से संबंधित नहीं है ः
+- ✓ `q091` score=0.67 — आंतरिक स्वच्छता से संबंधित नहीं है ः
 - ✓ `q092` score=0.75 — बुनियादी आवश्यकता है ः
-- ✓ `q093` score=0.39 — ‘बाह्य स्वच्छता का मूलाधार आंतरिक स्वच्छता है।’ वाक्य का आशय है ः
+- ✓ `q093` score=0.31 — ‘बाह्य स्वच्छता का मूलाधार आंतरिक स्वच्छता है।’ वाक्य का आशय है ः
 - ✗ `q094` score=0.00 — ‘विधान’ में इक प्रत्यय लगाने पर शब्द बनेगा ः
-- ✓ `q095` score=0.43 — निम्न में से किसमें विशेषण-विशेष्य का संबंध नहीं है?
+- ✓ `q095` score=0.50 — निम्न में से किसमें विशेषण-विशेष्य का संबंध नहीं है?
 - ✓ `q096` score=0.29 — समूह से भिन्न शब्द है ः
 - ✓ `q097` score=0.18 — ‘आंतरिक स्वच्छता’ से तात्पर्य है ः
 - ✓ `q098` score=0.25 — ‘बुनियादी’ में प्रत्यय है ः
-- ✓ `q099` score=0.20 — गद्यांश के अनुसार मनुष्य के लिए [ ________ ] सर्वाधिक महत्वपूर्ण है।
+- ✓ `q099` score=0.40 — गद्यांश के अनुसार मनुष्य के लिए [ ________ ] सर्वाधिक महत्वपूर्ण है।
 
 ---
 ## `language-1/hindi` — ctet-p1-2024-stimulus-hi-po-100
-**verdict: गलत गद्यांश/कविता जुड़ा है** · type=poem · प्रश्न=6 · बिना-मिलान=5 · median score=0.0
+**verdict: ठीक** · type=poem · प्रश्न=6 · बिना-मिलान=0 · median score=0.214
 
-निर्देश: निर्देश : निम्नलिखित काव्यांश को पढ़कर पूछे गए प्रश्नों के सही/सर्वाधिक उपयुक्त विकल्प का चयन कीजिए। (100-105)
+निर्देश: निर्देश (100-105): निम्नलिखित गद्यांश को ध्यानपूर्वक पढ़िए तथा पूछे गए प्रश्नों के उत्तर के रूप में उचित विकल्प का चयन कीजिए—
 
 ```
-कटुक यथार्थ से मुँह मोड़कर
-सपनों में जीना कायरता है।
-संघर्षों से जूझकर ही
-जीवन को नया रूप मिलता है।
+आज तिरंगा फहराता है अपनी पूरी शान से।
+हमें मिली आज़ादी वीर शहीदों के बलिदान से।।
+
+आज़ादी के लिए हमारी लंबी चली लड़ाई थी।
+लाखों लोगों ने प्राणों से कीमत बड़ी चुकाई थी।।
+
+व्यापारी बनकर आए और छल से हम पर राज किया।
+हमको आपस में लड़वाने की नीति अपनाई थी।।
+
+हमने अपना गौरव पाया, अपने स्वाभिमान से।
+हमें मिली आज़ादी वीर शहीदों के बलिदान से।।
 ```
 
-- ✗ `q100` score=0.00 — कविता में किस ‘छल’ की बात की गई है?
-- ✗ `q101` score=0.00 — ‘नीति’ शब्द में किस प्रत्यय का प्रयोग किया जा सकता है?
-- ✗ `q102` score=0.00 — ‘स्वाभिमान’ का संधि-विच्छेद है ः
-- ✗ `q103` score=0.00 — देश को स्वतंत्रता प्राप्त करने में एक लम्बा समय लगा था। यह भाव कविता के किस अंश में प्रतिबिंबित होता है?
+- ✓ `q100` score=0.23 — कविता में किस ‘छल’ की बात की गई है?
+- ✓ `q101` score=0.11 — ‘नीति’ शब्द में किस प्रत्यय का प्रयोग किया जा सकता है?
+- ✓ `q102` score=0.14 — ‘स्वाभिमान’ का संधि-विच्छेद है ः
+- ✓ `q103` score=0.54 — देश को स्वतंत्रता प्राप्त करने में एक लम्बा समय लगा था। यह भाव कविता के किस अंश में प्रतिबिंबित होता है?
 - ✓ `q104` score=0.07 — देश की स्वतंत्रता के लिए ः
-- ✗ `q105` score=0.00 — आजादी मिलने का श्रेय किसे दिया गया है?
+- ✓ `q105` score=0.21 — आजादी मिलने का श्रेय किसे दिया गया है?
 
 ---
 ## `language-1/sanskrit` — ctet-p1-2024-stimulus-sa-pr-91

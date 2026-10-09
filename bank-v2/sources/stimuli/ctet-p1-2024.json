@@ -76,12 +76,68 @@
       "instructions": "Direction (129-135): Read the passage given below and answer the questions that follow by selecting the correct/most appropriate options.",
       "text": "Usually the first question I ask a newbie birder is, “What do you think is the most important physical requisite to be a birder? Your eyes, your ears, your nose or any other?”\n\nMost often, the answer is “eyes”, but several do home into what is the most important faculty at least, according to me: your ears. Spotting birds in foliage is hard enough, but if you hear them, you know they are there.\n\nBut early the other morning, I realised it went much beyond that. The first bird call I heard as I left the house for my walk was the madcap ringing laugh of the black-rumped flameback, earlier known as the golden-backed woodpecker. It was a wild, exultant laugh that set the tone and mood for the entire day. And then I realised that every bird call evokes a different reaction, memory or emotion in the listener.\n\nIndian mynas, for example, invariably remind me of people in Delhi – always ready to argue and pick a fight, belligerent and in your face. Yet, they taught me not to make sweeping generalisation because when a pair perch on the window sill in the afternoons, they have meaningful civilised conversations with each other. There is inquiry, humour and affection in their voices.",
       "note": "Adapted from 'How birdsong and bird calls can set the tone for the day', Indian Express, 15 March 2023. Spelling normalised where the scan was unreadable ('yo'->'you', 'a least'->'at least', 'known a'->'known as', 'heard and left'->'heard as I left'); the question stems in the paper use the normalised forms."
+    },
+    {
+      "stimulusId": "ctet-p1-2024-stimulus-hi-pr-91",
+      "section": "language-1/hindi",
+      "language": "hi",
+      "languageSlot": 1,
+      "type": "prose",
+      "questionRange": [
+        91,
+        99
+      ],
+      "instructions": "निर्देश (91-99): निम्नलिखित गद्यांश को ध्यानपूर्वक पढ़िए तथा पूछे गए प्रश्नों के उत्तर के रूप में उचित विकल्प का चयन कीजिए—",
+      "text": "स्वच्छता और निर्मलता एक बुनियादी आवश्यकता है। मन के शुद्ध एवं सात्विक विचार आंतरिक स्वच्छता के आयाम हैं। बाह्य स्वच्छता के अंतर्गत स्वास्थ्य, शिक्षा-पर्यावरण, अच्छी सामाजिक और आर्थिक स्थिति का समावेश होता है। बाह्य स्वच्छता का मूलाधार आंतरिक स्वच्छता है। मन की स्वच्छता मानव व्यवहार के द्वारा है। सत्य, सरलता, शांति, प्रेम और समान जैसे आत्मा के जन्मजात गुणों का उल्लंघन प्राकृतिक विधि, विचार और व्यवस्था का उल्लंघन है।",
+      "note": "Reconstructed from the scanned paper, whose Devanagari OCR is badly mangled ('आतरिक अोर बाहुय देनों स्पर्न में सवच्छता...'). Wording follows the same essay as published at academia.edu ('स्वच्छता की संस्कृति और सामाजिक परिवर्तन'), which the scan's readable lines match verbatim: 'बाहय स्वच्छता का मूलाधार आंतरिक स्वच्छता है', 'शिक्षा-पर्यावरण, अच्छी सामाजिक व आर्थिक स्थिति'. Re-verify against the official PDF."
+    },
+    {
+      "stimulusId": "ctet-p1-2024-stimulus-hi-po-100",
+      "section": "language-1/hindi",
+      "language": "hi",
+      "languageSlot": 1,
+      "type": "poem",
+      "questionRange": [
+        100,
+        105
+      ],
+      "instructions": "निर्देश (100-105): निम्नलिखित गद्यांश को ध्यानपूर्वक पढ़िए तथा पूछे गए प्रश्नों के उत्तर के रूप में उचित विकल्प का चयन कीजिए—",
+      "text": "आज तिरंगा फहराता है अपनी पूरी शान से।\nहमें मिली आज़ादी वीर शहीदों के बलिदान से।।\n\nआज़ादी के लिए हमारी लंबी चली लड़ाई थी।\nलाखों लोगों ने प्राणों से कीमत बड़ी चुकाई थी।।\n\nव्यापारी बनकर आए और छल से हम पर राज किया।\nहमको आपस में लड़वाने की नीति अपनाई थी।।\n\nहमने अपना गौरव पाया, अपने स्वाभिमान से।\nहमें मिली आज़ादी वीर शहीदों के बलिदान से।।",
+      "note": "Patriotic poem circulated as 'आज तिरंगा फहराता है'. Only the stanzas quoted by Q100-Q105 are given ('लंबी चली लड़ाई', 'कीमत बड़ी चुकाई', 'व्यापारी बनकर आए और छल से हम पर राज किया', 'गौरव पाया अपने स्वाभिमान से', 'वीर शहीदों के बलिदान से'); other stanzas of the poem are not part of this paper and are not included."
+    },
+    {
+      "stimulusId": "ctet-p1-2024-stimulus-en-pr-91",
+      "section": "language-1/english",
+      "language": "en",
+      "languageSlot": 1,
+      "type": "prose",
+      "questionRange": [
+        91,
+        99
+      ],
+      "instructions": "Direction (91-99): Read the passage given below and answer the questions that follow by selecting the correct/most appropriate options.",
+      "text": "The drug store was beginning to close for the night. Young Alfred Higgins who worked in the store was putting on his coat, getting ready to go home. On his way out, he passed Mr. Sam Carr, the little gray-haired man who owned the store. Mr. Carr looked up at Alfred as he passed and said in a very soft voice, \"Just a moment, Alfred, one moment before you go.\" Mr. Carr spoke so quietly that it worried Alfred.\n\n\"Maybe you'd be good enough to take a few things out of your pockets and leave them here before you go,\" said Mr. Carr. \"You've got a compact and a lipstick and at least two tubes of toothpaste in your pockets, Alfred.\" \"Petty thieving, eh, Alfred? And maybe you'd be good enough to tell me how long this has been going on.\" \"This is the first time I ever took anything.\" Mr. Carr did not believe him, and he was already telephoning Alfred's mother, telling her to come to the store in a hurry.\n\nAlfred thought his mother would come rushing in, eyes burning with anger. Maybe she would be crying and would push him away when he tried to explain to her. She would make him feel so small. Yet he longed that she might come before Mr. Carr saw the cop on the beat passing the door.\n\nYet as soon as she saw him, she did not look as Alfred thought she would look: she smiled, her blue eyes never wavered, and with a calmness and dignity that made them forget that her clothes seemed to have been thrown on her, she put out her hand to Mr. Carr and said politely, \"I'm Mrs. Higgins. I'm Alfred's mother.\" Mr. Carr was a bit embarrassed by her lack of terror and her simplicity, and he hardly knew what to say to her, so she asked, \"Is Alfred in trouble?\"\n\nMrs. Higgins put out her hand and touched Sam Carr's arm with an understanding gentleness and, speaking as though afraid of disturbing him, she said, \"If you would only listen to me before doing anything.\" Her simple earnestness made her shy; her humility made her falter and look away, but in a moment she was smiling gravely again, and she said with a kind of patient dignity, \"What do you intend to do, Mr. Carr?\"\n\n\"I was going to get a cop. That's what I ought to do.\" \"Yes, I suppose so,\" she said, \"although it's a hard thing for a mother to say. Sometimes a little good advice is the best thing for a boy at certain times in his life.\" Without being alarmed, while being just large and still and simple and hopeful, she was becoming dominant there in the dimly lit store. \"Of course,\" Mr. Carr said, \"I don't want to be harsh. I'll tell you what I'll do. I'll just fire him and let it go at that. How's that?\" and he shook hands with Mrs. Higgins, bowing low to her in deep respect.\n\nThey walked home along the street in silence. After a time Alfred said, \"Thank God it turned out like that. Never again!\" \"Be quiet. Don't speak to me. You have shamed me enough. Have the decency to be quiet.\" At home she told him he was a bad lot and sent him to bed. As Alfred went upstairs he heard his mother moving about the kitchen; he felt he must tell her how great she had been. But when he looked into the kitchen he saw his mother drinking a cup of tea, her hand shaking so that some of the tea splashed on the table. Her lips moved nervously and she looked very old. He watched her without making a sound, and it seemed to him that his youth was ending.",
+      "note": "Morley Callaghan, 'All the Years of Her Life'. The paper's extract runs from the closing of the drug store to Mrs. Higgins's hand shaking over the tea cup; the sentences quoted by Q91-Q99 ('her blue eyes never wavered', 'her humility made her falter', 'he hardly knew what to say to her', 'made them forget that her clothes seemed') are all in it."
+    },
+    {
+      "stimulusId": "ctet-p1-2024-stimulus-en-po-100",
+      "section": "language-1/english",
+      "language": "en",
+      "languageSlot": 1,
+      "type": "poem",
+      "questionRange": [
+        100,
+        105
+      ],
+      "instructions": "Direction (100-105): Read the poem given below and answer the questions that follow by selecting the correct/most appropriate options.",
+      "text": "All the world's a stage,\nAnd all the men and women merely players;\nThey have their exits and their entrances;\nAnd one man in his time plays many parts,\nHis acts being seven ages. At first the infant,\nMewling and puking in the nurse's arms;\nAnd then the whining school-boy, with his satchel\nAnd shining morning face, creeping like snail\nUnwillingly to school. And then the lover,\nSighing like furnace, with a woeful ballad\nMade to his mistress' eyebrow. Then a soldier,\nFull of strange oaths, and bearded like the pard,\nJealous in honour, sudden and quick in quarrel,\nSeeking the bubble reputation\nEven in the cannon's mouth. And then the justice,\nIn fair round belly with good capon lin'd,\nWith eyes severe and beard of formal cut,\nFull of wise saws and modern instances;\nAnd so he plays his part. The sixth age shifts\nInto the lean and slipper'd pantaloon,\nWith spectacles on nose and pouch on side;\nHis youthful hose, well sav'd, a world too wide\nFor his shrunk shank; and his big manly voice,\nTurning again toward childish treble, pipes\nAnd whistles in his sound. Last scene of all,\nThat ends this strange eventful history,\nIs second childishness and mere oblivion;\nSans teeth, sans eyes, sans taste, sans everything.",
+      "note": "William Shakespeare, Jaques's speech from As You Like It II.vii. Every Q100-Q105 stem is answered by it: 'jealous in honour' (soldier), 'their exits and their entrances', 'the whining school-boy', 'all the men and women merely players', 'Sighing like furnace' (the lover's sigh compared to a furnace), and the first line's metaphor 'All the world's a stage'."
     }
   ],
   "answerKey": {
     "source": "CTET Solved Paper 21 Jan 2024 (Oswaal360), ANSWER KEY tables",
     "url": "https://www.oswaal360.com/pluginfile.php/10939/mod_folder/content/0/CTET/Paper%201/2024/21%20Jan%202024.pdf",
-    "note": "Only the sections whose key table could be tied back to the passage text are included. Hindi-I and Sanskrit keys are NOT applied yet.",
+    "note": "Only sections whose key could be tied back to the passage text are included. language-1/english Q91 is verified as '(a) and (c) are right but (b) is wrong' (testbook) and Q95 as 'wavered' -> hesitated (option 4). Hindi-I and Sanskrit keys are NOT applied: the Hindi table in the solved paper covers 121-150 and belongs to language-II.",
     "sections": {
       "language-2/english": {
         "range": [
@@ -157,6 +213,44 @@
           "148": "c",
           "149": "a",
           "150": "a"
+        }
+      },
+      "language-1/english": {
+        "range": [
+          91,
+          120
+        ],
+        "answers": {
+          "91": "a",
+          "92": "b",
+          "93": "a",
+          "94": "b",
+          "95": "d",
+          "96": "c",
+          "97": "d",
+          "98": "b",
+          "99": "c",
+          "100": "d",
+          "101": "a",
+          "102": "a",
+          "103": "d",
+          "104": "c",
+          "105": "c",
+          "106": "b",
+          "107": "a",
+          "108": "a",
+          "109": "a",
+          "110": "d",
+          "111": "a",
+          "112": "d",
+          "113": "b",
+          "114": "d",
+          "115": "b",
+          "116": "b",
+          "117": "a",
+          "118": "d",
+          "119": "d",
+          "120": "b"
         }
       }
     }
