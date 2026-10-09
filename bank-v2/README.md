@@ -141,7 +141,20 @@ scrambled. Six separate causes, each now covered by `tools/v2/test_app_build.py`
    which exists any more, and exported a git-count `BANK_VERSION` that the v2 builder
    would reject as a version mismatch. It now runs the v2 tools on `bank-v2/**`.
 
-Still open, and it is a content problem rather than a pipeline one: the passage/poem
-*text* of every cycle except 2020 is placeholder content hardcoded in
-`import_all_ctet.py` — see [`../docs/STIMULUS_LINK_AUDIT.md`](../docs/STIMULUS_LINK_AUDIT.md).
-A structurally correct pipeline still cannot invent the right passage.
+## Stimulus groups are atomic
+
+A passage or poem plus every question of that passage is one unit. `selectionPolicy:
+"atomic"` in NDJSON, `group_id` / `group_policy` / `group_size` in SQLite, `g = {id, pol, n}`
+in the pack payload. A selector takes the whole group or none of it — never the passage
+alone, never one question without its passage. `tools/v2/validate_stimulus_groups.py`
+enforces this on the bank (rules G1–G5) and `tools/v2/test_app_build.py` enforces it on
+the packs; both run in CI.
+
+## Verified stimulus text
+
+Placeholder passage/poem text is replaced from
+[`sources/stimuli/`](sources/stimuli/README.md) with `tools/v2/apply_stimulus_sources.py`.
+The 2020 cycle already has genuine text; 2024 Hindi-II (Q121–128, Q129–135) is transcribed
+from the actual paper. The remaining cycles still carry placeholders —
+`apply_stimulus_sources.py --check` prints how many are left.
+

@@ -16,9 +16,10 @@ Flutter app reads:
 questions(id, exams, section, topic_index, topic_name, difficulty,
           q_hindi, options_hindi, q_english, options_english, answer,
           p_score, years, source_tag, passage_id, seq_in_passage,
-          language, language_slot, stimulus_kind)
+          language, language_slot, stimulus_kind,
+          group_id, group_policy, group_size)
 passages(id, kind, dir_text, body, title, language, language_slot,
-         minimum_questions, review_text_verified)
+         minimum_questions, review_text_verified, selection_policy)
 paper_forms(...)  appearances(...)  meta(key, val)
 test_history(...)  mistake_records(...)
 ```
@@ -41,6 +42,11 @@ Do not generate app code from it until a builder exists.
 
 Invariants the builder enforces (see `tools/v2/test_app_build.py`):
 
+- **Group contract.** A passage and every question of that passage are one unit.
+  `g = {"id": <group id>, "pol": "atomic", "n": <group size>}` on the question and
+  `pol`/`g` on the passage. Take all `n` or none — never the passage alone, never one
+  question without its passage. `tools/v2/validate_stimulus_groups.py` enforces this in
+  the bank and `tools/v2/test_app_build.py` enforces it in the packs.
 - `pid` + `n` = the question belongs to stimulus `pid` at position `n`, where `n` runs
   **1..N inside the block**, not the question number in the paper. The paper number is
   in `appearances.question_number`.

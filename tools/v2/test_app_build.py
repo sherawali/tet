@@ -118,6 +118,40 @@ class DatabaseTests(unittest.TestCase):
         }
         self.assertEqual(slots, {1, 2})
 
+    def test_every_group_is_complete_and_atomic(self) -> None:
+        """group_id/group_size/group_policy describe a whole, indivisible block."""
+        bad = self.q(
+            """
+            SELECT group_id, group_size, COUNT(*) FROM questions
+            WHERE group_id IS NOT NULL
+            GROUP BY group_id HAVING group_size <> COUNT(*)
+            """
+        )
+        self.assertEqual(bad, [], "group_size must equal the number of members")
+        policies = {row[0] for row in self.q(
+            "SELECT DISTINCT group_policy FROM questions WHERE group_id IS NOT NULL")}
+        self.assertEqual(policies, {"atomic"})
+        mismatch = self.q(
+            """
+            SELECT COUNT(*) FROM questions q JOIN passages p ON p.id = q.group_id
+            WHERE p.minimum_questions IS NOT NULL AND q.group_size <> p.minimum_questions
+            """
+        )[0][0]
+        self.assertEqual(mismatch, 0)
+
+    def test_a_group_never_spans_two_slots_or_languages(self) -> None:
+        bad = self.q(
+            """
+            SELECT group_id, COUNT(DISTINCT IFNULL(language_slot, -1)),
+                   COUNT(DISTINCT IFNULL(language, ''))
+            FROM questions WHERE group_id IS NOT NULL
+            GROUP BY group_id
+            HAVING COUNT(DISTINCT IFNULL(language_slot, -1)) > 1
+                OR COUNT(DISTINCT IFNULL(language, '')) > 1
+            """
+        )
+        self.assertEqual(bad, [], "a passage cannot be shared across slots/languages")
+
     def test_no_orphan_passage_references(self) -> None:
         orphans = self.q(
             "SELECT COUNT(*) FROM questions q LEFT JOIN passages p ON p.id = q.passage_id "
@@ -192,6 +226,27 @@ class PackTests(unittest.TestCase):
         self.assertEqual(
             sum(entry["count"] for entry in self.manifest["packs"]),
             self.manifest["total"])
+
+    def test_group_contract_reaches_the_client(self) -> None:
+        for index, pack in enumerate(self.packs):
+            sizes: dict[str, int] = {}
+            counts: dict[str, int] = {}
+            for question in pack.get("q", []):
+                group = question.get("g")
+                if not group:
+                    continue
+                sizes[group["id"]] = group["n"]
+                counts[group["id"]] = counts.get(group["id"], 0) + 1
+                self.assertEqual(group["pol"], "atomic")
+                self.assertTrue(question.get("pid"))
+            for gid, size in sizes.items():
+                self.assertEqual(
+                    counts[gid], size,
+                    f"pack {index} carries {counts[gid]} of {size} questions of group {gid}")
+            local = {p["id"] for p in pack.get("p", [])}
+            for gid in sizes:
+                self.assertIn(gid, local,
+                              f"pack {index} holds group {gid} without its passage")
 
     def test_language_slot_reaches_the_client(self) -> None:
         language_questions = [

@@ -37,8 +37,10 @@ jobs:
       - name: Validate and test
         run: |
           python tools/v2/validate_structure.py
+          python tools/v2/validate_stimulus_groups.py
           python tools/v2/sanitize_bank.py --check
           python tools/v2/test_text_sanitizer.py
+          python tools/v2/test_app_build.py
 
       - name: Build SQLite and CDN packs
         run: |

@@ -245,7 +245,10 @@ def _build_database(temp_db_path: Path) -> int:
             seq_in_passage INTEGER,
             language TEXT,
             language_slot INTEGER,
-            stimulus_kind TEXT
+            stimulus_kind TEXT,
+            group_id TEXT,
+            group_policy TEXT,
+            group_size INTEGER
         )
     """)
 
@@ -259,7 +262,8 @@ def _build_database(temp_db_path: Path) -> int:
             language TEXT,
             language_slot INTEGER,
             minimum_questions INTEGER,
-            review_text_verified INTEGER
+            review_text_verified INTEGER,
+            selection_policy TEXT
         )
     """)
 
@@ -377,13 +381,14 @@ def _build_database(temp_db_path: Path) -> int:
             cur.execute("""
                 INSERT INTO passages (
                     id, kind, dir_text, body, title, language, language_slot,
-                    minimum_questions, review_text_verified
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    minimum_questions, review_text_verified, selection_policy
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """, (
                 sid, kind, dir_text, body, title, language,
                 slot if isinstance(slot, int) else None,
                 min_q if isinstance(min_q, int) else None,
                 1 if review.get("textVerified") else 0,
+                s.get("selectionPolicy") or "atomic",
             ))
 
     # 4. Collect questions
@@ -509,14 +514,22 @@ def _build_database(temp_db_path: Path) -> int:
 
     for row in pending_rows:
         qid = row[0]
+        group_id = row[14]
+        # The group is the unit of use: a selector either takes the passage with
+        # every one of its questions or none of it. group_size is the member count,
+        # so a client can tell an incomplete download from a short block.
+        group_size = len(block_seq[group_id]) if group_id in block_seq else None
         cur.execute("""
             INSERT INTO questions (
                 id, exams, section, topic_index, topic_name, difficulty,
                 q_hindi, options_hindi, q_english, options_english,
                 answer, p_score, years, source_tag, passage_id, seq_in_passage,
-                language, language_slot, stimulus_kind
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-        """, row[:15] + (seq_lookup.get(qid),) + row[15:])
+                language, language_slot, stimulus_kind,
+                group_id, group_policy, group_size
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        """, row[:15] + (seq_lookup.get(qid),) + row[15:]
+            + (group_id, "atomic" if group_id else None, group_size))
+
         total_q += 1
 
 

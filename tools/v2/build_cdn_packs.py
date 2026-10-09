@@ -73,19 +73,30 @@ def build_timestamp() -> str:
 
 def _load_database(conn: sqlite3.Connection) -> tuple[dict[str, dict[str, str]], list[tuple[Any, ...]]]:
     cur = conn.cursor()
-    cur.execute("SELECT id, kind, dir_text, body, language, language_slot FROM passages ORDER BY id")
-    passages: dict[str, dict[str, str]] = {}
-    for pid, kind, dir_text, body, language, slot in cur.fetchall():
-        passages[pid] = {
+    cur.execute(
+        """
+        SELECT id, kind, dir_text, body, language, language_slot,
+               selection_policy, minimum_questions
+        FROM passages ORDER BY id
+        """
+    )
+    passages: dict[str, dict[str, Any]] = {}
+    for pid, kind, dir_text, body, language, slot, policy, min_q in cur.fetchall():
+        entry: dict[str, Any] = {
             "id": pid,
             "k": kind or "prose",
             "d": dir_text or "",
             "b": body or "",
+            # group contract: the passage and its `g` questions travel together
+            "pol": policy or "atomic",
         }
         if language:
-            passages[pid]["lg"] = language
+            entry["lg"] = language
         if slot is not None:
-            passages[pid]["sl"] = slot
+            entry["sl"] = slot
+        if min_q is not None:
+            entry["g"] = min_q
+        passages[pid] = entry
     print(f"Loaded {len(passages)} passages.")
 
     cur.execute(
@@ -93,7 +104,7 @@ def _load_database(conn: sqlite3.Connection) -> tuple[dict[str, dict[str, str]],
         SELECT id, exams, section, topic_index, topic_name, difficulty,
                q_hindi, options_hindi, q_english, options_english,
                answer, p_score, years, passage_id, seq_in_passage,
-               language, language_slot
+               language, language_slot, group_id, group_policy, group_size
         FROM questions
         ORDER BY exams, section, id
         """
@@ -119,7 +130,8 @@ def _prepare_questions(
 
     for row in rows:
         (qid, exams, section, topic_index, _topic_name, difficulty, qh, oh, qe, oe,
-         answer, p_score, years, pid, seq, language, slot) = row
+         answer, p_score, years, pid, seq, language, slot,
+         group_id, group_policy, group_size) = row
         section_counts[section] = section_counts.get(section, 0) + 1
         t_index = SECTION_TO_TOPIC_INDEX.get(section, topic_index or 0)
         options_hi = json.loads(oh) if oh else []
@@ -150,6 +162,11 @@ def _prepare_questions(
             question["pid"] = pid
         if seq is not None:
             question["n"] = seq
+        if group_id:
+            # One group = passage + every question of that passage. A selector must
+            # take the whole `g` or none of it; `n` is the position inside the group.
+            question["g"] = {"id": group_id, "pol": group_policy or "atomic",
+                             "n": group_size}
         questions.append(question)
 
         if pid and pid.strip():

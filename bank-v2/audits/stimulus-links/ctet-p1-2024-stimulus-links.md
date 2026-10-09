@@ -2,8 +2,8 @@
 
 `score` = प्रश्न के content शब्दों में से कितने अपने गद्यांश में मिलते हैं (0.00 = एक भी शब्द नहीं)। verdict पूरे ब्लॉक का है।
 
-- ठीक: **1** ब्लॉक
-- गलत गद्यांश/कविता जुड़ा है: **7** ब्लॉक
+- ठीक: **3** ब्लॉक
+- गलत गद्यांश/कविता जुड़ा है: **5** ब्लॉक
 - संस्कृत रूपों के कारण स्वतः जाँच संभव नहीं - पढ़कर देखें: **4** ब्लॉक
 
 ## प्रश्न-स्तर की गड़बड़ियाँ
@@ -30,8 +30,6 @@
   stimulus `ctet-p1-2024-stimulus-en-pr-129` · `language-2/english`
 - ✗ `ctet-p1-2024-i-lang2-en-q135` **quoted-text-not-in-stimulus** — question refers to 'The first bird call I heard as I left the house [ ________ ]' which does not occur in its own stimulus  
   stimulus `ctet-p1-2024-stimulus-en-pr-129` · `language-2/english`
-- ✗ `ctet-p1-2024-i-lang2-hi-q126` **quoted-text-not-in-stimulus** — question refers to 'इस ग्लेशियर का पौने दो किलोमीटर' which does not occur in its own stimulus  
-  stimulus `ctet-p1-2024-stimulus-hi-pr-121` · `language-2/hindi`
 - ✗ `ctet-p1-2024-i-lang2-sa-q124` **quoted-text-not-in-stimulus** — question refers to 'योगविषयका एतादृक्षा बहवो मन्त्राः' which does not occur in its own stimulus  
   stimulus `ctet-p1-2024-stimulus-sa-pr-121` · `language-2/sanskrit`
 - ✗ `ctet-p1-2024-i-lang2-sa-q126` **quoted-text-not-in-stimulus** — question refers to 'वेदव्यासेन व्यासभाष्यमिति नाम्ना लिखितमासीत्' which does not occur in its own stimulus  
@@ -100,26 +98,6 @@
   stimulus `ctet-p1-2024-stimulus-en-pr-129` · `language-2/english`
 - ? `ctet-p1-2024-i-lang2-en-q135` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
   stimulus `ctet-p1-2024-stimulus-en-pr-129` · `language-2/english`
-- ? `ctet-p1-2024-i-lang2-hi-q122` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2024-stimulus-hi-pr-121` · `language-2/hindi`
-- ? `ctet-p1-2024-i-lang2-hi-q124` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2024-stimulus-hi-pr-121` · `language-2/hindi`
-- ? `ctet-p1-2024-i-lang2-hi-q125` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2024-stimulus-hi-pr-121` · `language-2/hindi`
-- ? `ctet-p1-2024-i-lang2-hi-q127` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2024-stimulus-hi-pr-121` · `language-2/hindi`
-- ? `ctet-p1-2024-i-lang2-hi-q129` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2024-stimulus-hi-pr-129` · `language-2/hindi`
-- ? `ctet-p1-2024-i-lang2-hi-q130` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2024-stimulus-hi-pr-129` · `language-2/hindi`
-- ? `ctet-p1-2024-i-lang2-hi-q131` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2024-stimulus-hi-pr-129` · `language-2/hindi`
-- ? `ctet-p1-2024-i-lang2-hi-q132` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2024-stimulus-hi-pr-129` · `language-2/hindi`
-- ? `ctet-p1-2024-i-lang2-hi-q133` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2024-stimulus-hi-pr-129` · `language-2/hindi`
-- ? `ctet-p1-2024-i-lang2-hi-q134` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2024-stimulus-hi-pr-129` · `language-2/hindi`
 
 ---
 ## `language-1/english` — ctet-p1-2024-stimulus-en-pr-91
@@ -280,40 +258,40 @@ Cooperation in communities fosters resilience during times of challenge. When pe
 
 ---
 ## `language-2/hindi` — ctet-p1-2024-stimulus-hi-pr-121
-**verdict: गलत गद्यांश/कविता जुड़ा है** · type=prose · प्रश्न=8 · बिना-मिलान=7 · median score=0.0
+**verdict: ठीक** · type=prose · प्रश्न=8 · बिना-मिलान=0 · median score=0.5
 
-निर्देश: निर्देश : निम्नलिखित गद्यांश को पढ़कर पूछे गए प्रश्नों के सही/सर्वाधिक उपयुक्त विकल्प का चयन कीजिए।
+निर्देश: निर्देश (121-128): निम्नलिखित गद्यांश को ध्यानपूर्वक पढ़िए तथा पूछे गए प्रश्नों के उत्तर के रूप में उचित विकल्प का चयन कीजिए—
 
 ```
-श्रम ही जीवन की साधना है। बिना परिश्रम के कोई भी लक्ष्य प्राप्त नहीं किया जा सकता। इतिहास गवाह है कि महान व्यक्तियों ने अपने सतत श्रम से ही दुनिया को बदला है।
+इस बार मौसम विज्ञानियों ने घोषणा की हुई है कि अल नीनो प्रभाव के कारण मानसून कमजोर रह सकता है। चैत के महीने में बारिश होने के हालात पर घाघा ने भी यही कहा है। चैत यानी मार्च-अप्रैल के दिनों में अगर बारिश होती है तो सावन सूखा जा सकता है, बात सिर्फ इस बार के मानसून की नहीं है। अमेरिका में हाल ही में ताजे पानी के हालात पर हुए एक सम्मेलन में संयुक्त राष्ट्र संघ के महासचिव एंटोनियो गुतेरेज ने एक रिपोर्ट जारी की है। इसमें कहा गया है कि 2050 तक पानी का सबसे बड़ा संकट भारत में आने वाला है। भारत पर संकट इसलिए है क्योंकि गंगा, यमुना, ब्रह्मपुत्र और सिंधु जैसी नदियों का पानी धीरे-धीरे कम होता जाएगा। सिर्फ गंगा की बात करें तो 2500 किलोमीटर लंबी यह नदी उत्तराखंड से बंगाल के बीच कई राज्यों से गुजरती है। इसके किनारों पर बसे नगरों, कस्बों और गाँवों की करीब चालीस करोड़ की आबादी की पानी से जुड़ी जरूरतों को यह पूरा करती है। इसके पानी का स्रोत गंगोत्री ग्लेशियर है। पर्यावरण विज्ञानियों का दावा है कि पिछले 87 साल में तीस किलोमीटर लंबे इस ग्लेशियर का पौने दो किलोमीटर हिस्सा पिघलकर गायब हो चुका है। अभी जलवायु परिवर्तन का जो हाल है, वह पूरे हिमालय क्षेत्र के लिए खतरनाक माना जा रहा है। भारत के हिस्से वाले हिमालय में 9775 ग्लेशियर बताए जाते हैं।
 ```
 
-- ✓ `q121` score=0.07 — भारत की नदियों में जल कम होता जा रहा है। इसका कारण है ः
-- ✗ `q122` score=0.00 — गंगा के किनारे बसे लोगों की आबादी लगभग है ः
-- ✗ `q123` score=0.00 — नदियों का पानी धीरे-धीरे कम होता जाएगा। वाक्य में रेखांकित पद हैं ः
-- ✗ `q124` score=0.00 — गद्यांश में किस संकट की बात की गई है?
-- ✗ `q125` score=0.00 — अल नीनो का प्रभाव पड़ता है ः
-- ✗ `q126` score=0.00 — ‘इस ग्लेशियर का पौने दो किलोमीटर’ हिस्सा पिघलकर गायब हो चुका है।’ वाक्य में रेखांकित पद है ;
-- ✗ `q127` score=0.00 — गद्यांश के अनुसार 2050 तक पानी का सबसे बड़ा संकट आने वाला है ;
-- ✗ `q128` score=0.00 — ‘पर्यावरण’ में उपसर्ग और मूल शब्द हैं ः
+- ✓ `q121` score=0.40 — भारत की नदियों में जल कम होता जा रहा है। इसका कारण है ः
+- ✓ `q122` score=0.57 — गंगा के किनारे बसे लोगों की आबादी लगभग है ः
+- ✓ `q123` score=0.46 — नदियों का पानी धीरे-धीरे कम होता जाएगा। वाक्य में रेखांकित पद हैं ः
+- ✓ `q124` score=0.38 — गद्यांश में किस संकट की बात की गई है?
+- ✓ `q125` score=0.56 — अल नीनो का प्रभाव पड़ता है ः
+- ✓ `q126` score=0.50 — ‘इस ग्लेशियर का पौने दो किलोमीटर’ हिस्सा पिघलकर गायब हो चुका है।’ वाक्य में रेखांकित पद है ;
+- ✓ `q127` score=0.69 — गद्यांश के अनुसार 2050 तक पानी का सबसे बड़ा संकट आने वाला है ;
+- ✓ `q128` score=0.12 — ‘पर्यावरण’ में उपसर्ग और मूल शब्द हैं ः
 
 ---
 ## `language-2/hindi` — ctet-p1-2024-stimulus-hi-pr-129
-**verdict: गलत गद्यांश/कविता जुड़ा है** · type=prose · प्रश्न=7 · बिना-मिलान=7 · median score=0.0
+**verdict: ठीक** · type=prose · प्रश्न=7 · बिना-मिलान=0 · median score=0.5
 
-निर्देश: निर्देश : निम्नलिखित गद्यांश को पढ़कर पूछे गए प्रश्नों के सही/सर्वाधिक उपयुक्त विकल्प का चयन कीजिए।
+निर्देश: निर्देश (129-135): निम्नलिखित गद्यांश को ध्यानपूर्वक पढ़िए तथा पूछे गए प्रश्नों के उत्तर के रूप में उचित विकल्प का चयन कीजिए—
 
 ```
-वाणी में मधुरता अमृत के समान है। कटु वचन सुनने वाले के हृदय को आहत करते हैं जबकि मीठे वचन शांति और प्रेम का संचार करते हैं।
+इस संसार में सब कुछ अस्थायी है। पाप और पुण्य दोनों इस संसार से संबंधित हैं, इसलिए पाप और पुण्य भी अस्थायी हैं। पुण्य सुख देकर और पाप दुख देकर अंत को प्राप्त होता है। लेकिन पाप और पुण्य में थोड़ा अंतर यह है कि पुण्य का फल यदि हम नहीं चाहते तो उस फल का अस्वीकार करने के लिए स्वतंत्र हैं। पाप लोहे की जंजीर है तो पुण्य सोने की। बंधन दोनों में है। लोहे की जंजीर से छूटने का आदमी का मन भी करता है लेकिन सोने की जंजीर से जो बँधा हुआ हो उसको वह बंधन प्यारा लगने लगता है। उसमें उसको धन नजर आता है, उससे छूटने का मन नहीं करता।
 ```
 
-- ✗ `q129` score=0.00 — इस संसार में कुछ भी [ ________ ] नहीं है।
-- ✗ `q130` score=0.00 — पाप और पुण्य दोनों [ ________ ] हैं।
-- ✗ `q131` score=0.00 — पुण्य में उसके फल को ः
-- ✗ `q132` score=0.00 — गद्यांश के अनुसार पाप और पुण्य ः
-- ✗ `q133` score=0.00 — पाप और पुण्य दोनों की तुलना क्रमशः [ ________ ] और [ ________ ] की जंजीर से की गई है।
-- ✗ `q134` score=0.00 — समूह से भिन्न शब्द है ः
-- ✗ `q135` score=0.00 — ‘स्वतंत्र’ का विलोम है ः
+- ✓ `q129` score=0.57 — इस संसार में कुछ भी [ ________ ] नहीं है।
+- ✓ `q130` score=0.57 — पाप और पुण्य दोनों [ ________ ] हैं।
+- ✓ `q131` score=0.41 — पुण्य में उसके फल को ः
+- ✓ `q132` score=0.46 — गद्यांश के अनुसार पाप और पुण्य ः
+- ✓ `q133` score=0.50 — पाप और पुण्य दोनों की तुलना क्रमशः [ ________ ] और [ ________ ] की जंजीर से की गई है।
+- ✓ `q134` score=0.57 — समूह से भिन्न शब्द है ः
+- ✓ `q135` score=0.17 — ‘स्वतंत्र’ का विलोम है ः
 
 ---
 ## `language-2/sanskrit` — ctet-p1-2024-stimulus-sa-pr-121

@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "id": "ctet-p1-2024-stimulus-sources",
+  "exam": "ctet",
+  "paper": 1,
+  "cycleLabel": "2024",
+  "examDate": "2024-01-21",
+  "setCode": "I",
+  "_comment": [
+    "Verified passage/poem text for CTET Paper-I 21 January 2024 (Set I).",
+    "These replace the placeholder bodies that import_all_ctet.py hardcoded in",
+    "stimuli_specs. Apply with: python3 tools/v2/apply_stimulus_sources.py",
+    "Transcription is from a scanned solved paper, so wording is faithful but",
+    "punctuation may differ from the original print."
+  ],
+  "provenance": {
+    "retrieved": "2026-10-09",
+    "source": "CTET Solved Paper, Paper-1, 21st January 2024 (Oswaal360 mirror of the official paper)",
+    "url": "https://www.oswaal360.com/pluginfile.php/10939/mod_folder/content/0/CTET/Paper%201/2024/21%20Jan%202024.pdf",
+    "officialArchive": "https://ctet.nic.in/question-paper-january-2024/",
+    "method": "pdf text extraction of pages holding भाषा-II हिन्दी Q121-135",
+    "caveat": "scanned paper: Devanagari OCR drops some matras; re-verify against the official PDF before marking final"
+  },
+  "stimuli": [
+    {
+      "stimulusId": "ctet-p1-2024-stimulus-hi-pr-121",
+      "section": "language-2/hindi",
+      "language": "hi",
+      "languageSlot": 2,
+      "type": "prose",
+      "questionRange": [121, 128],
+      "instructions": "निर्देश (121-128): निम्नलिखित गद्यांश को ध्यानपूर्वक पढ़िए तथा पूछे गए प्रश्नों के उत्तर के रूप में उचित विकल्प का चयन कीजिए—",
+      "text": "इस बार मौसम विज्ञानियों ने घोषणा की हुई है कि अल नीनो प्रभाव के कारण मानसून कमजोर रह सकता है। चैत के महीने में बारिश होने के हालात पर घाघा ने भी यही कहा है। चैत यानी मार्च-अप्रैल के दिनों में अगर बारिश होती है तो सावन सूखा जा सकता है, बात सिर्फ इस बार के मानसून की नहीं है। अमेरिका में हाल ही में ताजे पानी के हालात पर हुए एक सम्मेलन में संयुक्त राष्ट्र संघ के महासचिव एंटोनियो गुतेरेज ने एक रिपोर्ट जारी की है। इसमें कहा गया है कि 2050 तक पानी का सबसे बड़ा संकट भारत में आने वाला है। भारत पर संकट इसलिए है क्योंकि गंगा, यमुना, ब्रह्मपुत्र और सिंधु जैसी नदियों का पानी धीरे-धीरे कम होता जाएगा। सिर्फ गंगा की बात करें तो 2500 किलोमीटर लंबी यह नदी उत्तराखंड से बंगाल के बीच कई राज्यों से गुजरती है। इसके किनारों पर बसे नगरों, कस्बों और गाँवों की करीब चालीस करोड़ की आबादी की पानी से जुड़ी जरूरतों को यह पूरा करती है। इसके पानी का स्रोत गंगोत्री ग्लेशियर है। पर्यावरण विज्ञानियों का दावा है कि पिछले 87 साल में तीस किलोमीटर लंबे इस ग्लेशियर का पौने दो किलोमीटर हिस्सा पिघलकर गायब हो चुका है। अभी जलवायु परिवर्तन का जो हाल है, वह पूरे हिमालय क्षेत्र के लिए खतरनाक माना जा रहा है। भारत के हिस्से वाले हिमालय में 9775 ग्लेशियर बताए जाते हैं।",
+      "note": "Q124 asks the population living on the Ganga's banks. The passage says 'करीब चालीस करोड़' (about 40 crore), so option (1) 40 करोड़ is correct; the bank currently stores answer 'c' (87 करोड़), which is the 87 years of glacier loss. Answer key needs review."
+    },
+    {
+      "stimulusId": "ctet-p1-2024-stimulus-hi-pr-129",
+      "section": "language-2/hindi",
+      "language": "hi",
+      "languageSlot": 2,
+      "type": "prose",
+      "questionRange": [129, 135],
+      "instructions": "निर्देश (129-135): निम्नलिखित गद्यांश को ध्यानपूर्वक पढ़िए तथा पूछे गए प्रश्नों के उत्तर के रूप में उचित विकल्प का चयन कीजिए—",
+      "text": "इस संसार में सब कुछ अस्थायी है। पाप और पुण्य दोनों इस संसार से संबंधित हैं, इसलिए पाप और पुण्य भी अस्थायी हैं। पुण्य सुख देकर और पाप दुख देकर अंत को प्राप्त होता है। लेकिन पाप और पुण्य में थोड़ा अंतर यह है कि पुण्य का फल यदि हम नहीं चाहते तो उस फल का अस्वीकार करने के लिए स्वतंत्र हैं। पाप लोहे की जंजीर है तो पुण्य सोने की। बंधन दोनों में है। लोहे की जंजीर से छूटने का आदमी का मन भी करता है लेकिन सोने की जंजीर से जो बँधा हुआ हो उसको वह बंधन प्यारा लगने लगता है। उसमें उसको धन नजर आता है, उससे छूटने का मन नहीं करता।"
+    }
+  ]
+}
