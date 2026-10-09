@@ -2,8 +2,8 @@
 
 `score` = प्रश्न के content शब्दों में से कितने अपने गद्यांश में मिलते हैं (0.00 = एक भी शब्द नहीं)। verdict पूरे ब्लॉक का है।
 
-- ठीक: **2** ब्लॉक
-- आधा-अधूरा मिलान: **2** ब्लॉक
+- ठीक: **3** ब्लॉक
+- आधा-अधूरा मिलान: **1** ब्लॉक
 - गलत गद्यांश/कविता जुड़ा है: **4** ब्लॉक
 - ये पेडागॉजी प्रश्न हैं, गद्यांश पर निर्भर नहीं: **2** ब्लॉक
 - संस्कृत रूपों के कारण स्वतः जाँच संभव नहीं - पढ़कर देखें: **2** ब्लॉक
@@ -16,12 +16,6 @@
   stimulus `ctet-p1-2018-stimulus-sa-pr-91` · `language-1/sanskrit`
 - ✗ `ctet-p1-2018-m-lang2-sa-q133` **quoted-text-not-in-stimulus** — question refers to 'बालाः भाषाध्ययनार्थम् अपेक्षितक्षमतां पुरस्कृत्य उत्पन्नाः भवन्ति' which does not occur in its own stimulus  
   stimulus `ctet-p1-2018-stimulus-sa-pr-129` · `language-2/sanskrit`
-- ? `ctet-p1-2018-m-lang1-en-q091` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2018-stimulus-en-pr-91` · `language-1/english`
-- ? `ctet-p1-2018-m-lang1-en-q094` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2018-stimulus-en-pr-91` · `language-1/english`
-- ? `ctet-p1-2018-m-lang1-en-q098` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2018-stimulus-en-pr-91` · `language-1/english`
 - ? `ctet-p1-2018-m-lang1-hi-q091` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
   stimulus `ctet-p1-2018-stimulus-hi-po-91` · `language-1/hindi`
 - ? `ctet-p1-2018-m-lang1-hi-q092` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
@@ -77,23 +71,27 @@
 
 ---
 ## `language-1/english` — ctet-p1-2018-stimulus-en-pr-91
-**verdict: आधा-अधूरा मिलान** · type=prose · प्रश्न=9 · बिना-मिलान=4 · median score=0.033
+**verdict: ठीक** · type=prose · प्रश्न=9 · बिना-मिलान=0 · median score=0.44
 
 निर्देश: Direction: Read the passage given below and answer the questions that follow (Q. Nos. 91 to 99) by selecting the correct/most appropriate options.
 
 ```
-Bringing up children is a delicate art that requires endless patience, understanding, and love. Children learn more from what parents do than from what they say. Setting a good personal example and fostering an environment of open dialogue allows children to flourish into confident and compassionate individuals.
+Palaces are known for their beauty and splendor, but they offer little protection against attacks. It is easy to defend a fortress, but fortresses are not designed with the comfort of a king or queen in mind. When it comes to structures that are both majestic and well-fortified, the classic European castle is the pinnacle of design. Across the ages castles changed, developed, and eventually fell out of use, but they still command the fascination of our culture.
+
+Castles were originally built in England by Norman invaders in 1066. As William the Conqueror advanced through England, he fortified key positions to secure the land he had taken. The castles he built allowed the Norman lords to retreat to safety when threatened by English rebellion. Castles also served as bases of operation for offensive attacks. Troops were summoned to, organized around, and deployed from castles. In this way castles served both offensive and defensive roles in military operations.
+
+Not limited to military purposes, castles also served as offices from which the lord would administer control over his fiefdom. That is to say, the lord of the land would hold court in his castle. Those that were socially bene
 ```
 
-- ✗ `q091` score=0.00 — Which one of the following is not a function of castles as expressed in the passage?
-- ~ `q092` score=0.03 — Which one of the following best describes the main idea in Paragraph 2?
-- ✓ `q093` score=0.07 — The original castles were first made from earth and timber because
-- ✗ `q094` score=0.00 — Wooden castles were converted to stone castles as
-- ~ `q095` score=0.05 — Which one of the following best explains how gunpowder was the nemesis of traditional castles?
-- ✓ `q096` score=0.08 — Which one of the following titles would best describe the content of this passage?
-- ✓ `q097` score=0.08 — Which one of the following is an opinion?
-- ✗ `q098` score=0.00 — Choose a word from the given options which means almost the same as the word 'vestiges' used in the passage.
-- ✗ `q099` score=0.00 — Choose a word which serves as the antonym of the word 'pinnacle'.
+- ✓ `q091` score=0.58 — Which one of the following is not a function of castles as expressed in the passage?
+- ✓ `q092` score=0.53 — Which one of the following best describes the main idea in Paragraph 2?
+- ✓ `q093` score=0.50 — The original castles were first made from earth and timber because
+- ✓ `q094` score=0.40 — Wooden castles were converted to stone castles as
+- ✓ `q095` score=0.37 — Which one of the following best explains how gunpowder was the nemesis of traditional castles?
+- ✓ `q096` score=0.44 — Which one of the following titles would best describe the content of this passage?
+- ✓ `q097` score=0.69 — Which one of the following is an opinion?
+- ✓ `q098` score=0.09 — Choose a word from the given options which means almost the same as the word 'vestiges' used in the passage.
+- ✓ `q099` score=0.12 — Choose a word which serves as the antonym of the word 'pinnacle'.
 
 ---
 ## `language-1/english` — ctet-p1-2018-stimulus-en-po-100
