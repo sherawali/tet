@@ -2,9 +2,8 @@
 
 `score` = प्रश्न के content शब्दों में से कितने अपने गद्यांश में मिलते हैं (0.00 = एक भी शब्द नहीं)। verdict पूरे ब्लॉक का है।
 
-- ठीक: **6** ब्लॉक
+- ठीक: **7** ब्लॉक
 - आधा-अधूरा मिलान: **1** ब्लॉक
-- गलत गद्यांश/कविता जुड़ा है: **1** ब्लॉक
 - संस्कृत रूपों के कारण स्वतः जाँच संभव नहीं - पढ़कर देखें: **4** ब्लॉक
 
 ## प्रश्न-स्तर की गड़बड़ियाँ
@@ -25,22 +24,6 @@
   stimulus `ctet-p1-2019-stimulus-en-po-100` · `language-1/english`
 - ? `ctet-p1-2019-a-lang1-hi-q095` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
   stimulus `ctet-p1-2019-stimulus-hi-pr-91` · `language-1/hindi`
-- ? `ctet-p1-2019-a-lang2-en-q121` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2019-stimulus-en-pr-121` · `language-2/english`
-- ? `ctet-p1-2019-a-lang2-en-q122` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2019-stimulus-en-pr-121` · `language-2/english`
-- ? `ctet-p1-2019-a-lang2-en-q123` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2019-stimulus-en-pr-121` · `language-2/english`
-- ? `ctet-p1-2019-a-lang2-en-q124` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2019-stimulus-en-pr-121` · `language-2/english`
-- ? `ctet-p1-2019-a-lang2-en-q125` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2019-stimulus-en-pr-121` · `language-2/english`
-- ? `ctet-p1-2019-a-lang2-en-q126` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2019-stimulus-en-pr-121` · `language-2/english`
-- ? `ctet-p1-2019-a-lang2-en-q127` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2019-stimulus-en-pr-121` · `language-2/english`
-- ? `ctet-p1-2019-a-lang2-en-q128` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2019-stimulus-en-pr-121` · `language-2/english`
 - ? `ctet-p1-2019-a-lang2-en-q130` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
   stimulus `ctet-p1-2019-stimulus-en-pr-129` · `language-2/english`
 - ? `ctet-p1-2019-a-lang2-hi-q124` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
@@ -187,22 +170,26 @@ Rode the six hundred.
 
 ---
 ## `language-2/english` — ctet-p1-2019-stimulus-en-pr-121
-**verdict: गलत गद्यांश/कविता जुड़ा है** · type=prose · प्रश्न=8 · बिना-मिलान=8 · median score=0.0
+**verdict: ठीक** · type=prose · प्रश्न=8 · बिना-मिलान=0 · median score=0.381
 
 निर्देश: Direction: Read the passage given below and answer the questions that follow (Q. Nos. 121 to 128) by selecting the correct/most appropriate options:
 
 ```
-History demonstrates that cultural exchange between distinct civilizations enriches philosophy, cuisine, architecture, and language. Isolationism leads to stagnation, whereas openness breeds vitality.
+Freedom is one of the most important factors in life. Man has fought politically all over the world for freedom. Religions have promised freedom, not in this world but in another. In the capitalist countries, individual freedom exists to some degree, and in the communist world it has been denied. From ancient times, freedom has meant a great deal to man, and there have been its opponents, not only political but religious through Inquisition, by excommunication, tortures and banishments, and the total denial of man’s search for freedom. There have been wars and counter-wars fought for freedom. This has been the pattern of man’s endeavours for freedom throughout history.
+
+Freedom of self-expression and freedom of speech and thought exist in some parts of the world, but in others it does not. Those who have been conditioned, revolt against their backgrounds. This reaction which takes different forms is called ‘freedom’. The reaction to politics is often to shun the field of politics.
+
+One economic reaction is to form small communities based on some ideology or under the leadership of one person, but these soon disintegrate. The religious reaction against established organisations of b
 ```
 
-- ✗ `q121` score=0.00 — Which word is most similar in meaning to the word 'endeavours' as used in the passage? (Para 1)
-- ✗ `q122` score=0.00 — Which word is the most opposite meaning to the word, 'shun' as used in the passage? (Para 2)
-- ✗ `q123` score=0.00 — Which part of the following sentence contains an error? There is no doubt that hard work (A) (B) paves the way to success (C) (D)
-- ✗ `q124` score=0.00 — Which of the following statements is not true?
-- ✗ `q125` score=0.00 — Which methods do authorities not use to suppress people fighting for freedom?
-- ✗ `q126` score=0.00 — Reaction against established religion prompts people not to:
-- ✗ `q127` score=0.00 — Real freedom, according to the author, is:
-- ✗ `q128` score=0.00 — Read the following sentences: A. Individual freedom does not exist at all in capitalist countries. B. People do not have individual freedom in communist countri
+- ✓ `q121` score=0.18 — Which word is most similar in meaning to the word 'endeavours' as used in the passage? (Para 1)
+- ✓ `q122` score=0.09 — Which word is the most opposite meaning to the word, 'shun' as used in the passage? (Para 2)
+- ✓ `q123` score=0.17 — Which part of the following sentence contains an error? There is no doubt that hard work (A) (B) paves the way to success (C) (D)
+- ✓ `q124` score=0.38 — Which of the following statements is not true?
+- ✓ `q125` score=0.36 — Which methods do authorities not use to suppress people fighting for freedom?
+- ✓ `q126` score=0.69 — Reaction against established religion prompts people not to:
+- ✓ `q127` score=0.62 — Real freedom, according to the author, is:
+- ✓ `q128` score=0.54 — Read the following sentences: A. Individual freedom does not exist at all in capitalist countries. B. People do not have individual freedom in communist countri
 
 ---
 ## `language-2/english` — ctet-p1-2019-stimulus-en-pr-129
