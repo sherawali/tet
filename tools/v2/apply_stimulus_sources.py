@@ -32,6 +32,7 @@ from collections import defaultdict
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 SOURCES_DIR = os.path.join(ROOT, "bank-v2", "sources", "stimuli")
 EXAMS_DIR = os.path.join(ROOT, "bank-v2", "exams")
+FORMS_DIR = os.path.join(ROOT, "bank-v2", "paper-forms")
 
 NL = "\n"
 
@@ -75,8 +76,12 @@ def load_sources(cycle: str | None) -> tuple[dict[str, dict], dict[str, dict], d
         head = re.escape(f"{doc['exam']}-p{doc['paper']}-{doc['cycleLabel']}")
         idpat = re.compile(rf"^{head}(?:-[a-z0-9]+)?-(?:lang(\d)|language-(\d))-")
         for section, spec in doc.get("answerKey", {}).get("sections", {}).items():
-            keys[section] = {
+            # Keyed by section AND cycle. Two source files both describe
+            # "language-1/english", and a flat dict let the later cycle overwrite the
+            # earlier one, silently dropping its key.
+            table = {
                 "pattern": idpat,
+                "source": doc["id"],
                 # the slot number of "language-2/english" is "2"
                 "expected": section.split("/")[0].split("-")[1],
                 "answers": {str(k): str(v) for k, v in spec.get("answers", {}).items()},
@@ -88,6 +93,7 @@ def load_sources(cycle: str | None) -> tuple[dict[str, dict], dict[str, dict], d
                     str(k): v for k, v in spec.get("answerTexts", {}).items()
                 },
             }
+            keys.setdefault(section, []).append(table)
     return entries, provenance, keys
 
 
@@ -134,16 +140,50 @@ def section_of(path: str) -> str:
     return "/".join(rel.split("/")[:-1])
 
 
-def fix_answers(keys: dict[str, dict], check_only: bool) -> tuple[int, int, int]:
+def sync_appearance_answers(answers: dict[str, str], check_only: bool) -> int:
+    """Keep `officialOptionId` on the paper-form appearances equal to the question's answer.
+
+    validate_structure.py treats a disagreement as an error, and it is a real one: the
+    appearance is what a mock paper scores against, so a corrected answer that is not
+    mirrored here leaves the paper marking the old option right.
+    """
+    synced = 0
+    if not os.path.isdir(FORMS_DIR) or not answers:
+        return 0
+    for dirpath, _dirs, names in os.walk(FORMS_DIR):
+        if "appearances.ndjson" not in names:
+            continue
+        path = os.path.join(dirpath, "appearances.ndjson")
+        rows = [json.loads(l) for l in open(path, encoding="utf-8") if l.strip()]
+        dirty = False
+        for row in rows:
+            if "officialOptionId" not in row:
+                continue
+            want = answers.get(row.get("questionId"))
+            if want is not None and row["officialOptionId"] != want:
+                if not check_only:
+                    row["officialOptionId"] = want
+                dirty = True
+                synced += 1
+        if dirty and not check_only:
+            with open(path, "w", encoding="utf-8") as fh:
+                for row in rows:
+                    fh.write(json.dumps(row, ensure_ascii=False) + NL)
+    return synced
+
+
+def fix_answers(keys: dict[str, list], check_only: bool) -> tuple[int, int, int]:
     """Correct stimulus-linked answers against the official key for known cycles+sections.
 
     Returns (fixed, same, unresolved). `unresolved` counts questions the key covers but
     that could not be matched to a single bank option - those are reported, never guessed.
     """
     fixed = same = unresolved = 0
+    set_answers: dict[str, str] = {}
     for path in ndjson_paths("questions.ndjson"):
         section = section_of(path)
-        tables = [t for name, t in keys.items() if name == section and "pattern" in t]
+        tables = [t for name, group in keys.items() if name == section
+                  for t in group if "pattern" in t]
         if not tables:
             continue
         rows = [json.loads(line) for line in open(path, encoding="utf-8") if line.strip()]
@@ -196,12 +236,17 @@ def fix_answers(keys: dict[str, dict], check_only: bool) -> tuple[int, int, int]
                 row.setdefault("answer", {})["optionId"] = want
                 review = row.setdefault("review", {})
                 review["answerKeyVerified"] = True
+            set_answers[row["id"]] = want
             dirty = True
             fixed += 1
         if dirty and not check_only:
             with open(path, "w", encoding="utf-8") as fh:
                 for row in rows:
                     fh.write(json.dumps(row, ensure_ascii=False) + NL)
+    synced = sync_appearance_answers(set_answers, check_only)
+    if synced:
+        print(f"  {'would sync' if check_only else 'synced'} {synced} appearance "
+              f"officialOptionId value(s)")
     if unresolved:
         print(f"  {unresolved} question(s) covered by a key could not be matched by option "
               f"text and were left untouched")

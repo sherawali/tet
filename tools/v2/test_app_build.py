@@ -317,6 +317,40 @@ class AnswerKeyTests(unittest.TestCase):
         self.assertEqual(hits, 1)
         self.assertEqual(row["answer"]["optionId"], want)
 
+    def test_every_cycle_answer_key_survives_loading(self) -> None:
+        """Regression: sections were held in a flat dict keyed by section name, so a later
+        cycle's source file silently overwrote an earlier one's key for the same section."""
+        _e, _p, keys = A.load_sources(None)
+        cycles = {t["source"] for group in keys.values() for t in group}
+        self.assertIn("ctet-p1-2018-stimulus-sources", cycles)
+        self.assertIn("ctet-p1-2024-stimulus-sources", cycles)
+        # 2018 L1-English Q91 is d in its key; 2024 says a for the same section.
+        tables = keys["language-1/english"]
+        by_source = {t["source"]: t for t in tables}
+        self.assertEqual(by_source["ctet-p1-2018-stimulus-sources"]["answers"]["91"], "d")
+        self.assertEqual(by_source["ctet-p1-2024-stimulus-sources"]["answers"]["91"], "a")
+
+    def test_appearance_official_option_id_matches_the_question_answer(self) -> None:
+        """validate_structure.py fails on a disagreement, and it is a real defect: the
+        appearance is what a mock paper scores against."""
+        answers = {}
+        for path in (ROOT / "bank-v2" / "exams").rglob("questions.ndjson"):
+            for line in open(path, encoding="utf-8"):
+                if line.strip():
+                    row = json.loads(line)
+                    answers[row["id"]] = (row.get("answer") or {}).get("optionId")
+        bad = []
+        for path in (ROOT / "bank-v2" / "paper-forms").rglob("appearances.ndjson"):
+            for line in open(path, encoding="utf-8"):
+                if not line.strip():
+                    continue
+                row = json.loads(line)
+                if "officialOptionId" not in row:
+                    continue
+                if row["officialOptionId"] != answers.get(row.get("questionId")):
+                    bad.append(row.get("id"))
+        self.assertEqual(bad, [], "appearances score the old option")
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
