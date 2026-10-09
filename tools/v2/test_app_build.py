@@ -177,6 +177,33 @@ class DatabaseTests(unittest.TestCase):
         self.assertEqual(marked, with_ref,
                          "review_text_verified must come from provenance, not the importer")
 
+    def test_every_sourced_stimulus_is_verified_in_the_database(self) -> None:
+        """Regression: the importer writes review.textVerified=True for stimuli it fabricated,
+        so the apply tool skipped any body that already matched and never wrote its sourceRef.
+        The database derives the flag from sourceRef, so such a stimulus stayed unverified even
+        though a source file named it - which is how the counts drifted apart."""
+        entries, _prov, _keys = A.load_sources(None)
+        self.assertTrue(entries)
+        missing_ref = []
+        for path in (ROOT / "bank-v2" / "exams").rglob("stimuli.ndjson"):
+            for line in open(path, encoding="utf-8"):
+                if not line.strip():
+                    continue
+                row = json.loads(line)
+                if row["id"] not in entries:
+                    continue
+                if (row.get("sourceRef") or {}).get("id") != entries[row["id"]]["_sourceId"]:
+                    missing_ref.append(row["id"])
+        self.assertEqual(missing_ref, [], "sourced stimulus without its sourceRef in the bank")
+
+        rows = dict(self.q("SELECT id, review_text_verified FROM passages"))
+        self.assertEqual(len(rows), 109)
+        unverified = [sid for sid in entries if not rows.get(sid)]
+        self.assertEqual(unverified, [], "sourced stimulus not verified in the database")
+        self.assertEqual(sum(1 for v in rows.values() if v), len(entries),
+                         "database verified count disagrees with the number of source entries")
+
+
 class PackTests(unittest.TestCase):
     """Build packs from the freshly built database and check what a client receives."""
 

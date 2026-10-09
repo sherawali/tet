@@ -287,7 +287,12 @@ def apply(check_only: bool, cycle: str | None) -> int:
             new_content = [{"kind": "markdown", "text": {lang: text}}]
             if (row.get("content") == new_content
                     and row.get("instructions", {}).get(lang) == entry.get("instructions")
-                    and (row.get("review") or {}).get("textVerified") is True):
+                    and (row.get("review") or {}).get("textVerified") is True
+                    # Not optional: the importer writes review.textVerified=True for every
+                    # stimulus it fabricates, so a body that already matches would be skipped
+                    # and never given its sourceRef. The DB derives the flag from sourceRef, so
+                    # such a stimulus stayed "unverified" forever even though a source named it.
+                    and (row.get("sourceRef") or {}).get("id") == entry["_sourceId"]):
                 skipped += 1
                 continue
             print(f"  {row['id']}")
