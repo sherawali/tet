@@ -2,9 +2,9 @@
 
 `score` = प्रश्न के content शब्दों में से कितने अपने गद्यांश में मिलते हैं (0.00 = एक भी शब्द नहीं)। verdict पूरे ब्लॉक का है।
 
-- ठीक: **5** ब्लॉक
+- ठीक: **6** ब्लॉक
 - आधा-अधूरा मिलान: **1** ब्लॉक
-- गलत गद्यांश/कविता जुड़ा है: **2** ब्लॉक
+- गलत गद्यांश/कविता जुड़ा है: **1** ब्लॉक
 - संस्कृत रूपों के कारण स्वतः जाँच संभव नहीं - पढ़कर देखें: **4** ब्लॉक
 
 ## प्रश्न-स्तर की गड़बड़ियाँ
@@ -13,8 +13,6 @@
   stimulus `ctet-p1-2019-stimulus-hi-po-100` · `language-1/hindi`
 - ✗ `ctet-p1-2019-a-lang2-hi-q124` **quoted-text-not-in-stimulus** — question refers to 'बच्चों को यह छूट दी जानी चाहिए कि वे अपनी रुचि व क्षमता के अनुसार किसी विषय की व' which does not occur in its own stimulus  
   stimulus `ctet-p1-2019-stimulus-hi-pr-121` · `language-2/hindi`
-- ✗ `ctet-p1-2019-a-lang2-hi-q133` **quoted-text-not-in-stimulus** — question refers to 'फर्स्ट हैंड समझ' which does not occur in its own stimulus  
-  stimulus `ctet-p1-2019-stimulus-hi-pr-129` · `language-2/hindi`
 - ? `ctet-p1-2019-a-lang1-en-q091` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
   stimulus `ctet-p1-2019-stimulus-en-pr-91` · `language-1/english`
 - ? `ctet-p1-2019-a-lang1-en-q092` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
@@ -47,18 +45,6 @@
   stimulus `ctet-p1-2019-stimulus-en-pr-129` · `language-2/english`
 - ? `ctet-p1-2019-a-lang2-hi-q124` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
   stimulus `ctet-p1-2019-stimulus-hi-pr-121` · `language-2/hindi`
-- ? `ctet-p1-2019-a-lang2-hi-q129` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2019-stimulus-hi-pr-129` · `language-2/hindi`
-- ? `ctet-p1-2019-a-lang2-hi-q130` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2019-stimulus-hi-pr-129` · `language-2/hindi`
-- ? `ctet-p1-2019-a-lang2-hi-q131` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2019-stimulus-hi-pr-129` · `language-2/hindi`
-- ? `ctet-p1-2019-a-lang2-hi-q132` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2019-stimulus-hi-pr-129` · `language-2/hindi`
-- ? `ctet-p1-2019-a-lang2-hi-q133` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2019-stimulus-hi-pr-129` · `language-2/hindi`
-- ? `ctet-p1-2019-a-lang2-hi-q135` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2019-stimulus-hi-pr-129` · `language-2/hindi`
 
 ---
 ## `language-1/english` — ctet-p1-2019-stimulus-en-pr-91
@@ -261,21 +247,23 @@ The Himalayas in the state of Uttarakhand are especially rich in water resources
 
 ---
 ## `language-2/hindi` — ctet-p1-2019-stimulus-hi-pr-129
-**verdict: गलत गद्यांश/कविता जुड़ा है** · type=prose · प्रश्न=7 · बिना-मिलान=7 · median score=0.0
+**verdict: ठीक** · type=prose · प्रश्न=7 · बिना-मिलान=0 · median score=0.375
 
 निर्देश: निर्देश : निम्नलिखित गद्यांश को पढ़कर पूछे गए प्रश्नों (प्रश्न सं. 129 से 135 तक) के सबसे उपयुक्त उत्तर वाले विकल्प चुनिए:
 
 ```
-भाषा अभिव्यक्ति का सर्वोत्तम माध्यम है। मातृभाषा में शिक्षा प्राप्त करने से बालक की मौलिक चिंतन शक्ति विकसित होती है। विदेशी भाषा का अनावश्यक बोझ बच्चे के स्वाभाविक मानसिक विकास में बाधा उत्पन्न करता है।
+आज जब भी कोई गाँव का नाम लेता है तो एक अलग ही छवि उभरती है। वह छवि कहती है कि वहाँ गरीबी है। वहाँ अशिक्षा और अज्ञान है। वहाँ अंध-विश्वास है। गंदगी है। बीमारी है। हमें विचार करना है कि सच क्या है? क्या हमारे गाँव ऐसे ही थे जैसे आज हैं? आज जो गाँवों की दुर्दशा हुई है उसके लिए जिम्मेदार कौन है? इन सवालों की पड़ताल करते हुए हमें नई समझ बनानी है तथा गाँवों के सही स्वरूप की पहचान करनी है। वैसे यह खुदा का शुक्र है कि गाँवों पर कई तरह के आक्रामक दुष्प्रभावों के बावजूद उनका मूल स्वरूप नहीं बदला है। जो दूरस्थ गाँव हैं – शहर के पड़ोस से दूर उनकी निजता तो खासी बची हुई है। ऐसी स्थिति में हमारा दायित्व, एक शिक्षित समाज का दायित्व क्या बनाता है? हमें विचार करना है। मगर ऐसा कोई भी विचार गाँवों को आँखों से देखे बिना, स्वयं देख कर समझे बिना नहीं किया जा सकता। तो हमें अपनी फर्स्ट हैंड समझ बनाने के लिए गाँव चलना है।
+
+अपने मूल स्वरूप में गाँव एक वेधशाला है। एक विद्याशाला है। गाँव वेधशाला या प्रयोगशाला इसलिए है कि ज्ञान को रोज वहाँ कर्म की कसौटी पर कसा जाता है। आजमाया जाता है। जो ज्ञान कर्म की कसौटी पर खरा न उतरे तो उसे खारिज कर दिया जाता है। हर ज्ञान के होने की शर्त यह है वह सृजन और उत्पादन की शान पर तराशा जाए।
 ```
 
-- ✗ `q129` score=0.00 — ज्ञान के होने की अनिवार्य शर्त है–
-- ✗ `q130` score=0.00 — अनुच्छेद के आधार पर कहा जा सकता है कि–
-- ✗ `q131` score=0.00 — गाँव को ठीक से समझने के लिए जरूरी है–
-- ✗ `q132` score=0.00 — गाँव को प्रयोगशाला क्यों कहा गया है?
-- ✗ `q133` score=0.00 — ‘फर्स्ट हैंड समझ’ से तात्पर्य है–
-- ✗ `q134` score=0.00 — ‘शिक्षित’ शब्द में प्रत्यय है–
-- ✗ `q135` score=0.00 — गाँव की छवि में क्या शामिल नहीं है?
+- ✓ `q129` score=0.62 — ज्ञान के होने की अनिवार्य शर्त है–
+- ✓ `q130` score=0.38 — अनुच्छेद के आधार पर कहा जा सकता है कि–
+- ✓ `q131` score=0.23 — गाँव को ठीक से समझने के लिए जरूरी है–
+- ✓ `q132` score=0.41 — गाँव को प्रयोगशाला क्यों कहा गया है?
+- ✓ `q133` score=0.29 — ‘फर्स्ट हैंड समझ’ से तात्पर्य है–
+- ✓ `q134` score=0.17 — ‘शिक्षित’ शब्द में प्रत्यय है–
+- ✓ `q135` score=0.88 — गाँव की छवि में क्या शामिल नहीं है?
 
 ---
 ## `language-2/sanskrit` — ctet-p1-2019-stimulus-sa-pr-121

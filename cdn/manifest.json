@@ -81,9 +81,9 @@
     },
     {
       "id": "v20261009-0005",
-      "file": "packs/pack-0005-4d12e8b49865.json",
-      "sha256": "4d12e8b498652e3e6f26ba7ebd6f5b911e8ea1b6525f58d7e877c8bb605a0b71",
-      "bytes": 137404,
+      "file": "packs/pack-0005-cee015745cda.json",
+      "sha256": "cee015745cda8e6be2f558a8b82a88a5d6d09289301b07b9bb5f8ddf2fc8a644",
+      "bytes": 139696,
       "count": 200,
       "sections": [
         "hindi"
