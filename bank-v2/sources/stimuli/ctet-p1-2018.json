@@ -1,0 +1,183 @@
+{
+  "schemaVersion": 1,
+  "id": "ctet-p1-2018-stimulus-sources",
+  "exam": "ctet",
+  "paper": 1,
+  "cycleLabel": "2018",
+  "examDate": "2018-12-09",
+  "setCode": "m",
+  "provenance": {
+    "retrieved": "2026-10-09",
+    "source": "CBSE official final answer key, CTET Dec-2018 Paper-I (exam 09-12-2018)",
+    "url": "https://cdnbbsr.s3waas.gov.in/s3443dec3062d0286986e21dc0631734c9/uploads/2022/03/2022033113.pdf",
+    "method": "answer key only; no passage text has been added for this cycle yet"
+  },
+  "stimuli": [],
+  "answerKey": {
+    "source": "CBSE official final answer key, CTET Dec-2018 Paper-I (exam 09-12-2018), Set I",
+    "url": "https://cdnbbsr.s3waas.gov.in/s3443dec3062d0286986e21dc0631734c9/uploads/2022/03/2022033113.pdf",
+    "index": "https://ctet.nic.in/document/ctet-december-2018-paper-1/",
+    "note": "Sanskrit (PAPER-I 16-SANSKRIT) is not included because those tables have not been read yet; the English and Hindi tables below are complete for 91-150.",
+    "sections": {
+      "language-1/english": {
+        "range": [
+          91,
+          120
+        ],
+        "answers": {
+          "91": "d",
+          "92": "b",
+          "93": "a",
+          "94": "c",
+          "95": "d",
+          "96": "c",
+          "97": "c",
+          "98": "a",
+          "99": "a",
+          "100": "c",
+          "101": "d",
+          "102": "a",
+          "103": "d",
+          "104": "b",
+          "105": "d",
+          "106": "c",
+          "107": "b",
+          "108": "c",
+          "109": "c",
+          "110": "d",
+          "111": "a",
+          "112": "c",
+          "113": "c",
+          "114": "b",
+          "115": "d",
+          "116": "a",
+          "117": "a",
+          "118": "a",
+          "119": "a",
+          "120": "b"
+        }
+      },
+      "language-1/hindi": {
+        "range": [
+          91,
+          120
+        ],
+        "answers": {
+          "91": "c",
+          "92": "c",
+          "93": "d",
+          "94": "a",
+          "95": "d",
+          "96": "d",
+          "97": "b",
+          "98": "a",
+          "99": "d",
+          "100": "a",
+          "101": "b",
+          "102": "b",
+          "103": "b",
+          "104": "c",
+          "105": "c",
+          "106": "c",
+          "107": "c",
+          "108": "b",
+          "109": "a",
+          "110": "d",
+          "111": "c",
+          "112": "c",
+          "113": "c",
+          "114": "d",
+          "115": "d",
+          "116": "a",
+          "117": "d",
+          "118": "d",
+          "119": "a",
+          "120": "c"
+        }
+      },
+      "language-2/english": {
+        "range": [
+          121,
+          150
+        ],
+        "answers": {
+          "121": "b",
+          "122": "d",
+          "123": "c",
+          "124": "c",
+          "125": "a",
+          "126": "d",
+          "127": "d",
+          "128": "b",
+          "129": "a",
+          "130": "b",
+          "131": "d",
+          "132": "a",
+          "133": "c",
+          "134": "c",
+          "135": "a",
+          "136": "b",
+          "137": "a",
+          "138": "b",
+          "139": "a",
+          "140": "b",
+          "141": "a",
+          "142": "c",
+          "143": "d",
+          "144": "d",
+          "145": "b",
+          "146": "b",
+          "147": "a",
+          "148": "d",
+          "149": "c",
+          "150": "d"
+        }
+      },
+      "language-2/hindi": {
+        "range": [
+          121,
+          150
+        ],
+        "answers": {
+          "121": "c",
+          "122": "c",
+          "123": "c",
+          "124": "a",
+          "125": "d",
+          "126": "d",
+          "127": "d",
+          "128": "b",
+          "129": "d",
+          "130": "d",
+          "131": "c",
+          "132": "c",
+          "133": "a",
+          "134": "c",
+          "135": "d",
+          "136": "b",
+          "137": "c",
+          "138": "c",
+          "139": "a",
+          "140": "b",
+          "141": "b",
+          "142": "a",
+          "143": "a",
+          "144": "b",
+          "145": "d",
+          "146": "b",
+          "147": "c",
+          "148": "b",
+          "149": "d",
+          "150": "c"
+        }
+      }
+    },
+    "official": {
+      "source": "CBSE official final answer key, CTET Dec-2018 Paper-I (09-12-2018)",
+      "url": "https://cdnbbsr.s3waas.gov.in/s3443dec3062d0286986e21dc0631734c9/uploads/2022/03/2022033113.pdf",
+      "index": "https://ctet.nic.in/document/ctet-december-2018-paper-1/",
+      "identified": "Set I. The key holds one 60-question table per (set, language), 91-120 being the language-I half and 121-150 the language-II half. Set I is the only set whose PAPER-I 01-ENGLISH table satisfies both independent anchors from the same paper: Q100 ('The Little Black Boy' was born in ...) = 3 and Q134 (how much stronger is Kevlar than steel) = 3. Sets J, K and L give 1/4, 1/2 and 2/3 for those two questions.",
+      "omitted": "none: no multi-option code (A-F/Z) or bonus code 9 occurs in the Set I English or Hindi tables. The key's code 9 means 'one mark to all' and only appears in the 1-90 tables, which are not applied here."
+    }
+  }
+}
