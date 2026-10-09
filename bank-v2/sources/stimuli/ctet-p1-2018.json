@@ -69,6 +69,34 @@
       "instructions": "Direction: Read the passage given below and answer the questions that follow (Q. Nos. 121 to 129) by selecting the correct/most appropriate options.",
       "text": "Man who is believed to have evolved from apes, is a curious mixture of varied motives. He is not only the subject of needs but also their creator. He not only seeks to satisfy his needs but also caters to his desire for beauty and grace. He is eager to satisfy his passion for more and more knowledge.\n\nAlthough in a general way, the maxim 'Necessity is the mother of invention' is true but by no means is the whole truth. Man is something much greater than an intelligent being using his intellect to make newer inventions from time to time. He has within him a spirit which is ever exhorting him to cut down his needs and learn to be happy with what he has.\n\nThe real purpose underlying this maxim lies in its utility in the worldly sense. It tells us to be up and doing, not to be passive in our attitude to life. It asks us not to remain slaves of old habits and ways of life. We must face the new situations with a creative mind. Every new difficulty, every new problem, which confirms us in life can be tackled successfully with the spirit of inventiveness.",
       "note": "Replaces an invented placeholder ('Scientific temper is the willingness to question...'), which was not from this paper at all. The text is the CTET Dec-2018 extract as quoted by Testbook against Q121-129 of this paper; it is confirmed as the right passage by the questions themselves - Q121 'not the whole truth', Q123 'cut down his desires', Q129 'exhorting' and Q128 'seeks' all quote it. Caveat: Q124 asks which of statements I/II/III are true, but the importer dropped the statement list from that question's stem, so Q124 is still unanswerable as stored. That is a separate importer defect and is not fixed by this text."
+    },
+    {
+      "stimulusId": "ctet-p1-2018-stimulus-hi-po-91",
+      "section": "language-1/hindi",
+      "language": "hi",
+      "languageSlot": 1,
+      "type": "poem",
+      "questionRange": [
+        91,
+        96
+      ],
+      "instructions": "निर्देश : नीचे दी गई कविता की पंक्तियों को पढ़कर पूछे गए प्रश्नों (प्रश्न सं. 91 से 96) के सही/सबसे उपयुक्त उत्तर वाले विकल्प को चुनिए।",
+      "text": "पूर्व चलने के बटोही,\nबाट की पहचान कर ले।\nहै अनिश्चित किस जगह पर,\nसरित गिरि गह्वर मिलेंगे\nहै अनिश्चित किस जगह पर\nबाग वन सुंदर मिलेंगे।\nकिस जगह यात्रा खत्म हो\nजाएगी यह भी अनिश्चित\nहै अनिश्चित कब सुमन कब\nकंटकों के शर मिलेंगे।\nकौन सहसा छू जाएँगे\nमिलेंगे कौन सहसा\nआ पड़े कुछ भी रुकेगा\nतू न ऐसी आन कर ले।\nपूर्व चलने के बटोही,\nबाट की पहचान कर ले।",
+      "note": "Replaces an invented placeholder that did not contain सुमन/कंटक/सरित/अनिश्चित - the four words the questions turn on. Caveat: the source's line breaks come from a web rendering and two lines read awkwardly ('मिलेंगे कौन सहसा'); the words are as printed there. Text transcribed from TheExamPillar's rendering of CTET Dec-2018 Paper-I Language-I (Hindi), https://theexampillar.com/ctet-exam-2018-language-i-hindi-answerkey/2/ , which prints this block as questions 16-30 of that section. All 15 bank answers for these two blocks were compared option text by option text against that page's key and agree."
+    },
+    {
+      "stimulusId": "ctet-p1-2018-stimulus-hi-pr-97",
+      "section": "language-1/hindi",
+      "language": "hi",
+      "languageSlot": 1,
+      "type": "prose",
+      "questionRange": [
+        97,
+        105
+      ],
+      "instructions": "निर्देश : नीचे दिए गए गद्यांश को पढ़कर पूछे गए प्रश्नों (प्रश्न सं. 97 से 105) के सही/सबसे उपयुक्त उत्तर वाले विकल्प को चुनिए।",
+      "text": "राष्ट्रीय पर्वो और सांस्कृतिक समारोहों के दौरान गीत गाए जाएँ, कविताएँ सुनी और सुनायी जाएँ, इसे लेकर माता-पिताओं, स्कूल और समाज में व्यापक सहमति है। लेकिन गीत-कविताएँ बच्चों के जीवन में रच-बस जाएँ, वे उनका भरपूर आनंद लेने लगे, खुद तुकबंदियाँ करने लगे, रचने लगें, यह माता-पिता को मंजूर नहीं। माता को लगता है। ऐसा करते हुए तो वे उस राह से भटक जाएँगे जिस राह पर वे उन्हें चलाना चाहते हैं। जिस राह से वे उन्हें अपनी सोची हुई मंज़िल पर पहुँचाना चाहते हैं। उनकी इस इच्छा में यह निहित है कि बच्चे वैसा कुछ भी नहीं करें जो वे करना चाहते हैं। बल्कि वे वैसा करें जैसा माता-पिता चाहते हैं। उनके भीतर बच्चे के स्वतंत्रतापूर्वक सीखने की प्रक्रिया के प्रति सतत संदेह और गहरा डर बना रहता है। यही हाल स्कूल का भी है। गीत-कविता स्कूल और कक्षाओं की रोज़मर्रा की गतिविधि का हिस्सा बन जाए यह स्कूल को मंजूर नहीं। स्कूल को लगता है इस सबके लिए समय कहाँ है। यह पाठ्य-पुस्तक से बाहर की गतिविधि है। शिक्षक और शिक्षा अधिकारी चाहते हैं शिक्षक पहले परीक्षा परिणाम बेहतर लाने के लिए काम करें।\n\nदूसरी ओर हमारी संस्कृति और समाज में गीत-कविता की जो जगहें थीं वे जगहें लगातार सीमित हुई हैं। गीत गाने, सुनने-सुनाने के अवसर हुआ करते थे, वे अवसर ही गीत-कविताओं को गुनगुनाते रह सकने के लिए याद करने को प्रेरित करते थे। सहेजने और रचने के लिए प्रेरित करते थे। उनमें कुछ जोड़ने के लिए प्रेरित करते थे। इस सबके लिए अतिरिक्त प्रयासों की ज़रूरत नहीं पड़ती थी, वह जीवन-शैली का स्वाभाविक हिस्सा था। बच्चों के लिए पढ़ाई से अधिक खेलने-कूदने के लिए समय और जगहें थीं। खेलने-कूदने की मस्ती के दौरान ही उनके बीच से स्वतः ही नये खेलों, तुकबंदियों और खेलगीतों और बालगीतों का सृजन भी हो जाया करता था। उनकी ये रचनाएँ चलन में आ जाया करती थीं, जबान पर चढ़ जाती थीं और सालों-साल उनकी टोलियों के बीच बनी रहती थीं। समय के साथ उनमें कुछ कमी पाए जाने पर संशोधित होती रहती थीं।",
+      "note": "Replaces an invented placeholder about त्याग/परोपकार that had nothing to do with the questions, which are all about गीत-कविता in children's lives. One scan artefact was repaired: the source prints 'कुछ कमी पाए । जाने पर', a stray danda inside the word, read here as 'कुछ कमी पाए जाने पर'. Text transcribed from TheExamPillar's rendering of CTET Dec-2018 Paper-I Language-I (Hindi), https://theexampillar.com/ctet-exam-2018-language-i-hindi-answerkey/2/ , which prints this block as questions 16-30 of that section. All 15 bank answers for these two blocks were compared option text by option text against that page's key and agree."
     }
   ],
   "answerKey": {
