@@ -49,9 +49,9 @@
     },
     {
       "id": "v20261009-0002",
-      "file": "packs/pack-0002-fbd9a3ff5ae4.json",
-      "sha256": "fbd9a3ff5ae4161d06df4082a126951ded7b6a9460743fffedaba8cf21dc8f8b",
-      "bytes": 149503,
+      "file": "packs/pack-0002-f97214249b28.json",
+      "sha256": "f97214249b2850e7ab8832b90d8fbd718b7e9779f5bba2049b2adf008d7e632b",
+      "bytes": 152922,
       "count": 200,
       "sections": [
         "english"

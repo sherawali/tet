@@ -2,18 +2,14 @@
 
 `score` = प्रश्न के content शब्दों में से कितने अपने गद्यांश में मिलते हैं (0.00 = एक भी शब्द नहीं)। verdict पूरे ब्लॉक का है।
 
-- ठीक: **2** ब्लॉक
-- आधा-अधूरा मिलान: **2** ब्लॉक
-- गलत गद्यांश/कविता जुड़ा है: **3** ब्लॉक
+- ठीक: **5** ब्लॉक
+- आधा-अधूरा मिलान: **1** ब्लॉक
+- गलत गद्यांश/कविता जुड़ा है: **1** ब्लॉक
 - ये पेडागॉजी प्रश्न हैं, गद्यांश पर निर्भर नहीं: **3** ब्लॉक
 - संस्कृत रूपों के कारण स्वतः जाँच संभव नहीं - पढ़कर देखें: **2** ब्लॉक
 
 ## प्रश्न-स्तर की गड़बड़ियाँ
 
-- ✗ `ctet-p1-2023-e-lang1-en-q102` **quoted-text-not-in-stimulus** — question refers to 'And I realised how travelling solo was [ ________ ]' which does not occur in its own stimulus  
-  stimulus `ctet-p1-2023-stimulus-en-pr-97` · `language-1/english`
-- ✗ `ctet-p1-2023-e-lang1-en-q105` **quoted-text-not-in-stimulus** — question refers to '[ ________ ] relishing a challenging trek.' which does not occur in its own stimulus  
-  stimulus `ctet-p1-2023-stimulus-en-pr-97` · `language-1/english`
 - ✗ `ctet-p1-2023-e-lang1-hi-q098` **quoted-text-not-in-stimulus** — question refers to 'हर बुराई अज्ञान के अंधकार में फैलती है।' which does not occur in its own stimulus  
   stimulus `ctet-p1-2023-stimulus-hi-pr-97` · `language-1/hindi`
 - ✗ `ctet-p1-2023-e-lang1-hi-q101` **quoted-text-not-in-stimulus** — question refers to 'मन की कोठरी को स्वच्छ रखें' which does not occur in its own stimulus  
@@ -21,44 +17,12 @@
 - ✗ `ctet-p1-2023-e-lang1-sa-q100` **quoted-text-not-in-stimulus** — question refers to '(Top-down) पद्धति
 `अधःऊर्ध्वं' which does not occur in its own stimulus  
   stimulus `ctet-p1-2023-stimulus-sa-po-100` · `language-1/sanskrit`
-- ✗ `ctet-p1-2023-e-lang2-en-q128` **quoted-text-not-in-stimulus** — question refers to 'attend to the overall meaning' which does not occur in its own stimulus  
-  stimulus `ctet-p1-2023-stimulus-en-pr-121` · `language-2/english`
 - ✗ `ctet-p1-2023-e-lang2-hi-q128` **quoted-text-not-in-stimulus** — question refers to 'समग्र अर्थ पर ध्यान देना' which does not occur in its own stimulus  
   stimulus `ctet-p1-2023-stimulus-hi-pr-121` · `language-2/hindi`
-- ? `ctet-p1-2023-e-lang1-en-q098` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2023-stimulus-en-pr-97` · `language-1/english`
-- ? `ctet-p1-2023-e-lang1-en-q099` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2023-stimulus-en-pr-97` · `language-1/english`
-- ? `ctet-p1-2023-e-lang1-en-q101` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2023-stimulus-en-pr-97` · `language-1/english`
-- ? `ctet-p1-2023-e-lang1-en-q102` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2023-stimulus-en-pr-97` · `language-1/english`
-- ? `ctet-p1-2023-e-lang1-en-q104` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2023-stimulus-en-pr-97` · `language-1/english`
-- ? `ctet-p1-2023-e-lang1-en-q105` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2023-stimulus-en-pr-97` · `language-1/english`
 - ? `ctet-p1-2023-e-lang1-hi-q099` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
   stimulus `ctet-p1-2023-stimulus-hi-pr-97` · `language-1/hindi`
 - ? `ctet-p1-2023-e-lang1-hi-q105` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
   stimulus `ctet-p1-2023-stimulus-hi-pr-97` · `language-1/hindi`
-- ? `ctet-p1-2023-e-lang2-en-q121` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2023-stimulus-en-pr-121` · `language-2/english`
-- ? `ctet-p1-2023-e-lang2-en-q122` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2023-stimulus-en-pr-121` · `language-2/english`
-- ? `ctet-p1-2023-e-lang2-en-q127` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2023-stimulus-en-pr-121` · `language-2/english`
-- ? `ctet-p1-2023-e-lang2-en-q128` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2023-stimulus-en-pr-121` · `language-2/english`
-- ? `ctet-p1-2023-e-lang2-en-q130` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2023-stimulus-en-pr-129` · `language-2/english`
-- ? `ctet-p1-2023-e-lang2-en-q132` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2023-stimulus-en-pr-129` · `language-2/english`
-- ? `ctet-p1-2023-e-lang2-en-q133` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2023-stimulus-en-pr-129` · `language-2/english`
-- ? `ctet-p1-2023-e-lang2-en-q134` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2023-stimulus-en-pr-129` · `language-2/english`
-- ? `ctet-p1-2023-e-lang2-en-q135` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2023-stimulus-en-pr-129` · `language-2/english`
 - ? `ctet-p1-2023-e-lang2-hi-q121` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
   stimulus `ctet-p1-2023-stimulus-hi-pr-121` · `language-2/hindi`
 - ? `ctet-p1-2023-e-lang2-hi-q123` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
@@ -110,23 +74,31 @@ You may forever tarry.
 
 ---
 ## `language-1/english` — ctet-p1-2023-stimulus-en-pr-97
-**verdict: गलत गद्यांश/कविता जुड़ा है** · type=prose · प्रश्न=9 · बिना-मिलान=6 · median score=0.0
+**verdict: ठीक** · type=prose · प्रश्न=9 · बिना-मिलान=0 · median score=0.364
 
 निर्देश: Direction: Read the passage given below and answer the questions that follow (Q. Nos. 97 to 105) by selecting the most appropriate option.
 
 ```
-The secret of happiness is not in doing what one likes, but in liking what one has to do. A large part of our unhappiness comes from thinking that we could be happier somewhere else, doing something else. Contentment is a state of mind that comes from accepting our circumstances and finding joy in the present moment.
+In the middle of her solo trip to Mizoram last month, Geeta Garud, 69, was walking on a narrow ledge, "making my way behind a waterfall, trying out something I wouldn't have in my younger years. And I realised how travelling solo was such a liberating experience."
+
+Before going on her week-long holiday, she was hesitant about travelling by herself. Garud had asked friends and family but found no takers. Yet there she was, alone, relishing a challenging trek. "Why was I being dependent on others? Being alone gives you a sense of freedom."
+
+She ended up having many firsts. She danced impromptu at a festival in Reiek, waded into a river, and went horse-riding. "I had opportunities to try horse-riding when I was younger, but could not work up the courage. This time, I thought, if not now, I may not get another chance," says Garud, who was an athlete in her youth and had played cricket.
+
+She was at her farm in Koregaon during the lockdown and had felt the lack of social connections. It motivated her to travel as soon as things eased. "Travel is also about meeting people; I felt that sense of joy and freedom when I finally did it."
+
+She is planning to travel to Europe next and has decide
 ```
 
-- ~ `q097` score=0.05 — Which of the following statements is incorrect? Travelling alone in distant Mizoram at the age of 69:
-- ✗ `q098` score=0.00 — Garud travelled alone as:
-- ✗ `q099` score=0.00 — Which of the following statements is true/false? A. Initially, she did not like to go alone. B. She wanted only a friend to be with her.
-- ✓ `q100` score=0.05 — Study the following statements: A. She practiced only for a day before dancing in a festival. B. Horse-riding is a courageous skill. C. Her experience as an ath
-- ✗ `q101` score=0.00 — Which one of the following statements is not true?
-- ✗ `q102` score=0.00 — "And I realised how travelling solo was [ ________ ] " The underlined expression is a/an [ ________ ] clause.
-- ✓ `q103` score=0.07 — 'Garud had asked friends and family but found no takers.' The underlined word is a/an [ ________ ] .
-- ✗ `q104` score=0.00 — 'She was hesitant [ ________ ] ' Choose the word nearest in meaning to the underlined one.
-- ✗ `q105` score=0.00 — ' [ ________ ] relishing a challenging trek.' Choose the word opposite in meaning to the underlined one.
+- ✓ `q097` score=0.38 — Which of the following statements is incorrect? Travelling alone in distant Mizoram at the age of 69:
+- ✓ `q098` score=0.35 — Garud travelled alone as:
+- ✓ `q099` score=0.31 — Which of the following statements is true/false? A. Initially, she did not like to go alone. B. She wanted only a friend to be with her.
+- ✓ `q100` score=0.50 — Study the following statements: A. She practiced only for a day before dancing in a festival. B. Horse-riding is a courageous skill. C. Her experience as an ath
+- ✓ `q101` score=0.56 — Which one of the following statements is not true?
+- ✓ `q102` score=0.36 — "And I realised how travelling solo was [ ________ ] " The underlined expression is a/an [ ________ ] clause.
+- ✓ `q103` score=0.50 — 'Garud had asked friends and family but found no takers.' The underlined word is a/an [ ________ ] .
+- ✓ `q104` score=0.10 — 'She was hesitant [ ________ ] ' Choose the word nearest in meaning to the underlined one.
+- ✓ `q105` score=0.36 — ' [ ________ ] relishing a challenging trek.' Choose the word opposite in meaning to the underlined one.
 
 ---
 ## `language-1/hindi` — ctet-p1-2023-stimulus-hi-po-91
@@ -211,41 +183,51 @@ The secret of happiness is not in doing what one likes, but in liking what one h
 - ✗ `q105` score=0.00 — पठनविधीनां छात्राणां क्रियाभिः सह समीचीनं मेलनं कुरुत– पठनविधयः छात्राणां क्रियाः A. संभावना कथनम् (i) लेखनपद्धत्या (Predicting) लेखकानुभूति ज्ञानम् B. प्रवृत्त
 
 ---
-## `language-2/english` — ctet-p1-2023-stimulus-en-pr-121
-**verdict: आधा-अधूरा मिलान** · type=prose · प्रश्न=8 · बिना-मिलान=4 · median score=0.026
+## `language-2/english` — ctet-p1-2023-stimulus-en-pr-136
+**verdict: ठीक** · type=prose · प्रश्न=8 · बिना-मिलान=0 · median score=0.385
 
-निर्देश: Direction: Read the passage given below and answer the questions that follow (Q. Nos. 121 to 128) by selecting the most appropriate option.
+निर्देश: Direction: Read the passage given below and answer the questions that follow (Q. Nos. 136 to 143) by selecting the most appropriate option.
 
 ```
-Education is the manifestation of perfection already in man. It is a continuous process of learning and self-discovery that enables individuals to realize their potential and contribute meaningfully to society.
+Dorothy lived in the midst of the great Kansas prairies (grasslands) with Uncle Henry, who was a farmer, and Aunt Em, who was the farmer's wife. Their house was small, for the lumber to build it had to be carried by wagon from many miles afar. There were four walls, a floor and a roof, which made one room; and this room contained a rusty looking cooking stove, a cupboard for the dishes, a table, three or four chairs, and the beds.
+
+Uncle Henry and Aunt Em had a big bed in one corner, and Dorothy a little bed in another corner. There was no garret at all, and no cellar- except a small hole dug in the ground, called a cyclone cellar, where the family could go in case one of those great whirlwinds arose, mighty enough to crush any building in its path. It was reached by a trapdoor in the middle of the floor, from which a ladder led down into the small, dark hole.
+
+When Dorothy stood in the doorway and looked around, she could see nothing but the great gray prairie on every side. Not a tree nor a house broke the broad sweep of flat country that reached to the edge of the sky in all directions. The sun had baked the ploughed land into a gray mass, with little cracks running through it. 
 ```
 
-- ✗ `q121` score=0.00 — A teacher can develop the listening skills of language learners by:
-- ✗ `q122` score=0.00 — Read the following statements and choose the correct option: Assertion (A): Accuracy in language is most important at the primary level. Reason (R): Grammar is 
-- ✓ `q123` score=0.07 — Theoretical positions and beliefs about the nature of language, the nature of language learning, and the applicability of both to pedagogical settings is:
-- ✓ `q124` score=0.06 — Formative evaluation is:
-- ~ `q125` score=0.03 — While planning lessons for young learners, the teacher decided to focus on the Total Physical Response (TPR) method. Which one of the following should be used t
-- ✓ `q126` score=0.08 — Which approach to grammar encourages the belief that learning a language is a mater of learning rules?
-- ✗ `q127` score=0.00 — A teacher is planning to give a free writing task to learners in Class V. Which one of the following should be focused on most by the teacher?
-- ✗ `q128` score=0.00 — Top-down means 'attend to the overall meaning'. What does 'bottom-up' mean?
+- ✓ `q136` score=0.50 — Which one of the following statements is true?
+- ✓ `q137` score=0.39 — Which one of the following statements is true?
+- ✓ `q138` score=0.61 — Study the following statements: (A) In the vast grassland, Uncle Henry's was the only house. (B) There was sun-baked gray grass all around. (C) In the middle of
+- ✓ `q139` score=0.36 — Study the following statements:  Statements:  (A) Uncle Henry had a tractor trolley in which wood was carried (B) The wood for the house was carried from far aw
+- ✓ `q140` score=0.38 — Which of the following statements are true (T) and which ones are false (F)? (1) The fear of a cyclone loomed large on the family (2) They had built a shelter f
+- ✓ `q141` score=0.30 — ……. with Uncle Henry, who was a farmer.' The underlined word is an ……. clause.
+- ✓ `q142` score=0.22 — 'a cupboard for the dishes.' The underlined word is an [ ________ ] .
+- ✓ `q143` score=0.39 — There was no garret at all. The underlined word nearly means the same as a [ ________ ] .
 
 ---
-## `language-2/english` — ctet-p1-2023-stimulus-en-pr-129
-**verdict: गलत गद्यांश/कविता जुड़ा है** · type=prose · प्रश्न=7 · बिना-मिलान=5 · median score=0.0
+## `language-2/english` — ctet-p1-2023-stimulus-en-pr-144
+**verdict: ठीक** · type=prose · प्रश्न=7 · बिना-मिलान=0 · median score=0.333
 
-निर्देश: Direction: Read the passage given below and answer the questions that follow (Q. Nos. 129 to 135) by selecting the most appropriate option.
+निर्देश: Direction: Read the passage given below and answer the questions that follow (Q. Nos. 144 to 150) by selecting the most appropriate option.
 
 ```
-Nature has gifted humanity with abundant resources. Trees, rivers, and mountains provide sustenance and peace. Preserving our natural environment is our collective responsibility towards future generations.
+Father would dress himself for court in a brightly coloured dhoti, a matching white shirt with an equally bright white turban and a neat black coat. The paraphernalia to court would include a cloth bundle containing court papers and a basket containing hot coffee with tumblers and plates for tiffin given by my mother or sisters-in-law.
+
+The younger advocates of his time were great admirers of my father and used to listen to him with rapt attention whenever he rose to address the court. His arguments were forceful, coherent, cogent, compulsive and conclusive. The arguments would go on till about lunchtime and even the English judge used to take down notes of his points.
+
+One client was particular that my father alone should argue his case. On the day my mother died, this case happened to be on the cause list. My mother was alive when my father left for court at 10 a.m. that morning and he had told my brother that he would return as soon as the case was over. Unfortunately, she died within an hour of his departure.
+
+With some difficulty, the news was conveyed through an advocate in court. My father, however, continued his arguments without showing any emotions. Only after concluding 
 ```
 
-- ✓ `q129` score=0.05 — Which among these is the primary responsibility of the language teacher?
-- ✗ `q130` score=0.00 — A young child picks up a book, holds it right side up, and turns the pages. These activities demonstrate:
-- ~ `q131` score=0.04 — Read the following statements and choose the correct option: Assertion (A): Learners acquire languages since they are genetically predisposed to do so and the e
-- ✗ `q132` score=0.00 — A way to teach reading that emphasises understanding the meaning of words from the context in which they appear is:
-- ✗ `q133` score=0.00 — The ability to think and talk about language is:
-- ✗ `q134` score=0.00 — A mother asked the teacher of Class II how it was possible for her child to Sometimes say things that she had never heard any adults or siblings say. How is it 
-- ✗ `q135` score=0.00 — A teachnique used to facilitate early literacy, which involves an adult and a child looking at a book together while the adult asks questions and encourages a d
+- ✓ `q144` score=0.35 — Father was very particular about dressing:
+- ✓ `q145` score=0.33 — Which of the following statements are true/false? A. Father avoided eating in the court canteen. B. He liked to drink hot tea during the day. C. He carried case
+- ✓ `q146` score=0.33 — Which of the following statements is wrong?
+- ✓ `q147` score=0.21 — Which of the following statements are true/false? A. Even the judges recognized his legal acumen. B. He preferred his legal obligations to family obligations.
+- ✓ `q148` score=0.25 — 'His arguments were forceful, coherent, ………….' Choose the word similar in meaning to the underlined one.
+- ✓ `q149` score=0.40 — '………. a bundle containing court papers.' The underlined word is an:
+- ✓ `q150` score=0.33 — 'One client was particular that my father ……' The underlined expression is an [ ________ ] clause.
 
 ---
 ## `language-2/hindi` — ctet-p1-2023-stimulus-hi-pr-121

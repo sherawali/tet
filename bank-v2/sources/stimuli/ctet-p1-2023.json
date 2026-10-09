@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "id": "ctet-p1-2023-stimulus-sources",
+  "exam": "ctet",
+  "paper": 1,
+  "cycleLabel": "2023",
+  "examDate": "2023-08-20",
+  "provenance": {
+    "retrieved": "2026-10-09",
+    "source": "CTET Paper-I held 20 August 2023. L1-EN 97-105: Testbook's Comprehension blocks for the Geeta Garud solo-trip passage. L2-EN 136-150: theexampillar.com's answer-key page, which prints both comprehension passages in full.",
+    "url": "https://theexampillar.com/ctet-exam-20-aug-2023-paper-i-language-ii-english-answer-key/",
+    "method": "passage text copied from the answer-key page, which prints both comprehension passages in full above their questions",
+    "caveat": "The paper numbers these blocks 121-127 and 128-135, but the bank stores the same questions as 144-150 and 136-143; the bank's 121-135 hold the paper's pedagogy questions 136-150. Question texts were matched one by one to confirm the shift, so the stimuli are wired to the bank numbers, not the paper numbers.",
+    "note": "Regrouping done in this cycle: the bank had fabricated two 'passages' for 2023 Language-II English and wired the paper's fifteen pedagogy questions to them, while the two real comprehension passages' questions were left with no stimulus. The two fabricated stimuli were removed, the pedagogy questions unlinked, and the real passages attached to the questions that actually quote them."
+  },
+  "stimuli": [
+    {
+      "stimulusId": "ctet-p1-2023-stimulus-en-pr-97",
+      "section": "language-1/english",
+      "language": "en",
+      "languageSlot": 1,
+      "type": "prose",
+      "questionRange": [
+        97,
+        105
+      ],
+      "instructions": "Direction: Read the passage given below and answer the questions that follow (Q. Nos. 97 to 105) by selecting the most appropriate option.",
+      "text": "In the middle of her solo trip to Mizoram last month, Geeta Garud, 69, was walking on a narrow ledge, \"making my way behind a waterfall, trying out something I wouldn't have in my younger years. And I realised how travelling solo was such a liberating experience.\"\n\nBefore going on her week-long holiday, she was hesitant about travelling by herself. Garud had asked friends and family but found no takers. Yet there she was, alone, relishing a challenging trek. \"Why was I being dependent on others? Being alone gives you a sense of freedom.\"\n\nShe ended up having many firsts. She danced impromptu at a festival in Reiek, waded into a river, and went horse-riding. \"I had opportunities to try horse-riding when I was younger, but could not work up the courage. This time, I thought, if not now, I may not get another chance,\" says Garud, who was an athlete in her youth and had played cricket.\n\nShe was at her farm in Koregaon during the lockdown and had felt the lack of social connections. It motivated her to travel as soon as things eased. \"Travel is also about meeting people; I felt that sense of joy and freedom when I finally did it.\"\n\nShe is planning to travel to Europe next and has decided not to take a friend or relative along. She intends to revisit the joy of travelling alone and relishing a sense of freedom all over again.",
+      "note": "Replaces an invented placeholder beginning 'The secret of happiness is not in doing what one likes', which has nothing in common with the nine questions - all about Geeta Garud's solo trip to Mizoram. All nine bank answers were checked against the text before applying: 'was very enjoyable but very tiring' is the incorrect statement because the passage never calls the trip tiring; she travelled alone because she 'found no takers'; A is true (she was hesitant at first) and B false (she asked friends and family, not only a friend); the false statement is that she practised only for a day, since she 'danced impromptu'; 'walking on a narrow ledge is an easy task' is untrue; the underlined 'such a liberating experience' is the principal clause element the question asks for; 'but' in 'asked friends and family but found no takers' is a conjunction; 'hesitant' is nearest to disinclined; and 'relishing' is opposite to disliking."
+    },
+    {
+      "stimulusId": "ctet-p1-2023-stimulus-en-pr-136",
+      "section": "language-2/english",
+      "language": "en",
+      "languageSlot": 2,
+      "type": "prose",
+      "questionRange": [
+        136,
+        143
+      ],
+      "instructions": "Direction: Read the passage given below and answer the questions that follow (Q. Nos. 136 to 143) by selecting the most appropriate option.",
+      "text": "Dorothy lived in the midst of the great Kansas prairies (grasslands) with Uncle Henry, who was a farmer, and Aunt Em, who was the farmer's wife. Their house was small, for the lumber to build it had to be carried by wagon from many miles afar. There were four walls, a floor and a roof, which made one room; and this room contained a rusty looking cooking stove, a cupboard for the dishes, a table, three or four chairs, and the beds.\n\nUncle Henry and Aunt Em had a big bed in one corner, and Dorothy a little bed in another corner. There was no garret at all, and no cellar- except a small hole dug in the ground, called a cyclone cellar, where the family could go in case one of those great whirlwinds arose, mighty enough to crush any building in its path. It was reached by a trapdoor in the middle of the floor, from which a ladder led down into the small, dark hole.\n\nWhen Dorothy stood in the doorway and looked around, she could see nothing but the great gray prairie on every side. Not a tree nor a house broke the broad sweep of flat country that reached to the edge of the sky in all directions. The sun had baked the ploughed land into a gray mass, with little cracks running through it. Even the grass was not green, for the sun had burned the tops of long blades until they were the same gray colour to be seen everywhere. Once the house had been painted, but the sun blistered the paint and the rains washed it away, and now the house was as dull and gray as everything else.",
+      "note": "The Dorothy/Kansas prairies passage from The Wonderful Wizard of Oz. These eight questions sat in the bank with no stimulus at all, while a fabricated paragraph about nature's gifts was carrying them from a distance under the id en-pr-129. Grouping was corrected, and all eight bank answers match the key by option text."
+    },
+    {
+      "stimulusId": "ctet-p1-2023-stimulus-en-pr-144",
+      "section": "language-2/english",
+      "language": "en",
+      "languageSlot": 2,
+      "type": "prose",
+      "questionRange": [
+        144,
+        150
+      ],
+      "instructions": "Direction: Read the passage given below and answer the questions that follow (Q. Nos. 144 to 150) by selecting the most appropriate option.",
+      "text": "Father would dress himself for court in a brightly coloured dhoti, a matching white shirt with an equally bright white turban and a neat black coat. The paraphernalia to court would include a cloth bundle containing court papers and a basket containing hot coffee with tumblers and plates for tiffin given by my mother or sisters-in-law.\n\nThe younger advocates of his time were great admirers of my father and used to listen to him with rapt attention whenever he rose to address the court. His arguments were forceful, coherent, cogent, compulsive and conclusive. The arguments would go on till about lunchtime and even the English judge used to take down notes of his points.\n\nOne client was particular that my father alone should argue his case. On the day my mother died, this case happened to be on the cause list. My mother was alive when my father left for court at 10 a.m. that morning and he had told my brother that he would return as soon as the case was over. Unfortunately, she died within an hour of his departure.\n\nWith some difficulty, the news was conveyed through an advocate in court. My father, however, continued his arguments without showing any emotions. Only after concluding the case did he get back home to the room where my mother's body lay and stood in stoic silence.",
+      "note": "The passage about the narrator's father, a lawyer dressing for court. Its seven questions were unlinked in the bank. All seven bank answers match the key by option text. Two option strings carry importer typos that do not change which option is correct: q146 option d prints 'ealous' for 'jealous', and q137 option b prints 'not tall tree' for 'no tall tree'."
+    }
+  ]
+}
