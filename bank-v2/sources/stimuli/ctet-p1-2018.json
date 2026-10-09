@@ -8,11 +8,40 @@
   "setCode": "m",
   "provenance": {
     "retrieved": "2026-10-09",
-    "source": "CBSE official final answer key, CTET Dec-2018 Paper-I (exam 09-12-2018)",
+    "source": "CTET Dec-2018 Paper-I (exam 09-12-2018), Set I. Answer key: the official CBSE key PDF. Passage/poem text: the CTET extracts quoted on Testbook's solved pages for this paper, plus the published text of the poem.",
     "url": "https://cdnbbsr.s3waas.gov.in/s3443dec3062d0286986e21dc0631734c9/uploads/2022/03/2022033113.pdf",
-    "method": "answer key only; no passage text has been added for this cycle yet"
+    "method": "the official question papers on ctet.nic.in are Google Drive links and cannot be fetched, so the extract text comes from solved-paper pages that quote it question by question; each stimulus entry below records the page it came from and what is complete versus truncated",
+    "caveat": "text is only added for the stimuli listed below; every other 2018 stimulus is still the importer's placeholder"
   },
-  "stimuli": [],
+  "stimuli": [
+    {
+      "stimulusId": "ctet-p1-2018-stimulus-en-po-100",
+      "section": "language-1/english",
+      "language": "en",
+      "languageSlot": 1,
+      "type": "poem",
+      "questionRange": [
+        100,
+        105
+      ],
+      "text": "My mother bore me in the southern wild,\nAnd I am black, but O! my soul is white;\nWhite as an angel is the English child,\nBut I am black, as if bereav'd of light.\n\nMy mother taught me underneath a tree,\nAnd sitting down before the heat of day,\nShe took me on her lap and kissed me,\nAnd pointing to the east began to say:\n\n\"Look on the rising sun, - there God does live,\nAnd gives his light, and gives his heat away,\nAnd flowers and trees and beasts and men receive\nComfort in morning, joy in the noonday.\n\n\"And we are put on earth a little space,\nThat we may learn to bear the beams of love;\nAnd these black bodies and this sunburnt face\nIs but a cloud, and like a shady grove.\n\n\"For when our souls have learn'd the heat to bear,\nThe cloud will vanish, we shall hear his voice,\nSaying, 'Come out from the grove, my love and care,\nAnd round my golden tent like lambs rejoice.'\"\n\nThus did my mother say, and kissed me,\nAnd thus I say to little English boy.\nWhen I from black and he from white cloud free,\nAnd round the tent of God like lambs we joy,\n\nI'll shade him from the heat till he can bear\nTo lean in joy upon our Father's knee;\nAnd then I'll stand and stroke his silver hair,\nAnd be like him, and he will then love me.",
+      "note": "William Blake, 'The Little Black Boy', Songs of Innocence (1789). The CTET extract quoted by Testbook opens with the same first stanza, rendering the elision as 'bereaved of light'. Q100-105 quote lines from stanzas 1, 3, 4 and 5, all present here; no line was added."
+    },
+    {
+      "stimulusId": "ctet-p1-2018-stimulus-en-pr-129",
+      "section": "language-2/english",
+      "language": "en",
+      "languageSlot": 2,
+      "type": "prose",
+      "questionRange": [
+        130,
+        135
+      ],
+      "instructions": "Directions (Q. Nos. 130 to 135): Read the passage given below and answer the questions that follow by selecting the correct/most appropriate options.",
+      "text": "Did you know that there is a fiber that is as flexible and lightweight as nylon yet five times stronger than steel? Did you know that this fabric is resistant to temperatures higher than 500 degrees Fahrenheit? Did you know that a woman invented this fiber? This miraculous fabric is called Kevlar and it is used to make everything from body armor to musical instruments.\n\nKwolek and her group were synthesizing or creating fibers to test. During one of the steps in the process, Kwolek created a milky white solution by mixing two chemicals that were often used in the process. This solution was usually thrown away, but Kwolek convinced one of the technicians to help her test it. They were amazed to discover that the fabric that Kwolek had created was not only more durable than nylon, it was more durable than steel. Kwolek had invented Kevlar.\n\nRichard Armellino created the first Kevlar bulletproof vest in 1975. It contained 15 layers of Kevlar, which could stop handgun and shotgun bullets. The vest also had a steel plate over the heart, which made the vest strong enough to stop rifle rounds. Vests like Armellino's were quickly picked up by police forces and it is estimated that by 1990, half of all police officers in America wore bulletproof vests daily.",
+      "note": "Text is the CTET Dec-2018 extract exactly as quoted by Testbook, which carries Q130-135 against it. That rendering stops after the sentence about police forces, so the final paragraph of the exam passage - the one Q133 needs, about which rounds a 15-layer vest with no steel plates could not stop - is missing. Recorded rather than filled in from a general article about Kevlar."
+    }
+  ],
   "answerKey": {
     "source": "CBSE official final answer key, CTET Dec-2018 Paper-I (exam 09-12-2018), Set I",
     "url": "https://cdnbbsr.s3waas.gov.in/s3443dec3062d0286986e21dc0631734c9/uploads/2022/03/2022033113.pdf",

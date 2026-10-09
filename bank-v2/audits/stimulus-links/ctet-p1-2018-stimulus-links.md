@@ -2,23 +2,16 @@
 
 `score` = प्रश्न के content शब्दों में से कितने अपने गद्यांश में मिलते हैं (0.00 = एक भी शब्द नहीं)। verdict पूरे ब्लॉक का है।
 
-- आधा-अधूरा मिलान: **3** ब्लॉक
-- गलत गद्यांश/कविता जुड़ा है: **5** ब्लॉक
+- ठीक: **2** ब्लॉक
+- आधा-अधूरा मिलान: **2** ब्लॉक
+- गलत गद्यांश/कविता जुड़ा है: **4** ब्लॉक
 - ये पेडागॉजी प्रश्न हैं, गद्यांश पर निर्भर नहीं: **2** ब्लॉक
 - संस्कृत रूपों के कारण स्वतः जाँच संभव नहीं - पढ़कर देखें: **2** ब्लॉक
 
 ## प्रश्न-स्तर की गड़बड़ियाँ
 
-- ✗ `ctet-p1-2018-m-lang1-en-q100` **quoted-text-not-in-stimulus** — question refers to 'The Little Black Boy' which does not occur in its own stimulus  
-  stimulus `ctet-p1-2018-stimulus-en-po-100` · `language-1/english`
-- ✗ `ctet-p1-2018-m-lang1-en-q101` **quoted-text-not-in-stimulus** — question refers to 'The Little Black Boy' which does not occur in its own stimulus  
-  stimulus `ctet-p1-2018-stimulus-en-po-100` · `language-1/english`
-- ✗ `ctet-p1-2018-m-lang1-en-q102` **quoted-text-not-in-stimulus** — question refers to 'The Little Black Boy' which does not occur in its own stimulus  
-  stimulus `ctet-p1-2018-stimulus-en-po-100` · `language-1/english`
-- ✗ `ctet-p1-2018-m-lang1-en-q103` **quoted-text-not-in-stimulus** — question refers to 'The Little Black Boy' which does not occur in its own stimulus  
-  stimulus `ctet-p1-2018-stimulus-en-po-100` · `language-1/english`
-- ✗ `ctet-p1-2018-m-lang1-en-q104` **quoted-text-not-in-stimulus** — question refers to 'like a shady grove' which does not occur in its own stimulus  
-  stimulus `ctet-p1-2018-stimulus-en-po-100` · `language-1/english`
+- ✗ `None` **instruction-range** — instruction says 130 to 135, linked=[129, 130, 131, 132, 133, 134, 135], missing=[], extra=[129]  
+  stimulus `ctet-p1-2018-stimulus-en-pr-129` · `language-2/english`
 - ✗ `ctet-p1-2018-m-lang1-hi-q103` **quoted-text-not-in-stimulus** — question refers to 'कविताएँ सुनी-सुनायी जाएँ' which does not occur in its own stimulus  
   stimulus `ctet-p1-2018-stimulus-hi-pr-97` · `language-1/hindi`
 - ✗ `ctet-p1-2018-m-lang1-sa-q097` **quoted-text-not-in-stimulus** — question refers to 'शिक्षणपद्धतिः (Teaching method)' which does not occur in its own stimulus  
@@ -31,12 +24,6 @@
   stimulus `ctet-p1-2018-stimulus-en-pr-91` · `language-1/english`
 - ? `ctet-p1-2018-m-lang1-en-q098` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
   stimulus `ctet-p1-2018-stimulus-en-pr-91` · `language-1/english`
-- ? `ctet-p1-2018-m-lang1-en-q100` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2018-stimulus-en-po-100` · `language-1/english`
-- ? `ctet-p1-2018-m-lang1-en-q102` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2018-stimulus-en-po-100` · `language-1/english`
-- ? `ctet-p1-2018-m-lang1-en-q104` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2018-stimulus-en-po-100` · `language-1/english`
 - ? `ctet-p1-2018-m-lang1-hi-q091` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
   stimulus `ctet-p1-2018-stimulus-hi-po-91` · `language-1/hindi`
 - ? `ctet-p1-2018-m-lang1-hi-q092` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
@@ -69,20 +56,6 @@
   stimulus `ctet-p1-2018-stimulus-en-pr-121` · `language-2/english`
 - ? `ctet-p1-2018-m-lang2-en-q128` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
   stimulus `ctet-p1-2018-stimulus-en-pr-121` · `language-2/english`
-- ? `ctet-p1-2018-m-lang2-en-q129` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2018-stimulus-en-pr-129` · `language-2/english`
-- ? `ctet-p1-2018-m-lang2-en-q130` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2018-stimulus-en-pr-129` · `language-2/english`
-- ? `ctet-p1-2018-m-lang2-en-q131` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2018-stimulus-en-pr-129` · `language-2/english`
-- ? `ctet-p1-2018-m-lang2-en-q132` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2018-stimulus-en-pr-129` · `language-2/english`
-- ? `ctet-p1-2018-m-lang2-en-q133` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2018-stimulus-en-pr-129` · `language-2/english`
-- ? `ctet-p1-2018-m-lang2-en-q134` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2018-stimulus-en-pr-129` · `language-2/english`
-- ? `ctet-p1-2018-m-lang2-en-q135` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2018-stimulus-en-pr-129` · `language-2/english`
 - ? `ctet-p1-2018-m-lang2-hi-q122` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
   stimulus `ctet-p1-2018-stimulus-hi-pr-121` · `language-2/hindi`
 - ? `ctet-p1-2018-m-lang2-hi-q124` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
@@ -124,23 +97,53 @@ Bringing up children is a delicate art that requires endless patience, understan
 
 ---
 ## `language-1/english` — ctet-p1-2018-stimulus-en-po-100
-**verdict: आधा-अधूरा मिलान** · type=poem · प्रश्न=6 · बिना-मिलान=3 · median score=0.059
+**verdict: ठीक** · type=poem · प्रश्न=6 · बिना-मिलान=0 · median score=0.385
 
 निर्देश: Direction: Read the poem given below and answer the questions that follow (Q. Nos. 100 to 105) by selecting the correct/most appropriate options.
 
 ```
-I must go down to the seas again, to the lonely sea and the sky,
-And all I ask is a tall ship and a star to steer her by;
-And the wheel's kick and the wind's song and the white sail's shaking,
-And a grey mist on the sea's face, and a grey dawn breaking.
+My mother bore me in the southern wild,
+And I am black, but O! my soul is white;
+White as an angel is the English child,
+But I am black, as if bereav'd of light.
+
+My mother taught me underneath a tree,
+And sitting down before the heat of day,
+She took me on her lap and kissed me,
+And pointing to the east began to say:
+
+"Look on the rising sun, - there God does live,
+And gives his light, and gives his heat away,
+And flowers and trees and beasts and men receive
+Comfort in morning, joy in the noonday.
+
+"And we are put on earth a little space,
+That we may learn to bear the beams of love;
+And these black bodies and this sunburnt face
+Is but a cloud, and like a shady grove.
+
+"For when our souls have learn'd the heat to bear,
+The cloud will vanish, we shall hear his voice,
+Saying, 'Come out from the grove, my love and care,
+And round my golden tent like lambs rejoice.'"
+
+Thus did my mother say, and kissed me,
+And thus I say to little English boy.
+When I from black and he from white cloud free,
+And round the tent of God like lambs we joy,
+
+I'll shade him from the heat till he can bear
+To lean in joy upon our Father's knee;
+And then I'll stand and stroke his silver hair,
+And be like him, an
 ```
 
-- ✗ `q100` score=0.00 — 'The Little Black Boy' was born in
-- ✓ `q101` score=0.09 — 'The Little Black Boy' wished that he could be
-- ✗ `q102` score=0.00 — The mother of 'The Little Black Boy' says God put people on earth
-- ✓ `q103` score=0.07 — The mother of 'The Little Black Boy' says his dark skin and face are
-- ✗ `q104` score=0.00 — The phrase 'like a shady grove' is
-- ✓ `q105` score=0.06 — Through the phrase 'as if bereav'd of light', the poet hints at
+- ✓ `q100` score=0.39 — 'The Little Black Boy' was born in
+- ✓ `q101` score=0.46 — 'The Little Black Boy' wished that he could be
+- ✓ `q102` score=0.39 — The mother of 'The Little Black Boy' says God put people on earth
+- ✓ `q103` score=0.50 — The mother of 'The Little Black Boy' says his dark skin and face are
+- ✓ `q104` score=0.11 — The phrase 'like a shady grove' is
+- ✓ `q105` score=0.23 — Through the phrase 'as if bereav'd of light', the poet hints at
 
 ---
 ## `language-1/hindi` — ctet-p1-2018-stimulus-hi-po-91
@@ -247,21 +250,25 @@ Scientific temper is the willingness to question, investigate, and accept eviden
 
 ---
 ## `language-2/english` — ctet-p1-2018-stimulus-en-pr-129
-**verdict: गलत गद्यांश/कविता जुड़ा है** · type=prose · प्रश्न=7 · बिना-मिलान=7 · median score=0.0
+**verdict: ठीक** · type=prose · प्रश्न=7 · बिना-मिलान=0 · median score=0.368
 
-निर्देश: Direction: Read the passage given below and answer the questions that follow (Q. Nos. 129 to 135) by selecting the correct/most appropriate options.
+निर्देश: Directions (Q. Nos. 130 to 135): Read the passage given below and answer the questions that follow by selecting the correct/most appropriate options.
 
 ```
-Physical exercise and regular activity are essential for both bodily health and mental well-being. An active lifestyle enhances cognitive functions, reduces stress, and promotes longevity.
+Did you know that there is a fiber that is as flexible and lightweight as nylon yet five times stronger than steel? Did you know that this fabric is resistant to temperatures higher than 500 degrees Fahrenheit? Did you know that a woman invented this fiber? This miraculous fabric is called Kevlar and it is used to make everything from body armor to musical instruments.
+
+Kwolek and her group were synthesizing or creating fibers to test. During one of the steps in the process, Kwolek created a milky white solution by mixing two chemicals that were often used in the process. This solution was usually thrown away, but Kwolek convinced one of the technicians to help her test it. They were amazed to discover that the fabric that Kwolek had created was not only more durable than nylon, it was more durable than steel. Kwolek had invented Kevlar.
+
+Richard Armellino created the first Kevlar bulletproof vest in 1975. It contained 15 layers of Kevlar, which could stop handgun and shotgun bullets. The vest also had a steel plate over the heart, which made the vest strong enough to stop rifle rounds. Vests like Armellino's were quickly picked up by police forces and it is estimated that by 1990,
 ```
 
-- ✗ `q129` score=0.00 — Which one of the following is similar in meaning to the word 'exhorting' as used in the passage?
-- ✗ `q130` score=0.00 — Which one of the following is not a product that has been made with Kevlar?
-- ✗ `q131` score=0.00 — For which of the following characteristics is Kevlar known?
-- ✗ `q132` score=0.00 — Which one of the following caused the search for a fabric like Kevlar?
-- ✗ `q133` score=0.00 — A vest made of 15 layers of Kevlar with no steel plates could stop all but which of the following rounds?
-- ✗ `q134` score=0.00 — How much stronger is Kevlar than steel?
-- ✗ `q135` score=0.00 — What product was Kwolek trying to improve when she invented Kevlar?
+- ✓ `q129` score=0.11 — Which one of the following is similar in meaning to the word 'exhorting' as used in the passage?
+- ✓ `q130` score=0.33 — Which one of the following is not a product that has been made with Kevlar?
+- ✓ `q131` score=0.38 — For which of the following characteristics is Kevlar known?
+- ✓ `q132` score=0.37 — Which one of the following caused the search for a fabric like Kevlar?
+- ✓ `q133` score=0.81 — A vest made of 15 layers of Kevlar with no steel plates could stop all but which of the following rounds?
+- ✓ `q134` score=0.80 — How much stronger is Kevlar than steel?
+- ✓ `q135` score=0.31 — What product was Kwolek trying to improve when she invented Kevlar?
 
 ---
 ## `language-2/hindi` — ctet-p1-2018-stimulus-hi-pr-121
