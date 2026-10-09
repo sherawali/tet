@@ -8,6 +8,7 @@ new pack has been written and verified.
 """
 from __future__ import annotations
 
+import argparse
 import hashlib
 import json
 import os
@@ -72,22 +73,27 @@ def build_timestamp() -> str:
 
 def _load_database(conn: sqlite3.Connection) -> tuple[dict[str, dict[str, str]], list[tuple[Any, ...]]]:
     cur = conn.cursor()
-    cur.execute("SELECT id, kind, dir_text, body FROM passages ORDER BY id")
+    cur.execute("SELECT id, kind, dir_text, body, language, language_slot FROM passages ORDER BY id")
     passages: dict[str, dict[str, str]] = {}
-    for pid, kind, dir_text, body in cur.fetchall():
+    for pid, kind, dir_text, body, language, slot in cur.fetchall():
         passages[pid] = {
             "id": pid,
             "k": kind or "prose",
             "d": dir_text or "",
             "b": body or "",
         }
+        if language:
+            passages[pid]["lg"] = language
+        if slot is not None:
+            passages[pid]["sl"] = slot
     print(f"Loaded {len(passages)} passages.")
 
     cur.execute(
         """
         SELECT id, exams, section, topic_index, topic_name, difficulty,
                q_hindi, options_hindi, q_english, options_english,
-               answer, p_score, years, passage_id, seq_in_passage
+               answer, p_score, years, passage_id, seq_in_passage,
+               language, language_slot
         FROM questions
         ORDER BY exams, section, id
         """
@@ -99,12 +105,21 @@ def _load_database(conn: sqlite3.Connection) -> tuple[dict[str, dict[str, str]],
 
 def _prepare_questions(
     rows: list[tuple[Any, ...]],
-) -> tuple[list[dict[str, Any]], dict[str, int]]:
+) -> tuple[list[dict[str, Any]], dict[str, int], list[dict[str, Any]]]:
+    """Flatten rows to question dicts and group them into indivisible units.
+
+    A unit is either one standalone question or one complete stimulus block. The
+    blueprint declares `stimulusGroupsAtomic: true`, so a passage and every question
+    that belongs to it must ship together and stay together.
+    """
     questions: list[dict[str, Any]] = []
     section_counts: dict[str, int] = {}
+    units: list[dict[str, Any]] = []
+    blocks: dict[str, dict[str, Any]] = {}
 
     for row in rows:
-        qid, exams, section, topic_index, _topic_name, difficulty, qh, oh, qe, oe, answer, p_score, years, pid, seq = row
+        (qid, exams, section, topic_index, _topic_name, difficulty, qh, oh, qe, oe,
+         answer, p_score, years, pid, seq, language, slot) = row
         section_counts[section] = section_counts.get(section, 0) + 1
         t_index = SECTION_TO_TOPIC_INDEX.get(section, topic_index or 0)
         options_hi = json.loads(oh) if oh else []
@@ -127,37 +142,59 @@ def _prepare_questions(
             question["oe"] = options_en
         if years and years.strip():
             question["y"] = years
+        if language:
+            question["lg"] = language
+        if slot is not None:
+            question["sl"] = slot
         if pid and pid.strip():
             question["pid"] = pid
         if seq is not None:
             question["n"] = seq
         questions.append(question)
 
-    return questions, section_counts
+        if pid and pid.strip():
+            block = blocks.get(pid)
+            if block is None:
+                block = {"pid": pid, "qs": []}
+                blocks[pid] = block
+                units.append(block)
+            block["qs"].append(question)
+        else:
+            units.append({"pid": None, "qs": [question]})
+
+    return questions, section_counts, units
 
 
 def _build_pack_payloads(
-    questions: list[dict[str, Any]], passages: dict[str, dict[str, str]]
+    units: list[dict[str, Any]], passages: dict[str, dict[str, str]]
 ) -> list[dict[str, Any]]:
+    """Chunk units into packs without ever splitting a stimulus block.
+
+    Every pack also carries the full text of each passage whose questions it holds,
+    so a pack is self-contained: a client can render any question from a single
+    downloaded pack. That duplicates ~85 passage bodies (~100 KB total) instead of
+    showing questions whose passage lives in another pack.
+    """
     chunks: list[dict[str, Any]] = []
-    assigned_passages: set[str] = set()
+    current: list[dict[str, Any]] = []
+    current_passages: dict[str, dict[str, str]] = {}
 
-    for start in range(0, len(questions), CHUNK_SIZE):
-        question_chunk = questions[start : start + CHUNK_SIZE]
-        chunk_passages: list[dict[str, str]] = []
-        for question in question_chunk:
-            passage_id = question.get("pid")
-            if passage_id and passage_id in passages and passage_id not in assigned_passages:
-                chunk_passages.append(passages[passage_id])
-                assigned_passages.add(passage_id)
-        chunks.append({"p": chunk_passages, "q": question_chunk})
+    def flush() -> None:
+        nonlocal current, current_passages
+        if not current:
+            return
+        chunks.append({"p": list(current_passages.values()), "q": current})
+        current = []
+        current_passages = {}
 
-    remaining = [passage for pid, passage in passages.items() if pid not in assigned_passages]
-    if remaining:
-        if chunks:
-            chunks[0]["p"].extend(remaining)
-        else:
-            chunks.append({"p": remaining, "q": []})
+    for unit in units:
+        if current and len(current) + len(unit["qs"]) > CHUNK_SIZE:
+            flush()
+        pid = unit["pid"]
+        if pid and pid in passages:
+            current_passages.setdefault(pid, passages[pid])
+        current.extend(unit["qs"])
+    flush()
     return chunks
 
 
@@ -210,8 +247,27 @@ def _atomic_write_manifest(manifest: dict[str, Any]) -> None:
             pass
 
 
+def prune_unreferenced(referenced: set[str]) -> list[str]:
+    """Delete pack files no current manifest entry points at.
+
+    Safe to run because pack ids are version-scoped: a client on an older manifest
+    keeps using its own ids, and a client that already re-synced never asks for the
+    pruned files again.
+    """
+    removed = []
+    for path in sorted(PACKS_DIR.glob("pack-*.json")):
+        if path.name not in referenced:
+            path.unlink()
+            removed.append(path.name)
+    return removed
+
+
 def main() -> int:
     sys.stdout.reconfigure(encoding="utf-8")
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--prune", action="store_true",
+                        help="delete cdn/packs files the new manifest does not reference")
+    args = parser.parse_args()
     print(f"Reading questions and passages from {APP_DB}...")
     if not APP_DB.exists():
         print(f"Error: {APP_DB} does not exist! Please run build_app_db.py first.")
@@ -234,7 +290,7 @@ def main() -> int:
     finally:
         conn.close()
 
-    questions, section_counts = _prepare_questions(question_rows)
+    questions, section_counts, units = _prepare_questions(question_rows)
     question_ids = [question["k"] for question in questions]
     if len(question_ids) != len(set(question_ids)):
         raise RuntimeError("Duplicate question IDs found in SQLite database")
@@ -247,7 +303,7 @@ def main() -> int:
     if any(question.get("a") not in range(4) for question in questions):
         raise RuntimeError("A question answer index is outside the four-option range")
 
-    payloads = _build_pack_payloads(questions, passages)
+    payloads = _build_pack_payloads(units, passages)
 
     pack_entries: list[dict[str, Any]] = []
     new_pack_count = 0
@@ -266,7 +322,10 @@ def main() -> int:
         new_pack_count += int(created)
         pack_entries.append(
             {
-                "id": f"{pack_index:04d}",
+                # Pack ids carry the bank version so a rebuild never reuses an id
+                # for different bytes.  Reusing ids is what left several
+                # pack-<id>-<hash>.json generations side by side in cdn/packs/.
+                "id": f"v{BANK_VERSION}-{pack_index:04d}",
                 "file": f"packs/{pack_path.name}",
                 "sha256": full_hash,
                 "bytes": len(pack_bytes),
@@ -278,13 +337,35 @@ def main() -> int:
     packed_count = sum(entry["count"] for entry in pack_entries)
     if packed_count != len(questions):
         raise RuntimeError(f"Pack question count {packed_count} != database count {len(questions)}")
-    packed_passage_ids = [
+
+    # A stimulus group is atomic: all of its questions live in exactly one pack, and
+    # that pack carries the passage text itself.
+    block_packs: dict[str, set[str]] = {}
+    for entry, payload in zip(pack_entries, payloads):
+        for question in payload.get("q", []):
+            pid = question.get("pid")
+            if pid:
+                block_packs.setdefault(pid, set()).add(entry["id"])
+        for passage in payload.get("p", []):
+            if not any(q.get("pid") == passage["id"] for q in payload.get("q", [])):
+                raise RuntimeError(
+                    f"Pack {entry['id']} carries passage {passage['id']} without its questions")
+    split_blocks = {pid: sorted(ids) for pid, ids in block_packs.items() if len(ids) > 1}
+    if split_blocks:
+        raise RuntimeError(f"Stimulus groups split across packs: {split_blocks}")
+    missing_text = sorted(set(block_packs) - {
+        passage["id"] for payload in payloads for passage in payload.get("p", [])})
+    if missing_text:
+        raise RuntimeError(f"Questions shipped without their passage text: {missing_text}")
+    packed_passage_ids = {
         passage["id"] for payload in payloads for passage in payload.get("p", [])
-    ]
-    if len(packed_passage_ids) != len(set(packed_passage_ids)):
-        raise RuntimeError("A passage was emitted in more than one pack")
-    if set(packed_passage_ids) != set(passages):
-        raise RuntimeError("Generated packs do not preserve every SQLite passage")
+    }
+    unreferenced = sorted(set(passages) - set(block_packs))
+    if unreferenced:
+        print(f"Note: {len(unreferenced)} passages have no question and are not packed: "
+              f"{unreferenced[:3]}")
+    if packed_passage_ids != set(block_packs):
+        raise RuntimeError("Packed passages do not match the passages questions reference")
 
     manifest = {
         "schema": 1,
@@ -295,12 +376,19 @@ def main() -> int:
         "pyq_count": len(questions),
         "avg_p": 0.85,
         "sections": section_counts,
+        "passage_questions": sum(1 for q in questions if q.get("pid")),
+        "stimulus_groups": len({q["pid"] for q in questions if q.get("pid")}),
         "packs": pack_entries,
     }
 
     # The new immutable packs are in place before this atomic manifest switch.
     # Old pack files are deliberately retained for clients using the old manifest.
     _atomic_write_manifest(manifest)
+
+    if args.prune:
+        removed = prune_unreferenced({Path(entry["file"]).name for entry in pack_entries})
+        for name in removed:
+            print(f" - Pruned unreferenced pack {name}")
 
     print("Successfully generated CDN packs and manifest:")
     print(f" - Manifest: {MANIFEST_PATH}")

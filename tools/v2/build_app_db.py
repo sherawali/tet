@@ -96,9 +96,18 @@ def get_stimulus_body_and_dir(s: dict) -> tuple[str, str, str]:
     return kind, dir_text, body
 
 
-def classify_topic(sec: str, qh: str, qe: str | None, pid: str | None) -> str:
+def classify_topic(sec: str, qh: str, qe: str | None, pid: str | None,
+                   passage_kind: str | None = None) -> str:
     if pid:
-        return "अपठित पद्यांश" if "poem" in (pid or "").lower() else "अपठित गद्यांश"
+        # The stimulus `type` is authoritative.  Guessing from the id string used to
+        # mislabel every `-po-`/`poem`-less id (24 of 27 poems) as prose, so the app
+        # showed an almost empty "अपठित पद्यांश" topic and poems under "अपठित गद्यांश".
+        kind = (passage_kind or "").lower()
+        if kind == "poem":
+            return "अपठित पद्यांश"
+        if kind == "table":
+            return "अपठित तालिका"
+        return "अपठित गद्यांश"
     text = (qh + " " + (qe or "")).lower()
     if sec == "cdp":
         if any(w in text for w in ["समावेशी", "विशेष आवश्यकता", "वंचित", "disability", "inclusive", "अक्षमता", "डिस्लेक्सिया", "dyslexia"]):
@@ -233,7 +242,10 @@ def _build_database(temp_db_path: Path) -> int:
             years TEXT,
             source_tag TEXT,
             passage_id TEXT,
-            seq_in_passage INTEGER
+            seq_in_passage INTEGER,
+            language TEXT,
+            language_slot INTEGER,
+            stimulus_kind TEXT
         )
     """)
 
@@ -242,7 +254,12 @@ def _build_database(temp_db_path: Path) -> int:
             id TEXT PRIMARY KEY,
             kind TEXT,
             dir_text TEXT,
-            body TEXT
+            body TEXT,
+            title TEXT,
+            language TEXT,
+            language_slot INTEGER,
+            minimum_questions INTEGER,
+            review_text_verified INTEGER
         )
     """)
 
@@ -338,6 +355,7 @@ def _build_database(temp_db_path: Path) -> int:
 
     # 3. Collect stimuli
     stimuli_seen = set()
+    stimulus_meta: dict[str, dict] = {}
     for stim_file in sorted(BANK.rglob("stimuli.ndjson")):
         for line in stim_file.read_text(encoding="utf-8").splitlines():
             if not line.strip(): continue
@@ -346,13 +364,31 @@ def _build_database(temp_db_path: Path) -> int:
             if sid in stimuli_seen: continue
             stimuli_seen.add(sid)
             kind, dir_text, body = get_stimulus_body_and_dir(s)
+            title = sanitize_display_text(_localized_text(s.get("title", {}), "hi", "en", "sa"))
+            language = s.get("language")
+            slot = s.get("languageSlot")
+            review = s.get("review", {}) or {}
+            min_q = s.get("minimumQuestions")
+            stimulus_meta[sid] = {
+                "kind": kind,
+                "language": language,
+                "slot": slot if isinstance(slot, int) else None,
+            }
             cur.execute("""
-                INSERT INTO passages (id, kind, dir_text, body)
-                VALUES (?, ?, ?, ?)
-            """, (sid, kind, dir_text, body))
+                INSERT INTO passages (
+                    id, kind, dir_text, body, title, language, language_slot,
+                    minimum_questions, review_text_verified
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+            """, (
+                sid, kind, dir_text, body, title, language,
+                slot if isinstance(slot, int) else None,
+                min_q if isinstance(min_q, int) else None,
+                1 if review.get("textVerified") else 0,
+            ))
 
     # 4. Collect questions
     questions_seen = set()
+    pending_rows: list[tuple] = []
     total_q = 0
     letter_to_int = {"a": 0, "b": 1, "c": 2, "d": 3}
 
@@ -440,33 +476,57 @@ def _build_database(temp_db_path: Path) -> int:
             ans_int = letter_to_int.get(ans_letter, 0)
             passage_id = q.get("stimulusId")
 
-            seq_in_passage = None
-            if app:
-                qnum = app.get("questionNumber")
-                if qnum:
-                    seq_in_passage = qnum
+            meta = stimulus_meta.get(passage_id) or {}
+            language = q.get("language")
+            slot = q.get("languageSlot")
+            language = language if isinstance(language, str) and language else meta.get("language")
+            slot = slot if isinstance(slot, int) else meta.get("slot")
 
-            topic_name = classify_topic(sec, q_hi, q_en, passage_id)
+            topic_name = classify_topic(sec, q_hi, q_en, passage_id, meta.get("kind"))
 
-            cur.execute("""
-                INSERT INTO questions (
-                    id, exams, section, topic_index, topic_name, difficulty,
-                    q_hindi, options_hindi, q_english, options_english,
-                    answer, p_score, years, source_tag, passage_id, seq_in_passage
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-            """, (
+            pending_rows.append((
                 qid, exams_tag, sec, 0, topic_name, 2,
                 q_hi, json.dumps(opts_hi, ensure_ascii=False),
                 q_en, final_opts_en,
-                ans_int, 0.85, year, source_tag, passage_id, seq_in_passage
+                ans_int, 0.85, year, source_tag, passage_id,
+                language, slot if isinstance(slot, int) else None, meta.get("kind"),
             ))
-            total_q += 1
+
+    # `seq_in_passage` is the position *inside* the stimulus block (1..N), not the
+    # question number in the paper.  It used to hold the paper number (91..99, 121..128),
+    # so a client that walks a passage group by position 1..N found nothing and the
+    # passage/poem questions looked missing.  The paper number still lives in
+    # `appearances.question_number`.
+    block_seq: dict[str, list[str]] = {}
+    for row in pending_rows:
+        qid, passage_id = row[0], row[14]
+        if passage_id:
+            block_seq.setdefault(passage_id, []).append(qid)
+    seq_lookup: dict[str, int] = {}
+    for passage_id, qids in block_seq.items():
+        for position, qid in enumerate(sorted(qids), start=1):
+            seq_lookup[qid] = position
+
+    for row in pending_rows:
+        qid = row[0]
+        cur.execute("""
+            INSERT INTO questions (
+                id, exams, section, topic_index, topic_name, difficulty,
+                q_hindi, options_hindi, q_english, options_english,
+                answer, p_score, years, source_tag, passage_id, seq_in_passage,
+                language, language_slot, stimulus_kind
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        """, row[:15] + (seq_lookup.get(qid),) + row[15:])
+        total_q += 1
+
 
     # Indexes
     cur.execute("CREATE INDEX idx_q_sec_topic ON questions(section, topic_index)")
     cur.execute("CREATE INDEX idx_q_pscore ON questions(p_score DESC)")
     cur.execute("CREATE INDEX idx_q_years ON questions(years)")
     cur.execute("CREATE INDEX idx_q_exams ON questions(exams)")
+    cur.execute("CREATE INDEX idx_q_passage_seq ON questions(passage_id, seq_in_passage)")
+    cur.execute("CREATE INDEX idx_q_lang_slot ON questions(section, language_slot, language)")
 
     # Meta
     cur.execute("INSERT INTO meta (key, val) VALUES (?, ?)", ("bank_version", str(BANK_VERSION)))

@@ -98,16 +98,50 @@ Then build the SQLite app database and publish a fresh manifest/packs:
 
 ```bash
 python3 tools/v2/build_app_db.py
-python3 tools/v2/build_cdn_packs.py
+python3 tools/v2/build_cdn_packs.py            # add --prune to drop unreferenced packs
+python3 tools/v2/test_app_build.py             # 11 regression tests for this pipeline
 ```
 
-Builds use content version `20261006` from `tools/v2/build_config.py`. SQLite is
-built to a temporary file and atomically replaces the runtime database only after
-integrity/count checks pass. CDN packs are immutable and retained across releases;
-the manifest is atomically replaced only after all new content-addressed packs verify.
+Builds use the content version in `tools/v2/build_config.py` — bump `BANK_VERSION`
+whenever pack content changes, because a client only re-syncs when the manifest
+`bank_version` is greater than the one it already stored. SQLite is built to a
+temporary file and atomically replaces the runtime database only after integrity/count
+checks pass. Pack ids are version-scoped (`v<BANK_VERSION>-<index>`) so one id never
+points at two different byte sequences; the manifest is atomically replaced only after
+all new content-addressed packs verify.
 
 The deterministic, source-limited importer is:
 
 ```bash
 python3 tools/v2/import_ctet_2020_paper1.py
 ```
+
+## App-data pipeline defects fixed on 2026-10-09
+
+Symptom in the app: passage/poem questions looked missing and the rest came out
+scrambled. Six separate causes, each now covered by `tools/v2/test_app_build.py`:
+
+1. **Poems were labelled prose.** `classify_topic()` guessed the topic from the
+   stimulus *id* string (`"poem" in pid`), but `import_all_ctet.py` mints ids as
+   `…-po-100`. Result: 126 poem questions sat under `अपठित गद्यांश` and only the 18
+   from the 2020 cycle were `अपठित पद्यांश`. The stimulus `type` is authoritative now.
+2. **`seq_in_passage` held the paper question number** (91…99, 121…128) instead of the
+   position inside the block (1…N). A client walking a passage group by position found
+   nothing. The paper number still lives in `appearances.question_number`.
+3. **Language slot was dropped.** Language-I and Language-II both collapsed into
+   `section = "hindi" | "english" | "sanskrit"`, so the mock blueprint's
+   `languageSlot`/`mustDiffer` rules were unsatisfiable and the app mixed the two.
+   `language`/`language_slot` now travel from NDJSON → SQLite → packs (`lg`/`sl`).
+4. **Stimulus groups were split across packs** — 4 of 109 blocks had their questions in
+   two different packs. Packing is now per block, never per fixed 200-question slice.
+5. **A pack could not always render its own questions**: a passage shipped only in the
+   pack holding its first question. Every pack now carries the full text of every
+   passage it references (~100 KB total duplication, worth it for self-containment).
+6. **The CI workflow was dead**: it ran `tools/build.py` on `content/**`, neither of
+   which exists any more, and exported a git-count `BANK_VERSION` that the v2 builder
+   would reject as a version mismatch. It now runs the v2 tools on `bank-v2/**`.
+
+Still open, and it is a content problem rather than a pipeline one: the passage/poem
+*text* of every cycle except 2020 is placeholder content hardcoded in
+`import_all_ctet.py` — see [`../docs/STIMULUS_LINK_AUDIT.md`](../docs/STIMULUS_LINK_AUDIT.md).
+A structurally correct pipeline still cannot invent the right passage.

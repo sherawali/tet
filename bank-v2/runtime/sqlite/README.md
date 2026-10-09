@@ -6,3 +6,47 @@
 The Flutter app must open these as separate database files. Content snapshot replacement or delta
 installation must never touch `user.sqlite`. Deleted/retired question IDs may remain referenced in
 user history so past mock results remain readable.
+
+## ⚠ `content_schema.sql` is the target schema, not what the build emits
+
+`tools/v2/build_app_db.py` currently builds the **legacy app schema** that the shipping
+Flutter app reads:
+
+```sql
+questions(id, exams, section, topic_index, topic_name, difficulty,
+          q_hindi, options_hindi, q_english, options_english, answer,
+          p_score, years, source_tag, passage_id, seq_in_passage,
+          language, language_slot, stimulus_kind)
+passages(id, kind, dir_text, body, title, language, language_slot,
+         minimum_questions, review_text_verified)
+paper_forms(...)  appearances(...)  meta(key, val)
+test_history(...)  mistake_records(...)
+```
+
+`content_schema.sql` above (`section_stores`, `stimuli`, `questions.payload_json`,
+`mock_blueprints`, `installed_packs`, …) is the v2 target contract. Nothing builds it yet.
+Do not generate app code from it until a builder exists.
+
+## What the CDN packs actually carry
+
+`cdn/manifest.json` lists version-scoped packs (`v<BANK_VERSION>-<index>`). Each pack is:
+
+```json
+{"p": [{"id": "…", "k": "prose|poem|table", "d": "directions", "b": "body",
+        "lg": "hi", "sl": 1}],
+ "q": [{"k": "qid", "e": "ctet1", "s": "hindi", "t": 1, "d": 2,
+        "qh": "…", "oh": ["…"], "qe": "…", "oe": ["…"], "a": 0, "p": 0.85,
+        "y": "2024", "lg": "hi", "sl": 2, "pid": "stimulus id", "n": 3}]}
+```
+
+Invariants the builder enforces (see `tools/v2/test_app_build.py`):
+
+- `pid` + `n` = the question belongs to stimulus `pid` at position `n`, where `n` runs
+  **1..N inside the block**, not the question number in the paper. The paper number is
+  in `appearances.question_number`.
+- A stimulus group is never split across two packs, and every pack contains the full
+  text of every passage its questions reference — one pack is enough to render a
+  question.
+- `lg`/`sl` = language and language slot (1 = Language-I, 2 = Language-II). Without
+  these a client cannot separate Language-I Hindi from Language-II Hindi.
+

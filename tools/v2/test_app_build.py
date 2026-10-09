@@ -1,0 +1,207 @@
+#!/usr/bin/env python3
+"""Regression tests for the bank-v2 -> SQLite -> CDN pack pipeline.
+
+Each test pins one defect that made passage/poem questions disappear or scramble in
+the app:
+
+1. poems labelled as prose because the topic was guessed from the stimulus id string
+2. `seq_in_passage` holding the paper question number instead of the position in the
+   stimulus block
+3. language slot (Language-I vs Language-II) dropped on the way to the app
+4. stimulus groups split across two packs, so part of a passage's questions rendered
+   without their passage
+5. a pack carrying questions whose passage text lives in another pack
+6. a manifest whose bank_version does not match the build config
+"""
+from __future__ import annotations
+
+import json
+import os
+import sqlite3
+import subprocess
+import sys
+import tempfile
+import unittest
+from pathlib import Path
+
+TOOLS = Path(__file__).resolve().parent
+ROOT = TOOLS.parent.parent
+sys.path.insert(0, str(TOOLS))
+
+from build_config import BANK_VERSION  # noqa: E402
+
+
+def build_database(db_path: Path) -> sqlite3.Connection:
+    env = dict(os.environ, TET_DB_PATH=str(db_path))
+    result = subprocess.run(
+        [sys.executable, str(TOOLS / "build_app_db.py")],
+        cwd=str(TOOLS), env=env, capture_output=True, text=True,
+    )
+    if result.returncode != 0:
+        raise AssertionError(f"build_app_db.py failed:\n{result.stdout}\n{result.stderr}")
+    return sqlite3.connect(db_path)
+
+
+class DatabaseTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls) -> None:
+        cls._tmp = tempfile.TemporaryDirectory(prefix="tet-db-test-")
+        cls.db_path = Path(cls._tmp.name) / "tet_mock_vault.db"
+        cls.conn = build_database(cls.db_path)
+
+    @classmethod
+    def tearDownClass(cls) -> None:
+        cls.conn.close()
+        cls._tmp.cleanup()
+
+    def q(self, sql: str, params: tuple = ()) -> list:
+        return self.conn.execute(sql, params).fetchall()
+
+    def test_poem_questions_are_labelled_poem(self) -> None:
+        """The stimulus `type` decides the topic, never the id string."""
+        rows = self.q(
+            """
+            SELECT p.kind, q.topic_name, COUNT(*)
+            FROM questions q JOIN passages p ON p.id = q.passage_id
+            GROUP BY p.kind, q.topic_name
+            """
+        )
+        mapping = {(kind, topic) for kind, topic, _ in rows}
+        self.assertIn(("poem", "अपठित पद्यांश"), mapping)
+        self.assertNotIn(("poem", "अपठित गद्यांश"), mapping)
+        self.assertNotIn(("prose", "अपठित पद्यांश"), mapping)
+        poems = self.q(
+            "SELECT COUNT(*) FROM questions WHERE stimulus_kind = 'poem'")[0][0]
+        self.assertGreater(poems, 100, "expected every poem question, not just one cycle")
+
+    def test_seq_in_passage_is_the_position_inside_the_block(self) -> None:
+        bad = self.q(
+            """
+            SELECT passage_id, COUNT(*) AS n, MIN(seq_in_passage), MAX(seq_in_passage)
+            FROM questions WHERE passage_id IS NOT NULL
+            GROUP BY passage_id
+            HAVING MIN(seq_in_passage) <> 1 OR MAX(seq_in_passage) <> n
+            """
+        )
+        self.assertEqual(bad, [], "seq_in_passage must run 1..N inside each block")
+
+    def test_seq_matches_the_stimulus_minimum_question_count(self) -> None:
+        bad = self.q(
+            """
+            SELECT p.id, p.minimum_questions, COUNT(q.id)
+            FROM passages p LEFT JOIN questions q ON q.passage_id = p.id
+            WHERE p.minimum_questions IS NOT NULL
+            GROUP BY p.id
+            HAVING COUNT(q.id) <> p.minimum_questions
+            """
+        )
+        self.assertEqual(bad, [], "block size must match the stimulus minimumQuestions")
+
+    def test_language_slot_survives_to_the_database(self) -> None:
+        rows = dict(
+            self.q(
+                """
+                SELECT section, COUNT(*) FROM questions
+                WHERE section IN ('hindi', 'english', 'sanskrit')
+                  AND language_slot IS NULL
+                GROUP BY section
+                """
+            )
+        )
+        self.assertEqual(rows, {}, "language questions must carry language_slot")
+        slots = {
+            row[0]
+            for row in self.q(
+                "SELECT DISTINCT language_slot FROM questions "
+                "WHERE section IN ('hindi', 'english', 'sanskrit')"
+            )
+        }
+        self.assertEqual(slots, {1, 2})
+
+    def test_no_orphan_passage_references(self) -> None:
+        orphans = self.q(
+            "SELECT COUNT(*) FROM questions q LEFT JOIN passages p ON p.id = q.passage_id "
+            "WHERE q.passage_id IS NOT NULL AND p.id IS NULL"
+        )[0][0]
+        self.assertEqual(orphans, 0)
+
+
+class PackTests(unittest.TestCase):
+    """Build packs from the freshly built database and check what a client receives."""
+
+    @classmethod
+    def setUpClass(cls) -> None:
+        cls._tmp = tempfile.TemporaryDirectory(prefix="tet-pack-test-")
+        root = Path(cls._tmp.name)
+        cls.db_path = root / "runtime" / "tet_mock_vault.db"
+        cls.db_path.parent.mkdir(parents=True, exist_ok=True)
+        build_database(cls.db_path).close()
+        env = dict(os.environ, TET_DB_PATH=str(cls.db_path))
+        result = subprocess.run(
+            [sys.executable, str(TOOLS / "build_cdn_packs.py")],
+            cwd=str(TOOLS), env=env, capture_output=True, text=True,
+        )
+        if result.returncode != 0:
+            raise AssertionError(f"build_cdn_packs.py failed:\n{result.stdout}\n{result.stderr}")
+        cls.cdn = ROOT / "cdn"
+        cls.manifest = json.loads((cls.cdn / "manifest.json").read_text(encoding="utf-8"))
+        cls.packs = [
+            json.loads((cls.cdn / entry["file"]).read_text(encoding="utf-8"))
+            for entry in cls.manifest["packs"]
+        ]
+
+    @classmethod
+    def tearDownClass(cls) -> None:
+        cls._tmp.cleanup()
+
+    def test_manifest_version_matches_build_config(self) -> None:
+        self.assertEqual(self.manifest["bank_version"], BANK_VERSION)
+
+    def test_stimulus_group_is_never_split_across_packs(self) -> None:
+        seen: dict[str, set[int]] = {}
+        for index, pack in enumerate(self.packs):
+            for question in pack.get("q", []):
+                pid = question.get("pid")
+                if pid:
+                    seen.setdefault(pid, set()).add(index)
+        split = {pid: idx for pid, idx in seen.items() if len(idx) > 1}
+        self.assertEqual(split, {}, "stimulusGroupsAtomic is violated")
+
+    def test_every_pack_can_render_its_own_questions(self) -> None:
+        for index, pack in enumerate(self.packs):
+            local = {p["id"] for p in pack.get("p", [])}
+            referenced = {q["pid"] for q in pack.get("q", []) if q.get("pid")}
+            self.assertEqual(
+                referenced - local, set(),
+                f"pack {index} holds questions whose passage text is elsewhere")
+
+    def test_pack_positions_run_from_one(self) -> None:
+        for index, pack in enumerate(self.packs):
+            by_block: dict[str, list[int]] = {}
+            for question in pack.get("q", []):
+                if question.get("pid"):
+                    by_block.setdefault(question["pid"], []).append(question["n"])
+            for pid, positions in by_block.items():
+                self.assertEqual(
+                    sorted(positions), list(range(1, len(positions) + 1)),
+                    f"pack {index} block {pid} is not numbered 1..N")
+
+    def test_question_and_pack_counts_agree(self) -> None:
+        total = sum(len(pack.get("q", [])) for pack in self.packs)
+        self.assertEqual(total, self.manifest["total"])
+        self.assertEqual(
+            sum(entry["count"] for entry in self.manifest["packs"]),
+            self.manifest["total"])
+
+    def test_language_slot_reaches_the_client(self) -> None:
+        language_questions = [
+            q for pack in self.packs for q in pack.get("q", [])
+            if q["s"] in ("hindi", "english", "sanskrit")
+        ]
+        self.assertTrue(language_questions)
+        missing = [q["k"] for q in language_questions if "sl" not in q]
+        self.assertEqual(missing, [], "language slot missing from pack payload")
+
+
+if __name__ == "__main__":
+    unittest.main(verbosity=2)

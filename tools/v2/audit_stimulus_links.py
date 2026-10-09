@@ -599,6 +599,9 @@ def main() -> int:
     ap.add_argument("--section", default=None)
     ap.add_argument("--only-problems", action="store_true",
                     help="print only blocks that are not ok")
+    ap.add_argument("--fail-on", choices=("definite", "suspicious", "never"),
+                    default="definite",
+                    help="exit 1 when this severity is present (default: definite)")
     args = ap.parse_args()
 
     data = collect()
@@ -616,6 +619,7 @@ def main() -> int:
     nd = write_reports(data)
     rows = data["rows"]
     definite = [r for r in rows if r["severity"] == "definite"]
+    suspicious_rows = [r for r in rows if r["severity"] == "suspicious"]
     by_year = defaultdict(lambda: defaultdict(int))
     for b in blocks.values():
         by_year[(b["exam"], b["year"])][b["verdict"]] += 1
@@ -640,6 +644,10 @@ def main() -> int:
         print(f"  [{b['verdict']:22}] {b['exam']}-{b['year']} {b['section']:22} "
               f"Q{nums}  zero={b['zero']}/{len(b['scores'])}")
     print(f"\nreports -> {os.path.relpath(OUT_DIR, ROOT)}   findings -> {os.path.relpath(nd, ROOT)}")
+    if args.fail_on == "never":
+        return 0
+    if args.fail_on == "suspicious":
+        return 1 if (definite or suspicious_rows) else 0
     return 1 if definite else 0
 
 
