@@ -38,6 +38,25 @@ Sibling files on the same index page: P2 Jan-2024 `2024/02/2024021970.pdf`, P1 J
 `2023/03/2023030346.pdf`, P1 07-Feb-2026 `2026/04/20260401145739613.pdf`, P1 01-Mar-2026
 `2026/04/202604011664019376.pdf`, P2 08-Feb-2026 `2026/04/20260401628564007.pdf`.
 
+## The bank does not always keep the paper's option order
+
+This is the trap that matters most, and it is per cycle.
+
+An official key gives an option **number** (1-4). Turning that into the bank's letter assumes
+the bank lists the options in the same order as the paper. That holds for some cycles and not
+for others:
+
+| Cycle | Option order | Evidence |
+|---|---|---|
+| ctet-p1-2018 | same as the paper | Q100 option c = "the southern wild" = official option 3; Q134 option c = "Five times as strong" = official option 3 |
+| ctet-p1-2019 | shuffled | the bank's answers match the official Set D key when compared option text by option text, not letter by letter |
+| ctet-p1-2026 | shuffled | Q96: official option 1 = English, bank holds English as c; Q132: official option 2 = father-figure, bank holds it as d |
+| ctet-p1-2024 | not settled | one anchor is consistent (L2-hindi Q124 option a = जल संकट = official option 1) but that is one question out of 135 |
+
+So an official key must be applied **by option text**, never by letter, unless the cycle has
+been shown to keep the paper's order. `apply_stimulus_sources.py` matches on `optionId`
+alone and cannot do this yet; that is the next thing it needs.
+
 ## How to read a table
 
 `A=1,2 / B=1,3 / C=1,4 / D=2,3 / E=2,4 / F=3,4 / Z=ALL`
