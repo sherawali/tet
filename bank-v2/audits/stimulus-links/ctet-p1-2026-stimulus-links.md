@@ -2,8 +2,8 @@
 
 `score` = प्रश्न के content शब्दों में से कितने अपने गद्यांश में मिलते हैं (0.00 = एक भी शब्द नहीं)। verdict पूरे ब्लॉक का है।
 
-- ठीक: **5** ब्लॉक
-- गलत गद्यांश/कविता जुड़ा है: **3** ब्लॉक
+- ठीक: **6** ब्लॉक
+- गलत गद्यांश/कविता जुड़ा है: **2** ब्लॉक
 
 ## प्रश्न-स्तर की गड़बड़ियाँ
 
@@ -17,16 +17,6 @@
   stimulus `ctet-p1-2026-stimulus-en-po-100` · `language-1/english`
 - ? `ctet-p1-2026-e-lang1-en-q103` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
   stimulus `ctet-p1-2026-stimulus-en-po-100` · `language-1/english`
-- ? `ctet-p1-2026-e-lang1-hi-q100` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2026-stimulus-hi-po-100` · `language-1/hindi`
-- ? `ctet-p1-2026-e-lang1-hi-q101` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2026-stimulus-hi-po-100` · `language-1/hindi`
-- ? `ctet-p1-2026-e-lang1-hi-q102` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2026-stimulus-hi-po-100` · `language-1/hindi`
-- ? `ctet-p1-2026-e-lang1-hi-q103` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2026-stimulus-hi-po-100` · `language-1/hindi`
-- ? `ctet-p1-2026-e-lang1-hi-q104` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2026-stimulus-hi-po-100` · `language-1/hindi`
 - ? `ctet-p1-2026-e-lang2-en-q121` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
   stimulus `ctet-p1-2026-stimulus-en-pr-121` · `language-2/english`
 - ? `ctet-p1-2026-e-lang2-en-q122` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
@@ -123,7 +113,7 @@ in the abject fear of an impending bloodshed.
 
 ---
 ## `language-1/hindi` — ctet-p1-2026-stimulus-hi-pr-91
-**verdict: ठीक** · type=prose · प्रश्न=9 · बिना-मिलान=0 · median score=0.4
+**verdict: ठीक** · type=prose · प्रश्न=9 · बिना-मिलान=0 · median score=0.417
 
 निर्देश: निर्देश (91-99): निम्नलिखित गद्यांश को ध्यानपूर्वक पढ़िए तथा पूछे गए प्रश्नों के उत्तर के रूप में उचित विकल्प का चयन कीजिए—
 
@@ -139,27 +129,28 @@ in the abject fear of an impending bloodshed.
 - ✓ `q096` score=0.50 — गद्यांश के अनुसार प्रत्येक व्यक्ति को कैसा जीवन जीना चाहिए?
 - ✓ `q097` score=0.40 — यदि कोई स्वयं को सबसे श्रेष्ठ मानता है तो यह उसका/उसकी [ ________ ] है।
 - ✓ `q098` score=0.43 — गद्यांश के अनुसार मान-सम्मान कब कम हो जाता है?
-- ✓ `q099` score=0.12 — निम्न में किस शब्द में ‘ता’ प्रत्यय का प्रयोग नहीं किया जा सकता है?
+- ✓ `q099` score=0.42 — निम्न में किस शब्द में ‘ता’ प्रत्यय का प्रयोग नहीं किया जा सकता है?
 
 ---
 ## `language-1/hindi` — ctet-p1-2026-stimulus-hi-po-100
-**verdict: गलत गद्यांश/कविता जुड़ा है** · type=poem · प्रश्न=6 · बिना-मिलान=5 · median score=0.0
+**verdict: ठीक** · type=poem · प्रश्न=6 · बिना-मिलान=0 · median score=0.375
 
 निर्देश: निर्देश : निम्नलिखित काव्यांश को पढ़कर पूछे गए प्रश्नों के लिए सबसे उपयुक्त विकल्प का चयन कीजिए। (100-105)
 
 ```
-राहें कठिन हैं पर कदम नहीं रुकेंगे,
-आंधियों के आगे हम नहीं झुकेंगे।
-उम्मीदों का सूरज फिर चमकेगा,
-अंधेरे के बादल अब छंटेंगे।
+जिस-जिस से पथ पर स्नेह मिला, उस-उस राही को धन्यवाद।
+जीवन अस्थिर अनजाने ही, हो जाता पथ पर मेल कहीं,
+सीमित पग डग, लम्बी मंज़िल, तय कर लेना कुछ खेल नहीं।
+दाएँ-बाएँ सुख-दुख चलते, सम्मुख चलता पथ का प्रसाद –
+जिस-जिस से पथ पर स्नेह मिला, उस-उस राही को धन्यवाद।
 ```
 
-- ✗ `q100` score=0.00 — समूह से भिन्न शब्द है -
-- ✗ `q101` score=0.00 — ‘लक्ष्य’ को व्यक्त करने के लिए उचित शब्द है -
-- ✗ `q102` score=0.00 — कवि अपने जीवन में किन्हें धन्यवाद देना चाहता है?
-- ✗ `q103` score=0.00 — जीवन की विशेषता है :
-- ✗ `q104` score=0.00 — ‘सीमित पग’ प्रतीक है -
-- ✓ `q105` score=0.12 — जीवन में कुछ भी प्राप्त कर लेना -
+- ✓ `q100` score=0.50 — समूह से भिन्न शब्द है -
+- ✓ `q101` score=0.33 — ‘लक्ष्य’ को व्यक्त करने के लिए उचित शब्द है -
+- ✓ `q102` score=0.29 — कवि अपने जीवन में किन्हें धन्यवाद देना चाहता है?
+- ✓ `q103` score=0.50 — जीवन की विशेषता है :
+- ✓ `q104` score=0.25 — ‘सीमित पग’ प्रतीक है -
+- ✓ `q105` score=0.38 — जीवन में कुछ भी प्राप्त कर लेना -
 
 ---
 ## `language-2/english` — ctet-p1-2026-stimulus-en-pr-121
