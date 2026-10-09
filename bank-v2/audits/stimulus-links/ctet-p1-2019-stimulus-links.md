@@ -2,9 +2,9 @@
 
 `score` = प्रश्न के content शब्दों में से कितने अपने गद्यांश में मिलते हैं (0.00 = एक भी शब्द नहीं)। verdict पूरे ब्लॉक का है।
 
-- ठीक: **4** ब्लॉक
+- ठीक: **5** ब्लॉक
 - आधा-अधूरा मिलान: **1** ब्लॉक
-- गलत गद्यांश/कविता जुड़ा है: **3** ब्लॉक
+- गलत गद्यांश/कविता जुड़ा है: **2** ब्लॉक
 - संस्कृत रूपों के कारण स्वतः जाँच संभव नहीं - पढ़कर देखें: **4** ब्लॉक
 
 ## प्रश्न-स्तर की गड़बड़ियाँ
@@ -43,19 +43,7 @@
   stimulus `ctet-p1-2019-stimulus-en-pr-121` · `language-2/english`
 - ? `ctet-p1-2019-a-lang2-en-q128` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
   stimulus `ctet-p1-2019-stimulus-en-pr-121` · `language-2/english`
-- ? `ctet-p1-2019-a-lang2-en-q129` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2019-stimulus-en-pr-129` · `language-2/english`
 - ? `ctet-p1-2019-a-lang2-en-q130` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2019-stimulus-en-pr-129` · `language-2/english`
-- ? `ctet-p1-2019-a-lang2-en-q131` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2019-stimulus-en-pr-129` · `language-2/english`
-- ? `ctet-p1-2019-a-lang2-en-q132` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2019-stimulus-en-pr-129` · `language-2/english`
-- ? `ctet-p1-2019-a-lang2-en-q133` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2019-stimulus-en-pr-129` · `language-2/english`
-- ? `ctet-p1-2019-a-lang2-en-q134` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
-  stimulus `ctet-p1-2019-stimulus-en-pr-129` · `language-2/english`
-- ? `ctet-p1-2019-a-lang2-en-q135` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
   stimulus `ctet-p1-2019-stimulus-en-pr-129` · `language-2/english`
 - ? `ctet-p1-2019-a-lang2-hi-q124` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
   stimulus `ctet-p1-2019-stimulus-hi-pr-121` · `language-2/hindi`
@@ -104,21 +92,21 @@ The Langchen Khambab flows down from the red coloured mountains of the Kanglung 
 Half a league, half a league,
 Half a league onward,
 All in the valley of Death
-   Rode the six hundred.
+Rode the six hundred.
 "Forward, the Light Brigade!
 Charge for the guns!" he said.
 Into the valley of Death
-   Rode the six hundred.
+Rode the six hundred.
 
 "Forward, the Light Brigade!"
 Was there a man dismayed?
 Not though the soldier knew
-   Someone had blundered.
+Someone had blundered.
 Theirs not to make reply,
 Theirs not to reason why,
 Theirs but to do and die.
 Into the valley of Death
-   Rode the six hundred.
+Rode the six hundred.
 ```
 
 - ✓ `q100` score=0.09 — Name the figure of speech used in 'the Valley of Death'.
@@ -232,21 +220,25 @@ History demonstrates that cultural exchange between distinct civilizations enric
 
 ---
 ## `language-2/english` — ctet-p1-2019-stimulus-en-pr-129
-**verdict: गलत गद्यांश/कविता जुड़ा है** · type=prose · प्रश्न=7 · बिना-मिलान=7 · median score=0.0
+**verdict: ठीक** · type=prose · प्रश्न=7 · बिना-मिलान=1 · median score=0.35
 
 निर्देश: Direction: Read the passage given below and answer the questions that follow (Q. Nos. 129 to 135) by selecting the correct/most appropriate options:
 
 ```
-Curiosity is the engine of scientific discovery. When young minds are encouraged to question existing dogmas and test assumptions, groundbreaking breakthroughs emerge.
+Water is the core of life; hence water must be central to our spiritual thinking. Water is not only most of earth, but also most of life. Therefore water conservation must be our deepest concern.
+
+The Himalayas serve as water towers, providing water on a sustained basis to more than 1,000 million people and millions of hectares of land in South Asia. The greenery, benevolent climate, highly productive ecosystems, food production and overall happiness in South Asia are in fact, attributable to the bounty of the Himalayas. They are not only beautiful; they are life-givers. Little wonder that they are venerated as the abode of gods.
+
+The Himalayas in the state of Uttarakhand are especially rich in water resources. This area is home to dozens of perennial streams and numerous other rain-fed rivers along with innumerable rivulets, waterfalls and ponds, etc.
 ```
 
-- ✗ `q129` score=0.00 — Which one of the following words is most similar in meaning to the word, 'bounty'?
+- ✓ `q129` score=0.11 — Which one of the following words is most similar in meaning to the word, 'bounty'?
 - ✗ `q130` score=0.00 — Which word is opposite in meaning to the words, 'benevolent'?
-- ✗ `q131` score=0.00 — Which part of speech is the underlined word in the following sentence? The area is home to dozens of perennial streams.
-- ✗ `q132` score=0.00 — In the context of the passage which of the following is not true? Water should be central to our thinking because:
-- ✗ `q133` score=0.00 — Which of the following has not been mentioned in the passage?
-- ✗ `q134` score=0.00 — Which of the following is false?
-- ✗ `q135` score=0.00 — What is not so special about the Himalayas in the state of Uttarakhand?
+- ✓ `q131` score=0.36 — Which part of speech is the underlined word in the following sentence? The area is home to dozens of perennial streams.
+- ✓ `q132` score=0.35 — In the context of the passage which of the following is not true? Water should be central to our thinking because:
+- ✓ `q133` score=0.55 — Which of the following has not been mentioned in the passage?
+- ✓ `q134` score=0.21 — Which of the following is false?
+- ✓ `q135` score=0.50 — What is not so special about the Himalayas in the state of Uttarakhand?
 
 ---
 ## `language-2/hindi` — ctet-p1-2019-stimulus-hi-pr-121

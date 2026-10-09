@@ -24,8 +24,23 @@
         100,
         105
       ],
-      "text": "Half a league, half a league,\nHalf a league onward,\nAll in the valley of Death\n   Rode the six hundred.\n\"Forward, the Light Brigade!\nCharge for the guns!\" he said.\nInto the valley of Death\n   Rode the six hundred.\n\n\"Forward, the Light Brigade!\"\nWas there a man dismayed?\nNot though the soldier knew\n   Someone had blundered.\nTheirs not to make reply,\nTheirs not to reason why,\nTheirs but to do and die.\nInto the valley of Death\n   Rode the six hundred.",
-      "note": "The placeholder held Blake's 'Evening Star' - a real poem, but the wrong one: Q100 and Q101 quote 'the Valley of Death' and 'to do and die', which are Tennyson's. Stanzas I and II are given, which is the extract the questions run against (Q102 asks about the first stanza, Q104 about 'not to reason why' / 'to do and die'). Spelling follows the Poetry Foundation's modernised text ('dismayed', 'blundered', 'Theirs')."
+      "text": "Half a league, half a league,\nHalf a league onward,\nAll in the valley of Death\nRode the six hundred.\n\"Forward, the Light Brigade!\nCharge for the guns!\" he said.\nInto the valley of Death\nRode the six hundred.\n\n\"Forward, the Light Brigade!\"\nWas there a man dismayed?\nNot though the soldier knew\nSomeone had blundered.\nTheirs not to make reply,\nTheirs not to reason why,\nTheirs but to do and die.\nInto the valley of Death\nRode the six hundred.",
+      "note": "The placeholder held Blake's 'Evening Star' - a real poem, but the wrong one: Q100 and Q101 quote 'the Valley of Death' and 'to do and die', which are Tennyson's. Stanzas I and II are given, which is the extract the questions run against (Q102 asks about the first stanza, Q104 about 'not to reason why' / 'to do and die'). Spelling follows the Poetry Foundation's modernised text ('dismayed', 'blundered', 'Theirs'). Line-leading indentation is dropped on purpose: the bank's text sanitizer collapses it, and if the source kept the three-space indent the apply tool would never see the block as current and would rewrite the file on every run.",
+      "instructions": "Direction: Read the extract given below and answer the questions that follow (Q. No. 100 to 105) by selecting the correct/most appropriate options:"
+    },
+    {
+      "stimulusId": "ctet-p1-2019-stimulus-en-pr-129",
+      "section": "language-2/english",
+      "language": "en",
+      "languageSlot": 2,
+      "type": "prose",
+      "questionRange": [
+        129,
+        135
+      ],
+      "text": "Water is the core of life; hence water must be central to our spiritual thinking. Water is not only most of earth, but also most of life. Therefore water conservation must be our deepest concern.\n\nThe Himalayas serve as water towers, providing water on a sustained basis to more than 1,000 million people and millions of hectares of land in South Asia. The greenery, benevolent climate, highly productive ecosystems, food production and overall happiness in South Asia are in fact, attributable to the bounty of the Himalayas. They are not only beautiful; they are life-givers. Little wonder that they are venerated as the abode of gods.\n\nThe Himalayas in the state of Uttarakhand are especially rich in water resources. This area is home to dozens of perennial streams and numerous other rain-fed rivers along with innumerable rivulets, waterfalls and ponds, etc.",
+      "note": "Assembled from four independent renderings of the same CTET December-2019 passage, which agree on the wording: theexampillar and studyfry give the first two paragraphs, vidhyarthidarpan gives the Uttarakhand paragraph, and Testbook supplies the sentence 'They are not only beautiful; they are life-givers. Little wonder that they are venerated as the abode of gods.' between them. Every phrase the seven questions turn on is present - 'bounty', 'benevolent', 'perennial streams', the Uttarakhand list (streams, rain-fed rivers, rivulets, waterfalls, ponds) that Q133 needs, and 'core of life' for Q130. The answers for this block have NOT been changed: theexampillar and studyfry number these questions differently and only the official key can settle it.",
+      "instructions": "Direction: Read the passage given below and answer the questions that follow (Q. Nos. 129 to 135) by selecting the correct/most appropriate options:"
     }
   ],
   "examDate": "2019-12-08"
