@@ -85,5 +85,171 @@
       "text": "इन दिनों फिर से हिंदी बनाम स्थानीय भाषाओं को लेकर शोर मचा है। इसमें कुछ चीजें समझने वाली हैं। सबसे पहले तो यही कि हिंदी हमारी राजभाषा जरूर है, लेकिन कर्नाटक, तमिलनाडु, केरल समेत अन्य प्रांत में जन्म लेने वाले व्यक्ति के लिए यह मातृभाषा नहीं हो सकती। जितना प्रेम हमें हिंदी से है, उतना ही प्रेम पंजाब में जन्मे व्यक्ति को पंजाबी से होगा, कर्नाटक में जन्मे शख्स को कन्नड़ से होगा, तमिलनाडु में जन्मे व्यक्ति को तमिल से होगा।\n\nहिंदी राजभाषा है, उसका सम्मान सर्वोपरि है, मगर हमें यह भी ध्यान देना होगा कि हिंदी का सम्मान करने के अति उत्साह में कहीं हम अन्य भाषाओं का अपमान तो नहीं कर रहे? जैसे हमारी माता, वैसे ही सबकी माता। हिंदी हमारी मातृभाषा है, तो कन्नड़, तमिल, मलयालम, तेलुगु भी किसी न किसी की मातृभाषा है। हिन्दुस्तान हमारा राष्ट्र है, हिंदी इसकी एक प्रमुख भाषा, लेकिन तमिल, कन्नड़, पंजाबी, तेलुगु, मलयालम आदि भी इसी राष्ट्र में बोली जाने वाली भाषाएँ हैं, जिनका बराबर सम्मान होना चाहिए। तभी हम गर्व से कह पाएँगे कि अनेकता में एकता हमारी सभ्यता है।",
       "note": "Recovered from inside the bank itself: the importer appended this passage to the last option of the previous block's final question (see docs/STIMULUS_LINK_AUDIT.md), so the text is the paper's own, not a reconstruction."
     }
-  ]
+  ],
+  "answerKey": {
+    "source": "CBSE official final answer key, CTET Feb-2026 Paper-I, exam date 08-02-2026",
+    "url": "https://cdnbbsr.s3waas.gov.in/s3443dec3062d0286986e21dc0631734c9/uploads/2026/04/20260401449979389.pdf",
+    "index": "https://ctet.nic.in/previous-year-final-answer-key/",
+    "note": "Only the sections read out of the official PDF are listed here. The PDF holds one table per (set, language); this is the Set B Hindi table. Numbers 91-120 are the language-I half and 121-150 the language-II half of the same table.",
+    "sections": {
+      "language-1/english": {
+        "range": [
+          91,
+          120
+        ],
+        "answers": {
+          "91": "a",
+          "92": "c",
+          "93": "b",
+          "94": "a",
+          "95": "b",
+          "96": "b",
+          "97": "a",
+          "98": "a",
+          "99": "d",
+          "100": "b",
+          "101": "b",
+          "102": "d",
+          "103": "b",
+          "104": "a",
+          "105": "a",
+          "106": "d",
+          "107": "c",
+          "108": "d",
+          "109": "d",
+          "110": "c",
+          "111": "d",
+          "112": "c",
+          "113": "c",
+          "114": "d",
+          "115": "b",
+          "116": "a",
+          "117": "b",
+          "118": "c",
+          "119": "d",
+          "120": "d"
+        }
+      },
+      "language-1/hindi": {
+        "range": [
+          91,
+          120
+        ],
+        "answers": {
+          "91": "a",
+          "92": "c",
+          "93": "b",
+          "94": "b",
+          "95": "b",
+          "96": "a",
+          "97": "a",
+          "98": "d",
+          "99": "d",
+          "100": "a",
+          "101": "a",
+          "102": "d",
+          "103": "c",
+          "104": "c",
+          "105": "b",
+          "106": "d",
+          "107": "c",
+          "108": "d",
+          "109": "d",
+          "110": "c",
+          "111": "d",
+          "112": "c",
+          "113": "c",
+          "114": "d",
+          "115": "b",
+          "116": "a",
+          "117": "b",
+          "118": "c",
+          "119": "d",
+          "120": "d"
+        }
+      },
+      "language-2/english": {
+        "range": [
+          121,
+          150
+        ],
+        "answers": {
+          "121": "d",
+          "123": "d",
+          "124": "a",
+          "125": "b",
+          "126": "a",
+          "127": "c",
+          "128": "b",
+          "129": "a",
+          "130": "a",
+          "131": "d",
+          "132": "b",
+          "133": "d",
+          "134": "d",
+          "135": "a",
+          "136": "b",
+          "137": "c",
+          "138": "d",
+          "139": "b",
+          "140": "c",
+          "141": "d",
+          "142": "b",
+          "143": "c",
+          "144": "b",
+          "145": "b",
+          "146": "d",
+          "147": "a",
+          "148": "c",
+          "149": "b",
+          "150": "a"
+        }
+      },
+      "language-2/hindi": {
+        "range": [
+          121,
+          150
+        ],
+        "answers": {
+          "121": "d",
+          "122": "b",
+          "123": "b",
+          "124": "c",
+          "125": "c",
+          "126": "a",
+          "127": "c",
+          "128": "a",
+          "129": "a",
+          "130": "a",
+          "131": "c",
+          "132": "b",
+          "133": "a",
+          "134": "d",
+          "135": "d",
+          "136": "b",
+          "137": "c",
+          "138": "d",
+          "139": "b",
+          "140": "c",
+          "141": "d",
+          "142": "b",
+          "143": "c",
+          "144": "b",
+          "145": "b",
+          "146": "d",
+          "147": "a",
+          "148": "c",
+          "149": "b",
+          "150": "a"
+        }
+      }
+    },
+    "official": {
+      "source": "CBSE official final answer key, CTET Feb-2026 Paper-I (08-02-2026)",
+      "url": "https://cdnbbsr.s3waas.gov.in/s3443dec3062d0286986e21dc0631734c9/uploads/2026/04/20260401449979389.pdf",
+      "index": "https://ctet.nic.in/previous-year-final-answer-key/",
+      "identified": "Set B, the shift's main test booklet code. Its 1-90 table was read and matches an independently published Set-B table for the same shift 90/90. Its 121-128 English values (4,4,4,1,2,1,3,2) match that same independent Part-V Language-II table exactly, confirming that 91-120 is the language-I half and 121-150 the language-II half of each language table. Cross-checks were used only to confirm the set; every applied value comes from the official PDF.",
+      "omitted": "answers coded A-F/Z (multi-option) are not applied, so those questions keep their existing key: Q122 of the English table is coded C (= options 1 and 4)."
+    }
+  }
 }
