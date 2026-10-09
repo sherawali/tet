@@ -10,8 +10,6 @@
 
 ## प्रश्न-स्तर की गड़बड़ियाँ
 
-- ✗ `None` **instruction-range** — instruction says 130 to 135, linked=[129, 130, 131, 132, 133, 134, 135], missing=[], extra=[129]  
-  stimulus `ctet-p1-2018-stimulus-en-pr-129` · `language-2/english`
 - ✗ `ctet-p1-2018-m-lang1-hi-q103` **quoted-text-not-in-stimulus** — question refers to 'कविताएँ सुनी-सुनायी जाएँ' which does not occur in its own stimulus  
   stimulus `ctet-p1-2018-stimulus-hi-pr-97` · `language-1/hindi`
 - ✗ `ctet-p1-2018-m-lang1-sa-q097` **quoted-text-not-in-stimulus** — question refers to 'शिक्षणपद्धतिः (Teaching method)' which does not occur in its own stimulus  
@@ -55,6 +53,8 @@
 - ? `ctet-p1-2018-m-lang2-en-q127` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
   stimulus `ctet-p1-2018-stimulus-en-pr-121` · `language-2/english`
 - ? `ctet-p1-2018-m-lang2-en-q128` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
+  stimulus `ctet-p1-2018-stimulus-en-pr-121` · `language-2/english`
+- ? `ctet-p1-2018-m-lang2-en-q129` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
   stimulus `ctet-p1-2018-stimulus-en-pr-121` · `language-2/english`
 - ? `ctet-p1-2018-m-lang2-hi-q122` **no-lexical-overlap** — question shares no content word with its own stimulus (token 0.00, bigram 0.00, run 0.00)  
   stimulus `ctet-p1-2018-stimulus-hi-pr-121` · `language-2/hindi`
@@ -231,9 +231,9 @@ And be like him, an
 
 ---
 ## `language-2/english` — ctet-p1-2018-stimulus-en-pr-121
-**verdict: गलत गद्यांश/कविता जुड़ा है** · type=prose · प्रश्न=8 · बिना-मिलान=8 · median score=0.0
+**verdict: गलत गद्यांश/कविता जुड़ा है** · type=prose · प्रश्न=9 · बिना-मिलान=9 · median score=0.0
 
-निर्देश: Direction: Read the passage given below and answer the questions that follow (Q. Nos. 121 to 128) by selecting the correct/most appropriate options.
+निर्देश: Direction: Read the passage given below and answer the questions that follow (Q. Nos. 121 to 129) by selecting the correct/most appropriate options.
 
 ```
 Scientific temper is the willingness to question, investigate, and accept evidence. It frees the human mind from superstition and blind faith, enabling societies to progress on the path of reason and innovation.
@@ -247,10 +247,11 @@ Scientific temper is the willingness to question, investigate, and accept eviden
 - ✗ `q126` score=0.00 — Which one of the following is not the characteristic of man as per the passage?
 - ✗ `q127` score=0.00 — Which one of the following statements is not true as per the passage?
 - ✗ `q128` score=0.00 — Choose the word which is opposite in meaning to the word 'seeks' as used in the passage.
+- ✗ `q129` score=0.00 — Which one of the following is similar in meaning to the word 'exhorting' as used in the passage?
 
 ---
 ## `language-2/english` — ctet-p1-2018-stimulus-en-pr-129
-**verdict: ठीक** · type=prose · प्रश्न=7 · बिना-मिलान=0 · median score=0.368
+**verdict: ठीक** · type=prose · प्रश्न=6 · बिना-मिलान=0 · median score=0.375
 
 निर्देश: Directions (Q. Nos. 130 to 135): Read the passage given below and answer the questions that follow by selecting the correct/most appropriate options.
 
@@ -262,7 +263,6 @@ Kwolek and her group were synthesizing or creating fibers to test. During one of
 Richard Armellino created the first Kevlar bulletproof vest in 1975. It contained 15 layers of Kevlar, which could stop handgun and shotgun bullets. The vest also had a steel plate over the heart, which made the vest strong enough to stop rifle rounds. Vests like Armellino's were quickly picked up by police forces and it is estimated that by 1990,
 ```
 
-- ✓ `q129` score=0.11 — Which one of the following is similar in meaning to the word 'exhorting' as used in the passage?
 - ✓ `q130` score=0.33 — Which one of the following is not a product that has been made with Kevlar?
 - ✓ `q131` score=0.38 — For which of the following characteristics is Kevlar known?
 - ✓ `q132` score=0.37 — Which one of the following caused the search for a fabric like Kevlar?
