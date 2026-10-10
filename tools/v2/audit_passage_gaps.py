@@ -48,7 +48,7 @@ STATUS: dict[str, str] = {
     "ctet-p1-2018-stimulus-en-pr-121": "DONE",        # necessity is the mother of invention
     "ctet-p1-2018-stimulus-en-pr-129": "DONE",        # Kevlar / Stephanie Kwolek
     "ctet-p1-2018-stimulus-hi-po-91": "UNVERIFIED",
-    "ctet-p1-2018-stimulus-hi-pr-97": "FABRICATED",
+    "ctet-p1-2018-stimulus-hi-pr-97": "DONE",          # गीत-कविता अनुच्छेद (pass 6)
     "ctet-p1-2018-stimulus-sa-po-100": "UNVERIFIED",
     # CTET 08 Dec 2019
     "ctet-p1-2019-stimulus-en-pr-91": "TRUNCATED",    # Kangri Karchok — real, cut
@@ -128,7 +128,11 @@ MISSING_GROUPS = [
      "2016 Lang-II English second passage — no stimulus id was ever created"),
 ]
 
-UTET_STATUS = "UNVERIFIED"  # UTET passages are length-plausible but not yet sourced
+# UTET passages are confirmed authentic by the owner: they came from his own
+# paper OCR (UTET 2024/2025) and from the UTET 2026 paper he sat on 29 Sep 2026.
+# Closed 2026-10-10 ("utet k para shi hai aur inko baad mai dekhenge") - out of
+# scope for the CTET restoration work, revisit only if he asks.
+UTET_STATUS = "DONE"
 
 # Stimuli DELETED by repair_unlink_pass5.py: the official booklet has no passage
 # at these ranges (CTET Language-II 121-150 is भाषा-शास्त्र/pedagogy + grammar in

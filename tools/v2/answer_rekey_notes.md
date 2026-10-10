@@ -285,3 +285,73 @@ Snapshot after pass 5 (`python3 tools/v2/audit_passage_gaps.py`):
 | MISSING | 2 | 17 |
 | UNVERIFIED | 37 | 184 |
 | **live total** | **99** | **666** |
+
+## Cleanup pass 6 (script: tools/v2/repair_passages_pass6.py) + official-key diffing
+
+Pass 6 is a *registry* rather than a one-off script: RESTORATIONS is keyed by stimulus id and
+each entry carries its provenance plus a `must` list of substrings the linked questions
+demand, asserted before anything is written. Later cycles append entries instead of adding a
+new pass file.
+
+Restored: `ctet-p1-2018-stimulus-hi-pr-97` = the गीत-कविता अनुच्छेद (1724 chars, 2 paragraphs,
+9 questions). Source: testbook QnA 60a78c29f445f1e2f831d702 carries both paragraphs in full;
+theexampillar's CTET 2018 Language-I Hindi page carries the same text but drops the block
+between "कक्षाओं की" and "दूसरी ओर", so testbook was used as the base and theexampillar to
+repair its typos. One OCR drop repaired and logged: "चाहते हैं कि शिक्षक पहले …" (the
+subordinating कि is absent from both reproductions but the clause cannot stand without it).
+
+### Why the official paper PDF could not be used for the Hindi text (important, permanent)
+`ctet.nic.in` itself does not fetch. The prepp mirror of the official booklet
+(`cdn-images.prepp.in/public/image/ctet-2018-paper-1-question-paper-and-answer-key-pdf-1761896188.pdf`,
+booklet **MVD18–I**, Booklet Code **I**) is fetchable, but:
+1. its Devanagari text layer is encoded in a **legacy Kruti-Dev font**, so Hindi comes out as
+   `narjm nwpÒVH$m` for परीक्षा पुस्तिका — unusable without writing a Kruti-Dev→Unicode decoder
+   (only some EVS pages carry a clean Unicode OCR layer alongside the garbage);
+2. the booklet is ~42 pages and `fetch_page` caps at 30, which ends inside Part III (EVS q76).
+   **Parts IV and V — both language sections — are beyond the cap entirely.**
+So for Hindi/Sanskrit passages, booklet reproductions (testbook / theexampillar / gkscientist)
+remain the only route, and for English passages the official PDF is reachable only if a
+section-scoped PDF exists.
+
+### Official CBSE answer key obtained — and it contradicts the previous rekey
+The key PDF is small and fully fetchable:
+`cdn-images.prepp.in/public/image/ctet-2018-paper-1-answer-key-1761917805.pdf`
+= "CTET DEC-2018 KEY EXAM-09/12/2018 Date. 31/12/18, Set :- I, PAPER-I", with three grids:
+MAIN (q1-90), 01-ENGLISH (q91-150), 02-HINDI (q91-150). Stored verbatim in
+`tools/v2/official_keys/ctet-2018-paper1-set-I.json`, and diffed with the new
+`tools/v2/verify_against_official_key.py <keyfile> <cycle>`.
+
+First diff: **202 matched, 8 mismatched**. All 8 resolved in favour of the official key:
+
+| question | was | official | content |
+|---|---|---|---|
+| evs q064 | c | **d** | NCF-1975 (pass-1 "documented correction" to NCF-2000 was wrong) |
+| evs q090 | c | **a** | myth, not stereotype |
+| lang1-en q105 | a | **d** | 'bereav'd of light' → All of the above |
+| lang1-en q114 | a | **b** | 'Cloze' → missing part |
+| lang1-en q115 | c | **d** | last stage of writing → advanced writing |
+| lang2-en q123 | b | **c** | spirit tells him to cut down his desires |
+| lang2-en q144 | c | **d** | graded inputs from the target language |
+| lang2-en q145 | a | **b** | "The students are giving their examination." |
+
+**7 of the 8 came from `answer_rekey.json`** — i.e. the previous session's content-solving
+actively corrupted keys that were right before, and q123 is provable: the imported bank had
+`c`, the rekey file overwrote it with `b`, the official key says `3` = `c`. q090 was the only
+one inherited from the import.
+
+Re-diff after applying: **210 matched, 0 mismatched**, and no drift anywhere between
+`question.answer.optionId` and `appearance.officialOptionId`. Pass-4's three corrections
+(q121 c→b, q124 b→c, q127 c→d) are independently confirmed by the official grid. Rule-1
+distribution re-scanned for all nine 2018 sections: worst is lang2-sa at 43%, 0 violations.
+verify 7/7 PASS (97 stimuli), DB + 15 packs rebuilt, 3 stale packs deleted.
+
+**Consequence for the rest of the bank:** the 542-entry rekey file cannot be trusted as a
+source of truth. Every cycle must be diffed against its official key grid before its answers
+are called verified. Sanskrit is not covered by the MAIN/ENGLISH/HINDI grids — it needs the
+separate Sanskrit supplement key.
+
+Two label defects noted, not changed (renaming ids is risky and cosmetic):
+`bank-v2/sources/ctet-p1-2018-sources.json` records `canonicalSet: "M"` and appearances carry
+`setCode: "M"`, but the official booklet is **Set I / MVD18-I**. Also official key q74 = "9"
+(all options accepted, marks to all); the bank stores a representative letter, same treatment
+as 2024-i EVS q080.
