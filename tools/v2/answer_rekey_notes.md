@@ -203,3 +203,85 @@ groups, and 9 poems/misc. These are length-plausible but have not been checked
 against a paper yet. CTET Sanskrit गद्यांश really are short (the clean 2020-i
 Sanskrit imports run 530-2069 chars while the other cycles run 82-243), so the
 non-2020 Sanskrit set is the suspicious half of that bucket.
+
+## Cleanup pass 5 (script: tools/v2/repair_unlink_pass5.py) — fabricated passages removed
+
+**New class of defect.** `import_all_ctet.py` minted a prose stimulus for every fixed
+question range (91-99, 121-128, 129-135 …) whether or not the official booklet had a
+गद्यांश there. CTET Language-II 121-150 is भाषा-शास्त्र / language pedagogy + grammar in
+most cycles — no passage at all — so the importer stapled a generic moral essay onto
+standalone pedagogy questions. That is worse than a missing passage: the app shows a
+fabricated paragraph above questions like "वाइगोत्स्की ने भाषा-विकास का ___ परिप्रेक्ष्य
+प्रस्तुत किया" or "Top-down means 'attend to the overall meaning'. What does 'bottom-up'
+mean?", sending the learner hunting through irrelevant text.
+
+Verified stem by stem that all 93 questions are answerable from their own stem + options,
+and that not one stem refers back to a passage. The script re-asserts this with a
+multilingual marker regex (the passage / अनुच्छेद / गद्यांश / उपर्युक्त …) and fails loudly
+before writing, so a future real passage-dependent question can't be silently unlinked.
+
+Removed 12 stimuli, unlinked 93 questions:
+- 2016 Lang-II Sanskrit q121-128, q129-135
+- 2018 Lang-I Sanskrit q091-099; Lang-II Sanskrit q121-128, q129-135; Lang-II Hindi q121-128, q129-135
+- 2023 Lang-I Sanskrit q091-099; Lang-II English q121-128, q129-135; Lang-II Hindi q121-128, q129-135
+
+verify_all_questions.py 7/7 PASS, stimuli 109 → 97; DB rebuilt (97 passages); 15 packs
+regenerated, 6 stale packs deleted.
+
+## Sanskrit verdict (was UNVERIFIED, now classified)
+
+All 20 non-2020 CTET Sanskrit prose stimuli are fabricated generic subhashita-style essays,
+and **every one of them mismatches its own question group** — e.g. `2019-sa-pr-91` holds a
+desert-traveller story while its questions ask about नर्मदा / अमरकण्टक / डिण्डोरी. Only the
+2020-i Sanskrit imports (530-2069 chars) are real. 10 groups therefore moved
+UNVERIFIED → FABRICATED, with the topic each needs recorded in the tracker table:
+
+| stimulus | questions actually need |
+|---|---|
+| 2019-sa-pr-91 / 121 / 129 | नर्मदा-अमरकण्टक / दण्डचतुष्टय (bundle of sticks) / चाणक्य-कम्बल |
+| 2021-dec-sa-pr-121 / 129 | नागार्जुन-युवकौ / रानाडे |
+| 2023-sa-pr-121 / 129 | सिद्धार्थ-देवदत्त / मृगेन्द्र-सिंह |
+| 2024-sa-pr-91 / 121 / 129 | योग-मोक्ष / सामवेद-योगदर्शन / साङ्ख्ययोग-हठयोग |
+
+## Real passages identified behind the remaining FABRICATED placeholders
+
+Reading the question stems identifies what each placeholder is standing in for, which makes
+them searchable rather than guesswork:
+- 2023-en-pr-97 (q97-105) — **Garud, 69, travelling solo in Mizoram**; horse-riding, dancing
+  at a festival, ex-athlete. Currently "The secret of happiness…".
+- 2024-en-pr-91 (q91-99) — **Mrs. Higgins / Alfred / Mr. Carr, drug store** = Morley
+  Callaghan's "All the Years of Her Life". Currently "Human ingenuity…".
+- 2024-en-pr-121 (q121-128) — **Scarecrow / Dorothy / nuts / "kept her snug"** = Wizard of Oz
+  extract. Currently "Reading opens doors…".
+- 2024-en-pr-129 (q129-135) — **birder, bird calls, Delhi, "wild exultant laugh", "belligerent"**.
+  Currently "Cooperation in communities…".
+- 2019-en-pr-121 (q121-128) — freedom / 'endeavours' (para 1) / 'shun' (para 2) / established
+  religion / authorities suppressing freedom fighters. Currently "History demonstrates…".
+- 2019-en-pr-129 (q129-135) — **Uttarakhand Himalayas, water, perennial streams**, 'bounty',
+  'benevolent'. Currently "Curiosity is the engine…".
+- 2019-hi-pr-129 (q129-135) — गाँव को प्रयोगशाला, 'फर्स्ट हैंड समझ', ज्ञान. Currently "भाषा अभिव्यक्ति…".
+- 2021-dec-hi-pr-121 (q121-128) — नदियों का पहाड़ी सफर, 'सरसब्ज', 'उल्लास'. Currently "वैज्ञानिक अनुसंधानों…".
+- 2024-hi-pr-121 (q121-128) — गंगा, अल नीनो, ग्लेशियर, 2050 जल-संकट. Currently "श्रम ही जीवन…".
+- 2024-hi-pr-129 (q129-135) — पाप और पुण्य, जंजीर की तुलना. Currently "वाणी में मधुरता…".
+- 2026-hi-pr-91 (q91-99) — सृष्टि निर्माण, सद्भाव, अहंकार, मान-सम्मान. **The handover's claim
+  that this is the Hindi twin of the Tarawati passage is wrong** — CTET Lang-I Hindi is its own
+  section, and q91-99 are about अहंकार/सद्भाव, not Tarawati/Roopa.
+
+Two more defects logged, not yet fixed:
+- `ctet-p1-2016-i-lang1-hi-q119` ("अकबर का जन्म कहाँ हुआ था?") is linked to the मीना/रमेश
+  dialogue stimulus — content mismatch, it belongs to a different (missing) गद्यांश. q120
+  (मुहावरा) is standalone and should be unlinked too.
+- 2016 Lang-I Hindi q097-105 and 2016 Lang-II English q128-135 still have no stimulus at all.
+
+Snapshot after pass 5 (`python3 tools/v2/audit_passage_gaps.py`):
+
+| status | groups | questions |
+|---|---:|---:|
+| DONE | 22 | 161 |
+| NO-PASSAGE (closed, stimuli deleted) | 12 | 93 |
+| TRUNCATED | 11 | 87 |
+| FABRICATED | 25 | 201 |
+| PROVISIONAL | 2 | 16 |
+| MISSING | 2 | 17 |
+| UNVERIFIED | 37 | 184 |
+| **live total** | **99** | **666** |

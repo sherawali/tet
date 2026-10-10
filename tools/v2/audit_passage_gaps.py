@@ -42,8 +42,6 @@ STATUS: dict[str, str] = {
     "ctet-p1-2016-stimulus-en-pr-143": "TRUNCATED",   # Raja Ram Mohan Roy — real, cut
     "ctet-p1-2016-stimulus-hi-po-91": "UNVERIFIED",
     "ctet-p1-2016-stimulus-hi-pr-112": "TRUNCATED",   # माँ/रमेश dialogue — real, cut
-    "ctet-p1-2016-stimulus-sa-pr-121": "UNVERIFIED",
-    "ctet-p1-2016-stimulus-sa-pr-129": "UNVERIFIED",
     # CTET 09 Dec 2018 — English closed by pass 4
     "ctet-p1-2018-stimulus-en-pr-91": "DONE",         # Castles
     "ctet-p1-2018-stimulus-en-po-100": "DONE",        # Blake, The Little Black Boy
@@ -51,12 +49,7 @@ STATUS: dict[str, str] = {
     "ctet-p1-2018-stimulus-en-pr-129": "DONE",        # Kevlar / Stephanie Kwolek
     "ctet-p1-2018-stimulus-hi-po-91": "UNVERIFIED",
     "ctet-p1-2018-stimulus-hi-pr-97": "FABRICATED",
-    "ctet-p1-2018-stimulus-hi-pr-121": "FABRICATED",
-    "ctet-p1-2018-stimulus-hi-pr-129": "FABRICATED",
     "ctet-p1-2018-stimulus-sa-po-100": "UNVERIFIED",
-    "ctet-p1-2018-stimulus-sa-pr-91": "UNVERIFIED",
-    "ctet-p1-2018-stimulus-sa-pr-121": "UNVERIFIED",
-    "ctet-p1-2018-stimulus-sa-pr-129": "UNVERIFIED",
     # CTET 08 Dec 2019
     "ctet-p1-2019-stimulus-en-pr-91": "TRUNCATED",    # Kangri Karchok — real, cut
     "ctet-p1-2019-stimulus-en-po-100": "UNVERIFIED",  # Blake 'Night'; handover claims Tennyson
@@ -67,9 +60,9 @@ STATUS: dict[str, str] = {
     "ctet-p1-2019-stimulus-hi-pr-121": "TRUNCATED",   # पाठ्यक्रम/कक्षाक्रम — real NCF text, cut
     "ctet-p1-2019-stimulus-hi-pr-129": "FABRICATED",
     "ctet-p1-2019-stimulus-sa-po-100": "UNVERIFIED",
-    "ctet-p1-2019-stimulus-sa-pr-91": "UNVERIFIED",
-    "ctet-p1-2019-stimulus-sa-pr-121": "UNVERIFIED",
-    "ctet-p1-2019-stimulus-sa-pr-129": "UNVERIFIED",
+    "ctet-p1-2019-stimulus-sa-pr-91": "FABRICATED",   # needs नर्मदा/अमरकण्टक गद्यांश
+    "ctet-p1-2019-stimulus-sa-pr-121": "FABRICATED",   # needs दण्डचतुष्टय (bundle of sticks) गद्यांश
+    "ctet-p1-2019-stimulus-sa-pr-129": "FABRICATED",   # needs चाणक्य/कम्बल गद्यांश
     # CTET 31 Jan 2021 / 2020 cycle — imported from a clean source
     "ctet-p1-2020-i-language-1-en-q091-prose": "DONE",
     "ctet-p1-2020-i-language-1-en-q100-poem": "DONE",
@@ -93,21 +86,16 @@ STATUS: dict[str, str] = {
     "ctet-p1-2021-dec-stimulus-hi-po-100": "UNVERIFIED",
     "ctet-p1-2021-dec-stimulus-hi-pr-121": "FABRICATED",
     "ctet-p1-2021-dec-stimulus-hi-pr-129": "TRUNCATED",  # Krishnamurti, शिक्षा का सार — real, cut
-    "ctet-p1-2021-dec-stimulus-sa-pr-121": "UNVERIFIED",
-    "ctet-p1-2021-dec-stimulus-sa-pr-129": "UNVERIFIED",
+    "ctet-p1-2021-dec-stimulus-sa-pr-121": "FABRICATED",   # needs नागार्जुन/युवकौ गद्यांश
+    "ctet-p1-2021-dec-stimulus-sa-pr-129": "FABRICATED",   # needs रानाडे गद्यांश
     # CTET 20 Aug 2023
     "ctet-p1-2023-stimulus-en-po-91": "UNVERIFIED",   # Herrick 'Gather ye rosebuds'
     "ctet-p1-2023-stimulus-en-pr-97": "FABRICATED",
-    "ctet-p1-2023-stimulus-en-pr-121": "FABRICATED",
-    "ctet-p1-2023-stimulus-en-pr-129": "FABRICATED",
     "ctet-p1-2023-stimulus-hi-po-91": "UNVERIFIED",
     "ctet-p1-2023-stimulus-hi-pr-97": "FABRICATED",
-    "ctet-p1-2023-stimulus-hi-pr-121": "FABRICATED",
-    "ctet-p1-2023-stimulus-hi-pr-129": "FABRICATED",
     "ctet-p1-2023-stimulus-sa-po-100": "UNVERIFIED",
-    "ctet-p1-2023-stimulus-sa-pr-91": "UNVERIFIED",
-    "ctet-p1-2023-stimulus-sa-pr-121": "UNVERIFIED",
-    "ctet-p1-2023-stimulus-sa-pr-129": "UNVERIFIED",
+    "ctet-p1-2023-stimulus-sa-pr-121": "FABRICATED",   # needs सिद्धार्थ/देवदत्त गद्यांश
+    "ctet-p1-2023-stimulus-sa-pr-129": "FABRICATED",   # needs मृगेन्द्र/सिंह गद्यांश
     # CTET 21 Jan 2024
     "ctet-p1-2024-stimulus-en-pr-91": "FABRICATED",
     "ctet-p1-2024-stimulus-en-po-100": "TRUNCATED",   # Wordsworth daffodils, 1 stanza only
@@ -118,9 +106,9 @@ STATUS: dict[str, str] = {
     "ctet-p1-2024-stimulus-hi-pr-121": "FABRICATED",
     "ctet-p1-2024-stimulus-hi-pr-129": "FABRICATED",
     "ctet-p1-2024-stimulus-sa-po-100": "UNVERIFIED",
-    "ctet-p1-2024-stimulus-sa-pr-91": "UNVERIFIED",
-    "ctet-p1-2024-stimulus-sa-pr-121": "UNVERIFIED",
-    "ctet-p1-2024-stimulus-sa-pr-129": "UNVERIFIED",
+    "ctet-p1-2024-stimulus-sa-pr-91": "FABRICATED",   # needs योग/मोक्ष गद्यांश
+    "ctet-p1-2024-stimulus-sa-pr-121": "FABRICATED",   # needs सामवेद/योगदर्शन गद्यांश
+    "ctet-p1-2024-stimulus-sa-pr-129": "FABRICATED",   # needs साङ्ख्ययोग/हठयोग गद्यांश
     # CTET 08 Feb 2026 — pass 3 restored most of it
     "ctet-p1-2026-stimulus-en-pr-91": "DONE",         # Tarawati/Roopa
     "ctet-p1-2026-stimulus-en-po-100": "DONE",        # Kalahandi
@@ -141,6 +129,26 @@ MISSING_GROUPS = [
 ]
 
 UTET_STATUS = "UNVERIFIED"  # UTET passages are length-plausible but not yet sourced
+
+# Stimuli DELETED by repair_unlink_pass5.py: the official booklet has no passage
+# at these ranges (CTET Language-II 121-150 is भाषा-शास्त्र/pedagogy + grammar in
+# these cycles), so the fabricated essay was removed and the questions became
+# standalone. Value = number of questions freed. Kept here so the tracker still
+# reports them as closed instead of silently forgetting them.
+NO_PASSAGE_REMOVED: dict[str, int] = {
+    "ctet-p1-2016-stimulus-sa-pr-121": 8,
+    "ctet-p1-2016-stimulus-sa-pr-129": 7,
+    "ctet-p1-2018-stimulus-sa-pr-91": 9,
+    "ctet-p1-2018-stimulus-sa-pr-121": 8,
+    "ctet-p1-2018-stimulus-sa-pr-129": 7,
+    "ctet-p1-2018-stimulus-hi-pr-121": 8,
+    "ctet-p1-2018-stimulus-hi-pr-129": 7,
+    "ctet-p1-2023-stimulus-sa-pr-91": 9,
+    "ctet-p1-2023-stimulus-en-pr-121": 8,
+    "ctet-p1-2023-stimulus-en-pr-129": 7,
+    "ctet-p1-2023-stimulus-hi-pr-121": 8,
+    "ctet-p1-2023-stimulus-hi-pr-129": 7,
+}
 
 
 def textlen(node, locs=None) -> int:
@@ -215,8 +223,18 @@ def main() -> int:
     for _d, _pfx, a, b, _why in MISSING_GROUPS:
         counts["MISSING"] += 1
         qcounts["MISSING"] += (b - a + 1)
+    counts["NO-PASSAGE"] = len(NO_PASSAGE_REMOVED)
+    qcounts["NO-PASSAGE"] = sum(NO_PASSAGE_REMOVED.values())
 
-    order = ["DONE", "TRUNCATED", "FABRICATED", "PROVISIONAL", "MISSING", "UNVERIFIED"]
+    # drift guard: the curated table must not keep ids the bank no longer has
+    stale = sorted(set(STATUS) - set(stimuli))
+    if stale:
+        print(f"WARNING: {len(stale)} STATUS entries no longer exist in the bank "
+              f"(move them to NO_PASSAGE_REMOVED or drop them):")
+        for s in stale:
+            print("   ", s)
+
+    order = ["DONE", "NO-PASSAGE", "TRUNCATED", "FABRICATED", "PROVISIONAL", "MISSING", "UNVERIFIED"]
     total = sum(counts.values())
     totalq = sum(qcounts.values())
 
@@ -231,10 +249,14 @@ def main() -> int:
     print("=" * 78)
     print("passage / poem integrity tracker")
     print("=" * 78)
+    live = total - counts.get("NO-PASSAGE", 0)
+    liveq = totalq - qcounts.get("NO-PASSAGE", 0)
     for st in order:
-        pct = 100.0 * counts.get(st, 0) / total if total else 0
-        print(f"  {st:12s} {counts.get(st,0):3d} groups  {qcounts.get(st,0):4d} questions  ({pct:4.1f}% of groups)")
-    print(f"  {'TOTAL':12s} {total:3d} groups  {totalq:4d} questions")
+        pct = 100.0 * counts.get(st, 0) / live if (live and st != "NO-PASSAGE") else 0
+        extra = f"  ({pct:4.1f}% of live groups)" if st != "NO-PASSAGE" else "  (closed — stimuli deleted)"
+        print(f"  {st:12s} {counts.get(st,0):3d} groups  {qcounts.get(st,0):4d} questions{extra}")
+    print(f"  {'LIVE TOTAL':12s} {live:3d} groups  {liveq:4d} questions   "
+          f"(+{counts.get('NO-PASSAGE',0)} closed / {qcounts.get('NO-PASSAGE',0)}q)")
 
     ctet_open = [r for r in rows if r[1].startswith("ctet-") and r[0] in
                  ("FABRICATED", "TRUNCATED", "PROVISIONAL")]
