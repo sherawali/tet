@@ -53,3 +53,26 @@ All verified by content; applied via `tools/v2/repair_cleanup_pass2.py` (idempot
 Post-pass scans: single-star leftovers 0; leaked number/range markers in prompts 0; verify_all_questions.py 7/7 PASS; DB/packs rebuilt (BANK_VERSION 20261010).
 
 Still pending (passage restoration map): 2018-en-po-100 Blake, 2019-en-po-100 Tennyson, prose leaks→stimuli (2026-en-po-100 Kalahandi etc.), unlink fake stims, reconstruct from question constraints (2018 castles/maxim/Kevlar, 2019 endeavours, 2023 Garud/Mizoram, 2026 Tarawati/tea-seller, hi sets), then re-verify provisional answers.
+
+## Cleanup pass 3 (script: tools/v2/repair_cleanup_pass3.py)
+
+Restored 6 placeholder stimuli (ctet 2026-e, paper-1):
+- lang1-en pr-91 = Tarawati/Roopa full passage (source: prepp.in official question paper PDF FSC-26-I/Code-E, Part-IV; 'Things were lying at sixes and sevens' line reconstructed from q099).
+- lang1-en po-100 = Kalahandi extract 'Put away the road maps now...' (same PDF; replaces wrong Frost poem).
+- lang2-en pr-129 = tribes/patriarch passage (recovered from q128 option-D leak in commit 7a6aa96).
+- lang2-hi pr-129 = 'हिंदी बनाम स्थानीय भाषाएँ' passage (recovered from hi q128 option-D leak, same commit).
+- lang2-en pr-121 = tea-seller/boy story — PROVISIONAL reconstruction from q121-128 constraints ('sped like a bullet towards the girl', 'in the quavering light', 'And what was that in his hand?', casual wear, old woman, son of tea-seller, no attack on sister, big sound, curious young man). Original passage unrecoverable online.
+- lang2-hi pr-121 = लीडर/संघर्ष passage — PROVISIONAL reconstruction from q121-128 constraints (शरीर का राजा, जन्म लीडर बनने के लिए, संघर्ष-नेतृत्व=जीवन का सत्य, सत्ता प्राप्त करने के लिए संघर्ष).
+
+Restored destroyed fractions: ctet-p1-2021-dec-d-mathematics-q037 options =
+  a=3/8, 4/16, 1/4, 1/8 (=1 ✓); b=1/4, 1/2, 1/2; c=1/8, 5/8, 3/8; d=4/16, 2/5, 3/8
+  (source: testbook.com QA for CTET 31 Dec 2021; letter map a/b/c/d = set 1/2/3/4).
+
+Markdown tables → plain text (app renders no markdown): 2019-a-evs-q071 (match columns), 2021-dec-d-lang2-en-q128/q135 (sentence parts), 2026-e-math-q041 (eye-colour table), 2019-a-math-q039 (price list), q041 (parking rates). Format: "header:" + one item per line.
+
+Underlined-word prompts now name the target word: 2026-e-lang2-en-q122 ('towards'), q124 ('quavering'), q130 ('them'), 2026-e-lang1-en-q092 ('to broker'); q123 quoted as sentence.
+
+Open follow-ups:
+- 2026-e-math-q039 options bare ['8','4','3','3'] — restore fractions from prepp PDF math section.
+- Underlined-word prompts in 2023-e/2024-i/2020-i lang sets lost their underlines (quotes elided with [ ______ ]); recover per question from source papers.
+- OCR sweep: 'कौन कार्यक्रम' type grammar slips across all sets.

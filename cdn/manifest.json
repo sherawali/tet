@@ -47,9 +47,9 @@
     },
     {
       "id": "0002",
-      "file": "packs/pack-0002-6f4984e0648e.json",
-      "sha256": "6f4984e0648e96eee154b5cd522ddb21d57984a2e41c6b4c4fc14b59cd583655",
-      "bytes": 135068,
+      "file": "packs/pack-0002-73c0c1a56695.json",
+      "sha256": "73c0c1a56695315a5ce18fc22741da72192bc9b8e5a8dc2fabb51643962d1019",
+      "bytes": 134904,
       "count": 200,
       "sections": [
         "english"
@@ -57,9 +57,9 @@
     },
     {
       "id": "0003",
-      "file": "packs/pack-0003-a8ad2c52c635.json",
-      "sha256": "a8ad2c52c635a821df41f8a0184f08dc36750c5090192f309b3b8abbc0c884b6",
-      "bytes": 178208,
+      "file": "packs/pack-0003-b73d4e623f92.json",
+      "sha256": "b73d4e623f9217b6987198f63d241dd0d7e144d5527a1cec0b66cd6f4e632fd4",
+      "bytes": 182551,
       "count": 200,
       "sections": [
         "english",
@@ -89,9 +89,9 @@
     },
     {
       "id": "0006",
-      "file": "packs/pack-0006-9a3dd374d3aa.json",
-      "sha256": "9a3dd374d3aaef37639f74bb4b42c7220d56365f982734fe1634ae9ffabf5b80",
-      "bytes": 155139,
+      "file": "packs/pack-0006-88611ccc3ac4.json",
+      "sha256": "88611ccc3ac48ae36f8715411940e6d96c562842ce8770aecac4cff7e9edc793",
+      "bytes": 158129,
       "count": 200,
       "sections": [
         "hindi",
@@ -100,9 +100,9 @@
     },
     {
       "id": "0007",
-      "file": "packs/pack-0007-2441fd8f7738.json",
-      "sha256": "2441fd8f773887c36d5f1fd760f55048371d02b0900e93d78ea582a441e1532e",
-      "bytes": 199803,
+      "file": "packs/pack-0007-4e95d357cfc8.json",
+      "sha256": "4e95d357cfc802672fadf422de787d0bbfef4bd9478d24dba8a0a1e66b4f21a0",
+      "bytes": 199573,
       "count": 200,
       "sections": [
         "math"
@@ -110,9 +110,9 @@
     },
     {
       "id": "0008",
-      "file": "packs/pack-0008-7b83383748a8.json",
-      "sha256": "7b83383748a88d6e700c7bd89e1cf747f5c9aa11f7cd59a036383c479055ced8",
-      "bytes": 134224,
+      "file": "packs/pack-0008-d8876a7bde6f.json",
+      "sha256": "d8876a7bde6ffb7dd92daf956d661cf9e732e0b4875fa942ab4d4822a028fbe0",
+      "bytes": 133996,
       "count": 200,
       "sections": [
         "math",
