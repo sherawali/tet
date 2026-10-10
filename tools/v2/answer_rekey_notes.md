@@ -164,3 +164,42 @@ Sanskrit गद्यांश are genuinely short, 90–250 chars):
 - 2024 en pr-91 (189), pr-121 (139), pr-129 (137); hi pr-91 (328), pr-121 (158), pr-129 (123)
 - 2026 hi pr-91 (386, "अहंकार" placeholder — needs the Hindi Tarawati)
 - provisional reconstructions still open: 2026 en pr-121 (820), 2026 hi pr-121 (477)
+
+## Passage-integrity tracker (tools/v2/audit_passage_gaps.py) — added this session
+
+Single source of truth for "kitna hua, kitna bacha". Carries a curated status
+table (DONE / TRUNCATED / FABRICATED / PROVISIONAL / MISSING / UNVERIFIED) plus
+a structural scan, so it also catches groups whose stimulus record was never
+created. Run it after every restoration pass; `--md` prints a markdown table.
+
+Snapshot after pass 4 (2018 English closed):
+
+| status | groups | questions |
+|---|---:|---:|
+| DONE | 22 | 161 |
+| TRUNCATED | 11 | 87 |
+| FABRICATED | 21 | 168 |
+| PROVISIONAL | 2 | 16 |
+| MISSING | 2 | 17 |
+| UNVERIFIED | 53 | 310 |
+| **total** | **111** | **759** |
+
+Confirmed-broken CTET groups remaining: **36 groups / 288 questions**
+(21 FABRICATED + 11 TRUNCATED + 2 PROVISIONAL + 2 MISSING). Pass 4 closed 4
+groups / 30 questions.
+
+Two structural gaps the handover did not list, found by the tracker — these
+question groups have NO stimulus record at all, so the app shows them with no
+passage above them:
+- `ctet-p1-2016-i-lang1-hi-q097 … q105` (9 questions) — 2016 Lang-I Hindi गद्यांश
+- `ctet-p1-2016-i-lang2-en-q128 … q135` (8 questions) — 2016 Lang-II English second passage
+The handover's B-list attributed missing poem ids to 2018-hi-po-100 /
+2023-en-po-100 / 2023-hi-po-100; those cycles simply have no poem group at
+100-105 (their Lang-I runs poem 91-96 + prose 97-105), so nothing is missing
+there. The real holes are the two 2016 groups above.
+
+UNVERIFIED (53 groups / 310 questions) = 24 UTET groups, 20 CTET Sanskrit
+groups, and 9 poems/misc. These are length-plausible but have not been checked
+against a paper yet. CTET Sanskrit गद्यांश really are short (the clean 2020-i
+Sanskrit imports run 530-2069 chars while the other cycles run 82-243), so the
+non-2020 Sanskrit set is the suspicious half of that bucket.
