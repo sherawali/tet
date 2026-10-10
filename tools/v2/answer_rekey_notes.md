@@ -76,3 +76,91 @@ Open follow-ups:
 - 2026-e-math-q039 options bare ['8','4','3','3'] — restore fractions from prepp PDF math section.
 - Underlined-word prompts in 2023-e/2024-i/2020-i lang sets lost their underlines (quotes elided with [ ______ ]); recover per question from source papers.
 - OCR sweep: 'कौन कार्यक्रम' type grammar slips across all sets.
+
+## Cleanup pass 4 (script: tools/v2/repair_passages_pass4.py) — 2026-10-10
+
+Scope of this revision: **CTET Paper-I, 09 Dec 2018, English (Language-I + Language-II)**.
+All four placeholders in that cycle were fabricated at import time — `import_all_ctet.py`
+carries the generic essays inline, and they have been identical in every commit since
+`e33e5c0`, so no git-leak recovery was possible. They were sourced from the web instead.
+
+Restored:
+- `ctet-p1-2018-stimulus-en-pr-91` = **"Castles"**, full 6 paragraphs (was a 313-char
+  "Bringing up children is a delicate art" essay). Source: ereadingworksheets.com
+  "Castles — Nonfiction Reading Test", the text CTET adapted.
+  *Why the full version and not testbook's condensed 4-paragraph rendering:* official key
+  for Q92 ("main idea in Paragraph 2") is (2) "It explains why castles were first built in
+  England and the military purposes they served", which is true only when Paragraph 2 is
+  "Castles were originally built in England by Norman invaders in 1066 …". In the condensed
+  rendering Paragraph 2 is the list of purposes and the key would have to be (4). Also Q92's
+  distractor (3) "Norman lords … frequently retreated" only exists if the sentence "The
+  castles he built allowed the Norman lords to retreat to safety when threatened by English
+  rebellion." is present — the condensed rendering drops it. 'pinnacle' (Q99) and 'vestiges'
+  (Q98) are both present. All 9 questions now answerable from the stored text.
+- `ctet-p1-2018-stimulus-en-po-100` = **William Blake, "The Little Black Boy"** (Songs of
+  Innocence, 1789, public domain), all 7 stanzas. Was Masefield "Sea Fever", which none of
+  Q100–105 refers to; Q100–105 quote "the southern wild", "bereav'd of light", "like a shady
+  grove", "a cloud", "learn to bear the beams of love". B-list item closed.
+- `ctet-p1-2018-stimulus-en-pr-121` = **"necessity is the mother of invention"** maxim
+  passage (was "Scientific temper…"). Source: theexampillar.com CTET 2018 Language-II
+  English booklet reproduction.
+- `ctet-p1-2018-stimulus-en-pr-129` = **"Kevlar" / Stephanie Kwolek** passage, 4 paragraphs
+  (was "Physical exercise…"). Same source.
+
+Structural fix (new finding — group boundary was wrong):
+- The 2018 Lang-II English comprehension groups are **121–129** (maxim, 9 questions) and
+  **130–135** (Kevlar, 6 questions), not 121–128 / 129–135. `q129` asks the meaning of
+  'exhorting', which occurs only in the maxim passage, so
+  `ctet-p1-2018-m-lang2-en-q129.stimulusId` was re-linked `pr-129 → pr-121`, and both
+  stimuli got corrected `minimumQuestions` (9 / 6) and instruction ranges.
+
+Prompt repair:
+- `ctet-p1-2018-m-lang2-en-q124` — the statements behind options "Only I / Only I and II /
+  Only III / Only II and III" were lost at import. Restored verbatim from the booklet
+  (I. Man should be passive…; II. Spirit of inventiveness may not stand in good stead…;
+  III. Man has a passion for more and more knowledge). Roman numerals kept because the
+  options name them.
+
+Answer keys corrected (were provisional content-guesses; now booklet-verified):
+- `ctet-p1-2018-m-lang2-en-q121` c → **b** ("Necessity is the mother of invention." — the
+  passage says this maxim is true "in a general way … by no means the whole truth").
+- `ctet-p1-2018-m-lang2-en-q124` b → **c** (Only III; I contradicts "not to be passive",
+  II contradicts "can be tackled successfully with the spirit of inventiveness").
+- `ctet-p1-2018-m-lang2-en-q127` c → **d** (the inner spirit exhorts him to *cut down* his
+  needs, so "be on the look out for newer and higher wants" is the untrue statement).
+- `q122/q123/q125/q126/q128/q129` and all of `q130–q135` (Kevlar) re-checked against the
+  booklet — already correct, no change. `q105` (Blake, 'bereav'd of light') stays **a** and
+  is no longer provisional now that the poem is in the bank.
+- The three corrections are recorded in `answer_rekey.json` (still 541 entries) and applied
+  with `apply_answer_keys.py`, so question.answer and appearance.officialOptionId moved
+  together.
+
+Post-pass checks: `verify_all_questions.py` 7/7 PASS (2880 q / 109 stimuli); rule-1
+distribution re-scanned over all 96 section groups ≥20 questions → 0 sections above 60%
+(worst unchanged); `build_app_db.py` → 2880 q / 109 passages; `build_cdn_packs.py` → 15
+packs, stale `pack-0001-ee974362f2af.json` deleted, manifest references only on-disk packs.
+
+### ⚠ Blocker found while rebuilding — corrected content cannot reach installed apps
+`README.md` documents the app sync as
+`need = remote.packs.filter { it.id !in have }`, i.e. diffing by pack **id**, while
+`build_cdn_packs.py` sets `id` to the zero-padded pack index (`"0001"`). A content fix
+therefore produces the same `id` with a new `sha256`, and an app that already stored
+`"0001"` will never re-download it. On top of that `bank_version` is a YYYYMMDD stamp and
+the guard is `remote.bank_version <= localVersion`, so a second release on the same day is
+invisible too. Passes 2, 3 and 4 are all affected — this is the real cause of the "stale
+app cache" symptom in the handover, not just device caching. Needs a contract decision
+(sha256-based diff with replace-and-prune) before more restoration work is worth shipping.
+
+### Remaining A-list (re-scanned this session — larger than the handover's 15)
+Prose stimuli serving 7–9 questions but holding <600 chars (Sanskrit excluded: CTET
+Sanskrit गद्यांश are genuinely short, 90–250 chars):
+- 2016 en pr-121 (433) / pr-143 (489), hi pr-112 (511) — real texts, likely truncated
+- 2018 hi pr-97 (318), pr-121 (284), pr-129 (179) — fabricated
+- 2019 en pr-91 (642, Kangri Karchok — real, truncated), pr-121 (200), pr-129 (167);
+  hi pr-91 (267), pr-121 (321, real NCF-style opener, truncated), pr-129 (203)
+- 2021-dec en pr-91 (534, real), pr-121 (312, real, truncated), pr-129 (387, Ruskin Bond,
+  truncated); hi pr-91 (546, real), pr-121 (247), pr-129 (409, Krishnamurti, real)
+- 2023 en pr-97 (318), pr-121 (210), pr-129 (206); hi pr-97 (233), pr-121 (156), pr-129 (141)
+- 2024 en pr-91 (189), pr-121 (139), pr-129 (137); hi pr-91 (328), pr-121 (158), pr-129 (123)
+- 2026 hi pr-91 (386, "अहंकार" placeholder — needs the Hindi Tarawati)
+- provisional reconstructions still open: 2026 en pr-121 (820), 2026 hi pr-121 (477)
