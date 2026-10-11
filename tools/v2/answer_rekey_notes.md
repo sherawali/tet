@@ -76,3 +76,341 @@ Open follow-ups:
 - 2026-e-math-q039 options bare ['8','4','3','3'] — restore fractions from prepp PDF math section.
 - Underlined-word prompts in 2023-e/2024-i/2020-i lang sets lost their underlines (quotes elided with [ ______ ]); recover per question from source papers.
 - OCR sweep: 'कौन कार्यक्रम' type grammar slips across all sets.
+
+## Cleanup pass 4 (script: tools/v2/repair_passages_pass4.py) — 2026-10-10
+
+Scope of this revision: **CTET Paper-I, 09 Dec 2018, English (Language-I + Language-II)**.
+All four placeholders in that cycle were fabricated at import time — `import_all_ctet.py`
+carries the generic essays inline, and they have been identical in every commit since
+`e33e5c0`, so no git-leak recovery was possible. They were sourced from the web instead.
+
+Restored:
+- `ctet-p1-2018-stimulus-en-pr-91` = **"Castles"**, full 6 paragraphs (was a 313-char
+  "Bringing up children is a delicate art" essay). Source: ereadingworksheets.com
+  "Castles — Nonfiction Reading Test", the text CTET adapted.
+  *Why the full version and not testbook's condensed 4-paragraph rendering:* official key
+  for Q92 ("main idea in Paragraph 2") is (2) "It explains why castles were first built in
+  England and the military purposes they served", which is true only when Paragraph 2 is
+  "Castles were originally built in England by Norman invaders in 1066 …". In the condensed
+  rendering Paragraph 2 is the list of purposes and the key would have to be (4). Also Q92's
+  distractor (3) "Norman lords … frequently retreated" only exists if the sentence "The
+  castles he built allowed the Norman lords to retreat to safety when threatened by English
+  rebellion." is present — the condensed rendering drops it. 'pinnacle' (Q99) and 'vestiges'
+  (Q98) are both present. All 9 questions now answerable from the stored text.
+- `ctet-p1-2018-stimulus-en-po-100` = **William Blake, "The Little Black Boy"** (Songs of
+  Innocence, 1789, public domain), all 7 stanzas. Was Masefield "Sea Fever", which none of
+  Q100–105 refers to; Q100–105 quote "the southern wild", "bereav'd of light", "like a shady
+  grove", "a cloud", "learn to bear the beams of love". B-list item closed.
+- `ctet-p1-2018-stimulus-en-pr-121` = **"necessity is the mother of invention"** maxim
+  passage (was "Scientific temper…"). Source: theexampillar.com CTET 2018 Language-II
+  English booklet reproduction.
+- `ctet-p1-2018-stimulus-en-pr-129` = **"Kevlar" / Stephanie Kwolek** passage, 4 paragraphs
+  (was "Physical exercise…"). Same source.
+
+Structural fix (new finding — group boundary was wrong):
+- The 2018 Lang-II English comprehension groups are **121–129** (maxim, 9 questions) and
+  **130–135** (Kevlar, 6 questions), not 121–128 / 129–135. `q129` asks the meaning of
+  'exhorting', which occurs only in the maxim passage, so
+  `ctet-p1-2018-m-lang2-en-q129.stimulusId` was re-linked `pr-129 → pr-121`, and both
+  stimuli got corrected `minimumQuestions` (9 / 6) and instruction ranges.
+
+Prompt repair:
+- `ctet-p1-2018-m-lang2-en-q124` — the statements behind options "Only I / Only I and II /
+  Only III / Only II and III" were lost at import. Restored verbatim from the booklet
+  (I. Man should be passive…; II. Spirit of inventiveness may not stand in good stead…;
+  III. Man has a passion for more and more knowledge). Roman numerals kept because the
+  options name them.
+
+Answer keys corrected (were provisional content-guesses; now booklet-verified):
+- `ctet-p1-2018-m-lang2-en-q121` c → **b** ("Necessity is the mother of invention." — the
+  passage says this maxim is true "in a general way … by no means the whole truth").
+- `ctet-p1-2018-m-lang2-en-q124` b → **c** (Only III; I contradicts "not to be passive",
+  II contradicts "can be tackled successfully with the spirit of inventiveness").
+- `ctet-p1-2018-m-lang2-en-q127` c → **d** (the inner spirit exhorts him to *cut down* his
+  needs, so "be on the look out for newer and higher wants" is the untrue statement).
+- `q122/q123/q125/q126/q128/q129` and all of `q130–q135` (Kevlar) re-checked against the
+  booklet — already correct, no change. `q105` (Blake, 'bereav'd of light') stays **a** and
+  is no longer provisional now that the poem is in the bank.
+- The three corrections are recorded in `answer_rekey.json` (still 541 entries) and applied
+  with `apply_answer_keys.py`, so question.answer and appearance.officialOptionId moved
+  together.
+
+Post-pass checks: `verify_all_questions.py` 7/7 PASS (2880 q / 109 stimuli); rule-1
+distribution re-scanned over all 96 section groups ≥20 questions → 0 sections above 60%
+(worst unchanged); `build_app_db.py` → 2880 q / 109 passages; `build_cdn_packs.py` → 15
+packs, stale `pack-0001-ee974362f2af.json` deleted, manifest references only on-disk packs.
+
+### ⚠ Blocker found while rebuilding — corrected content cannot reach installed apps
+`README.md` documents the app sync as
+`need = remote.packs.filter { it.id !in have }`, i.e. diffing by pack **id**, while
+`build_cdn_packs.py` sets `id` to the zero-padded pack index (`"0001"`). A content fix
+therefore produces the same `id` with a new `sha256`, and an app that already stored
+`"0001"` will never re-download it. On top of that `bank_version` is a YYYYMMDD stamp and
+the guard is `remote.bank_version <= localVersion`, so a second release on the same day is
+invisible too. Passes 2, 3 and 4 are all affected — this is the real cause of the "stale
+app cache" symptom in the handover, not just device caching. Needs a contract decision
+(sha256-based diff with replace-and-prune) before more restoration work is worth shipping.
+
+### Remaining A-list (re-scanned this session — larger than the handover's 15)
+Prose stimuli serving 7–9 questions but holding <600 chars (Sanskrit excluded: CTET
+Sanskrit गद्यांश are genuinely short, 90–250 chars):
+- 2016 en pr-121 (433) / pr-143 (489), hi pr-112 (511) — real texts, likely truncated
+- 2018 hi pr-97 (318), pr-121 (284), pr-129 (179) — fabricated
+- 2019 en pr-91 (642, Kangri Karchok — real, truncated), pr-121 (200), pr-129 (167);
+  hi pr-91 (267), pr-121 (321, real NCF-style opener, truncated), pr-129 (203)
+- 2021-dec en pr-91 (534, real), pr-121 (312, real, truncated), pr-129 (387, Ruskin Bond,
+  truncated); hi pr-91 (546, real), pr-121 (247), pr-129 (409, Krishnamurti, real)
+- 2023 en pr-97 (318), pr-121 (210), pr-129 (206); hi pr-97 (233), pr-121 (156), pr-129 (141)
+- 2024 en pr-91 (189), pr-121 (139), pr-129 (137); hi pr-91 (328), pr-121 (158), pr-129 (123)
+- 2026 hi pr-91 (386, "अहंकार" placeholder — needs the Hindi Tarawati)
+- provisional reconstructions still open: 2026 en pr-121 (820), 2026 hi pr-121 (477)
+
+## Passage-integrity tracker (tools/v2/audit_passage_gaps.py) — added this session
+
+Single source of truth for "kitna hua, kitna bacha". Carries a curated status
+table (DONE / TRUNCATED / FABRICATED / PROVISIONAL / MISSING / UNVERIFIED) plus
+a structural scan, so it also catches groups whose stimulus record was never
+created. Run it after every restoration pass; `--md` prints a markdown table.
+
+Snapshot after pass 4 (2018 English closed):
+
+| status | groups | questions |
+|---|---:|---:|
+| DONE | 22 | 161 |
+| TRUNCATED | 11 | 87 |
+| FABRICATED | 21 | 168 |
+| PROVISIONAL | 2 | 16 |
+| MISSING | 2 | 17 |
+| UNVERIFIED | 53 | 310 |
+| **total** | **111** | **759** |
+
+Confirmed-broken CTET groups remaining: **36 groups / 288 questions**
+(21 FABRICATED + 11 TRUNCATED + 2 PROVISIONAL + 2 MISSING). Pass 4 closed 4
+groups / 30 questions.
+
+Two structural gaps the handover did not list, found by the tracker — these
+question groups have NO stimulus record at all, so the app shows them with no
+passage above them:
+- `ctet-p1-2016-i-lang1-hi-q097 … q105` (9 questions) — 2016 Lang-I Hindi गद्यांश
+- `ctet-p1-2016-i-lang2-en-q128 … q135` (8 questions) — 2016 Lang-II English second passage
+The handover's B-list attributed missing poem ids to 2018-hi-po-100 /
+2023-en-po-100 / 2023-hi-po-100; those cycles simply have no poem group at
+100-105 (their Lang-I runs poem 91-96 + prose 97-105), so nothing is missing
+there. The real holes are the two 2016 groups above.
+
+UNVERIFIED (53 groups / 310 questions) = 24 UTET groups, 20 CTET Sanskrit
+groups, and 9 poems/misc. These are length-plausible but have not been checked
+against a paper yet. CTET Sanskrit गद्यांश really are short (the clean 2020-i
+Sanskrit imports run 530-2069 chars while the other cycles run 82-243), so the
+non-2020 Sanskrit set is the suspicious half of that bucket.
+
+## Cleanup pass 5 (script: tools/v2/repair_unlink_pass5.py) — fabricated passages removed
+
+**New class of defect.** `import_all_ctet.py` minted a prose stimulus for every fixed
+question range (91-99, 121-128, 129-135 …) whether or not the official booklet had a
+गद्यांश there. CTET Language-II 121-150 is भाषा-शास्त्र / language pedagogy + grammar in
+most cycles — no passage at all — so the importer stapled a generic moral essay onto
+standalone pedagogy questions. That is worse than a missing passage: the app shows a
+fabricated paragraph above questions like "वाइगोत्स्की ने भाषा-विकास का ___ परिप्रेक्ष्य
+प्रस्तुत किया" or "Top-down means 'attend to the overall meaning'. What does 'bottom-up'
+mean?", sending the learner hunting through irrelevant text.
+
+Verified stem by stem that all 93 questions are answerable from their own stem + options,
+and that not one stem refers back to a passage. The script re-asserts this with a
+multilingual marker regex (the passage / अनुच्छेद / गद्यांश / उपर्युक्त …) and fails loudly
+before writing, so a future real passage-dependent question can't be silently unlinked.
+
+Removed 12 stimuli, unlinked 93 questions:
+- 2016 Lang-II Sanskrit q121-128, q129-135
+- 2018 Lang-I Sanskrit q091-099; Lang-II Sanskrit q121-128, q129-135; Lang-II Hindi q121-128, q129-135
+- 2023 Lang-I Sanskrit q091-099; Lang-II English q121-128, q129-135; Lang-II Hindi q121-128, q129-135
+
+verify_all_questions.py 7/7 PASS, stimuli 109 → 97; DB rebuilt (97 passages); 15 packs
+regenerated, 6 stale packs deleted.
+
+## Sanskrit verdict (was UNVERIFIED, now classified)
+
+All 20 non-2020 CTET Sanskrit prose stimuli are fabricated generic subhashita-style essays,
+and **every one of them mismatches its own question group** — e.g. `2019-sa-pr-91` holds a
+desert-traveller story while its questions ask about नर्मदा / अमरकण्टक / डिण्डोरी. Only the
+2020-i Sanskrit imports (530-2069 chars) are real. 10 groups therefore moved
+UNVERIFIED → FABRICATED, with the topic each needs recorded in the tracker table:
+
+| stimulus | questions actually need |
+|---|---|
+| 2019-sa-pr-91 / 121 / 129 | नर्मदा-अमरकण्टक / दण्डचतुष्टय (bundle of sticks) / चाणक्य-कम्बल |
+| 2021-dec-sa-pr-121 / 129 | नागार्जुन-युवकौ / रानाडे |
+| 2023-sa-pr-121 / 129 | सिद्धार्थ-देवदत्त / मृगेन्द्र-सिंह |
+| 2024-sa-pr-91 / 121 / 129 | योग-मोक्ष / सामवेद-योगदर्शन / साङ्ख्ययोग-हठयोग |
+
+## Real passages identified behind the remaining FABRICATED placeholders
+
+Reading the question stems identifies what each placeholder is standing in for, which makes
+them searchable rather than guesswork:
+- 2023-en-pr-97 (q97-105) — **Garud, 69, travelling solo in Mizoram**; horse-riding, dancing
+  at a festival, ex-athlete. Currently "The secret of happiness…".
+- 2024-en-pr-91 (q91-99) — **Mrs. Higgins / Alfred / Mr. Carr, drug store** = Morley
+  Callaghan's "All the Years of Her Life". Currently "Human ingenuity…".
+- 2024-en-pr-121 (q121-128) — **Scarecrow / Dorothy / nuts / "kept her snug"** = Wizard of Oz
+  extract. Currently "Reading opens doors…".
+- 2024-en-pr-129 (q129-135) — **birder, bird calls, Delhi, "wild exultant laugh", "belligerent"**.
+  Currently "Cooperation in communities…".
+- 2019-en-pr-121 (q121-128) — freedom / 'endeavours' (para 1) / 'shun' (para 2) / established
+  religion / authorities suppressing freedom fighters. Currently "History demonstrates…".
+- 2019-en-pr-129 (q129-135) — **Uttarakhand Himalayas, water, perennial streams**, 'bounty',
+  'benevolent'. Currently "Curiosity is the engine…".
+- 2019-hi-pr-129 (q129-135) — गाँव को प्रयोगशाला, 'फर्स्ट हैंड समझ', ज्ञान. Currently "भाषा अभिव्यक्ति…".
+- 2021-dec-hi-pr-121 (q121-128) — नदियों का पहाड़ी सफर, 'सरसब्ज', 'उल्लास'. Currently "वैज्ञानिक अनुसंधानों…".
+- 2024-hi-pr-121 (q121-128) — गंगा, अल नीनो, ग्लेशियर, 2050 जल-संकट. Currently "श्रम ही जीवन…".
+- 2024-hi-pr-129 (q129-135) — पाप और पुण्य, जंजीर की तुलना. Currently "वाणी में मधुरता…".
+- 2026-hi-pr-91 (q91-99) — सृष्टि निर्माण, सद्भाव, अहंकार, मान-सम्मान. **The handover's claim
+  that this is the Hindi twin of the Tarawati passage is wrong** — CTET Lang-I Hindi is its own
+  section, and q91-99 are about अहंकार/सद्भाव, not Tarawati/Roopa.
+
+Two more defects logged, not yet fixed:
+- `ctet-p1-2016-i-lang1-hi-q119` ("अकबर का जन्म कहाँ हुआ था?") is linked to the मीना/रमेश
+  dialogue stimulus — content mismatch, it belongs to a different (missing) गद्यांश. q120
+  (मुहावरा) is standalone and should be unlinked too.
+- 2016 Lang-I Hindi q097-105 and 2016 Lang-II English q128-135 still have no stimulus at all.
+
+Snapshot after pass 5 (`python3 tools/v2/audit_passage_gaps.py`):
+
+| status | groups | questions |
+|---|---:|---:|
+| DONE | 22 | 161 |
+| NO-PASSAGE (closed, stimuli deleted) | 12 | 93 |
+| TRUNCATED | 11 | 87 |
+| FABRICATED | 25 | 201 |
+| PROVISIONAL | 2 | 16 |
+| MISSING | 2 | 17 |
+| UNVERIFIED | 37 | 184 |
+| **live total** | **99** | **666** |
+
+## Cleanup pass 6 (script: tools/v2/repair_passages_pass6.py) + official-key diffing
+
+Pass 6 is a *registry* rather than a one-off script: RESTORATIONS is keyed by stimulus id and
+each entry carries its provenance plus a `must` list of substrings the linked questions
+demand, asserted before anything is written. Later cycles append entries instead of adding a
+new pass file.
+
+Restored: `ctet-p1-2018-stimulus-hi-pr-97` = the गीत-कविता अनुच्छेद (1724 chars, 2 paragraphs,
+9 questions). Source: testbook QnA 60a78c29f445f1e2f831d702 carries both paragraphs in full;
+theexampillar's CTET 2018 Language-I Hindi page carries the same text but drops the block
+between "कक्षाओं की" and "दूसरी ओर", so testbook was used as the base and theexampillar to
+repair its typos. One OCR drop repaired and logged: "चाहते हैं कि शिक्षक पहले …" (the
+subordinating कि is absent from both reproductions but the clause cannot stand without it).
+
+### Why the official paper PDF could not be used for the Hindi text (important, permanent)
+`ctet.nic.in` itself does not fetch. The prepp mirror of the official booklet
+(`cdn-images.prepp.in/public/image/ctet-2018-paper-1-question-paper-and-answer-key-pdf-1761896188.pdf`,
+booklet **MVD18–I**, Booklet Code **I**) is fetchable, but:
+1. its Devanagari text layer is encoded in a **legacy Kruti-Dev font**, so Hindi comes out as
+   `narjm nwpÒVH$m` for परीक्षा पुस्तिका — unusable without writing a Kruti-Dev→Unicode decoder
+   (only some EVS pages carry a clean Unicode OCR layer alongside the garbage);
+2. the booklet is ~42 pages and `fetch_page` caps at 30, which ends inside Part III (EVS q76).
+   **Parts IV and V — both language sections — are beyond the cap entirely.**
+So for Hindi/Sanskrit passages, booklet reproductions (testbook / theexampillar / gkscientist)
+remain the only route, and for English passages the official PDF is reachable only if a
+section-scoped PDF exists.
+
+### Official CBSE answer key obtained — and it contradicts the previous rekey
+The key PDF is small and fully fetchable:
+`cdn-images.prepp.in/public/image/ctet-2018-paper-1-answer-key-1761917805.pdf`
+= "CTET DEC-2018 KEY EXAM-09/12/2018 Date. 31/12/18, Set :- I, PAPER-I", with three grids:
+MAIN (q1-90), 01-ENGLISH (q91-150), 02-HINDI (q91-150). Stored verbatim in
+`tools/v2/official_keys/ctet-2018-paper1-set-I.json`, and diffed with the new
+`tools/v2/verify_against_official_key.py <keyfile> <cycle>`.
+
+First diff: **202 matched, 8 mismatched**. All 8 resolved in favour of the official key:
+
+| question | was | official | content |
+|---|---|---|---|
+| evs q064 | c | **d** | NCF-1975 (pass-1 "documented correction" to NCF-2000 was wrong) |
+| evs q090 | c | **a** | myth, not stereotype |
+| lang1-en q105 | a | **d** | 'bereav'd of light' → All of the above |
+| lang1-en q114 | a | **b** | 'Cloze' → missing part |
+| lang1-en q115 | c | **d** | last stage of writing → advanced writing |
+| lang2-en q123 | b | **c** | spirit tells him to cut down his desires |
+| lang2-en q144 | c | **d** | graded inputs from the target language |
+| lang2-en q145 | a | **b** | "The students are giving their examination." |
+
+**7 of the 8 came from `answer_rekey.json`** — i.e. the previous session's content-solving
+actively corrupted keys that were right before, and q123 is provable: the imported bank had
+`c`, the rekey file overwrote it with `b`, the official key says `3` = `c`. q090 was the only
+one inherited from the import.
+
+Re-diff after applying: **210 matched, 0 mismatched**, and no drift anywhere between
+`question.answer.optionId` and `appearance.officialOptionId`. Pass-4's three corrections
+(q121 c→b, q124 b→c, q127 c→d) are independently confirmed by the official grid. Rule-1
+distribution re-scanned for all nine 2018 sections: worst is lang2-sa at 43%, 0 violations.
+verify 7/7 PASS (97 stimuli), DB + 15 packs rebuilt, 3 stale packs deleted.
+
+**Consequence for the rest of the bank:** the 542-entry rekey file cannot be trusted as a
+source of truth. Every cycle must be diffed against its official key grid before its answers
+are called verified. Sanskrit is not covered by the MAIN/ENGLISH/HINDI grids — it needs the
+separate Sanskrit supplement key.
+
+Two label defects noted, not changed (renaming ids is risky and cosmetic):
+`bank-v2/sources/ctet-p1-2018-sources.json` records `canonicalSet: "M"` and appearances carry
+`setCode: "M"`, but the official booklet is **Set I / MVD18-I**. Also official key q74 = "9"
+(all options accepted, marks to all); the bank stores a representative letter, same treatment
+as 2024-i EVS q080.
+
+## Release 2026101100 — pipeline repaired, fabricated groups held back
+
+### Why two weeks of fixes never reached a device (all four breaks now closed)
+1. **Nothing was on `main`.** Five commits / 37 files / +2154 −707 sat on the working branch.
+   The app reads `@main`, so it still had the pre-cleanup bank.
+2. **CI watched a dead layout.** `.github/workflows/build.yml` triggered on `content/**` and ran
+   `tools/build.py`; neither exists since the CSV→`bank-v2` NDJSON migration, so no release was
+   ever produced. Rewired to `bank-v2/**` + `tools/**` + `verify_all_questions.py`, with the
+   7-category gate as a hard stop before anything ships.
+3. **Pack ids were index-only** (`"0003"`), while the app downloads
+   `remote.packs.filter { it.id !in have }`. A corrected pack looked "already downloaded"
+   forever. Ids are now `<index>-<sha256[:12]>`, content-derived and equal to the immutable
+   filename stem — so any content change is automatically a new download.
+4. **`BANK_VERSION` was hardcoded 20261010** and **zero `v<N>` tags existed**, so the app's
+   `remote.bank_version <= local` guard short-circuited and `@v<stamp>/…` 404'd. The stamp is now
+   UTC `YYYYMMDDHH`, pinned once per run through the environment so manifest, SQLite meta and git
+   tag agree; CI creates and force-updates the tag and purges jsDelivr.
+
+App-side, one step was still missing from the documented contract and is now in the README:
+`db.deletePacksNotIn(remote ids)`. Without that prune a superseded pack — and the wrong question
+inside it — stays on the device forever. Passage groups are asserted to live in exactly one pack,
+so pruning can never split a गद्यांश from its questions.
+
+New tools: `tools/v2/prune_stale_packs.py` (also refuses a manifest whose pack id does not match
+its content-hashed filename — the regression behind break 3) and
+`tools/v2/quarantine_bad_passages.py`.
+
+### Quarantine: 24 fabricated groups / 192 questions held back, nothing deleted
+`quarantine_bad_passages.py` flips `status` to `"draft"` on every FABRICATED stimulus **and all
+its questions as one unit**, then re-scans to prove no published question is left under a draft
+stimulus. `build_app_db.py` now skips draft questions, their appearances, and any passage whose
+only readers were drafts.
+
+| section | before | held back | shipped | full 30-q mocks |
+|---|---:|---:|---:|---:|
+| cdp | 420 | 0 | 420 | 14 |
+| environmental-studies | 420 | 0 | 420 | 14 |
+| mathematics | 420 | 0 | 420 | 14 |
+| language/en | 630 | 48 | 582 | 19 |
+| language/hi | 630 | 66 | 564 | 18 |
+| language/sa | 360 | 78 | 282 | 9 |
+| **total** | **2880** | **192** | **2688** | — |
+
+Database 3300 KB, 2688 questions, **73 passages**, 14 packs, 14 stale packs pruned, gate PASS 7/7
+(the gate still audits all 2880 bank records — drafts included — on purpose).
+
+Not held back, deliberately: the 11 TRUNCATED groups (87 q) and 13 UNVERIFIED poems (73 q) carry
+real text that is merely incomplete or unconfirmed, and the 2 PROVISIONAL groups (16 q) are
+plausible. Restoring a passage is now a silent content update — flip `status` back with
+`quarantine_bad_passages.py --restore <stimulus-id>`, rebuild, and the app picks up the new pack
+id on its next sync with no app release.
+
+### Reclassification finding
+The 2 `MISSING_GROUPS` entries (2016 Lang-I Hindi q097–105, 2016 Lang-II English q128–135, 17 q)
+are **not** missing passages at all. Read out, all 17 are standalone pedagogy stems — "भाषा सीखने
+का उद्देश्य है–", "Stephen Krashen's theory … does not consist of", "Constructivism in language
+learning focuses on". They belong in `NO_PASSAGE_REMOVED` semantics (published, no stimulus), not
+in MISSING. Left untouched this release; the tracker line should be corrected when next edited.

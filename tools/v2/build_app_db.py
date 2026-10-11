@@ -301,6 +301,42 @@ def _build_database(temp_db_path: Path) -> int:
         )
     """)
 
+    # 0. Only published content ships.
+    #
+    # A group held back by tools/v2/quarantine_bad_passages.py (fabricated passage,
+    # so its questions are unanswerable) stays in bank-v2 with status "draft" but is
+    # left out of the questions table, its appearances AND its passage - a draft
+    # passage with no published questions is exactly the junk the app must not carry.
+    # Flipping the group back to "published" returns it, and because CDN pack ids are
+    # content-hashed the app picks it up on its next sync with no app update.
+    published_questions: set[str] = set()
+    withheld_questions: set[str] = set()
+    published_stimuli: set[str] = set()
+    withheld_stimuli: set[str] = set()
+    for q_file in sorted(BANK.rglob("questions.ndjson")):
+        for line in q_file.read_text(encoding="utf-8").splitlines():
+            if not line.strip(): continue
+            q = json.loads(line)
+            if q.get("status", "published") != "published":
+                withheld_questions.add(q["id"])
+                continue
+            published_questions.add(q["id"])
+            if q.get("stimulusId"):
+                published_stimuli.add(q["stimulusId"])
+    for stim_file in sorted(BANK.rglob("stimuli.ndjson")):
+        for line in stim_file.read_text(encoding="utf-8").splitlines():
+            if not line.strip(): continue
+            s_rec = json.loads(line)
+            sid = s_rec.get("id")
+            if s_rec.get("status", "published") != "published" or sid not in published_stimuli:
+                withheld_stimuli.add(sid)
+    if withheld_questions:
+        print(
+            f"Withholding {len(withheld_questions)} draft questions "
+            f"({len(published_questions)} published) and "
+            f"{len(withheld_stimuli)} passages they were the only readers of."
+        )
+
     # 1. Collect all appearances for year & order lookup
     q_appearances: dict[str, dict] = {}
     appearance_count = 0
@@ -308,6 +344,7 @@ def _build_database(temp_db_path: Path) -> int:
         for line in app_file.read_text(encoding="utf-8").splitlines():
             if not line.strip(): continue
             app = json.loads(line)
+            if app["questionId"] in withheld_questions: continue
             cur.execute("""
                 INSERT INTO appearances (id, question_id, paper_form_id, section, question_number, official_option_id)
                 VALUES (?, ?, ?, ?, ?, ?)
@@ -344,6 +381,7 @@ def _build_database(temp_db_path: Path) -> int:
             s = json.loads(line)
             sid = s["id"]
             if sid in stimuli_seen: continue
+            if sid in withheld_stimuli: continue
             stimuli_seen.add(sid)
             kind, dir_text, body = get_stimulus_body_and_dir(s)
             cur.execute("""
@@ -363,6 +401,7 @@ def _build_database(temp_db_path: Path) -> int:
             qid = q["id"]
             if qid in questions_seen: continue
             questions_seen.add(qid)
+            if qid in withheld_questions: continue
 
             exam = q.get("exam", "utet")
             paper_num = q.get("paper", 1)
