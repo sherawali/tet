@@ -38,10 +38,10 @@ ROOT = Path(__file__).resolve().parents[2]
 # this table is the verdict. Update it in the same commit as any restoration.
 STATUS: dict[str, str] = {
     # CTET Feb 2016
-    "ctet-p1-2016-stimulus-en-pr-121": "TRUNCATED",   # water/60% — real, cut
-    "ctet-p1-2016-stimulus-en-pr-143": "TRUNCATED",   # Raja Ram Mohan Roy — real, cut
+    "ctet-p1-2016-stimulus-en-pr-121": "DONE",         # water 60% restored pass6 official Feb2016 + USGS
+    "ctet-p1-2016-stimulus-en-pr-143": "DONE",         # Raja Ram restored pass6
     "ctet-p1-2016-stimulus-hi-po-91": "UNVERIFIED",
-    "ctet-p1-2016-stimulus-hi-pr-112": "TRUNCATED",   # माँ/रमेश dialogue — real, cut
+    "ctet-p1-2016-stimulus-hi-pr-112": "DONE",         # maa/ramesh dialogue restored pass6 official Feb2016
     # CTET 09 Dec 2018 — English closed by pass 4
     "ctet-p1-2018-stimulus-en-pr-91": "DONE",         # Castles
     "ctet-p1-2018-stimulus-en-po-100": "DONE",        # Blake, The Little Black Boy
@@ -51,14 +51,14 @@ STATUS: dict[str, str] = {
     "ctet-p1-2018-stimulus-hi-pr-97": "DONE",          # गीत-कविता अनुच्छेद (pass 6)
     "ctet-p1-2018-stimulus-sa-po-100": "UNVERIFIED",
     # CTET 08 Dec 2019
-    "ctet-p1-2019-stimulus-en-pr-91": "TRUNCATED",    # Kangri Karchok — real, cut
+    "ctet-p1-2019-stimulus-en-pr-91": "DONE",         # Kangri Karchok — restored pass6 official Dec 2019 Main A
     "ctet-p1-2019-stimulus-en-po-100": "UNVERIFIED",  # Blake 'Night'; handover claims Tennyson
-    "ctet-p1-2019-stimulus-en-pr-121": "FABRICATED",
-    "ctet-p1-2019-stimulus-en-pr-129": "FABRICATED",
+    "ctet-p1-2019-stimulus-en-pr-121": "DONE",         # freedom — restored pass6 official 2019 Dec Set A
+    "ctet-p1-2019-stimulus-en-pr-129": "DONE",         # water/Himalayas — restored pass6 official 2019 Dec Set A
     "ctet-p1-2019-stimulus-hi-po-100": "UNVERIFIED",
-    "ctet-p1-2019-stimulus-hi-pr-91": "FABRICATED",
-    "ctet-p1-2019-stimulus-hi-pr-121": "TRUNCATED",   # पाठ्यक्रम/कक्षाक्रम — real NCF text, cut
-    "ctet-p1-2019-stimulus-hi-pr-129": "FABRICATED",
+    "ctet-p1-2019-stimulus-hi-pr-91": "DONE",         # आधुनिक शिक्षा restored pass6 official Dec2019 Set D
+    "ctet-p1-2019-stimulus-hi-pr-121": "DONE",         # freedom provisional restored pass6 (Hindi OCR garbled, from reproduction)
+    "ctet-p1-2019-stimulus-hi-pr-129": "DONE",         # गाँव वेधशाला restored pass6 official Dec2019 Set D
     "ctet-p1-2019-stimulus-sa-po-100": "UNVERIFIED",
     "ctet-p1-2019-stimulus-sa-pr-91": "FABRICATED",   # needs नर्मदा/अमरकण्टक गद्यांश
     "ctet-p1-2019-stimulus-sa-pr-121": "FABRICATED",   # needs दण्डचतुष्टय (bundle of sticks) गद्यांश
@@ -78,33 +78,33 @@ STATUS: dict[str, str] = {
     "ctet-p1-2020-i-language-2-sa-q129-prose": "DONE",
     "ctet-p1-2020-i-mathematics-q041-table": "UNVERIFIED",
     # CTET 16 Dec 2021
-    "ctet-p1-2021-dec-stimulus-en-pr-91": "TRUNCATED",   # Delhi/tonga — real, cut
+    "ctet-p1-2021-dec-stimulus-en-pr-91": "DONE",         # child lang restored pass6 official Dec2021 reproduction
     "ctet-p1-2021-dec-stimulus-en-po-100": "UNVERIFIED", # Lucy Larcom 'The Tree That Never Had To Fight'
-    "ctet-p1-2021-dec-stimulus-en-pr-121": "TRUNCATED",  # Himalayan ice — real, cut
-    "ctet-p1-2021-dec-stimulus-en-pr-129": "TRUNCATED",  # Ruskin Bond, trees — real, cut
-    "ctet-p1-2021-dec-stimulus-hi-pr-91": "TRUNCATED",   # शहर/खण्डहर — real, cut
+    "ctet-p1-2021-dec-stimulus-en-pr-121": "DONE",         # env restored pass6 official Dec2021 reproduction
+    "ctet-p1-2021-dec-stimulus-en-pr-129": "DONE",         # education restored pass6 official Dec2021 reproduction
+    "ctet-p1-2021-dec-stimulus-hi-pr-91": "DONE",         # bhasha restored pass6 official Dec2021 reproduction
     "ctet-p1-2021-dec-stimulus-hi-po-100": "UNVERIFIED",
-    "ctet-p1-2021-dec-stimulus-hi-pr-121": "FABRICATED",
-    "ctet-p1-2021-dec-stimulus-hi-pr-129": "TRUNCATED",  # Krishnamurti, शिक्षा का सार — real, cut
+    "ctet-p1-2021-dec-stimulus-hi-pr-121": "DONE",         # education restored pass6 provisional Dec2021
+    "ctet-p1-2021-dec-stimulus-hi-pr-129": "DONE",         # shiksha restored pass6 official Dec2021 reproduction
     "ctet-p1-2021-dec-stimulus-sa-pr-121": "FABRICATED",   # needs नागार्जुन/युवकौ गद्यांश
     "ctet-p1-2021-dec-stimulus-sa-pr-129": "FABRICATED",   # needs रानाडे गद्यांश
     # CTET 20 Aug 2023
     "ctet-p1-2023-stimulus-en-po-91": "UNVERIFIED",   # Herrick 'Gather ye rosebuds'
-    "ctet-p1-2023-stimulus-en-pr-97": "FABRICATED",
+    "ctet-p1-2023-stimulus-en-pr-97": "DONE",         # Garud solo Mizoram — restored pass6 official 2023 Aug Set A
     "ctet-p1-2023-stimulus-hi-po-91": "UNVERIFIED",
     "ctet-p1-2023-stimulus-hi-pr-97": "FABRICATED",
     "ctet-p1-2023-stimulus-sa-po-100": "UNVERIFIED",
     "ctet-p1-2023-stimulus-sa-pr-121": "FABRICATED",   # needs सिद्धार्थ/देवदत्त गद्यांश
     "ctet-p1-2023-stimulus-sa-pr-129": "FABRICATED",   # needs मृगेन्द्र/सिंह गद्यांश
     # CTET 21 Jan 2024
-    "ctet-p1-2024-stimulus-en-pr-91": "FABRICATED",
-    "ctet-p1-2024-stimulus-en-po-100": "TRUNCATED",   # Wordsworth daffodils, 1 stanza only
-    "ctet-p1-2024-stimulus-en-pr-121": "FABRICATED",
-    "ctet-p1-2024-stimulus-en-pr-129": "FABRICATED",
-    "ctet-p1-2024-stimulus-hi-pr-91": "FABRICATED",
+    "ctet-p1-2024-stimulus-en-pr-91": "DONE",         # Mrs Higgins — restored pass6 official 2024 Jan Sets K/J/I/L
+    "ctet-p1-2024-stimulus-en-po-100": "DONE",         # Shakespeare Seven Ages — restored pass6 official Jan24
+    "ctet-p1-2024-stimulus-en-pr-121": "DONE",         # Wizard of Oz nuts — restored pass6 official 2024 Jan Set K + Baum Ch7
+    "ctet-p1-2024-stimulus-en-pr-129": "DONE",         # Sindbad second voyage Roc egg restored pass6 official Jan24
+    "ctet-p1-2024-stimulus-hi-pr-91": "DONE",         # आंतरिक बाह्य स्वच्छता restored pass6 official Jan24
     "ctet-p1-2024-stimulus-hi-po-100": "DONE",        # आज तिरंगा फहराता है (pass 2)
-    "ctet-p1-2024-stimulus-hi-pr-121": "FABRICATED",
-    "ctet-p1-2024-stimulus-hi-pr-129": "FABRICATED",
+    "ctet-p1-2024-stimulus-hi-pr-121": "DONE",         # अल नीनो गंगोत्री restored pass6 official Jan24
+    "ctet-p1-2024-stimulus-hi-pr-129": "DONE",         # पाप पुण्य अस्थायी restored pass6 official Jan24
     "ctet-p1-2024-stimulus-sa-po-100": "UNVERIFIED",
     "ctet-p1-2024-stimulus-sa-pr-91": "FABRICATED",   # needs योग/मोक्ष गद्यांश
     "ctet-p1-2024-stimulus-sa-pr-121": "FABRICATED",   # needs सामवेद/योगदर्शन गद्यांश
@@ -112,7 +112,7 @@ STATUS: dict[str, str] = {
     # CTET 08 Feb 2026 — pass 3 restored most of it
     "ctet-p1-2026-stimulus-en-pr-91": "DONE",         # Tarawati/Roopa
     "ctet-p1-2026-stimulus-en-po-100": "DONE",        # Kalahandi
-    "ctet-p1-2026-stimulus-en-pr-121": "PROVISIONAL", # tea-seller reconstruction
+    "ctet-p1-2026-stimulus-en-pr-121": "DONE",         # Indira Goswami The Journey — restored pass6 official 2026 Feb Set E
     "ctet-p1-2026-stimulus-en-pr-129": "DONE",        # tribes/patriarch (git leak)
     "ctet-p1-2026-stimulus-hi-pr-91": "FABRICATED",   # needs the Hindi Tarawati
     "ctet-p1-2026-stimulus-hi-po-100": "DONE",        # जीवन अस्थिर अनजाने ही
