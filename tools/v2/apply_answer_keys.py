@@ -50,23 +50,26 @@ def main() -> int:
     seen: set[str] = set()
     changed = 0
     dist = defaultdict(Counter)
+    touched_papers: set[str] = set()
     for path in sorted(BANK.glob("exams/**/questions.ndjson")):
         rows = load_ndjson(path)
         dirty = False
         for row in rows:
             qid = row.get("id", "")
-            if qid not in rekey:
-                continue
-            seen.add(qid)
-            opt = rekey[qid]
-            answer = row.setdefault("answer", {"kind": "single"})
-            if answer.get("optionId") != opt:
-                answer["optionId"] = opt
-                answer.setdefault("kind", "single")
-                dirty = True
-                changed += 1
             paper = qid.rsplit("-q", 1)[0]
-            dist[paper][opt] += 1
+            if qid in rekey:
+                seen.add(qid)
+                touched_papers.add(paper)
+                opt = rekey[qid]
+                answer = row.setdefault("answer", {"kind": "single"})
+                if answer.get("optionId") != opt:
+                    answer["optionId"] = opt
+                    answer.setdefault("kind", "single")
+                    dirty = True
+                    changed += 1
+            cur_opt = (row.get("answer") or {}).get("optionId")
+            if cur_opt:
+                dist[paper][cur_opt] += 1
         if dirty and not args.dry_run:
             dump_ndjson(path, rows)
 
@@ -94,8 +97,8 @@ def main() -> int:
     print(f"rekey entries applied : {len(rekey)}")
     print(f"question answers set  : {changed}{' (dry-run)' if args.dry_run else ''}")
     print(f"appearances set       : {app_changed}{' (dry-run)' if args.dry_run else ''}")
-    print("resulting per-paper option distribution (rekeyed questions):")
-    for paper in sorted(dist):
+    print("resulting full-section option distribution (touched sections):")
+    for paper in sorted(touched_papers):
         c = dist[paper]
         n = sum(c.values())
         top, topn = c.most_common(1)[0]
