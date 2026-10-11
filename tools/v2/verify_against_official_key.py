@@ -31,13 +31,27 @@ LETTER_TO_NUM = {"a": 1, "b": 2, "c": 3, "d": 4}
 NUM_TO_LETTER = {v: k for k, v in LETTER_TO_NUM.items()}
 
 SECTION_TO_PART = {
-    "cdp": "MAIN",
-    "mathematics": "MAIN",
-    "environmental-studies": "MAIN",
-    "lang1-en": "01-ENGLISH",
-    "lang2-en": "01-ENGLISH",
-    "lang1-hi": "02-HINDI",
-    "lang2-hi": "02-HINDI",
+    "cdp": ("MAIN",),
+    "mathematics": ("MAIN",),
+    "environmental-studies": ("MAIN",),
+    "lang1-en": ("01-ENGLISH", "EN"),
+    "lang2-en": ("01-ENGLISH", "EN"),
+    "lang1-hi": ("02-HINDI", "HI"),
+    "lang2-hi": ("02-HINDI", "HI"),
+    "lang1-sa": ("16-SANSKRIT", "SA"),
+    "lang2-sa": ("16-SANSKRIT", "SA"),
+}
+
+MULTI = {
+    "A": {1, 2},
+    "B": {1, 3},
+    "C": {1, 4},
+    "D": {2, 3},
+    "E": {2, 4},
+    "F": {3, 4},
+    "Z": {1, 2, 3, 4},
+    "9": {1, 2, 3, 4},
+    9: {1, 2, 3, 4},
 }
 
 
@@ -92,27 +106,38 @@ def main() -> int:
                 continue
             rest = qid[len(f"ctet-p1-{cycle}-"):]
             sec, _, qno = rest.rpartition("-q")
-            part = SECTION_TO_PART.get(sec)
-            if part is None:
+            parts = SECTION_TO_PART.get(sec)
+            if parts is None:
                 skipped += 1
                 continue
-            grid = key.get(part, {})
-            want_num = grid.get(str(int(qno)))
-            if want_num is None:
+            grid = None
+            for part in parts:
+                if part in key:
+                    grid = key[part]
+                    break
+            if grid is None:
+                skipped += 1
+                continue
+            want_raw = grid.get(str(int(qno)))
+            if want_raw is None:
                 skipped += 1
                 continue
             got = r.get("answer", {}).get("optionId")
             got_num = LETTER_TO_NUM.get(got)
-            if want_num == 9:
-                matched += 1
-                continue
-            if got_num == want_num:
-                matched += 1
+            if want_raw in MULTI:
+                if got_num in MULTI[want_raw]:
+                    matched += 1
+                    continue
+                want_num = want_raw
             else:
-                mismatched += 1
-                rows.append((qid, sec, int(qno), got, NUM_TO_LETTER.get(want_num, str(want_num)),
-                             flat(r.get("prompt", [])),
-                             [(o["id"], flat(o.get("content", []))) for o in r.get("options", [])]))
+                want_num = int(want_raw)
+                if got_num == want_num:
+                    matched += 1
+                    continue
+            mismatched += 1
+            rows.append((qid, sec, int(qno), got, NUM_TO_LETTER.get(want_num, str(want_num)),
+                         flat(r.get("prompt", [])),
+                         [(o["id"], flat(o.get("content", []))) for o in r.get("options", [])]))
             # question.answer and appearance.officialOptionId must agree
             if official.get(qid) and official[qid] != got:
                 drift.append((qid, got, official[qid]))
