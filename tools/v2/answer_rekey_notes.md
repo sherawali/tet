@@ -355,3 +355,62 @@ Two label defects noted, not changed (renaming ids is risky and cosmetic):
 `setCode: "M"`, but the official booklet is **Set I / MVD18-I**. Also official key q74 = "9"
 (all options accepted, marks to all); the bank stores a representative letter, same treatment
 as 2024-i EVS q080.
+
+## Release 2026101100 — pipeline repaired, fabricated groups held back
+
+### Why two weeks of fixes never reached a device (all four breaks now closed)
+1. **Nothing was on `main`.** Five commits / 37 files / +2154 −707 sat on the working branch.
+   The app reads `@main`, so it still had the pre-cleanup bank.
+2. **CI watched a dead layout.** `.github/workflows/build.yml` triggered on `content/**` and ran
+   `tools/build.py`; neither exists since the CSV→`bank-v2` NDJSON migration, so no release was
+   ever produced. Rewired to `bank-v2/**` + `tools/**` + `verify_all_questions.py`, with the
+   7-category gate as a hard stop before anything ships.
+3. **Pack ids were index-only** (`"0003"`), while the app downloads
+   `remote.packs.filter { it.id !in have }`. A corrected pack looked "already downloaded"
+   forever. Ids are now `<index>-<sha256[:12]>`, content-derived and equal to the immutable
+   filename stem — so any content change is automatically a new download.
+4. **`BANK_VERSION` was hardcoded 20261010** and **zero `v<N>` tags existed**, so the app's
+   `remote.bank_version <= local` guard short-circuited and `@v<stamp>/…` 404'd. The stamp is now
+   UTC `YYYYMMDDHH`, pinned once per run through the environment so manifest, SQLite meta and git
+   tag agree; CI creates and force-updates the tag and purges jsDelivr.
+
+App-side, one step was still missing from the documented contract and is now in the README:
+`db.deletePacksNotIn(remote ids)`. Without that prune a superseded pack — and the wrong question
+inside it — stays on the device forever. Passage groups are asserted to live in exactly one pack,
+so pruning can never split a गद्यांश from its questions.
+
+New tools: `tools/v2/prune_stale_packs.py` (also refuses a manifest whose pack id does not match
+its content-hashed filename — the regression behind break 3) and
+`tools/v2/quarantine_bad_passages.py`.
+
+### Quarantine: 24 fabricated groups / 192 questions held back, nothing deleted
+`quarantine_bad_passages.py` flips `status` to `"draft"` on every FABRICATED stimulus **and all
+its questions as one unit**, then re-scans to prove no published question is left under a draft
+stimulus. `build_app_db.py` now skips draft questions, their appearances, and any passage whose
+only readers were drafts.
+
+| section | before | held back | shipped | full 30-q mocks |
+|---|---:|---:|---:|---:|
+| cdp | 420 | 0 | 420 | 14 |
+| environmental-studies | 420 | 0 | 420 | 14 |
+| mathematics | 420 | 0 | 420 | 14 |
+| language/en | 630 | 48 | 582 | 19 |
+| language/hi | 630 | 66 | 564 | 18 |
+| language/sa | 360 | 78 | 282 | 9 |
+| **total** | **2880** | **192** | **2688** | — |
+
+Database 3300 KB, 2688 questions, **73 passages**, 14 packs, 14 stale packs pruned, gate PASS 7/7
+(the gate still audits all 2880 bank records — drafts included — on purpose).
+
+Not held back, deliberately: the 11 TRUNCATED groups (87 q) and 13 UNVERIFIED poems (73 q) carry
+real text that is merely incomplete or unconfirmed, and the 2 PROVISIONAL groups (16 q) are
+plausible. Restoring a passage is now a silent content update — flip `status` back with
+`quarantine_bad_passages.py --restore <stimulus-id>`, rebuild, and the app picks up the new pack
+id on its next sync with no app release.
+
+### Reclassification finding
+The 2 `MISSING_GROUPS` entries (2016 Lang-I Hindi q097–105, 2016 Lang-II English q128–135, 17 q)
+are **not** missing passages at all. Read out, all 17 are standalone pedagogy stems — "भाषा सीखने
+का उद्देश्य है–", "Stephen Krashen's theory … does not consist of", "Constructivism in language
+learning focuses on". They belong in `NO_PASSAGE_REMOVED` semantics (published, no stimulus), not
+in MISSING. Left untouched this release; the tracker line should be corrected when next edited.

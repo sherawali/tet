@@ -230,6 +230,16 @@ def main() -> int:
     counts["NO-PASSAGE"] = len(NO_PASSAGE_REMOVED)
     qcounts["NO-PASSAGE"] = sum(NO_PASSAGE_REMOVED.values())
 
+    # What is actually held back from the app right now (quarantine_bad_passages.py
+    # sets status="draft"). A FABRICATED group that is still published means an
+    # unanswerable गद्यांश is shipping, so say it loudly.
+    draft_groups = {sid for sid, r in stimuli.items()
+                    if r.get("status", "published") != "published"}
+    draft_q = sum(len([x for x in linked.get(sid, []) if x > 0]) for sid in draft_groups)
+    exposed = sorted(sid for sid, st in STATUS.items()
+                     if st in ("FABRICATED", "MISSING")
+                     and sid in stimuli and sid not in draft_groups)
+
     # drift guard: the curated table must not keep ids the bank no longer has
     stale = sorted(set(STATUS) - set(stimuli))
     if stale:
@@ -248,6 +258,7 @@ def main() -> int:
         for st in order:
             print(f"| {st} | {counts.get(st,0)} | {qcounts.get(st,0)} |")
         print(f"| **total** | **{total}** | **{totalq}** |")
+        print(f"| held back (status=draft) | {len(draft_groups)} | {draft_q} |")
         return 0
 
     print("=" * 78)
@@ -261,6 +272,13 @@ def main() -> int:
         print(f"  {st:12s} {counts.get(st,0):3d} groups  {qcounts.get(st,0):4d} questions{extra}")
     print(f"  {'LIVE TOTAL':12s} {live:3d} groups  {liveq:4d} questions   "
           f"(+{counts.get('NO-PASSAGE',0)} closed / {qcounts.get('NO-PASSAGE',0)}q)")
+    print(f"  {'HELD BACK':12s} {len(draft_groups):3d} groups  {draft_q:4d} questions   "
+          f"(status=draft — absent from the app DB and the CDN packs)")
+    if exposed:
+        print(f"  !! {len(exposed)} FABRICATED/MISSING group(s) still published — "
+              f"an unanswerable passage is shipping:")
+        for sid in exposed:
+            print(f"     {sid}")
 
     ctet_open = [r for r in rows if r[1].startswith("ctet-") and r[0] in
                  ("FABRICATED", "TRUNCATED", "PROVISIONAL")]
