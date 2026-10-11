@@ -3,7 +3,7 @@
 > **Kaise use karna hai:** ye document padho, phir neeche **"ROLE & RULES"** se shuru karo.
 > Repo `sherawali/tet`. Kaam **hamesha session branch pe**, aur kaam khatam hote hi **`main` pe merge** —
 > kyunki app `@main` padhta hai, branch pe pada kaam device tak kabhi nahi pahunchta.
-> Snapshot: **release `2026101100`**, 2026-10-11.
+> Snapshot: **live release `v2026101101`** (2026-10-11, CI-built on `main`). Do hafte baad pehli successful CI run.
 
 ---
 
@@ -11,7 +11,7 @@
 
 | | |
 |---|---|
-| App ko jaane wala data | **2688 questions, 73 passages, 14 packs**, `bank_version 2026101100` |
+| App ko jaane wala data | **2688 questions, 73 passages, 14 packs**, `bank_version 2026101101` — jsDelivr pe **live verified** |
 | Bank me total | 2880 questions, 97 stimuli (**192 q / 24 groups held back**, `status:"draft"`) |
 | Release gate | `verify_all_questions.py` → **PASS 7/7** |
 | CI | `.github/workflows/build.yml` — `main` pe push hote hi gate + build + prune + tag + jsDelivr purge |
@@ -295,7 +295,11 @@ UNVERIFIED    13 groups    73 questions  (13.1%)   ← shipped
 LIVE TOTAL    99 groups   666 questions  (+12 closed / 93 q)
 HELD BACK     24 groups   192 questions
 ```
-Bank: 2880 q / 97 stimuli / 2880 appearances · Gate **PASS 7/7** · App DB **2688 q / 73 passages / 3300 KB** · **14 packs** · `bank_version 2026101100`.
+Bank: 2880 q / 97 stimuli / 2880 appearances · Gate **PASS 7/7** · App DB **2688 q / 73 passages / 3300 KB** · **14 packs**.
+
+**Live release:** `main` = `156f290 bank v2026101101`, tag `v2026101101` usi commit pe. CI pehli baar **hara** hua (us se pehle ki 5 runs 10–14 second me fail ho rahi thi — wahi toota hua `tools/build.py`). jsDelivr se manifest khinch ke confirm kiya: `bank_version 2026101101`, `total 2688`, 14 packs, saare id content-hashed.
+
+> Local build ne stamp `2026101100` banaya tha; CI ne apne run ke ghante ka `2026101101` pin kiya. Ye expected hai — stamp CI ka hota hai, local sirf jaanch ke liye.
 
 ---
 
