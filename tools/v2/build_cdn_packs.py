@@ -18,7 +18,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-from build_config import BANK_VERSION
+from build_config import BANK_VERSION, version_stamp
 
 REPO_ROOT = Path(__file__).resolve().parents[2]  # tet_repo
 WORKSPACE_ROOT = REPO_ROOT.parent
@@ -60,14 +60,13 @@ def sha256_hex(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
 
 
-def build_timestamp() -> str:
+def build_timestamp(version: int | str = BANK_VERSION) -> str:
     """Return a reproducible timestamp, overridable with SOURCE_DATE_EPOCH."""
     epoch = os.environ.get("SOURCE_DATE_EPOCH")
     if epoch is not None:
         timestamp = datetime.fromtimestamp(int(epoch), tz=timezone.utc)
-    else:
-        timestamp = datetime.strptime(str(BANK_VERSION), "%Y%m%d").replace(tzinfo=timezone.utc)
-    return timestamp.strftime("%Y-%m-%dT%H:%M:%SZ")
+        return timestamp.strftime("%Y-%m-%dT%H:%M:%SZ")
+    return version_stamp(version)
 
 
 def _load_database(conn: sqlite3.Connection) -> tuple[dict[str, dict[str, str]], list[tuple[Any, ...]]]:
@@ -225,10 +224,22 @@ def main() -> int:
         version_row = conn.execute(
             "SELECT val FROM meta WHERE key = 'bank_version'"
         ).fetchone()
-        if version_row is None or version_row[0] != str(BANK_VERSION):
+        if version_row is None:
             raise RuntimeError(
-                f"SQLite bank_version {version_row[0] if version_row else None} "
-                f"does not match build version {BANK_VERSION}"
+                "SQLite meta has no bank_version row - run build_app_db.py first"
+            )
+        # The database is the single source of truth for the release stamp, so a
+        # pack build can never publish a version the DB does not carry.
+        release_version = int(version_row[0])
+        if os.environ.get("BANK_VERSION", "").strip() and release_version != BANK_VERSION:
+            raise RuntimeError(
+                f"SQLite bank_version {release_version} does not match the pinned "
+                f"BANK_VERSION {BANK_VERSION} - rebuild the database first"
+            )
+        if release_version != BANK_VERSION:
+            print(
+                f"Note: adopting the database stamp {release_version} "
+                f"(this process computed {BANK_VERSION})."
             )
         passages, question_rows = _load_database(conn)
     finally:
@@ -266,7 +277,13 @@ def main() -> int:
         new_pack_count += int(created)
         pack_entries.append(
             {
-                "id": f"{pack_index:04d}",
+                # Content-derived id. The app keeps only the pack ids it already
+                # has and downloads `remote.packs.filter { it.id !in have }`, so an
+                # index-only id meant a corrected pack looked "already downloaded"
+                # and the fix never reached a device. Hashing the payload makes
+                # every content change a new id, and makes the id equal to the
+                # immutable filename stem.
+                "id": f"{pack_index:04d}-{full_hash[:12]}",
                 "file": f"packs/{pack_path.name}",
                 "sha256": full_hash,
                 "bytes": len(pack_bytes),
@@ -288,8 +305,8 @@ def main() -> int:
 
     manifest = {
         "schema": 1,
-        "bank_version": BANK_VERSION,
-        "generated": build_timestamp(),
+        "bank_version": release_version,
+        "generated": build_timestamp(release_version),
         "topics": TOPICS,
         "total": len(questions),
         "pyq_count": len(questions),

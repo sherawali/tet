@@ -1,11 +1,24 @@
 name: Build Question Bank
 
+# The app reads only `cdn/` off jsDelivr (`/runtime/` is gitignored), so this
+# workflow is the release pipeline: bank-v2 in, cdn out, tag pushed, cache purged.
+#
+# It used to watch `content/**` and run `tools/build.py` - the CSV-era layout that
+# no longer exists - which is why two weeks of bank fixes never reached a device.
 on:
   push:
     branches: [main]
     paths:
-      - 'content/**'
+      - 'bank-v2/**'
       - 'tools/**'
+      - 'verify_all_questions.py'
+      - '.github/workflows/build.yml'
+  pull_request:
+    paths:
+      - 'bank-v2/**'
+      - 'tools/**'
+      - 'verify_all_questions.py'
+      - '.github/workflows/build.yml'
   workflow_dispatch:
 
 permissions:
@@ -31,17 +44,36 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Build packs
+      # Pin the release stamp once so the SQLite meta row, the manifest and the
+      # git tag all carry the same number. UTC hour: monotonic, collision-free
+      # for any realistic release cadence, and always greater than what an app
+      # already stored - which is the whole condition the app checks first.
+      - name: Pin release stamp
         shell: bash
         run: |
-          git fetch origin main
-          git reset --hard origin/main          # हमेशा सबसे नए main से शुरू करो
-          export BANK_VERSION=$(git rev-list --count HEAD)
-          export BUILD_TIME=$(date -u +%Y-%m-%dT%H:%M:%SZ)
-          echo "BANK_VERSION=$BANK_VERSION" >> "$GITHUB_ENV"
-          python tools/build.py
+          STAMP=$(date -u +%Y%m%d%H)
+          echo "BANK_VERSION=$STAMP" >> "$GITHUB_ENV"
+          echo "🔖 release stamp v$STAMP"
 
+      - name: Gate — all 7 integrity checks must pass
+        shell: bash
+        run: python verify_all_questions.py
+
+      - name: Build app database
+        shell: bash
+        run: python tools/v2/build_app_db.py
+
+      - name: Build CDN packs + manifest
+        shell: bash
+        run: python tools/v2/build_cdn_packs.py
+
+      - name: Prune superseded packs
+        shell: bash
+        run: python tools/v2/prune_stale_packs.py
+
+      # Everything below is a release step: pull requests get the validation only.
       - name: Commit and push
+        if: github.event_name == 'push'
         shell: bash
         run: |
           git config user.name  "bank-bot"
@@ -49,7 +81,7 @@ jobs:
           git add -A cdn
 
           if git diff --staged --quiet; then
-            echo "कुछ नहीं बदला — push की ज़रूरत नहीं"
+            echo "cdn नहीं बदला — push की ज़रूरत नहीं"
           else
             git commit -m "bank v${BANK_VERSION}"
             # तीन कोशिशें — बीच में कोई और push कर दे तो भी चल जाए
@@ -71,6 +103,7 @@ jobs:
           echo "🏷️  tag v${BANK_VERSION} लग गया"
 
       - name: Purge jsDelivr cache
+        if: github.event_name == 'push'
         continue-on-error: true
         shell: bash
         run: |

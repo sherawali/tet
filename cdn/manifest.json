@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "bank_version": 20261010,
-  "generated": "2026-10-10T00:00:00Z",
+  "bank_version": 2026101100,
+  "generated": "2026-10-11T00:00:00Z",
   "topics": [
     "बाल विकास एवं शिक्षणशास्त्र",
     "हिन्दी भाषा",
@@ -25,7 +25,7 @@
   },
   "packs": [
     {
-      "id": "0000",
+      "id": "0000-4179e663a18a",
       "file": "packs/pack-0000-4179e663a18a.json",
       "sha256": "4179e663a18a7d833b2d061b409fe1f1d6e63495f2a8f152bd2255a1d4ccf380",
       "bytes": 215737,
@@ -35,7 +35,7 @@
       ]
     },
     {
-      "id": "0001",
+      "id": "0001-4c012e81d61c",
       "file": "packs/pack-0001-4c012e81d61c.json",
       "sha256": "4c012e81d61c88cc3d2dea5431dd6136d72882602c76b52841b4333ccfe3442f",
       "bytes": 148312,
@@ -46,7 +46,7 @@
       ]
     },
     {
-      "id": "0002",
+      "id": "0002-c5a1cc4c2df8",
       "file": "packs/pack-0002-c5a1cc4c2df8.json",
       "sha256": "c5a1cc4c2df842ad58321034463ee95cb6d848e42bde29b5078760eac33e13d8",
       "bytes": 133476,
@@ -56,7 +56,7 @@
       ]
     },
     {
-      "id": "0003",
+      "id": "0003-c8d6f19dd108",
       "file": "packs/pack-0003-c8d6f19dd108.json",
       "sha256": "c8d6f19dd108331934cc7137ef34a237b7cdf378a6cf300ec131e87daa8cdc40",
       "bytes": 182551,
@@ -67,7 +67,7 @@
       ]
     },
     {
-      "id": "0004",
+      "id": "0004-03110b586e7c",
       "file": "packs/pack-0004-03110b586e7c.json",
       "sha256": "03110b586e7c5068115d2e7ce990ac917cf05a99d6c95cd85dceeba4ba09ee85",
       "bytes": 199654,
@@ -78,7 +78,7 @@
       ]
     },
     {
-      "id": "0005",
+      "id": "0005-61f4aedaf4ae",
       "file": "packs/pack-0005-61f4aedaf4ae.json",
       "sha256": "61f4aedaf4ae7e097961b0da5a647ac5a272dc7dd64dbb09643b71d517e4f4c1",
       "bytes": 126878,
@@ -88,7 +88,7 @@
       ]
     },
     {
-      "id": "0006",
+      "id": "0006-b7a5de802c2e",
       "file": "packs/pack-0006-b7a5de802c2e.json",
       "sha256": "b7a5de802c2e14bb640944d777ef53485e355142c9c75db5b317177bae88635e",
       "bytes": 156006,
@@ -99,7 +99,7 @@
       ]
     },
     {
-      "id": "0007",
+      "id": "0007-4e95d357cfc8",
       "file": "packs/pack-0007-4e95d357cfc8.json",
       "sha256": "4e95d357cfc802672fadf422de787d0bbfef4bd9478d24dba8a0a1e66b4f21a0",
       "bytes": 199573,
@@ -109,7 +109,7 @@
       ]
     },
     {
-      "id": "0008",
+      "id": "0008-8855ffd2749c",
       "file": "packs/pack-0008-8855ffd2749c.json",
       "sha256": "8855ffd2749c93bb84e5dbb00365c9ac7e134865b3fe0559eaedacd3f235c4e3",
       "bytes": 128656,
@@ -120,7 +120,7 @@
       ]
     },
     {
-      "id": "0009",
+      "id": "0009-3e12ab3ee784",
       "file": "packs/pack-0009-3e12ab3ee784.json",
       "sha256": "3e12ab3ee7849bd26afc1185cd913169b8b1efd40b0f583ee7ba3786cf65ea37",
       "bytes": 149169,
@@ -131,7 +131,7 @@
       ]
     },
     {
-      "id": "0010",
+      "id": "0010-f3047d4cf9b9",
       "file": "packs/pack-0010-f3047d4cf9b9.json",
       "sha256": "f3047d4cf9b9d770c32fba0846da7a97a073c26b5a851df1386818546298a152",
       "bytes": 136448,
@@ -142,7 +142,7 @@
       ]
     },
     {
-      "id": "0011",
+      "id": "0011-9686e1666163",
       "file": "packs/pack-0011-9686e1666163.json",
       "sha256": "9686e16661638f81ed813bd5533d20a853a11f33931d97cd566bb74a96be087e",
       "bytes": 119508,
@@ -153,7 +153,7 @@
       ]
     },
     {
-      "id": "0012",
+      "id": "0012-5f518252d13a",
       "file": "packs/pack-0012-5f518252d13a.json",
       "sha256": "5f518252d13a63ffc13c165429e8cf070ce91e4c0d496d99c87278facc46c155",
       "bytes": 140726,
@@ -164,7 +164,7 @@
       ]
     },
     {
-      "id": "0013",
+      "id": "0013-b0ea7a27c386",
       "file": "packs/pack-0013-b0ea7a27c386.json",
       "sha256": "b0ea7a27c386ba11543a58959b1a2343d2324087419a6a5b968851c1815745c1",
       "bytes": 117536,
@@ -175,7 +175,7 @@
       ]
     },
     {
-      "id": "0014",
+      "id": "0014-c4054eff3cec",
       "file": "packs/pack-0014-c4054eff3cec.json",
       "sha256": "c4054eff3cece658346162c5797c3ba804eaa2b4ca2e2aa821351bf1cccaef97",
       "bytes": 46649,
