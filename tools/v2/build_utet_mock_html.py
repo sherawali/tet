@@ -691,8 +691,16 @@ function render(){
     }
     if(q.st && q.st !== lastStim){
       const st = D.st[q.st];
-      html += '<div class="stim"><span class="tag">' + (st.ty === 'poem' ? 'कविता / Poem' : 'गद्यांश / Passage') +
-              ' · ' + q.st + '</span>';
+      const sy = q.st.split('-')[2];
+      const grp = D.q.filter(x => x.st === q.st);
+      const lo = Math.min.apply(null, grp.map(x => x.qno));
+      const hi = Math.max.apply(null, grp.map(x => x.qno));
+      html += '<div class="stim"><div style="margin-bottom:8px">' +
+              '<span class="tag">' + (st.ty === 'poem' ? 'कविता / Poem' : 'गद्यांश / Passage') +
+              ' · ' + grp.length + ' प्रश्न</span> ' +
+              '<span class="src y' + sy + '">UTET ' + sy + ' · सेट ' + q.set + ' · मूल प्रश्न ' +
+              lo + (hi !== lo ? '–' + hi : '') + '</span> ' +
+              '<span class="tag">' + q.st + '</span></div>';
       if(st.d && (st.d.hi || st.d.en)) html += '<div class="dir">' + dual(st.d,'hi','en') + '</div>';
       html += '<div class="body">' + dual(st.t,'hi','en') + '</div></div>';
       lastStim = q.st;
