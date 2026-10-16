@@ -1,0 +1,901 @@
+﻿mock,paper_qno,section,section_hi,source_cycle,exam_date,set,original_qno,question_id,stimulus_id,correct_option
+M-01,1,cdp,बाल विकास एवं शिक्षाशास्त्र,2026,2026-09-29,A,1,utet-p1-2026-cdp-q001,,a
+M-01,2,cdp,बाल विकास एवं शिक्षाशास्त्र,2026,2026-09-29,A,2,utet-p1-2026-cdp-q002,,c
+M-01,3,cdp,बाल विकास एवं शिक्षाशास्त्र,2026,2026-09-29,A,3,utet-p1-2026-cdp-q003,,d
+M-01,4,cdp,बाल विकास एवं शिक्षाशास्त्र,2026,2026-09-29,A,4,utet-p1-2026-cdp-q004,,c
+M-01,5,cdp,बाल विकास एवं शिक्षाशास्त्र,2026,2026-09-29,A,5,utet-p1-2026-cdp-q005,,a
+M-01,6,cdp,बाल विकास एवं शिक्षाशास्त्र,2025,2025-10-24,A,1,utet-p1-2025-cdp-q001,,d
+M-01,7,cdp,बाल विकास एवं शिक्षाशास्त्र,2025,2025-10-24,A,2,utet-p1-2025-cdp-q002,,b
+M-01,8,cdp,बाल विकास एवं शिक्षाशास्त्र,2025,2025-10-24,A,3,utet-p1-2025-cdp-q003,,b
+M-01,9,cdp,बाल विकास एवं शिक्षाशास्त्र,2025,2025-10-24,A,4,utet-p1-2025-cdp-q004,,c
+M-01,10,cdp,बाल विकास एवं शिक्षाशास्त्र,2025,2025-10-24,A,5,utet-p1-2025-cdp-q005,,a
+M-01,11,cdp,बाल विकास एवं शिक्षाशास्त्र,2024,2024-09-29,D,1,utet-p1-2024-cdp-q001,,b
+M-01,12,cdp,बाल विकास एवं शिक्षाशास्त्र,2024,2024-09-29,D,2,utet-p1-2024-cdp-q002,,a
+M-01,13,cdp,बाल विकास एवं शिक्षाशास्त्र,2024,2024-09-29,D,3,utet-p1-2024-cdp-q003,,c
+M-01,14,cdp,बाल विकास एवं शिक्षाशास्त्र,2024,2024-09-29,D,4,utet-p1-2024-cdp-q004,,b
+M-01,15,cdp,बाल विकास एवं शिक्षाशास्त्र,2024,2024-09-29,D,5,utet-p1-2024-cdp-q005,,b
+M-01,16,cdp,बाल विकास एवं शिक्षाशास्त्र,2022,2022-11-26,B,1,utet-p1-2022-cdp-q001,,a
+M-01,17,cdp,बाल विकास एवं शिक्षाशास्त्र,2022,2022-11-26,B,2,utet-p1-2022-cdp-q002,,b
+M-01,18,cdp,बाल विकास एवं शिक्षाशास्त्र,2022,2022-11-26,B,3,utet-p1-2022-cdp-q003,,c
+M-01,19,cdp,बाल विकास एवं शिक्षाशास्त्र,2022,2022-11-26,B,4,utet-p1-2022-cdp-q004,,b
+M-01,20,cdp,बाल विकास एवं शिक्षाशास्त्र,2022,2022-11-26,B,5,utet-p1-2022-cdp-q005,,a
+M-01,21,cdp,बाल विकास एवं शिक्षाशास्त्र,2021,2021-03-24,C,1,utet-p1-2021-cdp-q001,,c
+M-01,22,cdp,बाल विकास एवं शिक्षाशास्त्र,2021,2021-03-24,C,2,utet-p1-2021-cdp-q002,,c
+M-01,23,cdp,बाल विकास एवं शिक्षाशास्त्र,2021,2021-03-24,C,3,utet-p1-2021-cdp-q003,,d
+M-01,24,cdp,बाल विकास एवं शिक्षाशास्त्र,2021,2021-03-24,C,4,utet-p1-2021-cdp-q004,,b
+M-01,25,cdp,बाल विकास एवं शिक्षाशास्त्र,2021,2021-03-24,C,5,utet-p1-2021-cdp-q005,,c
+M-01,26,cdp,बाल विकास एवं शिक्षाशास्त्र,2020,2020-11-06,A,1,utet-p1-2020-cdp-q001,,a
+M-01,27,cdp,बाल विकास एवं शिक्षाशास्त्र,2020,2020-11-06,A,2,utet-p1-2020-cdp-q002,,b
+M-01,28,cdp,बाल विकास एवं शिक्षाशास्त्र,2020,2020-11-06,A,3,utet-p1-2020-cdp-q003,,a
+M-01,29,cdp,बाल विकास एवं शिक्षाशास्त्र,2020,2020-11-06,A,4,utet-p1-2020-cdp-q004,,c
+M-01,30,cdp,बाल विकास एवं शिक्षाशास्त्र,2020,2020-11-06,A,5,utet-p1-2020-cdp-q005,,c
+M-01,31,language-1/hindi,हिन्दी (भाषा-I),2026,2026-09-29,A,31,utet-p1-2026-lang1-hi-q031,utet-p1-2026-ut26-h1,b
+M-01,32,language-1/hindi,हिन्दी (भाषा-I),2026,2026-09-29,A,32,utet-p1-2026-lang1-hi-q032,utet-p1-2026-ut26-h1,b
+M-01,33,language-1/hindi,हिन्दी (भाषा-I),2026,2026-09-29,A,33,utet-p1-2026-lang1-hi-q033,utet-p1-2026-ut26-h1,b
+M-01,34,language-1/hindi,हिन्दी (भाषा-I),2026,2026-09-29,A,34,utet-p1-2026-lang1-hi-q034,utet-p1-2026-ut26-h1,a
+M-01,35,language-1/hindi,हिन्दी (भाषा-I),2026,2026-09-29,A,35,utet-p1-2026-lang1-hi-q035,,d
+M-01,36,language-1/hindi,हिन्दी (भाषा-I),2025,2025-10-24,A,36,utet-p1-2025-lang1-hi-q036,,c
+M-01,37,language-1/hindi,हिन्दी (भाषा-I),2025,2025-10-24,A,37,utet-p1-2025-lang1-hi-q037,,d
+M-01,38,language-1/hindi,हिन्दी (भाषा-I),2025,2025-10-24,A,38,utet-p1-2025-lang1-hi-q038,,c
+M-01,39,language-1/hindi,हिन्दी (भाषा-I),2025,2025-10-24,A,39,utet-p1-2025-lang1-hi-q039,,b
+M-01,40,language-1/hindi,हिन्दी (भाषा-I),2025,2025-10-24,A,40,utet-p1-2025-lang1-hi-q040,,a
+M-01,41,language-1/hindi,हिन्दी (भाषा-I),2024,2024-09-29,D,31,utet-p1-2024-lang1-hi-q031,,a
+M-01,42,language-1/hindi,हिन्दी (भाषा-I),2024,2024-09-29,D,32,utet-p1-2024-lang1-hi-q032,,c
+M-01,43,language-1/hindi,हिन्दी (भाषा-I),2024,2024-09-29,D,33,utet-p1-2024-lang1-hi-q033,,b
+M-01,44,language-1/hindi,हिन्दी (भाषा-I),2024,2024-09-29,D,34,utet-p1-2024-lang1-hi-q034,,d
+M-01,45,language-1/hindi,हिन्दी (भाषा-I),2024,2024-09-29,D,35,utet-p1-2024-lang1-hi-q035,,b
+M-01,46,language-1/hindi,हिन्दी (भाषा-I),2022,2022-11-26,B,31,utet-p1-2022-lang1-hi-q031,,b
+M-01,47,language-1/hindi,हिन्दी (भाषा-I),2022,2022-11-26,B,32,utet-p1-2022-lang1-hi-q032,,a
+M-01,48,language-1/hindi,हिन्दी (भाषा-I),2022,2022-11-26,B,33,utet-p1-2022-lang1-hi-q033,,c
+M-01,49,language-1/hindi,हिन्दी (भाषा-I),2022,2022-11-26,B,34,utet-p1-2022-lang1-hi-q034,,d
+M-01,50,language-1/hindi,हिन्दी (भाषा-I),2022,2022-11-26,B,35,utet-p1-2022-lang1-hi-q035,,c
+M-01,51,language-1/hindi,हिन्दी (भाषा-I),2021,2021-03-24,C,56,utet-p1-2021-lang1-hi-q056,utet-p1-2021-ut21-h2,b
+M-01,52,language-1/hindi,हिन्दी (भाषा-I),2021,2021-03-24,C,57,utet-p1-2021-lang1-hi-q057,utet-p1-2021-ut21-h2,c
+M-01,53,language-1/hindi,हिन्दी (भाषा-I),2021,2021-03-24,C,58,utet-p1-2021-lang1-hi-q058,utet-p1-2021-ut21-h2,a
+M-01,54,language-1/hindi,हिन्दी (भाषा-I),2021,2021-03-24,C,59,utet-p1-2021-lang1-hi-q059,utet-p1-2021-ut21-h2,b
+M-01,55,language-1/hindi,हिन्दी (भाषा-I),2021,2021-03-24,C,60,utet-p1-2021-lang1-hi-q060,utet-p1-2021-ut21-h2,c
+M-01,56,language-1/hindi,हिन्दी (भाषा-I),2020,2020-11-06,A,31,utet-p1-2020-lang1-hi-q031,,a
+M-01,57,language-1/hindi,हिन्दी (भाषा-I),2020,2020-11-06,A,32,utet-p1-2020-lang1-hi-q032,,b
+M-01,58,language-1/hindi,हिन्दी (भाषा-I),2020,2020-11-06,A,33,utet-p1-2020-lang1-hi-q033,,a
+M-01,59,language-1/hindi,हिन्दी (भाषा-I),2020,2020-11-06,A,34,utet-p1-2020-lang1-hi-q034,,d
+M-01,60,language-1/hindi,हिन्दी (भाषा-I),2020,2020-11-06,A,35,utet-p1-2020-lang1-hi-q035,,d
+M-01,61,language-2/english,अंग्रेज़ी (भाषा-II),2026,2026-09-29,A,63,utet-p1-2026-lang2-en-q063,utet-p1-2026-ut26-e1,c
+M-01,62,language-2/english,अंग्रेज़ी (भाषा-II),2026,2026-09-29,A,64,utet-p1-2026-lang2-en-q064,utet-p1-2026-ut26-e1,b
+M-01,63,language-2/english,अंग्रेज़ी (भाषा-II),2026,2026-09-29,A,65,utet-p1-2026-lang2-en-q065,utet-p1-2026-ut26-e1,b
+M-01,64,language-2/english,अंग्रेज़ी (भाषा-II),2026,2026-09-29,A,66,utet-p1-2026-lang2-en-q066,utet-p1-2026-ut26-e1,c
+M-01,65,language-2/english,अंग्रेज़ी (भाषा-II),2026,2026-09-29,A,61,utet-p1-2026-lang2-en-q061,,c
+M-01,66,language-2/english,अंग्रेज़ी (भाषा-II),2025,2025-10-24,A,61,utet-p1-2025-lang2-en-q061,,a
+M-01,67,language-2/english,अंग्रेज़ी (भाषा-II),2025,2025-10-24,A,62,utet-p1-2025-lang2-en-q062,,a
+M-01,68,language-2/english,अंग्रेज़ी (भाषा-II),2025,2025-10-24,A,63,utet-p1-2025-lang2-en-q063,,d
+M-01,69,language-2/english,अंग्रेज़ी (भाषा-II),2025,2025-10-24,A,69,utet-p1-2025-lang2-en-q069,,d
+M-01,70,language-2/english,अंग्रेज़ी (भाषा-II),2025,2025-10-24,A,70,utet-p1-2025-lang2-en-q070,,a
+M-01,71,language-2/english,अंग्रेज़ी (भाषा-II),2024,2024-09-29,D,61,utet-p1-2024-lang2-en-q061,,a
+M-01,72,language-2/english,अंग्रेज़ी (भाषा-II),2024,2024-09-29,D,62,utet-p1-2024-lang2-en-q062,,b
+M-01,73,language-2/english,अंग्रेज़ी (भाषा-II),2024,2024-09-29,D,63,utet-p1-2024-lang2-en-q063,,c
+M-01,74,language-2/english,अंग्रेज़ी (भाषा-II),2024,2024-09-29,D,64,utet-p1-2024-lang2-en-q064,,c
+M-01,75,language-2/english,अंग्रेज़ी (भाषा-II),2024,2024-09-29,D,65,utet-p1-2024-lang2-en-q065,,a
+M-01,76,language-2/english,अंग्रेज़ी (भाषा-II),2022,2022-11-26,B,61,utet-p1-2022-lang2-en-q061,,d
+M-01,77,language-2/english,अंग्रेज़ी (भाषा-II),2022,2022-11-26,B,62,utet-p1-2022-lang2-en-q062,,c
+M-01,78,language-2/english,अंग्रेज़ी (भाषा-II),2022,2022-11-26,B,63,utet-p1-2022-lang2-en-q063,,a
+M-01,79,language-2/english,अंग्रेज़ी (भाषा-II),2022,2022-11-26,B,64,utet-p1-2022-lang2-en-q064,,c
+M-01,80,language-2/english,अंग्रेज़ी (भाषा-II),2022,2022-11-26,B,65,utet-p1-2022-lang2-en-q065,,c
+M-01,81,language-2/english,अंग्रेज़ी (भाषा-II),2021,2021-03-24,C,74,utet-p1-2021-lang2-en-q074,utet-p1-2021-ut21-e2,d
+M-01,82,language-2/english,अंग्रेज़ी (भाषा-II),2021,2021-03-24,C,75,utet-p1-2021-lang2-en-q075,utet-p1-2021-ut21-e2,a
+M-01,83,language-2/english,अंग्रेज़ी (भाषा-II),2021,2021-03-24,C,76,utet-p1-2021-lang2-en-q076,utet-p1-2021-ut21-e2,c
+M-01,84,language-2/english,अंग्रेज़ी (भाषा-II),2021,2021-03-24,C,77,utet-p1-2021-lang2-en-q077,utet-p1-2021-ut21-e2,b
+M-01,85,language-2/english,अंग्रेज़ी (भाषा-II),2021,2021-03-24,C,78,utet-p1-2021-lang2-en-q078,utet-p1-2021-ut21-e2,c
+M-01,86,language-2/english,अंग्रेज़ी (भाषा-II),2020,2020-11-06,A,61,utet-p1-2020-lang2-en-q061,,b
+M-01,87,language-2/english,अंग्रेज़ी (भाषा-II),2020,2020-11-06,A,62,utet-p1-2020-lang2-en-q062,,a
+M-01,88,language-2/english,अंग्रेज़ी (भाषा-II),2020,2020-11-06,A,63,utet-p1-2020-lang2-en-q063,,b
+M-01,89,language-2/english,अंग्रेज़ी (भाषा-II),2020,2020-11-06,A,64,utet-p1-2020-lang2-en-q064,,c
+M-01,90,language-2/english,अंग्रेज़ी (भाषा-II),2020,2020-11-06,A,65,utet-p1-2020-lang2-en-q065,,c
+M-01,91,mathematics,गणित,2026,2026-09-29,A,91,utet-p1-2026-mathematics-q091,,d
+M-01,92,mathematics,गणित,2026,2026-09-29,A,92,utet-p1-2026-mathematics-q092,,d
+M-01,93,mathematics,गणित,2026,2026-09-29,A,93,utet-p1-2026-mathematics-q093,,a
+M-01,94,mathematics,गणित,2026,2026-09-29,A,94,utet-p1-2026-mathematics-q094,,c
+M-01,95,mathematics,गणित,2026,2026-09-29,A,95,utet-p1-2026-mathematics-q095,,c
+M-01,96,mathematics,गणित,2025,2025-10-24,A,91,utet-p1-2025-mathematics-q091,,c
+M-01,97,mathematics,गणित,2025,2025-10-24,A,92,utet-p1-2025-mathematics-q092,,d
+M-01,98,mathematics,गणित,2025,2025-10-24,A,93,utet-p1-2025-mathematics-q093,,d
+M-01,99,mathematics,गणित,2025,2025-10-24,A,94,utet-p1-2025-mathematics-q094,,b
+M-01,100,mathematics,गणित,2025,2025-10-24,A,95,utet-p1-2025-mathematics-q095,,d
+M-01,101,mathematics,गणित,2024,2024-09-29,D,91,utet-p1-2024-mathematics-q091,,b
+M-01,102,mathematics,गणित,2024,2024-09-29,D,92,utet-p1-2024-mathematics-q092,,d
+M-01,103,mathematics,गणित,2024,2024-09-29,D,93,utet-p1-2024-mathematics-q093,,c
+M-01,104,mathematics,गणित,2024,2024-09-29,D,94,utet-p1-2024-mathematics-q094,,b
+M-01,105,mathematics,गणित,2024,2024-09-29,D,95,utet-p1-2024-mathematics-q095,,a
+M-01,106,mathematics,गणित,2022,2022-11-26,B,91,utet-p1-2022-mathematics-q091,,c
+M-01,107,mathematics,गणित,2022,2022-11-26,B,92,utet-p1-2022-mathematics-q092,,b
+M-01,108,mathematics,गणित,2022,2022-11-26,B,93,utet-p1-2022-mathematics-q093,,b
+M-01,109,mathematics,गणित,2022,2022-11-26,B,94,utet-p1-2022-mathematics-q094,,a
+M-01,110,mathematics,गणित,2022,2022-11-26,B,95,utet-p1-2022-mathematics-q095,,b
+M-01,111,mathematics,गणित,2021,2021-03-24,C,91,utet-p1-2021-mathematics-q091,,c
+M-01,112,mathematics,गणित,2021,2021-03-24,C,92,utet-p1-2021-mathematics-q092,,c
+M-01,113,mathematics,गणित,2021,2021-03-24,C,93,utet-p1-2021-mathematics-q093,,a
+M-01,114,mathematics,गणित,2021,2021-03-24,C,94,utet-p1-2021-mathematics-q094,,b
+M-01,115,mathematics,गणित,2021,2021-03-24,C,95,utet-p1-2021-mathematics-q095,,c
+M-01,116,mathematics,गणित,2020,2020-11-06,A,91,utet-p1-2020-mathematics-q091,,b
+M-01,117,mathematics,गणित,2020,2020-11-06,A,92,utet-p1-2020-mathematics-q092,,b
+M-01,118,mathematics,गणित,2020,2020-11-06,A,93,utet-p1-2020-mathematics-q093,,d
+M-01,119,mathematics,गणित,2020,2020-11-06,A,94,utet-p1-2020-mathematics-q094,,b
+M-01,120,mathematics,गणित,2020,2020-11-06,A,95,utet-p1-2020-mathematics-q095,,d
+M-01,121,environmental-studies,पर्यावरण अध्ययन,2026,2026-09-29,A,121,utet-p1-2026-environmental-studies-q121,,c
+M-01,122,environmental-studies,पर्यावरण अध्ययन,2026,2026-09-29,A,122,utet-p1-2026-environmental-studies-q122,,c
+M-01,123,environmental-studies,पर्यावरण अध्ययन,2026,2026-09-29,A,123,utet-p1-2026-environmental-studies-q123,,b
+M-01,124,environmental-studies,पर्यावरण अध्ययन,2026,2026-09-29,A,124,utet-p1-2026-environmental-studies-q124,,b
+M-01,125,environmental-studies,पर्यावरण अध्ययन,2026,2026-09-29,A,125,utet-p1-2026-environmental-studies-q125,,c
+M-01,126,environmental-studies,पर्यावरण अध्ययन,2025,2025-10-24,A,121,utet-p1-2025-environmental-studies-q121,,b
+M-01,127,environmental-studies,पर्यावरण अध्ययन,2025,2025-10-24,A,122,utet-p1-2025-environmental-studies-q122,,d
+M-01,128,environmental-studies,पर्यावरण अध्ययन,2025,2025-10-24,A,123,utet-p1-2025-environmental-studies-q123,,c
+M-01,129,environmental-studies,पर्यावरण अध्ययन,2025,2025-10-24,A,124,utet-p1-2025-environmental-studies-q124,,b
+M-01,130,environmental-studies,पर्यावरण अध्ययन,2025,2025-10-24,A,125,utet-p1-2025-environmental-studies-q125,,a
+M-01,131,environmental-studies,पर्यावरण अध्ययन,2024,2024-09-29,D,121,utet-p1-2024-environmental-studies-q121,,b
+M-01,132,environmental-studies,पर्यावरण अध्ययन,2024,2024-09-29,D,122,utet-p1-2024-environmental-studies-q122,,d
+M-01,133,environmental-studies,पर्यावरण अध्ययन,2024,2024-09-29,D,123,utet-p1-2024-environmental-studies-q123,,a
+M-01,134,environmental-studies,पर्यावरण अध्ययन,2024,2024-09-29,D,124,utet-p1-2024-environmental-studies-q124,,c
+M-01,135,environmental-studies,पर्यावरण अध्ययन,2024,2024-09-29,D,125,utet-p1-2024-environmental-studies-q125,,a
+M-01,136,environmental-studies,पर्यावरण अध्ययन,2022,2022-11-26,B,121,utet-p1-2022-environmental-studies-q121,,c
+M-01,137,environmental-studies,पर्यावरण अध्ययन,2022,2022-11-26,B,122,utet-p1-2022-environmental-studies-q122,,b
+M-01,138,environmental-studies,पर्यावरण अध्ययन,2022,2022-11-26,B,123,utet-p1-2022-environmental-studies-q123,,a
+M-01,139,environmental-studies,पर्यावरण अध्ययन,2022,2022-11-26,B,124,utet-p1-2022-environmental-studies-q124,,c
+M-01,140,environmental-studies,पर्यावरण अध्ययन,2022,2022-11-26,B,125,utet-p1-2022-environmental-studies-q125,,d
+M-01,141,environmental-studies,पर्यावरण अध्ययन,2021,2021-03-24,C,121,utet-p1-2021-environmental-studies-q121,,d
+M-01,142,environmental-studies,पर्यावरण अध्ययन,2021,2021-03-24,C,122,utet-p1-2021-environmental-studies-q122,,b
+M-01,143,environmental-studies,पर्यावरण अध्ययन,2021,2021-03-24,C,123,utet-p1-2021-environmental-studies-q123,,b
+M-01,144,environmental-studies,पर्यावरण अध्ययन,2021,2021-03-24,C,124,utet-p1-2021-environmental-studies-q124,,d
+M-01,145,environmental-studies,पर्यावरण अध्ययन,2021,2021-03-24,C,125,utet-p1-2021-environmental-studies-q125,,a
+M-01,146,environmental-studies,पर्यावरण अध्ययन,2020,2020-11-06,A,121,utet-p1-2020-environmental-studies-q121,,c
+M-01,147,environmental-studies,पर्यावरण अध्ययन,2020,2020-11-06,A,122,utet-p1-2020-environmental-studies-q122,,d
+M-01,148,environmental-studies,पर्यावरण अध्ययन,2020,2020-11-06,A,123,utet-p1-2020-environmental-studies-q123,,c
+M-01,149,environmental-studies,पर्यावरण अध्ययन,2020,2020-11-06,A,124,utet-p1-2020-environmental-studies-q124,,c
+M-01,150,environmental-studies,पर्यावरण अध्ययन,2020,2020-11-06,A,125,utet-p1-2020-environmental-studies-q125,,d
+M-02,1,cdp,बाल विकास एवं शिक्षाशास्त्र,2026,2026-09-29,A,6,utet-p1-2026-cdp-q006,,b
+M-02,2,cdp,बाल विकास एवं शिक्षाशास्त्र,2026,2026-09-29,A,7,utet-p1-2026-cdp-q007,,a
+M-02,3,cdp,बाल विकास एवं शिक्षाशास्त्र,2026,2026-09-29,A,8,utet-p1-2026-cdp-q008,,d
+M-02,4,cdp,बाल विकास एवं शिक्षाशास्त्र,2026,2026-09-29,A,9,utet-p1-2026-cdp-q009,,b
+M-02,5,cdp,बाल विकास एवं शिक्षाशास्त्र,2026,2026-09-29,A,10,utet-p1-2026-cdp-q010,,b
+M-02,6,cdp,बाल विकास एवं शिक्षाशास्त्र,2025,2025-10-24,A,6,utet-p1-2025-cdp-q006,,c
+M-02,7,cdp,बाल विकास एवं शिक्षाशास्त्र,2025,2025-10-24,A,7,utet-p1-2025-cdp-q007,,d
+M-02,8,cdp,बाल विकास एवं शिक्षाशास्त्र,2025,2025-10-24,A,8,utet-p1-2025-cdp-q008,,b
+M-02,9,cdp,बाल विकास एवं शिक्षाशास्त्र,2025,2025-10-24,A,9,utet-p1-2025-cdp-q009,,c
+M-02,10,cdp,बाल विकास एवं शिक्षाशास्त्र,2025,2025-10-24,A,10,utet-p1-2025-cdp-q010,,c
+M-02,11,cdp,बाल विकास एवं शिक्षाशास्त्र,2024,2024-09-29,D,6,utet-p1-2024-cdp-q006,,a
+M-02,12,cdp,बाल विकास एवं शिक्षाशास्त्र,2024,2024-09-29,D,7,utet-p1-2024-cdp-q007,,c
+M-02,13,cdp,बाल विकास एवं शिक्षाशास्त्र,2024,2024-09-29,D,8,utet-p1-2024-cdp-q008,,b
+M-02,14,cdp,बाल विकास एवं शिक्षाशास्त्र,2024,2024-09-29,D,9,utet-p1-2024-cdp-q009,,a
+M-02,15,cdp,बाल विकास एवं शिक्षाशास्त्र,2024,2024-09-29,D,10,utet-p1-2024-cdp-q010,,b
+M-02,16,cdp,बाल विकास एवं शिक्षाशास्त्र,2022,2022-11-26,B,6,utet-p1-2022-cdp-q006,,b
+M-02,17,cdp,बाल विकास एवं शिक्षाशास्त्र,2022,2022-11-26,B,7,utet-p1-2022-cdp-q007,,d
+M-02,18,cdp,बाल विकास एवं शिक्षाशास्त्र,2022,2022-11-26,B,8,utet-p1-2022-cdp-q008,,c
+M-02,19,cdp,बाल विकास एवं शिक्षाशास्त्र,2022,2022-11-26,B,9,utet-p1-2022-cdp-q009,,d
+M-02,20,cdp,बाल विकास एवं शिक्षाशास्त्र,2022,2022-11-26,B,10,utet-p1-2022-cdp-q010,,c
+M-02,21,cdp,बाल विकास एवं शिक्षाशास्त्र,2021,2021-03-24,C,6,utet-p1-2021-cdp-q006,,b
+M-02,22,cdp,बाल विकास एवं शिक्षाशास्त्र,2021,2021-03-24,C,7,utet-p1-2021-cdp-q007,,a
+M-02,23,cdp,बाल विकास एवं शिक्षाशास्त्र,2021,2021-03-24,C,8,utet-p1-2021-cdp-q008,,d
+M-02,24,cdp,बाल विकास एवं शिक्षाशास्त्र,2021,2021-03-24,C,9,utet-p1-2021-cdp-q009,,b
+M-02,25,cdp,बाल विकास एवं शिक्षाशास्त्र,2021,2021-03-24,C,10,utet-p1-2021-cdp-q010,,d
+M-02,26,cdp,बाल विकास एवं शिक्षाशास्त्र,2020,2020-11-06,A,6,utet-p1-2020-cdp-q006,,d
+M-02,27,cdp,बाल विकास एवं शिक्षाशास्त्र,2020,2020-11-06,A,7,utet-p1-2020-cdp-q007,,d
+M-02,28,cdp,बाल विकास एवं शिक्षाशास्त्र,2020,2020-11-06,A,8,utet-p1-2020-cdp-q008,,b
+M-02,29,cdp,बाल विकास एवं शिक्षाशास्त्र,2020,2020-11-06,A,9,utet-p1-2020-cdp-q009,,d
+M-02,30,cdp,बाल विकास एवं शिक्षाशास्त्र,2020,2020-11-06,A,10,utet-p1-2020-cdp-q010,,b
+M-02,31,language-1/hindi,हिन्दी (भाषा-I),2026,2026-09-29,A,36,utet-p1-2026-lang1-hi-q036,,c
+M-02,32,language-1/hindi,हिन्दी (भाषा-I),2026,2026-09-29,A,37,utet-p1-2026-lang1-hi-q037,,b
+M-02,33,language-1/hindi,हिन्दी (भाषा-I),2026,2026-09-29,A,38,utet-p1-2026-lang1-hi-q038,,a
+M-02,34,language-1/hindi,हिन्दी (भाषा-I),2026,2026-09-29,A,39,utet-p1-2026-lang1-hi-q039,,d
+M-02,35,language-1/hindi,हिन्दी (भाषा-I),2026,2026-09-29,A,40,utet-p1-2026-lang1-hi-q040,,c
+M-02,36,language-1/hindi,हिन्दी (भाषा-I),2025,2025-10-24,A,31,utet-p1-2025-lang1-hi-q031,utet-p1-2025-ut25-h1,b
+M-02,37,language-1/hindi,हिन्दी (भाषा-I),2025,2025-10-24,A,32,utet-p1-2025-lang1-hi-q032,utet-p1-2025-ut25-h1,a
+M-02,38,language-1/hindi,हिन्दी (भाषा-I),2025,2025-10-24,A,33,utet-p1-2025-lang1-hi-q033,utet-p1-2025-ut25-h1,c
+M-02,39,language-1/hindi,हिन्दी (भाषा-I),2025,2025-10-24,A,34,utet-p1-2025-lang1-hi-q034,utet-p1-2025-ut25-h1,d
+M-02,40,language-1/hindi,हिन्दी (भाषा-I),2025,2025-10-24,A,35,utet-p1-2025-lang1-hi-q035,utet-p1-2025-ut25-h1,a
+M-02,41,language-1/hindi,हिन्दी (भाषा-I),2024,2024-09-29,D,36,utet-p1-2024-lang1-hi-q036,,c
+M-02,42,language-1/hindi,हिन्दी (भाषा-I),2024,2024-09-29,D,37,utet-p1-2024-lang1-hi-q037,,d
+M-02,43,language-1/hindi,हिन्दी (भाषा-I),2024,2024-09-29,D,38,utet-p1-2024-lang1-hi-q038,,b
+M-02,44,language-1/hindi,हिन्दी (भाषा-I),2024,2024-09-29,D,39,utet-p1-2024-lang1-hi-q039,,d
+M-02,45,language-1/hindi,हिन्दी (भाषा-I),2024,2024-09-29,D,40,utet-p1-2024-lang1-hi-q040,,d
+M-02,46,language-1/hindi,हिन्दी (भाषा-I),2022,2022-11-26,B,36,utet-p1-2022-lang1-hi-q036,,d
+M-02,47,language-1/hindi,हिन्दी (भाषा-I),2022,2022-11-26,B,37,utet-p1-2022-lang1-hi-q037,,c
+M-02,48,language-1/hindi,हिन्दी (भाषा-I),2022,2022-11-26,B,38,utet-p1-2022-lang1-hi-q038,,a
+M-02,49,language-1/hindi,हिन्दी (भाषा-I),2022,2022-11-26,B,39,utet-p1-2022-lang1-hi-q039,,c
+M-02,50,language-1/hindi,हिन्दी (भाषा-I),2022,2022-11-26,B,40,utet-p1-2022-lang1-hi-q040,,b
+M-02,51,language-1/hindi,हिन्दी (भाषा-I),2021,2021-03-24,C,36,utet-p1-2021-lang1-hi-q036,,b
+M-02,52,language-1/hindi,हिन्दी (भाषा-I),2021,2021-03-24,C,37,utet-p1-2021-lang1-hi-q037,,a
+M-02,53,language-1/hindi,हिन्दी (भाषा-I),2021,2021-03-24,C,38,utet-p1-2021-lang1-hi-q038,,c
+M-02,54,language-1/hindi,हिन्दी (भाषा-I),2021,2021-03-24,C,39,utet-p1-2021-lang1-hi-q039,,b
+M-02,55,language-1/hindi,हिन्दी (भाषा-I),2021,2021-03-24,C,40,utet-p1-2021-lang1-hi-q040,,c
+M-02,56,language-1/hindi,हिन्दी (भाषा-I),2020,2020-11-06,A,50,utet-p1-2020-lang1-hi-q050,utet-p1-2020-ut20-h2,c
+M-02,57,language-1/hindi,हिन्दी (भाषा-I),2020,2020-11-06,A,51,utet-p1-2020-lang1-hi-q051,utet-p1-2020-ut20-h2,b
+M-02,58,language-1/hindi,हिन्दी (भाषा-I),2020,2020-11-06,A,52,utet-p1-2020-lang1-hi-q052,utet-p1-2020-ut20-h2,a
+M-02,59,language-1/hindi,हिन्दी (भाषा-I),2020,2020-11-06,A,53,utet-p1-2020-lang1-hi-q053,utet-p1-2020-ut20-h2,b
+M-02,60,language-1/hindi,हिन्दी (भाषा-I),2020,2020-11-06,A,54,utet-p1-2020-lang1-hi-q054,utet-p1-2020-ut20-h2,b
+M-02,61,language-2/english,अंग्रेज़ी (भाषा-II),2026,2026-09-29,A,62,utet-p1-2026-lang2-en-q062,,c
+M-02,62,language-2/english,अंग्रेज़ी (भाषा-II),2026,2026-09-29,A,67,utet-p1-2026-lang2-en-q067,,c
+M-02,63,language-2/english,अंग्रेज़ी (भाषा-II),2026,2026-09-29,A,68,utet-p1-2026-lang2-en-q068,,d
+M-02,64,language-2/english,अंग्रेज़ी (भाषा-II),2026,2026-09-29,A,69,utet-p1-2026-lang2-en-q069,,c
+M-02,65,language-2/english,अंग्रेज़ी (भाषा-II),2026,2026-09-29,A,70,utet-p1-2026-lang2-en-q070,,c
+M-02,66,language-2/english,अंग्रेज़ी (भाषा-II),2025,2025-10-24,A,64,utet-p1-2025-lang2-en-q064,utet-p1-2025-ut25-e1,c
+M-02,67,language-2/english,अंग्रेज़ी (भाषा-II),2025,2025-10-24,A,65,utet-p1-2025-lang2-en-q065,utet-p1-2025-ut25-e1,d
+M-02,68,language-2/english,अंग्रेज़ी (भाषा-II),2025,2025-10-24,A,66,utet-p1-2025-lang2-en-q066,utet-p1-2025-ut25-e1,c
+M-02,69,language-2/english,अंग्रेज़ी (भाषा-II),2025,2025-10-24,A,67,utet-p1-2025-lang2-en-q067,utet-p1-2025-ut25-e1,d
+M-02,70,language-2/english,अंग्रेज़ी (भाषा-II),2025,2025-10-24,A,68,utet-p1-2025-lang2-en-q068,utet-p1-2025-ut25-e1,b
+M-02,71,language-2/english,अंग्रेज़ी (भाषा-II),2024,2024-09-29,D,66,utet-p1-2024-lang2-en-q066,,a
+M-02,72,language-2/english,अंग्रेज़ी (भाषा-II),2024,2024-09-29,D,67,utet-p1-2024-lang2-en-q067,,d
+M-02,73,language-2/english,अंग्रेज़ी (भाषा-II),2024,2024-09-29,D,68,utet-p1-2024-lang2-en-q068,,c
+M-02,74,language-2/english,अंग्रेज़ी (भाषा-II),2024,2024-09-29,D,69,utet-p1-2024-lang2-en-q069,,d
+M-02,75,language-2/english,अंग्रेज़ी (भाषा-II),2024,2024-09-29,D,70,utet-p1-2024-lang2-en-q070,,b
+M-02,76,language-2/english,अंग्रेज़ी (भाषा-II),2022,2022-11-26,B,66,utet-p1-2022-lang2-en-q066,,b
+M-02,77,language-2/english,अंग्रेज़ी (भाषा-II),2022,2022-11-26,B,67,utet-p1-2022-lang2-en-q067,,c
+M-02,78,language-2/english,अंग्रेज़ी (भाषा-II),2022,2022-11-26,B,68,utet-p1-2022-lang2-en-q068,,d
+M-02,79,language-2/english,अंग्रेज़ी (भाषा-II),2022,2022-11-26,B,69,utet-p1-2022-lang2-en-q069,,c
+M-02,80,language-2/english,अंग्रेज़ी (भाषा-II),2022,2022-11-26,B,70,utet-p1-2022-lang2-en-q070,,d
+M-02,81,language-2/english,अंग्रेज़ी (भाषा-II),2021,2021-03-24,C,61,utet-p1-2021-lang2-en-q061,,c
+M-02,82,language-2/english,अंग्रेज़ी (भाषा-II),2021,2021-03-24,C,62,utet-p1-2021-lang2-en-q062,,a
+M-02,83,language-2/english,अंग्रेज़ी (भाषा-II),2021,2021-03-24,C,63,utet-p1-2021-lang2-en-q063,,c
+M-02,84,language-2/english,अंग्रेज़ी (भाषा-II),2021,2021-03-24,C,64,utet-p1-2021-lang2-en-q064,,b
+M-02,85,language-2/english,अंग्रेज़ी (भाषा-II),2021,2021-03-24,C,65,utet-p1-2021-lang2-en-q065,,a
+M-02,86,language-2/english,अंग्रेज़ी (भाषा-II),2020,2020-11-06,A,84,utet-p1-2020-lang2-en-q084,utet-p1-2020-ut20-e2,a
+M-02,87,language-2/english,अंग्रेज़ी (भाषा-II),2020,2020-11-06,A,85,utet-p1-2020-lang2-en-q085,utet-p1-2020-ut20-e2,c
+M-02,88,language-2/english,अंग्रेज़ी (भाषा-II),2020,2020-11-06,A,86,utet-p1-2020-lang2-en-q086,utet-p1-2020-ut20-e2,b
+M-02,89,language-2/english,अंग्रेज़ी (भाषा-II),2020,2020-11-06,A,87,utet-p1-2020-lang2-en-q087,utet-p1-2020-ut20-e2,c
+M-02,90,language-2/english,अंग्रेज़ी (भाषा-II),2020,2020-11-06,A,88,utet-p1-2020-lang2-en-q088,utet-p1-2020-ut20-e2,d
+M-02,91,mathematics,गणित,2026,2026-09-29,A,96,utet-p1-2026-mathematics-q096,,c
+M-02,92,mathematics,गणित,2026,2026-09-29,A,97,utet-p1-2026-mathematics-q097,,d
+M-02,93,mathematics,गणित,2026,2026-09-29,A,98,utet-p1-2026-mathematics-q098,,c
+M-02,94,mathematics,गणित,2026,2026-09-29,A,99,utet-p1-2026-mathematics-q099,,d
+M-02,95,mathematics,गणित,2026,2026-09-29,A,100,utet-p1-2026-mathematics-q100,,b
+M-02,96,mathematics,गणित,2025,2025-10-24,A,96,utet-p1-2025-mathematics-q096,,c
+M-02,97,mathematics,गणित,2025,2025-10-24,A,97,utet-p1-2025-mathematics-q097,,d
+M-02,98,mathematics,गणित,2025,2025-10-24,A,98,utet-p1-2025-mathematics-q098,,a
+M-02,99,mathematics,गणित,2025,2025-10-24,A,99,utet-p1-2025-mathematics-q099,,c
+M-02,100,mathematics,गणित,2025,2025-10-24,A,100,utet-p1-2025-mathematics-q100,,c
+M-02,101,mathematics,गणित,2024,2024-09-29,D,96,utet-p1-2024-mathematics-q096,,a
+M-02,102,mathematics,गणित,2024,2024-09-29,D,97,utet-p1-2024-mathematics-q097,,c
+M-02,103,mathematics,गणित,2024,2024-09-29,D,98,utet-p1-2024-mathematics-q098,,d
+M-02,104,mathematics,गणित,2024,2024-09-29,D,99,utet-p1-2024-mathematics-q099,,b
+M-02,105,mathematics,गणित,2024,2024-09-29,D,100,utet-p1-2024-mathematics-q100,,b
+M-02,106,mathematics,गणित,2022,2022-11-26,B,96,utet-p1-2022-mathematics-q096,,d
+M-02,107,mathematics,गणित,2022,2022-11-26,B,97,utet-p1-2022-mathematics-q097,,c
+M-02,108,mathematics,गणित,2022,2022-11-26,B,98,utet-p1-2022-mathematics-q098,,c
+M-02,109,mathematics,गणित,2022,2022-11-26,B,99,utet-p1-2022-mathematics-q099,,d
+M-02,110,mathematics,गणित,2022,2022-11-26,B,100,utet-p1-2022-mathematics-q100,,a
+M-02,111,mathematics,गणित,2021,2021-03-24,C,96,utet-p1-2021-mathematics-q096,,b
+M-02,112,mathematics,गणित,2021,2021-03-24,C,97,utet-p1-2021-mathematics-q097,,a
+M-02,113,mathematics,गणित,2021,2021-03-24,C,98,utet-p1-2021-mathematics-q098,,b
+M-02,114,mathematics,गणित,2021,2021-03-24,C,99,utet-p1-2021-mathematics-q099,,a
+M-02,115,mathematics,गणित,2021,2021-03-24,C,100,utet-p1-2021-mathematics-q100,,a
+M-02,116,mathematics,गणित,2020,2020-11-06,A,96,utet-p1-2020-mathematics-q096,,b
+M-02,117,mathematics,गणित,2020,2020-11-06,A,97,utet-p1-2020-mathematics-q097,,a
+M-02,118,mathematics,गणित,2020,2020-11-06,A,98,utet-p1-2020-mathematics-q098,,b
+M-02,119,mathematics,गणित,2020,2020-11-06,A,99,utet-p1-2020-mathematics-q099,,a
+M-02,120,mathematics,गणित,2020,2020-11-06,A,100,utet-p1-2020-mathematics-q100,,c
+M-02,121,environmental-studies,पर्यावरण अध्ययन,2026,2026-09-29,A,126,utet-p1-2026-environmental-studies-q126,,b
+M-02,122,environmental-studies,पर्यावरण अध्ययन,2026,2026-09-29,A,127,utet-p1-2026-environmental-studies-q127,,c
+M-02,123,environmental-studies,पर्यावरण अध्ययन,2026,2026-09-29,A,128,utet-p1-2026-environmental-studies-q128,,c
+M-02,124,environmental-studies,पर्यावरण अध्ययन,2026,2026-09-29,A,129,utet-p1-2026-environmental-studies-q129,,c
+M-02,125,environmental-studies,पर्यावरण अध्ययन,2026,2026-09-29,A,130,utet-p1-2026-environmental-studies-q130,,b
+M-02,126,environmental-studies,पर्यावरण अध्ययन,2025,2025-10-24,A,126,utet-p1-2025-environmental-studies-q126,,a
+M-02,127,environmental-studies,पर्यावरण अध्ययन,2025,2025-10-24,A,127,utet-p1-2025-environmental-studies-q127,,c
+M-02,128,environmental-studies,पर्यावरण अध्ययन,2025,2025-10-24,A,128,utet-p1-2025-environmental-studies-q128,,a
+M-02,129,environmental-studies,पर्यावरण अध्ययन,2025,2025-10-24,A,129,utet-p1-2025-environmental-studies-q129,,d
+M-02,130,environmental-studies,पर्यावरण अध्ययन,2025,2025-10-24,A,130,utet-p1-2025-environmental-studies-q130,,c
+M-02,131,environmental-studies,पर्यावरण अध्ययन,2024,2024-09-29,D,126,utet-p1-2024-environmental-studies-q126,,a
+M-02,132,environmental-studies,पर्यावरण अध्ययन,2024,2024-09-29,D,127,utet-p1-2024-environmental-studies-q127,,b
+M-02,133,environmental-studies,पर्यावरण अध्ययन,2024,2024-09-29,D,128,utet-p1-2024-environmental-studies-q128,,c
+M-02,134,environmental-studies,पर्यावरण अध्ययन,2024,2024-09-29,D,129,utet-p1-2024-environmental-studies-q129,,b
+M-02,135,environmental-studies,पर्यावरण अध्ययन,2024,2024-09-29,D,130,utet-p1-2024-environmental-studies-q130,,c
+M-02,136,environmental-studies,पर्यावरण अध्ययन,2022,2022-11-26,B,126,utet-p1-2022-environmental-studies-q126,,b
+M-02,137,environmental-studies,पर्यावरण अध्ययन,2022,2022-11-26,B,127,utet-p1-2022-environmental-studies-q127,,a
+M-02,138,environmental-studies,पर्यावरण अध्ययन,2022,2022-11-26,B,128,utet-p1-2022-environmental-studies-q128,,c
+M-02,139,environmental-studies,पर्यावरण अध्ययन,2022,2022-11-26,B,129,utet-p1-2022-environmental-studies-q129,,a
+M-02,140,environmental-studies,पर्यावरण अध्ययन,2022,2022-11-26,B,130,utet-p1-2022-environmental-studies-q130,,c
+M-02,141,environmental-studies,पर्यावरण अध्ययन,2021,2021-03-24,C,126,utet-p1-2021-environmental-studies-q126,,b
+M-02,142,environmental-studies,पर्यावरण अध्ययन,2021,2021-03-24,C,127,utet-p1-2021-environmental-studies-q127,,c
+M-02,143,environmental-studies,पर्यावरण अध्ययन,2021,2021-03-24,C,128,utet-p1-2021-environmental-studies-q128,,a
+M-02,144,environmental-studies,पर्यावरण अध्ययन,2021,2021-03-24,C,129,utet-p1-2021-environmental-studies-q129,,d
+M-02,145,environmental-studies,पर्यावरण अध्ययन,2021,2021-03-24,C,130,utet-p1-2021-environmental-studies-q130,,c
+M-02,146,environmental-studies,पर्यावरण अध्ययन,2020,2020-11-06,A,126,utet-p1-2020-environmental-studies-q126,,a
+M-02,147,environmental-studies,पर्यावरण अध्ययन,2020,2020-11-06,A,127,utet-p1-2020-environmental-studies-q127,,d
+M-02,148,environmental-studies,पर्यावरण अध्ययन,2020,2020-11-06,A,128,utet-p1-2020-environmental-studies-q128,,b
+M-02,149,environmental-studies,पर्यावरण अध्ययन,2020,2020-11-06,A,129,utet-p1-2020-environmental-studies-q129,,b
+M-02,150,environmental-studies,पर्यावरण अध्ययन,2020,2020-11-06,A,130,utet-p1-2020-environmental-studies-q130,,a
+M-03,1,cdp,बाल विकास एवं शिक्षाशास्त्र,2026,2026-09-29,A,11,utet-p1-2026-cdp-q011,,c
+M-03,2,cdp,बाल विकास एवं शिक्षाशास्त्र,2026,2026-09-29,A,12,utet-p1-2026-cdp-q012,,d
+M-03,3,cdp,बाल विकास एवं शिक्षाशास्त्र,2026,2026-09-29,A,13,utet-p1-2026-cdp-q013,,a
+M-03,4,cdp,बाल विकास एवं शिक्षाशास्त्र,2026,2026-09-29,A,14,utet-p1-2026-cdp-q014,,c
+M-03,5,cdp,बाल विकास एवं शिक्षाशास्त्र,2026,2026-09-29,A,15,utet-p1-2026-cdp-q015,,b
+M-03,6,cdp,बाल विकास एवं शिक्षाशास्त्र,2025,2025-10-24,A,11,utet-p1-2025-cdp-q011,,c
+M-03,7,cdp,बाल विकास एवं शिक्षाशास्त्र,2025,2025-10-24,A,12,utet-p1-2025-cdp-q012,,a
+M-03,8,cdp,बाल विकास एवं शिक्षाशास्त्र,2025,2025-10-24,A,13,utet-p1-2025-cdp-q013,,c
+M-03,9,cdp,बाल विकास एवं शिक्षाशास्त्र,2025,2025-10-24,A,14,utet-p1-2025-cdp-q014,,c
+M-03,10,cdp,बाल विकास एवं शिक्षाशास्त्र,2025,2025-10-24,A,15,utet-p1-2025-cdp-q015,,d
+M-03,11,cdp,बाल विकास एवं शिक्षाशास्त्र,2024,2024-09-29,D,11,utet-p1-2024-cdp-q011,,a
+M-03,12,cdp,बाल विकास एवं शिक्षाशास्त्र,2024,2024-09-29,D,12,utet-p1-2024-cdp-q012,,a
+M-03,13,cdp,बाल विकास एवं शिक्षाशास्त्र,2024,2024-09-29,D,13,utet-p1-2024-cdp-q013,,b
+M-03,14,cdp,बाल विकास एवं शिक्षाशास्त्र,2024,2024-09-29,D,14,utet-p1-2024-cdp-q014,,b
+M-03,15,cdp,बाल विकास एवं शिक्षाशास्त्र,2024,2024-09-29,D,15,utet-p1-2024-cdp-q015,,b
+M-03,16,cdp,बाल विकास एवं शिक्षाशास्त्र,2022,2022-11-26,B,11,utet-p1-2022-cdp-q011,,d
+M-03,17,cdp,बाल विकास एवं शिक्षाशास्त्र,2022,2022-11-26,B,12,utet-p1-2022-cdp-q012,,c
+M-03,18,cdp,बाल विकास एवं शिक्षाशास्त्र,2022,2022-11-26,B,13,utet-p1-2022-cdp-q013,,a
+M-03,19,cdp,बाल विकास एवं शिक्षाशास्त्र,2022,2022-11-26,B,14,utet-p1-2022-cdp-q014,,a
+M-03,20,cdp,बाल विकास एवं शिक्षाशास्त्र,2022,2022-11-26,B,15,utet-p1-2022-cdp-q015,,b
+M-03,21,cdp,बाल विकास एवं शिक्षाशास्त्र,2021,2021-03-24,C,11,utet-p1-2021-cdp-q011,,a
+M-03,22,cdp,बाल विकास एवं शिक्षाशास्त्र,2021,2021-03-24,C,12,utet-p1-2021-cdp-q012,,c
+M-03,23,cdp,बाल विकास एवं शिक्षाशास्त्र,2021,2021-03-24,C,13,utet-p1-2021-cdp-q013,,c
+M-03,24,cdp,बाल विकास एवं शिक्षाशास्त्र,2021,2021-03-24,C,14,utet-p1-2021-cdp-q014,,b
+M-03,25,cdp,बाल विकास एवं शिक्षाशास्त्र,2021,2021-03-24,C,15,utet-p1-2021-cdp-q015,,d
+M-03,26,cdp,बाल विकास एवं शिक्षाशास्त्र,2020,2020-11-06,A,11,utet-p1-2020-cdp-q011,,b
+M-03,27,cdp,बाल विकास एवं शिक्षाशास्त्र,2020,2020-11-06,A,12,utet-p1-2020-cdp-q012,,b
+M-03,28,cdp,बाल विकास एवं शिक्षाशास्त्र,2020,2020-11-06,A,13,utet-p1-2020-cdp-q013,,c
+M-03,29,cdp,बाल विकास एवं शिक्षाशास्त्र,2020,2020-11-06,A,14,utet-p1-2020-cdp-q014,,b
+M-03,30,cdp,बाल विकास एवं शिक्षाशास्त्र,2020,2020-11-06,A,15,utet-p1-2020-cdp-q015,,d
+M-03,31,language-1/hindi,हिन्दी (भाषा-I),2026,2026-09-29,A,56,utet-p1-2026-lang1-hi-q056,utet-p1-2026-ut26-h2,c
+M-03,32,language-1/hindi,हिन्दी (भाषा-I),2026,2026-09-29,A,57,utet-p1-2026-lang1-hi-q057,utet-p1-2026-ut26-h2,b
+M-03,33,language-1/hindi,हिन्दी (भाषा-I),2026,2026-09-29,A,58,utet-p1-2026-lang1-hi-q058,utet-p1-2026-ut26-h2,d
+M-03,34,language-1/hindi,हिन्दी (भाषा-I),2026,2026-09-29,A,59,utet-p1-2026-lang1-hi-q059,utet-p1-2026-ut26-h2,d
+M-03,35,language-1/hindi,हिन्दी (भाषा-I),2026,2026-09-29,A,41,utet-p1-2026-lang1-hi-q041,,b
+M-03,36,language-1/hindi,हिन्दी (भाषा-I),2025,2025-10-24,A,41,utet-p1-2025-lang1-hi-q041,,a
+M-03,37,language-1/hindi,हिन्दी (भाषा-I),2025,2025-10-24,A,42,utet-p1-2025-lang1-hi-q042,,b
+M-03,38,language-1/hindi,हिन्दी (भाषा-I),2025,2025-10-24,A,43,utet-p1-2025-lang1-hi-q043,,c
+M-03,39,language-1/hindi,हिन्दी (भाषा-I),2025,2025-10-24,A,44,utet-p1-2025-lang1-hi-q044,,b
+M-03,40,language-1/hindi,हिन्दी (भाषा-I),2025,2025-10-24,A,45,utet-p1-2025-lang1-hi-q045,,b
+M-03,41,language-1/hindi,हिन्दी (भाषा-I),2024,2024-09-29,D,46,utet-p1-2024-lang1-hi-q046,utet-p1-2024-ut24-h1,b
+M-03,42,language-1/hindi,हिन्दी (भाषा-I),2024,2024-09-29,D,47,utet-p1-2024-lang1-hi-q047,utet-p1-2024-ut24-h1,c
+M-03,43,language-1/hindi,हिन्दी (भाषा-I),2024,2024-09-29,D,48,utet-p1-2024-lang1-hi-q048,utet-p1-2024-ut24-h1,b
+M-03,44,language-1/hindi,हिन्दी (भाषा-I),2024,2024-09-29,D,49,utet-p1-2024-lang1-hi-q049,utet-p1-2024-ut24-h1,a
+M-03,45,language-1/hindi,हिन्दी (भाषा-I),2024,2024-09-29,D,50,utet-p1-2024-lang1-hi-q050,utet-p1-2024-ut24-h1,d
+M-03,46,language-1/hindi,हिन्दी (भाषा-I),2022,2022-11-26,B,41,utet-p1-2022-lang1-hi-q041,,b
+M-03,47,language-1/hindi,हिन्दी (भाषा-I),2022,2022-11-26,B,42,utet-p1-2022-lang1-hi-q042,,c
+M-03,48,language-1/hindi,हिन्दी (भाषा-I),2022,2022-11-26,B,43,utet-p1-2022-lang1-hi-q043,,b
+M-03,49,language-1/hindi,हिन्दी (भाषा-I),2022,2022-11-26,B,44,utet-p1-2022-lang1-hi-q044,,b
+M-03,50,language-1/hindi,हिन्दी (भाषा-I),2022,2022-11-26,B,45,utet-p1-2022-lang1-hi-q045,,c
+M-03,51,language-1/hindi,हिन्दी (भाषा-I),2021,2021-03-24,C,41,utet-p1-2021-lang1-hi-q041,,b
+M-03,52,language-1/hindi,हिन्दी (भाषा-I),2021,2021-03-24,C,42,utet-p1-2021-lang1-hi-q042,,d
+M-03,53,language-1/hindi,हिन्दी (भाषा-I),2021,2021-03-24,C,43,utet-p1-2021-lang1-hi-q043,,b
+M-03,54,language-1/hindi,हिन्दी (भाषा-I),2021,2021-03-24,C,44,utet-p1-2021-lang1-hi-q044,,d
+M-03,55,language-1/hindi,हिन्दी (भाषा-I),2021,2021-03-24,C,45,utet-p1-2021-lang1-hi-q045,,a
+M-03,56,language-1/hindi,हिन्दी (भाषा-I),2020,2020-11-06,A,36,utet-p1-2020-lang1-hi-q036,,c
+M-03,57,language-1/hindi,हिन्दी (भाषा-I),2020,2020-11-06,A,37,utet-p1-2020-lang1-hi-q037,,a
+M-03,58,language-1/hindi,हिन्दी (भाषा-I),2020,2020-11-06,A,38,utet-p1-2020-lang1-hi-q038,,b
+M-03,59,language-1/hindi,हिन्दी (भाषा-I),2020,2020-11-06,A,39,utet-p1-2020-lang1-hi-q039,,d
+M-03,60,language-1/hindi,हिन्दी (भाषा-I),2020,2020-11-06,A,40,utet-p1-2020-lang1-hi-q040,,b
+M-03,61,language-2/english,अंग्रेज़ी (भाषा-II),2026,2026-09-29,A,73,utet-p1-2026-lang2-en-q073,utet-p1-2026-ut26-e2,a
+M-03,62,language-2/english,अंग्रेज़ी (भाषा-II),2026,2026-09-29,A,74,utet-p1-2026-lang2-en-q074,utet-p1-2026-ut26-e2,d
+M-03,63,language-2/english,अंग्रेज़ी (भाषा-II),2026,2026-09-29,A,75,utet-p1-2026-lang2-en-q075,utet-p1-2026-ut26-e2,a
+M-03,64,language-2/english,अंग्रेज़ी (भाषा-II),2026,2026-09-29,A,76,utet-p1-2026-lang2-en-q076,utet-p1-2026-ut26-e2,b
+M-03,65,language-2/english,अंग्रेज़ी (भाषा-II),2026,2026-09-29,A,71,utet-p1-2026-lang2-en-q071,,d
+M-03,66,language-2/english,अंग्रेज़ी (भाषा-II),2025,2025-10-24,A,71,utet-p1-2025-lang2-en-q071,,a
+M-03,67,language-2/english,अंग्रेज़ी (भाषा-II),2025,2025-10-24,A,72,utet-p1-2025-lang2-en-q072,,b
+M-03,68,language-2/english,अंग्रेज़ी (भाषा-II),2025,2025-10-24,A,73,utet-p1-2025-lang2-en-q073,,c
+M-03,69,language-2/english,अंग्रेज़ी (भाषा-II),2025,2025-10-24,A,74,utet-p1-2025-lang2-en-q074,,c
+M-03,70,language-2/english,अंग्रेज़ी (भाषा-II),2025,2025-10-24,A,75,utet-p1-2025-lang2-en-q075,,b
+M-03,71,language-2/english,अंग्रेज़ी (भाषा-II),2024,2024-09-29,D,71,utet-p1-2024-lang2-en-q071,utet-p1-2024-ut24-e1,d
+M-03,72,language-2/english,अंग्रेज़ी (भाषा-II),2024,2024-09-29,D,72,utet-p1-2024-lang2-en-q072,utet-p1-2024-ut24-e1,c
+M-03,73,language-2/english,अंग्रेज़ी (भाषा-II),2024,2024-09-29,D,73,utet-p1-2024-lang2-en-q073,utet-p1-2024-ut24-e1,c
+M-03,74,language-2/english,अंग्रेज़ी (भाषा-II),2024,2024-09-29,D,74,utet-p1-2024-lang2-en-q074,utet-p1-2024-ut24-e1,a
+M-03,75,language-2/english,अंग्रेज़ी (भाषा-II),2024,2024-09-29,D,75,utet-p1-2024-lang2-en-q075,utet-p1-2024-ut24-e1,d
+M-03,76,language-2/english,अंग्रेज़ी (भाषा-II),2022,2022-11-26,B,71,utet-p1-2022-lang2-en-q071,,d
+M-03,77,language-2/english,अंग्रेज़ी (भाषा-II),2022,2022-11-26,B,76,utet-p1-2022-lang2-en-q076,,a
+M-03,78,language-2/english,अंग्रेज़ी (भाषा-II),2022,2022-11-26,B,77,utet-p1-2022-lang2-en-q077,,b
+M-03,79,language-2/english,अंग्रेज़ी (भाषा-II),2022,2022-11-26,B,78,utet-p1-2022-lang2-en-q078,,a
+M-03,80,language-2/english,अंग्रेज़ी (भाषा-II),2022,2022-11-26,B,83,utet-p1-2022-lang2-en-q083,,a
+M-03,81,language-2/english,अंग्रेज़ी (भाषा-II),2021,2021-03-24,C,66,utet-p1-2021-lang2-en-q066,,b
+M-03,82,language-2/english,अंग्रेज़ी (भाषा-II),2021,2021-03-24,C,67,utet-p1-2021-lang2-en-q067,,a
+M-03,83,language-2/english,अंग्रेज़ी (भाषा-II),2021,2021-03-24,C,68,utet-p1-2021-lang2-en-q068,,b
+M-03,84,language-2/english,अंग्रेज़ी (भाषा-II),2021,2021-03-24,C,79,utet-p1-2021-lang2-en-q079,,d
+M-03,85,language-2/english,अंग्रेज़ी (भाषा-II),2021,2021-03-24,C,80,utet-p1-2021-lang2-en-q080,,c
+M-03,86,language-2/english,अंग्रेज़ी (भाषा-II),2020,2020-11-06,A,66,utet-p1-2020-lang2-en-q066,,b
+M-03,87,language-2/english,अंग्रेज़ी (भाषा-II),2020,2020-11-06,A,72,utet-p1-2020-lang2-en-q072,,a
+M-03,88,language-2/english,अंग्रेज़ी (भाषा-II),2020,2020-11-06,A,73,utet-p1-2020-lang2-en-q073,,b
+M-03,89,language-2/english,अंग्रेज़ी (भाषा-II),2020,2020-11-06,A,74,utet-p1-2020-lang2-en-q074,,b
+M-03,90,language-2/english,अंग्रेज़ी (भाषा-II),2020,2020-11-06,A,75,utet-p1-2020-lang2-en-q075,,a
+M-03,91,mathematics,गणित,2026,2026-09-29,A,101,utet-p1-2026-mathematics-q101,,b
+M-03,92,mathematics,गणित,2026,2026-09-29,A,102,utet-p1-2026-mathematics-q102,,d
+M-03,93,mathematics,गणित,2026,2026-09-29,A,103,utet-p1-2026-mathematics-q103,,c
+M-03,94,mathematics,गणित,2026,2026-09-29,A,104,utet-p1-2026-mathematics-q104,,c
+M-03,95,mathematics,गणित,2026,2026-09-29,A,105,utet-p1-2026-mathematics-q105,,d
+M-03,96,mathematics,गणित,2025,2025-10-24,A,101,utet-p1-2025-mathematics-q101,,a
+M-03,97,mathematics,गणित,2025,2025-10-24,A,102,utet-p1-2025-mathematics-q102,,a
+M-03,98,mathematics,गणित,2025,2025-10-24,A,103,utet-p1-2025-mathematics-q103,,c
+M-03,99,mathematics,गणित,2025,2025-10-24,A,104,utet-p1-2025-mathematics-q104,,b
+M-03,100,mathematics,गणित,2025,2025-10-24,A,105,utet-p1-2025-mathematics-q105,,a
+M-03,101,mathematics,गणित,2024,2024-09-29,D,101,utet-p1-2024-mathematics-q101,,b
+M-03,102,mathematics,गणित,2024,2024-09-29,D,102,utet-p1-2024-mathematics-q102,,b
+M-03,103,mathematics,गणित,2024,2024-09-29,D,103,utet-p1-2024-mathematics-q103,,b
+M-03,104,mathematics,गणित,2024,2024-09-29,D,104,utet-p1-2024-mathematics-q104,,b
+M-03,105,mathematics,गणित,2024,2024-09-29,D,105,utet-p1-2024-mathematics-q105,,d
+M-03,106,mathematics,गणित,2022,2022-11-26,B,101,utet-p1-2022-mathematics-q101,,a
+M-03,107,mathematics,गणित,2022,2022-11-26,B,102,utet-p1-2022-mathematics-q102,,a
+M-03,108,mathematics,गणित,2022,2022-11-26,B,103,utet-p1-2022-mathematics-q103,,a
+M-03,109,mathematics,गणित,2022,2022-11-26,B,104,utet-p1-2022-mathematics-q104,,a
+M-03,110,mathematics,गणित,2022,2022-11-26,B,105,utet-p1-2022-mathematics-q105,,d
+M-03,111,mathematics,गणित,2021,2021-03-24,C,101,utet-p1-2021-mathematics-q101,,a
+M-03,112,mathematics,गणित,2021,2021-03-24,C,102,utet-p1-2021-mathematics-q102,,a
+M-03,113,mathematics,गणित,2021,2021-03-24,C,103,utet-p1-2021-mathematics-q103,,c
+M-03,114,mathematics,गणित,2021,2021-03-24,C,104,utet-p1-2021-mathematics-q104,,d
+M-03,115,mathematics,गणित,2021,2021-03-24,C,105,utet-p1-2021-mathematics-q105,,c
+M-03,116,mathematics,गणित,2020,2020-11-06,A,101,utet-p1-2020-mathematics-q101,,c
+M-03,117,mathematics,गणित,2020,2020-11-06,A,102,utet-p1-2020-mathematics-q102,,b
+M-03,118,mathematics,गणित,2020,2020-11-06,A,103,utet-p1-2020-mathematics-q103,,b
+M-03,119,mathematics,गणित,2020,2020-11-06,A,104,utet-p1-2020-mathematics-q104,,a
+M-03,120,mathematics,गणित,2020,2020-11-06,A,105,utet-p1-2020-mathematics-q105,,d
+M-03,121,environmental-studies,पर्यावरण अध्ययन,2026,2026-09-29,A,131,utet-p1-2026-environmental-studies-q131,,c
+M-03,122,environmental-studies,पर्यावरण अध्ययन,2026,2026-09-29,A,132,utet-p1-2026-environmental-studies-q132,,c
+M-03,123,environmental-studies,पर्यावरण अध्ययन,2026,2026-09-29,A,133,utet-p1-2026-environmental-studies-q133,,b
+M-03,124,environmental-studies,पर्यावरण अध्ययन,2026,2026-09-29,A,134,utet-p1-2026-environmental-studies-q134,,b
+M-03,125,environmental-studies,पर्यावरण अध्ययन,2026,2026-09-29,A,135,utet-p1-2026-environmental-studies-q135,,d
+M-03,126,environmental-studies,पर्यावरण अध्ययन,2025,2025-10-24,A,131,utet-p1-2025-environmental-studies-q131,,a
+M-03,127,environmental-studies,पर्यावरण अध्ययन,2025,2025-10-24,A,132,utet-p1-2025-environmental-studies-q132,,b
+M-03,128,environmental-studies,पर्यावरण अध्ययन,2025,2025-10-24,A,133,utet-p1-2025-environmental-studies-q133,,a
+M-03,129,environmental-studies,पर्यावरण अध्ययन,2025,2025-10-24,A,134,utet-p1-2025-environmental-studies-q134,,c
+M-03,130,environmental-studies,पर्यावरण अध्ययन,2025,2025-10-24,A,135,utet-p1-2025-environmental-studies-q135,,c
+M-03,131,environmental-studies,पर्यावरण अध्ययन,2024,2024-09-29,D,131,utet-p1-2024-environmental-studies-q131,,b
+M-03,132,environmental-studies,पर्यावरण अध्ययन,2024,2024-09-29,D,132,utet-p1-2024-environmental-studies-q132,,d
+M-03,133,environmental-studies,पर्यावरण अध्ययन,2024,2024-09-29,D,133,utet-p1-2024-environmental-studies-q133,,d
+M-03,134,environmental-studies,पर्यावरण अध्ययन,2024,2024-09-29,D,134,utet-p1-2024-environmental-studies-q134,,c
+M-03,135,environmental-studies,पर्यावरण अध्ययन,2024,2024-09-29,D,135,utet-p1-2024-environmental-studies-q135,,b
+M-03,136,environmental-studies,पर्यावरण अध्ययन,2022,2022-11-26,B,131,utet-p1-2022-environmental-studies-q131,,d
+M-03,137,environmental-studies,पर्यावरण अध्ययन,2022,2022-11-26,B,132,utet-p1-2022-environmental-studies-q132,,a
+M-03,138,environmental-studies,पर्यावरण अध्ययन,2022,2022-11-26,B,133,utet-p1-2022-environmental-studies-q133,,d
+M-03,139,environmental-studies,पर्यावरण अध्ययन,2022,2022-11-26,B,134,utet-p1-2022-environmental-studies-q134,,c
+M-03,140,environmental-studies,पर्यावरण अध्ययन,2022,2022-11-26,B,135,utet-p1-2022-environmental-studies-q135,,d
+M-03,141,environmental-studies,पर्यावरण अध्ययन,2021,2021-03-24,C,131,utet-p1-2021-environmental-studies-q131,,b
+M-03,142,environmental-studies,पर्यावरण अध्ययन,2021,2021-03-24,C,132,utet-p1-2021-environmental-studies-q132,,a
+M-03,143,environmental-studies,पर्यावरण अध्ययन,2021,2021-03-24,C,133,utet-p1-2021-environmental-studies-q133,,a
+M-03,144,environmental-studies,पर्यावरण अध्ययन,2021,2021-03-24,C,134,utet-p1-2021-environmental-studies-q134,,b
+M-03,145,environmental-studies,पर्यावरण अध्ययन,2021,2021-03-24,C,135,utet-p1-2021-environmental-studies-q135,,c
+M-03,146,environmental-studies,पर्यावरण अध्ययन,2020,2020-11-06,A,131,utet-p1-2020-environmental-studies-q131,,c
+M-03,147,environmental-studies,पर्यावरण अध्ययन,2020,2020-11-06,A,132,utet-p1-2020-environmental-studies-q132,,c
+M-03,148,environmental-studies,पर्यावरण अध्ययन,2020,2020-11-06,A,133,utet-p1-2020-environmental-studies-q133,,c
+M-03,149,environmental-studies,पर्यावरण अध्ययन,2020,2020-11-06,A,134,utet-p1-2020-environmental-studies-q134,,b
+M-03,150,environmental-studies,पर्यावरण अध्ययन,2020,2020-11-06,A,135,utet-p1-2020-environmental-studies-q135,,c
+M-04,1,cdp,बाल विकास एवं शिक्षाशास्त्र,2026,2026-09-29,A,16,utet-p1-2026-cdp-q016,,d
+M-04,2,cdp,बाल विकास एवं शिक्षाशास्त्र,2026,2026-09-29,A,17,utet-p1-2026-cdp-q017,,a
+M-04,3,cdp,बाल विकास एवं शिक्षाशास्त्र,2026,2026-09-29,A,18,utet-p1-2026-cdp-q018,,b
+M-04,4,cdp,बाल विकास एवं शिक्षाशास्त्र,2026,2026-09-29,A,19,utet-p1-2026-cdp-q019,,a
+M-04,5,cdp,बाल विकास एवं शिक्षाशास्त्र,2026,2026-09-29,A,20,utet-p1-2026-cdp-q020,,a
+M-04,6,cdp,बाल विकास एवं शिक्षाशास्त्र,2025,2025-10-24,A,16,utet-p1-2025-cdp-q016,,b
+M-04,7,cdp,बाल विकास एवं शिक्षाशास्त्र,2025,2025-10-24,A,17,utet-p1-2025-cdp-q017,,b
+M-04,8,cdp,बाल विकास एवं शिक्षाशास्त्र,2025,2025-10-24,A,18,utet-p1-2025-cdp-q018,,d
+M-04,9,cdp,बाल विकास एवं शिक्षाशास्त्र,2025,2025-10-24,A,19,utet-p1-2025-cdp-q019,,a
+M-04,10,cdp,बाल विकास एवं शिक्षाशास्त्र,2025,2025-10-24,A,20,utet-p1-2025-cdp-q020,,c
+M-04,11,cdp,बाल विकास एवं शिक्षाशास्त्र,2024,2024-09-29,D,16,utet-p1-2024-cdp-q016,,d
+M-04,12,cdp,बाल विकास एवं शिक्षाशास्त्र,2024,2024-09-29,D,17,utet-p1-2024-cdp-q017,,c
+M-04,13,cdp,बाल विकास एवं शिक्षाशास्त्र,2024,2024-09-29,D,18,utet-p1-2024-cdp-q018,,c
+M-04,14,cdp,बाल विकास एवं शिक्षाशास्त्र,2024,2024-09-29,D,19,utet-p1-2024-cdp-q019,,b
+M-04,15,cdp,बाल विकास एवं शिक्षाशास्त्र,2024,2024-09-29,D,20,utet-p1-2024-cdp-q020,,a
+M-04,16,cdp,बाल विकास एवं शिक्षाशास्त्र,2022,2022-11-26,B,16,utet-p1-2022-cdp-q016,,b
+M-04,17,cdp,बाल विकास एवं शिक्षाशास्त्र,2022,2022-11-26,B,17,utet-p1-2022-cdp-q017,,c
+M-04,18,cdp,बाल विकास एवं शिक्षाशास्त्र,2022,2022-11-26,B,18,utet-p1-2022-cdp-q018,,c
+M-04,19,cdp,बाल विकास एवं शिक्षाशास्त्र,2022,2022-11-26,B,19,utet-p1-2022-cdp-q019,,d
+M-04,20,cdp,बाल विकास एवं शिक्षाशास्त्र,2022,2022-11-26,B,20,utet-p1-2022-cdp-q020,,c
+M-04,21,cdp,बाल विकास एवं शिक्षाशास्त्र,2021,2021-03-24,C,16,utet-p1-2021-cdp-q016,,d
+M-04,22,cdp,बाल विकास एवं शिक्षाशास्त्र,2021,2021-03-24,C,17,utet-p1-2021-cdp-q017,,c
+M-04,23,cdp,बाल विकास एवं शिक्षाशास्त्र,2021,2021-03-24,C,18,utet-p1-2021-cdp-q018,,b
+M-04,24,cdp,बाल विकास एवं शिक्षाशास्त्र,2021,2021-03-24,C,19,utet-p1-2021-cdp-q019,,d
+M-04,25,cdp,बाल विकास एवं शिक्षाशास्त्र,2021,2021-03-24,C,20,utet-p1-2021-cdp-q020,,a
+M-04,26,cdp,बाल विकास एवं शिक्षाशास्त्र,2020,2020-11-06,A,16,utet-p1-2020-cdp-q016,,a
+M-04,27,cdp,बाल विकास एवं शिक्षाशास्त्र,2020,2020-11-06,A,17,utet-p1-2020-cdp-q017,,c
+M-04,28,cdp,बाल विकास एवं शिक्षाशास्त्र,2020,2020-11-06,A,18,utet-p1-2020-cdp-q018,,b
+M-04,29,cdp,बाल विकास एवं शिक्षाशास्त्र,2020,2020-11-06,A,19,utet-p1-2020-cdp-q019,,c
+M-04,30,cdp,बाल विकास एवं शिक्षाशास्त्र,2020,2020-11-06,A,20,utet-p1-2020-cdp-q020,,d
+M-04,31,language-1/hindi,हिन्दी (भाषा-I),2026,2026-09-29,A,42,utet-p1-2026-lang1-hi-q042,,b
+M-04,32,language-1/hindi,हिन्दी (भाषा-I),2026,2026-09-29,A,43,utet-p1-2026-lang1-hi-q043,,a
+M-04,33,language-1/hindi,हिन्दी (भाषा-I),2026,2026-09-29,A,44,utet-p1-2026-lang1-hi-q044,,a
+M-04,34,language-1/hindi,हिन्दी (भाषा-I),2026,2026-09-29,A,45,utet-p1-2026-lang1-hi-q045,,a
+M-04,35,language-1/hindi,हिन्दी (भाषा-I),2026,2026-09-29,A,46,utet-p1-2026-lang1-hi-q046,,d
+M-04,36,language-1/hindi,हिन्दी (भाषा-I),2025,2025-10-24,A,56,utet-p1-2025-lang1-hi-q056,utet-p1-2025-ut25-h2,a
+M-04,37,language-1/hindi,हिन्दी (भाषा-I),2025,2025-10-24,A,57,utet-p1-2025-lang1-hi-q057,utet-p1-2025-ut25-h2,c
+M-04,38,language-1/hindi,हिन्दी (भाषा-I),2025,2025-10-24,A,58,utet-p1-2025-lang1-hi-q058,utet-p1-2025-ut25-h2,c
+M-04,39,language-1/hindi,हिन्दी (भाषा-I),2025,2025-10-24,A,59,utet-p1-2025-lang1-hi-q059,utet-p1-2025-ut25-h2,a
+M-04,40,language-1/hindi,हिन्दी (भाषा-I),2025,2025-10-24,A,60,utet-p1-2025-lang1-hi-q060,utet-p1-2025-ut25-h2,b
+M-04,41,language-1/hindi,हिन्दी (भाषा-I),2024,2024-09-29,D,41,utet-p1-2024-lang1-hi-q041,,a
+M-04,42,language-1/hindi,हिन्दी (भाषा-I),2024,2024-09-29,D,42,utet-p1-2024-lang1-hi-q042,,c
+M-04,43,language-1/hindi,हिन्दी (भाषा-I),2024,2024-09-29,D,43,utet-p1-2024-lang1-hi-q043,,b
+M-04,44,language-1/hindi,हिन्दी (भाषा-I),2024,2024-09-29,D,44,utet-p1-2024-lang1-hi-q044,,d
+M-04,45,language-1/hindi,हिन्दी (भाषा-I),2024,2024-09-29,D,45,utet-p1-2024-lang1-hi-q045,,c
+M-04,46,language-1/hindi,हिन्दी (भाषा-I),2022,2022-11-26,B,50,utet-p1-2022-lang1-hi-q050,utet-p1-2022-ut22-h1,c
+M-04,47,language-1/hindi,हिन्दी (भाषा-I),2022,2022-11-26,B,51,utet-p1-2022-lang1-hi-q051,utet-p1-2022-ut22-h1,c
+M-04,48,language-1/hindi,हिन्दी (भाषा-I),2022,2022-11-26,B,46,utet-p1-2022-lang1-hi-q046,,c
+M-04,49,language-1/hindi,हिन्दी (भाषा-I),2022,2022-11-26,B,47,utet-p1-2022-lang1-hi-q047,,b
+M-04,50,language-1/hindi,हिन्दी (भाषा-I),2022,2022-11-26,B,48,utet-p1-2022-lang1-hi-q048,,b
+M-04,51,language-1/hindi,हिन्दी (भाषा-I),2021,2021-03-24,C,46,utet-p1-2021-lang1-hi-q046,,b
+M-04,52,language-1/hindi,हिन्दी (भाषा-I),2021,2021-03-24,C,47,utet-p1-2021-lang1-hi-q047,,d
+M-04,53,language-1/hindi,हिन्दी (भाषा-I),2021,2021-03-24,C,48,utet-p1-2021-lang1-hi-q048,,a
+M-04,54,language-1/hindi,हिन्दी (भाषा-I),2021,2021-03-24,C,49,utet-p1-2021-lang1-hi-q049,,c
+M-04,55,language-1/hindi,हिन्दी (भाषा-I),2021,2021-03-24,C,50,utet-p1-2021-lang1-hi-q050,,d
+M-04,56,language-1/hindi,हिन्दी (भाषा-I),2020,2020-11-06,A,41,utet-p1-2020-lang1-hi-q041,,c
+M-04,57,language-1/hindi,हिन्दी (भाषा-I),2020,2020-11-06,A,42,utet-p1-2020-lang1-hi-q042,,b
+M-04,58,language-1/hindi,हिन्दी (भाषा-I),2020,2020-11-06,A,43,utet-p1-2020-lang1-hi-q043,,b
+M-04,59,language-1/hindi,हिन्दी (भाषा-I),2020,2020-11-06,A,44,utet-p1-2020-lang1-hi-q044,,b
+M-04,60,language-1/hindi,हिन्दी (भाषा-I),2020,2020-11-06,A,55,utet-p1-2020-lang1-hi-q055,,b
+M-04,61,language-2/english,अंग्रेज़ी (भाषा-II),2026,2026-09-29,A,72,utet-p1-2026-lang2-en-q072,,c
+M-04,62,language-2/english,अंग्रेज़ी (भाषा-II),2026,2026-09-29,A,77,utet-p1-2026-lang2-en-q077,,b
+M-04,63,language-2/english,अंग्रेज़ी (भाषा-II),2026,2026-09-29,A,78,utet-p1-2026-lang2-en-q078,,a
+M-04,64,language-2/english,अंग्रेज़ी (भाषा-II),2026,2026-09-29,A,79,utet-p1-2026-lang2-en-q079,,b
+M-04,65,language-2/english,अंग्रेज़ी (भाषा-II),2026,2026-09-29,A,80,utet-p1-2026-lang2-en-q080,,d
+M-04,66,language-2/english,अंग्रेज़ी (भाषा-II),2025,2025-10-24,A,81,utet-p1-2025-lang2-en-q081,utet-p1-2025-ut25-e2,a
+M-04,67,language-2/english,अंग्रेज़ी (भाषा-II),2025,2025-10-24,A,82,utet-p1-2025-lang2-en-q082,utet-p1-2025-ut25-e2,c
+M-04,68,language-2/english,अंग्रेज़ी (भाषा-II),2025,2025-10-24,A,83,utet-p1-2025-lang2-en-q083,utet-p1-2025-ut25-e2,b
+M-04,69,language-2/english,अंग्रेज़ी (भाषा-II),2025,2025-10-24,A,84,utet-p1-2025-lang2-en-q084,utet-p1-2025-ut25-e2,b
+M-04,70,language-2/english,अंग्रेज़ी (भाषा-II),2025,2025-10-24,A,85,utet-p1-2025-lang2-en-q085,utet-p1-2025-ut25-e2,c
+M-04,71,language-2/english,अंग्रेज़ी (भाषा-II),2024,2024-09-29,D,76,utet-p1-2024-lang2-en-q076,,d
+M-04,72,language-2/english,अंग्रेज़ी (भाषा-II),2024,2024-09-29,D,77,utet-p1-2024-lang2-en-q077,,b
+M-04,73,language-2/english,अंग्रेज़ी (भाषा-II),2024,2024-09-29,D,78,utet-p1-2024-lang2-en-q078,,a
+M-04,74,language-2/english,अंग्रेज़ी (भाषा-II),2024,2024-09-29,D,79,utet-p1-2024-lang2-en-q079,,a
+M-04,75,language-2/english,अंग्रेज़ी (भाषा-II),2024,2024-09-29,D,80,utet-p1-2024-lang2-en-q080,,b
+M-04,76,language-2/english,अंग्रेज़ी (भाषा-II),2022,2022-11-26,B,72,utet-p1-2022-lang2-en-q072,utet-p1-2022-ut22-e1,c
+M-04,77,language-2/english,अंग्रेज़ी (भाषा-II),2022,2022-11-26,B,73,utet-p1-2022-lang2-en-q073,utet-p1-2022-ut22-e1,c
+M-04,78,language-2/english,अंग्रेज़ी (भाषा-II),2022,2022-11-26,B,74,utet-p1-2022-lang2-en-q074,utet-p1-2022-ut22-e1,a
+M-04,79,language-2/english,अंग्रेज़ी (भाषा-II),2022,2022-11-26,B,75,utet-p1-2022-lang2-en-q075,utet-p1-2022-ut22-e1,b
+M-04,80,language-2/english,अंग्रेज़ी (भाषा-II),2022,2022-11-26,B,84,utet-p1-2022-lang2-en-q084,,c
+M-04,81,language-2/english,अंग्रेज़ी (भाषा-II),2021,2021-03-24,C,81,utet-p1-2021-lang2-en-q081,,d
+M-04,82,language-2/english,अंग्रेज़ी (भाषा-II),2021,2021-03-24,C,82,utet-p1-2021-lang2-en-q082,,b
+M-04,83,language-2/english,अंग्रेज़ी (भाषा-II),2021,2021-03-24,C,83,utet-p1-2021-lang2-en-q083,,c
+M-04,84,language-2/english,अंग्रेज़ी (भाषा-II),2021,2021-03-24,C,84,utet-p1-2021-lang2-en-q084,,b
+M-04,85,language-2/english,अंग्रेज़ी (भाषा-II),2021,2021-03-24,C,85,utet-p1-2021-lang2-en-q085,,a
+M-04,86,language-2/english,अंग्रेज़ी (भाषा-II),2020,2020-11-06,A,76,utet-p1-2020-lang2-en-q076,,b
+M-04,87,language-2/english,अंग्रेज़ी (भाषा-II),2020,2020-11-06,A,77,utet-p1-2020-lang2-en-q077,,a
+M-04,88,language-2/english,अंग्रेज़ी (भाषा-II),2020,2020-11-06,A,78,utet-p1-2020-lang2-en-q078,,c
+M-04,89,language-2/english,अंग्रेज़ी (भाषा-II),2020,2020-11-06,A,79,utet-p1-2020-lang2-en-q079,,d
+M-04,90,language-2/english,अंग्रेज़ी (भाषा-II),2020,2020-11-06,A,80,utet-p1-2020-lang2-en-q080,,b
+M-04,91,mathematics,गणित,2026,2026-09-29,A,106,utet-p1-2026-mathematics-q106,,d
+M-04,92,mathematics,गणित,2026,2026-09-29,A,107,utet-p1-2026-mathematics-q107,,d
+M-04,93,mathematics,गणित,2026,2026-09-29,A,108,utet-p1-2026-mathematics-q108,,b
+M-04,94,mathematics,गणित,2026,2026-09-29,A,109,utet-p1-2026-mathematics-q109,,d
+M-04,95,mathematics,गणित,2026,2026-09-29,A,110,utet-p1-2026-mathematics-q110,,a
+M-04,96,mathematics,गणित,2025,2025-10-24,A,106,utet-p1-2025-mathematics-q106,,b
+M-04,97,mathematics,गणित,2025,2025-10-24,A,107,utet-p1-2025-mathematics-q107,,a
+M-04,98,mathematics,गणित,2025,2025-10-24,A,108,utet-p1-2025-mathematics-q108,,a
+M-04,99,mathematics,गणित,2025,2025-10-24,A,109,utet-p1-2025-mathematics-q109,,a
+M-04,100,mathematics,गणित,2025,2025-10-24,A,110,utet-p1-2025-mathematics-q110,,b
+M-04,101,mathematics,गणित,2024,2024-09-29,D,106,utet-p1-2024-mathematics-q106,,a
+M-04,102,mathematics,गणित,2024,2024-09-29,D,107,utet-p1-2024-mathematics-q107,,b
+M-04,103,mathematics,गणित,2024,2024-09-29,D,108,utet-p1-2024-mathematics-q108,,c
+M-04,104,mathematics,गणित,2024,2024-09-29,D,109,utet-p1-2024-mathematics-q109,,d
+M-04,105,mathematics,गणित,2024,2024-09-29,D,110,utet-p1-2024-mathematics-q110,,d
+M-04,106,mathematics,गणित,2022,2022-11-26,B,106,utet-p1-2022-mathematics-q106,,c
+M-04,107,mathematics,गणित,2022,2022-11-26,B,107,utet-p1-2022-mathematics-q107,,d
+M-04,108,mathematics,गणित,2022,2022-11-26,B,108,utet-p1-2022-mathematics-q108,,d
+M-04,109,mathematics,गणित,2022,2022-11-26,B,109,utet-p1-2022-mathematics-q109,,a
+M-04,110,mathematics,गणित,2022,2022-11-26,B,110,utet-p1-2022-mathematics-q110,,a
+M-04,111,mathematics,गणित,2021,2021-03-24,C,106,utet-p1-2021-mathematics-q106,,c
+M-04,112,mathematics,गणित,2021,2021-03-24,C,107,utet-p1-2021-mathematics-q107,,a
+M-04,113,mathematics,गणित,2021,2021-03-24,C,108,utet-p1-2021-mathematics-q108,,d
+M-04,114,mathematics,गणित,2021,2021-03-24,C,109,utet-p1-2021-mathematics-q109,,a
+M-04,115,mathematics,गणित,2021,2021-03-24,C,110,utet-p1-2021-mathematics-q110,,c
+M-04,116,mathematics,गणित,2020,2020-11-06,A,106,utet-p1-2020-mathematics-q106,,c
+M-04,117,mathematics,गणित,2020,2020-11-06,A,107,utet-p1-2020-mathematics-q107,,d
+M-04,118,mathematics,गणित,2020,2020-11-06,A,108,utet-p1-2020-mathematics-q108,,c
+M-04,119,mathematics,गणित,2020,2020-11-06,A,109,utet-p1-2020-mathematics-q109,,b
+M-04,120,mathematics,गणित,2020,2020-11-06,A,110,utet-p1-2020-mathematics-q110,,d
+M-04,121,environmental-studies,पर्यावरण अध्ययन,2026,2026-09-29,A,136,utet-p1-2026-environmental-studies-q136,,c
+M-04,122,environmental-studies,पर्यावरण अध्ययन,2026,2026-09-29,A,137,utet-p1-2026-environmental-studies-q137,,b
+M-04,123,environmental-studies,पर्यावरण अध्ययन,2026,2026-09-29,A,138,utet-p1-2026-environmental-studies-q138,,b
+M-04,124,environmental-studies,पर्यावरण अध्ययन,2026,2026-09-29,A,139,utet-p1-2026-environmental-studies-q139,,b
+M-04,125,environmental-studies,पर्यावरण अध्ययन,2026,2026-09-29,A,140,utet-p1-2026-environmental-studies-q140,,c
+M-04,126,environmental-studies,पर्यावरण अध्ययन,2025,2025-10-24,A,136,utet-p1-2025-environmental-studies-q136,,b
+M-04,127,environmental-studies,पर्यावरण अध्ययन,2025,2025-10-24,A,137,utet-p1-2025-environmental-studies-q137,,c
+M-04,128,environmental-studies,पर्यावरण अध्ययन,2025,2025-10-24,A,138,utet-p1-2025-environmental-studies-q138,,d
+M-04,129,environmental-studies,पर्यावरण अध्ययन,2025,2025-10-24,A,139,utet-p1-2025-environmental-studies-q139,,c
+M-04,130,environmental-studies,पर्यावरण अध्ययन,2025,2025-10-24,A,140,utet-p1-2025-environmental-studies-q140,,b
+M-04,131,environmental-studies,पर्यावरण अध्ययन,2024,2024-09-29,D,136,utet-p1-2024-environmental-studies-q136,,c
+M-04,132,environmental-studies,पर्यावरण अध्ययन,2024,2024-09-29,D,137,utet-p1-2024-environmental-studies-q137,,d
+M-04,133,environmental-studies,पर्यावरण अध्ययन,2024,2024-09-29,D,138,utet-p1-2024-environmental-studies-q138,,b
+M-04,134,environmental-studies,पर्यावरण अध्ययन,2024,2024-09-29,D,139,utet-p1-2024-environmental-studies-q139,,a
+M-04,135,environmental-studies,पर्यावरण अध्ययन,2024,2024-09-29,D,140,utet-p1-2024-environmental-studies-q140,,b
+M-04,136,environmental-studies,पर्यावरण अध्ययन,2022,2022-11-26,B,136,utet-p1-2022-environmental-studies-q136,,a
+M-04,137,environmental-studies,पर्यावरण अध्ययन,2022,2022-11-26,B,137,utet-p1-2022-environmental-studies-q137,,b
+M-04,138,environmental-studies,पर्यावरण अध्ययन,2022,2022-11-26,B,138,utet-p1-2022-environmental-studies-q138,,a
+M-04,139,environmental-studies,पर्यावरण अध्ययन,2022,2022-11-26,B,139,utet-p1-2022-environmental-studies-q139,,b
+M-04,140,environmental-studies,पर्यावरण अध्ययन,2022,2022-11-26,B,140,utet-p1-2022-environmental-studies-q140,,c
+M-04,141,environmental-studies,पर्यावरण अध्ययन,2021,2021-03-24,C,136,utet-p1-2021-environmental-studies-q136,,a
+M-04,142,environmental-studies,पर्यावरण अध्ययन,2021,2021-03-24,C,137,utet-p1-2021-environmental-studies-q137,,a
+M-04,143,environmental-studies,पर्यावरण अध्ययन,2021,2021-03-24,C,138,utet-p1-2021-environmental-studies-q138,,b
+M-04,144,environmental-studies,पर्यावरण अध्ययन,2021,2021-03-24,C,139,utet-p1-2021-environmental-studies-q139,,b
+M-04,145,environmental-studies,पर्यावरण अध्ययन,2021,2021-03-24,C,140,utet-p1-2021-environmental-studies-q140,,c
+M-04,146,environmental-studies,पर्यावरण अध्ययन,2020,2020-11-06,A,136,utet-p1-2020-environmental-studies-q136,,c
+M-04,147,environmental-studies,पर्यावरण अध्ययन,2020,2020-11-06,A,137,utet-p1-2020-environmental-studies-q137,,d
+M-04,148,environmental-studies,पर्यावरण अध्ययन,2020,2020-11-06,A,138,utet-p1-2020-environmental-studies-q138,,c
+M-04,149,environmental-studies,पर्यावरण अध्ययन,2020,2020-11-06,A,139,utet-p1-2020-environmental-studies-q139,,a
+M-04,150,environmental-studies,पर्यावरण अध्ययन,2020,2020-11-06,A,140,utet-p1-2020-environmental-studies-q140,,b
+M-05,1,cdp,बाल विकास एवं शिक्षाशास्त्र,2026,2026-09-29,A,21,utet-p1-2026-cdp-q021,,b
+M-05,2,cdp,बाल विकास एवं शिक्षाशास्त्र,2026,2026-09-29,A,22,utet-p1-2026-cdp-q022,,d
+M-05,3,cdp,बाल विकास एवं शिक्षाशास्त्र,2026,2026-09-29,A,23,utet-p1-2026-cdp-q023,,b
+M-05,4,cdp,बाल विकास एवं शिक्षाशास्त्र,2026,2026-09-29,A,24,utet-p1-2026-cdp-q024,,c
+M-05,5,cdp,बाल विकास एवं शिक्षाशास्त्र,2026,2026-09-29,A,25,utet-p1-2026-cdp-q025,,c
+M-05,6,cdp,बाल विकास एवं शिक्षाशास्त्र,2025,2025-10-24,A,21,utet-p1-2025-cdp-q021,,a
+M-05,7,cdp,बाल विकास एवं शिक्षाशास्त्र,2025,2025-10-24,A,22,utet-p1-2025-cdp-q022,,a
+M-05,8,cdp,बाल विकास एवं शिक्षाशास्त्र,2025,2025-10-24,A,23,utet-p1-2025-cdp-q023,,b
+M-05,9,cdp,बाल विकास एवं शिक्षाशास्त्र,2025,2025-10-24,A,24,utet-p1-2025-cdp-q024,,a
+M-05,10,cdp,बाल विकास एवं शिक्षाशास्त्र,2025,2025-10-24,A,25,utet-p1-2025-cdp-q025,,d
+M-05,11,cdp,बाल विकास एवं शिक्षाशास्त्र,2024,2024-09-29,D,21,utet-p1-2024-cdp-q021,,c
+M-05,12,cdp,बाल विकास एवं शिक्षाशास्त्र,2024,2024-09-29,D,22,utet-p1-2024-cdp-q022,,a
+M-05,13,cdp,बाल विकास एवं शिक्षाशास्त्र,2024,2024-09-29,D,23,utet-p1-2024-cdp-q023,,d
+M-05,14,cdp,बाल विकास एवं शिक्षाशास्त्र,2024,2024-09-29,D,24,utet-p1-2024-cdp-q024,,d
+M-05,15,cdp,बाल विकास एवं शिक्षाशास्त्र,2024,2024-09-29,D,25,utet-p1-2024-cdp-q025,,b
+M-05,16,cdp,बाल विकास एवं शिक्षाशास्त्र,2022,2022-11-26,B,21,utet-p1-2022-cdp-q021,,b
+M-05,17,cdp,बाल विकास एवं शिक्षाशास्त्र,2022,2022-11-26,B,22,utet-p1-2022-cdp-q022,,b
+M-05,18,cdp,बाल विकास एवं शिक्षाशास्त्र,2022,2022-11-26,B,23,utet-p1-2022-cdp-q023,,c
+M-05,19,cdp,बाल विकास एवं शिक्षाशास्त्र,2022,2022-11-26,B,24,utet-p1-2022-cdp-q024,,d
+M-05,20,cdp,बाल विकास एवं शिक्षाशास्त्र,2022,2022-11-26,B,25,utet-p1-2022-cdp-q025,,a
+M-05,21,cdp,बाल विकास एवं शिक्षाशास्त्र,2021,2021-03-24,C,21,utet-p1-2021-cdp-q021,,c
+M-05,22,cdp,बाल विकास एवं शिक्षाशास्त्र,2021,2021-03-24,C,22,utet-p1-2021-cdp-q022,,b
+M-05,23,cdp,बाल विकास एवं शिक्षाशास्त्र,2021,2021-03-24,C,23,utet-p1-2021-cdp-q023,,d
+M-05,24,cdp,बाल विकास एवं शिक्षाशास्त्र,2021,2021-03-24,C,24,utet-p1-2021-cdp-q024,,d
+M-05,25,cdp,बाल विकास एवं शिक्षाशास्त्र,2021,2021-03-24,C,25,utet-p1-2021-cdp-q025,,b
+M-05,26,cdp,बाल विकास एवं शिक्षाशास्त्र,2020,2020-11-06,A,21,utet-p1-2020-cdp-q021,,c
+M-05,27,cdp,बाल विकास एवं शिक्षाशास्त्र,2020,2020-11-06,A,22,utet-p1-2020-cdp-q022,,a
+M-05,28,cdp,बाल विकास एवं शिक्षाशास्त्र,2020,2020-11-06,A,23,utet-p1-2020-cdp-q023,,a
+M-05,29,cdp,बाल विकास एवं शिक्षाशास्त्र,2020,2020-11-06,A,24,utet-p1-2020-cdp-q024,,a
+M-05,30,cdp,बाल विकास एवं शिक्षाशास्त्र,2020,2020-11-06,A,25,utet-p1-2020-cdp-q025,,b
+M-05,31,language-1/hindi,हिन्दी (भाषा-I),2026,2026-09-29,A,47,utet-p1-2026-lang1-hi-q047,,b
+M-05,32,language-1/hindi,हिन्दी (भाषा-I),2026,2026-09-29,A,48,utet-p1-2026-lang1-hi-q048,,a
+M-05,33,language-1/hindi,हिन्दी (भाषा-I),2026,2026-09-29,A,49,utet-p1-2026-lang1-hi-q049,,c
+M-05,34,language-1/hindi,हिन्दी (भाषा-I),2026,2026-09-29,A,50,utet-p1-2026-lang1-hi-q050,,a
+M-05,35,language-1/hindi,हिन्दी (भाषा-I),2026,2026-09-29,A,51,utet-p1-2026-lang1-hi-q051,,b
+M-05,36,language-1/hindi,हिन्दी (भाषा-I),2025,2025-10-24,A,46,utet-p1-2025-lang1-hi-q046,,a
+M-05,37,language-1/hindi,हिन्दी (भाषा-I),2025,2025-10-24,A,47,utet-p1-2025-lang1-hi-q047,,c
+M-05,38,language-1/hindi,हिन्दी (भाषा-I),2025,2025-10-24,A,48,utet-p1-2025-lang1-hi-q048,,c
+M-05,39,language-1/hindi,हिन्दी (भाषा-I),2025,2025-10-24,A,49,utet-p1-2025-lang1-hi-q049,,a
+M-05,40,language-1/hindi,हिन्दी (भाषा-I),2025,2025-10-24,A,50,utet-p1-2025-lang1-hi-q050,,a
+M-05,41,language-1/hindi,हिन्दी (भाषा-I),2024,2024-09-29,D,51,utet-p1-2024-lang1-hi-q051,utet-p1-2024-ut24-h2,c
+M-05,42,language-1/hindi,हिन्दी (भाषा-I),2024,2024-09-29,D,52,utet-p1-2024-lang1-hi-q052,utet-p1-2024-ut24-h2,c
+M-05,43,language-1/hindi,हिन्दी (भाषा-I),2024,2024-09-29,D,53,utet-p1-2024-lang1-hi-q053,utet-p1-2024-ut24-h2,b
+M-05,44,language-1/hindi,हिन्दी (भाषा-I),2024,2024-09-29,D,54,utet-p1-2024-lang1-hi-q054,utet-p1-2024-ut24-h2,b
+M-05,45,language-1/hindi,हिन्दी (भाषा-I),2024,2024-09-29,D,55,utet-p1-2024-lang1-hi-q055,utet-p1-2024-ut24-h2,a
+M-05,46,language-1/hindi,हिन्दी (भाषा-I),2022,2022-11-26,B,49,utet-p1-2022-lang1-hi-q049,,b
+M-05,47,language-1/hindi,हिन्दी (भाषा-I),2022,2022-11-26,B,52,utet-p1-2022-lang1-hi-q052,,b
+M-05,48,language-1/hindi,हिन्दी (भाषा-I),2022,2022-11-26,B,53,utet-p1-2022-lang1-hi-q053,,b
+M-05,49,language-1/hindi,हिन्दी (भाषा-I),2022,2022-11-26,B,54,utet-p1-2022-lang1-hi-q054,,b
+M-05,50,language-1/hindi,हिन्दी (भाषा-I),2022,2022-11-26,B,60,utet-p1-2022-lang1-hi-q060,,a
+M-05,51,language-1/hindi,हिन्दी (भाषा-I),2021,2021-03-24,C,31,utet-p1-2021-lang1-hi-q031,utet-p1-2021-ut21-h1,b
+M-05,52,language-1/hindi,हिन्दी (भाषा-I),2021,2021-03-24,C,32,utet-p1-2021-lang1-hi-q032,utet-p1-2021-ut21-h1,b
+M-05,53,language-1/hindi,हिन्दी (भाषा-I),2021,2021-03-24,C,33,utet-p1-2021-lang1-hi-q033,utet-p1-2021-ut21-h1,c
+M-05,54,language-1/hindi,हिन्दी (भाषा-I),2021,2021-03-24,C,34,utet-p1-2021-lang1-hi-q034,utet-p1-2021-ut21-h1,c
+M-05,55,language-1/hindi,हिन्दी (भाषा-I),2021,2021-03-24,C,35,utet-p1-2021-lang1-hi-q035,utet-p1-2021-ut21-h1,d
+M-05,56,language-1/hindi,हिन्दी (भाषा-I),2020,2020-11-06,A,56,utet-p1-2020-lang1-hi-q056,,a
+M-05,57,language-1/hindi,हिन्दी (भाषा-I),2020,2020-11-06,A,57,utet-p1-2020-lang1-hi-q057,,d
+M-05,58,language-1/hindi,हिन्दी (भाषा-I),2020,2020-11-06,A,58,utet-p1-2020-lang1-hi-q058,,c
+M-05,59,language-1/hindi,हिन्दी (भाषा-I),2020,2020-11-06,A,59,utet-p1-2020-lang1-hi-q059,,c
+M-05,60,language-1/hindi,हिन्दी (भाषा-I),2020,2020-11-06,A,60,utet-p1-2020-lang1-hi-q060,,c
+M-05,61,language-2/english,अंग्रेज़ी (भाषा-II),2026,2026-09-29,A,81,utet-p1-2026-lang2-en-q081,,a
+M-05,62,language-2/english,अंग्रेज़ी (भाषा-II),2026,2026-09-29,A,82,utet-p1-2026-lang2-en-q082,,c
+M-05,63,language-2/english,अंग्रेज़ी (भाषा-II),2026,2026-09-29,A,83,utet-p1-2026-lang2-en-q083,,b
+M-05,64,language-2/english,अंग्रेज़ी (भाषा-II),2026,2026-09-29,A,84,utet-p1-2026-lang2-en-q084,,d
+M-05,65,language-2/english,अंग्रेज़ी (भाषा-II),2026,2026-09-29,A,85,utet-p1-2026-lang2-en-q085,,d
+M-05,66,language-2/english,अंग्रेज़ी (भाषा-II),2025,2025-10-24,A,76,utet-p1-2025-lang2-en-q076,,c
+M-05,67,language-2/english,अंग्रेज़ी (भाषा-II),2025,2025-10-24,A,77,utet-p1-2025-lang2-en-q077,,b
+M-05,68,language-2/english,अंग्रेज़ी (भाषा-II),2025,2025-10-24,A,78,utet-p1-2025-lang2-en-q078,,b
+M-05,69,language-2/english,अंग्रेज़ी (भाषा-II),2025,2025-10-24,A,79,utet-p1-2025-lang2-en-q079,,b
+M-05,70,language-2/english,अंग्रेज़ी (भाषा-II),2025,2025-10-24,A,80,utet-p1-2025-lang2-en-q080,,c
+M-05,71,language-2/english,अंग्रेज़ी (भाषा-II),2024,2024-09-29,D,86,utet-p1-2024-lang2-en-q086,utet-p1-2024-ut24-e2,d
+M-05,72,language-2/english,अंग्रेज़ी (भाषा-II),2024,2024-09-29,D,87,utet-p1-2024-lang2-en-q087,utet-p1-2024-ut24-e2,c
+M-05,73,language-2/english,अंग्रेज़ी (भाषा-II),2024,2024-09-29,D,88,utet-p1-2024-lang2-en-q088,utet-p1-2024-ut24-e2,c
+M-05,74,language-2/english,अंग्रेज़ी (भाषा-II),2024,2024-09-29,D,89,utet-p1-2024-lang2-en-q089,utet-p1-2024-ut24-e2,b
+M-05,75,language-2/english,अंग्रेज़ी (भाषा-II),2024,2024-09-29,D,90,utet-p1-2024-lang2-en-q090,utet-p1-2024-ut24-e2,c
+M-05,76,language-2/english,अंग्रेज़ी (भाषा-II),2022,2022-11-26,B,85,utet-p1-2022-lang2-en-q085,,c
+M-05,77,language-2/english,अंग्रेज़ी (भाषा-II),2022,2022-11-26,B,86,utet-p1-2022-lang2-en-q086,,d
+M-05,78,language-2/english,अंग्रेज़ी (भाषा-II),2022,2022-11-26,B,87,utet-p1-2022-lang2-en-q087,,c
+M-05,79,language-2/english,अंग्रेज़ी (भाषा-II),2022,2022-11-26,B,88,utet-p1-2022-lang2-en-q088,,b
+M-05,80,language-2/english,अंग्रेज़ी (भाषा-II),2022,2022-11-26,B,89,utet-p1-2022-lang2-en-q089,,b
+M-05,81,language-2/english,अंग्रेज़ी (भाषा-II),2021,2021-03-24,C,69,utet-p1-2021-lang2-en-q069,utet-p1-2021-ut21-e1,d
+M-05,82,language-2/english,अंग्रेज़ी (भाषा-II),2021,2021-03-24,C,70,utet-p1-2021-lang2-en-q070,utet-p1-2021-ut21-e1,c
+M-05,83,language-2/english,अंग्रेज़ी (भाषा-II),2021,2021-03-24,C,71,utet-p1-2021-lang2-en-q071,utet-p1-2021-ut21-e1,b
+M-05,84,language-2/english,अंग्रेज़ी (भाषा-II),2021,2021-03-24,C,72,utet-p1-2021-lang2-en-q072,utet-p1-2021-ut21-e1,c
+M-05,85,language-2/english,अंग्रेज़ी (भाषा-II),2021,2021-03-24,C,73,utet-p1-2021-lang2-en-q073,utet-p1-2021-ut21-e1,b
+M-05,86,language-2/english,अंग्रेज़ी (भाषा-II),2020,2020-11-06,A,81,utet-p1-2020-lang2-en-q081,,d
+M-05,87,language-2/english,अंग्रेज़ी (भाषा-II),2020,2020-11-06,A,82,utet-p1-2020-lang2-en-q082,,b
+M-05,88,language-2/english,अंग्रेज़ी (भाषा-II),2020,2020-11-06,A,83,utet-p1-2020-lang2-en-q083,,b
+M-05,89,language-2/english,अंग्रेज़ी (भाषा-II),2020,2020-11-06,A,89,utet-p1-2020-lang2-en-q089,,b
+M-05,90,language-2/english,अंग्रेज़ी (भाषा-II),2020,2020-11-06,A,90,utet-p1-2020-lang2-en-q090,,b
+M-05,91,mathematics,गणित,2026,2026-09-29,A,111,utet-p1-2026-mathematics-q111,,d
+M-05,92,mathematics,गणित,2026,2026-09-29,A,112,utet-p1-2026-mathematics-q112,,d
+M-05,93,mathematics,गणित,2026,2026-09-29,A,113,utet-p1-2026-mathematics-q113,,b
+M-05,94,mathematics,गणित,2026,2026-09-29,A,114,utet-p1-2026-mathematics-q114,,d
+M-05,95,mathematics,गणित,2026,2026-09-29,A,115,utet-p1-2026-mathematics-q115,,a
+M-05,96,mathematics,गणित,2025,2025-10-24,A,111,utet-p1-2025-mathematics-q111,,d
+M-05,97,mathematics,गणित,2025,2025-10-24,A,112,utet-p1-2025-mathematics-q112,,b
+M-05,98,mathematics,गणित,2025,2025-10-24,A,113,utet-p1-2025-mathematics-q113,,c
+M-05,99,mathematics,गणित,2025,2025-10-24,A,114,utet-p1-2025-mathematics-q114,,a
+M-05,100,mathematics,गणित,2025,2025-10-24,A,115,utet-p1-2025-mathematics-q115,,c
+M-05,101,mathematics,गणित,2024,2024-09-29,D,111,utet-p1-2024-mathematics-q111,,d
+M-05,102,mathematics,गणित,2024,2024-09-29,D,112,utet-p1-2024-mathematics-q112,,b
+M-05,103,mathematics,गणित,2024,2024-09-29,D,113,utet-p1-2024-mathematics-q113,,c
+M-05,104,mathematics,गणित,2024,2024-09-29,D,114,utet-p1-2024-mathematics-q114,,d
+M-05,105,mathematics,गणित,2024,2024-09-29,D,115,utet-p1-2024-mathematics-q115,,d
+M-05,106,mathematics,गणित,2022,2022-11-26,B,111,utet-p1-2022-mathematics-q111,,c
+M-05,107,mathematics,गणित,2022,2022-11-26,B,112,utet-p1-2022-mathematics-q112,,b
+M-05,108,mathematics,गणित,2022,2022-11-26,B,113,utet-p1-2022-mathematics-q113,,a
+M-05,109,mathematics,गणित,2022,2022-11-26,B,114,utet-p1-2022-mathematics-q114,,c
+M-05,110,mathematics,गणित,2022,2022-11-26,B,115,utet-p1-2022-mathematics-q115,,b
+M-05,111,mathematics,गणित,2021,2021-03-24,C,111,utet-p1-2021-mathematics-q111,,a
+M-05,112,mathematics,गणित,2021,2021-03-24,C,112,utet-p1-2021-mathematics-q112,,b
+M-05,113,mathematics,गणित,2021,2021-03-24,C,113,utet-p1-2021-mathematics-q113,,d
+M-05,114,mathematics,गणित,2021,2021-03-24,C,114,utet-p1-2021-mathematics-q114,,b
+M-05,115,mathematics,गणित,2021,2021-03-24,C,115,utet-p1-2021-mathematics-q115,,b
+M-05,116,mathematics,गणित,2020,2020-11-06,A,111,utet-p1-2020-mathematics-q111,,c
+M-05,117,mathematics,गणित,2020,2020-11-06,A,112,utet-p1-2020-mathematics-q112,,c
+M-05,118,mathematics,गणित,2020,2020-11-06,A,113,utet-p1-2020-mathematics-q113,,d
+M-05,119,mathematics,गणित,2020,2020-11-06,A,114,utet-p1-2020-mathematics-q114,,b
+M-05,120,mathematics,गणित,2020,2020-11-06,A,115,utet-p1-2020-mathematics-q115,,a
+M-05,121,environmental-studies,पर्यावरण अध्ययन,2026,2026-09-29,A,141,utet-p1-2026-environmental-studies-q141,,d
+M-05,122,environmental-studies,पर्यावरण अध्ययन,2026,2026-09-29,A,142,utet-p1-2026-environmental-studies-q142,,c
+M-05,123,environmental-studies,पर्यावरण अध्ययन,2026,2026-09-29,A,143,utet-p1-2026-environmental-studies-q143,,c
+M-05,124,environmental-studies,पर्यावरण अध्ययन,2026,2026-09-29,A,144,utet-p1-2026-environmental-studies-q144,,b
+M-05,125,environmental-studies,पर्यावरण अध्ययन,2026,2026-09-29,A,145,utet-p1-2026-environmental-studies-q145,,b
+M-05,126,environmental-studies,पर्यावरण अध्ययन,2025,2025-10-24,A,141,utet-p1-2025-environmental-studies-q141,,b
+M-05,127,environmental-studies,पर्यावरण अध्ययन,2025,2025-10-24,A,142,utet-p1-2025-environmental-studies-q142,,b
+M-05,128,environmental-studies,पर्यावरण अध्ययन,2025,2025-10-24,A,143,utet-p1-2025-environmental-studies-q143,,b
+M-05,129,environmental-studies,पर्यावरण अध्ययन,2025,2025-10-24,A,144,utet-p1-2025-environmental-studies-q144,,a
+M-05,130,environmental-studies,पर्यावरण अध्ययन,2025,2025-10-24,A,145,utet-p1-2025-environmental-studies-q145,,d
+M-05,131,environmental-studies,पर्यावरण अध्ययन,2024,2024-09-29,D,141,utet-p1-2024-environmental-studies-q141,,d
+M-05,132,environmental-studies,पर्यावरण अध्ययन,2024,2024-09-29,D,142,utet-p1-2024-environmental-studies-q142,,a
+M-05,133,environmental-studies,पर्यावरण अध्ययन,2024,2024-09-29,D,143,utet-p1-2024-environmental-studies-q143,,b
+M-05,134,environmental-studies,पर्यावरण अध्ययन,2024,2024-09-29,D,144,utet-p1-2024-environmental-studies-q144,,b
+M-05,135,environmental-studies,पर्यावरण अध्ययन,2024,2024-09-29,D,145,utet-p1-2024-environmental-studies-q145,,a
+M-05,136,environmental-studies,पर्यावरण अध्ययन,2022,2022-11-26,B,141,utet-p1-2022-environmental-studies-q141,,d
+M-05,137,environmental-studies,पर्यावरण अध्ययन,2022,2022-11-26,B,142,utet-p1-2022-environmental-studies-q142,,a
+M-05,138,environmental-studies,पर्यावरण अध्ययन,2022,2022-11-26,B,143,utet-p1-2022-environmental-studies-q143,,a
+M-05,139,environmental-studies,पर्यावरण अध्ययन,2022,2022-11-26,B,144,utet-p1-2022-environmental-studies-q144,,a
+M-05,140,environmental-studies,पर्यावरण अध्ययन,2022,2022-11-26,B,145,utet-p1-2022-environmental-studies-q145,,b
+M-05,141,environmental-studies,पर्यावरण अध्ययन,2021,2021-03-24,C,141,utet-p1-2021-environmental-studies-q141,,a
+M-05,142,environmental-studies,पर्यावरण अध्ययन,2021,2021-03-24,C,142,utet-p1-2021-environmental-studies-q142,,c
+M-05,143,environmental-studies,पर्यावरण अध्ययन,2021,2021-03-24,C,143,utet-p1-2021-environmental-studies-q143,,c
+M-05,144,environmental-studies,पर्यावरण अध्ययन,2021,2021-03-24,C,144,utet-p1-2021-environmental-studies-q144,,d
+M-05,145,environmental-studies,पर्यावरण अध्ययन,2021,2021-03-24,C,145,utet-p1-2021-environmental-studies-q145,,c
+M-05,146,environmental-studies,पर्यावरण अध्ययन,2020,2020-11-06,A,141,utet-p1-2020-environmental-studies-q141,,d
+M-05,147,environmental-studies,पर्यावरण अध्ययन,2020,2020-11-06,A,142,utet-p1-2020-environmental-studies-q142,,c
+M-05,148,environmental-studies,पर्यावरण अध्ययन,2020,2020-11-06,A,143,utet-p1-2020-environmental-studies-q143,,a
+M-05,149,environmental-studies,पर्यावरण अध्ययन,2020,2020-11-06,A,144,utet-p1-2020-environmental-studies-q144,,d
+M-05,150,environmental-studies,पर्यावरण अध्ययन,2020,2020-11-06,A,145,utet-p1-2020-environmental-studies-q145,,a
+M-06,1,cdp,बाल विकास एवं शिक्षाशास्त्र,2026,2026-09-29,A,26,utet-p1-2026-cdp-q026,,a
+M-06,2,cdp,बाल विकास एवं शिक्षाशास्त्र,2026,2026-09-29,A,27,utet-p1-2026-cdp-q027,,a
+M-06,3,cdp,बाल विकास एवं शिक्षाशास्त्र,2026,2026-09-29,A,28,utet-p1-2026-cdp-q028,,d
+M-06,4,cdp,बाल विकास एवं शिक्षाशास्त्र,2026,2026-09-29,A,29,utet-p1-2026-cdp-q029,,b
+M-06,5,cdp,बाल विकास एवं शिक्षाशास्त्र,2026,2026-09-29,A,30,utet-p1-2026-cdp-q030,,a
+M-06,6,cdp,बाल विकास एवं शिक्षाशास्त्र,2025,2025-10-24,A,26,utet-p1-2025-cdp-q026,,a
+M-06,7,cdp,बाल विकास एवं शिक्षाशास्त्र,2025,2025-10-24,A,27,utet-p1-2025-cdp-q027,,c
+M-06,8,cdp,बाल विकास एवं शिक्षाशास्त्र,2025,2025-10-24,A,28,utet-p1-2025-cdp-q028,,b
+M-06,9,cdp,बाल विकास एवं शिक्षाशास्त्र,2025,2025-10-24,A,29,utet-p1-2025-cdp-q029,,d
+M-06,10,cdp,बाल विकास एवं शिक्षाशास्त्र,2025,2025-10-24,A,30,utet-p1-2025-cdp-q030,,c
+M-06,11,cdp,बाल विकास एवं शिक्षाशास्त्र,2024,2024-09-29,D,26,utet-p1-2024-cdp-q026,,a
+M-06,12,cdp,बाल विकास एवं शिक्षाशास्त्र,2024,2024-09-29,D,27,utet-p1-2024-cdp-q027,,c
+M-06,13,cdp,बाल विकास एवं शिक्षाशास्त्र,2024,2024-09-29,D,28,utet-p1-2024-cdp-q028,,d
+M-06,14,cdp,बाल विकास एवं शिक्षाशास्त्र,2024,2024-09-29,D,29,utet-p1-2024-cdp-q029,,c
+M-06,15,cdp,बाल विकास एवं शिक्षाशास्त्र,2024,2024-09-29,D,30,utet-p1-2024-cdp-q030,,d
+M-06,16,cdp,बाल विकास एवं शिक्षाशास्त्र,2022,2022-11-26,B,26,utet-p1-2022-cdp-q026,,b
+M-06,17,cdp,बाल विकास एवं शिक्षाशास्त्र,2022,2022-11-26,B,27,utet-p1-2022-cdp-q027,,a
+M-06,18,cdp,बाल विकास एवं शिक्षाशास्त्र,2022,2022-11-26,B,28,utet-p1-2022-cdp-q028,,b
+M-06,19,cdp,बाल विकास एवं शिक्षाशास्त्र,2022,2022-11-26,B,29,utet-p1-2022-cdp-q029,,a
+M-06,20,cdp,बाल विकास एवं शिक्षाशास्त्र,2022,2022-11-26,B,30,utet-p1-2022-cdp-q030,,d
+M-06,21,cdp,बाल विकास एवं शिक्षाशास्त्र,2021,2021-03-24,C,26,utet-p1-2021-cdp-q026,,d
+M-06,22,cdp,बाल विकास एवं शिक्षाशास्त्र,2021,2021-03-24,C,27,utet-p1-2021-cdp-q027,,a
+M-06,23,cdp,बाल विकास एवं शिक्षाशास्त्र,2021,2021-03-24,C,28,utet-p1-2021-cdp-q028,,d
+M-06,24,cdp,बाल विकास एवं शिक्षाशास्त्र,2021,2021-03-24,C,29,utet-p1-2021-cdp-q029,,a
+M-06,25,cdp,बाल विकास एवं शिक्षाशास्त्र,2021,2021-03-24,C,30,utet-p1-2021-cdp-q030,,b
+M-06,26,cdp,बाल विकास एवं शिक्षाशास्त्र,2020,2020-11-06,A,26,utet-p1-2020-cdp-q026,,d
+M-06,27,cdp,बाल विकास एवं शिक्षाशास्त्र,2020,2020-11-06,A,27,utet-p1-2020-cdp-q027,,c
+M-06,28,cdp,बाल विकास एवं शिक्षाशास्त्र,2020,2020-11-06,A,28,utet-p1-2020-cdp-q028,,a
+M-06,29,cdp,बाल विकास एवं शिक्षाशास्त्र,2020,2020-11-06,A,29,utet-p1-2020-cdp-q029,,d
+M-06,30,cdp,बाल विकास एवं शिक्षाशास्त्र,2020,2020-11-06,A,30,utet-p1-2020-cdp-q030,,c
+M-06,31,language-1/hindi,हिन्दी (भाषा-I),2026,2026-09-29,A,52,utet-p1-2026-lang1-hi-q052,,a
+M-06,32,language-1/hindi,हिन्दी (भाषा-I),2026,2026-09-29,A,53,utet-p1-2026-lang1-hi-q053,,b
+M-06,33,language-1/hindi,हिन्दी (भाषा-I),2026,2026-09-29,A,54,utet-p1-2026-lang1-hi-q054,,a
+M-06,34,language-1/hindi,हिन्दी (भाषा-I),2026,2026-09-29,A,55,utet-p1-2026-lang1-hi-q055,,d
+M-06,35,language-1/hindi,हिन्दी (भाषा-I),2026,2026-09-29,A,60,utet-p1-2026-lang1-hi-q060,,b
+M-06,36,language-1/hindi,हिन्दी (भाषा-I),2025,2025-10-24,A,51,utet-p1-2025-lang1-hi-q051,,b
+M-06,37,language-1/hindi,हिन्दी (भाषा-I),2025,2025-10-24,A,52,utet-p1-2025-lang1-hi-q052,,c
+M-06,38,language-1/hindi,हिन्दी (भाषा-I),2025,2025-10-24,A,53,utet-p1-2025-lang1-hi-q053,,d
+M-06,39,language-1/hindi,हिन्दी (भाषा-I),2025,2025-10-24,A,54,utet-p1-2025-lang1-hi-q054,,c
+M-06,40,language-1/hindi,हिन्दी (भाषा-I),2025,2025-10-24,A,55,utet-p1-2025-lang1-hi-q055,,b
+M-06,41,language-1/hindi,हिन्दी (भाषा-I),2024,2024-09-29,D,56,utet-p1-2024-lang1-hi-q056,,a
+M-06,42,language-1/hindi,हिन्दी (भाषा-I),2024,2024-09-29,D,57,utet-p1-2024-lang1-hi-q057,,b
+M-06,43,language-1/hindi,हिन्दी (भाषा-I),2024,2024-09-29,D,58,utet-p1-2024-lang1-hi-q058,,c
+M-06,44,language-1/hindi,हिन्दी (भाषा-I),2024,2024-09-29,D,59,utet-p1-2024-lang1-hi-q059,,c
+M-06,45,language-1/hindi,हिन्दी (भाषा-I),2024,2024-09-29,D,60,utet-p1-2024-lang1-hi-q060,,d
+M-06,46,language-1/hindi,हिन्दी (भाषा-I),2022,2022-11-26,B,55,utet-p1-2022-lang1-hi-q055,utet-p1-2022-ut22-h2,a
+M-06,47,language-1/hindi,हिन्दी (भाषा-I),2022,2022-11-26,B,56,utet-p1-2022-lang1-hi-q056,utet-p1-2022-ut22-h2,b
+M-06,48,language-1/hindi,हिन्दी (भाषा-I),2022,2022-11-26,B,57,utet-p1-2022-lang1-hi-q057,utet-p1-2022-ut22-h2,b
+M-06,49,language-1/hindi,हिन्दी (भाषा-I),2022,2022-11-26,B,58,utet-p1-2022-lang1-hi-q058,utet-p1-2022-ut22-h2,d
+M-06,50,language-1/hindi,हिन्दी (भाषा-I),2022,2022-11-26,B,59,utet-p1-2022-lang1-hi-q059,utet-p1-2022-ut22-h2,a
+M-06,51,language-1/hindi,हिन्दी (भाषा-I),2021,2021-03-24,C,51,utet-p1-2021-lang1-hi-q051,,a
+M-06,52,language-1/hindi,हिन्दी (भाषा-I),2021,2021-03-24,C,52,utet-p1-2021-lang1-hi-q052,,c
+M-06,53,language-1/hindi,हिन्दी (भाषा-I),2021,2021-03-24,C,53,utet-p1-2021-lang1-hi-q053,,c
+M-06,54,language-1/hindi,हिन्दी (भाषा-I),2021,2021-03-24,C,54,utet-p1-2021-lang1-hi-q054,,d
+M-06,55,language-1/hindi,हिन्दी (भाषा-I),2021,2021-03-24,C,55,utet-p1-2021-lang1-hi-q055,,b
+M-06,56,language-1/hindi,हिन्दी (भाषा-I),2020,2020-11-06,A,45,utet-p1-2020-lang1-hi-q045,utet-p1-2020-ut20-h1,c
+M-06,57,language-1/hindi,हिन्दी (भाषा-I),2020,2020-11-06,A,46,utet-p1-2020-lang1-hi-q046,utet-p1-2020-ut20-h1,b
+M-06,58,language-1/hindi,हिन्दी (भाषा-I),2020,2020-11-06,A,47,utet-p1-2020-lang1-hi-q047,utet-p1-2020-ut20-h1,c
+M-06,59,language-1/hindi,हिन्दी (भाषा-I),2020,2020-11-06,A,48,utet-p1-2020-lang1-hi-q048,utet-p1-2020-ut20-h1,d
+M-06,60,language-1/hindi,हिन्दी (भाषा-I),2020,2020-11-06,A,49,utet-p1-2020-lang1-hi-q049,utet-p1-2020-ut20-h1,b
+M-06,61,language-2/english,अंग्रेज़ी (भाषा-II),2026,2026-09-29,A,86,utet-p1-2026-lang2-en-q086,,b
+M-06,62,language-2/english,अंग्रेज़ी (भाषा-II),2026,2026-09-29,A,87,utet-p1-2026-lang2-en-q087,,d
+M-06,63,language-2/english,अंग्रेज़ी (भाषा-II),2026,2026-09-29,A,88,utet-p1-2026-lang2-en-q088,,a
+M-06,64,language-2/english,अंग्रेज़ी (भाषा-II),2026,2026-09-29,A,89,utet-p1-2026-lang2-en-q089,,c
+M-06,65,language-2/english,अंग्रेज़ी (भाषा-II),2026,2026-09-29,A,90,utet-p1-2026-lang2-en-q090,,c
+M-06,66,language-2/english,अंग्रेज़ी (भाषा-II),2025,2025-10-24,A,86,utet-p1-2025-lang2-en-q086,,c
+M-06,67,language-2/english,अंग्रेज़ी (भाषा-II),2025,2025-10-24,A,87,utet-p1-2025-lang2-en-q087,,a
+M-06,68,language-2/english,अंग्रेज़ी (भाषा-II),2025,2025-10-24,A,88,utet-p1-2025-lang2-en-q088,,b
+M-06,69,language-2/english,अंग्रेज़ी (भाषा-II),2025,2025-10-24,A,89,utet-p1-2025-lang2-en-q089,,b
+M-06,70,language-2/english,अंग्रेज़ी (भाषा-II),2025,2025-10-24,A,90,utet-p1-2025-lang2-en-q090,,a
+M-06,71,language-2/english,अंग्रेज़ी (भाषा-II),2024,2024-09-29,D,81,utet-p1-2024-lang2-en-q081,,d
+M-06,72,language-2/english,अंग्रेज़ी (भाषा-II),2024,2024-09-29,D,82,utet-p1-2024-lang2-en-q082,,d
+M-06,73,language-2/english,अंग्रेज़ी (भाषा-II),2024,2024-09-29,D,83,utet-p1-2024-lang2-en-q083,,a
+M-06,74,language-2/english,अंग्रेज़ी (भाषा-II),2024,2024-09-29,D,84,utet-p1-2024-lang2-en-q084,,a
+M-06,75,language-2/english,अंग्रेज़ी (भाषा-II),2024,2024-09-29,D,85,utet-p1-2024-lang2-en-q085,,c
+M-06,76,language-2/english,अंग्रेज़ी (भाषा-II),2022,2022-11-26,B,79,utet-p1-2022-lang2-en-q079,utet-p1-2022-ut22-e2,b
+M-06,77,language-2/english,अंग्रेज़ी (भाषा-II),2022,2022-11-26,B,80,utet-p1-2022-lang2-en-q080,utet-p1-2022-ut22-e2,c
+M-06,78,language-2/english,अंग्रेज़ी (भाषा-II),2022,2022-11-26,B,81,utet-p1-2022-lang2-en-q081,utet-p1-2022-ut22-e2,d
+M-06,79,language-2/english,अंग्रेज़ी (भाषा-II),2022,2022-11-26,B,82,utet-p1-2022-lang2-en-q082,utet-p1-2022-ut22-e2,c
+M-06,80,language-2/english,अंग्रेज़ी (भाषा-II),2022,2022-11-26,B,90,utet-p1-2022-lang2-en-q090,,a
+M-06,81,language-2/english,अंग्रेज़ी (भाषा-II),2021,2021-03-24,C,86,utet-p1-2021-lang2-en-q086,,b
+M-06,82,language-2/english,अंग्रेज़ी (भाषा-II),2021,2021-03-24,C,87,utet-p1-2021-lang2-en-q087,,b
+M-06,83,language-2/english,अंग्रेज़ी (भाषा-II),2021,2021-03-24,C,88,utet-p1-2021-lang2-en-q088,,b
+M-06,84,language-2/english,अंग्रेज़ी (भाषा-II),2021,2021-03-24,C,89,utet-p1-2021-lang2-en-q089,,a
+M-06,85,language-2/english,अंग्रेज़ी (भाषा-II),2021,2021-03-24,C,90,utet-p1-2021-lang2-en-q090,,d
+M-06,86,language-2/english,अंग्रेज़ी (भाषा-II),2020,2020-11-06,A,67,utet-p1-2020-lang2-en-q067,utet-p1-2020-ut20-e1,b
+M-06,87,language-2/english,अंग्रेज़ी (भाषा-II),2020,2020-11-06,A,68,utet-p1-2020-lang2-en-q068,utet-p1-2020-ut20-e1,a
+M-06,88,language-2/english,अंग्रेज़ी (भाषा-II),2020,2020-11-06,A,69,utet-p1-2020-lang2-en-q069,utet-p1-2020-ut20-e1,c
+M-06,89,language-2/english,अंग्रेज़ी (भाषा-II),2020,2020-11-06,A,70,utet-p1-2020-lang2-en-q070,utet-p1-2020-ut20-e1,d
+M-06,90,language-2/english,अंग्रेज़ी (भाषा-II),2020,2020-11-06,A,71,utet-p1-2020-lang2-en-q071,utet-p1-2020-ut20-e1,a
+M-06,91,mathematics,गणित,2026,2026-09-29,A,116,utet-p1-2026-mathematics-q116,,a
+M-06,92,mathematics,गणित,2026,2026-09-29,A,117,utet-p1-2026-mathematics-q117,,d
+M-06,93,mathematics,गणित,2026,2026-09-29,A,118,utet-p1-2026-mathematics-q118,,a
+M-06,94,mathematics,गणित,2026,2026-09-29,A,119,utet-p1-2026-mathematics-q119,,b
+M-06,95,mathematics,गणित,2026,2026-09-29,A,120,utet-p1-2026-mathematics-q120,,b
+M-06,96,mathematics,गणित,2025,2025-10-24,A,116,utet-p1-2025-mathematics-q116,,d
+M-06,97,mathematics,गणित,2025,2025-10-24,A,117,utet-p1-2025-mathematics-q117,,c
+M-06,98,mathematics,गणित,2025,2025-10-24,A,118,utet-p1-2025-mathematics-q118,,b
+M-06,99,mathematics,गणित,2025,2025-10-24,A,119,utet-p1-2025-mathematics-q119,,b
+M-06,100,mathematics,गणित,2025,2025-10-24,A,120,utet-p1-2025-mathematics-q120,,c
+M-06,101,mathematics,गणित,2024,2024-09-29,D,116,utet-p1-2024-mathematics-q116,,d
+M-06,102,mathematics,गणित,2024,2024-09-29,D,117,utet-p1-2024-mathematics-q117,,a
+M-06,103,mathematics,गणित,2024,2024-09-29,D,118,utet-p1-2024-mathematics-q118,,c
+M-06,104,mathematics,गणित,2024,2024-09-29,D,119,utet-p1-2024-mathematics-q119,,a
+M-06,105,mathematics,गणित,2024,2024-09-29,D,120,utet-p1-2024-mathematics-q120,,d
+M-06,106,mathematics,गणित,2022,2022-11-26,B,116,utet-p1-2022-mathematics-q116,,c
+M-06,107,mathematics,गणित,2022,2022-11-26,B,117,utet-p1-2022-mathematics-q117,,a
+M-06,108,mathematics,गणित,2022,2022-11-26,B,118,utet-p1-2022-mathematics-q118,,a
+M-06,109,mathematics,गणित,2022,2022-11-26,B,119,utet-p1-2022-mathematics-q119,,a
+M-06,110,mathematics,गणित,2022,2022-11-26,B,120,utet-p1-2022-mathematics-q120,,b
+M-06,111,mathematics,गणित,2021,2021-03-24,C,116,utet-p1-2021-mathematics-q116,,b
+M-06,112,mathematics,गणित,2021,2021-03-24,C,117,utet-p1-2021-mathematics-q117,,d
+M-06,113,mathematics,गणित,2021,2021-03-24,C,118,utet-p1-2021-mathematics-q118,,a
+M-06,114,mathematics,गणित,2021,2021-03-24,C,119,utet-p1-2021-mathematics-q119,,c
+M-06,115,mathematics,गणित,2021,2021-03-24,C,120,utet-p1-2021-mathematics-q120,,a
+M-06,116,mathematics,गणित,2020,2020-11-06,A,116,utet-p1-2020-mathematics-q116,,b
+M-06,117,mathematics,गणित,2020,2020-11-06,A,117,utet-p1-2020-mathematics-q117,,c
+M-06,118,mathematics,गणित,2020,2020-11-06,A,118,utet-p1-2020-mathematics-q118,,b
+M-06,119,mathematics,गणित,2020,2020-11-06,A,119,utet-p1-2020-mathematics-q119,,a
+M-06,120,mathematics,गणित,2020,2020-11-06,A,120,utet-p1-2020-mathematics-q120,,a
+M-06,121,environmental-studies,पर्यावरण अध्ययन,2026,2026-09-29,A,146,utet-p1-2026-environmental-studies-q146,,b
+M-06,122,environmental-studies,पर्यावरण अध्ययन,2026,2026-09-29,A,147,utet-p1-2026-environmental-studies-q147,,a
+M-06,123,environmental-studies,पर्यावरण अध्ययन,2026,2026-09-29,A,148,utet-p1-2026-environmental-studies-q148,,d
+M-06,124,environmental-studies,पर्यावरण अध्ययन,2026,2026-09-29,A,149,utet-p1-2026-environmental-studies-q149,,a
+M-06,125,environmental-studies,पर्यावरण अध्ययन,2026,2026-09-29,A,150,utet-p1-2026-environmental-studies-q150,,b
+M-06,126,environmental-studies,पर्यावरण अध्ययन,2025,2025-10-24,A,146,utet-p1-2025-environmental-studies-q146,,c
+M-06,127,environmental-studies,पर्यावरण अध्ययन,2025,2025-10-24,A,147,utet-p1-2025-environmental-studies-q147,,a
+M-06,128,environmental-studies,पर्यावरण अध्ययन,2025,2025-10-24,A,148,utet-p1-2025-environmental-studies-q148,,a
+M-06,129,environmental-studies,पर्यावरण अध्ययन,2025,2025-10-24,A,149,utet-p1-2025-environmental-studies-q149,,b
+M-06,130,environmental-studies,पर्यावरण अध्ययन,2025,2025-10-24,A,150,utet-p1-2025-environmental-studies-q150,,b
+M-06,131,environmental-studies,पर्यावरण अध्ययन,2024,2024-09-29,D,146,utet-p1-2024-environmental-studies-q146,,a
+M-06,132,environmental-studies,पर्यावरण अध्ययन,2024,2024-09-29,D,147,utet-p1-2024-environmental-studies-q147,,a
+M-06,133,environmental-studies,पर्यावरण अध्ययन,2024,2024-09-29,D,148,utet-p1-2024-environmental-studies-q148,,d
+M-06,134,environmental-studies,पर्यावरण अध्ययन,2024,2024-09-29,D,149,utet-p1-2024-environmental-studies-q149,,a
+M-06,135,environmental-studies,पर्यावरण अध्ययन,2024,2024-09-29,D,150,utet-p1-2024-environmental-studies-q150,,c
+M-06,136,environmental-studies,पर्यावरण अध्ययन,2022,2022-11-26,B,146,utet-p1-2022-environmental-studies-q146,,d
+M-06,137,environmental-studies,पर्यावरण अध्ययन,2022,2022-11-26,B,147,utet-p1-2022-environmental-studies-q147,,c
+M-06,138,environmental-studies,पर्यावरण अध्ययन,2022,2022-11-26,B,148,utet-p1-2022-environmental-studies-q148,,d
+M-06,139,environmental-studies,पर्यावरण अध्ययन,2022,2022-11-26,B,149,utet-p1-2022-environmental-studies-q149,,c
+M-06,140,environmental-studies,पर्यावरण अध्ययन,2022,2022-11-26,B,150,utet-p1-2022-environmental-studies-q150,,c
+M-06,141,environmental-studies,पर्यावरण अध्ययन,2021,2021-03-24,C,146,utet-p1-2021-environmental-studies-q146,,c
+M-06,142,environmental-studies,पर्यावरण अध्ययन,2021,2021-03-24,C,147,utet-p1-2021-environmental-studies-q147,,c
+M-06,143,environmental-studies,पर्यावरण अध्ययन,2021,2021-03-24,C,148,utet-p1-2021-environmental-studies-q148,,c
+M-06,144,environmental-studies,पर्यावरण अध्ययन,2021,2021-03-24,C,149,utet-p1-2021-environmental-studies-q149,,a
+M-06,145,environmental-studies,पर्यावरण अध्ययन,2021,2021-03-24,C,150,utet-p1-2021-environmental-studies-q150,,a
+M-06,146,environmental-studies,पर्यावरण अध्ययन,2020,2020-11-06,A,146,utet-p1-2020-environmental-studies-q146,,d
+M-06,147,environmental-studies,पर्यावरण अध्ययन,2020,2020-11-06,A,147,utet-p1-2020-environmental-studies-q147,,d
+M-06,148,environmental-studies,पर्यावरण अध्ययन,2020,2020-11-06,A,148,utet-p1-2020-environmental-studies-q148,,d
+M-06,149,environmental-studies,पर्यावरण अध्ययन,2020,2020-11-06,A,149,utet-p1-2020-environmental-studies-q149,,a
+M-06,150,environmental-studies,पर्यावरण अध्ययन,2020,2020-11-06,A,150,utet-p1-2020-environmental-studies-q150,,c
