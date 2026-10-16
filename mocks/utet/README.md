@@ -64,3 +64,14 @@ python3 tools/v2/build_utet_mock_html.py
 
 यह `bank-v2/exams/utet/paper-1/` पढ़ता है और यही फ़ाइलें फिर से लिख देता है।
 बैंक में नया साल जुड़े तो बस यही कमांड चलाओ — नए साल के प्रश्न अपने-आप बँट जाएँगे।
+
+## पेपर की जाँच (optional)
+
+पेपर का HTML/JS असल में चलता है या नहीं, यह jsdom से जाँचा जा सकता है
+(150 प्रश्न रेंडर, उत्तर देना, स्कोर, भाषा बदलना — सब असली कोड पर):
+
+```bash
+mkdir -p /tmp/mocktest && cd /tmp/mocktest && npm init -y && npm i jsdom
+cp <repo>/tools/v2/tests/check_mock_html.js .
+node check_mock_html.js <repo>/mocks/utet/mock-01.html
+```
