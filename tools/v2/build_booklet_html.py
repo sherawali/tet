@@ -476,6 +476,10 @@ button{font-family:inherit;color:inherit}
 .o-text{flex:1;min-width:0;text-align:left}
 .o-hi{font-size:.875rem;font-weight:500;line-height:1.6;white-space:pre-wrap}
 .o-en{font-size:.75rem;font-style:italic;color:var(--sub);line-height:1.5;white-space:pre-wrap;margin-top:.12rem;font-family:var(--latin)}
+/* English-only questions (Language-II) are promoted to the primary slot */
+.q-pri{font-family:var(--latin);font-size:.9375rem;font-weight:600;line-height:1.6;white-space:pre-wrap}
+.o-pri{font-family:var(--latin);font-size:.875rem;font-weight:500;line-height:1.55;white-space:pre-wrap}
+.st-pri{font-family:var(--latin);font-size:.9rem;line-height:1.75;white-space:pre-wrap}
 .opt.sel{background:var(--emerald-bg);border:1.5px solid var(--emerald)}
 .opt.sel .olab{background:var(--emerald);border-color:var(--emerald);color:#fff}
 .opt.sel .o-hi{font-weight:700}
@@ -756,15 +760,34 @@ function renderCover(){
 }
 
 /* ============================ QUESTIONS ============================ */
+/* ---- locale-aware rendering -------------------------------------------
+   bank-v2 stores three kinds of questions: bilingual (hi+en), Hindi-only
+   (Language-I) and English-only (Language-II). The primary slot always gets
+   the question's own language; the other one becomes the secondary line. */
+const hasText = s => !!(s && s.trim());
+const pHi = o => o.hi || o.en || '';
+const pEn = o => (o.hi ? (o.en || '') : '');
 function stimHTML(id){
   const s = STIM[id]; if(!s) return '';
   const label = s.type === 'poem' ? '📜 कविता / पद्यांश' : '📄 गद्यांश / PASSAGE';
+  const body = hasText(s.hi)
+    ? `<div class="st-hi">${rich(s.hi)}</div>` + (hasText(s.en) ? `<div class="st-en">${rich(s.en)}</div>` : '')
+    : `<div class="st-pri">${rich(s.en || '')}</div>`;
   return `<div class="stim">
     <div class="sh">${label}</div>
-    ${s.hi?`<div class="st-hi">${rich(s.hi)}</div>`:''}
-    ${s.en?`<div class="st-en">${rich(s.en)}</div>`:''}
+    ${body}
     ${(s.instHi||s.instEn)?`<div class="st-inst">${rich(s.instHi||s.instEn)}</div>`:''}
   </div>`;
+}
+function qText(q){
+  if (hasText(q.hi)) return `<div class="q-hi">${rich(q.hi)}</div>` +
+    (hasText(q.en) ? `<div class="q-en">${rich(q.en)}</div>` : '');
+  return `<div class="q-pri">${rich(q.en || '')}</div>`;
+}
+function optText(o){
+  if (hasText(o.hi)) return `<span class="o-hi">${rich(o.hi)}</span>` +
+    (hasText(o.en) ? `<span class="o-en">${rich(o.en)}</span>` : '');
+  return `<span class="o-pri">${rich(o.en || '')}</span>`;
 }
 
 function renderQuestions(){
@@ -801,19 +824,13 @@ function qHTML(q){
   const opts = q.opts.map(o => `
     <div class="opt" data-o="${o.id}" role="button" tabindex="0">
       <span class="olab">(${o.id.toUpperCase()})</span>
-      <span class="o-text">
-        <span class="o-hi">${rich(o.hi)}</span>
-        ${o.en?`<span class="o-en">${rich(o.en)}</span>`:''}
-      </span>
+      <span class="o-text">${optText(o)}</span>
       <span class="badge" hidden></span>
     </div>`).join('');
   return `<article class="q" id="q${q.n}" data-n="${q.n}">
     <div class="q-head">
       <div class="qbadge">Q.${q.n}</div>
-      <div class="q-text">
-        <div class="q-hi">${rich(q.hi)}</div>
-        ${q.en?`<div class="q-en">${rich(q.en)}</div>`:''}
-      </div>
+      <div class="q-text">${qText(q)}</div>
     </div>
     <div class="q-body">${opts}</div>
     <div id="tags${q.n}"></div>
@@ -872,7 +889,7 @@ function reviewOne(q){
   else if (mine === key) tag = `<span class="tag ok">आपका उत्तर (सही) ✓</span>`;
   else tag = `<span class="tag no">आपका उत्तर (गलत) ✗</span>`;
   const ko = (q.opts.find(o=>o.id===key)||{});
-  tag += `<span class="tag key">✓ आयोग सही उत्तर : (${String(key||'-').toUpperCase()}) ${esc(ko.hi||'')}</span>`;
+  tag += `<span class="tag key">✓ आयोग सही उत्तर : (${String(key||'-').toUpperCase()}) ${esc(pHi(ko))}</span>`;
   document.getElementById('tags'+q.n).innerHTML = tag;
   document.getElementById('exp'+q.n).innerHTML = expHTML(q, mine, key);
 }
@@ -880,8 +897,8 @@ function reviewOne(q){
 function expHTML(q, mine, key){
   const rows = [];
   const ko = q.opts.find(o=>o.id===key) || {};
-  rows.push(['आयोग सही उत्तर', `<span class="hi">(${String(key||'-').toUpperCase()}) ${rich(ko.hi||'—')}</span>` +
-    (ko.en?`<span class="enx">${rich(ko.en)}</span>`:'')]);
+  rows.push(['आयोग सही उत्तर', `<span class="hi">(${String(key||'-').toUpperCase()}) ${rich(pHi(ko)||'—')}</span>` +
+    (pEn(ko)?`<span class="enx">${rich(pEn(ko))}</span>`:'')]);
   rows.push(['विषय / अनुभाग', `<span class="hi">${esc(q.sectionHi)}</span><span class="enx">${esc(q.sectionEn)}</span>`]);
   rows.push(['प्रश्न प्रकार', 'बहुविकल्पीय — एकल उत्तर (Single Choice)']);
   rows.push(['अंकन योजना', `सही : +1.00 &nbsp;|&nbsp; गलत : −${NEG.toFixed(2)} &nbsp;|&nbsp; अनुत्तरित : 0`]);
@@ -891,7 +908,7 @@ function expHTML(q, mine, key){
   const list = q.opts.map(o => {
     const ok = o.id===key, me = o.id===mine;
     const mk = ok ? '<span class="mk y">✓</span>' : (me ? '<span class="mk" style="color:var(--crimson)">✗</span>' : '<span class="mk n">•</span>');
-    return `<div>${mk}<span><b>(${o.id.toUpperCase()})</b> ${rich(o.hi)}${me?' <i style="color:var(--sub);font-style:normal">— आपका चयन</i>':''}</span></div>`;
+    return `<div>${mk}<span><b>(${o.id.toUpperCase()})</b> ${rich(pHi(o))}${me?' <i style="color:var(--sub);font-style:normal">— आपका चयन</i>':''}</span></div>`;
   }).join('');
   return `<div class="exp">
     <div class="exp-h">🔍 360° संदर्भ व्याख्या <small>Official Solution &amp; Concept Analysis</small></div>
