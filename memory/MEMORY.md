@@ -355,11 +355,23 @@
 - **Static Analysis:** `dart analyze lib/`: **0 errors, 0 warnings (100% clean)**.
 - **Local Git Commit:** `2441643`.
 
+### 2026-10-18: 5.8px RenderFlex Overflow Resolution in QuestionReportSheet
+- **5.8px RenderFlex Overflow Resolution (`lib/widgets/question_report_sheet.dart`):**
+  - Identified cause: Top Row in `QuestionReportSheet` header contained unconstrained `Text('प्रश्न में त्रुटि रिपोर्ट करें')` alongside badge (`Q42`) and action buttons, exceeding available width on narrow screens (150.4px).
+  - Resolved by wrapping the title `Text` in `Flexible(child: Text(..., maxLines: 1, overflow: TextOverflow.ellipsis))` and making action `IconButton`s compact (`padding: EdgeInsets.all(6)`, `constraints: BoxConstraints()`).
+  - Wrapped `ReportedQuestionsSheet` title in `Flexible` as well to prevent any future overflows on narrow devices.
+- **GitHub Sync Strategy for Question Reports:**
+  - Reports persist locally in SQLite while user is offline.
+  - Can sync automatically to GitHub Issues (`sherawali/tet/issues`) upon internet reconnection using Fine-grained GitHub PAT or a lightweight proxy/webhook without risking secret key leaks in client APK.
+- **Keystore / Signing Key Status:** 100% protected and untouched. Keystores remain completely safe.
+- **Static Analysis:** `dart analyze lib/`: **0 errors, 0 warnings (100% clean)**.
+- **Local Git Commit:** `0dd5615`.
+
 ---
 
 ## 📌 Next Steps
-1. Push local master commits (`2441643`) to GitHub remote repository (`sherawali/tet` or designated repo).
-2. Instruct user to press 'R' (hot restart) in their running terminal to test the real report system, floating luxury snackbar, and report history live on device.
+1. Push local master commits (`0dd5615`) to GitHub remote repository (`sherawali/tet` or designated repo).
+2. Instruct user to press 'R' (hot restart) in their running terminal to see the overflow-free luxury report sheet live on device.
 
 
 
