@@ -1,0 +1,20 @@
+{
+  "version": 2,
+  "last_updated": "2026-10-18T06:35:33Z",
+  "messages": [
+    {
+      "id": "tet_2026_fresh_launch",
+      "title": "UTET & CTET 2026 सम्पूर्ण टेस्ट सीरीज लाइव!",
+      "subtitle": "62 ओरिजिनल पेपर्स और 9,720 प्रश्नों का मास्टर बैंक उपलब्ध है।",
+      "type": "info",
+      "active": true
+    },
+    {
+      "id": "offline_ready",
+      "title": "100% ऑफलाइन ओएमआर एवं सीबीटी टेस्ट",
+      "subtitle": "बिना इंटरनेट के भी वास्तविक परीक्षा माहौल में अभ्यास करें।",
+      "type": "success",
+      "active": true
+    }
+  ]
+}
