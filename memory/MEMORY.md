@@ -303,11 +303,31 @@
 - **Static Analysis:** `dart analyze lib/`: **0 errors, 0 warnings (100% clean)**.
 - **Local Git Commit:** `0846308`.
 
+### 2026-10-18: 14px Overflow Elimination & Multi-Slide Flash Message Banner System
+- **14px RenderFlex Overflow Resolution (`lib/screens/home_screen.dart`):**
+  - Identified cause: Top Row badges in Hero Carousel card exceeded available width on narrow screens (e.g. 271.8px).
+  - Resolved by wrapping the right badges row in `Flexible(child: FittedBox(fit: BoxFit.scaleDown, alignment: Alignment.centerRight, child: Row(...)))`.
+  - Result: 100% overflow-safe on all screen resolutions without any yellow/black stripe error.
+- **Multi-Slide Flash Message Banner System (`lib/widgets/flash_message_banner.dart`):**
+  - **Multi-Slide Carousel:** Supports automatic smooth transitions every 5 seconds plus manual tactile swipe with `BouncingScrollPhysics()`.
+  - **Slide Counter Badge:** Shows dynamic slide indicator badge (e.g. `1/3`, `2/3`, `3/3`).
+  - **Interactive Dots:** Tapping on any dot directly slides to that specific message.
+  - **Type-Specific Luxury Themes:**
+    - Notice/Info: Seal Gold icon & accents (`Icons.campaign_rounded`).
+    - Update: Sky Blue icon & accents (`Icons.system_update_rounded`).
+    - Success: Emerald Green icon & accents (`Icons.verified_rounded`).
+    - Alert: Amber Orange icon & accents (`Icons.notification_important_rounded`).
+  - **Independent Dismissal:** Pressing `✕` on a slide dismisses that individual slide (`_dismissCurrent(index)`) rather than closing the whole banner.
+- **Keystore / Signing Key Status:** 100% protected and untouched. Keystores remain completely safe.
+- **Static Analysis:** `dart analyze lib/`: **0 errors, 0 warnings (100% clean)**.
+- **Local Git Commit:** `3a68f00`.
+
 ---
 
 ## 📌 Next Steps
-1. Push local master commits (`0846308`) to GitHub remote repository (`sherawali/tet` or designated repo).
-2. Instruct user on modifying `cdn/flash_messages.json` and `cdn/manifest.json` on GitHub to remotely control messages and free/paid mocks without releasing new app builds.
+1. Push local master commits (`3a68f00`) to GitHub remote repository (`sherawali/tet` or designated repo).
+2. Instruct user to press 'R' (hot restart) in their running terminal to see the multi-slide flash message banner live on screen.
+
 
 
 
