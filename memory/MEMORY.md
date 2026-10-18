@@ -280,11 +280,35 @@
 - **Keystore / Signing Key Status:** 100% protected and untouched. Keystores remain completely safe.
 - **Static Analysis:** `dart analyze lib/`: **0 errors, 0 warnings (100% clean)**.
 
+### 2026-10-18: Remote GitHub Control (Flash Messages, Free/Paid Mocks & Offline Auto-Sync)
+- **Remote Flash Message System:**
+  - `FlashMessage` model supports `title`, `message`/`subtitle`, `type`, and action links.
+  - `FlashMessageService` pulls directly from raw GitHub (`cdn/flash_messages.json`) with timestamp cache-busting, caches locally in SQLite (`cached_flash_json`), and falls back gracefully offline.
+  - Displayed dynamically above Hero Carousel via `FlashMessageBanner`.
+- **Remote Free vs. Paid Mock Control via GitHub:**
+  - Added `remote_config` to `cdn/manifest.json` (`free_mock_count`, `free_form_ids`, `paid_form_ids`, `all_mocks_free`).
+  - Added `PremiumService.instance.isPaperFree({formId, index})` wired into:
+    - `HomeScreen` Booklet Tiles & Hero Carousel cards.
+    - `MockSeriesScreen` Mock list.
+    - `PyqVaultScreen` PYQ list.
+    - `SubjectDetailScreen` Subject Practice sets.
+  - Automatically caches remote free/paid rules in SQLite (`cached_remote_config`) so offline users retain access rules.
+- **Dynamic Question & New Mock Sync System (`cdn/papers.json` & `atomicUpdateBank`):**
+  - `bin/build_github_cdn_vault.py` exports `cdn/papers.json` (62 official papers + 9,720 appearances) alongside the 49 question packs.
+  - `SyncService` downloads `manifest.json`, question packs, and `papers.json`.
+  - `DbHelper.atomicUpdateBank` updates `questions`, `passages`, `paper_forms`, and `appearances` inside a single atomic transaction.
+  - Any new mock, changed question, translation fix, or deletion on GitHub syncs down to the device without affecting user test scores or history.
+  - Added silent background update check and modern update banner on `HomeScreen` with one-tap sync.
+- **Keystore / Signing Key Status:** 100% protected and untouched. Keystores remain completely safe.
+- **Static Analysis:** `dart analyze lib/`: **0 errors, 0 warnings (100% clean)**.
+- **Local Git Commit:** `0846308`.
+
 ---
 
 ## 📌 Next Steps
-1. Push to GitHub remote repository (`sherawali/tet` or user's designated repo) to replace the old CDN data on GitHub with the new 9,720-question database.
-2. Verify GitHub remote update.
+1. Push local master commits (`0846308`) to GitHub remote repository (`sherawali/tet` or designated repo).
+2. Instruct user on modifying `cdn/flash_messages.json` and `cdn/manifest.json` on GitHub to remotely control messages and free/paid mocks without releasing new app builds.
+
 
 
 
