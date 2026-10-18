@@ -1243,9 +1243,9 @@ ${opt != null && opt.toString().isNotEmpty ? '💡 सुझाया गया 
                           ],
                         ),
                         Text(
-                          'आपके द्वारा रिपोर्ट किए गए प्रश्नों की स्थिति',
+                          'प्रश्नों की समीक्षा स्थिति · 7 दिनों में स्वतः निस्तारित',
                           style: GoogleFonts.notoSansDevanagari(
-                            fontSize: 12,
+                            fontSize: 11.5,
                             color: textSecondary,
                           ),
                         ),
@@ -1339,122 +1339,195 @@ ${opt != null && opt.toString().isNotEmpty ? '💡 सुझाया गया 
 
                             final reportCode = 'REP-${DateTime.now().year}-${id.toString().padLeft(4, '0')}';
 
-                            return Container(
-                              padding: const EdgeInsets.all(14),
-                              decoration: BoxDecoration(
-                                color: cardBg,
-                                borderRadius: BorderRadius.circular(14),
-                                border: Border.all(color: borderColor, width: 1),
-                              ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  // Top row: QNum badge + Status + Copy + Delete
-                                  Row(
-                                    children: [
-                                      Container(
-                                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-                                        decoration: BoxDecoration(
-                                          color: const Color(0xFFD97706).withValues(alpha: 0.15),
-                                          borderRadius: BorderRadius.circular(6),
-                                          border: Border.all(
-                                            color: const Color(0xFFD97706).withValues(alpha: 0.4),
-                                            width: 1,
-                                          ),
-                                        ),
-                                        child: Text(
-                                          'प्रश्न Q$qNum',
-                                          style: GoogleFonts.outfit(
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.bold,
-                                            color: const Color(0xFFF59E0B),
-                                          ),
-                                        ),
+                                  final isSolved = status == 'solved' || status == 'resolved';
+                                  final isVerified = status == 'verified';
+
+                                  return Container(
+                                    padding: const EdgeInsets.all(12),
+                                    decoration: BoxDecoration(
+                                      color: cardBg,
+                                      borderRadius: BorderRadius.circular(14),
+                                      border: Border.all(
+                                        color: isSolved
+                                            ? const Color(0xFF10B981).withValues(alpha: 0.4)
+                                            : borderColor,
+                                        width: 1,
                                       ),
-                                      const SizedBox(width: 8),
-                                      Container(
-                                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-                                        decoration: BoxDecoration(
-                                          color: const Color(0xFF38BDF8).withValues(alpha: 0.12),
-                                          borderRadius: BorderRadius.circular(6),
-                                        ),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.min,
+                                    ),
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        // Top row: QNum badge + Status pill (Flexible) + Actions
+                                        Row(
                                           children: [
-                                            const Icon(Icons.sync_rounded, size: 12, color: Color(0xFF38BDF8)),
+                                            // Question Number badge
+                                            Container(
+                                              padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2.5),
+                                              decoration: BoxDecoration(
+                                                color: const Color(0xFFD97706).withValues(alpha: 0.15),
+                                                borderRadius: BorderRadius.circular(6),
+                                                border: Border.all(
+                                                  color: const Color(0xFFD97706).withValues(alpha: 0.4),
+                                                  width: 1,
+                                                ),
+                                              ),
+                                              child: Text(
+                                                'Q$qNum',
+                                                style: GoogleFonts.outfit(
+                                                  fontSize: 11.5,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: const Color(0xFFF59E0B),
+                                                ),
+                                              ),
+                                            ),
+                                            const SizedBox(width: 6),
+
+                                            // Status Badge (Flexible so it never overflows)
+                                            Flexible(
+                                              child: Container(
+                                                padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2.5),
+                                                decoration: BoxDecoration(
+                                                  color: isSolved
+                                                      ? const Color(0xFF10B981).withValues(alpha: 0.15)
+                                                      : (isVerified
+                                                          ? const Color(0xFF38BDF8).withValues(alpha: 0.15)
+                                                          : const Color(0xFFF59E0B).withValues(alpha: 0.12)),
+                                                  borderRadius: BorderRadius.circular(6),
+                                                  border: Border.all(
+                                                    color: isSolved
+                                                        ? const Color(0xFF10B981).withValues(alpha: 0.35)
+                                                        : (isVerified
+                                                            ? const Color(0xFF38BDF8).withValues(alpha: 0.35)
+                                                            : const Color(0xFFF59E0B).withValues(alpha: 0.3)),
+                                                    width: 0.8,
+                                                  ),
+                                                ),
+                                                child: Row(
+                                                  mainAxisSize: MainAxisSize.min,
+                                                  children: [
+                                                    Icon(
+                                                      isSolved
+                                                          ? Icons.check_circle_rounded
+                                                          : (isVerified
+                                                              ? Icons.verified_rounded
+                                                              : Icons.pending_actions_rounded),
+                                                      size: 11.5,
+                                                      color: isSolved
+                                                          ? const Color(0xFF10B981)
+                                                          : (isVerified
+                                                              ? const Color(0xFF38BDF8)
+                                                              : const Color(0xFFF59E0B)),
+                                                    ),
+                                                    const SizedBox(width: 3.5),
+                                                    Flexible(
+                                                      child: Text(
+                                                        isSolved
+                                                            ? 'हल हो गया (Solved)'
+                                                            : (isVerified
+                                                                ? 'सत्यापित'
+                                                                : 'समीक्षाधीन'),
+                                                        maxLines: 1,
+                                                        overflow: TextOverflow.ellipsis,
+                                                        style: GoogleFonts.outfit(
+                                                          fontSize: 10.5,
+                                                          fontWeight: FontWeight.w700,
+                                                          color: isSolved
+                                                              ? const Color(0xFF10B981)
+                                                              : (isVerified
+                                                                  ? const Color(0xFF38BDF8)
+                                                                  : const Color(0xFFF59E0B)),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
                                             const SizedBox(width: 4),
+
+                                            // Copy button
+                                            IconButton(
+                                              padding: const EdgeInsets.all(4),
+                                              constraints: const BoxConstraints(),
+                                              icon: Icon(Icons.copy_rounded, size: 16, color: textSecondary),
+                                              tooltip: 'कॉपी करें',
+                                              onPressed: () => _copySingleReport(r),
+                                            ),
+                                            const SizedBox(width: 8),
+
+                                            // Delete button
+                                            IconButton(
+                                              padding: const EdgeInsets.all(4),
+                                              constraints: const BoxConstraints(),
+                                              icon: const Icon(Icons.delete_outline_rounded, size: 17, color: Color(0xFFEF4444)),
+                                              tooltip: 'हटाएं',
+                                              onPressed: () => _deleteReport(id, qNum),
+                                            ),
+                                          ],
+                                        ),
+                                        const SizedBox(height: 7),
+
+                                        // Paper and Code (Full width, ellipsis safe)
+                                        Row(
+                                          children: [
+                                            Expanded(
+                                              child: Text(
+                                                paper,
+                                                maxLines: 1,
+                                                overflow: TextOverflow.ellipsis,
+                                                style: GoogleFonts.notoSansDevanagari(
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: textPrimary,
+                                                ),
+                                              ),
+                                            ),
+                                            const SizedBox(width: 6),
                                             Text(
-                                              status == 'verified'
-                                                  ? 'सत्यापित'
-                                                  : 'समीक्षाधीन (Under Review)',
+                                              reportCode,
                                               style: GoogleFonts.outfit(
                                                 fontSize: 11,
-                                                fontWeight: FontWeight.w600,
-                                                color: const Color(0xFF38BDF8),
+                                                color: textSecondary,
                                               ),
                                             ),
                                           ],
                                         ),
-                                      ),
-                                      const Spacer(),
-                                      IconButton(
-                                        padding: EdgeInsets.zero,
-                                        constraints: const BoxConstraints(),
-                                        icon: Icon(Icons.copy_rounded, size: 17, color: textSecondary),
-                                        tooltip: 'कॉपी करें',
-                                        onPressed: () => _copySingleReport(r),
-                                      ),
-                                      const SizedBox(width: 12),
-                                      IconButton(
-                                        padding: EdgeInsets.zero,
-                                        constraints: const BoxConstraints(),
-                                        icon: const Icon(Icons.delete_outline_rounded, size: 18, color: Color(0xFFEF4444)),
-                                        tooltip: 'हटाएं',
-                                        onPressed: () => _deleteReport(id, qNum),
-                                      ),
-                                    ],
-                                  ),
-                                  const SizedBox(height: 8),
+                                        const SizedBox(height: 5),
 
-                                  // Paper and Code
-                                  Row(
-                                    children: [
-                                      Text(
-                                        paper,
-                                        style: GoogleFonts.notoSansDevanagari(
-                                          fontSize: 12.5,
-                                          fontWeight: FontWeight.w600,
-                                          color: textPrimary,
+                                        // Reason badge + Date row
+                                        Row(
+                                          children: [
+                                            Expanded(
+                                              child: Container(
+                                                padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
+                                                decoration: BoxDecoration(
+                                                  color: const Color(0xFFEF4444).withValues(alpha: 0.1),
+                                                  borderRadius: BorderRadius.circular(6),
+                                                ),
+                                                child: Text(
+                                                  'समस्या: $reason',
+                                                  maxLines: 1,
+                                                  overflow: TextOverflow.ellipsis,
+                                                  style: GoogleFonts.notoSansDevanagari(
+                                                    fontSize: 11.5,
+                                                    fontWeight: FontWeight.w600,
+                                                    color: const Color(0xFFEF4444),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            if (displayDate.isNotEmpty) ...[
+                                              const SizedBox(width: 6),
+                                              Text(
+                                                displayDate,
+                                                style: GoogleFonts.outfit(
+                                                  fontSize: 10,
+                                                  color: textSecondary.withValues(alpha: 0.7),
+                                                ),
+                                              ),
+                                            ],
+                                          ],
                                         ),
-                                      ),
-                                      const SizedBox(width: 8),
-                                      Text(
-                                        '· $reportCode',
-                                        style: GoogleFonts.outfit(
-                                          fontSize: 11.5,
-                                          color: textSecondary,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  const SizedBox(height: 6),
-
-                                  // Reason badge
-                                  Container(
-                                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                                    decoration: BoxDecoration(
-                                      color: const Color(0xFFEF4444).withValues(alpha: 0.1),
-                                      borderRadius: BorderRadius.circular(6),
-                                    ),
-                                    child: Text(
-                                      'समस्या: $reason',
-                                      style: GoogleFonts.notoSansDevanagari(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w600,
-                                        color: const Color(0xFFEF4444),
-                                      ),
-                                    ),
-                                  ),
 
                                   // Stem preview if present
                                   if (stem != null && stem.isNotEmpty) ...[

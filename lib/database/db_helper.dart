@@ -1135,10 +1135,37 @@ class DbHelper {
     return res.isNotEmpty;
   }
 
-  /// Retrieves all student error reports
+  /// Cleans up old reports older than 7 days automatically
+  Future<int> autoCleanOldReports({int days = 7}) async {
+    try {
+      final db = await database;
+      final threshold = DateTime.now().subtract(Duration(days: days)).toIso8601String();
+      return await db.delete(
+        'question_reports',
+        where: 'created_at < ?',
+        whereArgs: [threshold],
+      );
+    } catch (_) {
+      return 0;
+    }
+  }
+
+  /// Retrieves all student error reports (auto-clears records older than 7 days)
   Future<List<Map<String, dynamic>>> getQuestionReports() async {
     final db = await database;
+    await autoCleanOldReports(days: 7);
     return await db.query('question_reports', orderBy: 'id DESC');
+  }
+
+  /// Updates status of a report (e.g. 'solved', 'synced', 'verified', 'submitted')
+  Future<int> updateReportStatus(int id, String newStatus) async {
+    final db = await database;
+    return await db.update(
+      'question_reports',
+      {'status': newStatus},
+      where: 'id = ?',
+      whereArgs: [id],
+    );
   }
 
   /// Deletes a specific question report by ID
