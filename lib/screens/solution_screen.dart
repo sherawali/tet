@@ -11,6 +11,7 @@ import '../widgets/app_badge.dart';
 import '../widgets/formatted_question_stem.dart';
 import '../widgets/smart_math_text.dart';
 import '../widgets/question_report_sheet.dart';
+import '../services/language_service.dart';
 
 enum SolutionFilter { all, incorrect, unattempted, correct }
 
@@ -63,7 +64,7 @@ class _SolutionScreenState extends State<SolutionScreen> {
               ),
               const SizedBox(height: 16),
               Text(
-                'भाषा चुनें (Select Language)',
+                AppStrings.selectLangTitle,
                 style: AppTypography.titleLarge(
                   color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
                 ),
@@ -362,7 +363,9 @@ class _SolutionScreenState extends State<SolutionScreen> {
                                     ),
                                     const SizedBox(width: 6),
                                     Text(
-                                      passage.isPoem ? 'अपठित पद्यांश (काव्य)' : 'अपठित गद्यांश (Passage)',
+                                      passage.isPoem
+                                          ? (LanguageService.instance.isHindi ? 'अपठित पद्यांश' : 'Poem')
+                                          : (LanguageService.instance.isHindi ? 'अपठित गद्यांश' : 'Comprehension Passage'),
                                       style: AppTypography.labelSmall(color: AppColors.primary).copyWith(fontWeight: FontWeight.bold),
                                     ),
                                   ],

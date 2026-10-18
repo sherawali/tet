@@ -2,6 +2,8 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import '../design_system/app_colors.dart';
 import '../design_system/app_radius.dart';
+import '../design_system/app_strings.dart';
+import '../services/language_service.dart';
 
 /// Interactive Zoomable Diagram Viewer for Math & Science Questions
 /// Supports Markdown images `![alt](url)`, network/asset images, and native geometry vector diagrams.
@@ -53,8 +55,8 @@ class MathDiagramWidget extends StatelessWidget {
     if (questionId.contains('ctet-p1-2018-m-mathematics-q049')) {
       return _buildCustomDiagramCard(
         context,
-        badgeText: '📊 संख्या रेखा (Number Line)',
-        title: 'संख्या रेखा पर बिंदु A और B',
+        badgeText: '📊 ${AppStrings.numberLineLabel}',
+        title: LanguageService.instance.isHindi ? 'संख्या रेखा पर बिंदु A और B' : 'Points A and B on Number Line',
         painter: _CtetNumberLinePainter(isDark: isDark),
         width: 320,
         height: 120,
@@ -65,8 +67,8 @@ class MathDiagramWidget extends StatelessWidget {
     if (questionId.contains('utet-p1-2020-mathematics-q117')) {
       return _buildCustomDiagramCard(
         context,
-        badgeText: '📐 3D ठोस आकृति (Triangular Prism)',
-        title: 'त्रिभुजाकार प्रिज्म (Triangular Prism)',
+        badgeText: '📐 ${AppStrings.prismLabel}',
+        title: AppStrings.prismLabel,
         painter: _TriangularPrismPainter(isDark: isDark),
         width: 280,
         height: 190,
@@ -77,8 +79,8 @@ class MathDiagramWidget extends StatelessWidget {
     if (questionId.contains('utet-p1-2022-mathematics-q098')) {
       return _buildCustomDiagramCard(
         context,
-        badgeText: '🔲 छायांकित भाग (Shaded Fraction)',
-        title: 'आयत में छायांकित भाग (Shaded Region)',
+        badgeText: '🔲 ${AppStrings.shadedRegionLabel}',
+        title: LanguageService.instance.isHindi ? 'आयत में छायांकित भाग' : 'Shaded Region in Rectangle',
         painter: _ShadedFractionPainter(isDark: isDark),
         width: 280,
         height: 150,
@@ -95,7 +97,7 @@ class MathDiagramWidget extends StatelessWidget {
     return GestureDetector(
       onTap: () => _openZoomDialog(
         context,
-        title: alt.isNotEmpty ? alt : 'चित्र (Diagram)',
+        title: alt.isNotEmpty ? alt : AppStrings.diagramLabel,
         child: isNetwork
             ? Image.network(url, fit: BoxFit.contain)
             : Image.asset(url, fit: BoxFit.contain),
@@ -143,7 +145,7 @@ class MathDiagramWidget extends StatelessWidget {
                 Icon(Icons.zoom_in_rounded, size: 16, color: isDark ? Colors.white60 : Colors.black54),
                 const SizedBox(width: 4),
                 Text(
-                  'बड़ा देखने के लिए टैप करें (Tap to Zoom)',
+                  AppStrings.tapToZoom,
                   style: TextStyle(
                     fontSize: 12,
                     color: isDark ? Colors.white60 : Colors.black54,

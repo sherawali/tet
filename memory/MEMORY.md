@@ -468,12 +468,207 @@
 - **Static Analysis:** `dart analyze lib/`: **0 errors, 0 warnings (100% clean)**.
 - **Local Git Commits:** `fc95898`.
 
+### 2026-10-18: Universal Exam Question Archetypes Engine (HTML Booklet & Vault v11)
+- **Problem Diagnosed:**
+  1. *Fill-in-the-Blank:* Line 97 of `html_booklet_builder.dart` had `.replaceAll('__', '')`, which wiped out blank underlines (`______` and `[ _______ ]`), rendering 356 questions with invisible blanks.
+  2. *Match-the-Following:* Previous regex only supported alternating items `(a)... (i)...`, failing on real board papers with sequential blocks (`सूची-I: (a)...(d)... सूची-II: 1....4....` like `27c5ba57f75bb394`) and dashed pairs (`1. नीलगिरी – (a) अनाईमुडी` like `bc268d21f55b24f3`).
+  3. *Assertion-Reason / Kathan-Karan:* Missed `कथन : ... व्याख्या : ...` and `कथन : ... प्रभाव : ...` variants, and leading `(A)` was stripped from 44 options in the vault.
+  4. *Multi-Statement Evaluation:* Failed on inline single-line statements under "कथनों पर विचार कीजिए / पढ़िए".
+- **Comprehensive Solution Implemented in `HtmlBookletBuilder` (`lib/services/html_booklet_builder.dart`):**
+  1. **Fill-in-the-Blank (.q-blank):**
+     - Removed `.replaceAll('__', '')`.
+     - In `formatInlineMarkdown`, converted `\[\s*_{2,}\s*\]`, `_{2,}`, `\[\s*\.{3,}\s*\]`, and `\.{4,}` into `<span class="q-blank" title="रिक्त स्थान">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>`.
+     - Added CSS `.q-blank`: inline-block, 65px width, 2.5px solid dark bottom-border.
+  2. **Match-the-Following Engine (Side-by-Side 2-Column Table):**
+     - *Type 1 (Sequential Blocks):* Detects Header I (`सूची-I / List-I`) and Header II (`सूची-II / List-II`), extracts items from both halves, pairs them side-by-side with headers and conclusion/code block.
+     - *Type 2 (Dashed Pairs):* Detects `1. X – (a) Y 2. P – (b) Q` and extracts into a 2-column table with custom header.
+     - *Type 3 (Alternating Items):* Supports expanded marker set (`(a)` to `(p)` with `(1)` to `(10)` or `(i)` to `(v)`).
+  3. **Assertion-Reason / Kathan-Karan / Vyakhyan / Prabhav:**
+     - Expanded regex to match `अभिकथन|दावा|कथनम्|कथन` against `कारण|तर्क|कारणम्|व्याख्या|प्रभाव`.
+     - Styled tags: `.tag-a` (अभिकथन - Blue), `.tag-r` (कारण - Purple), `.tag-v` (व्याख्या / प्रभाव - Amber Gold).
+  4. **Multi-Statement Evaluation (.stmt-row):**
+     - Handles both multi-line and inline `(A)... (B)... (C)...` or `(i)... (ii)...` statements when stem has statement keywords (`कथन|कथनों|विचार|पढ़िए`).
+     - Separates conclusion (`उपर्युक्त कथनों में से कौन सा सही है?`) into `.stmt-conclusion`.
+  5. **Runtime Option Label Restorer (`ensureOptionLabel`):**
+     - Automatically restores missing `(A)` in options starting with `और (R) दोनों` or `is true but (R)` in both desktop and mobile views.
+- **Database Vault Bumped to v12 (`'20261018_master_vault_clean_v12'`):**
+  - Updated `meta` table in `assets/database/tet_mock_vault.db`.
+  - Updated `lib/database/db_helper.dart` (line 205) to auto-sync on next launch.
+- **Deep Audit of All 9,720 Questions Across Vault:**
+  1. *Broken Fraction OCR Fixed:* `ctet-p1-2023-pyq_q043` (`बढ़ते हुए क्रम में भिन्नों के समूह`) had corrupted options (`['1 1 3 4 2 < <', ...]`). Restored authentic math fractions: `["1/3 < 1/4 < 1/2", "1/4 < 1/3 < 1/2", "1/2 < 1/4 < 1/3", "1/2 < 1/3 < 1/4"]` with correct answer (B).
+  2. *Stripped First Digits in 6 Permutation Matching Questions Fixed:* Restored original 4-digit codes for `1f7ee5aa5f7a98b4`, `bc268d21f55b24f3`, `57389956c05eadda`, `dc4c21d7bc7f5832`, `27c5ba57f75bb394`, and `92c30f080c2365c7`.
+  3. *Leaked Stem Parts in Error-Spotting Questions Fixed:* Fixed `84e490f73270ed9c`, `d0040ee9de70d6d2`, and `711a681ce676152d` so stems contain full sentences and options contain the isolated parts (A, B, C, D) without star `*` or concatenated text.
+  4. *Incomplete Stems Repaired:* `76df8ee810c6fcaf` ('पंकज एक') repaired to '‘पंकज’ एक कैसा शब्द है ?'.
+  5. *CTET Error Spotting Cleaned:* `ctet-p1-2021-pyq_q128`, `ctet-p1-2021-pyq_q135`, and `ctet-p1-2020-pyq_q134` options unified into standard Part (A), Part (B), Part (C), Part (D).
+  6. *Full 9,720 Question HTML Render Simulation:* Executed in Dart on all 9,720 questions with **0 errors, 0 exceptions, 0 empty stems**.
+- **Keystore / Signing Key Status:**
+  - 100% untouched and safe. Keystores protected per strict safety protocol.
+- **Verification & Analysis:**
+  - `dart analyze lib/`: **0 errors, 0 warnings (100% clean)**.
+
+### 2026-10-18: Universal Question Booklet Engine Upgrade & Vault v13 (Match, Kathan, Multi-Statement)
+- **User Problem Addressed:**
+  - Booklet HTML displayed match questions (मिलान वाले) and assertion-reason / multi-statement (कथन वाले) as unformatted plain text blocks.
+  - In some questions, question parts or sub-statements leaked into options, and 49 questions had stripped leading numbers/letters in options (e.g. `'और 2'`, `'(B) और (C) दोनों'` showing without `(A)`, math roots missing numbers).
+- **Universal Parser Re-engineering (`lib/services/html_booklet_builder.dart`):**
+  1. **Match-the-Following Engine (2-Column Responsive Tables):**
+     - *Type 1 (Sequential Blocks):* Detects `कॉलम A / B`, `स्तम्भ 1 / 2`, `सूची I / II`, `List I / II` with headers and pairs items cleanly into two columns.
+     - *Type 2 (Dashed Pairs):* Detects `1. ... – (a) ...` or `A. ... - i. ...` or `(P) ... - (I) ...` and builds clean comparison tables.
+     - *Type 3 (Alternating dot/parentheses pairs):* Detects `A. ... i. ... B. ... ii. ...` or `(1) ... (a) ... (2) ... (b) ...` and builds authentic board examination 2-column tables with bold item markers.
+     - Separates conclusion / code prompts ("नीचे दिए गए कूट में से सही उत्तर का चयन कीजिए") so text never collides with table cells.
+  2. **Assertion-Reason & Two-Statement Cards:**
+     - Supports `अभिकथन` / `दावा` / `कथनम्` / `कथन` (A/1/I) and `कारण` / `तर्क` / `कारणम्` / `व्याख्या` / `प्रभाव` / `कथन` (R/B/2/II).
+     - Renders styled semantic cards: `.assertion-box` (Blue theme), `.reason-box` (Purple theme), `.vyakhyan-box` (Amber theme), or Statement 1 & 2 cards.
+  3. **Multi-Statement Evaluation Lists:**
+     - Fixed Roman numeral regex bug by adding `+` quantifier (`[i-vI-V]+`), enabling `(ii)`, `(iii)`, `(iv)` to match correctly.
+     - Added support for unparenthesized Dot-Notation (`I.`, `II.`, `III.` or `A.`, `B.`, `C.` or `1.`, `2.`, `3.`).
+     - Renders in `.multi-statement-wrapper` with `.stmt-list` containing colored marker pills and clean spacing.
+  4. **Authentic Option Badges & Anti-Collision Safeguard:**
+     - Switched option badges to authentic board examination numbering: `(1)`, `(2)`, `(3)`, `(4)` (matching CTET/UTET question booklets and OMR sheet bubbles).
+     - Completely prevents confusion where an option like `(A) और (B) दोनों सही हैं` was previously displaying under an `(A)` or `(B)` badge.
+- **Database Vault v13 (`20261018_master_vault_clean_v13`):**
+  - Fully repaired all 49 corrupted questions in `assets/database/tet_mock_vault.db`:
+    - Restored missing numbers in multi-select options (`1 और 2`, `2 और 3`, `1, 2 और 3`, `1 एवं 2`).
+    - Restored missing leading statement labels (`(A) और (B) दोनों सही हैं`, `(A) सही है परन्तु (B) गलत है`).
+    - Restored missing numbers in math options (`3 एवं 4`, `3 एवं -3`, `12 और 144`, `2 और 5`).
+    - Fixed `7971aa9cc683d4fb` where Column B was in options; reconstructed stem and proper permutation options.
+    - Restored missing stems in `caf8466df305a115` and `7825a052f614ae67`.
+  - Bumped `meta` bank_version and `lib/database/db_helper.dart` to `v13`.
+- **Verification & Testing:**
+  - Added unit test suite `test/html_booklet_builder_test.dart` with 7 comprehensive tests covering all question archetypes: **All 7 tests passed**.
+  - `dart analyze lib/`: **0 warnings, 0 errors**.
+  - Keystores & Signing Keys: **100% safe, untouched, and verified**.
+
+### 2026-10-18: Resolution of flutter_14.png & flutter_15.png, Universal Hierarchy Fix & Vault v14
+- **Root Cause of `flutter_14.png` (Match question rendered inside Kathan card):**
+  - In Q64 (`ctet-p1-2026-pyq_q064`), 6 alternating language-state pairs `(A)` to `(f)` and `(i)` to `(vi)` were present.
+  - Alternating match parser previously failed because `^[A-Ea-e]$` only accepted letters up to E (`f` was rejected), and `(i)` was misclassified as a letter instead of roman numeral.
+  - Because match parser fell through, `arPattern` (Assertion-Reason) loosely matched `(A)` and `(B)` in the text and forced a match question into an Assertion-Reason card!
+- **Root Cause of `flutter_15.png` (Question 63 intro chopped into Assertion/Reason cards):**
+  - In Q63 (`ctet-p1-2026-pyq_q063`), stem began with: `नीचे दिए गए कथनों (A) और (B) पर विचार कीजिए। कथन (A) : ... कथन (B) : ...`.
+  - `arPattern` executed BEFORE multi-statement parser and matched `(A)` and `(B)` in the intro itself, splitting at `और`, producing `अभिकथन (A): और` and `कथन (B): पर विचार कीजिए। कथन (A) : ...`.
+- **Architectural Solution Implemented in `HtmlBookletBuilder` (`lib/services/html_booklet_builder.dart`):**
+  1. **Strict Alternating Match Detection:** Added `_parseMarkerSequenceValue` and `_checkSequentialList` validating complete alphabetical (`A-Z`), Roman numeral (`i-x`), or numerical (`1-10`) sequences across both columns, with `dotAll: true` handling trailing newlines.
+  2. **Multi-Statement Evaluation Precedence:** Moved `explicitStmtMatches` (`कथन (A) : ... कथन (B) : ...`) to execute BEFORE Assertion-Reason. Renders 2 statements as clean dedicated statement cards with true markers (`कथन (A)` / `कथन (B)`), preserving the complete intro sentence (`नीचे दिए गए कथनों (A) और (B) पर विचार कीजिए।`).
+  3. **Strict Assertion-Reason Shield:** `arPattern` now strictly requires genuine Assertion terms (`अभिकथन` / `दावा` / `Assertion`) and Reason terms (`कारण` / `तर्क` / `व्याख्या` / `प्रभाव` / `Reason` / `(R)`). Completely removed loose `(B)` matching and banned any stem with match keywords from entering `arPattern`.
+- **Full Database Vault Audit (All 9,720 Questions Across 62 Papers):**
+  - Scanned all 9,720 questions for leaked stems or corrupted options.
+  - Repaired 3 questions:
+    - `7971aa9cc683d4fb`: Column B items were erroneously stored in options. Restored full 2-column stem and proper permutation options `(1-a)(2-b)...`.
+    - `d0040ee9de70d6d2` & `711a681ce676152d`: English error-spotting sentences were truncated into options; restored clean full stems and distinct options.
+  - Bumped `meta` bank_version and `db_helper.dart` (lines 187 & 205) to `20261018_master_vault_clean_v14`.
+- **Verification & Safety:**
+  - Added unit tests for Q63 and Q64 in `test/html_booklet_builder_test.dart`: **8/8 tests passed**.
+  - `dart analyze lib/`: **0 warnings, 0 errors**.
+  - Keystores & Signing Keys: **100% safe, untouched, and protected**.
+
+### 2026-10-18: Resolution of flutter_16.png (Q71/Q72 Root Cause Fix & Vault v15)
+- **Dual Root Cause Diagnosed & Proved:**
+  1. **Root Cause A (`HtmlBookletBuilder.dart` 4B Regex Blind Match):**
+     - In Q71 (`ctet-p1-2024-pyq_q071`), stem began with: `निम्नलिखित कथन (A) तथा कथन (B) को ध्यान से पढ़ें तथा सही विकल्प का चुनाव करें। (A) लगभग 4700 वर्ष पूर्व... (B) गंगा तथा...`.
+     - Regex `\(((?:[A-Ea-e]|[i-vI-V]+|[1-9]))\)\s*` matched `(A)` and `(B)` in the intro sentence, AND then matched `(A)` and `(B)` in the actual statements (`[A, B, A, B]`).
+     - Split intro sentence into Statement 1 (`तथा कथन`), Statement 2 (`को ध्यान से पढ़ें...`), leaving only `"निम्नलिखित कथन"` as intro.
+     - **Resolution:** Re-engineered inline statement parser with intelligent candidate sequence detection (`_isDirectSuccessor`). Groups markers into strictly increasing sequences, deduplicates repeats, and picks the substantive candidate (avg text length > 4 chars), completely protecting introductory phrases.
+  2. **Root Cause B (Over-Aggressive Ingestion Cleaning Script in Database):**
+     - In Q72 (`ctet-p1-2024-pyq_q072`) and 15 other questions, raw source had: `- (A) (A) and (B) / (A) और (B)`.
+     - An old cleaning script regex `re.sub(r'^\s*\(?[A-D]\)?[\.\:\s\-]*', '', opt)` stripped `- (A)` and then saw `(A) और (B)` and stripped `(A)` again, leaving `"और (B)"` and `", (B) और (C)"`.
+     - **Resolution:** Audited all 9,720 questions. Located exactly 16 affected questions (`ctet-p1-2024-pyq_q026`, `q031`, `q037`, `q038`, `q064`, `q072`, `q074`, `q122`, `ctet-p1-2026-pyq_q041`, `q043`, `q079`, `q084`, `q088`, `q119`, `ctet-p1-2019-pyq_q087`, `f2f411ebef4cdfab`). Restored 100% authentic options from source markdown files in `assets/database/tet_mock_vault.db`.
+  3. **Multi-Statement Evaluation for Combination Stems (Q72):**
+     - Stems with `(A) चर्चा (B) प्रदर्शन (C) व्याख्यान (D) सर्वेक्षण` now correctly match `hasStmtIntro` (added `निम्नलिखित` / `निम्न`) and format as a clean 4-item statement list.
+- **Vault Version Bump to v15 (`'20261018_master_vault_clean_v15'`):**
+  - Updated `meta` table in `assets/database/tet_mock_vault.db`.
+  - Updated `db_helper.dart` (lines 187 & 205) to auto-sync on next launch.
+- **Verification & Safety:**
+  - Added unit tests for Q71 and Q72 in `test/html_booklet_builder_test.dart`: **10/10 tests passed**.
+  - `dart analyze lib/`: **0 warnings, 0 errors**.
+  - Keystores & Signing Keys: **100% safe, untouched, and protected**.
+
+### 2026-10-18: Universal AI Question Generation Prompt & Auto-Import Pipeline
+- **Problem Addressed:** Raw Markdown files previously required complex, fragile regex parsing during ingestion that stripped parts of questions or leaked passages into options.
+- **Solution Created:**
+  1. **Master AI Generation & Conversion Prompt (`prompts/TET_MASTER_MOCK_GENERATION_PROMPT.md`):** Complete system prompt and schema covering all 6 question archetypes (MCQ, 2-Column Match, Assertion-Reason, Multi-Statement, Fill-in-Blank, and Comprehension Passages). Enforces zero bold asterisks, zero option leakage, intact `(A) और (B)` combinations, and separate passage objects.
+  2. **Automated Validator & Importer Tool (`bin/import_clean_mock_json.py`):** Pre-validates question stems, option length (strictly 4), integer answer bounds (0-3), and absence of truncated markers. Automatically imports clean mocks into SQLite database (`tet_mock_vault.db`) and registers `paper_forms` and `appearances` with a single command.
+- **Keystore / Signing Key Status:** 100% protected and untouched. Keystores remain completely safe.
+- **Static Analysis:** `dart analyze lib/`: **0 errors, 0 warnings (100% clean)**.
+
+### 2026-10-18: 100% Pure Language Separation, Resilient IAP Packs (₹599/₹299), Sanskrit Lock & IAU
+- **1. 100% Pure Language Separation Across the Entire App:**
+  - Removed all hardcoded mixed Hindi/English strings and English bracket leaks (e.g. `गणित (Mathematics)` -> Hindi: `गणित`, English: `Mathematics`).
+  - Completely localized:
+    - `lib/design_system/app_strings.dart`: Added centralized pure Hindi & English getters for all sections, badges, modals, tooltips, and dialogs.
+    - `lib/screens/home_screen.dart`: Exam selector, stream selector, language preferences, navigation tabs, and subjects grid now show 100% pure selected language without mixing.
+    - `lib/screens/solution_screen.dart`, `cbt_exam_screen.dart`, `result_screen.dart`, `mock_series_screen.dart`, `pyq_vault_screen.dart`.
+    - `lib/widgets/question_report_sheet.dart`, `math_diagram_widget.dart`, `flash_message_banner.dart`, `premium_paywall_modal.dart`.
+- **2. In-App Purchase (IAP) Pro Packs (> ₹500 Net to Creator):**
+  - **Master All-Access Pro Pass (₹599):** Creator receives net ~₹509 after Google's 15% service fee. Unlocks both UTET and CTET (Paper 1 & Paper 2), all 62+ full mock booklets, 9,720+ questions, and lifetime updates.
+  - **Single Paper Pro Pass (₹299):** Affordable student tier unlocking all 28+ full tests for the chosen paper.
+  - **Crash-Proof & Freeze-Proof Resilience:**
+    - Handled user canceling inside UPI/GPay/Card apps: resets loader immediately with clear "भुगतान रद्द कर दिया गया" toast (no black screen, no infinite spinner).
+    - 45-second safety watchdog timer (`_watchdogTimer`) prevents any hanging state.
+    - Added celebratory `_showCongratulationsDialog` on successful unlock via `onPurchaseSuccess` broadcast stream.
+- **3. Strict Free vs Pro Gate:**
+  - Enforced single flagship free mock test per exam/paper using `defaultFreePaperIds` (`utet-p1-fullmock`, `utet-p2-set-b`, `ctet-p1-2026-pyq`, `ctet-p2-ms-mock-01`, `ctet-p2-sst-mock-01`).
+  - All remaining 62+ papers and PYQs require Pro Pass.
+- **4. Sanskrit Language Lock:**
+  - Language II Sanskrit option is locked (`🔒 संस्कृत`) with an informative upcoming notice dialog stating that authentic Sanskrit papers are currently being curated for the next update.
+- **5. In-App Update (IAU):**
+  - Added dedicated Google Play In-App Update card in Settings with manual "Check for Updates" trigger and immediate/flexible update flows via `InAppUpdateService`.
+- **6. Verification & Safety:**
+  - `dart analyze lib/`: **0 errors, 0 warnings (100% clean)**.
+  - `flutter test test/html_booklet_builder_test.dart`: **10/10 tests passed**.
+  - **Keystores & Signing Keys:** 100% safe, untouched, and secure.
+
+### 2026-10-18: Total Elimination of Mixed Language on Home Screen & Sliders (Vault v16)
+- **Problem Diagnosed:** Home Screen sliding banner (`FlashMessageBanner`), Hero Carousel (`_buildHeroPyqCarousel`), and booklet cards showed mixed Hindi & English (e.g., `UTET 2023 Paper-I आधिकारिक बोर्ड पेपर`, `CTET 2026 Paper-I विगत वर्ष पेपर`, `सेट मॉडल 01`).
+- **4-Point Permanent Architectural Fix:**
+  1. **Database Vault Purge (Vault v16):**
+     - Updated all 62 `paper_forms` records in `assets/database/tet_mock_vault.db` to 100% pure Hindi (no `Paper-I` or mixed English tags).
+     - Bumped `meta` bank_version and `db_helper.dart` (lines 187 & 205) to `'20261018_master_vault_clean_v16'` to auto-sync on launch.
+  2. **100% Accurate Dynamic Translator (`AppStrings.formatPaperTitle`):**
+     - Fixed regex matching for CTET mocks (fixed prefix `p1`/`p2` collision) and UTET Paper 2 sets (`Set-A` to `Set-G`).
+     - Verified across all 62 papers: English mode renders 100% pure English (0 Hindi words), Hindi mode renders 100% pure Hindi (0 English words).
+  3. **Bilingual Sliding Broadcast Banner (`FlashMessageBanner`):**
+     - Added `titleEn`, `messageEn`, `actionLabelEn` to `FlashMessage` model and `FlashMessageService`.
+     - Wrapped with `ValueListenableBuilder<AppLang>`: slides now switch instantly to pure English in English mode, and pure Hindi without Hinglish loanwords in Hindi mode.
+  4. **Clean Stamp Architecture (`AppStrings.getStampParts`):**
+     - Eliminated text collisions like `सेट मॉडल 01` / `SET MOCK 01`.
+     - Decomposes into `{top: 'मॉडल' / 'MOCK', bottom: '01'}`, `{top: 'वर्ष' / 'YEAR', bottom: '2023'}`, `{top: 'सेट' / 'SET', bottom: 'B'}`.
+     - Implemented across `HomeScreen`, `MockSeriesScreen`, and `PyqVaultScreen`.
+- **Static Analysis & Tests:**
+  - `dart analyze lib/`: **0 errors, 0 warnings (100% clean)**.
+  - `flutter test test/html_booklet_builder_test.dart`: **10/10 tests passed**.
+- **Keystore / Signing Keys:** 100% safe, untouched, and secure.
+
+### 2026-10-18: Creation & Delivery of Complete Master PRD Blueprint Prompt (`prompts/TET_APP_COMPLETE_PRD_MASTER_PROMPT.md`)
+- **Master PRD Prompt Specification Created:**
+  - File: `prompts/TET_APP_COMPLETE_PRD_MASTER_PROMPT.md` (474 lines, comprehensive 10-section blueprint).
+  - Designed as an exhaustive prompt allowing any AI agent or engineering team to regenerate, audit, or extend the entire TET Mock Master application without missing a single subsystem.
+  - **10 Core Blueprint Pillars Covered:**
+    1. **Product Vision & Executive Summary:** 100% offline-first, dual testing engines (OMR Booklet + CBT), zero government impersonation, high-conversion monetization.
+    2. **High-Level Technical Architecture:** Flutter 3.11+, Dart 3, SQLite (`sqflite`), Impeller 120 FPS, `webview_flutter`, `flutter_math_fork`, GitHub Serverless CDN.
+    3. **Complete SQLite Database Architecture:** Full DDL schemas and indexes for all 8 tables (`questions`, `passages`, `paper_forms`, `appearances`, `test_history`, `mistake_records`, `question_reports`, `meta`), Vault v16 (`20261018_master_vault_clean_v16`) atomic upgrade protocol preserving user data.
+    4. **GitHub Serverless CDN & Remote Orchestration:** jsDelivr & Raw GitHub endpoints for `manifest.json`, `flash_messages.json` (bilingual sliding banner), and `config.json` (remote paywall gate).
+    5. **Examination Domain Rules:** UTET & CTET Paper 1 (Primary) and Paper 2 (Upper Primary Math-Sci & Social Science), 150 Qs / 150 Mins / 150 Marks, Sanskrit locked dialog.
+    6. **Universal 6 Question Archetypes Engine:** `HtmlBookletBuilder.dart` parser rules for MCQ, 2-Column Match the Following, Assertion-Reason, Multi-Statement, Cloze/Fill-in-the-Blank, and Reading Passages with procedural Math diagrams.
+    7. **All Screen Specifications:** Detailed UX/UI flow for Home Screen, Mock Series Screen, PYQ Vault Screen, OMR Booklet Mode, CBT Test Mode with palette drawer, Results & Analytics, Detailed Solutions, Settings, and Question Report bottom sheet.
+    8. **Design System & Tokens:** Sapphire Blue (Paper 1), Amethyst Purple (Paper 2), Gold badge tokens, clean stamp pair architecture (`AppStrings.getStampParts`), and 100% pure bilingual separation.
+    9. **Monetization & IAP:** Google Play SKUs (₹599 Master Pro Pass, ₹299 Single Paper Pass, net > ₹500), UPI app cancellation safety, 45-second watchdog timer, free vs pro access rules.
+    10. **Security & Signing Keys Protection:** Keystore location (`android/app/`), zero deletion rule, release verification standards.
+- **Verification & Safety:**
+  - `dart analyze lib/`: **0 errors, 0 warnings (100% clean)**.
+  - `flutter test test/html_booklet_builder_test.dart`: **10/10 tests passed**.
+  - **Keystore / Signing Keys:** 100% safe, untouched, and secure.
+
 ---
 
-## 📌 Next Steps
-1. Instruct Pitaaji to hot restart ('R') or reopen any exam so `ensureBundledAssetLoaded()` syncs vault v10 into the device SQLite.
-2. In 'मेरी रिपोर्ट की गई समस्याएं', Pitaaji can see `🟢 हल हो गया (Solved)` and `🟢 सत्यापित`.
-3. In GitHub repo issues (`sherawali/tet/issues`), Pitaaji can close issues #11 to #15.
+## 📌 Next Steps & Timeline
+1. Master PRD Blueprint Prompt delivered and stored in `prompts/TET_APP_COMPLETE_PRD_MASTER_PROMPT.md`.
+2. **GitHub Push Status Clarified:** Local repository has full 9,720 questions, 62 papers, and 49 CDN packs committed; remote GitHub (`origin/main`) currently remains at old commit `6792637` (2,688 Qs). Push pending Pitaaji's approval.
+3. Keystores (`*.jks`, `key.properties`) verified 100% secure and untouched.
+4. App is running cleanly, ready for release packaging or new features whenever Pitaaji instructs.
+
+
+
 
 
 

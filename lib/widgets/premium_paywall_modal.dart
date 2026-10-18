@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import '../design_system/app_colors.dart';
 import '../design_system/app_strings.dart';
@@ -21,6 +22,132 @@ class PremiumPaywallModal extends StatefulWidget {
 
 class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
   final PremiumService _premiumService = PremiumService.instance;
+  String _selectedTier = PremiumService.masterProductId;
+  StreamSubscription<bool>? _successSubscription;
+
+  @override
+  void initState() {
+    super.initState();
+    _successSubscription = _premiumService.onPurchaseSuccess.listen((_) {
+      if (mounted) {
+        Navigator.of(context).pop(); // Dismiss paywall modal
+        _showCongratulationsDialog(context);
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _successSubscription?.cancel();
+    super.dispose();
+  }
+
+  static void _showCongratulationsDialog(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (ctx) => AlertDialog(
+        backgroundColor: isDark ? const Color(0xFF0F172A) : Colors.white,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+          side: const BorderSide(color: AppColors.sealGold, width: 2),
+        ),
+        title: Column(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                gradient: LinearGradient(
+                  colors: [
+                    AppColors.sealGold.withValues(alpha: 0.3),
+                    AppColors.sealGoldLight.withValues(alpha: 0.1),
+                  ],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+                border: Border.all(color: AppColors.sealGold, width: 2),
+              ),
+              child: const Icon(
+                Icons.stars_rounded,
+                color: AppColors.sealGold,
+                size: 48,
+              ),
+            ),
+            const SizedBox(height: 14),
+            Text(
+              AppStrings.congratulationsTitle,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
+              ),
+            ),
+          ],
+        ),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              AppStrings.congratulationsSub,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 13,
+                height: 1.45,
+                color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary,
+              ),
+            ),
+            const SizedBox(height: 16),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+              decoration: BoxDecoration(
+                color: isDark ? const Color(0xFF1E293B) : const Color(0xFFF0FDF4),
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(color: AppColors.correctGreen.withValues(alpha: 0.4)),
+              ),
+              child: Row(
+                children: [
+                  const Icon(Icons.check_circle_rounded, color: AppColors.correctGreen, size: 20),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Text(
+                      AppStrings.premiumFeature4,
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w600,
+                        color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+        actions: [
+          SizedBox(
+            width: double.infinity,
+            child: ElevatedButton(
+              onPressed: () => Navigator.of(ctx).pop(),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppColors.sealGold,
+                foregroundColor: const Color(0xFF0F172A),
+                padding: const EdgeInsets.symmetric(vertical: 12),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+              ),
+              child: Text(
+                AppStrings.startPreparingBtn,
+                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,12 +170,12 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
         ],
       ),
       padding: EdgeInsets.only(
-        top: 16,
-        left: 20,
-        right: 20,
+        top: 14,
+        left: 18,
+        right: 18,
         bottom: MediaQuery.of(context).viewInsets.bottom +
             MediaQuery.of(context).padding.bottom +
-            20,
+            18,
       ),
       child: ValueListenableBuilder<bool>(
         valueListenable: _premiumService.isPremiumUnlocked,
@@ -69,12 +196,12 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: 14),
 
                 // Crown Badge & Title
                 Center(
                   child: Container(
-                    padding: const EdgeInsets.all(14),
+                    padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       gradient: LinearGradient(
@@ -90,40 +217,67 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
                     child: const Icon(
                       Icons.workspace_premium_rounded,
                       color: AppColors.sealGold,
-                      size: 38,
+                      size: 34,
                     ),
                   ),
                 ),
-                const SizedBox(height: 14),
+                const SizedBox(height: 10),
 
                 Text(
                   AppStrings.premiumPassTitle,
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 20,
+                    fontSize: 19,
                     fontWeight: FontWeight.bold,
                     color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
                     letterSpacing: -0.3,
                   ),
                 ),
-                const SizedBox(height: 6),
+                const SizedBox(height: 4),
                 Text(
                   AppStrings.premiumPassSubtitle,
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 13,
+                    fontSize: 12.5,
                     color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
-                    height: 1.4,
+                    height: 1.35,
                   ),
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: 14),
+
+                // Tier Selection Cards
+                if (!isUnlocked) ...[
+                  // Tier 1: Master All-Access Pass (Best Value - ₹599)
+                  _buildTierCard(
+                    tierId: PremiumService.masterProductId,
+                    title: AppStrings.proPackMasterTitle,
+                    subtitle: AppStrings.proPackMasterSub,
+                    price: AppStrings.proPackMasterPrice,
+                    badgeText: AppStrings.proPackMasterTag,
+                    isPopular: true,
+                    isDark: isDark,
+                  ),
+                  const SizedBox(height: 10),
+
+                  // Tier 2: Single Paper Pass (₹299)
+                  _buildTierCard(
+                    tierId: PremiumService.singlePaperProductId,
+                    title: AppStrings.proPackSingleTitle,
+                    subtitle: AppStrings.proPackSingleSub,
+                    price: AppStrings.proPackSinglePrice,
+                    badgeText: AppStrings.proPackSingleTag,
+                    isPopular: false,
+                    isDark: isDark,
+                  ),
+                  const SizedBox(height: 14),
+                ],
 
                 // Features Box
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
                   decoration: BoxDecoration(
                     color: isDark ? const Color(0xFF1E293B) : const Color(0xFFF8FAFC),
-                    borderRadius: BorderRadius.circular(14),
+                    borderRadius: BorderRadius.circular(12),
                     border: Border.all(
                       color: isDark ? Colors.white12 : Colors.black.withValues(alpha: 0.08),
                     ),
@@ -131,74 +285,39 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
                   child: Column(
                     children: [
                       _buildFeatureRow(
-                        Icons.check_circle_rounded,
-                        AppColors.correctGreen,
-                        'SET-P ${AppStrings.currentExamYear} मुख्य पेपर — 100% मुफ़्त (Free)',
-                        isBold: true,
-                        isDark: isDark,
-                      ),
-                      const Divider(height: 14, thickness: 0.5),
-                      _buildFeatureRow(
-                        Icons.lock_open_rounded,
+                        Icons.library_books_rounded,
                         AppColors.sealGold,
-                        'SET-Q, R, S, T के सभी 4 सम्पूर्ण 150Q मॉडल पेपर्स',
-                        isDark: isDark,
-                      ),
-                      const SizedBox(height: 8),
-                      _buildFeatureRow(
-                        Icons.menu_book_rounded,
-                        AppColors.sealGold,
-                        '10 सम्पूर्ण मॉडल प्रश्न-पुस्तिकाएं (SET-01 से SET-10)',
+                        AppStrings.premiumFeature1,
                         isDark: isDark,
                       ),
                       const SizedBox(height: 8),
                       _buildFeatureRow(
                         Icons.history_edu_rounded,
                         AppColors.sealGold,
-                        'विगत वर्ष प्रश्न (PYQ): सभी प्रामाणिक बोर्ड प्रश्न-पत्र',
+                        AppStrings.premiumFeature2,
                         isDark: isDark,
                       ),
                       const SizedBox(height: 8),
                       _buildFeatureRow(
-                        Icons.category_rounded,
+                        Icons.insights_rounded,
                         AppColors.sealGold,
-                        '35+ विषय-वार अभ्यास सेट्स और टॉपिक-वार केंद्रित ड्रिल्स',
+                        AppStrings.premiumFeature3,
                         isDark: isDark,
                       ),
                       const SizedBox(height: 8),
                       _buildFeatureRow(
                         Icons.offline_pin_rounded,
-                        AppColors.sealGold,
-                        '100% विज्ञापन-मुक्त · बिना इंटरनेट आजीवन पूर्ण एक्सेस',
+                        AppColors.correctGreen,
+                        AppStrings.premiumFeature4,
+                        isBold: true,
                         isDark: isDark,
                       ),
                     ],
                   ),
                 ),
-                const SizedBox(height: 16),
-
-                // Price Tag
-                Center(
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
-                    decoration: BoxDecoration(
-                      color: AppColors.sealGold.withValues(alpha: 0.15),
-                      borderRadius: BorderRadius.circular(20),
-                      border: Border.all(color: AppColors.sealGold, width: 1),
-                    ),
-                    child: Text(
-                      AppStrings.premiumPriceBadge,
-                      style: const TextStyle(
-                        fontSize: 13,
-                        fontWeight: FontWeight.bold,
-                        color: AppColors.sealGold,
-                      ),
-                    ),
-                  ),
-                ),
                 const SizedBox(height: 14),
 
-                // Unlock Button
+                // Action / Unlock Button
                 ValueListenableBuilder<bool>(
                   valueListenable: _premiumService.isLoading,
                   builder: (context, isLoading, _) {
@@ -232,15 +351,25 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
                       onPressed: isLoading
                           ? null
                           : () async {
-                              final success = await _premiumService.buyAllAccessPass();
-                              if (success && context.mounted) {
+                              final success = await _premiumService.buyProduct(_selectedTier);
+                              if (!context.mounted) return;
+
+                              if (_premiumService.purchaseError.value != null) {
+                                final err = _premiumService.purchaseError.value!;
+                                String displayMsg;
+                                if (err == 'canceled') {
+                                  displayMsg = AppStrings.premiumCancelledToast;
+                                } else if (err == 'pending') {
+                                  displayMsg = AppStrings.premiumPendingToast;
+                                } else {
+                                  displayMsg = AppStrings.premiumErrorToast;
+                                }
                                 ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: Text(AppStrings.premiumSuccessToast),
-                                    backgroundColor: AppColors.sealGold,
-                                  ),
+                                  SnackBar(content: Text(displayMsg)),
                                 );
+                              } else if (success) {
                                 Navigator.of(context).pop();
+                                _showCongratulationsDialog(context);
                               }
                             },
                       style: ElevatedButton.styleFrom(
@@ -250,7 +379,7 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
                         ),
-                        elevation: 4,
+                        elevation: 3,
                       ),
                       child: isLoading
                           ? const SizedBox(
@@ -271,9 +400,9 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
                     );
                   },
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 8),
 
-                // Restore Purchases & Cancel
+                // Restore Purchases & Close Buttons
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -282,17 +411,12 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
                         final restored = await _premiumService.restorePurchases();
                         if (context.mounted) {
                           if (restored) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(AppStrings.premiumSuccessToast),
-                                backgroundColor: AppColors.sealGold,
-                              ),
-                            );
                             Navigator.of(context).pop();
+                            _showCongratulationsDialog(context);
                           } else {
                             ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text('कोई पूर्व खरीद नहीं मिली (No previous purchase found).'),
+                              SnackBar(
+                                content: Text(AppStrings.premiumNoPurchasesFound),
                               ),
                             );
                           }
@@ -309,7 +433,7 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
                     TextButton(
                       onPressed: () => Navigator.of(context).pop(),
                       child: Text(
-                        'बंद करें (Close)',
+                        AppStrings.premiumCloseBtn,
                         style: TextStyle(
                           fontSize: 12,
                           color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary,
@@ -326,6 +450,114 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
     );
   }
 
+  Widget _buildTierCard({
+    required String tierId,
+    required String title,
+    required String subtitle,
+    required String price,
+    required String badgeText,
+    required bool isPopular,
+    required bool isDark,
+  }) {
+    final isSelected = _selectedTier == tierId;
+
+    return InkWell(
+      onTap: () => setState(() => _selectedTier = tierId),
+      borderRadius: BorderRadius.circular(12),
+      child: Container(
+        padding: const EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          color: isSelected
+              ? (isDark
+                  ? AppColors.sealGold.withValues(alpha: 0.15)
+                  : const Color(0xFFFEF9C3))
+              : (isDark ? const Color(0xFF1E293B) : const Color(0xFFF8FAFC)),
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(
+            color: isSelected
+                ? AppColors.sealGold
+                : (isDark ? Colors.white12 : Colors.black12),
+            width: isSelected ? 2 : 1,
+          ),
+        ),
+        child: Row(
+          children: [
+            Icon(
+              isSelected
+                  ? Icons.radio_button_checked_rounded
+                  : Icons.radio_button_off_rounded,
+              color: isSelected ? AppColors.sealGold : (isDark ? Colors.white38 : Colors.black26),
+              size: 22,
+            ),
+            const SizedBox(width: 10),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Flexible(
+                        child: Text(
+                          title,
+                          style: TextStyle(
+                            fontSize: 13.5,
+                            fontWeight: FontWeight.bold,
+                            color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 6),
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                        decoration: BoxDecoration(
+                          color: isPopular
+                              ? AppColors.sealGold.withValues(alpha: 0.2)
+                              : (isDark ? Colors.white12 : Colors.black.withValues(alpha: 0.05)),
+                          borderRadius: BorderRadius.circular(6),
+                          border: Border.all(
+                            color: isPopular ? AppColors.sealGold : Colors.transparent,
+                            width: 0.8,
+                          ),
+                        ),
+                        child: Text(
+                          badgeText,
+                          style: TextStyle(
+                            fontSize: 9.5,
+                            fontWeight: FontWeight.bold,
+                            color: isPopular
+                                ? AppColors.sealGold
+                                : (isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 3),
+                  Text(
+                    subtitle,
+                    style: TextStyle(
+                      fontSize: 11,
+                      color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(width: 8),
+            Text(
+              price,
+              style: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w900,
+                color: isSelected ? AppColors.sealGold : (isDark ? Colors.white70 : Colors.black87),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   Widget _buildFeatureRow(
     IconData icon,
     Color iconColor,
@@ -335,13 +567,13 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
   }) {
     return Row(
       children: [
-        Icon(icon, color: iconColor, size: 18),
-        const SizedBox(width: 10),
+        Icon(icon, color: iconColor, size: 17),
+        const SizedBox(width: 9),
         Expanded(
           child: Text(
             text,
             style: TextStyle(
-              fontSize: 12.5,
+              fontSize: 12,
               fontWeight: isBold ? FontWeight.bold : FontWeight.normal,
               color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
             ),

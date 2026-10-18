@@ -4,17 +4,38 @@ import 'package:flutter/foundation.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
 import '../database/db_helper.dart';
 
-/// Service managing In-App Purchases (IAP) & Premium All-Access Pass
+/// Service managing In-App Purchases (IAP) & Pro Access Passes
 class PremiumService {
   PremiumService._();
   static final PremiumService instance = PremiumService._();
 
-  static const String allAccessProductId = 'tet_2026_all_access_pass_99';
-  static const Set<String> _productIds = {allAccessProductId};
+  // Product IDs configured on Google Play Console
+  static const String masterProductId = 'tet_master_all_access_599'; // ₹599 (Best Value - Net >₹500 to creator)
+  static const String singlePaperProductId = 'tet_single_paper_299'; // ₹299 (Single Paper Tier)
+  static const String legacyProductId = 'tet_2026_all_access_pass_99'; // ₹99 (Fallback)
+
+  static const Set<String> _productIds = {
+    masterProductId,
+    singlePaperProductId,
+    legacyProductId,
+  };
+
+  // Exactly 1 designated free flagship mock paper for each exam & paper
+  static const Set<String> defaultFreePaperIds = {
+    'utet-p1-fullmock',     // UTET Paper 1 Flagship PYQ
+    'utet-p2-set-b',        // UTET Paper 2 Flagship PYQ (2023)
+    'ctet-p1-2026-pyq',     // CTET Paper 1 Flagship Solved
+    'ctet-p2-ms-mock-01',   // CTET Paper 2 Math-Science Flagship
+    'ctet-p2-sst-mock-01',  // CTET Paper 2 SST Flagship
+  };
 
   final ValueNotifier<bool> isPremiumUnlocked = ValueNotifier<bool>(false);
   final ValueNotifier<bool> isLoading = ValueNotifier<bool>(false);
   final ValueNotifier<String?> purchaseError = ValueNotifier<String?>(null);
+
+  // Broadcast stream to trigger Congratulations dialog anywhere in the app
+  final StreamController<bool> _purchaseSuccessController = StreamController<bool>.broadcast();
+  Stream<bool> get onPurchaseSuccess => _purchaseSuccessController.stream;
 
   // Remote GitHub-controlled Free vs Paid mock settings
   Set<String> remoteFreeFormIds = {};
@@ -24,7 +45,8 @@ class PremiumService {
 
   final InAppPurchase _iap = InAppPurchase.instance;
   StreamSubscription<List<PurchaseDetails>>? _subscription;
-  ProductDetails? allAccessProduct;
+  Map<String, ProductDetails> productsMap = {};
+  Timer? _purchaseTimeoutTimer;
 
   /// Check if a specific paper form or index is Free
   bool isPaperFree({String? formId, int index = 0}) {
@@ -33,8 +55,9 @@ class PremiumService {
     if (formId != null) {
       if (remotePaidFormIds.contains(formId)) return false;
       if (remoteFreeFormIds.contains(formId)) return true;
+      return defaultFreePaperIds.contains(formId);
     }
-    return index < remoteFreeMockCount;
+    return index == 0;
   }
 
   Future<void> updateRemoteConfig(Map<String, dynamic> config) async {
@@ -81,6 +104,7 @@ class PremiumService {
       _handlePurchaseUpdates,
       onDone: () => _subscription?.cancel(),
       onError: (error) {
+        _purchaseTimeoutTimer?.cancel();
         purchaseError.value = error.toString();
         isLoading.value = false;
       },
@@ -97,62 +121,92 @@ class PremiumService {
 
       final response = await _iap.queryProductDetails(_productIds);
       if (response.productDetails.isNotEmpty) {
-        allAccessProduct = response.productDetails.firstWhere(
-          (p) => p.id == allAccessProductId,
-          orElse: () => response.productDetails.first,
-        );
+        for (final product in response.productDetails) {
+          productsMap[product.id] = product;
+        }
       }
     } catch (_) {}
   }
 
-  Future<bool> buyAllAccessPass() async {
+  /// Purchase a specific tier: Master Pass (₹599) or Single Paper (₹299)
+  Future<bool> buyProduct(String productId) async {
     isLoading.value = true;
     purchaseError.value = null;
+
+    // Start a 45-second watchdog timer to guarantee loader never hangs indefinitely
+    _purchaseTimeoutTimer?.cancel();
+    _purchaseTimeoutTimer = Timer(const Duration(seconds: 45), () {
+      if (isLoading.value) {
+        isLoading.value = false;
+      }
+    });
 
     try {
       final isAvailable = await _iap.isAvailable();
       if (!isAvailable) {
-        // If Google Play is not available (e.g. emulator, desktop test, or offline)
-        // gracefully activate access in sandbox mode
+        // If Google Play is not available (e.g. desktop sandbox or testing environment)
+        // gracefully activate access locally
         await unlockAllAccessLocally();
+        _purchaseTimeoutTimer?.cancel();
         isLoading.value = false;
+        _purchaseSuccessController.add(true);
         return true;
       }
 
-      if (allAccessProduct == null) {
+      if (!productsMap.containsKey(productId)) {
         await loadProductDetails();
       }
 
-      if (allAccessProduct == null) {
-        // Store product not loaded yet, activate sandbox unlock
+      final product = productsMap[productId] ?? productsMap[masterProductId] ?? productsMap[legacyProductId];
+      if (product == null) {
+        // Fallback for offline or test builds
         await unlockAllAccessLocally();
+        _purchaseTimeoutTimer?.cancel();
         isLoading.value = false;
+        _purchaseSuccessController.add(true);
         return true;
       }
 
-      final PurchaseParam purchaseParam = PurchaseParam(productDetails: allAccessProduct!);
+      final PurchaseParam purchaseParam = PurchaseParam(productDetails: product);
       final bool initiated = await _iap.buyNonConsumable(purchaseParam: purchaseParam);
       return initiated;
     } catch (e) {
+      _purchaseTimeoutTimer?.cancel();
       purchaseError.value = e.toString();
       isLoading.value = false;
       return false;
     }
   }
 
+  /// Buy Master All-Access Pass (default flagship ₹599)
+  Future<bool> buyAllAccessPass() async {
+    return buyProduct(masterProductId);
+  }
+
   Future<bool> restorePurchases() async {
     isLoading.value = true;
     purchaseError.value = null;
+
+    _purchaseTimeoutTimer?.cancel();
+    _purchaseTimeoutTimer = Timer(const Duration(seconds: 25), () {
+      if (isLoading.value) {
+        isLoading.value = false;
+      }
+    });
+
     try {
       final isAvailable = await _iap.isAvailable();
       if (!isAvailable) {
+        _purchaseTimeoutTimer?.cancel();
         isLoading.value = false;
         return isPremiumUnlocked.value;
       }
       await _iap.restorePurchases();
+      _purchaseTimeoutTimer?.cancel();
       isLoading.value = false;
       return isPremiumUnlocked.value;
     } catch (e) {
+      _purchaseTimeoutTimer?.cancel();
       purchaseError.value = e.toString();
       isLoading.value = false;
       return false;
@@ -170,18 +224,35 @@ class PremiumService {
   }
 
   void _handlePurchaseUpdates(List<PurchaseDetails> purchaseDetailsList) async {
+    _purchaseTimeoutTimer?.cancel();
+
     for (final purchaseDetails in purchaseDetailsList) {
       if (purchaseDetails.status == PurchaseStatus.pending) {
+        // Purchase initiated in Google Play sheet
         isLoading.value = true;
-      } else {
-        if (purchaseDetails.status == PurchaseStatus.error) {
-          purchaseError.value = purchaseDetails.error?.message ?? 'Purchase error occurred';
-          isLoading.value = false;
-        } else if (purchaseDetails.status == PurchaseStatus.purchased ||
-            purchaseDetails.status == PurchaseStatus.restored) {
-          await unlockAllAccessLocally();
-          isLoading.value = false;
+      } else if (purchaseDetails.status == PurchaseStatus.canceled) {
+        // User backed out or cancelled in UPI / Google Play sheet
+        isLoading.value = false;
+        purchaseError.value = 'canceled';
+        if (purchaseDetails.pendingCompletePurchase) {
+          await _iap.completePurchase(purchaseDetails);
         }
+      } else if (purchaseDetails.status == PurchaseStatus.error) {
+        // Error from Google Play billing
+        isLoading.value = false;
+        purchaseError.value = purchaseDetails.error?.message ?? 'error';
+        if (purchaseDetails.pendingCompletePurchase) {
+          await _iap.completePurchase(purchaseDetails);
+        }
+      } else if (purchaseDetails.status == PurchaseStatus.purchased ||
+          purchaseDetails.status == PurchaseStatus.restored) {
+        // Successfully verified purchase!
+        await unlockAllAccessLocally();
+        isLoading.value = false;
+        purchaseError.value = null;
+
+        // Broadcast success to trigger Congratulations dialog
+        _purchaseSuccessController.add(true);
 
         if (purchaseDetails.pendingCompletePurchase) {
           await _iap.completePurchase(purchaseDetails);
@@ -191,7 +262,9 @@ class PremiumService {
   }
 
   void dispose() {
+    _purchaseTimeoutTimer?.cancel();
     _subscription?.cancel();
+    _purchaseSuccessController.close();
     isPremiumUnlocked.dispose();
     isLoading.dispose();
     purchaseError.dispose();

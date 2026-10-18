@@ -19,6 +19,7 @@ import 'mock_series_screen.dart';
 import 'subject_detail_screen.dart';
 import '../widgets/flash_message_banner.dart';
 import '../services/premium_service.dart';
+import '../services/in_app_update_service.dart';
 import '../services/exam_service.dart';
 import '../widgets/premium_paywall_modal.dart';
 import '../widgets/question_report_sheet.dart';
@@ -791,7 +792,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               actions: [
                 IconButton(
-                  tooltip: 'मेरी रिपोर्ट्स (Reported Questions)',
+                  tooltip: AppStrings.myReportsTooltip,
                   icon: const Icon(
                     Icons.flag_rounded,
                     color: Color(0xFFF59E0B),
@@ -992,11 +993,11 @@ class _HomeScreenState extends State<HomeScreen> {
             Text(
               _mockForms.isNotEmpty
                   ? (isHi
-                      ? '2026 मॉडल टेस्ट पेपर (${_mockForms.length} सेट्स)'
+                      ? '2026 मॉडल प्रश्न-पत्र (${_mockForms.length} सेट)'
                       : '2026 Model Test Papers (${_mockForms.length} Sets)')
                   : (isHi
-                      ? 'विगत वर्ष प्रश्न-पत्र (${_paperForms.length} सेट्स)'
-                      : 'Previous Year Papers (${_paperForms.length} Sets)'),
+                      ? 'विगत वर्ष प्रश्न-पत्र (${_paperForms.length} सेट)'
+                      : 'Previous Year Solved Papers (${_paperForms.length} Sets)'),
               style: AppTypography.titleMedium(
                 color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
               ).copyWith(fontSize: 14.5),
@@ -1010,14 +1011,15 @@ class _HomeScreenState extends State<HomeScreen> {
             final idx = entry.key;
             final f = entry.value;
             final formId = f['id'] as String;
-            final title = f['title']?.toString() ?? (isHi ? 'अभ्यास प्रश्न-पत्र' : 'Practice Paper');
-            final setChar = f['set_code']?.toString().toUpperCase() ?? (isHi ? 'सेट ${(idx + 1).toString().padLeft(2, "0")}' : 'SET ${(idx + 1).toString().padLeft(2, "0")}');
+            final title = AppStrings.formatPaperTitle(f, isHindi: isHi);
+            final rawSet = f['set_code']?.toString() ?? 'SET ${(idx + 1).toString().padLeft(2, "0")}';
+            final setChar = AppStrings.formatSetBadge(rawSet, isHindi: isHi);
             final isFree = PremiumService.instance.isPaperFree(formId: formId, index: idx);
-            final isPyq = setChar == 'PYQ' || setChar.contains('20');
+            final isPyq = rawSet == 'PYQ' || rawSet.contains('20');
             final tag = isFree
-                ? (isHi ? 'निःशुल्क' : 'Free')
+                ? (isHi ? 'निःशुल्क' : 'FREE')
                 : (isPyq
-                    ? (isHi ? 'विगत वर्ष' : 'Past Paper')
+                    ? (isHi ? 'विगत वर्ष' : 'PAST PAPER')
                     : (isHi ? '150 प्रश्न सेट' : '150Q Mock Set'));
             final tagColor = isFree
                 ? AppColors.correctGreen
@@ -1043,11 +1045,11 @@ class _HomeScreenState extends State<HomeScreen> {
         ] else ...[
           _buildBookletTile(
             setChar: isHi ? 'सेट-01' : 'SET-01',
-            title: isHi ? 'UTET Paper-I मॉडल पेपर 01' : 'UTET Paper-I Model Paper 01',
+            title: isHi ? 'UTET 2026 पेपर-1 मॉडल प्रश्न-पत्र 01' : 'UTET 2026 Paper-1 Model Test Paper 01',
             subtitle: isHi
                 ? '150 प्रश्न · 150 मिनट · सम्पूर्ण हल सहित'
                 : '150 Questions · 150 Mins · Complete Solutions',
-            tag: isHi ? 'निःशुल्क' : 'Free',
+            tag: isHi ? 'निःशुल्क' : 'FREE',
             tagColor: AppColors.correctGreen,
             mode: MockMode.predicted,
             isDark: isDark,
@@ -1258,7 +1260,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                     const SizedBox(width: 4),
                                     Text(
-                                      AppStrings.isHindi ? 'पेपर – I (कक्षा 1-5)' : 'PAPER – I (Class 1-5)',
+                                      AppStrings.isHindi ? 'पेपर-1 (कक्षा 1–5)' : 'Paper-1 (Classes 1–5)',
                                       style: TextStyle(
                                         fontSize: 11.5,
                                         fontWeight: !isP2 ? FontWeight.w800 : FontWeight.w600,
@@ -1308,7 +1310,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                     const SizedBox(width: 4),
                                     Text(
-                                      AppStrings.isHindi ? 'पेपर – II (कक्षा 6-8)' : 'PAPER – II (Class 6-8)',
+                                      AppStrings.isHindi ? 'पेपर-2 (कक्षा 6–8)' : 'Paper-2 (Classes 6–8)',
                                       style: TextStyle(
                                         fontSize: 11.5,
                                         fontWeight: isP2 ? FontWeight.w800 : FontWeight.w600,
@@ -1366,7 +1368,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Target Examination / लक्षित परीक्षा',
+                      AppStrings.targetExamHeading,
                       style: TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.bold,
@@ -1375,7 +1377,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     const SizedBox(height: 2),
                     Text(
-                      'Select exam to switch mock papers, PYQ & questions',
+                      AppStrings.isHindi
+                          ? 'मॉक टेस्ट और प्रश्न-पत्र बदलने के लिए परीक्षा चुनें'
+                          : 'Select exam to switch mock papers & questions',
                       style: TextStyle(
                         fontSize: 12,
                         color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
@@ -1815,7 +1819,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'TET परीक्षा भाषा चयन (Language I & II)',
+                              AppStrings.langCardTitle,
                               style: TextStyle(
                                 fontSize: 15,
                                 fontWeight: FontWeight.bold,
@@ -1824,7 +1828,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                             const SizedBox(height: 2),
                             Text(
-                              'बोर्ड परीक्षा पैटर्न अनुरूप अपनी भाषा I और भाषा II चुनें / Select Languages',
+                              AppStrings.langCardSubtitle,
                               style: TextStyle(
                                 fontSize: 12,
                                 color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
@@ -1837,13 +1841,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   const SizedBox(height: 16),
 
-                  // Section 1: भाषा प्रथम (Language I)
+                  // Section 1: भाषा प्रथम
                   Row(
                     children: [
                       const Icon(Icons.looks_one_rounded, color: AppColors.sealGold, size: 18),
                       const SizedBox(width: 6),
                       Text(
-                        'भाषा प्रथम (Language I) — 30 प्रश्न',
+                        AppStrings.lang1Heading,
                         style: TextStyle(
                           fontSize: 13.5,
                           fontWeight: FontWeight.bold,
@@ -1856,14 +1860,14 @@ class _HomeScreenState extends State<HomeScreen> {
                   Row(
                     children: [
                       _buildLangChoiceChip(
-                        title: 'हिन्दी (Hindi)',
+                        title: AppStrings.langHindiLabel,
                         selected: lang1 == 'hindi',
                         onTap: () => ExamService.instance.setLang1('hindi'),
                         isDark: isDark,
                       ),
                       const SizedBox(width: 10),
                       _buildLangChoiceChip(
-                        title: 'अंग्रेजी (English)',
+                        title: AppStrings.langEnglishLabel,
                         selected: lang1 == 'english',
                         onTap: () => ExamService.instance.setLang1('english'),
                         isDark: isDark,
@@ -1873,13 +1877,13 @@ class _HomeScreenState extends State<HomeScreen> {
 
                   const SizedBox(height: 16),
 
-                  // Section 2: भाषा द्वितीय (Language II)
+                  // Section 2: भाषा द्वितीय
                   Row(
                     children: [
                       const Icon(Icons.looks_two_rounded, color: AppColors.sealGold, size: 18),
                       const SizedBox(width: 6),
                       Text(
-                        'भाषा द्वितीय (Language II) — 30 प्रश्न',
+                        AppStrings.lang2Heading,
                         style: TextStyle(
                           fontSize: 13.5,
                           fontWeight: FontWeight.bold,
@@ -1892,23 +1896,23 @@ class _HomeScreenState extends State<HomeScreen> {
                   Row(
                     children: [
                       _buildLangChoiceChip(
-                        title: 'अंग्रेजी',
+                        title: AppStrings.langEnglishLabel,
                         selected: lang2 == 'english',
                         onTap: () => ExamService.instance.setLang2('english'),
                         isDark: isDark,
                       ),
                       const SizedBox(width: 8),
                       _buildLangChoiceChip(
-                        title: 'हिन्दी',
+                        title: AppStrings.langHindiLabel,
                         selected: lang2 == 'hindi',
                         onTap: () => ExamService.instance.setLang2('hindi'),
                         isDark: isDark,
                       ),
                       const SizedBox(width: 8),
                       _buildLangChoiceChip(
-                        title: 'संस्कृत',
-                        selected: lang2 == 'sanskrit',
-                        onTap: () => ExamService.instance.setLang2('sanskrit'),
+                        title: '🔒 ${AppStrings.langSanskritLabel}',
+                        selected: false,
+                        onTap: () => _showSanskritUpcomingDialog(context),
                         isDark: isDark,
                       ),
                     ],
@@ -1932,7 +1936,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         const SizedBox(width: 8),
                         Expanded(
                           child: Text(
-                            'बोर्ड नियमानुसार भाषा I और II अलग-अलग होनी अनिवार्य हैं। परीक्षा में आपके चयन के अनुसार ही प्रश्न आएँगे।',
+                            AppStrings.langNotice,
                             style: TextStyle(
                               fontSize: 11.5,
                               color: isDark ? AppColors.darkTextSecondary : const Color(0xFF475569),
@@ -1950,6 +1954,87 @@ class _HomeScreenState extends State<HomeScreen> {
         },
       ),
     );
+  }
+
+  void _showSanskritUpcomingDialog(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        backgroundColor: isDark ? const Color(0xFF0F172A) : Colors.white,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
+          side: const BorderSide(color: AppColors.sealGold, width: 1.5),
+        ),
+        title: Row(
+          children: [
+            const Icon(Icons.lock_clock_rounded, color: AppColors.sealGold),
+            const SizedBox(width: 8),
+            Expanded(
+              child: Text(
+                AppStrings.sanskritUpcomingTitle,
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
+                ),
+              ),
+            ),
+          ],
+        ),
+        content: Text(
+          AppStrings.sanskritUpcomingDesc,
+          style: TextStyle(
+            fontSize: 13,
+            height: 1.45,
+            color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary,
+          ),
+        ),
+        actions: [
+          ElevatedButton(
+            onPressed: () => Navigator.of(ctx).pop(),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: AppColors.sealGold,
+              foregroundColor: const Color(0xFF0F172A),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+            ),
+            child: Text(AppStrings.understoodBtn),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Future<void> _checkAppUpdate() async {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(AppStrings.checkingUpdate)),
+    );
+    try {
+      final info = await InAppUpdateService.instance.checkForUpdate();
+      if (!mounted) return;
+      if (info != null && (info.immediateUpdateAllowed || info.flexibleUpdateAllowed)) {
+        if (info.immediateUpdateAllowed) {
+          await InAppUpdateService.instance.performImmediateUpdate();
+        } else {
+          final started = await InAppUpdateService.instance.startFlexibleUpdate();
+          if (started && mounted) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text(AppStrings.updateFound)),
+            );
+          }
+        }
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(AppStrings.appUpToDate)),
+        );
+      }
+    } catch (_) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(AppStrings.appUpToDate)),
+        );
+      }
+    }
   }
 
   Widget _buildLangChoiceChip({
@@ -2370,9 +2455,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                 else
                                   const Icon(Icons.circle_outlined, color: Colors.grey, size: 18),
                                 const SizedBox(width: 8),
-                                const Text(
-                                  'हिन्दी (Hindi)',
-                                  style: TextStyle(
+                                Text(
+                                  AppStrings.langHindiLabel,
+                                  style: const TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 13.5,
                                   ),
@@ -2733,7 +2818,81 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         const SizedBox(height: 20),
 
-        // 4. App Info Footer
+        // 4. In-App Update (IAU) Card
+        Container(
+          margin: const EdgeInsets.only(bottom: 16),
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: isDark ? AppColors.darkCard : AppColors.lightCard,
+            borderRadius: BorderRadius.circular(8),
+            border: Border.all(
+              color: isDark ? AppColors.darkBorder : AppColors.lightBorder,
+              width: 1.0,
+            ),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      color: AppColors.sealGold.withValues(alpha: 0.15),
+                      shape: BoxShape.circle,
+                    ),
+                    child: const Icon(Icons.system_update_rounded, color: AppColors.sealGold, size: 22),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          AppStrings.checkUpdateBtn,
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                            color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
+                          ),
+                        ),
+                        const SizedBox(height: 2),
+                        Text(
+                          AppStrings.updateAvailableDesc,
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 12),
+              OutlinedButton.icon(
+                style: OutlinedButton.styleFrom(
+                  foregroundColor: isDark ? AppColors.sealGoldLight : AppColors.primary,
+                  side: BorderSide(
+                    color: isDark ? AppColors.sealGoldLight : AppColors.primary,
+                    width: 1.2,
+                  ),
+                  padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
+                  minimumSize: const Size(double.infinity, 42),
+                ),
+                onPressed: _checkAppUpdate,
+                icon: const Icon(Icons.refresh_rounded, size: 18),
+                label: Text(
+                  AppStrings.checkUpdateBtn,
+                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
+                ),
+              ),
+            ],
+          ),
+        ),
+
+        // 5. App Info Footer
         Center(
           child: Text(
             AppStrings.settingsAbout,
@@ -2803,8 +2962,8 @@ class _HomeScreenState extends State<HomeScreen> {
               Expanded(
                 child: Text(
                   isPaper2
-                      ? (isHi ? 'विगत वर्ष प्रश्न-पत्र (PYQ)' : 'Previous Year Papers (PYQ)')
-                      : (isHi ? 'विगत वर्ष प्रश्न-पत्र एवं मॉडल' : 'Previous Papers & Mocks'),
+                      ? (isHi ? 'विगत वर्ष प्रश्न-पत्र' : 'Previous Year Papers')
+                      : (isHi ? 'विगत वर्ष एवं मॉडल प्रश्न-पत्र' : 'Previous Papers & Mocks'),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
@@ -2827,7 +2986,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 child: Text(
-                  '${_currentCarouselPage + 1}/${carouselList.length} ${isHi ? "पेपर्स" : "Papers"}',
+                  '${_currentCarouselPage + 1}/${carouselList.length} ${isHi ? "प्रश्न-पत्र" : "Papers"}',
                   style: TextStyle(
                     fontSize: 11,
                     fontWeight: FontWeight.w600,
@@ -2853,9 +3012,10 @@ class _HomeScreenState extends State<HomeScreen> {
             itemBuilder: (context, index) {
               final form = carouselList[index];
               final formId = form['id'] as String;
-              final title = form['title']?.toString() ?? (isHi ? 'प्रश्न-पत्र' : 'Question Paper');
-              final setBadge = form['set_code']?.toString() ?? 'SET';
-              final isPyq = setBadge.contains('20') || setBadge == 'PYQ' || (form['is_pyq'] == 1);
+              final title = AppStrings.formatPaperTitle(form, isHindi: isHi);
+              final rawSet = form['set_code']?.toString() ?? 'SET';
+              final stampParts = AppStrings.getStampParts(rawSet, isHindi: isHi);
+              final isPyq = rawSet.contains('20') || rawSet == 'PYQ' || (form['is_pyq'] == 1);
               final isLatest = index == 0 && isPyq;
               final isCardFree = PremiumService.instance.isPaperFree(formId: formId, index: index);
 
@@ -2926,7 +3086,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Text(
-                                isPyq ? (isHi ? 'वर्ष' : 'YEAR') : (isHi ? 'सेट' : 'SET'),
+                                stampParts.top,
                                 style: TextStyle(
                                   fontSize: 8.5,
                                   fontWeight: FontWeight.bold,
@@ -2938,7 +3098,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                               const SizedBox(width: 4),
                               Text(
-                                setBadge,
+                                stampParts.bottom,
                                 style: TextStyle(
                                   fontSize: 13,
                                   fontWeight: FontWeight.w900,
@@ -2976,7 +3136,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 const SizedBox(width: 5),
                                 AppBadge(
                                   label: isPyq
-                                      ? (isLatest ? (isHi ? '✨ नवीन' : '✨ LATEST') : (isHi ? 'विगत वर्ष' : 'PYQ'))
+                                      ? (isLatest ? (isHi ? '✨ नवीन' : '✨ LATEST') : (isHi ? 'विगत वर्ष' : 'PAST PAPER'))
                                       : (isHi ? '2026 मॉडल' : '2026 MOCK'),
                                   color: isPyq ? (isLatest ? AppColors.correctGreen : AppColors.violet) : AppColors.sealGold,
                                   isSolid: true,
@@ -3055,7 +3215,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           config,
                           formId: formId,
                           paperTitle: title,
-                          setCode: setBadge,
+                          setCode: AppStrings.formatSetBadge(rawSet, isHindi: isHi),
                         );
                       },
                       child: Row(
@@ -3116,8 +3276,9 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _buildHeroBookletCard(bool isDark) {
     final featuredForm = _paperForms.isNotEmpty ? _paperForms.first : null;
     final featuredFormId = featuredForm?['id'] as String?;
-    final featuredBadge = featuredForm?['set_code']?.toString() ?? 'M-01';
-    final featuredTitle = featuredForm?['title']?.toString() ?? AppStrings.heroTitle;
+    final rawBadge = featuredForm?['set_code']?.toString() ?? 'M-01';
+    final stampParts = AppStrings.getStampParts(rawBadge, isHindi: AppStrings.isHindi);
+    final featuredTitle = featuredForm != null ? AppStrings.formatPaperTitle(featuredForm) : AppStrings.heroTitle;
 
     return Container(
       decoration: BoxDecoration(
@@ -3190,7 +3351,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            'PAPER',
+                            stampParts.top,
                             style: TextStyle(
                               fontSize: 8,
                               fontWeight: FontWeight.bold,
@@ -3201,7 +3362,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           FittedBox(
                             fit: BoxFit.scaleDown,
                             child: Text(
-                              featuredBadge,
+                              stampParts.bottom,
                               style: TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w900,
@@ -3420,58 +3581,63 @@ class _HomeScreenState extends State<HomeScreen> {
             );
           },
           borderRadius: BorderRadius.circular(6),
-          child: Container(
-            padding: const EdgeInsets.all(12),
-            decoration: BoxDecoration(
-              color: isDark ? AppColors.darkCard : AppColors.lightCard,
-              borderRadius: BorderRadius.circular(6),
-              border: Border.all(
-                color: isDark ? AppColors.darkBorder : AppColors.lightBorder,
-                width: 1.2,
-              ),
-            ),
-            child: Row(
-              children: [
-                // Clean Adaptive SET Stamp (Never overflows)
-                Container(
-                  constraints: const BoxConstraints(minWidth: 46, minHeight: 46),
-                  padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 4),
-                  decoration: BoxDecoration(
-                    color: isDark ? AppColors.darkCardElevated : const Color(0xFFF8FAFC),
-                    border: Border.all(
-                      color: isDark ? AppColors.sealGoldLight : AppColors.primary,
-                      width: 1.5,
-                    ),
-                    borderRadius: BorderRadius.circular(4),
-                  ),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        setChar.contains('20') ? 'YEAR' : (setChar.startsWith('MOCK') ? 'SET' : 'MOCK'),
-                        style: TextStyle(
-                          fontSize: 7.5,
-                          fontWeight: FontWeight.bold,
-                          color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary,
-                        ),
-                      ),
-                      const SizedBox(height: 1),
-                      FittedBox(
-                        fit: BoxFit.scaleDown,
-                        child: Text(
-                          setChar,
-                          style: TextStyle(
-                            fontSize: 13,
-                            fontWeight: FontWeight.w900,
-                            color: isDark ? AppColors.sealGoldLight : AppColors.primary,
-                            height: 1.1,
-                          ),
-                        ),
-                      ),
-                    ],
+          child: Builder(
+            builder: (context) {
+              final isHi = LanguageService.instance.isHindi;
+              final stampParts = AppStrings.getStampParts(setChar, isHindi: isHi);
+
+              return Container(
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  color: isDark ? AppColors.darkCard : AppColors.lightCard,
+                  borderRadius: BorderRadius.circular(6),
+                  border: Border.all(
+                    color: isDark ? AppColors.darkBorder : AppColors.lightBorder,
+                    width: 1.2,
                   ),
                 ),
+                child: Row(
+                  children: [
+                    // Clean Adaptive SET Stamp (Never overflows)
+                    Container(
+                      constraints: const BoxConstraints(minWidth: 46, minHeight: 46),
+                      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 4),
+                      decoration: BoxDecoration(
+                        color: isDark ? AppColors.darkCardElevated : const Color(0xFFF8FAFC),
+                        border: Border.all(
+                          color: isDark ? AppColors.sealGoldLight : AppColors.primary,
+                          width: 1.5,
+                        ),
+                        borderRadius: BorderRadius.circular(4),
+                      ),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            stampParts.top,
+                            style: TextStyle(
+                              fontSize: 7.5,
+                              fontWeight: FontWeight.bold,
+                              color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary,
+                            ),
+                          ),
+                          const SizedBox(height: 1),
+                          FittedBox(
+                            fit: BoxFit.scaleDown,
+                            child: Text(
+                              stampParts.bottom,
+                              style: TextStyle(
+                                fontSize: 13,
+                                fontWeight: FontWeight.w900,
+                                color: isDark ? AppColors.sealGoldLight : AppColors.primary,
+                                height: 1.1,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                 const SizedBox(width: 12),
 
                 // Content
@@ -3524,29 +3690,32 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ],
             ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
+  },
+);
   }
 
   Widget _buildSubjectGrid(bool isDark) {
     final isPaper2 = ExamService.instance.isPaper2;
+    final isHi = LanguageService.instance.isHindi;
     final List<Map<String, dynamic>> subjects = isPaper2
         ? [
-            {'sec': 'cdp', 'name': 'बाल विकास (CDP)', 'color': AppColors.cdp, 'label': 'खण्ड I'},
-            {'sec': 'hindi', 'name': 'हिन्दी भाषा', 'color': AppColors.hindi, 'label': 'खण्ड II'},
-            {'sec': 'english', 'name': 'English Language', 'color': AppColors.english, 'label': 'खण्ड III'},
-            {'sec': 'math', 'name': 'गणित (Math)', 'color': AppColors.math, 'label': 'खण्ड IV (A)'},
-            {'sec': 'science', 'name': 'विज्ञान (Science)', 'color': AppColors.science, 'label': 'खण्ड IV (B)'},
-            {'sec': 'social', 'name': 'सामाजिक अध्ययन (SST)', 'color': AppColors.social, 'label': 'खण्ड IV (C)'},
+            {'sec': 'cdp', 'name': AppStrings.sectionName('cdp'), 'color': AppColors.cdp, 'label': isHi ? 'खण्ड I' : 'Section I'},
+            {'sec': 'hindi', 'name': AppStrings.sectionName('hindi'), 'color': AppColors.hindi, 'label': isHi ? 'खण्ड II' : 'Section II'},
+            {'sec': 'english', 'name': AppStrings.sectionName('english'), 'color': AppColors.english, 'label': isHi ? 'खण्ड III' : 'Section III'},
+            {'sec': 'math', 'name': AppStrings.sectionName('math'), 'color': AppColors.math, 'label': isHi ? 'खण्ड IV (A)' : 'Section IV (A)'},
+            {'sec': 'science', 'name': AppStrings.sectionName('science'), 'color': AppColors.science, 'label': isHi ? 'खण्ड IV (B)' : 'Section IV (B)'},
+            {'sec': 'social', 'name': AppStrings.sectionName('social'), 'color': AppColors.social, 'label': isHi ? 'खण्ड IV (C)' : 'Section IV (C)'},
           ]
         : [
-            {'sec': 'cdp', 'name': 'बाल विकास (CDP)', 'color': AppColors.cdp, 'label': 'खण्ड I'},
-            {'sec': 'hindi', 'name': 'हिन्दी भाषा', 'color': AppColors.hindi, 'label': 'खण्ड II'},
-            {'sec': 'english', 'name': 'English Language', 'color': AppColors.english, 'label': 'खण्ड III'},
-            {'sec': 'math', 'name': 'गणित (Math)', 'color': AppColors.math, 'label': 'खण्ड IV'},
-            {'sec': 'evs', 'name': 'पर्यावरण (EVS)', 'color': AppColors.evs, 'label': 'खण्ड V'},
+            {'sec': 'cdp', 'name': AppStrings.sectionName('cdp'), 'color': AppColors.cdp, 'label': isHi ? 'खण्ड I' : 'Section I'},
+            {'sec': 'hindi', 'name': AppStrings.sectionName('hindi'), 'color': AppColors.hindi, 'label': isHi ? 'खण्ड II' : 'Section II'},
+            {'sec': 'english', 'name': AppStrings.sectionName('english'), 'color': AppColors.english, 'label': isHi ? 'खण्ड III' : 'Section III'},
+            {'sec': 'math', 'name': AppStrings.sectionName('math'), 'color': AppColors.math, 'label': isHi ? 'खण्ड IV' : 'Section IV'},
+            {'sec': 'evs', 'name': AppStrings.sectionName('evs'), 'color': AppColors.evs, 'label': isHi ? 'खण्ड V' : 'Section V'},
           ];
 
     return LayoutBuilder(

@@ -8,6 +8,7 @@ import '../models/mock_config.dart';
 import '../widgets/app_badge.dart';
 import '../services/premium_service.dart';
 import '../services/exam_service.dart';
+import '../services/language_service.dart';
 import '../widgets/premium_paywall_modal.dart';
 
 class PyqVaultScreen extends StatefulWidget {
@@ -76,7 +77,7 @@ class _PyqVaultScreenState extends State<PyqVaultScreen> {
         config: config,
         questions: data.questions,
         passages: data.passages,
-        paperTitle: form['title']?.toString(),
+        paperTitle: AppStrings.formatPaperTitle(form),
         setCode: _extractYearLabel(form),
       );
 
@@ -101,7 +102,7 @@ class _PyqVaultScreenState extends State<PyqVaultScreen> {
     final examDate = form['exam_date']?.toString() ?? '';
     final m = RegExp(r'(20\d\d)').firstMatch('$title $examDate');
     if (m != null) return m.group(1)!;
-    return 'PYQ';
+    return AppStrings.isHindi ? 'विगत वर्ष' : 'PYQ';
   }
 
   @override
@@ -207,14 +208,14 @@ class _PyqVaultScreenState extends State<PyqVaultScreen> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const Text(
-                                  'विषय स्ट्रीम (Section IV)',
-                                  style: TextStyle(fontSize: 11, color: Color(0xFF64748B), fontWeight: FontWeight.bold),
+                                Text(
+                                  LanguageService.instance.isHindi ? 'विषय वर्ग (खण्ड IV)' : 'Subject Stream (Section IV)',
+                                  style: const TextStyle(fontSize: 11, color: Color(0xFF64748B), fontWeight: FontWeight.bold),
                                 ),
                                 Text(
                                   ExamService.instance.isMathScienceStream
-                                      ? 'गणित एवं विज्ञान (60 प्रश्न)'
-                                      : 'सामाजिक अध्ययन (60 प्रश्न)',
+                                      ? (LanguageService.instance.isHindi ? 'गणित एवं विज्ञान (60 प्रश्न)' : 'Math & Science (60 Qs)')
+                                      : (LanguageService.instance.isHindi ? 'सामाजिक अध्ययन (60 प्रश्न)' : 'Social Science (60 Qs)'),
                                   style: TextStyle(
                                     fontSize: 13,
                                     fontWeight: FontWeight.bold,
@@ -237,7 +238,10 @@ class _PyqVaultScreenState extends State<PyqVaultScreen> {
                                 if (mounted) setState(() {});
                               });
                             },
-                            child: const Text('स्ट्रीम बदलें ⇄', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12)),
+                            child: Text(
+                              LanguageService.instance.isHindi ? 'स्ट्रीम बदलें ⇄' : 'Change Stream ⇄',
+                              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
+                            ),
                           ),
                         ],
                       ),
@@ -265,7 +269,7 @@ class _PyqVaultScreenState extends State<PyqVaultScreen> {
                               const Icon(Icons.history_toggle_off_rounded, size: 48, color: AppColors.sealGold),
                               const SizedBox(height: 12),
                               Text(
-                                'पेपर $currentPaper के लिए कोई PYQ उपलब्ध नहीं है',
+                                AppStrings.isHindi ? 'पेपर $currentPaper के लिए कोई विगत वर्ष पेपर उपलब्ध नहीं है' : 'No previous papers available for Paper $currentPaper',
                                 style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
                                 textAlign: TextAlign.center,
                               ),
@@ -278,7 +282,7 @@ class _PyqVaultScreenState extends State<PyqVaultScreen> {
                         children: List.generate(_forms.length, (idx) {
                           final form = _forms[idx];
                           final formId = form['id'] as String;
-                          final title = form['title'] as String? ?? (AppStrings.isHindi ? 'विगत वर्ष प्रश्न-पत्र' : 'Previous Year Paper');
+                          final title = AppStrings.formatPaperTitle(form);
                           final yearBadge = _extractYearLabel(form);
                           final isBusy = _generatingFormId == formId;
                           final isFree = PremiumService.instance.isPaperFree(formId: formId, index: idx);
@@ -314,15 +318,34 @@ class _PyqVaultScreenState extends State<PyqVaultScreen> {
                                           width: 1.5,
                                         ),
                                       ),
-                                      child: Center(
-                                        child: Text(
-                                          yearBadge,
-                                          style: TextStyle(
-                                            fontSize: yearBadge.length > 3 ? 12 : 14,
-                                            fontWeight: FontWeight.bold,
-                                            color: isFree ? AppColors.correctGreen : AppColors.sealGold,
-                                          ),
-                                        ),
+                                      child: Builder(
+                                        builder: (context) {
+                                          final stampParts = AppStrings.getStampParts(yearBadge);
+                                          return Column(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                              Text(
+                                                stampParts.top,
+                                                style: TextStyle(
+                                                  fontSize: 8,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: isFree ? AppColors.correctGreen : AppColors.sealGold,
+                                                ),
+                                              ),
+                                              FittedBox(
+                                                fit: BoxFit.scaleDown,
+                                                child: Text(
+                                                  stampParts.bottom,
+                                                  style: TextStyle(
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.w900,
+                                                    color: isFree ? AppColors.correctGreen : AppColors.sealGold,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          );
+                                        },
                                       ),
                                     ),
                                     const SizedBox(width: 14),
@@ -407,10 +430,10 @@ class _PyqVaultScreenState extends State<PyqVaultScreen> {
                                         ),
                                   label: Text(
                                     isBusy
-                                        ? 'पेपर खुल रहा है...'
+                                        ? (AppStrings.isHindi ? 'पेपर खुल रहा है...' : 'Opening paper...')
                                         : (isLocked
-                                            ? '🔒 $title पास से अनलॉक करें'
-                                            : '📖 $title हल करें'),
+                                            ? (AppStrings.isHindi ? '🔒 $title प्रो पास से अनलॉक करें' : '🔒 Unlock $title with Pro Pass')
+                                            : (AppStrings.isHindi ? '📖 $title हल करें' : '📖 Solve $title')),
                                     style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
                                   ),
                                 ),

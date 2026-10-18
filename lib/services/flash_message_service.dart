@@ -48,30 +48,39 @@ class FlashMessageService {
       }
     }
 
-    // 3. Define master multi-slide broadcasts
+    // 3. Define master multi-slide broadcasts with 100% pure Hindi and pure English
     final defaultBroadcasts = [
       const FlashMessage(
         id: 'live_flash_2026_master',
-        title: '🔥 UTET & CTET 2026: 9,720 प्रश्नों का सम्पूर्ण बैंक लाइव!',
-        message: 'सभी 62 ओरिजिनल पेपर्स और 20 मॉडल सेट्स 100% प्रामाणिक हल सहित उपलब्ध हैं। OMR व CBT मोड में अभ्यास करें।',
+        title: '🔥 UTET एवं CTET 2026: 9,720 प्रश्नों का सम्पूर्ण बैंक उपलब्ध!',
+        message: 'सभी 62 प्रामाणिक बोर्ड प्रश्न-पत्र एवं 20 मॉडल सेट्स सम्पूर्ण हल सहित उपलब्ध हैं। OMR एवं CBT मोड में अभ्यास करें।',
+        titleEn: '🔥 UTET & CTET 2026: 9,720 Question Bank Live!',
+        messageEn: 'All 62 authentic board solved papers and 20 model test sets with complete solutions. Practice in OMR & CBT mode.',
         type: 'notice',
-        actionLabel: 'मॉक सीरीज़ देखें',
+        actionLabel: 'मॉडल प्रश्न-पत्र देखें',
+        actionLabelEn: 'View Mock Series',
         isDismissible: true,
       ),
       const FlashMessage(
         id: 'remote_cloud_sync_notice',
-        title: '⚡ लाइव क्लाउड सिंक व रिमोट कंट्रोल सक्रिय',
-        message: 'GitHub से नए मॉक, प्रश्न सुधार और फ्री/पेड नियम सीधे बिना ऐप अपडेट के आपके फोन में सिंक होंगे।',
+        title: '⚡ लाइव क्लाउड सिंक सक्रिय',
+        message: 'नवीनतम प्रश्न-पत्र, प्रश्न सुधार एवं नए अपडेट्स सीधे आपके फोन में स्वतः सुरक्षित होते हैं।',
+        titleEn: '⚡ Live Cloud Sync Active',
+        messageEn: 'Latest question papers, verified corrections, and fresh updates sync directly to your device.',
         type: 'update',
-        actionLabel: 'मॉक टेस्ट देखें',
+        actionLabel: 'अभ्यास प्रश्न-पत्र देखें',
+        actionLabelEn: 'View Practice Tests',
         isDismissible: true,
       ),
       const FlashMessage(
         id: 'offline_cbt_omr_mode',
-        title: '📝 वास्तविक परीक्षा जैसा OMR व CBT मोड',
-        message: 'समय सीमा, नेगेटिव मार्किंग और संपूर्ण हल सहित अपनी तैयारी का लाइव मूल्यांकन करें।',
+        title: '📝 वास्तविक परीक्षा अनुरूप अभ्यास',
+        message: 'समय सीमा, नेगेटिव मार्किंग एवं विस्तृत व्याख्या सहित अपनी परीक्षा तैयारी का मूल्यांकन करें।',
+        titleEn: '📝 Realistic OMR & CBT Exam Simulation',
+        messageEn: 'Assess your real exam readiness with countdown timer, negative marking, and detailed solutions.',
         type: 'success',
-        actionLabel: 'टेस्ट शुरू करें',
+        actionLabel: 'अभ्यास शुरू करें',
+        actionLabelEn: 'Start Practice',
         isDismissible: true,
       ),
     ];

@@ -3,6 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../models/test_session.dart';
 import '../screens/cbt_exam_screen.dart';
 import '../screens/html_booklet_screen.dart';
+import 'language_service.dart';
 
 enum AppExam {
   utet,
@@ -71,15 +72,17 @@ class ExamService {
 
   String get shortName => isUtet ? 'UTET' : 'CTET';
 
-  String get paperBadge => isPaper1 ? 'Paper-I' : 'Paper-II';
+  String get paperBadgeHindi => isPaper1 ? 'पेपर-1' : 'पेपर-2';
+  String get paperBadgeEnglish => isPaper1 ? 'Paper-1' : 'Paper-2';
+  String get paperBadge => LanguageService.instance.isHindi ? paperBadgeHindi : paperBadgeEnglish;
 
   String get shortNameWithPaper => '$shortName $paperBadge';
 
-  String get paperTitleHindi => isPaper1 ? 'पेपर-I (कक्षा 1–5 प्राथमिक)' : 'पेपर-II (कक्षा 6–8 उच्च प्राथमिक/जूनियर)';
-  String get paperTitleEnglish => isPaper1 ? 'Paper-I (Class 1–5 Primary)' : 'Paper-II (Class 6–8 Upper Primary)';
+  String get paperTitleHindi => isPaper1 ? 'पेपर-1 (प्राथमिक स्तर · कक्षा 1–5)' : 'पेपर-2 (उच्च प्राथमिक स्तर · कक्षा 6–8)';
+  String get paperTitleEnglish => isPaper1 ? 'Paper-1 (Primary Level · Classes 1–5)' : 'Paper-2 (Upper Primary Level · Classes 6–8)';
 
-  String get targetClassHindi => isPaper1 ? 'प्राथमिक स्तर (कक्षा I–V)' : 'उच्च प्राथमिक स्तर (कक्षा VI–VIII)';
-  String get targetClassEnglish => isPaper1 ? 'Primary Level (Class I–V)' : 'Upper Primary Level (Class VI–VIII)';
+  String get targetClassHindi => isPaper1 ? 'प्राथमिक स्तर (कक्षा 1–5)' : 'उच्च प्राथमिक स्तर (कक्षा 6–8)';
+  String get targetClassEnglish => isPaper1 ? 'Primary Level (Class 1–5)' : 'Upper Primary Level (Class 6–8)';
 
   String get fullNameHindi =>
       isUtet ? 'उत्तराखण्ड शिक्षक पात्रता परीक्षा ($shortNameWithPaper)' : 'केन्द्रीय शिक्षक पात्रता परीक्षा ($shortNameWithPaper)';
@@ -104,17 +107,17 @@ class ExamService {
       ? '★ 100% Based on Exam Pattern & Standard Blueprint'
       : '★ 100% Based on NCERT & CBSE Board Pattern';
 
-  String get lang1LabelHindi => currentLang1.value == 'english' ? 'अंग्रेजी (English)' : 'हिन्दी (Hindi)';
+  String get lang1LabelHindi => currentLang1.value == 'english' ? 'अंग्रेजी' : 'हिन्दी';
   String get lang1LabelEnglish => currentLang1.value == 'english' ? 'English' : 'Hindi';
 
   String get lang2LabelHindi {
     switch (currentLang2.value) {
       case 'hindi':
-        return 'हिन्दी (Hindi)';
+        return 'हिन्दी';
       case 'sanskrit':
-        return 'संस्कृत (Sanskrit)';
+        return 'संस्कृत';
       default:
-        return 'अंग्रेजी (English)';
+        return 'अंग्रेजी';
     }
   }
 

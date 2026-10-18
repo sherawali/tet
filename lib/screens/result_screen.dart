@@ -615,7 +615,7 @@ class _ResultScreenState extends State<ResultScreen> {
       badgeColor = AppColors.sealGold;
     } else {
       final needed = (total * 0.55).round() - score;
-      headline = 'गहन अभ्यास की आवश्यकता (Targeted Revision Need)';
+      headline = AppStrings.targetedRevisionNeed;
       adviceText = 'आरक्षित वर्ग कट-ऑफ (55%) के लिए $needed और अंक आवश्यक हैं। घबराएं नहीं, पूर्व वर्ष के प्रश्नों (SET-R) और गलत प्रश्नों के पुनः अभ्यास से स्कोर तुरंत बढ़ेगा।';
       badgeColor = AppColors.danger;
     }
@@ -805,22 +805,24 @@ class _ResultScreenState extends State<ResultScreen> {
                 child: const Icon(Icons.warning_amber_rounded, color: AppColors.danger, size: 24),
               ),
               const SizedBox(width: 10),
-              const Expanded(
+              Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      '🚨 बार-बार होने वाली गलतियाँ (Recurring Weaknesses)',
-                      style: TextStyle(
+                      '🚨 ${AppStrings.recurringWeaknesses}',
+                      style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
                         color: AppColors.danger,
                       ),
                     ),
-                    SizedBox(height: 2),
+                    const SizedBox(height: 2),
                     Text(
-                      'सिस्टम ने आपके पिछले टेस्टों में इन कमजोरियों को बार-बार पकड़ा है:',
-                      style: TextStyle(fontSize: 11, color: Colors.grey),
+                      AppStrings.isHindi
+                          ? 'सिस्टम ने आपके पिछले टेस्टों में इन कमजोरियों को बार-बार पकड़ा है:'
+                          : 'System has identified these recurring weaknesses from your tests:',
+                      style: const TextStyle(fontSize: 11, color: Colors.grey),
                     ),
                   ],
                 ),

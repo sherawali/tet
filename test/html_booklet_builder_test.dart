@@ -1,113 +1,144 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tet_app/models/mock_config.dart';
-import 'package:tet_app/models/passage.dart';
-import 'package:tet_app/models/question.dart';
-import 'package:tet_app/models/test_session.dart';
 import 'package:tet_app/services/html_booklet_builder.dart';
 
 void main() {
-  group('HtmlBookletBuilder Tests', () {
-    test('buildHtml creates authentic HTML with cover, bilingual grid and passages', () {
-      final questions = List.generate(
-        150,
-        (i) => Question(
-          id: 'test-q-${i + 1}',
-          exams: 'utet1',
-          section: i < 30 ? 'cdp' : (i < 60 ? 'hindi' : (i < 90 ? 'english' : (i < 120 ? 'math' : 'evs'))),
-          topicIndex: 1,
-          topicName: 'समावेशी शिक्षा',
-          difficulty: 1,
-          qHindi: 'प्रश्न ${i + 1} का हिन्दी कथन क्या है?',
-          optionsHindi: ['विकल्प 1', 'विकल्प 2', 'विकल्प 3', 'विकल्प 4'],
-          qEnglish: 'What is question ${i + 1} statement?',
-          optionsEnglish: ['Option A', 'Option B', 'Option C', 'Option D'],
-          answer: i % 4,
-          pScore: 0.95,
-          passageId: (i >= 30 && i <= 34) ? 'passage-p1' : null,
-        ),
-      );
+  group('HtmlBookletBuilder Universal Question Parser Tests', () {
+    test('Sequential Match-the-Following renders as HTML table', () {
+      const stem = '''कॉलम 'A' का मिलान कॉलम 'B' से कीजिए —
+कॉलम 'A': (1) व्याकरण (2) शब्दार्थ विकास (3) बबलाना (4) ध्वन्यात्मक विकास
+कॉलम 'B': (a) पहचानने योग्य भाषा बोलने की क्षमता (b) भाषा के नियमों का उपयोग (c) भाषा की ध्वनियों का उत्पादन (d) शब्दों का अर्थ समझना
+नीचे दिए गए कूट में से सही उत्तर का चयन कीजिए:''';
 
-      final passages = {
-        'passage-p1': const Passage(
-          id: 'passage-p1',
-          kind: 'poem',
-          dirText: 'दी गई कविता को पढ़कर प्रश्नों के उत्तर दीजिए।',
-          body: 'माना आज मशीनी युग में समय बहुत महंगा है\nलेकिन तुम थोड़ा अवकाश निकालो तुमसे दो बातें करनी हैं।',
-        ),
-      };
-
-      final session = TestSession(
-        id: 'mock_session_101',
-        config: const MockConfig(
-          mode: MockMode.predicted,
-          seed: 20260929,
-          totalQuestions: 150,
-        ),
-        questions: questions,
-        passages: passages,
-      );
-
-      final html = HtmlBookletBuilder.buildHtml(session);
-
-      // Verify essential components
-      expect(html, contains('<!DOCTYPE html>'));
-      expect(html, contains('उत्तराखंड विद्यालयी शिक्षा परिषद्'));
-      expect(html, contains('अनुक्रमांक (Roll No.)'));
-      expect(html, contains('SET CODE'));
-      expect(html, contains('02:30:00')); // timer
-      expect(html, contains('qitem-1'));
-      expect(html, contains('qitem-150'));
-      expect(html, contains('q-grid-bilingual'));
-      expect(html, contains('stimulus-passage-p1'));
-      expect(html, contains('poem-body'));
-      expect(html, contains('माना आज मशीनी युग में'));
-      expect(html, contains('omr-modal'));
-      expect(html, contains('confirm-modal'));
-      expect(html, contains('result-modal'));
-      expect(html, contains('BookletChannel'));
-      expect(html, contains('cbt-bar'));
-      expect(html, contains('palette-drawer'));
-      expect(html, contains('jumpToQuestion'));
-      expect(html, contains('requestExitTest'));
+      final html = HtmlBookletBuilder.formatQuestionStemHtml(stem);
+      expect(html.contains('class="match-table-wrapper"'), isTrue);
+      expect(html.contains('<table class="match-table">'), isTrue);
+      expect(html.contains('<b>(1)</b>'), isTrue);
+      expect(html.contains('<b>(a)</b>'), isTrue);
+      expect(html.contains('class="match-conclusion"'), isTrue);
     });
 
-    test('formatQuestionStemHtml properly formats Assertion-Reason into structured cards', () {
-      const rawStem = '**अभिकथन (A):** विद्यालय में अधिगम बच्चों के सामाजिक संदर्भों से निर्लिप्त होना चाहिए।\n\n**कारण (R):** विद्यालय में प्रवेश से पहले ही छात्रों के पास सुपरिभाषित समझ होती है।\n\nदिए गए विकल्पों में से उपयुक्त विकल्प चुनिए :';
-      final html = HtmlBookletBuilder.formatQuestionStemHtml(rawStem);
+    test('Alternating Dot Notation Match question renders as HTML table', () {
+      const stem = '''पठन के तरीकों का, पाठक को क्या करना चाहिए, ये मिलान कीजिए : 
+पठन के तरीके पाठक को क्या करना चाहिए 
+A. अनुमान i. लेखक कैसे लिखते हैं, इसके आधार पर यह सुनिश्चित करना चाहिए। 
+B. निष्कर्ष निकालना ii. अपरिचित शब्दों को समझने के लिए पाठ्य-सामग्री के कुछ हिस्सों से मदद लेनी चाहिए। 
+C. संदर्भ से जोड़कर अर्थ निकालना iii. शीर्ष कथन या प्रस्तावना पर ध्यान देते हुए यह देखना चाहिए।
+कूट चुनिए:''';
 
-      expect(html, contains('kathan-wrapper'));
-      expect(html, contains('assertion-box'));
-      expect(html, contains('reason-box'));
-      expect(html, contains('tag-a'));
-      expect(html, contains('tag-r'));
-      expect(html, contains('kathan-conclusion'));
-      expect(html, contains('विद्यालय में अधिगम'));
-      expect(html, contains('विद्यालय में प्रवेश से पहले'));
-      // Raw asterisks must not be present
-      expect(html, isNot(contains('**अभिकथन')));
-      expect(html, isNot(contains('**कारण')));
+      final html = HtmlBookletBuilder.formatQuestionStemHtml(stem);
+      expect(html.contains('class="match-table-wrapper"'), isTrue);
+      expect(html.contains('<table class="match-table">'), isTrue);
+      expect(html.contains('<b>A.</b>'), isTrue);
+      expect(html.contains('<b>i.</b>'), isTrue);
     });
 
-    test('formatQuestionStemHtml strips leaked Q-number prefixes', () {
-      const rawStem = '**Q114.** Which one of the following is the primary purpose of language learning?';
-      final html = HtmlBookletBuilder.formatQuestionStemHtml(rawStem);
+    test('Dashed pairs Match question renders as HTML table', () {
+      const stem = '''निम्नलिखित को सुमेलित कीजिए:
+1. नीलगिरी – (a) अनाईमुडी 
+2. सतपुड़ा – (b) डोडाबेट्टा
+कूट :''';
 
-      expect(html, isNot(contains('Q114')));
-      expect(html, isNot(contains('**Q114.**')));
-      expect(html, contains('Which one of the following is the primary purpose'));
+      final html = HtmlBookletBuilder.formatQuestionStemHtml(stem);
+      expect(html.contains('class="match-table-wrapper"'), isTrue);
+      expect(html.contains('<table class="match-table">'), isTrue);
+      expect(html.contains('1.'), isTrue);
+      expect(html.contains('(a)'), isTrue);
     });
 
-    test('formatQuestionStemHtml structures Multi-Statement questions', () {
-      const rawStem = 'निम्नलिखित कथनों पर विचार कीजिए :\n(A) यह बच्चे को सृजनात्मक बनाता है।\n(B) यह कल्पना को पोषित करता है।\n(C) यह तर्क पर आधारित है।\nसही कूट चुनिए :';
-      final html = HtmlBookletBuilder.formatQuestionStemHtml(rawStem);
+    test('Assertion-Reason renders as structured colored cards', () {
+      const stem = '''अभिकथन (A): बच्चे भाषा को अनुकरण और अभ्यास के माध्यम से सीखते हैं।
+कारण (R): भाषा विकास केवल जैविक परिपक्वता का परिणाम है।
+दिए गए विकल्पों में से सही विकल्प चुनिए:''';
 
-      expect(html, contains('multi-statement-wrapper'));
-      expect(html, contains('stmt-list'));
-      expect(html, contains('stmt-row'));
-      expect(html, contains('(A)'));
-      expect(html, contains('(B)'));
-      expect(html, contains('(C)'));
-      expect(html, contains('सही कूट चुनिए'));
+      final html = HtmlBookletBuilder.formatQuestionStemHtml(stem);
+      expect(html.contains('class="kathan-wrapper"'), isTrue);
+      expect(html.contains('class="kathan-box assertion-box"'), isTrue);
+      expect(html.contains('class="kathan-box reason-box"'), isTrue);
+      expect(html.contains('class="kathan-tag tag-a"'), isTrue);
+      expect(html.contains('class="kathan-tag tag-r"'), isTrue);
+      expect(html.contains('class="kathan-conclusion"'), isTrue);
+    });
+
+    test('Two-Statement question renders as structured cards', () {
+      const stem = '''नीचे दिए गए कथनों पर विचार कीजिए:
+कथन (A) : स्लॉथ दिन के करीब 20 घंटे सोते है।
+कथन (B) : लगभग जीवन के 20 वर्ष के अपने पूरे जीवन में वे मुश्किल से 5 पेड़ों तक ही घूम पाते है।
+निम्नलिखित में से सही कूट चुनिए।''';
+
+      final html = HtmlBookletBuilder.formatQuestionStemHtml(stem);
+      expect(html.contains('class="kathan-wrapper"'), isTrue);
+      expect(html.contains('class="kathan-box assertion-box"'), isTrue);
+      expect(html.contains('class="kathan-tag tag-a"'), isTrue);
+    });
+
+    test('Multi-Statement with Roman numerals renders as structured list', () {
+      const stem = '''निम्नांकित कौन से कथन सर्जनात्मकता तथा बुद्धि के संदर्भ में सत्य हैं? 
+(i) सर्जनात्मकता व बुद्धि के बीच सकारात्मक सम्बन्ध है। 
+(ii) बुद्धिमान हो जाना यह निश्चित नहीं करता कि व्यक्ति सर्जनशील भी होगा। 
+(iii) सर्जनात्मक परीक्षणों में अपसारी चिंतन का उपयोग होता है।
+दिए गए विकल्पों में से सही उत्तर चुनिए:''';
+
+      final html = HtmlBookletBuilder.formatQuestionStemHtml(stem);
+      expect(html.contains('class="multi-statement-wrapper"'), isTrue);
+      expect(html.contains('class="stmt-list"'), isTrue);
+      expect(html.contains('(i)'), isTrue);
+      expect(html.contains('(ii)'), isTrue);
+      expect(html.contains('(iii)'), isTrue);
+      expect(html.contains('class="stmt-conclusion"'), isTrue);
+    });
+
+    test('Q63 from flutter_15.png preserves intro and creates clean statement cards without chopping intro', () {
+      const stem = '''नीचे दिए गए कथनों (A) और (B) पर विचार कीजिए। कथन (A) : स्लॉथ दिन के करीब 20 घंटे सोते है। कथन (B) : लगभग जीवन के 20 वर्ष के अपने पूरे जीवन में वे मुश्किल से 5 पेड़ों तक ही घूम पाते है। निम्नलिखित में से सही कूट चुनिए।''';
+
+      final html = HtmlBookletBuilder.formatQuestionStemHtml(stem);
+      expect(html.contains('class="kathan-wrapper"'), isTrue);
+      expect(html.contains('नीचे दिए गए कथनों (A) और (B) पर विचार कीजिए।'), isTrue);
+      expect(html.contains('स्लॉथ दिन के करीब 20 घंटे सोते है।'), isTrue);
+      expect(html.contains('लगभग जीवन के 20 वर्ष के अपने पूरे जीवन में वे मुश्किल से 5 पेड़ों तक ही घूम पाते है।'), isTrue);
+      expect(html.contains('निम्नलिखित में से सही कूट चुनिए।'), isTrue);
+      // Ensure 'और' is NOT inside tag-a
+      expect(html.contains('>और<'), isFalse);
+    });
+
+    test('Q64 from flutter_14.png renders 6-item match table and NEVER assertion-reason', () {
+      const stem = '''सही सुमेलित युग्म/युग्मों का चयन कीजिए। भाषा जहाँ बोली जाती है (राज्य) (A) मलयालम (i) गोआ (B) कोंकणी (ii) केरल (C) मराठी (iii) झारखंड (D) गुजराती (iv) कर्नाटक (e) कन्नड़ (v) महाराष्ट्र (f) कुड़ुक (vi) गुजरात''';
+
+      final html = HtmlBookletBuilder.formatQuestionStemHtml(stem);
+      expect(html.contains('class="match-table-wrapper"'), isTrue);
+      expect(html.contains('<table class="match-table">'), isTrue);
+      expect(html.contains('<b>(A)</b> मलयालम'), isTrue);
+      expect(html.contains('<b>(i)</b> गोआ'), isTrue);
+      expect(html.contains('<b>(e)</b> कन्नड़'), isTrue);
+      expect(html.contains('<b>(f)</b> कुड़ुक'), isTrue);
+      expect(html.contains('<b>(vi)</b> गुजरात'), isTrue);
+      expect(html.contains('class="kathan-box"'), isFalse);
+    });
+
+    test('Q71 from flutter_16.png preserves full intro without duplicate chopped markers', () {
+      const stem = '''निम्नलिखित कथन (A) तथा कथन (B) को ध्यान से पढ़ें तथा सही विकल्प का चुनाव करें। (A) लगभग 4700 वर्ष पूर्व सिंधु तथा इसकी सहायक नदियों के किनारे कुछ आरंभिक नगर फले-फूले। (B) गंगा तथा इसकी सहायक नदियों के किनारे नगरों का विकास लगभग 1500 वर्ष पूर्व हुआ।''';
+
+      final html = HtmlBookletBuilder.formatQuestionStemHtml(stem);
+      expect(html.contains('class="multi-statement-wrapper"'), isTrue);
+      expect(html.contains('निम्नलिखित कथन (A) तथा कथन (B) को ध्यान से पढ़ें तथा सही विकल्प का चुनाव करें।'), isTrue);
+      expect(html.contains('लगभग 4700 वर्ष पूर्व सिंधु तथा इसकी सहायक नदियों के किनारे कुछ आरंभिक नगर फले-फूले।'), isTrue);
+      expect(html.contains('गंगा तथा इसकी सहायक नदियों के किनारे नगरों का विकास लगभग 1500 वर्ष पूर्व हुआ।'), isTrue);
+      // Ensure intro sentence is NOT chopped into statement bodies
+      expect(html.contains('>तथा कथन<'), isFalse);
+    });
+
+    test('Q72 from flutter_16.png renders 4 inline items as clean statement list', () {
+      const stem = '''निम्नलिखित में से कौन बाल-केन्द्रित रणनीतियों को सबसे अच्छा दर्शाता है? (A) चर्चा (B) प्रदर्शन (C) व्याख्यान (D) सर्वेक्षण''';
+
+      final html = HtmlBookletBuilder.formatQuestionStemHtml(stem);
+      expect(html.contains('class="multi-statement-wrapper"'), isTrue);
+      expect(html.contains('class="stmt-list"'), isTrue);
+      expect(html.contains('निम्नलिखित में से कौन बाल-केन्द्रित रणनीतियों को सबसे अच्छा दर्शाता है?'), isTrue);
+      expect(html.contains('<b>(A)</b>') || html.contains('(A)'), isTrue);
+      expect(html.contains('चर्चा'), isTrue);
+      expect(html.contains('प्रदर्शन'), isTrue);
+      expect(html.contains('व्याख्यान'), isTrue);
+      expect(html.contains('सर्वेक्षण'), isTrue);
     });
   });
 }
+

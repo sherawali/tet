@@ -6,6 +6,7 @@ import '../design_system/app_snack_bar.dart';
 import '../models/question.dart';
 import '../database/db_helper.dart';
 import '../services/github_report_service.dart';
+import '../services/language_service.dart';
 
 /// Ultra-Premium Question Report Bottom Sheet
 /// Matches the authentic Examination Authority & Obsidian Slate luxury aesthetic.
@@ -58,43 +59,51 @@ class _QuestionReportSheetState extends State<QuestionReportSheet> {
   final _commentController = TextEditingController();
   final _commentFocusNode = FocusNode();
   final _scrollController = ScrollController();
-  String _selectedReason = 'उत्तर गलत है (Wrong Answer Key)';
+  String _selectedReason = 'wrong_answer';
   String? _suggestedOption;
   bool _isSubmitting = false;
   bool _hasAlreadyReported = false;
 
-  final List<Map<String, dynamic>> _reasons = [
-    {
-      'title': 'उत्तर गलत है (Wrong Answer Key)',
-      'subtitle': 'दी गई उत्तर कुंजी या सही विकल्प गलत है',
-      'icon': Icons.cancel_outlined,
-      'color': const Color(0xFFEF4444),
-    },
-    {
-      'title': 'अधूरा या अस्पष्ट प्रश्न (Incomplete Question)',
-      'subtitle': 'प्रश्न का वाक्य अधूरा है या कोई विकल्प छूटा हुआ है',
-      'icon': Icons.help_outline_rounded,
-      'color': const Color(0xFFF59E0B),
-    },
-    {
-      'title': 'अनुवाद या वर्तनी अशुद्धि (Translation / Typo)',
-      'subtitle': 'हिन्दी/अंग्रेजी अनुवाद में गड़बड़ी या व्याकरण अशुद्धि है',
-      'icon': Icons.translate_rounded,
-      'color': const Color(0xFF38BDF8),
-    },
-    {
-      'title': 'सूत्र या चित्र समस्या (Formula / Diagram)',
-      'subtitle': 'गणितीय सूत्र, समीकरण या चित्र स्पष्ट दिखाई नहीं दे रहा',
-      'icon': Icons.functions_rounded,
-      'color': const Color(0xFFA855F7),
-    },
-    {
-      'title': 'अन्य समस्या (Other Issue)',
-      'subtitle': 'पाठ्यक्रम से बाहर या अन्य कोई त्रुटि',
-      'icon': Icons.error_outline_rounded,
-      'color': const Color(0xFF10B981),
-    },
-  ];
+  List<Map<String, dynamic>> get _reasons {
+    final isHi = LanguageService.instance.isHindi;
+    return [
+      {
+        'id': 'wrong_answer',
+        'title': isHi ? 'उत्तर कुंजी गलत है' : 'Wrong Answer Key',
+        'subtitle': isHi ? 'दी गई उत्तर कुंजी या सही विकल्प गलत है' : 'Given answer key or correct option is incorrect',
+        'icon': Icons.cancel_outlined,
+        'color': const Color(0xFFEF4444),
+      },
+      {
+        'id': 'incomplete',
+        'title': isHi ? 'अधूरा या अस्पष्ट प्रश्न' : 'Incomplete or Unclear Question',
+        'subtitle': isHi ? 'प्रश्न का वाक्य अधूरा है या कोई विकल्प छूटा हुआ है' : 'Question text is incomplete or option missing',
+        'icon': Icons.help_outline_rounded,
+        'color': const Color(0xFFF59E0B),
+      },
+      {
+        'id': 'typo',
+        'title': isHi ? 'अनुवाद या वर्तनी अशुद्धि' : 'Translation or Typo Error',
+        'subtitle': isHi ? 'अनुवाद में गड़बड़ी या व्याकरण अशुद्धि है' : 'Grammar error or translation issue',
+        'icon': Icons.translate_rounded,
+        'color': const Color(0xFF38BDF8),
+      },
+      {
+        'id': 'formula_diagram',
+        'title': isHi ? 'सूत्र या चित्र समस्या' : 'Formula or Diagram Issue',
+        'subtitle': isHi ? 'गणितीय सूत्र, समीकरण या चित्र स्पष्ट नहीं है' : 'Math formula or diagram not rendering clearly',
+        'icon': Icons.functions_rounded,
+        'color': const Color(0xFFA855F7),
+      },
+      {
+        'id': 'other',
+        'title': isHi ? 'अन्य समस्या' : 'Other Issue',
+        'subtitle': isHi ? 'पाठ्यक्रम से बाहर या अन्य कोई त्रुटि' : 'Out of syllabus or other issues',
+        'icon': Icons.error_outline_rounded,
+        'color': const Color(0xFF10B981),
+      },
+    ];
+  }
 
   @override
   void initState() {
@@ -734,18 +743,19 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
 
                     // Reason Selector Cards
                     ..._reasons.map((r) {
+                      final id = r['id'] as String;
                       final title = r['title'] as String;
                       final subtitle = r['subtitle'] as String;
                       final icon = r['icon'] as IconData;
                       final accent = r['color'] as Color;
-                      final isSelected = _selectedReason == title;
+                      final isSelected = _selectedReason == id || _selectedReason == title;
 
                       return Padding(
                         padding: const EdgeInsets.only(bottom: 8),
                         child: InkWell(
                           onTap: () {
                             HapticFeedback.selectionClick();
-                            setState(() => _selectedReason = title);
+                            setState(() => _selectedReason = id);
                           },
                           borderRadius: BorderRadius.circular(12),
                           child: AnimatedContainer(
@@ -820,10 +830,12 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
                     }),
 
                     // Suggested Option (shows when wrong answer is selected)
-                    if (_selectedReason.contains('Wrong Answer') || _selectedReason.contains('उत्तर गलत')) ...[
+                    if (_selectedReason == 'wrong_answer' || _selectedReason.contains('Wrong Answer') || _selectedReason.contains('उत्तर गलत')) ...[
                       const SizedBox(height: 10),
                       Text(
-                        'आपके अनुसार सही उत्तर क्या होना चाहिए?',
+                        LanguageService.instance.isHindi
+                            ? 'आपके अनुसार सही उत्तर क्या होना चाहिए?'
+                            : 'What do you believe is the correct answer?',
                         style: GoogleFonts.outfit(
                           fontSize: 13,
                           fontWeight: FontWeight.w700,
@@ -1422,10 +1434,10 @@ ${opt != null && opt.toString().isNotEmpty ? '💡 सुझाया गया 
                                                     Flexible(
                                                       child: Text(
                                                         isSolved
-                                                            ? 'हल हो गया (Solved)'
+                                                            ? (LanguageService.instance.isHindi ? 'हल हो गया' : 'Solved')
                                                             : (isVerified
-                                                                ? 'सत्यापित'
-                                                                : 'समीक्षाधीन'),
+                                                                ? (LanguageService.instance.isHindi ? 'सत्यापित' : 'Verified')
+                                                                : (LanguageService.instance.isHindi ? 'समीक्षाधीन' : 'Under Review')),
                                                         maxLines: 1,
                                                         overflow: TextOverflow.ellipsis,
                                                         style: GoogleFonts.outfit(

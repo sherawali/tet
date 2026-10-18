@@ -381,7 +381,7 @@ class _CbtExamScreenState extends State<CbtExamScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'प्रश्न पैलेट (Question Palette)',
+                          AppStrings.questionPaletteTitle,
                           style: AppTypography.titleLarge(
                             color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
                           ),
@@ -535,7 +535,7 @@ class _CbtExamScreenState extends State<CbtExamScreen> {
               ),
               const SizedBox(height: 16),
               Text(
-                'भाषा चुनें (Select Language)',
+                AppStrings.selectLangTitle,
                 style: AppTypography.titleLarge(
                   color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
                 ),

@@ -42,6 +42,17 @@ class HtmlBookletBuilder {
     return htmlP.join('\n');
   }
 
+  static String ensureOptionLabel(String opt) {
+    var s = opt.trim();
+    if (RegExp(r'^(?:और\s*\(R\)|\(R\)\s*और|and\s*\(R\)|is\s*true\s*but\s*\(R\)|is\s*false\s*but\s*\(R\))', caseSensitive: false).hasMatch(s)) {
+      s = '(A) $s';
+    }
+    if (RegExp(r'^(?:और\s*\(B\)|\(B\)\s*और|and\s*\(B\)|is\s*true\s*but\s*\(B\)|is\s*false\s*but\s*\(B\))', caseSensitive: false).hasMatch(s)) {
+      s = '(A) $s';
+    }
+    return s;
+  }
+
   static String formatInlineMarkdown(String text) {
     var s = escape(text);
     // Convert code blocks ``` ... ```
@@ -69,16 +80,94 @@ class HtmlBookletBuilder {
     s = s.replaceAll(r'$', '');
     // Replace **bold** with <b>bold</b>
     s = s.replaceAllMapped(RegExp(r'\*\*(.+?)\*\*'), (m) => '<b>${m[1]}</b>');
+    // Replace fill-in-the-blank underlines / boxes: [ _______ ] or ______ or ..... or [ ... ]
+    s = s.replaceAllMapped(
+      RegExp(r'\[\s*(?:_{2,}|\.{3,}|\s{3,})\s*\]|(?<!\w)_{2,}(?!\w)|\.{4,}'),
+      (m) => '<span class="q-blank" title="रिक्त स्थान">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>',
+    );
     return s;
   }
 
+  static int? _parseMarkerSequenceValue(String s, String style) {
+    final clean = s.trim().replaceAll(RegExp(r'[\(\)\.\:\s]'), '');
+    if (style == 'alpha') {
+      if (clean.length == 1 && RegExp(r'^[a-zA-Z]$').hasMatch(clean)) {
+        return clean.toLowerCase().codeUnitAt(0) - 'a'.codeUnitAt(0) + 1;
+      }
+    } else if (style == 'digit') {
+      return int.tryParse(clean);
+    } else if (style == 'roman') {
+      const romanMap = {
+        'i': 1, 'ii': 2, 'iii': 3, 'iv': 4, 'v': 5, 'vi': 6, 'vii': 7, 'viii': 8, 'ix': 9, 'x': 10,
+        'I': 1, 'II': 2, 'III': 3, 'IV': 4, 'V': 5, 'VI': 6, 'VII': 7, 'VIII': 8, 'IX': 9, 'X': 10,
+      };
+      return romanMap[clean];
+    }
+    return null;
+  }
+
+  static bool _checkSequentialList(List<String> markers, String style) {
+    if (markers.isEmpty) return false;
+    final first = _parseMarkerSequenceValue(markers[0], style);
+    if (first == null || first != 1) return false;
+    for (int i = 0; i < markers.length; i++) {
+      final val = _parseMarkerSequenceValue(markers[i], style);
+      if (val != i + 1) return false;
+    }
+    return true;
+  }
+
+  static bool _isDirectSuccessor(String prev, String next) {
+    final p = prev.toUpperCase();
+    final n = next.toUpperCase();
+    if (p.length == 1 && n.length == 1 && p.codeUnitAt(0) >= 65 && p.codeUnitAt(0) <= 90) {
+      return n.codeUnitAt(0) == p.codeUnitAt(0) + 1;
+    }
+    final pInt = int.tryParse(p);
+    final nInt = int.tryParse(n);
+    if (pInt != null && nInt != null) {
+      return nInt == pInt + 1;
+    }
+    const romanMap = {'I': 1, 'II': 2, 'III': 3, 'IV': 4, 'V': 5, 'VI': 6, 'VII': 7, 'VIII': 8, 'IX': 9, 'X': 10};
+    if (romanMap.containsKey(p) && romanMap.containsKey(n)) {
+      return romanMap[n] == romanMap[p]! + 1;
+    }
+    return false;
+  }
+
+  static List<({String marker, String text})> _parseColumnItems(String rawCol) {
+    final clean = rawCol.trim().replaceAll(RegExp(r'[।.,;—–\-\s]+$'), '');
+    // 1. Try marker matching: (a) or a. or 1. or (1) or (i) or i. or (A) or A.
+    final matches = RegExp(
+      r'(?:^|[\s\.\:\-।;,])(?:\(([A-Za-z0-9]+|[i-vI-V]+)\)|([A-Za-z0-9]+|[i-vI-V]+)[\.\)])\s*([^\(\n]+?)(?=(?:[\s\.\:\-।;,](?:\([A-Za-z0-9]+|[i-vI-V]+\)|[A-Za-z0-9]+[\.\)]))|$)',
+    ).allMatches(clean).toList();
+
+    if (matches.length >= 2) {
+      return matches.map((m) {
+        final marker = m.group(1) != null ? '(${m.group(1)})' : '${m.group(2)}.';
+        return (marker: marker, text: m.group(3)!.trim());
+      }).toList();
+    }
+
+    // 2. Try comma / semicolon / newline / danda separated
+    final parts = clean.split(RegExp(r'[,،;؛।\n]')).map((p) => p.trim()).where((p) => p.isNotEmpty).toList();
+    if (parts.length >= 2) {
+      return [
+        for (int i = 0; i < parts.length; i++)
+          (marker: '${i + 1}.', text: parts[i])
+      ];
+    }
+
+    return [];
+  }
+
   /// Parses question stem into structured HTML for Kathan (Assertion-Reason),
-  /// Multi-Statement, Tables, and clean paragraphs.
+  /// Match the Following (Tables), Multi-Statement, and clean paragraphs.
   static String formatQuestionStemHtml(String rawStem) {
     var text = rawStem.trim();
     if (text.isEmpty) return '';
 
-    // 0. Pre-clean question number leaks and accidental markers
+    // 0. Pre-clean question number leaks and accidental markers (Preserve __ for blanks)
     text = text
         .replaceAll(RegExp(r'^\s*(?:\*\*|#{1,6}\s*)?Q(?:uestion)?\.?\s*\d+[\.\:\*]?\s*', caseSensitive: false, multiLine: true), '')
         .replaceAll(RegExp(r'^\s*#{1,6}\s*(?:Q\.?\s*)?\d*[\.\:\-]?\s*', multiLine: true), '')
@@ -94,10 +183,15 @@ class HtmlBookletBuilder {
           (m) => '${m[1]} ${m[2] != null ? "(${m[2]}):" : ":"} ',
         )
         .replaceAll('**', '')
-        .replaceAll('__', '')
         .trim();
 
-    // 1. Check Table:
+    final conclusionPattern = RegExp(
+      r'^(.*?)\s*([–—\-:ः]*\s*(?:सही\s*(?:विकल्प|उत्तर|कूट|कोड)|दिए\s*गए\s*विकल्प(?:ों)?|निम्नलिखित\s*(?:में\s*से\s*)?सही|उपर्युक्त|उपरोक्त|नीचे\s*दिए|इनमें\s*से|इनमें|Choose\s*the\s*correct|Select\s*the\s*correct|Select\s*from\s*the|Which\s*of\s*the\s*above|Code\s*:|Codes\s*:|कूट\s*:|कोड\s*:)[^\n]*)$',
+      caseSensitive: false,
+      dotAll: true,
+    );
+
+    // 1. Check Markdown Table:
     if (text.contains('|') && RegExp(r'\|\s*[-:]+[-| :]*\|').hasMatch(text)) {
       final lines = text.split('\n');
       int tableStartIndex = -1;
@@ -165,103 +259,168 @@ class HtmlBookletBuilder {
       }
     }
 
-    // 2. Check Match-The-Column / सुमेलित (Two Column Side-by-Side Table)
-    final matchItems = RegExp(r'(\((?:[A-Za-z0-9]+|[i-vI-V]+)\))\s*([^\(]+?)(?=\s*\((?:[A-Za-z0-9]+|[i-vI-V]+)\)|$)')
-        .allMatches(text)
-        .toList();
-    if (matchItems.length >= 4) {
-      final leftItems = <({String marker, String text})>[];
-      final rightItems = <({String marker, String text})>[];
-      for (final m in matchItems) {
-        final marker = m.group(1)!.trim();
-        final itemText = m.group(2)!.trim();
-        final cleanMarker = marker.replaceAll(RegExp(r'[\(\)]'), '');
-        if (RegExp(r'^[A-Fa-f]$').hasMatch(cleanMarker)) {
-          leftItems.add((marker: marker, text: itemText));
-        } else if (RegExp(r'^[i-vI-V0-9]+$').hasMatch(cleanMarker)) {
-          rightItems.add((marker: marker, text: itemText));
-        }
-      }
-      if (leftItems.length >= 2 && leftItems.length == rightItems.length) {
-        final firstMarkerIdx = text.indexOf(leftItems[0].marker);
-        final intro = firstMarkerIdx > 0 ? text.substring(0, firstMarkerIdx).trim() : null;
+    // 2A. Check Match-The-Following Type 1: Sequential Columns (सूची-I / List-I followed by सूची-II / List-II or स्तम्भ 1/2 or कॉलम A/B)
+    final h1Matches = RegExp(r"""(?:सूची|स्तम्भ|कॉलम|भाग|तालिका|List|Column)\s*[-–—:'"]*\s*(?:I|1|A)(?:\s*\([^\)]+\))?\s*[:\-–—\.]?""", caseSensitive: false).allMatches(text).toList();
+    final h2Matches = RegExp(r"""(?:सूची|स्तम्भ|कॉलम|भाग|तालिका|List|Column)\s*[-–—:'"]*\s*(?:II|2|B)(?:\s*\([^\)]+\))?\s*[:\-–—\.]?""", caseSensitive: false).allMatches(text).toList();
 
-        final b = StringBuffer();
-        b.write('<div class="match-table-wrapper">');
-        if (intro != null && intro.isNotEmpty) {
-          b.write('<div class="match-intro">${formatInlineMarkdown(intro)}</div>');
+    if (h1Matches.isNotEmpty && h2Matches.isNotEmpty) {
+      final lastH2 = h2Matches.last;
+      final precedingH1s = h1Matches.where((m) => m.start < lastH2.start).toList();
+      if (precedingH1s.isNotEmpty) {
+        final chosenH1 = precedingH1s.last;
+        final intro = text.substring(0, chosenH1.start).trim();
+        final col1Raw = text.substring(chosenH1.end, lastH2.start).trim();
+        var col2Raw = text.substring(lastH2.end).trim();
+        String? matchConclusion;
+
+        final cm = conclusionPattern.firstMatch(col2Raw);
+        if (cm != null) {
+          col2Raw = cm.group(1)!.trim().replaceAll(RegExp(r'[\s:\-–—ः.\*]+$'), '').trim();
+          matchConclusion = cm.group(2)!.trim();
         }
-        b.write('<table class="match-table"><thead><tr>');
-        b.write('<th>स्तम्भ I / सूची I</th><th>स्तम्भ II / सूची II</th>');
-        b.write('</tr></thead><tbody>');
-        for (int i = 0; i < leftItems.length; i++) {
-          final l = leftItems[i];
-          final r = rightItems[i];
-          b.write('<tr>');
-          b.write('<td><b>${l.marker}</b> ${formatInlineMarkdown(l.text)}</td>');
-          b.write('<td><b>${r.marker}</b> ${formatInlineMarkdown(r.text)}</td>');
-          b.write('</tr>');
+
+        final col1Items = _parseColumnItems(col1Raw);
+        final col2Items = _parseColumnItems(col2Raw);
+
+        if (col1Items.length >= 2 && col2Items.length >= 2) {
+          final maxRows = col1Items.length > col2Items.length ? col1Items.length : col2Items.length;
+          final h1Title = chosenH1.group(0)!.trim().replaceAll(RegExp(r'[:\-–—\s\.]+$'), '');
+          final h2Title = lastH2.group(0)!.trim().replaceAll(RegExp(r'[:\-–—\s\.]+$'), '');
+
+          final b = StringBuffer();
+          b.write('<div class="match-table-wrapper">');
+          if (intro.isNotEmpty) {
+            b.write('<div class="match-intro">${formatInlineMarkdown(intro)}</div>');
+          }
+          b.write('<table class="match-table"><thead><tr>');
+          b.write('<th>${formatInlineMarkdown(h1Title)}</th><th>${formatInlineMarkdown(h2Title)}</th>');
+          b.write('</tr></thead><tbody>');
+          for (int i = 0; i < maxRows; i++) {
+            final l = i < col1Items.length ? col1Items[i] : null;
+            final r = i < col2Items.length ? col2Items[i] : null;
+            b.write('<tr>');
+            b.write('<td>${l != null ? "<b>${l.marker}</b> ${formatInlineMarkdown(l.text)}" : ""}</td>');
+            b.write('<td>${r != null ? "<b>${r.marker}</b> ${formatInlineMarkdown(r.text)}" : ""}</td>');
+            b.write('</tr>');
+          }
+          b.write('</tbody></table>');
+          if (matchConclusion != null && matchConclusion.isNotEmpty) {
+            b.write('<div class="match-conclusion">${formatInlineMarkdown(matchConclusion)}</div>');
+          }
+          b.write('</div>');
+          return b.toString();
         }
-        b.write('</tbody></table></div>');
-        return b.toString();
       }
     }
 
-    // 3. Check Assertion-Reason (अभिकथन एवं कारण / दावा एवं तर्क / कथनम् एवं कारणम्)
-    final arPattern = RegExp(
-      r'^(.*?)(?:^|[\s–—\-:ः।;,])(अभिकथन(?:\s*\([A-Za-z]\))?|दावा(?:\s*\([A-Za-z]\))?|कथनम्(?:\s*\([A-Za-z]\))?|Assertion(?:\s*\([A-Za-z]\))?|\(A\))\s*[:\-–—ः.]\s*(.*?)(?:^|[\s–—\-:ः।;,])(कारण(?:\s*\([A-Za-z]\))?|तर्क(?:\s*\([A-Za-z]\))?|कारणम्(?:\s*\([A-Za-z]\))?|Reason(?:\s*\([A-Za-z]\))?|\(R\))\s*[:\-–—ः.]\s*(.*?)$',
-      caseSensitive: false,
+    // 2B. Check Match-The-Following Type 2: Dashed Pairs (e.g. 1. नीलगिरी – (a) अनाईमुडी 2. सतपुड़ा – (b) डोडाबेट्टा)
+    final pairMatches = RegExp(
+      r'(?:^|[\s\.\:\-।;,])(\d+|[a-eA-E]|[i-vI-V]+)[\.\)]\s*([^–\-]+?)\s*[–\-]\s*(?:\(([a-zA-Z0-9]+|[i-vI-V]+)\)|([a-zA-Z0-9]+|[i-vI-V]+)[\.\)])\s*([^0-9\–\-\n]+?)(?=(?:[\s\.\:\-।;,](?:\d+|[a-eA-E]|[i-vI-V]+)[\.\)]|$|\s*कूट\s*:|\s*कोड\s*:))',
+    ).allMatches(text).toList();
+
+    if (pairMatches.length >= 2) {
+      final firstStart = pairMatches.first.start;
+      final intro = firstStart > 0 ? text.substring(0, firstStart).trim() : '';
+      final lastEnd = pairMatches.last.end;
+      final afterText = lastEnd < text.length ? text.substring(lastEnd).trim() : '';
+
+      final b = StringBuffer();
+      b.write('<div class="match-table-wrapper">');
+      if (intro.isNotEmpty) {
+        b.write('<div class="match-intro">${formatInlineMarkdown(intro)}</div>');
+      }
+      b.write('<table class="match-table"><thead><tr>');
+      b.write('<th>स्तम्भ I / सूची A</th><th>स्तम्भ II / सूची B</th>');
+      b.write('</tr></thead><tbody>');
+      for (final pm in pairMatches) {
+        final lMarker = pm.group(1)!;
+        final lText = pm.group(2)!.trim();
+        final rMarker = pm.group(3) ?? pm.group(4)!;
+        final rText = pm.group(5)!.trim();
+        b.write('<tr>');
+        b.write('<td><b>$lMarker.</b> ${formatInlineMarkdown(lText)}</td>');
+        b.write('<td><b>($rMarker)</b> ${formatInlineMarkdown(rText)}</td>');
+        b.write('</tr>');
+      }
+      b.write('</tbody></table>');
+      if (afterText.isNotEmpty) {
+        b.write('<div class="match-conclusion">${formatInlineMarkdown(afterText)}</div>');
+      }
+      b.write('</div>');
+      return b.toString();
+    }
+
+    final isMatchStem = RegExp(r'(?:सुमेलित|मिलान|Match|युग्म|जोड़ा|जोड़े|कॉलम|स्तम्भ|सूची)', caseSensitive: false).hasMatch(text);
+
+    // 2C. Check Match-The-Following Type 3: Alternating Pairs (e.g. A. X i. Y B. Z ii. W or (A) X (i) Y)
+    final matchItems = RegExp(
+      r'(?:^|[\s\.\:\-।;,])(?:\(([A-Za-z0-9]+|[i-vI-V]+)\)|([A-Za-z0-9]+|[i-vI-V]+)[\.\)])\s*(.+?)(?=(?:[\s\.\:\-।;,](?:\([A-Za-z0-9]+|[i-vI-V]+\)|[A-Za-z0-9]+[\.\)]))|$)',
       dotAll: true,
-    );
-    final conclusionPattern = RegExp(
-      r'^(.*?)\s*([–—\-:ः]*\s*(?:सही\s*(?:विकल्प|उत्तर|कूट|कोड)|दिए\s*गए\s*विकल्प(?:ों)?|निम्नलिखित\s*(?:में\s*से\s*)?सही|उपर्युक्त|उपरोक्त|नीचे\s*दिए|इनमें\s*से|इनमें|Choose\s*the\s*correct|Select\s*the\s*correct|Select\s*from\s*the|Which\s*of\s*the\s*above|Code\s*:|Codes\s*:|कूट\s*:|कोड\s*:)[^\n]*)$',
-      caseSensitive: false,
-      dotAll: true,
-    );
+    ).allMatches(text).toList();
 
-    final arMatch = arPattern.firstMatch(text);
-    if (arMatch != null) {
-      final intro = arMatch.group(1)?.trim();
-      var aLabel = arMatch.group(2)!.trim();
-      var aText = arMatch.group(3)!.trim().replaceAll(RegExp(r'^[\s:\-–—ः.\*]+'), '').trim();
-      var rLabel = arMatch.group(4)!.trim();
-      var rText = arMatch.group(5)!.trim().replaceAll(RegExp(r'^[\s:\-–—ः.\*]+'), '').trim();
-      String? conclusion;
+    if (matchItems.length >= 4) {
+      final markers = <String>[];
+      final texts = <String>[];
+      final rawMarkers = <String>[];
+      for (final m in matchItems) {
+        rawMarkers.add((m.group(1) ?? m.group(2))!.trim());
+        final cleanMarker = m.group(1) != null ? '(${m.group(1)})' : '${m.group(2)}.';
+        markers.add(cleanMarker);
+        texts.add(m.group(3)!.trim());
+      }
+      final evenRaw = [for (int i = 0; i < rawMarkers.length; i += 2) rawMarkers[i]];
+      final oddRaw = [for (int i = 1; i < rawMarkers.length; i += 2) rawMarkers[i]];
 
-      if (aLabel == '(A)' || aLabel == 'A') aLabel = 'अभिकथन (A)';
-      if (rLabel == '(R)' || rLabel == 'R') rLabel = 'कारण (R)';
-
-      final cm = conclusionPattern.firstMatch(rText);
-      if (cm != null) {
-        rText = cm.group(1)!.trim().replaceAll(RegExp(r'[\s:\-–—ः.\*]+$'), '').trim();
-        conclusion = cm.group(2)!.trim();
+      bool isAlternatingMatch = false;
+      for (final s1 in ['alpha', 'digit', 'roman']) {
+        for (final s2 in ['alpha', 'digit', 'roman']) {
+          if (s1 != s2 && _checkSequentialList(evenRaw, s1) && _checkSequentialList(oddRaw, s2)) {
+            isAlternatingMatch = true;
+            break;
+          }
+        }
+        if (isAlternatingMatch) break;
       }
 
-      if (aText.isNotEmpty && rText.isNotEmpty) {
-        final b = StringBuffer();
-        b.write('<div class="kathan-wrapper">');
-        if (intro != null && intro.isNotEmpty) {
-          b.write('<div class="kathan-intro">${formatInlineMarkdown(intro)}</div>');
+      if (isAlternatingMatch && evenRaw.length == oddRaw.length) {
+        final firstStart = matchItems.first.start;
+        final intro = firstStart > 0 ? text.substring(0, firstStart).trim() : '';
+        var lastRightText = texts.last;
+        String? matchConclusion;
+        final cm = conclusionPattern.firstMatch(lastRightText);
+        if (cm != null) {
+          lastRightText = cm.group(1)!.trim().replaceAll(RegExp(r'[\s:\-–—ः.\*]+$'), '').trim();
+          matchConclusion = cm.group(2)!.trim();
         }
-        b.write('''
-          <div class="kathan-box assertion-box">
-            <span class="kathan-tag tag-a">$aLabel</span>
-            <div class="kathan-body">${formatInlineMarkdown(aText)}</div>
-          </div>
-          <div class="kathan-box reason-box">
-            <span class="kathan-tag tag-r">$rLabel</span>
-            <div class="kathan-body">${formatInlineMarkdown(rText)}</div>
-          </div>
-        ''');
-        if (conclusion != null && conclusion.isNotEmpty) {
-          b.write('<div class="kathan-conclusion">${formatInlineMarkdown(conclusion)}</div>');
+
+        final b = StringBuffer();
+        b.write('<div class="match-table-wrapper">');
+        if (intro.isNotEmpty) {
+          b.write('<div class="match-intro">${formatInlineMarkdown(intro)}</div>');
+        }
+        b.write('<table class="match-table"><thead><tr>');
+        b.write('<th>स्तम्भ I / सूची A</th><th>स्तम्भ II / सूची B</th>');
+        b.write('</tr></thead><tbody>');
+        for (int i = 0; i < evenRaw.length; i++) {
+          final lMarker = markers[i * 2];
+          final lText = texts[i * 2];
+          final rMarker = (i * 2 + 1 < markers.length) ? markers[i * 2 + 1] : '';
+          final rText = (i == evenRaw.length - 1) ? lastRightText : (i * 2 + 1 < texts.length ? texts[i * 2 + 1] : '');
+          b.write('<tr>');
+          b.write('<td><b>$lMarker</b> ${formatInlineMarkdown(lText)}</td>');
+          b.write('<td><b>$rMarker</b> ${formatInlineMarkdown(rText)}</td>');
+          b.write('</tr>');
+        }
+        b.write('</tbody></table>');
+        if (matchConclusion != null && matchConclusion.isNotEmpty) {
+          b.write('<div class="match-conclusion">${formatInlineMarkdown(matchConclusion)}</div>');
         }
         b.write('</div>');
         return b.toString();
       }
     }
 
-    // 4. Check Explicit Statements (कथन (A), कथन (B) or Statement (A), Statement (B))
+    // 3. Check Explicit Multi-Statement (कथन (A), कथन (B) or Statement (A), Statement (B))
     final explicitStmtMatches = RegExp(
       r'(?:^|[\s\.\:\-])(कथन\s*\(([A-Za-z0-9]+)\)|कथन\s*([A-Za-z0-9]+)|Statement\s*\(([A-Za-z0-9]+)\)|Statement\s*([A-Za-z0-9]+))\s*[:\-–—\.]\s*',
       caseSensitive: false,
@@ -288,32 +447,260 @@ class HtmlBookletBuilder {
         statements.add(last);
       }
 
-      final b = StringBuffer();
-      b.write('<div class="multi-statement-wrapper">');
-      if (intro.isNotEmpty) {
-        b.write('<div class="stmt-intro">${formatInlineMarkdown(intro)}</div>');
-      }
-      b.write('<div class="stmt-list">');
-      for (final st in statements) {
+      if (statements.length == 2) {
+        // Structured cards for 2 statements (e.g. कथन (A) & कथन (B))
+        final b = StringBuffer();
+        b.write('<div class="kathan-wrapper">');
+        if (intro.isNotEmpty) {
+          b.write('<div class="kathan-intro">${formatInlineMarkdown(intro)}</div>');
+        }
         b.write('''
-          <div class="stmt-row">
-            <span class="stmt-marker">${st.marker}</span>
-            <span class="stmt-text">${formatInlineMarkdown(st.text)}</span>
+          <div class="kathan-box assertion-box">
+            <span class="kathan-tag tag-a">${statements[0].marker}</span>
+            <div class="kathan-body">${formatInlineMarkdown(statements[0].text)}</div>
+          </div>
+          <div class="kathan-box reason-box">
+            <span class="kathan-tag tag-r">${statements[1].marker}</span>
+            <div class="kathan-body">${formatInlineMarkdown(statements[1].text)}</div>
           </div>
         ''');
+        if (conclusion != null && conclusion.isNotEmpty) {
+          b.write('<div class="kathan-conclusion">${formatInlineMarkdown(conclusion)}</div>');
+        }
+        b.write('</div>');
+        return b.toString();
+      } else {
+        // Multi-statement list rows for 3 or more statements
+        final b = StringBuffer();
+        b.write('<div class="multi-statement-wrapper">');
+        if (intro.isNotEmpty) {
+          b.write('<div class="stmt-intro">${formatInlineMarkdown(intro)}</div>');
+        }
+        b.write('<div class="stmt-list">');
+        for (final st in statements) {
+          b.write('''
+            <div class="stmt-row">
+              <span class="stmt-marker">${st.marker}</span>
+              <span class="stmt-text">${formatInlineMarkdown(st.text)}</span>
+            </div>
+          ''');
+        }
+        b.write('</div>');
+        if (conclusion != null && conclusion.isNotEmpty) {
+          b.write('<div class="stmt-conclusion">${formatInlineMarkdown(conclusion)}</div>');
+        }
+        b.write('</div>');
+        return b.toString();
       }
-      b.write('</div>');
-      if (conclusion != null && conclusion.isNotEmpty) {
-        b.write('<div class="stmt-conclusion">${formatInlineMarkdown(conclusion)}</div>');
-      }
-      b.write('</div>');
-      return b.toString();
     }
 
-    // 5. Check Newline-separated Multi-Statement (only if statements start on separate lines)
+    // 4. Check Assertion-Reason (अभिकथन एवं कारण / दावा एवं तर्क)
+    // Strictly requires Assertion word OR (A) WITH Reason word OR (R).
+    // NEVER triggers on Match stems!
+    if (!isMatchStem) {
+      final arPattern = RegExp(
+        r'^(.*?)(?:^|[\s–—\-:ः।;,])(अभिकथन(?:\s*\([A-Za-z0-9]\))?|दावा(?:\s*\([A-Za-z0-9]\))?|कथनम्(?:\s*\([A-Za-z0-9]\))?|Assertion(?:\s*\([A-Za-z0-9]\))?|\(A\))\s*[:\-–—ः.]\s*(.*?)(?:^|[\s–—\-:ः।;,])(कारण(?:\s*\([A-Za-z0-9]\))?|तर्क(?:\s*\([A-Za-z0-9]\))?|कारणम्(?:\s*\([A-Za-z0-9]\))?|व्याख्या(?:\s*\([A-Za-z0-9]\))?|प्रभाव(?:\s*\([A-Za-z0-9]\))?|Reason(?:\s*\([A-Za-z0-9]\))?|Explanation(?:\s*\([A-Za-z0-9]\))?|Effect(?:\s*\([A-Za-z0-9]\))?|\(R\))\s*[:\-–—ः.]\s*(.*?)$',
+        caseSensitive: false,
+        dotAll: true,
+      );
+
+      final arMatch = arPattern.firstMatch(text);
+      if (arMatch != null) {
+        final intro = arMatch.group(1)?.trim();
+        var aLabel = arMatch.group(2)!.trim();
+        var aText = arMatch.group(3)!.trim().replaceAll(RegExp(r'^[\s:\-–—ः.\*]+'), '').trim();
+        var rLabel = arMatch.group(4)!.trim();
+        var rText = arMatch.group(5)!.trim().replaceAll(RegExp(r'^[\s:\-–—ः.\*]+'), '').trim();
+        String? conclusion;
+
+        if (aLabel == '(A)' || aLabel == 'A') aLabel = 'अभिकथन (A)';
+        if (rLabel == '(R)' || rLabel == 'R') rLabel = 'कारण (R)';
+
+        final cm = conclusionPattern.firstMatch(rText);
+        if (cm != null) {
+          rText = cm.group(1)!.trim().replaceAll(RegExp(r'[\s:\-–—ः.\*]+$'), '').trim();
+          conclusion = cm.group(2)!.trim();
+        }
+
+        if (aText.isNotEmpty && rText.isNotEmpty) {
+          final isVyakhyan = RegExp(r'व्याख्या|प्रभाव|Explanation|Effect', caseSensitive: false).hasMatch(rLabel);
+          final rTagClass = isVyakhyan ? 'tag-v' : 'tag-r';
+          final rBoxClass = isVyakhyan ? 'vyakhyan-box' : 'reason-box';
+
+          final b = StringBuffer();
+          b.write('<div class="kathan-wrapper">');
+          if (intro != null && intro.isNotEmpty) {
+            b.write('<div class="kathan-intro">${formatInlineMarkdown(intro)}</div>');
+          }
+          b.write('''
+            <div class="kathan-box assertion-box">
+              <span class="kathan-tag tag-a">$aLabel</span>
+              <div class="kathan-body">${formatInlineMarkdown(aText)}</div>
+            </div>
+            <div class="kathan-box $rBoxClass">
+              <span class="kathan-tag $rTagClass">$rLabel</span>
+              <div class="kathan-body">${formatInlineMarkdown(rText)}</div>
+            </div>
+          ''');
+          if (conclusion != null && conclusion.isNotEmpty) {
+            b.write('<div class="kathan-conclusion">${formatInlineMarkdown(conclusion)}</div>');
+          }
+          b.write('</div>');
+          return b.toString();
+        }
+      }
+    }
+
+    // 4B. Check Inline Statement Evaluation (e.g. कथनों को पढ़िए / विचार कीजिए ... (i), (ii) or I., II.)
+    final hasStmtIntro = RegExp(r'(?:कथन|कथनों|विचार|पढ़िए|सत्य|सही|गलत|कूट|निम्नलिखित|निम्न|Statement|Statements|Consider|Following|Which)', caseSensitive: false).hasMatch(text);
+    if (hasStmtIntro) {
+      // 4B-1: Parenthesized markers: (i), (ii), (iii) or (1), (2) or (A), (B)
+      final allMatches = RegExp(r'(?:^|[\s\.\:\-–—।;,])\(((?:[A-Ea-e]|[i-vI-V]+|[1-9]))\)\s*').allMatches(text).toList();
+      if (allMatches.length >= 2) {
+        // Group matches into strictly increasing sequential chains
+        final candidates = <List<RegExpMatch>>[];
+        List<RegExpMatch> currentSeq = [];
+
+        for (int i = 0; i < allMatches.length; i++) {
+          final m = allMatches[i];
+          final marker = m.group(1)!;
+
+          if (currentSeq.isEmpty) {
+            currentSeq.add(m);
+          } else {
+            final prevMarker = currentSeq.last.group(1)!;
+            if (_isDirectSuccessor(prevMarker, marker)) {
+              currentSeq.add(m);
+            } else {
+              if (currentSeq.length >= 2) {
+                candidates.add(List.from(currentSeq));
+              }
+              currentSeq = [m];
+            }
+          }
+        }
+        if (currentSeq.length >= 2) {
+          candidates.add(List.from(currentSeq));
+        }
+
+        if (candidates.isNotEmpty) {
+          // Select the best candidate sequence:
+          // In questions where intro says "कथन (A) तथा (B)", the true statement body comes after with substantive text!
+          List<RegExpMatch> bestCandidate = candidates.last;
+          for (int i = candidates.length - 1; i >= 0; i--) {
+            final cand = candidates[i];
+            int totalLen = 0;
+            for (int j = 0; j < cand.length; j++) {
+              final start = cand[j].end;
+              final end = (j + 1 < cand.length) ? cand[j + 1].start : text.length;
+              totalLen += (end - start);
+            }
+            final avgLen = totalLen / cand.length;
+            if (avgLen > 4) {
+              bestCandidate = cand;
+              break;
+            }
+          }
+
+          final intro = text.substring(0, bestCandidate.first.start).trim();
+          final statements = <({String marker, String text})>[];
+          for (int i = 0; i < bestCandidate.length; i++) {
+            final sm = bestCandidate[i];
+            final marker = '(${sm.group(1)})';
+            final start = sm.end;
+            final end = i + 1 < bestCandidate.length ? bestCandidate[i + 1].start : text.length;
+            final sText = text.substring(start, end).trim();
+            statements.add((marker: marker, text: sText));
+          }
+          String? conclusion;
+          final last = statements.removeLast();
+          final cm = conclusionPattern.firstMatch(last.text);
+          if (cm != null) {
+            statements.add((marker: last.marker, text: cm.group(1)!.trim()));
+            conclusion = cm.group(2)!.trim();
+          } else {
+            statements.add(last);
+          }
+
+          final b = StringBuffer();
+          b.write('<div class="multi-statement-wrapper">');
+          if (intro.isNotEmpty) {
+            b.write('<div class="stmt-intro">${formatInlineMarkdown(intro)}</div>');
+          }
+          b.write('<div class="stmt-list">');
+          for (final st in statements) {
+            b.write('''
+              <div class="stmt-row">
+                <span class="stmt-marker">${st.marker}</span>
+                <span class="stmt-text">${formatInlineMarkdown(st.text)}</span>
+              </div>
+            ''');
+          }
+          b.write('</div>');
+          if (conclusion != null && conclusion.isNotEmpty) {
+            b.write('<div class="stmt-conclusion">${formatInlineMarkdown(conclusion)}</div>');
+          }
+          b.write('</div>');
+          return b.toString();
+        }
+      }
+
+      // 4B-2: Dot-notation markers: I. II. III. or 1. 2. 3. or A. B. C.
+      final dotMatches = RegExp(r'(?:^|[\s\.\:\-–—।;,])((?:[i-vI-V]{1,4}|[1-9]|[A-Ea-e]))[\.\)]\s+').allMatches(text).toList();
+      if (dotMatches.length >= 2) {
+        final mVals = dotMatches.map((m) => m.group(1)!.toUpperCase()).toList();
+        final isSeq = (mVals[0] == '1' && mVals[1] == '2') ||
+            (mVals[0] == 'I' && mVals[1] == 'II') ||
+            (mVals[0] == 'A' && mVals[1] == 'B');
+        if (isSeq) {
+          final intro = text.substring(0, dotMatches.first.start).trim();
+          final statements = <({String marker, String text})>[];
+          for (int i = 0; i < dotMatches.length; i++) {
+            final sm = dotMatches[i];
+            final marker = '${sm.group(1)}.';
+            final start = sm.end;
+            final end = i + 1 < dotMatches.length ? dotMatches[i + 1].start : text.length;
+            final sText = text.substring(start, end).trim();
+            statements.add((marker: marker, text: sText));
+          }
+          String? conclusion;
+          final last = statements.removeLast();
+          final cm = conclusionPattern.firstMatch(last.text);
+          if (cm != null) {
+            statements.add((marker: last.marker, text: cm.group(1)!.trim()));
+            conclusion = cm.group(2)!.trim();
+          } else {
+            statements.add(last);
+          }
+
+          final b = StringBuffer();
+          b.write('<div class="multi-statement-wrapper">');
+          if (intro.isNotEmpty) {
+            b.write('<div class="stmt-intro">${formatInlineMarkdown(intro)}</div>');
+          }
+          b.write('<div class="stmt-list">');
+          for (final st in statements) {
+            b.write('''
+              <div class="stmt-row">
+                <span class="stmt-marker">${st.marker}</span>
+                <span class="stmt-text">${formatInlineMarkdown(st.text)}</span>
+              </div>
+            ''');
+          }
+          b.write('</div>');
+          if (conclusion != null && conclusion.isNotEmpty) {
+            b.write('<div class="stmt-conclusion">${formatInlineMarkdown(conclusion)}</div>');
+          }
+          b.write('</div>');
+          return b.toString();
+        }
+      }
+    }
+
+    // 4C. Check Newline-separated Multi-Statement (only if statements start on separate lines)
     if (text.contains('\n')) {
       final lines = text.split('\n');
-      final markerRegex = RegExp(r'^\(((?:[A-Ea-e]|[i-v]+|[1-5]))\)\s*[:\-–—]?\s*(.*)$');
+      final markerRegex = RegExp(r'^(?:\((?:[A-Ea-e]|[i-v]+|[1-9])\)|(?:[A-Ea-e]|[i-vI-V]+|[1-9])[\.\)])\s*[:\-–—]?\s*(.*)$');
       final statements = <({String marker, String text})>[];
       final introLines = <String>[];
       bool insideList = false;
@@ -323,7 +710,7 @@ class HtmlBookletBuilder {
         final m = markerRegex.firstMatch(trimmed);
         if (m != null) {
           insideList = true;
-          statements.add((marker: '(${m.group(1)})', text: m.group(2)!.trim()));
+          statements.add((marker: m.group(0)!.split(RegExp(r'\s+')).first, text: m.group(1)!.trim()));
         } else if (insideList && statements.isNotEmpty) {
           final last = statements.removeLast();
           statements.add((marker: last.marker, text: '${last.text} $trimmed'.trim()));
@@ -367,7 +754,7 @@ class HtmlBookletBuilder {
       }
     }
 
-    // 4. Default: Paragraph / Multi-line preservation
+    // 5. Default: Paragraph / Multi-line preservation
     final paragraphs = text.split(RegExp(r'\n\s*\n'));
     if (paragraphs.length > 1) {
       return paragraphs.map((p) => '<div class="stem-p">${formatInlineMarkdown(p.replaceAll('\n', '<br>'))}</div>').join('\n');
@@ -665,7 +1052,7 @@ class HtmlBookletBuilder {
       }
 
       final isBilingual = q.isBilingual && (q.optionsEnglish?.length == 4);
-      final optLetters = ['(A)', '(B)', '(C)', '(D)'];
+      final optLetters = ['(1)', '(2)', '(3)', '(4)'];
 
       h.writeln('<div class="question-item" id="qitem-$qNum" data-qnum="$qNum">');
 
@@ -687,7 +1074,7 @@ class HtmlBookletBuilder {
         for (int i = 0; i < optsHi.length; i++) {
           h.writeln('          <div class="option-row" data-optidx="$i" onclick="selectOption($qNum, $i)">');
           h.writeln('            <span class="opt-badge">${optLetters[i]}</span>');
-          h.writeln('            <span>${formatInlineMarkdown(optsHi[i])}</span>');
+          h.writeln('            <span>${formatInlineMarkdown(ensureOptionLabel(optsHi[i]))}</span>');
           h.writeln('          </div>');
         }
         h.writeln('        </div>');
@@ -702,7 +1089,7 @@ class HtmlBookletBuilder {
         for (int i = 0; i < optsEn.length; i++) {
           h.writeln('          <div class="option-row" data-optidx="$i" onclick="selectOption($qNum, $i)">');
           h.writeln('            <span class="opt-badge">${optLetters[i]}</span>');
-          h.writeln('            <span>${formatInlineMarkdown(optsEn[i])}</span>');
+          h.writeln('            <span>${formatInlineMarkdown(ensureOptionLabel(optsEn[i]))}</span>');
           h.writeln('          </div>');
         }
         h.writeln('        </div>');
@@ -723,8 +1110,8 @@ class HtmlBookletBuilder {
         }
         h.writeln('      <div class="options-list $gridTwoClass">');
         for (int i = 0; i < optsHi.length; i++) {
-          final hiText = optsHi[i];
-          final enText = (i < optsEn.length) ? optsEn[i] : '';
+          final hiText = ensureOptionLabel(optsHi[i]);
+          final enText = (i < optsEn.length) ? ensureOptionLabel(optsEn[i]) : '';
           final hasDistinctEn = enText.trim().isNotEmpty && enText.trim() != hiText.trim();
           h.writeln('        <div class="option-row" data-optidx="$i" onclick="selectOption($qNum, $i)">');
           h.writeln('          <span class="opt-badge">${optLetters[i]}</span>');
@@ -755,7 +1142,7 @@ class HtmlBookletBuilder {
         for (int i = 0; i < opts.length; i++) {
           h.writeln('        <div class="option-row" data-optidx="$i" onclick="selectOption($qNum, $i)">');
           h.writeln('          <span class="opt-badge">${optLetters[i]}</span>');
-          h.writeln('          <span>${formatInlineMarkdown(opts[i])}</span>');
+          h.writeln('          <span>${formatInlineMarkdown(ensureOptionLabel(opts[i]))}</span>');
           h.writeln('        </div>');
         }
         h.writeln('      </div>');
@@ -1328,15 +1715,27 @@ body {
 .q-stem { flex: 1; min-width: 0; font-size: 16px; font-weight: 600; color: #0f172a; line-height: 1.65; word-break: break-word; }
 .stem-p { margin: 0 0 6px 0; line-height: 1.65; }
 .stem-p:last-child { margin-bottom: 0; }
-.kathan-wrapper { display: flex; flex-direction: column; gap: 8px; margin: 4px 0 6px; width: 100%; box-sizing: border-box; }
+.kathan-wrapper { display: flex; flex-direction: column; gap: 8px; margin: 6px 0 8px; width: 100%; box-sizing: border-box; }
 .kathan-intro { font-weight: 700; font-size: 15.5px; color: #0f172a; margin-bottom: 2px; line-height: 1.5; }
-.kathan-box { display: flex; gap: 10px; align-items: flex-start; padding: 9px 12px; border-radius: 6px; background: #f8fafc; border-left: 4px solid #2563eb; box-shadow: 0 1px 3px rgba(0,0,0,0.03); box-sizing: border-box; width: 100%; }
+.kathan-box { display: flex; gap: 10px; align-items: flex-start; padding: 10px 14px; border-radius: 8px; background: #f8fafc; border-left: 4.5px solid #2563eb; box-shadow: 0 1px 3px rgba(0,0,0,0.04); box-sizing: border-box; width: 100%; }
 .kathan-box.reason-box { border-left-color: #7c3aed; background: #faf5ff; }
-.kathan-tag { font-weight: 800; font-size: 13.5px; padding: 2px 7px; border-radius: 4px; white-space: nowrap; flex-shrink: 0; }
+.kathan-box.vyakhyan-box { border-left-color: #d97706; background: #fffbeb; }
+.kathan-tag { font-weight: 800; font-size: 13.5px; padding: 3px 8px; border-radius: 5px; white-space: nowrap; flex-shrink: 0; }
 .kathan-tag.tag-a { background: #dbeafe; color: #1d4ed8; }
 .kathan-tag.tag-r { background: #ede9fe; color: #6d28d9; }
+.kathan-tag.tag-v { background: #fef3c7; color: #b45309; }
 .kathan-body { flex: 1; color: #0f172a; font-size: 15.5px; font-weight: 600; line-height: 1.55; }
-.kathan-conclusion { font-weight: 700; font-size: 15.5px; color: #1e293b; margin-top: 4px; line-height: 1.5; }
+.kathan-conclusion { font-weight: 700; font-size: 15.5px; color: #1e293b; margin-top: 6px; line-height: 1.5; padding: 6px 10px; background: #f1f5f9; border-radius: 6px; }
+
+.q-blank {
+  display: inline-block;
+  min-width: 65px;
+  border-bottom: 2.5px solid #0f172a;
+  margin: 0 4px;
+  vertical-align: baseline;
+  line-height: 1;
+}
+
 .multi-statement-wrapper { display: flex; flex-direction: column; gap: 6px; margin: 4px 0 6px; width: 100%; box-sizing: border-box; }
 .stmt-intro { font-weight: 700; font-size: 15.5px; color: #0f172a; margin-bottom: 2px; line-height: 1.5; }
 .stmt-list { display: flex; flex-direction: column; gap: 5px; background: #f8fafc; padding: 8px 12px; border-radius: 6px; border: 1px solid #e2e8f0; width: 100%; box-sizing: border-box; }
@@ -1350,13 +1749,14 @@ body {
 .q-table th { background: #e2e8f0; font-weight: 800; color: #0f172a; }
 .q-table td { background: #ffffff; color: #0f172a; }
 
-.match-table-wrapper { margin: 8px 0; width: 100%; box-sizing: border-box; }
+.match-table-wrapper { margin: 8px 0 10px; width: 100%; box-sizing: border-box; }
 .match-intro { font-weight: 700; font-size: 15.5px; color: #0f172a; margin-bottom: 6px; line-height: 1.5; }
-.match-table { width: 100%; border-collapse: collapse; font-size: 14.5px; font-weight: 600; margin: 4px 0 8px; border-radius: 6px; overflow: hidden; }
-.match-table th, .match-table td { border: 1.5px solid #cbd5e1; padding: 7px 12px; text-align: left; vertical-align: middle; }
-.match-table th { background: #f1f5f9; font-weight: 800; color: #1e293b; font-size: 13.5px; text-transform: uppercase; letter-spacing: 0.5px; }
+.match-table { width: 100%; border-collapse: collapse; font-size: 14.5px; font-weight: 600; margin: 4px 0 8px; border-radius: 8px; overflow: hidden; border: 1.5px solid #cbd5e1; }
+.match-table th, .match-table td { border: 1px solid #cbd5e1; padding: 8px 12px; text-align: left; vertical-align: middle; }
+.match-table th { background: #f1f5f9; font-weight: 800; color: #1e293b; font-size: 13.5px; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid #94a3b8; }
 .match-table td { background: #ffffff; color: #0f172a; }
 .match-table tr:nth-child(even) td { background: #f8fafc; }
+.match-conclusion { font-weight: 700; font-size: 15.5px; color: #1e293b; margin-top: 6px; line-height: 1.5; padding: 6px 10px; background: #f1f5f9; border-radius: 6px; }
 
 .q-pre {
   background: #0f172a;

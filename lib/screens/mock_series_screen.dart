@@ -74,7 +74,7 @@ class _MockSeriesScreenState extends State<MockSeriesScreen> {
         config: config,
         questions: data.questions,
         passages: data.passages,
-        paperTitle: form['title']?.toString(),
+        paperTitle: AppStrings.formatPaperTitle(form),
         setCode: _formatSetCode(form, index),
       );
 
@@ -93,11 +93,11 @@ class _MockSeriesScreenState extends State<MockSeriesScreen> {
   }
 
   String _formatSetCode(Map<String, dynamic> form, int index) {
-    final rawSet = form['set_code']?.toString().toUpperCase() ?? '';
+    final rawSet = form['set_code']?.toString() ?? '';
     if (rawSet.isNotEmpty) {
-      return rawSet;
+      return AppStrings.formatSetBadge(rawSet);
     }
-    return 'M-${(index + 1).toString().padLeft(2, "0")}';
+    return AppStrings.formatSetBadge('MOCK ${(index + 1).toString().padLeft(2, "0")}');
   }
 
   @override
@@ -186,7 +186,7 @@ class _MockSeriesScreenState extends State<MockSeriesScreen> {
                           child: Padding(
                             padding: const EdgeInsets.all(32),
                             child: Text(
-                              'कोई मॉक पेपर उपलब्ध नहीं है',
+                              AppStrings.isHindi ? 'कोई मॉक पेपर उपलब्ध नहीं है' : 'No mock papers available',
                               style: TextStyle(
                                 color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
                               ),
@@ -199,8 +199,9 @@ class _MockSeriesScreenState extends State<MockSeriesScreen> {
                         children: List.generate(_forms.length, (idx) {
                           final form = _forms[idx];
                           final formId = form['id'] as String;
-                          final title = form['title'] as String? ?? 'Mock Paper ${idx + 1}';
-                          final setLabel = _formatSetCode(form, idx);
+                          final title = AppStrings.formatPaperTitle(form);
+                          final rawSet = form['set_code']?.toString() ?? 'MOCK ${(idx + 1).toString().padLeft(2, "0")}';
+                          final stampParts = AppStrings.getStampParts(rawSet);
                           final isBusy = _loadingFormId == formId;
                           final isFree = PremiumService.instance.isPaperFree(formId: formId, index: idx);
                           final isLocked = !isFree && !isUnlocked;
@@ -235,15 +236,29 @@ class _MockSeriesScreenState extends State<MockSeriesScreen> {
                                           width: 1.5,
                                         ),
                                       ),
-                                      child: Center(
-                                        child: Text(
-                                          setLabel,
-                                          style: TextStyle(
-                                            fontSize: setLabel.length > 3 ? 12 : 15,
-                                            fontWeight: FontWeight.bold,
-                                            color: isFree ? AppColors.correctGreen : AppColors.sealGold,
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            stampParts.top,
+                                            style: TextStyle(
+                                              fontSize: 8,
+                                              fontWeight: FontWeight.bold,
+                                              color: isFree ? AppColors.correctGreen : AppColors.sealGold,
+                                            ),
                                           ),
-                                        ),
+                                          FittedBox(
+                                            fit: BoxFit.scaleDown,
+                                            child: Text(
+                                              stampParts.bottom,
+                                              style: TextStyle(
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w900,
+                                                color: isFree ? AppColors.correctGreen : AppColors.sealGold,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ),
                                     const SizedBox(width: 14),
@@ -279,7 +294,7 @@ class _MockSeriesScreenState extends State<MockSeriesScreen> {
                                           ),
                                           const SizedBox(height: 3),
                                           Text(
-                                            '150 प्रश्न · 150 मिनट · पूर्ण प्रामाणिक मॉक',
+                                            AppStrings.isHindi ? '150 प्रश्न · 150 मिनट · पूर्ण प्रामाणिक मॉक' : '150 Questions · 150 Mins · Authentic Mock',
                                             style: TextStyle(
                                               fontSize: 11.5,
                                               color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
@@ -326,10 +341,10 @@ class _MockSeriesScreenState extends State<MockSeriesScreen> {
                                         ),
                                   label: Text(
                                     isBusy
-                                        ? 'पेपर खुल रहा है...'
+                                        ? (AppStrings.isHindi ? 'पेपर खुल रहा है...' : 'Opening paper...')
                                         : (isLocked
-                                            ? '🔒 $title पास से अनलॉक करें'
-                                            : '📖 $title हल करें'),
+                                            ? (AppStrings.isHindi ? '🔒 $title प्रो पास से अनलॉक करें' : '🔒 Unlock $title with Pro Pass')
+                                            : (AppStrings.isHindi ? '📖 $title हल करें' : '📖 Solve $title')),
                                     style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
                                   ),
                                 ),

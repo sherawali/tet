@@ -167,8 +167,8 @@ def build_cdn():
     # 7. Build Manifest with remote_config
     manifest = {
         'schema': 2,
-        'bank_version': 2026101809,
-        'bank_version_str': '20261018_master_vault_clean_v9',
+        'bank_version': 2026101816,
+        'bank_version_str': '20261018_master_vault_clean_v16',
         'generated': datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ'),
         'total': total_q,
         'papers_count': len(forms_list),
@@ -185,10 +185,11 @@ def build_cdn():
         'remote_config': {
             'free_mock_count': 1,
             'free_form_ids': [
-                'utet-p1-pyq-2023',
-                'utet-p1-mock-01',
-                'ctet-p1-pyq-2026',
-                'ctet-p1-mock-01'
+                'utet-p1-fullmock',
+                'utet-p2-set-b',
+                'ctet-p1-2026-pyq',
+                'ctet-p2-ms-mock-01',
+                'ctet-p2-sst-mock-01'
             ],
             'paid_form_ids': [],
             'all_mocks_free': False
@@ -199,30 +200,29 @@ def build_cdn():
     with open(manifest_path, 'w', encoding='utf-8') as mf:
         json.dump(manifest, mf, ensure_ascii=False, indent=2)
 
-    # 8. Build Flash Messages
-    flash = {
-        'version': 2,
-        'last_updated': datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ'),
-        'messages': [
-            {
-                'id': 'tet_2026_fresh_launch',
-                'title': 'UTET & CTET 2026 सम्पूर्ण टेस्ट सीरीज लाइव!',
-                'subtitle': '62 ओरिजिनल पेपर्स और 9,720 प्रश्नों का मास्टर बैंक उपलब्ध है।',
-                'type': 'info',
-                'active': True
-            },
-            {
-                'id': 'offline_ready',
-                'title': '100% ऑफलाइन ओएमआर एवं सीबीटी टेस्ट',
-                'subtitle': 'बिना इंटरनेट के भी वास्तविक परीक्षा माहौल में अभ्यास करें।',
-                'type': 'success',
-                'active': True
-            }
-        ]
-    }
+    # 8. Flash Messages (Keep existing bilingual messages)
     flash_path = os.path.join(cdn_dir, 'flash_messages.json')
-    with open(flash_path, 'w', encoding='utf-8') as ff:
-        json.dump(flash, ff, ensure_ascii=False, indent=2)
+    if not os.path.exists(flash_path):
+        flash = {
+            'version': 3,
+            'last_updated': datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ'),
+            'messages': [
+                {
+                    'id': 'live_flash_2026_master',
+                    'title': '🔥 UTET & CTET 2026: 9,720 प्रश्नों का सम्पूर्ण मास्टर बैंक लाइव!',
+                    'title_en': '🔥 UTET & CTET 2026: 9,720 Question Master Vault Live!',
+                    'message': 'सभी 62 ओरिजिनल पेपर्स और मॉडल सेट्स 100% प्रामाणिक हल सहित उपलब्ध हैं। OMR व CBT मोड में अभी अभ्यास करें।',
+                    'message_en': 'All 62 original board papers & model mock sets available with verified pedagogical solutions. Practice in OMR or CBT mode now.',
+                    'action_label': 'मॉक सीरीज़ देखें',
+                    'action_label_en': 'View Mock Series',
+                    'type': 'notice',
+                    'dismissible': True,
+                    'active': True
+                }
+            ]
+        }
+        with open(flash_path, 'w', encoding='utf-8') as ff:
+            json.dump(flash, ff, ensure_ascii=False, indent=2)
 
     conn.close()
     print("=" * 80)

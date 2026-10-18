@@ -184,7 +184,7 @@ class DbHelper {
           final v = res.isNotEmpty ? res.first['val']?.toString() : null;
           final qCountRes = await db.rawQuery('SELECT COUNT(*) as cnt FROM questions');
           final qCount = Sqflite.firstIntValue(qCountRes) ?? 0;
-          if (v != '20261018_master_vault_clean_v10' || qCount < 9720) {
+          if (v != '20261018_master_vault_clean_v16' || qCount < 9720) {
             await _syncFromAssetDb(db);
           }
         } catch (_) {
@@ -202,7 +202,7 @@ class DbHelper {
       final v = res.isNotEmpty ? res.first['val']?.toString() : null;
       final qCountRes = await db.rawQuery('SELECT COUNT(*) as cnt FROM questions');
       final qCount = Sqflite.firstIntValue(qCountRes) ?? 0;
-      if (v != '20261018_master_vault_clean_v10' || qCount < 9720) {
+      if (v != '20261018_master_vault_clean_v16' || qCount < 9720) {
         await _syncFromAssetDb(db);
       }
     } catch (_) {
