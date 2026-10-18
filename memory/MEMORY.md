@@ -241,16 +241,25 @@
   - Updated `meta` table in `assets/database/tet_mock_vault.db`.
   - Updated `lib/database/db_helper.dart` (lines 155 and 173) to auto-trigger immediate sync on device upon restart.
 - **Keystore / Signing Key Status:** 100% protected and untouched. Keystores remain completely safe.
+### 2026-10-18: Native Booklet Removal, HTML Official Booklet Consolidation & Git Initialized
+- **Native Booklet Engine Removed:**
+  - Removed clunky "Native (120 FPS) vs HTML (प्रिंट बैकअप)" switcher from `HomeScreen`.
+  - Removed floating switch button and references from `HtmlBookletScreen`.
+  - `ExamService.buildExamScreen()` now directly launches `HtmlBookletScreen` whenever Booklet mode is selected.
+  - Deleted legacy `lib/screens/booklet_exam_screen.dart`.
+- **Git Repository & Security Hardening:**
+  - Added strict protection rules in `.gitignore`: `*.jks`, `*.keystore`, `key.properties`, `*.pfx`, `*.p12`, `.env`, `scratch/`, and debug screenshots.
+  - Initialized local Git repository in `d:\T\tet_app`.
+  - Created master production commit `9dc85b7`: `"feat: complete master offline tet app with 9720 verified questions, 62 papers and official html booklet"` (134 files tracked).
+- **Keystore / Signing Key Status:** 100% protected and untouched. Keystores remain completely safe.
 - **Static Analysis:** `dart analyze lib/`: **0 errors, 0 warnings (100% clean)**.
 
 ---
 
 ## 📌 Next Steps
-1. In the running terminal (`flutter run`), press **`R` (Hot Restart)** so `db_helper.dart` detects `v9` and auto-syncs the clean database to the phone.
-2. Confirm live on device:
-   - UTET Paper-I Mock 02 Q61: pure English grammar question with zero Sanskrit passage.
-   - Matching questions (CTET 2024 Q64): clean 2-column table.
-   - Statement questions: bold clean stems with no asterisks.
+1. In the running terminal (`flutter run`), press **`R` (Hot Restart)** to view the clean UI with no booklet engine toggle.
+2. Set up GitHub remote repository (e.g. `git remote add origin <URL>`) and push the master branch when ready.
+
 
 
 
