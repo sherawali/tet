@@ -1,0 +1,6 @@
+Total Questions: 9720
+Invalid Option Counts (!= 4): 0
+Empty Correct Answer Options: 2
+Broken questions count: 2
+  Broken: ('ctet-p1-2021-pyq_q128', 'lang2_english', 2)
+  Broken: ('ctet-p1-2020-pyq_q134', 'lang2_english', 1)

@@ -1,0 +1,15 @@
+* — *Propane-1,2,3-triol.*
+**143.** Expression of equilibrium constant for the equation A + 2B ⇌ C is
+(A) [A][B]²/[C] (B) [A][B]/[C] (C) [C]/[A][B]² (D) [C]/(2[A][B])
+[HI] समीकरण A + 2B ⇌ C के लिए साम्य स्थिरांक का व्यंजक है —
+[HI] (A) [A][B]²/[C] (B) [A][B]/[C] (C) [C]/[A][B]² (D) [C]/(2[A][B])
+**Answer: (C)** — *K = [C]/([A][B]²).*
+**144.** A nanosecond is equal to
+(A) 10⁹ second (B) 10⁻¹⁰ second (C) 10⁻⁹ second (D) 10⁻⁶ second
+[HI] एक नैनोसेकंड बराबर है —
+[HI] (A) 10⁹ सेकंड (B) 10⁻¹⁰ सेकंड (C) 10⁻⁹ सेकंड (D) 10⁻⁶ सेकंड
+**Answer: (C)** — *Nano = 10⁻⁹.*
+**145.** Why after some time do silver pots become black?
+(A) Due to formation of a layer of nitrate over silver (B) Due to formation of a layer of sulphide over silver (C) Due to formation of a layer of chloride over silver (D) Due to formation of a layer of oxide over silver
+[HI] चाँदी के बर्तन कुछ समय बाद काले क्यों हो जाते हैं?
+[HI] (A) चाँदी पर नाइट्रेट की परत बनने के कारण (B) चाँदी पर सल्फाइड की परत बनने के कारण (C) चाँदी पर क्लोराइड की परत बनने के कारण (D) चाँदी पर ऑक्साइड की प

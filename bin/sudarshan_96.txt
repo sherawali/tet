@@ -1,0 +1,15 @@
+.0008
+[HI] (0.00032)^(1/5) का मान है:
+[HI] (A) 0.08 (B) 0.008 (C) 0.06 (D) 0.0008
+**Answer: (B)**
+**96.** If N is a four digit number formed by digits X₁, X₂, X₃ and X₄, then maximum value of X₁+X₂+X₃+X₄ is:
+(A) 1000 (B) 1111 (C) 9999 (D) 1800
+[HI] यदि N एक चार अंकों की संख्या है जो अंकों X₁, X₂, X₃ और X₄ से बनी है, तो X₁+X₂+X₃+X₄ का अधिकतम मान है:
+[HI] (A) 1000 (B) 1111 (C) 9999 (D) 1800
+**Answer: (C)**
+**97.** Factors of x² - (4/3)x + 9 are:
+(A) (x+3√3)(x-√3) (B) (x+3√3)(x+√3) (C) (x-3√3)(x-√3) (D) (x-3√3)(x+√3)
+[HI] x² – (4/3)x + 9 के गुणनखंड हैं:
+[HI] (A) (x+3√3)(x–√3) (B) (x+3√3)(x+√3) (C) (x–3√3)(x–√3) (D) (x–3√3)(x+√3)
+**Answer: (A)**
+**98.** The sum of interior angles of a polygon is
