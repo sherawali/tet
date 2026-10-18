@@ -146,6 +146,18 @@ class DbHelper {
         await db.execute('CREATE INDEX IF NOT EXISTS idx_mistakes_topic ON mistake_records(topic_name)');
         await db.execute('CREATE INDEX IF NOT EXISTS idx_mistakes_sec ON mistake_records(section)');
 
+        await db.execute('''
+          CREATE TABLE IF NOT EXISTS question_reports (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            question_id TEXT,
+            paper_form_id TEXT,
+            question_number INTEGER,
+            reason TEXT,
+            comment TEXT,
+            created_at TEXT
+          )
+        ''');
+
         // Auto-seed or upgrade to all-offline database (4,620 authentic questions) from bundled asset
         try {
           final res = await db.query('meta', where: 'key = ?', whereArgs: ['bank_version']);
@@ -1008,5 +1020,30 @@ class DbHelper {
     }
 
     return (questions: questions, passages: passageMap);
+  }
+
+  /// Saves a student error report for a specific question
+  Future<void> saveQuestionReport({
+    required String questionId,
+    String? paperFormId,
+    required int questionNumber,
+    required String reason,
+    String? comment,
+  }) async {
+    final db = await database;
+    await db.insert('question_reports', {
+      'question_id': questionId,
+      'paper_form_id': paperFormId ?? '',
+      'question_number': questionNumber,
+      'reason': reason,
+      'comment': comment ?? '',
+      'created_at': DateTime.now().toIso8601String(),
+    });
+  }
+
+  /// Retrieves all student error reports
+  Future<List<Map<String, dynamic>>> getQuestionReports() async {
+    final db = await database;
+    return await db.query('question_reports', orderBy: 'id DESC');
   }
 }

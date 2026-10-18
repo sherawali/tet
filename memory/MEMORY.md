@@ -254,11 +254,26 @@
 - **Keystore / Signing Key Status:** 100% protected and untouched. Keystores remain completely safe.
 - **Static Analysis:** `dart analyze lib/`: **0 errors, 0 warnings (100% clean)**.
 
+### 2026-10-18: Student Question Report System & 100% Default Hindi Across Papers
+- **Default Hindi Across All Test Modes:**
+  - In `HtmlBookletBuilder`: `btn-lang-hi` set as `active` by default; localStorage filter defaults to `'hi'`. Booklet opens in pure Hindi by default.
+  - In `CbtExamScreen`: `_languageMode` defaults strictly to `TestLanguageMode.onlyHindi`.
+  - In `SolutionScreen`: `_languageMode` defaults strictly to `TestLanguageMode.onlyHindi`.
+  - Students can still switch to Bilingual or English anytime via top language pills.
+- **Question Error Report System (CBT & Booklet Modes):**
+  - Added `question_reports` table in SQLite (`id`, `question_id`, `paper_form_id`, `question_number`, `reason`, `comment`, `created_at`).
+  - Added `saveQuestionReport()` and `getQuestionReports()` in `DbHelper`.
+  - In **CBT Exam Screen**: Added sleek `[🚩 रिपोर्ट]` button on question cards; opens bottom modal with reason choices (गलत उत्तर, अधूरा प्रश्न, अनुवाद/टाइपो, अन्य) + optional comment.
+  - In **HTML Booklet Screen**: Added `[🚩 रिपोर्ट]` button on question footers; opens `#report-modal` with two-way JavascriptChannel message passing to SQLite.
+  - Created Python inspector & exporter: `bin/view_reports.py` to view reports or export to `reports/reported_questions.md` for git tracking.
+- **Keystore / Signing Key Status:** 100% protected and untouched. Keystores remain completely safe.
+- **Static Analysis:** `dart analyze lib/`: **0 errors, 0 warnings (100% clean)**.
+
 ---
 
 ## 📌 Next Steps
-1. In the running terminal (`flutter run`), press **`R` (Hot Restart)** to view the clean UI with no booklet engine toggle.
-2. Set up GitHub remote repository (e.g. `git remote add origin <URL>`) and push the master branch when ready.
+1. In the running terminal (`flutter run`), press **`R` (Hot Restart)** to test the default Hindi display and the new `[🚩 रिपोर्ट]` button.
+2. Provide GitHub repository URL to configure remote and push the production branch.
 
 
 

@@ -152,6 +152,33 @@ class _HtmlBookletScreenState extends State<HtmlBookletScreen> {
         case 'testSubmitted':
           _onTestSubmittedFromHtml(data);
           break;
+
+        case 'reportQuestion':
+          final qIndex = data['qIndex'] as int? ?? 0;
+          final qNum = data['qNum'] as int? ?? (qIndex + 1);
+          final reason = data['reason']?.toString() ?? 'गलत उत्तर / प्रश्न';
+          final comment = data['comment']?.toString();
+          final qId = (qIndex < widget.session.questions.length)
+              ? widget.session.questions[qIndex].id
+              : 'Q$qNum';
+
+          await DbHelper.instance.saveQuestionReport(
+            questionId: qId,
+            paperFormId: widget.session.paperTitle ?? widget.session.setCode,
+            questionNumber: qNum,
+            reason: reason,
+            comment: comment,
+          );
+          if (mounted) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text('✅ प्रश्न $qNum की रिपोर्ट दर्ज कर ली गई है। धन्यवाद!'),
+                backgroundColor: AppColors.primary,
+                duration: const Duration(seconds: 3),
+              ),
+            );
+          }
+          break;
       }
     } catch (e) {
       debugPrint('Booklet JS Message parse error: $e');

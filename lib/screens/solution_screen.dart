@@ -6,7 +6,6 @@ import '../design_system/app_strings.dart';
 import '../models/test_session.dart';
 import '../models/test_language_mode.dart';
 import '../models/question.dart';
-import '../services/language_service.dart';
 import '../widgets/app_card.dart';
 import '../widgets/app_badge.dart';
 import '../widgets/formatted_question_stem.dart';
@@ -30,9 +29,7 @@ class _SolutionScreenState extends State<SolutionScreen> {
   @override
   void initState() {
     super.initState();
-    _languageMode = LanguageService.instance.isHindi
-        ? TestLanguageMode.onlyHindi
-        : TestLanguageMode.onlyEnglish;
+    _languageMode = TestLanguageMode.onlyHindi;
   }
 
   void _showLanguageSelectorSheet() {

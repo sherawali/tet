@@ -508,8 +508,8 @@ class HtmlBookletBuilder {
       <!-- Sub-row: Language Switcher -->
       <div class="cbt-subbar">
         <div class="cbt-lang-switcher">
-          <button class="lang-pill-btn active" id="btn-lang-both" onclick="setLangFilter('both')">🌐 दोनों (Bilingual)</button>
-          <button class="lang-pill-btn" id="btn-lang-hi" onclick="setLangFilter('hi')">🇮🇳 केवल हिन्दी</button>
+          <button class="lang-pill-btn active" id="btn-lang-hi" onclick="setLangFilter('hi')">🇮🇳 केवल हिन्दी</button>
+          <button class="lang-pill-btn" id="btn-lang-both" onclick="setLangFilter('both')">🌐 दोनों (Bilingual)</button>
           <button class="lang-pill-btn" id="btn-lang-en" onclick="setLangFilter('en')">🇬🇧 Only English</button>
         </div>
       </div>
@@ -773,6 +773,7 @@ class HtmlBookletBuilder {
       h.writeln('    </div>');
       h.writeln('    <div class="q-btn-group">');
       h.writeln('      <button class="q-rev-btn" id="rev-btn-$qNum" onclick="toggleReview($qNum)">⭐ समीक्षा के लिए रखें</button>');
+      h.writeln('      <button class="q-report-btn" onclick="openReportModal(\'${escape(q.id)}\', $qNum)">🚩 रिपोर्ट</button>');
       h.writeln('    </div>');
       h.writeln('  </div>');
 
@@ -874,6 +875,45 @@ class HtmlBookletBuilder {
           <button class="cbt-btn cbt-btn-primary" onclick="closeResult()">🔍 प्रश्न-पत्र में उत्तर देखें</button>
           <button class="cbt-btn cbt-btn-secondary" style="background:#475569" onclick="toggleWrongOnly()">⚠️ केवल गलत/छोड़े गए देखें</button>
           <button class="cbt-btn cbt-btn-secondary" style="background:#0f172a" onclick="location.reload()">🔄 पुनः टेस्ट दें</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Question Error Report Modal -->
+    <div id="report-modal">
+      <div class="report-card">
+        <div class="report-head">
+          <span style="font-weight:700">🚩 प्रश्न <span id="rep-qnum">1</span> में त्रुटि रिपोर्ट करें</span>
+          <button class="p-modal-close" onclick="closeReportModal()">✕</button>
+        </div>
+        <div class="report-body">
+          <p style="font-size:13.5px;color:var(--text-muted);margin:0 0 12px">इस प्रश्न में क्या समस्या है? कृपया चुनें:</p>
+          <div class="report-reasons">
+            <label class="rep-radio-label">
+              <input type="radio" name="rep-reason" value="उत्तर गलत है / Wrong Answer" checked>
+              <span>❌ उत्तर गलत है (Wrong Answer)</span>
+            </label>
+            <label class="rep-radio-label">
+              <input type="radio" name="rep-reason" value="अधूरा प्रश्न या विकल्प / Incomplete">
+              <span>❓ अधूरा प्रश्न या विकल्प (Incomplete)</span>
+            </label>
+            <label class="rep-radio-label">
+              <input type="radio" name="rep-reason" value="अनुवाद / वर्तनी त्रुटि / Translation/Typo">
+              <span>🔤 अनुवाद / वर्तनी त्रुटि (Translation/Typo)</span>
+            </label>
+            <label class="rep-radio-label">
+              <input type="radio" name="rep-reason" value="अन्य समस्या / Other Issue">
+              <span>📑 अन्य समस्या (Other Issue)</span>
+            </label>
+          </div>
+          <div style="margin-top:14px">
+            <label style="font-size:12.5px;font-weight:600;display:block;margin-bottom:6px">अतिरिक्त टिप्पणी (वैकल्पिक / Optional):</label>
+            <textarea id="rep-comment" placeholder="सही उत्तर क्या होना चाहिए या क्या सुधार होना चाहिए..." style="width:100%;box-sizing:border-box;border:1.5px solid #cbd5e1;border-radius:8px;padding:8px 10px;font-size:13px;resize:vertical;min-height:60px"></textarea>
+          </div>
+          <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:16px">
+            <button class="cbt-btn cbt-btn-secondary" style="color:#0f172a;border:1.5px solid #cbd5e1" onclick="closeReportModal()">रद्द करें</button>
+            <button class="cbt-btn cbt-btn-primary" onclick="submitQuestionReport()">🚀 रिपोर्ट सबमिट करें</button>
+          </div>
         </div>
       </div>
     </div>
@@ -1535,6 +1575,20 @@ body.lang-mode-en .bilingual-mobile-stack .opt-secondary {
 }
 .q-peek-btn:hover { background: #bae6fd; }
 
+.q-report-btn {
+  background: transparent;
+  border: 1px solid #fed7aa;
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-size: 11.5px;
+  cursor: pointer;
+  color: #c2410c;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.q-report-btn:hover { background: #ffedd5; border-color: #f97316; }
+
 .result-mark { display: none; font-size: 13px; font-weight: 700; padding: 4px 10px; border-radius: 4px; margin-top: 6px; }
 .question-item.evaluated .result-mark { display: block; }
 .result-mark.ok { background: var(--success-bg); color: #166534; }
@@ -1550,6 +1604,53 @@ body.lang-mode-en .bilingual-mobile-stack .opt-secondary {
   border-bottom: 2px solid #000;
   margin-bottom: 20px;
 }
+
+#report-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(15,23,42,0.82);
+  z-index: 130;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+#report-modal.open { display: flex; }
+.report-card {
+  background: #fff;
+  width: 480px;
+  max-width: 95%;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.35);
+}
+.report-head {
+  background: #0f172a;
+  color: #fff;
+  padding: 12px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #ea580c;
+}
+.report-body { padding: 18px 20px; }
+.report-reasons { display: flex; flex-direction: column; gap: 8px; }
+.rep-radio-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: #1e293b;
+  transition: all 0.15s ease;
+}
+.rep-radio-label:hover { background: #f1f5f9; border-color: #cbd5e1; }
+.rep-radio-label input[type="radio"]:checked + span { font-weight: 700; color: #ea580c; }
 
 #passage-modal {
   display: none;
@@ -2248,6 +2349,43 @@ table { max-width: 100%; overflow-x: auto; display: block; }
     } catch(e){}
   }
 
+  let currentReportQId = '';
+  let currentReportQNum = 1;
+
+  window.openReportModal = function(qId, qNum) {
+    currentReportQId = qId;
+    currentReportQNum = qNum;
+    const qNumEl = document.getElementById('rep-qnum');
+    if (qNumEl) qNumEl.textContent = qNum;
+    const commentEl = document.getElementById('rep-comment');
+    if (commentEl) commentEl.value = '';
+    const modal = document.getElementById('report-modal');
+    if (modal) modal.classList.add('open');
+  };
+
+  window.closeReportModal = function() {
+    const modal = document.getElementById('report-modal');
+    if (modal) modal.classList.remove('open');
+  };
+
+  window.submitQuestionReport = function() {
+    const selectedRadio = document.querySelector('input[name="rep-reason"]:checked');
+    const reason = selectedRadio ? selectedRadio.value : 'उत्तर गलत है / Wrong Answer';
+    const comment = (document.getElementById('rep-comment')?.value || '').trim();
+    
+    if (window.BookletChannel) {
+      window.BookletChannel.postMessage(JSON.stringify({
+        type: 'reportQuestion',
+        qIndex: currentReportQNum - 1,
+        qNum: currentReportQNum,
+        qId: currentReportQId,
+        reason: reason,
+        comment: comment
+      }));
+    }
+    closeReportModal();
+  };
+
   window.setLangFilter = function(mode) {
     document.body.classList.remove('lang-mode-both', 'lang-mode-hi', 'lang-mode-en');
     document.body.classList.add('lang-mode-' + mode);
@@ -2268,10 +2406,10 @@ table { max-width: 100%; overflow-x: auto; display: block; }
     if (tv) tv.textContent = formatTime(timeRemaining);
     restoreState();
     try {
-      var savedLang = localStorage.getItem('booklet_lang_filter') || 'both';
+      var savedLang = localStorage.getItem('booklet_lang_filter') || 'hi';
       setLangFilter(savedLang);
     } catch(e) {
-      setLangFilter('both');
+      setLangFilter('hi');
     }
   });
 })();
