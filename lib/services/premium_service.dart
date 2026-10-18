@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
 import '../database/db_helper.dart';
@@ -15,11 +16,58 @@ class PremiumService {
   final ValueNotifier<bool> isLoading = ValueNotifier<bool>(false);
   final ValueNotifier<String?> purchaseError = ValueNotifier<String?>(null);
 
+  // Remote GitHub-controlled Free vs Paid mock settings
+  Set<String> remoteFreeFormIds = {};
+  Set<String> remotePaidFormIds = {};
+  int remoteFreeMockCount = 1;
+  bool remoteAllMocksFree = false;
+
   final InAppPurchase _iap = InAppPurchase.instance;
   StreamSubscription<List<PurchaseDetails>>? _subscription;
   ProductDetails? allAccessProduct;
 
+  /// Check if a specific paper form or index is Free
+  bool isPaperFree({String? formId, int index = 0}) {
+    if (isPremiumUnlocked.value) return true;
+    if (remoteAllMocksFree) return true;
+    if (formId != null) {
+      if (remotePaidFormIds.contains(formId)) return false;
+      if (remoteFreeFormIds.contains(formId)) return true;
+    }
+    return index < remoteFreeMockCount;
+  }
+
+  Future<void> updateRemoteConfig(Map<String, dynamic> config) async {
+    try {
+      remoteAllMocksFree = config['all_mocks_free'] == true;
+      remoteFreeMockCount = (config['free_mock_count'] as num?)?.toInt() ?? 1;
+      final freeList = config['free_form_ids'] as List<dynamic>? ?? [];
+      remoteFreeFormIds = freeList.map((e) => e.toString()).toSet();
+      final paidList = config['paid_form_ids'] as List<dynamic>? ?? [];
+      remotePaidFormIds = paidList.map((e) => e.toString()).toSet();
+      await DbHelper.instance.setMeta('cached_remote_config', jsonEncode(config));
+    } catch (_) {}
+  }
+
+  Future<void> _loadCachedRemoteConfig() async {
+    try {
+      final raw = await DbHelper.instance.getMeta('cached_remote_config');
+      if (raw != null && raw.isNotEmpty) {
+        final decoded = jsonDecode(raw) as Map<String, dynamic>;
+        remoteAllMocksFree = decoded['all_mocks_free'] == true;
+        remoteFreeMockCount = (decoded['free_mock_count'] as num?)?.toInt() ?? 1;
+        final freeList = decoded['free_form_ids'] as List<dynamic>? ?? [];
+        remoteFreeFormIds = freeList.map((e) => e.toString()).toSet();
+        final paidList = decoded['paid_form_ids'] as List<dynamic>? ?? [];
+        remotePaidFormIds = paidList.map((e) => e.toString()).toSet();
+      }
+    } catch (_) {}
+  }
+
   Future<void> init() async {
+    // 0. Load cached remote config from SQLite
+    await _loadCachedRemoteConfig();
+
     // 1. Check local DB state
     try {
       final savedState = await DbHelper.instance.getMeta('is_premium_unlocked');

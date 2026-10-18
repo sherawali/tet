@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import '../database/db_helper.dart';
 import '../models/question.dart';
 import '../models/passage.dart';
+import 'premium_service.dart';
 
 typedef SyncProgressCallback = void Function(double progress, String status);
 
@@ -29,8 +30,8 @@ class SyncService {
   /// Broadcast notifier so UI (HomeScreen etc.) can instantly reload when background/foreground sync completes
   static final ValueNotifier<DateTime?> onDatabaseUpdated = ValueNotifier(null);
 
-  /// Master switch: Remote sync from Git/CDN is paused while offline master vault (4,620 Qs) is active.
-  static const bool enableRemoteSync = false;
+  /// Master switch: Remote sync enabled for GitHub CDN updates
+  static const bool enableRemoteSync = true;
 
   /// Priority candidate URLs for CDN / GitHub sync
   /// 1. Raw GitHub main branch (Real-time updates without CDN cache delay)
@@ -65,6 +66,10 @@ class SyncService {
 
         if (res.statusCode == 200) {
           final manifest = jsonDecode(utf8.decode(res.bodyBytes)) as Map<String, dynamic>;
+          // Update remote free/paid mock configuration immediately
+          if (manifest.containsKey('remote_config') && manifest['remote_config'] is Map) {
+            PremiumService.instance.updateRemoteConfig(Map<String, dynamic>.from(manifest['remote_config']));
+          }
           return {
             'baseUrl': url,
             'manifest': manifest,
@@ -94,9 +99,14 @@ class SyncService {
       final remoteSig = _computePacksSignature(remotePacks);
 
       final localVersionStr = await db.getMeta('bank_version');
-      final localVersion = int.tryParse(localVersionStr ?? '0') ?? 0;
+      final localVersionDigits = localVersionStr?.replaceAll(RegExp(r'\D'), '');
+      final localVersion = int.tryParse(localVersionDigits ?? '0') ?? 0;
       final localQCount = await db.getQuestionCount();
       final localSig = await db.getMeta('packs_signature');
+
+      // Anti-downgrade safeguard: Never downgrade local 9,720 database if remote has fewer questions
+      if (remoteTotal < 9720 && localQCount >= 9720) return false;
+      if (remoteVersion < localVersion && localVersion > 0) return false;
 
       // Trigger update if higher version, different count, or any pack content hash changed on GitHub
       if (remoteVersion > localVersion) return true;
@@ -233,7 +243,34 @@ class SyncService {
         onProgress?.call(progress, 'पैक $processedPacks/${packs.length} प्राप्त हुआ...');
       }
 
-      // Step 3: All packs successfully downloaded in memory!
+      // Step 2.5: Download papers.json if available to sync new mock papers & appearances
+      List<Map<String, dynamic>>? downloadedForms;
+      List<dynamic>? downloadedAppearances;
+      try {
+        final papersInfo = manifest['papers_file'];
+        final papersPath = (papersInfo is Map && papersInfo['file'] != null) ? papersInfo['file'] as String : 'papers.json';
+        final papersUrl = '$activeBaseUrl/$papersPath${(force || bypassCache) ? '?_ts=${DateTime.now().millisecondsSinceEpoch}' : ''}';
+        final papersRes = await http.get(
+          Uri.parse(papersUrl),
+          headers: {
+            'Cache-Control': 'no-cache, no-store, must-revalidate',
+            'Pragma': 'no-cache',
+            'Expires': '0',
+          },
+        ).timeout(const Duration(seconds: 15));
+
+        if (papersRes.statusCode == 200) {
+          final papersData = jsonDecode(utf8.decode(papersRes.bodyBytes));
+          if (papersData['forms'] is List) {
+            downloadedForms = List<Map<String, dynamic>>.from(papersData['forms']);
+          }
+          if (papersData['appearances'] is List) {
+            downloadedAppearances = List<dynamic>.from(papersData['appearances']);
+          }
+        }
+      } catch (_) {}
+
+      // Step 3: All packs and papers successfully downloaded in memory!
       // Now perform safe atomic replacement in SQLite (zero data corruption guarantee)
       onProgress?.call(0.90, 'डेटाबेस को सुरक्षित रूप से अद्यतन (Atomic Sync) किया जा रहा है...');
       await db.atomicUpdateBank(
@@ -242,6 +279,8 @@ class SyncService {
         bankVersion: bankVersion,
         topics: topics,
         packsSignature: remoteSig,
+        paperForms: downloadedForms,
+        appearances: downloadedAppearances,
       );
 
       // Trigger instant UI refresh across the app

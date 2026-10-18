@@ -55,12 +55,23 @@ class _HomeScreenState extends State<HomeScreen> {
   bool _isOptimizing = false;
   double _syncProgress = 0.0;
   String _syncProgressStatus = '';
+  bool _hasRemoteUpdate = false;
 
   @override
   void initState() {
     super.initState();
     _loadData();
+    _checkRemoteUpdateSilently();
     SyncService.onDatabaseUpdated.addListener(_onDatabaseUpdatedListener);
+  }
+
+  void _checkRemoteUpdateSilently() async {
+    try {
+      final available = await _syncService.isUpdateAvailable(checkRawGitHub: true);
+      if (available && mounted) {
+        setState(() => _hasRemoteUpdate = true);
+      }
+    } catch (_) {}
   }
 
   void _onDatabaseUpdatedListener() {
@@ -413,7 +424,12 @@ class _HomeScreenState extends State<HomeScreen> {
     await _loadData();
     if (!mounted) return;
 
-    setState(() => _isSyncing = false);
+    setState(() {
+      _isSyncing = false;
+      if (result.success) {
+        _hasRemoteUpdate = false;
+      }
+    });
     _showSyncFeedbackModal(result);
   }
 
@@ -874,6 +890,71 @@ class _HomeScreenState extends State<HomeScreen> {
         // 1. Target Exam Switcher (UTET / CTET)
         _buildExamSwitcher(isDark),
 
+        // Remote Test & Question Bank Update Notification Banner
+        if (_hasRemoteUpdate) ...[
+          Container(
+            margin: const EdgeInsets.only(bottom: 12),
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              gradient: const LinearGradient(
+                colors: [Color(0xFF0F172A), Color(0xFF1E3A8A)],
+              ),
+              borderRadius: BorderRadius.circular(8),
+              border: Border.all(color: const Color(0xFF38BDF8), width: 1.5),
+              boxShadow: [
+                BoxShadow(
+                  color: const Color(0xFF38BDF8).withValues(alpha: 0.25),
+                  blurRadius: 8,
+                  offset: const Offset(0, 2),
+                ),
+              ],
+            ),
+            child: Row(
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(8),
+                  decoration: const BoxDecoration(
+                    color: Color(0xFF38BDF8),
+                    shape: BoxShape.circle,
+                  ),
+                  child: const Icon(Icons.cloud_download_rounded, color: Color(0xFF0F172A), size: 20),
+                ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        isHi ? '📢 नया प्रश्न बैंक व टेस्ट उपलब्ध है!' : '📢 New Test Bank & Mocks Available!',
+                        style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w900, fontSize: 13),
+                      ),
+                      const SizedBox(height: 2),
+                      Text(
+                        isHi ? 'नवीनतम प्रश्न व सुधार ऑफ़लाइन डाउनलोड करने के लिए टैप करें।' : 'Tap to sync latest questions for offline practice.',
+                        style: const TextStyle(color: Color(0xFFCBD5E1), fontSize: 11),
+                      ),
+                    ],
+                  ),
+                ),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF38BDF8),
+                    foregroundColor: const Color(0xFF0F172A),
+                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                    minimumSize: const Size(0, 32),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
+                  ),
+                  onPressed: _syncNow,
+                  child: Text(
+                    isHi ? 'अपडेट' : 'Update',
+                    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 11.5),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+
         // Remote Flash Message Carousel Banner (GitHub-controlled)
         FlashMessageBanner(
           onActionTap: () {
@@ -922,7 +1003,7 @@ class _HomeScreenState extends State<HomeScreen> {
             final formId = f['id'] as String;
             final title = f['title']?.toString() ?? (isHi ? 'अभ्यास प्रश्न-पत्र' : 'Practice Paper');
             final setChar = f['set_code']?.toString().toUpperCase() ?? (isHi ? 'सेट ${(idx + 1).toString().padLeft(2, "0")}' : 'SET ${(idx + 1).toString().padLeft(2, "0")}');
-            final isFree = idx == 0;
+            final isFree = PremiumService.instance.isPaperFree(formId: formId, index: idx);
             final isPyq = setChar == 'PYQ' || setChar.contains('20');
             final tag = isFree
                 ? (isHi ? 'निःशुल्क' : 'Free')
@@ -2767,6 +2848,7 @@ class _HomeScreenState extends State<HomeScreen> {
               final setBadge = form['set_code']?.toString() ?? 'SET';
               final isPyq = setBadge.contains('20') || setBadge == 'PYQ' || (form['is_pyq'] == 1);
               final isLatest = index == 0 && isPyq;
+              final isCardFree = PremiumService.instance.isPaperFree(formId: formId, index: index);
 
               return Container(
                 margin: const EdgeInsets.symmetric(horizontal: 2),
@@ -2859,11 +2941,18 @@ class _HomeScreenState extends State<HomeScreen> {
                             ],
                           ),
                         ),
-
                         // Badges (Right)
                         Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
+                            if (isCardFree) ...[
+                              AppBadge(
+                                label: isHi ? 'निःशुल्क' : 'FREE',
+                                color: AppColors.correctGreen,
+                                isSolid: true,
+                              ),
+                              const SizedBox(width: 5),
+                            ],
                             AppBadge(
                               label: isPaper2
                                   ? (isHi ? 'कक्षा 6-8' : 'Classes 6-8')
@@ -2933,6 +3022,12 @@ class _HomeScreenState extends State<HomeScreen> {
                         elevation: 1,
                       ),
                       onPressed: () {
+                        final isFree = PremiumService.instance.isPaperFree(formId: formId, index: index);
+                        final isUnlocked = PremiumService.instance.isPremiumUnlocked.value;
+                        if (!isFree && !isUnlocked) {
+                          PremiumPaywallModal.show(context);
+                          return;
+                        }
                         final randSeed = Random().nextInt(999999);
                         final config = MockConfig(
                           mode: isPyq ? MockMode.pyq : MockMode.predicted,

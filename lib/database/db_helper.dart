@@ -342,6 +342,8 @@ class DbHelper {
     required int bankVersion,
     required List<String> topics,
     String? packsSignature,
+    List<Map<String, dynamic>>? paperForms,
+    List<dynamic>? appearances,
   }) async {
     final db = await database;
     await db.transaction((txn) async {
@@ -382,7 +384,53 @@ class DbHelper {
         await pBatch.commit(noResult: true);
       }
 
-      // 4. Update metadata
+      // 4. Update paper_forms and appearances if provided from remote
+      if (paperForms != null && paperForms.isNotEmpty) {
+        await txn.delete('paper_forms');
+        final fBatch = txn.batch();
+        for (final f in paperForms) {
+          fBatch.insert(
+            'paper_forms',
+            Map<String, dynamic>.from(f),
+            conflictAlgorithm: ConflictAlgorithm.replace,
+          );
+        }
+        await fBatch.commit(noResult: true);
+      }
+
+      if (appearances != null && appearances.isNotEmpty) {
+        await txn.delete('appearances');
+        for (var i = 0; i < appearances.length; i += 500) {
+          final end = (i + 500 < appearances.length) ? i + 500 : appearances.length;
+          final chunk = appearances.sublist(i, end);
+          final aBatch = txn.batch();
+          for (final a in chunk) {
+            if (a is List && a.length >= 6) {
+              aBatch.insert(
+                'appearances',
+                {
+                  'id': a[0],
+                  'question_id': a[1],
+                  'paper_form_id': a[2],
+                  'section': a[3],
+                  'question_number': a[4],
+                  'official_option_id': a[5],
+                },
+                conflictAlgorithm: ConflictAlgorithm.replace,
+              );
+            } else if (a is Map) {
+              aBatch.insert(
+                'appearances',
+                Map<String, dynamic>.from(a),
+                conflictAlgorithm: ConflictAlgorithm.replace,
+              );
+            }
+          }
+          await aBatch.commit(noResult: true);
+        }
+      }
+
+      // 5. Update metadata
       await txn.insert(
         'meta',
         {'key': 'bank_version', 'val': bankVersion.toString()},

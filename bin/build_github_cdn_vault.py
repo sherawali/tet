@@ -131,24 +131,75 @@ def build_cdn():
             'sections': sorted(list(pack_sections))
         })
 
-    # 6. Build Manifest
+    # 6. Extract paper_forms and appearances for full remote paper support
+    cur.execute("SELECT id, exam, paper, exam_date, set_code, title, total_questions, modules_json FROM paper_forms ORDER BY id")
+    forms_rows = cur.fetchall()
+    forms_list = []
+    for r in forms_rows:
+        forms_list.append({
+            'id': r[0],
+            'exam': r[1],
+            'paper': r[2],
+            'exam_date': r[3],
+            'set_code': r[4],
+            'title': r[5],
+            'total_questions': r[6],
+            'modules_json': r[7]
+        })
+
+    cur.execute("SELECT id, question_id, paper_form_id, section, question_number, official_option_id FROM appearances ORDER BY paper_form_id, question_number")
+    appearances_rows = cur.fetchall()
+    appearances_list = [list(r) for r in appearances_rows]
+
+    papers_data = {
+        'version': 2026101809,
+        'forms': forms_list,
+        'appearances': appearances_list
+    }
+    papers_json_bytes = json.dumps(papers_data, ensure_ascii=False, separators=(',', ':')).encode('utf-8')
+    papers_sha = hashlib.sha256(papers_json_bytes).hexdigest()
+    papers_path = os.path.join(cdn_dir, 'papers.json')
+    with open(papers_path, 'wb') as pf:
+        pf.write(papers_json_bytes)
+    print(f"Total paper forms exported: {len(forms_list)}")
+    print(f"Total appearances exported: {len(appearances_list)} (File size: {len(papers_json_bytes)/1024:.1f} KB)")
+
+    # 7. Build Manifest with remote_config
     manifest = {
         'schema': 2,
         'bank_version': 2026101809,
         'bank_version_str': '20261018_master_vault_clean_v9',
         'generated': datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ'),
         'total': total_q,
-        'papers_count': 62,
+        'papers_count': len(forms_list),
         'topics': topics,
         'sections': section_counts,
-        'packs': pack_records
+        'packs': pack_records,
+        'papers_file': {
+            'file': 'papers.json',
+            'sha256': papers_sha,
+            'bytes': len(papers_json_bytes),
+            'forms_count': len(forms_list),
+            'appearances_count': len(appearances_list)
+        },
+        'remote_config': {
+            'free_mock_count': 1,
+            'free_form_ids': [
+                'utet-p1-pyq-2023',
+                'utet-p1-mock-01',
+                'ctet-p1-pyq-2026',
+                'ctet-p1-mock-01'
+            ],
+            'paid_form_ids': [],
+            'all_mocks_free': False
+        }
     }
 
     manifest_path = os.path.join(cdn_dir, 'manifest.json')
     with open(manifest_path, 'w', encoding='utf-8') as mf:
         json.dump(manifest, mf, ensure_ascii=False, indent=2)
 
-    # 7. Build Flash Messages
+    # 8. Build Flash Messages
     flash = {
         'version': 2,
         'last_updated': datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ'),

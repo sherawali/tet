@@ -305,7 +305,7 @@ class _SubjectDetailScreenState extends State<SubjectDetailScreen> {
                         children: List.generate(availableSets, (idx) {
                           final setNum = idx + 1;
                           final isBusy = _busyItem == 'set_$setNum';
-                          final isFree = setNum == 1;
+                          final isFree = PremiumService.instance.isPaperFree(index: idx);
                           final isLocked = !isFree && !isUnlocked;
 
                           return Container(

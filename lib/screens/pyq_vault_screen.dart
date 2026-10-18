@@ -281,7 +281,7 @@ class _PyqVaultScreenState extends State<PyqVaultScreen> {
                           final title = form['title'] as String? ?? (AppStrings.isHindi ? 'विगत वर्ष प्रश्न-पत्र' : 'Previous Year Paper');
                           final yearBadge = _extractYearLabel(form);
                           final isBusy = _generatingFormId == formId;
-                          final isFree = idx == 0;
+                          final isFree = PremiumService.instance.isPaperFree(formId: formId, index: idx);
                           final isLocked = !isFree && !isUnlocked;
 
                           return Container(

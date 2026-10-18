@@ -21,7 +21,7 @@ class FlashMessage {
     return FlashMessage(
       id: json['id']?.toString() ?? '',
       title: json['title']?.toString() ?? '',
-      message: json['message']?.toString() ?? '',
+      message: json['message']?.toString() ?? json['subtitle']?.toString() ?? '',
       type: json['type']?.toString() ?? 'notice',
       actionLabel: json['action_label']?.toString() ?? json['actionLabel']?.toString(),
       actionUrl: json['action_url']?.toString() ?? json['actionUrl']?.toString(),

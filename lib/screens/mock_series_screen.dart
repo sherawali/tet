@@ -202,7 +202,7 @@ class _MockSeriesScreenState extends State<MockSeriesScreen> {
                           final title = form['title'] as String? ?? 'Mock Paper ${idx + 1}';
                           final setLabel = _formatSetCode(form, idx);
                           final isBusy = _loadingFormId == formId;
-                          final isFree = idx == 0;
+                          final isFree = PremiumService.instance.isPaperFree(formId: formId, index: idx);
                           final isLocked = !isFree && !isUnlocked;
 
                           return Container(
