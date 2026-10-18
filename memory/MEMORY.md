@@ -322,11 +322,44 @@
 - **Static Analysis:** `dart analyze lib/`: **0 errors, 0 warnings (100% clean)**.
 - **Local Git Commit:** `3a68f00`.
 
+### 2026-10-18: Real Ultra-Premium Question Report System & Floating Luxury SnackBar
+- **Floating Luxury SnackBar System (`lib/design_system/app_snack_bar.dart`):**
+  - Completely replaced generic rectangular Material SnackBars with an ultra-premium floating card matching the obsidian slate & seal gold theme.
+  - Floating pill behavior (`margin: 14px 12px`, `borderRadius: 16px`).
+  - Deep obsidian midnight background (`#0F172A`), multi-layered drop shadow, and glowing accent borders (`#F59E0B` Gold / `#10B981` Emerald).
+  - Glowing circular icon badge, bold Outfit title + dual-line Noto Sans Devanagari message, and tactile haptic feedback (`HapticFeedback.lightImpact()`).
+- **Ultra-Premium Question Report Bottom Sheet (`lib/widgets/question_report_sheet.dart`):**
+  - **Modern Architecture:** Sleek bottom sheet with drag pill handle, glowing flag badge (`#D97706`), and question badges (`Q42 · विषय · सेट`).
+  - **Question Context Preview:** Displays 2-line truncated question stem with official correct answer chip so students know exactly what they are reporting.
+  - **5 Interactive Luxury Reason Cards:**
+    1. ❌ उत्तर गलत है (Wrong Answer Key) - दी गई उत्तर कुंजी या सही विकल्प गलत है
+    2. ❓ अधूरा या अस्पष्ट प्रश्न (Incomplete Question) - प्रश्न का वाक्य अधूरा है या विकल्प छूटे हुए हैं
+    3. 🔤 अनुवाद या वर्तनी अशुद्धि (Translation / Typo) - हिन्दी/अंग्रेजी अनुवाद में गड़बड़ी या व्याकरण अशुद्धि
+    4. 📐 सूत्र या चित्र समस्या (Formula / Diagram) - गणितीय सूत्र, समीकरण या चित्र स्पष्ट नहीं है
+    5. ⚠️ अन्य कोई समस्या (Other Issue) - पाठ्यक्रम से बाहर या अन्य कोई त्रुटि
+  - **Smart Suggested Answer Chips:** Quick selection of `(A)`, `(B)`, `(C)`, `(D)` when "Wrong Answer" is chosen to allow students to suggest the correct alternative.
+  - **Double-Report Protection:** Detects if the question was already reported and shows a subtle informative banner with 1-tap view.
+  - **Multi-Channel Actions:** "रिपोर्ट सबमिट करें" primary gradient button + "कॉपी" button for WhatsApp/email sharing.
+- **Dedicated "मेरी रिपोर्ट की गई समस्याएं" Sheet (`ReportedQuestionsSheet`):**
+  - Allows students to view all questions they have reported, tracking review status (`समीक्षाधीन / Under Review`), question number, paper name, date, and suggested answers.
+  - Supports individual report deletion and clipboard sharing.
+  - Accessible via top AppBar flag icon on `HomeScreen` and via the history icon in `QuestionReportSheet`.
+- **Complete Tri-Screen Integration:**
+  - **CBT Exam Screen:** High-contrast amber gold report badge on question cards; opens `QuestionReportSheet`.
+  - **Solution Screen:** Added `[🚩 रिपोर्ट]` button directly on every question card in review/solution mode.
+  - **HTML Booklet Screen:** JavaScript bridge (`requestReport`) immediately opens the native Flutter `QuestionReportSheet`.
+- **SQLite Database Persistence (`lib/database/db_helper.dart`):**
+  - Enhanced `question_reports` table with `question_stem`, `suggested_option`, `user_answer`, `correct_answer`, `status`.
+  - Added `saveQuestionReport` (returns generated report ID), `hasQuestionBeenReported`, `deleteQuestionReport`, `getReportCount`.
+- **Keystore / Signing Key Status:** 100% protected and untouched. Keystores remain completely safe.
+- **Static Analysis:** `dart analyze lib/`: **0 errors, 0 warnings (100% clean)**.
+- **Local Git Commit:** `2441643`.
+
 ---
 
 ## 📌 Next Steps
-1. Push local master commits (`3a68f00`) to GitHub remote repository (`sherawali/tet` or designated repo).
-2. Instruct user to press 'R' (hot restart) in their running terminal to see the multi-slide flash message banner live on screen.
+1. Push local master commits (`2441643`) to GitHub remote repository (`sherawali/tet` or designated repo).
+2. Instruct user to press 'R' (hot restart) in their running terminal to test the real report system, floating luxury snackbar, and report history live on device.
 
 
 
