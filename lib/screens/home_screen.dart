@@ -2941,34 +2941,40 @@ class _HomeScreenState extends State<HomeScreen> {
                             ],
                           ),
                         ),
-                        // Badges (Right)
-                        Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            if (isCardFree) ...[
-                              AppBadge(
-                                label: isHi ? 'निःशुल्क' : 'FREE',
-                                color: AppColors.correctGreen,
-                                isSolid: true,
-                              ),
-                              const SizedBox(width: 5),
-                            ],
-                            AppBadge(
-                              label: isPaper2
-                                  ? (isHi ? 'कक्षा 6-8' : 'Classes 6-8')
-                                  : (isHi ? 'कक्षा 1-5' : 'Classes 1-5'),
-                              color: isPaper2 ? const Color(0xFF8B5CF6) : const Color(0xFF0284C7),
-                              isSolid: false,
+                        // Badges (Right) - Wrapped in Flexible FittedBox to prevent any overflow on narrow screens
+                        Flexible(
+                          child: FittedBox(
+                            fit: BoxFit.scaleDown,
+                            alignment: Alignment.centerRight,
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                if (isCardFree) ...[
+                                  AppBadge(
+                                    label: isHi ? 'निःशुल्क' : 'FREE',
+                                    color: AppColors.correctGreen,
+                                    isSolid: true,
+                                  ),
+                                  const SizedBox(width: 5),
+                                ],
+                                AppBadge(
+                                  label: isPaper2
+                                      ? (isHi ? 'कक्षा 6-8' : 'Classes 6-8')
+                                      : (isHi ? 'कक्षा 1-5' : 'Classes 1-5'),
+                                  color: isPaper2 ? const Color(0xFF8B5CF6) : const Color(0xFF0284C7),
+                                  isSolid: false,
+                                ),
+                                const SizedBox(width: 5),
+                                AppBadge(
+                                  label: isPyq
+                                      ? (isLatest ? (isHi ? '✨ नवीन' : '✨ LATEST') : (isHi ? 'विगत वर्ष' : 'PYQ'))
+                                      : (isHi ? '2026 मॉडल' : '2026 MOCK'),
+                                  color: isPyq ? (isLatest ? AppColors.correctGreen : AppColors.violet) : AppColors.sealGold,
+                                  isSolid: true,
+                                ),
+                              ],
                             ),
-                            const SizedBox(width: 5),
-                            AppBadge(
-                              label: isPyq
-                                  ? (isLatest ? (isHi ? '✨ नवीन' : '✨ LATEST') : (isHi ? 'विगत वर्ष' : 'PYQ'))
-                                  : (isHi ? '2026 मॉडल' : '2026 MOCK'),
-                              color: isPyq ? (isLatest ? AppColors.correctGreen : AppColors.violet) : AppColors.sealGold,
-                              isSolid: true,
-                            ),
-                          ],
+                          ),
                         ),
                       ],
                     ),

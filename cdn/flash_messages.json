@@ -1,19 +1,23 @@
 {
-  "version": 2,
-  "last_updated": "2026-10-18T06:46:39Z",
+  "version": 3,
+  "last_updated": "2026-10-18T06:56:00Z",
   "messages": [
     {
-      "id": "tet_2026_fresh_launch",
-      "title": "UTET & CTET 2026 सम्पूर्ण टेस्ट सीरीज लाइव!",
-      "subtitle": "62 ओरिजिनल पेपर्स और 9,720 प्रश्नों का मास्टर बैंक उपलब्ध है।",
-      "type": "info",
+      "id": "live_flash_2026_master",
+      "title": "🔥 UTET & CTET 2026: 9,720 प्रश्नों का सम्पूर्ण मास्टर बैंक लाइव!",
+      "message": "सभी 62 ओरिजिनल पेपर्स और मॉडल सेट्स 100% प्रामाणिक हल सहित उपलब्ध हैं। OMR व CBT मोड में अभी अभ्यास करें।",
+      "type": "notice",
+      "action_label": "मॉक सीरीज़ देखें",
+      "dismissible": true,
       "active": true
     },
     {
-      "id": "offline_ready",
-      "title": "100% ऑफलाइन ओएमआर एवं सीबीटी टेस्ट",
-      "subtitle": "बिना इंटरनेट के भी वास्तविक परीक्षा माहौल में अभ्यास करें।",
-      "type": "success",
+      "id": "remote_cloud_sync_notice",
+      "title": "⚡ लाइव क्लाउड सिंक व रिमोट कंट्रोल सक्रिय",
+      "message": "GitHub से नए मॉक और प्रश्नों के सुधार सीधे आपके फोन पर बिना ऐप अपडेट के ऑटो-सिंक होंगे।",
+      "type": "update",
+      "action_label": "मॉक टेस्ट देखें",
+      "dismissible": true,
       "active": true
     }
   ]

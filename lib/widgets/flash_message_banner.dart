@@ -63,16 +63,23 @@ class _FlashMessageBannerState extends State<FlashMessageBanner> {
     super.dispose();
   }
 
-  Future<void> _dismissBanner() async {
-    final ids = _messages.map((m) => m.id).toList();
-    await _service.dismissAll(ids);
+  Future<void> _dismissCurrent(int index) async {
+    if (index >= 0 && index < _messages.length) {
+      final msg = _messages[index];
+      await _service.dismissMessage(msg.id);
 
-    if (!mounted) return;
-    setState(() {
-      _messages.clear();
-    });
+      if (!mounted) return;
+      setState(() {
+        _messages.removeAt(index);
+        if (_currentPage >= _messages.length && _currentPage > 0) {
+          _currentPage = _messages.length - 1;
+        }
+      });
 
-    _autoSlideTimer?.cancel();
+      if (_messages.length <= 1) {
+        _autoSlideTimer?.cancel();
+      }
+    }
   }
 
   @override
@@ -108,17 +115,41 @@ class _FlashMessageBannerState extends State<FlashMessageBanner> {
         mainAxisSize: MainAxisSize.min,
         children: [
           SizedBox(
-            height: 126,
+            height: 130,
             child: PageView.builder(
               controller: _pageController,
+              physics: const BouncingScrollPhysics(),
               onPageChanged: (idx) {
                 setState(() => _currentPage = idx);
               },
               itemCount: _messages.length,
               itemBuilder: (context, index) {
                 final msg = _messages[index];
+                
+                // Type-specific accent colors and icons
+                final Color accentColor;
+                final IconData typeIcon;
+                switch (msg.type) {
+                  case 'update':
+                    accentColor = const Color(0xFF38BDF8);
+                    typeIcon = Icons.system_update_rounded;
+                    break;
+                  case 'success':
+                    accentColor = AppColors.correctGreen;
+                    typeIcon = Icons.verified_rounded;
+                    break;
+                  case 'alert':
+                  case 'warning':
+                    accentColor = const Color(0xFFF59E0B);
+                    typeIcon = Icons.notification_important_rounded;
+                    break;
+                  default:
+                    accentColor = AppColors.sealGold;
+                    typeIcon = Icons.campaign_rounded;
+                }
+
                 return Padding(
-                  padding: const EdgeInsets.fromLTRB(14, 10, 8, 6),
+                  padding: const EdgeInsets.fromLTRB(14, 10, 8, 4),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -127,13 +158,13 @@ class _FlashMessageBannerState extends State<FlashMessageBanner> {
                         margin: const EdgeInsets.only(top: 2),
                         padding: const EdgeInsets.all(7),
                         decoration: BoxDecoration(
-                          color: AppColors.sealGold.withValues(alpha: 0.2),
+                          color: accentColor.withValues(alpha: 0.18),
                           shape: BoxShape.circle,
-                          border: Border.all(color: AppColors.sealGold, width: 1.2),
+                          border: Border.all(color: accentColor, width: 1.2),
                         ),
-                        child: const Icon(
-                          Icons.campaign_rounded,
-                          color: AppColors.sealGold,
+                        child: Icon(
+                          typeIcon,
+                          color: accentColor,
                           size: 20,
                         ),
                       ),
@@ -141,71 +172,95 @@ class _FlashMessageBannerState extends State<FlashMessageBanner> {
 
                       // Full Text Content
                       Expanded(
-                        child: SingleChildScrollView(
-                          physics: const BouncingScrollPhysics(),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text(
-                                msg.title,
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 13,
-                                  height: 1.25,
-                                  letterSpacing: 0.2,
-                                ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              msg.title,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 13,
+                                height: 1.25,
+                                letterSpacing: 0.2,
                               ),
-                              const SizedBox(height: 4),
-                              Text(
-                                msg.message,
-                                style: const TextStyle(
-                                  color: Color(0xFFCBD5E1),
-                                  fontSize: 12,
-                                  height: 1.35,
-                                ),
+                            ),
+                            const SizedBox(height: 3),
+                            Text(
+                              msg.message,
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              style: const TextStyle(
+                                color: Color(0xFFCBD5E1),
+                                fontSize: 11.5,
+                                height: 1.35,
                               ),
-                              if (msg.actionLabel != null && widget.onActionTap != null) ...[
-                                const SizedBox(height: 6),
-                                GestureDetector(
-                                  onTap: widget.onActionTap,
-                                  child: Container(
-                                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-                                    decoration: BoxDecoration(
-                                      color: AppColors.sealGold.withValues(alpha: 0.2),
-                                      borderRadius: BorderRadius.circular(4),
-                                      border: Border.all(color: AppColors.sealGold, width: 1),
-                                    ),
-                                    child: Text(
-                                      '👉 ${msg.actionLabel!}',
-                                      style: const TextStyle(
-                                        color: AppColors.sealGoldLight,
-                                        fontSize: 11.5,
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                            ),
+                            if (msg.actionLabel != null && widget.onActionTap != null) ...[
+                              const SizedBox(height: 6),
+                              GestureDetector(
+                                onTap: widget.onActionTap,
+                                child: Container(
+                                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                                  decoration: BoxDecoration(
+                                    color: accentColor.withValues(alpha: 0.2),
+                                    borderRadius: BorderRadius.circular(4),
+                                    border: Border.all(color: accentColor, width: 1),
+                                  ),
+                                  child: Text(
+                                    '👉 ${msg.actionLabel!}',
+                                    style: TextStyle(
+                                      color: accentColor,
+                                      fontSize: 11,
+                                      fontWeight: FontWeight.bold,
                                     ),
                                   ),
                                 ),
-                              ],
+                              ),
                             ],
-                          ),
+                          ],
                         ),
                       ),
 
-                      // Dismiss 'X' Button
-                      if (msg.isDismissible)
-                        IconButton(
-                          padding: EdgeInsets.zero,
-                          constraints: const BoxConstraints(minWidth: 28, minHeight: 28),
-                          tooltip: 'हटाएं (Dismiss)',
-                          icon: const Icon(
-                            Icons.close_rounded,
-                            color: Color(0xFF94A3B8),
-                            size: 18,
-                          ),
-                          onPressed: _dismissBanner,
-                        ),
+                      // Right Controls: Slide Counter Badge + Dismiss Button
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          if (_messages.length > 1) ...[
+                            Container(
+                              padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
+                              decoration: BoxDecoration(
+                                color: const Color(0xFF334155),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Text(
+                                '${index + 1}/${_messages.length}',
+                                style: const TextStyle(
+                                  color: Color(0xFF94A3B8),
+                                  fontSize: 9.5,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: 2),
+                          ],
+                          if (msg.isDismissible)
+                            IconButton(
+                              padding: EdgeInsets.zero,
+                              constraints: const BoxConstraints(minWidth: 26, minHeight: 26),
+                              tooltip: 'हटाएं (Dismiss)',
+                              icon: const Icon(
+                                Icons.close_rounded,
+                                color: Color(0xFF94A3B8),
+                                size: 17,
+                              ),
+                              onPressed: () => _dismissCurrent(index),
+                            ),
+                        ],
+                      ),
                     ],
                   ),
                 );
@@ -213,7 +268,7 @@ class _FlashMessageBannerState extends State<FlashMessageBanner> {
             ),
           ),
 
-          // Multi-message Dots Indicator
+          // Multi-message Interactive Dots Indicator
           if (_messages.length > 1)
             Padding(
               padding: const EdgeInsets.only(bottom: 7),
@@ -221,14 +276,23 @@ class _FlashMessageBannerState extends State<FlashMessageBanner> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: List.generate(_messages.length, (idx) {
                   final isActive = idx == _currentPage;
-                  return AnimatedContainer(
-                    duration: const Duration(milliseconds: 250),
-                    margin: const EdgeInsets.symmetric(horizontal: 3),
-                    width: isActive ? 16 : 6,
-                    height: 5,
-                    decoration: BoxDecoration(
-                      color: isActive ? AppColors.sealGold : const Color(0xFF475569),
-                      borderRadius: BorderRadius.circular(3),
+                  return GestureDetector(
+                    onTap: () {
+                      _pageController.animateToPage(
+                        idx,
+                        duration: const Duration(milliseconds: 350),
+                        curve: Curves.easeInOutCubic,
+                      );
+                    },
+                    child: AnimatedContainer(
+                      duration: const Duration(milliseconds: 250),
+                      margin: const EdgeInsets.symmetric(horizontal: 3),
+                      width: isActive ? 18 : 6,
+                      height: 5,
+                      decoration: BoxDecoration(
+                        color: isActive ? AppColors.sealGold : const Color(0xFF475569),
+                        borderRadius: BorderRadius.circular(3),
+                      ),
                     ),
                   );
                 }),

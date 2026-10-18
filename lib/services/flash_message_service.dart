@@ -48,22 +48,50 @@ class FlashMessageService {
       }
     }
 
-    // 3. If still empty, provide default welcome & advisory message
-    if (allMessages.isEmpty) {
-      allMessages = [
-        const FlashMessage(
-          id: 'welcome_board_bank',
-          title: '🎯 UTET: 4,620 प्रामाणिक प्रश्नों का बैंक तैयार!',
-          message: '20 मॉडल प्रश्न-पुस्तिकाएं और विगत वर्षों के सभी हल प्रश्न-पत्र 100% ऑफ़लाइन उपलब्ध हैं।',
-          type: 'notice',
-          actionLabel: 'मॉक सीरीज़ देखें',
-        ),
-      ];
+    // 3. Define master multi-slide broadcasts
+    final defaultBroadcasts = [
+      const FlashMessage(
+        id: 'live_flash_2026_master',
+        title: '🔥 UTET & CTET 2026: 9,720 प्रश्नों का सम्पूर्ण बैंक लाइव!',
+        message: 'सभी 62 ओरिजिनल पेपर्स और 20 मॉडल सेट्स 100% प्रामाणिक हल सहित उपलब्ध हैं। OMR व CBT मोड में अभ्यास करें।',
+        type: 'notice',
+        actionLabel: 'मॉक सीरीज़ देखें',
+        isDismissible: true,
+      ),
+      const FlashMessage(
+        id: 'remote_cloud_sync_notice',
+        title: '⚡ लाइव क्लाउड सिंक व रिमोट कंट्रोल सक्रिय',
+        message: 'GitHub से नए मॉक, प्रश्न सुधार और फ्री/पेड नियम सीधे बिना ऐप अपडेट के आपके फोन में सिंक होंगे।',
+        type: 'update',
+        actionLabel: 'मॉक टेस्ट देखें',
+        isDismissible: true,
+      ),
+      const FlashMessage(
+        id: 'offline_cbt_omr_mode',
+        title: '📝 वास्तविक परीक्षा जैसा OMR व CBT मोड',
+        message: 'समय सीमा, नेगेटिव मार्किंग और संपूर्ण हल सहित अपनी तैयारी का लाइव मूल्यांकन करें।',
+        type: 'success',
+        actionLabel: 'टेस्ट शुरू करें',
+        isDismissible: true,
+      ),
+    ];
+
+    // Ensure all fresh multi-slide broadcasts are present alongside remote messages
+    for (final def in defaultBroadcasts) {
+      if (!allMessages.any((m) => m.id == def.id)) {
+        allMessages.add(def);
+      }
     }
 
-    // 4. Filter out dismissed message IDs
+    // 4. Filter out dismissed message IDs (messages with isDismissible == false always show)
     final dismissedSet = await _getDismissedIds();
-    final visible = allMessages.where((m) => !dismissedSet.contains(m.id)).toList();
+    var visible = allMessages.where((m) => !m.isDismissible || !dismissedSet.contains(m.id)).toList();
+
+    // If all messages were dismissed, reset and show the fresh broadcasts so banner remains active
+    if (visible.isEmpty) {
+      visible = defaultBroadcasts;
+    }
+
     return visible;
   }
 
