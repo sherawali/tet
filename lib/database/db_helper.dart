@@ -1147,6 +1147,27 @@ class DbHelper {
     return await db.delete('question_reports', where: 'id = ?', whereArgs: [id]);
   }
 
+  /// Retrieves all pending reports that haven't been synced to GitHub yet
+  Future<List<Map<String, dynamic>>> getPendingReports() async {
+    final db = await database;
+    return await db.query(
+      'question_reports',
+      where: "status != 'synced'",
+      orderBy: 'id ASC',
+    );
+  }
+
+  /// Marks a specific report as synced to GitHub
+  Future<int> markReportSynced(int id) async {
+    final db = await database;
+    return await db.update(
+      'question_reports',
+      {'status': 'synced'},
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+  }
+
   /// Returns total count of reported questions
   Future<int> getReportCount() async {
     final db = await database;

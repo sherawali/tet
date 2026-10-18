@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
@@ -5,6 +6,7 @@ import '../database/db_helper.dart';
 import '../models/question.dart';
 import '../models/passage.dart';
 import 'premium_service.dart';
+import 'github_report_service.dart';
 
 typedef SyncProgressCallback = void Function(double progress, String status);
 
@@ -285,6 +287,9 @@ class SyncService {
 
       // Trigger instant UI refresh across the app
       onDatabaseUpdated.value = DateTime.now();
+
+      // Automatically sync any pending offline student question reports to GitHub
+      unawaited(GitHubReportService.instance.syncPendingReports());
 
       final finalCount = allQuestions.length;
       final diff = finalCount - previousCount;

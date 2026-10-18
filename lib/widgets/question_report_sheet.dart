@@ -1,9 +1,11 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../design_system/app_snack_bar.dart';
 import '../models/question.dart';
 import '../database/db_helper.dart';
+import '../services/github_report_service.dart';
 
 /// Ultra-Premium Question Report Bottom Sheet
 /// Matches the authentic Examination Authority & Obsidian Slate luxury aesthetic.
@@ -54,6 +56,8 @@ class QuestionReportSheet extends StatefulWidget {
 
 class _QuestionReportSheetState extends State<QuestionReportSheet> {
   final _commentController = TextEditingController();
+  final _commentFocusNode = FocusNode();
+  final _scrollController = ScrollController();
   String _selectedReason = 'उत्तर गलत है (Wrong Answer Key)';
   String? _suggestedOption;
   bool _isSubmitting = false;
@@ -95,7 +99,22 @@ class _QuestionReportSheetState extends State<QuestionReportSheet> {
   @override
   void initState() {
     super.initState();
+    _commentFocusNode.addListener(_onFocusChange);
     _checkPreviousReport();
+  }
+
+  void _onFocusChange() {
+    if (_commentFocusNode.hasFocus) {
+      Future.delayed(const Duration(milliseconds: 250), () {
+        if (mounted && _scrollController.hasClients) {
+          _scrollController.animateTo(
+            _scrollController.position.maxScrollExtent,
+            duration: const Duration(milliseconds: 280),
+            curve: Curves.easeOutCubic,
+          );
+        }
+      });
+    }
   }
 
   Future<void> _checkPreviousReport() async {
@@ -110,8 +129,223 @@ class _QuestionReportSheetState extends State<QuestionReportSheet> {
 
   @override
   void dispose() {
+    _commentFocusNode.removeListener(_onFocusChange);
+    _commentFocusNode.dispose();
     _commentController.dispose();
+    _scrollController.dispose();
     super.dispose();
+  }
+
+  /// Opens the secure GitHub API Key / Token setup dialog
+  Future<void> _showApiKeySetupDialog(BuildContext context) async {
+    HapticFeedback.lightImpact();
+    final isConfigured = await GitHubReportService.instance.hasConfiguredToken();
+    final tokenController = TextEditingController();
+    bool isObscured = true;
+    bool isTesting = false;
+    String statusMsg = isConfigured
+        ? '✅ GitHub API Key सक्रिय है (एन्क्रिप्टेड सुरक्षित)'
+        : '⚠️ कोई Key सक्रिय नहीं है (रिपोर्ट्स ऑफलाइन SQLite में सुरक्षित रहेंगी)';
+
+    if (!context.mounted) return;
+
+    showDialog(
+      context: context,
+      builder: (dlgCtx) => StatefulBuilder(
+        builder: (context, setDlgState) {
+          final isDark = Theme.of(context).brightness == Brightness.dark;
+          final cardBg = isDark ? const Color(0xFF1E293B) : const Color(0xFFF8FAFC);
+          final textColor = isDark ? Colors.white : const Color(0xFF0F172A);
+
+          return AlertDialog(
+            backgroundColor: isDark ? const Color(0xFF0F172A) : Colors.white,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+              side: const BorderSide(color: Color(0xFFF59E0B), width: 1.2),
+            ),
+            title: Row(
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFF59E0B).withValues(alpha: 0.15),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: const Icon(Icons.key_rounded, color: Color(0xFFF59E0B), size: 22),
+                ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: Text(
+                    'GitHub Key सेटअप',
+                    style: GoogleFonts.outfit(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: textColor,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            content: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'छात्रों द्वारा रिपोर्ट की गई समस्याएं सीधे GitHub Issues पर दर्ज होंगी। Key ऐप में XOR Base64 मानक से 100% एन्क्रिप्ट होकर सुरक्षित रहती है।',
+                    style: GoogleFonts.notoSansDevanagari(
+                      fontSize: 12.5,
+                      color: isDark ? const Color(0xFF94A3B8) : const Color(0xFF64748B),
+                      height: 1.45,
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                    decoration: BoxDecoration(
+                      color: cardBg,
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(
+                        color: isConfigured ? const Color(0xFF10B981) : const Color(0xFFF59E0B),
+                        width: 1,
+                      ),
+                    ),
+                    child: Text(
+                      statusMsg,
+                      style: GoogleFonts.notoSansDevanagari(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w600,
+                        color: isConfigured ? const Color(0xFF10B981) : const Color(0xFFF59E0B),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 14),
+                  Text(
+                    'नया Personal Access Token पेस्ट करें:',
+                    style: GoogleFonts.outfit(
+                      fontSize: 12.5,
+                      fontWeight: FontWeight.w600,
+                      color: textColor,
+                    ),
+                  ),
+                  const SizedBox(height: 6),
+                  TextField(
+                    controller: tokenController,
+                    obscureText: isObscured,
+                    style: GoogleFonts.courierPrime(
+                      fontSize: 13,
+                      color: textColor,
+                    ),
+                    decoration: InputDecoration(
+                      hintText: 'ghp_... या github_pat_...',
+                      hintStyle: GoogleFonts.courierPrime(
+                        fontSize: 12,
+                        color: Colors.grey,
+                      ),
+                      filled: true,
+                      fillColor: cardBg,
+                      contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          isObscured ? Icons.visibility_off : Icons.visibility,
+                          size: 18,
+                        ),
+                        onPressed: () => setDlgState(() => isObscured = !isObscured),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            actions: [
+              if (isConfigured)
+                TextButton(
+                  onPressed: () async {
+                    await GitHubReportService.instance.clearCustomToken();
+                    setDlgState(() {
+                      statusMsg = 'टोकन हटा दिया गया (Offline Mode)';
+                    });
+                    if (context.mounted) {
+                      AppSnackBar.showSuccess(
+                        context,
+                        title: 'टोकन हटाया गया',
+                        message: 'GitHub टोकन हटा दिया गया है।',
+                      );
+                    }
+                  },
+                  child: Text(
+                    'हटाएं',
+                    style: GoogleFonts.outfit(color: Colors.redAccent, fontWeight: FontWeight.w600),
+                  ),
+                ),
+              TextButton(
+                onPressed: () => Navigator.pop(dlgCtx),
+                child: Text('रद्द करें', style: GoogleFonts.outfit(color: Colors.grey)),
+              ),
+              ElevatedButton(
+                onPressed: isTesting
+                    ? null
+                    : () async {
+                        final raw = tokenController.text.trim();
+                        if (raw.isEmpty) {
+                          setDlgState(() => statusMsg = '❌ कृपया टोकन दर्ज करें');
+                          return;
+                        }
+                        setDlgState(() {
+                          isTesting = true;
+                          statusMsg = 'सत्यापन हो रहा है...';
+                        });
+
+                        final isValid = await GitHubReportService.instance.verifyToken(raw);
+                        if (!isValid) {
+                          setDlgState(() {
+                            isTesting = false;
+                            statusMsg = '❌ अमान्य टोकन या नेटवर्क त्रुटि। कृपया जांचें।';
+                          });
+                          return;
+                        }
+
+                        // Encrypt and save
+                        await GitHubReportService.instance.setCustomEncryptedToken(raw);
+                        // Sync pending
+                        final synced = await GitHubReportService.instance.syncPendingReports();
+
+                        setDlgState(() {
+                          isTesting = false;
+                          statusMsg = '✅ टोकन सफलतापूर्वक एन्क्रिप्ट और सक्रिय हुआ!';
+                        });
+
+                        if (context.mounted) {
+                          Navigator.pop(dlgCtx);
+                          AppSnackBar.showSuccess(
+                            context,
+                            title: 'GitHub Key सुरक्षित रूप से सक्रिय!',
+                            message: 'Key एन्क्रिप्ट हो गई है। $synced पेंडिंग रिपोर्ट्स सिंक की गईं।',
+                          );
+                        }
+                      },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFFF59E0B),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                ),
+                child: isTesting
+                    ? const SizedBox(
+                        width: 16,
+                        height: 16,
+                        child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white),
+                      )
+                    : Text(
+                        'एन्क्रिप्ट और सहेजें',
+                        style: GoogleFonts.outfit(fontWeight: FontWeight.bold, color: Colors.black87),
+                      ),
+              ),
+            ],
+          );
+        },
+      ),
+    );
   }
 
   Future<void> _submitReport() async {
@@ -138,6 +372,22 @@ class _QuestionReportSheetState extends State<QuestionReportSheet> {
       );
 
       final reportCode = 'REP-${DateTime.now().year}-${reportId.toString().padLeft(4, '0')}';
+
+      // Asynchronously post to GitHub Issues (if online and token configured)
+      unawaited(
+        GitHubReportService.instance.sendReportToGitHub(
+          reportId: reportId,
+          questionId: q.id,
+          questionNumber: widget.questionNumber,
+          paperTitle: widget.paperTitle ?? 'Practice Set',
+          reason: _selectedReason,
+          comment: _commentController.text.trim(),
+          suggestedOption: _suggestedOption,
+          questionStem: truncatedStem,
+          userAnswer: widget.userAnswer,
+          correctAnswer: q.answer,
+        ),
+      );
 
       if (mounted) {
         Navigator.pop(context);
@@ -209,11 +459,21 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
     final cleanPreview = qPreview.replaceAll(RegExp(r'\s+'), ' ');
     final shortPreview = cleanPreview.length > 110 ? '${cleanPreview.substring(0, 110)}...' : cleanPreview;
 
-    return Container(
-      constraints: BoxConstraints(
-        maxHeight: MediaQuery.of(context).size.height * 0.90,
-      ),
-      decoration: BoxDecoration(
+    final mediaQuery = MediaQuery.of(context);
+    final viewInsets = mediaQuery.viewInsets;
+    final screenHeight = mediaQuery.size.height;
+    final isKeyboardOpen = viewInsets.bottom > 60;
+    final availableHeight = screenHeight - viewInsets.bottom;
+
+    return Padding(
+      padding: EdgeInsets.only(bottom: viewInsets.bottom),
+      child: Container(
+        constraints: BoxConstraints(
+          maxHeight: isKeyboardOpen
+              ? (availableHeight * 0.95).clamp(280.0, availableHeight)
+              : screenHeight * 0.86,
+        ),
+        decoration: BoxDecoration(
         color: bgSurface,
         borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
         border: Border.all(
@@ -252,26 +512,33 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
               padding: const EdgeInsets.symmetric(horizontal: 18),
               child: Row(
                 children: [
-                  // Illuminated glowing Flag Badge
-                  Container(
-                    width: 42,
-                    height: 42,
-                    decoration: BoxDecoration(
-                      gradient: const LinearGradient(
-                        colors: [Color(0xFFD97706), Color(0xFFB45309)],
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                      ),
-                      borderRadius: BorderRadius.circular(12),
-                      boxShadow: [
-                        BoxShadow(
-                          color: const Color(0xFFD97706).withValues(alpha: 0.35),
-                          blurRadius: 10,
-                          offset: const Offset(0, 3),
+                  // Illuminated glowing Flag Badge (Tap to setup/check GitHub API key)
+                  InkWell(
+                    onTap: () => _showApiKeySetupDialog(context),
+                    borderRadius: BorderRadius.circular(12),
+                    child: Tooltip(
+                      message: 'GitHub API Key सेटअप (Admin)',
+                      child: Container(
+                        width: 42,
+                        height: 42,
+                        decoration: BoxDecoration(
+                          gradient: const LinearGradient(
+                            colors: [Color(0xFFD97706), Color(0xFFB45309)],
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                          ),
+                          borderRadius: BorderRadius.circular(12),
+                          boxShadow: [
+                            BoxShadow(
+                              color: const Color(0xFFD97706).withValues(alpha: 0.35),
+                              blurRadius: 10,
+                              offset: const Offset(0, 3),
+                            ),
+                          ],
                         ),
-                      ],
+                        child: const Icon(Icons.flag_rounded, color: Colors.white, size: 22),
+                      ),
                     ),
-                    child: const Icon(Icons.flag_rounded, color: Colors.white, size: 22),
                   ),
                   const SizedBox(width: 12),
                   Expanded(
@@ -351,10 +618,11 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
             const SizedBox(height: 10),
             Divider(color: borderColor, height: 1),
 
-            // Scrollable Content
             Flexible(
               child: SingleChildScrollView(
-                padding: const EdgeInsets.fromLTRB(18, 14, 18, 16),
+                controller: _scrollController,
+                keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+                padding: const EdgeInsets.fromLTRB(18, 14, 18, 24),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -608,20 +876,71 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
 
                     const SizedBox(height: 14),
 
-                    // Additional Comment Input
-                    Text(
-                      'अतिरिक्त विवरण / टिप्पणी (वैकल्पिक)',
-                      style: GoogleFonts.outfit(
-                        fontSize: 13,
-                        fontWeight: FontWeight.w700,
-                        color: textPrimary,
-                      ),
+                    // Additional Comment Input with Keyboard Dismiss Option
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'अतिरिक्त विवरण / टिप्पणी (वैकल्पिक)',
+                          style: GoogleFonts.outfit(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w700,
+                            color: textPrimary,
+                          ),
+                        ),
+                        if (isKeyboardOpen)
+                          InkWell(
+                            onTap: () => FocusScope.of(context).unfocus(),
+                            borderRadius: BorderRadius.circular(6),
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                              decoration: BoxDecoration(
+                                color: const Color(0xFFF59E0B).withValues(alpha: 0.15),
+                                borderRadius: BorderRadius.circular(6),
+                                border: Border.all(
+                                  color: const Color(0xFFF59E0B).withValues(alpha: 0.35),
+                                  width: 1,
+                                ),
+                              ),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  const Icon(Icons.keyboard_hide_rounded, size: 14, color: Color(0xFFF59E0B)),
+                                  const SizedBox(width: 4),
+                                  Text(
+                                    'कीबोर्ड छुपाएं',
+                                    style: GoogleFonts.notoSansDevanagari(
+                                      fontSize: 11,
+                                      fontWeight: FontWeight.w600,
+                                      color: const Color(0xFFF59E0B),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                      ],
                     ),
                     const SizedBox(height: 6),
                     TextField(
                       controller: _commentController,
+                      focusNode: _commentFocusNode,
                       maxLines: 3,
                       maxLength: 300,
+                      textInputAction: TextInputAction.done,
+                      scrollPadding: const EdgeInsets.only(bottom: 160),
+                      onSubmitted: (_) => FocusScope.of(context).unfocus(),
+                      onTap: () {
+                        Future.delayed(const Duration(milliseconds: 250), () {
+                          if (mounted && _scrollController.hasClients) {
+                            _scrollController.animateTo(
+                              _scrollController.position.maxScrollExtent,
+                              duration: const Duration(milliseconds: 280),
+                              curve: Curves.easeOutCubic,
+                            );
+                          }
+                        });
+                      },
                       style: GoogleFonts.notoSansDevanagari(
                         fontSize: 13.5,
                         color: textPrimary,
@@ -736,7 +1055,8 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
           ],
         ),
       ),
-    );
+    ),
+  );
   }
 }
 
