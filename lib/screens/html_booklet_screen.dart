@@ -6,6 +6,8 @@ import '../models/test_session.dart';
 import '../models/mock_config.dart';
 import '../database/db_helper.dart';
 import '../design_system/app_colors.dart';
+import '../design_system/app_snack_bar.dart';
+import '../widgets/question_report_sheet.dart';
 import '../services/html_booklet_builder.dart';
 
 /// Standalone Real-Time HTML Question Booklet Screen
@@ -153,6 +155,21 @@ class _HtmlBookletScreenState extends State<HtmlBookletScreen> {
           _onTestSubmittedFromHtml(data);
           break;
 
+        case 'requestReport':
+          final qIndex = data['qIndex'] as int? ?? 0;
+          final qNum = data['qNum'] as int? ?? (qIndex + 1);
+          if (qIndex >= 0 && qIndex < widget.session.questions.length) {
+            final q = widget.session.questions[qIndex];
+            QuestionReportSheet.show(
+              context,
+              question: q,
+              questionNumber: qNum,
+              paperTitle: widget.session.paperTitle ?? widget.session.setCode,
+              userAnswer: widget.session.selectedAnswers[qIndex],
+            );
+          }
+          break;
+
         case 'reportQuestion':
           final qIndex = data['qIndex'] as int? ?? 0;
           final qNum = data['qNum'] as int? ?? (qIndex + 1);
@@ -162,20 +179,19 @@ class _HtmlBookletScreenState extends State<HtmlBookletScreen> {
               ? widget.session.questions[qIndex].id
               : 'Q$qNum';
 
-          await DbHelper.instance.saveQuestionReport(
+          final reportId = await DbHelper.instance.saveQuestionReport(
             questionId: qId,
             paperFormId: widget.session.paperTitle ?? widget.session.setCode,
             questionNumber: qNum,
             reason: reason,
             comment: comment,
           );
+          final reportCode = 'REP-${DateTime.now().year}-${reportId.toString().padLeft(4, '0')}';
           if (mounted) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text('✅ प्रश्न $qNum की रिपोर्ट दर्ज कर ली गई है। धन्यवाद!'),
-                backgroundColor: AppColors.primary,
-                duration: const Duration(seconds: 3),
-              ),
+            AppSnackBar.showReportSuccess(
+              context,
+              questionNumber: qNum,
+              reportCode: reportCode,
             );
           }
           break;

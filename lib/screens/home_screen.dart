@@ -21,6 +21,7 @@ import '../widgets/flash_message_banner.dart';
 import '../services/premium_service.dart';
 import '../services/exam_service.dart';
 import '../widgets/premium_paywall_modal.dart';
+import '../widgets/question_report_sheet.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -789,6 +790,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
               actions: [
+                IconButton(
+                  tooltip: 'मेरी रिपोर्ट्स (Reported Questions)',
+                  icon: const Icon(
+                    Icons.flag_rounded,
+                    color: Color(0xFFF59E0B),
+                  ),
+                  onPressed: () => ReportedQuestionsSheet.show(context),
+                ),
                 IconButton(
                   tooltip: AppStrings.bankSyncTooltip,
                   icon: Icon(

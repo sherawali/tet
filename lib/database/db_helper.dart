@@ -154,9 +154,29 @@ class DbHelper {
             question_number INTEGER,
             reason TEXT,
             comment TEXT,
+            suggested_option TEXT,
+            question_stem TEXT,
+            user_answer INTEGER,
+            correct_answer INTEGER,
+            status TEXT DEFAULT 'submitted',
             created_at TEXT
           )
         ''');
+        try {
+          await db.execute('ALTER TABLE question_reports ADD COLUMN suggested_option TEXT');
+        } catch (_) {}
+        try {
+          await db.execute('ALTER TABLE question_reports ADD COLUMN question_stem TEXT');
+        } catch (_) {}
+        try {
+          await db.execute('ALTER TABLE question_reports ADD COLUMN user_answer INTEGER');
+        } catch (_) {}
+        try {
+          await db.execute('ALTER TABLE question_reports ADD COLUMN correct_answer INTEGER');
+        } catch (_) {}
+        try {
+          await db.execute("ALTER TABLE question_reports ADD COLUMN status TEXT DEFAULT 'submitted'");
+        } catch (_) {}
 
         // Auto-seed or upgrade to all-offline database (4,620 authentic questions) from bundled asset
         try {
@@ -1070,28 +1090,67 @@ class DbHelper {
     return (questions: questions, passages: passageMap);
   }
 
-  /// Saves a student error report for a specific question
-  Future<void> saveQuestionReport({
+  /// Saves a student error report for a specific question and returns auto-generated report ID
+  Future<int> saveQuestionReport({
     required String questionId,
     String? paperFormId,
     required int questionNumber,
     required String reason,
     String? comment,
+    String? suggestedOption,
+    String? questionStem,
+    int? userAnswer,
+    int? correctAnswer,
+    String status = 'submitted',
   }) async {
     final db = await database;
-    await db.insert('question_reports', {
+    return await db.insert('question_reports', {
       'question_id': questionId,
       'paper_form_id': paperFormId ?? '',
       'question_number': questionNumber,
       'reason': reason,
       'comment': comment ?? '',
+      'suggested_option': suggestedOption ?? '',
+      'question_stem': questionStem ?? '',
+      'user_answer': userAnswer,
+      'correct_answer': correctAnswer,
+      'status': status,
       'created_at': DateTime.now().toIso8601String(),
     });
+  }
+
+  /// Checks if a question has already been reported
+  Future<bool> hasQuestionBeenReported({
+    required String questionId,
+    String? paperFormId,
+  }) async {
+    final db = await database;
+    final res = await db.query(
+      'question_reports',
+      columns: ['id'],
+      where: 'question_id = ?',
+      whereArgs: [questionId],
+      limit: 1,
+    );
+    return res.isNotEmpty;
   }
 
   /// Retrieves all student error reports
   Future<List<Map<String, dynamic>>> getQuestionReports() async {
     final db = await database;
     return await db.query('question_reports', orderBy: 'id DESC');
+  }
+
+  /// Deletes a specific question report by ID
+  Future<int> deleteQuestionReport(int id) async {
+    final db = await database;
+    return await db.delete('question_reports', where: 'id = ?', whereArgs: [id]);
+  }
+
+  /// Returns total count of reported questions
+  Future<int> getReportCount() async {
+    final db = await database;
+    final res = await db.rawQuery('SELECT COUNT(*) as cnt FROM question_reports');
+    return Sqflite.firstIntValue(res) ?? 0;
   }
 }

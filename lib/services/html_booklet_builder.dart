@@ -1878,6 +1878,83 @@ body.lang-mode-en .bilingual-mobile-stack .opt-secondary {
   margin-top: 24px;
 }
 
+#report-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 150;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+#report-modal.open { display: flex; }
+.report-card {
+  background: #0f172a;
+  color: #f8fafc;
+  width: 520px;
+  max-width: 100%;
+  border-radius: 18px;
+  border: 1.2px solid rgba(245, 158, 11, 0.4);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+}
+.report-head {
+  background: #1e293b;
+  padding: 14px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #334155;
+  color: #f59e0b;
+}
+.report-body {
+  padding: 18px 20px;
+}
+.report-reasons {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.rep-radio-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-size: 13.5px;
+  color: #e2e8f0;
+}
+.rep-radio-label:hover {
+  border-color: #f59e0b;
+  background: rgba(245, 158, 11, 0.08);
+}
+.rep-radio-label input[type="radio"] {
+  accent-color: #f59e0b;
+  width: 16px;
+  height: 16px;
+}
+#rep-comment {
+  width: 100%;
+  box-sizing: border-box;
+  background: #1e293b;
+  color: #f8fafc;
+  border: 1px solid #334155;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 13px;
+  outline: none;
+}
+#rep-comment:focus {
+  border-color: #f59e0b;
+}
+
 @media (max-width: 768px) {
   body { font-size: 14px; }
   .cbt-bar { padding: max(6px, env(safe-area-inset-top)) 8px 6px; }
@@ -2353,6 +2430,15 @@ table { max-width: 100%; overflow-x: auto; display: block; }
   let currentReportQNum = 1;
 
   window.openReportModal = function(qId, qNum) {
+    if (window.BookletChannel && window.BookletChannel.postMessage) {
+      window.BookletChannel.postMessage(JSON.stringify({
+        type: 'requestReport',
+        qIndex: qNum - 1,
+        qNum: qNum,
+        qId: qId
+      }));
+      return;
+    }
     currentReportQId = qId;
     currentReportQNum = qNum;
     const qNumEl = document.getElementById('rep-qnum');

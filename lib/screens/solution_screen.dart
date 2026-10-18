@@ -10,6 +10,7 @@ import '../widgets/app_card.dart';
 import '../widgets/app_badge.dart';
 import '../widgets/formatted_question_stem.dart';
 import '../widgets/smart_math_text.dart';
+import '../widgets/question_report_sheet.dart';
 
 enum SolutionFilter { all, incorrect, unattempted, correct }
 
@@ -282,6 +283,42 @@ class _SolutionScreenState extends State<SolutionScreen> {
                             ),
                             if (q.topicName != null)
                               AppBadge(label: q.topicName!, color: AppColors.primary),
+                            InkWell(
+                              onTap: () => QuestionReportSheet.show(
+                                context,
+                                question: q,
+                                questionNumber: qIdx + 1,
+                                paperTitle: widget.session.paperTitle ?? widget.session.setCode,
+                                userAnswer: userAns,
+                              ),
+                              borderRadius: BorderRadius.circular(6),
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3.5),
+                                decoration: BoxDecoration(
+                                  color: const Color(0xFFD97706).withValues(alpha: isDark ? 0.22 : 0.12),
+                                  borderRadius: BorderRadius.circular(6),
+                                  border: Border.all(
+                                    color: const Color(0xFFD97706).withValues(alpha: 0.45),
+                                    width: 1,
+                                  ),
+                                ),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    const Icon(Icons.flag_rounded, size: 13, color: Color(0xFFF59E0B)),
+                                    const SizedBox(width: 4),
+                                    Text(
+                                      'रिपोर्ट',
+                                      style: TextStyle(
+                                        fontSize: 11.5,
+                                        fontWeight: FontWeight.w700,
+                                        color: isDark ? const Color(0xFFFBBF24) : const Color(0xFFB45309),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                         const SizedBox(height: 8),

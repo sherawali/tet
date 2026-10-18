@@ -15,6 +15,7 @@ import '../widgets/app_button.dart';
 import '../widgets/smart_math_text.dart';
 import '../widgets/exam_special_render_engine.dart';
 import '../widgets/passage_display_card.dart';
+import '../widgets/question_report_sheet.dart';
 import '../database/db_helper.dart';
 import '../design_system/app_strings.dart';
 import 'result_screen.dart';
@@ -618,172 +619,12 @@ class _CbtExamScreenState extends State<CbtExamScreen> {
   }
 
   void _showReportQuestionDialog(Question q, int qNum) {
-    String selectedReason = 'उत्तर गलत है (Wrong Answer)';
-    final commentController = TextEditingController();
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-
-    showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      backgroundColor: Colors.transparent,
-      builder: (ctx) {
-        return StatefulBuilder(
-          builder: (ctx, setModalState) {
-            return Container(
-              padding: EdgeInsets.only(
-                bottom: MediaQuery.of(ctx).viewInsets.bottom + 18,
-                top: 18,
-                left: 18,
-                right: 18,
-              ),
-              decoration: BoxDecoration(
-                color: isDark ? const Color(0xFF0F172A) : Colors.white,
-                borderRadius: const BorderRadius.vertical(top: Radius.circular(18)),
-                boxShadow: const [BoxShadow(color: Colors.black26, blurRadius: 20)],
-              ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          const Icon(Icons.flag_rounded, color: Colors.orange, size: 22),
-                          const SizedBox(width: 8),
-                          Text(
-                            'प्रश्न $qNum में त्रुटि रिपोर्ट करें',
-                            style: TextStyle(
-                              fontSize: 16.5,
-                              fontWeight: FontWeight.bold,
-                              color: isDark ? Colors.white : const Color(0xFF0F172A),
-                            ),
-                          ),
-                        ],
-                      ),
-                      IconButton(
-                        icon: const Icon(Icons.close_rounded),
-                        onPressed: () => Navigator.pop(ctx),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    'इस प्रश्न में क्या समस्या है? कृपया चुनें:',
-                    style: TextStyle(
-                      fontSize: 13.5,
-                      color: isDark ? Colors.grey.shade400 : Colors.grey.shade700,
-                    ),
-                  ),
-                  const SizedBox(height: 12),
-                  ...[
-                    'उत्तर गलत है (Wrong Answer)',
-                    'अधूरा प्रश्न या विकल्प (Incomplete)',
-                    'अनुवाद / वर्तनी त्रुटि (Translation/Typo)',
-                    'अन्य समस्या (Other Issue)',
-                  ].map((r) {
-                    final isSel = selectedReason == r;
-                    return Padding(
-                      padding: const EdgeInsets.only(bottom: 6),
-                      child: InkWell(
-                        onTap: () => setModalState(() => selectedReason = r),
-                        borderRadius: BorderRadius.circular(8),
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 9),
-                          decoration: BoxDecoration(
-                            color: isSel
-                                ? Colors.orange.withValues(alpha: 0.15)
-                                : (isDark ? const Color(0xFF1E293B) : const Color(0xFFF8FAFC)),
-                            borderRadius: BorderRadius.circular(8),
-                            border: Border.all(
-                              color: isSel ? Colors.orange : (isDark ? Colors.grey.shade800 : Colors.grey.shade300),
-                              width: isSel ? 1.5 : 1,
-                            ),
-                          ),
-                          child: Row(
-                            children: [
-                              Icon(
-                                isSel ? Icons.radio_button_checked : Icons.radio_button_off,
-                                size: 18,
-                                color: isSel ? Colors.orange : Colors.grey,
-                              ),
-                              const SizedBox(width: 10),
-                              Expanded(
-                                child: Text(
-                                  r,
-                                  style: TextStyle(
-                                    fontSize: 13.5,
-                                    fontWeight: isSel ? FontWeight.bold : FontWeight.normal,
-                                    color: isDark ? Colors.white : Colors.black87,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    );
-                  }),
-                  const SizedBox(height: 10),
-                  TextField(
-                    controller: commentController,
-                    maxLines: 2,
-                    decoration: InputDecoration(
-                      hintText: 'अतिरिक्त टिप्पणी (वैकल्पिक)...',
-                      hintStyle: TextStyle(fontSize: 13, color: Colors.grey.shade500),
-                      filled: true,
-                      fillColor: isDark ? const Color(0xFF1E293B) : const Color(0xFFF8FAFC),
-                      contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8),
-                        borderSide: BorderSide(color: isDark ? Colors.grey.shade800 : Colors.grey.shade300),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 14),
-                  SizedBox(
-                    width: double.infinity,
-                    height: 44,
-                    child: ElevatedButton.icon(
-                      onPressed: () async {
-                        final reason = selectedReason;
-                        final comment = commentController.text.trim();
-                        await DbHelper.instance.saveQuestionReport(
-                          questionId: q.id,
-                          paperFormId: widget.session.paperTitle ?? widget.session.setCode,
-                          questionNumber: qNum,
-                          reason: reason,
-                          comment: comment,
-                        );
-                        if (ctx.mounted) {
-                          Navigator.pop(ctx);
-                        }
-                        if (mounted) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text('✅ प्रश्न $qNum की रिपोर्ट दर्ज कर ली गई है। धन्यवाद!'),
-                              backgroundColor: AppColors.primary,
-                              duration: const Duration(seconds: 3),
-                            ),
-                          );
-                        }
-                      },
-                      icon: const Icon(Icons.send_rounded, size: 18),
-                      label: const Text('रिपोर्ट सबमिट करें', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.orange.shade700,
-                        foregroundColor: Colors.white,
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            );
-          },
-        );
-      },
+    QuestionReportSheet.show(
+      context,
+      question: q,
+      questionNumber: qNum,
+      paperTitle: widget.session.paperTitle ?? widget.session.setCode,
+      userAnswer: widget.session.selectedAnswers[_currentIndex],
     );
   }
 
@@ -945,21 +786,24 @@ class _CbtExamScreenState extends State<CbtExamScreen> {
                             child: Container(
                               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3.5),
                               decoration: BoxDecoration(
-                                color: Colors.orange.withValues(alpha: 0.15),
+                                color: const Color(0xFFD97706).withValues(alpha: isDark ? 0.22 : 0.12),
                                 borderRadius: BorderRadius.circular(6),
-                                border: Border.all(color: Colors.orange.withValues(alpha: 0.4), width: 1),
+                                border: Border.all(
+                                  color: const Color(0xFFD97706).withValues(alpha: 0.45),
+                                  width: 1,
+                                ),
                               ),
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  const Icon(Icons.flag_outlined, size: 13, color: Colors.orange),
-                                  const SizedBox(width: 3),
+                                  const Icon(Icons.flag_rounded, size: 13, color: Color(0xFFF59E0B)),
+                                  const SizedBox(width: 4),
                                   Text(
                                     'रिपोर्ट',
                                     style: TextStyle(
                                       fontSize: 11.5,
-                                      fontWeight: FontWeight.bold,
-                                      color: isDark ? Colors.orange.shade300 : Colors.orange.shade800,
+                                      fontWeight: FontWeight.w700,
+                                      color: isDark ? const Color(0xFFFBBF24) : const Color(0xFFB45309),
                                     ),
                                   ),
                                 ],
