@@ -16,7 +16,8 @@ class GitHubReportService {
   /// Pre-configured encrypted token string (Base64 XOR).
   /// To generate: run `python bin/encrypt_api_key.py <your_token>`
   /// or call `GitHubReportService.encryptToken('<your_token>')`.
-  static const String _bundledEncryptedToken = '';
+  static const String _bundledEncryptedToken =
+      'MywgNzgjDCQkJgBncBcfFRZmY3sGHAFzBTgxHCIwOBsnHhYXDAQyNzY7NhE1S1UGeRc6Mg0/cQAdfDgyCAk6Iyw4NgIpNyUbPFFcAEYdBh11CxUAYycXEHkGYwAy';
 
   // Backward compatibility placeholder
   static final List<int> _defaultEncryptedBytes = [];
