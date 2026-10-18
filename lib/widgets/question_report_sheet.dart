@@ -280,12 +280,16 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
                       children: [
                         Row(
                           children: [
-                            Text(
-                              'प्रश्न में त्रुटि रिपोर्ट करें',
-                              style: GoogleFonts.outfit(
-                                fontSize: 17,
-                                fontWeight: FontWeight.bold,
-                                color: textPrimary,
+                            Flexible(
+                              child: Text(
+                                'प्रश्न में त्रुटि रिपोर्ट',
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: GoogleFonts.outfit(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: textPrimary,
+                                ),
                               ),
                             ),
                             const SizedBox(width: 6),
@@ -326,14 +330,19 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
                     ),
                   ),
                   IconButton(
+                    padding: const EdgeInsets.all(6),
+                    constraints: const BoxConstraints(),
                     tooltip: 'मेरी रिपोर्ट्स देखें',
-                    icon: const Icon(Icons.history_rounded, color: Color(0xFFF59E0B), size: 22),
+                    icon: const Icon(Icons.history_rounded, color: Color(0xFFF59E0B), size: 21),
                     onPressed: () {
                       ReportedQuestionsSheet.show(context);
                     },
                   ),
+                  const SizedBox(width: 4),
                   IconButton(
-                    icon: Icon(Icons.close_rounded, color: textSecondary, size: 22),
+                    padding: const EdgeInsets.all(6),
+                    constraints: const BoxConstraints(),
+                    icon: Icon(Icons.close_rounded, color: textSecondary, size: 21),
                     onPressed: () => Navigator.pop(context),
                   ),
                 ],
@@ -883,12 +892,16 @@ ${opt != null && opt.toString().isNotEmpty ? '💡 सुझाया गया 
                       children: [
                         Row(
                           children: [
-                            Text(
-                              'मेरी रिपोर्ट की गई समस्याएं',
-                              style: GoogleFonts.outfit(
-                                fontSize: 16.5,
-                                fontWeight: FontWeight.bold,
-                                color: textPrimary,
+                            Flexible(
+                              child: Text(
+                                'मेरी रिपोर्ट की गई समस्याएं',
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: GoogleFonts.outfit(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: textPrimary,
+                                ),
                               ),
                             ),
                             const SizedBox(width: 8),
