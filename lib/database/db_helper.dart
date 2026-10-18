@@ -184,7 +184,7 @@ class DbHelper {
           final v = res.isNotEmpty ? res.first['val']?.toString() : null;
           final qCountRes = await db.rawQuery('SELECT COUNT(*) as cnt FROM questions');
           final qCount = Sqflite.firstIntValue(qCountRes) ?? 0;
-          if (v != '20261018_master_vault_clean_v9' || qCount < 9720) {
+          if (v != '20261018_master_vault_clean_v10' || qCount < 9720) {
             await _syncFromAssetDb(db);
           }
         } catch (_) {
@@ -202,7 +202,7 @@ class DbHelper {
       final v = res.isNotEmpty ? res.first['val']?.toString() : null;
       final qCountRes = await db.rawQuery('SELECT COUNT(*) as cnt FROM questions');
       final qCount = Sqflite.firstIntValue(qCountRes) ?? 0;
-      if (v != '20261018_master_vault_clean_v9' || qCount < 9720) {
+      if (v != '20261018_master_vault_clean_v10' || qCount < 9720) {
         await _syncFromAssetDb(db);
       }
     } catch (_) {
@@ -306,6 +306,12 @@ class DbHelper {
         for (final m in assetMeta) {
           await txn.insert('meta', m, conflictAlgorithm: ConflictAlgorithm.replace);
         }
+
+        // Update report status for resolved questions
+        try {
+          await txn.execute("UPDATE question_reports SET status = 'solved' WHERE question_id IN ('b7fe812caa11aaea', '7570f6db99750223', '400c86ba7c4c9736')");
+          await txn.execute("UPDATE question_reports SET status = 'verified' WHERE question_id IN ('c68894e54e49924e', '85d3f769c5dbf0ce')");
+        } catch (_) {}
       });
       debugPrint('Successfully seeded ${assetQuestions.length} V2 questions from bundled asset DB!');
     } catch (e) {

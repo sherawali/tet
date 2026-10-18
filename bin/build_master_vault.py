@@ -24,10 +24,11 @@ BANK_V2 = REPO_ROOT / 'bank-v2'
 def clean_opt(s):
     if not s: return ''
     t = s.strip()
-    # Truncate at [EN] or [HI] or markdown footers if they leaked into option
-    t = re.split(r'(?:\s+|^|\[)(?:\[?(?:EN|HI)\]?|[-*]{3,}|\#{1,6}\s|\*\*Source:|\*\*Ans|\bAnswer:)', t, flags=re.I)[0].strip()
-    t = re.split(r'(?:\n|^|\s{2,}|\s+)(?:##\s*)?(?:भाग|Part)\s*(?:I{1,3}|IV|V|[1-5])\b', t, flags=re.I)[0].strip()
-    t = re.split(r'(?:\n|^|\s{2,}|\s+)(?:\*{1,2})?(?:निम्नलिखित|Read\s+the\s+following|Directions?|Passage|काव्यांश|गद्यांश|कविता)\b', t, flags=re.I)[0].strip()
+    # Truncate at explicit [EN] or [HI] tags or markdown footers
+    t = re.split(r'(?:\s+|^)\[(?:EN|HI)\]', t, flags=re.I)[0].strip()
+    t = re.split(r'(?:\n|\s+)(?:[-*]{3,}|\#{1,6}\s|\*\*Source:|\*\*Ans|\bAnswer:)', t, flags=re.I)[0].strip()
+    t = re.split(r'\n\s*(?:##\s*)?(?:भाग|Part)\s*(?:I{1,3}|IV|V|[1-5])\b', t, flags=re.I)[0].strip()
+    t = re.split(r'\n\s*(?:\*{1,2})?(?:निम्नलिखित|Read\s+the\s+following|Directions?)\b', t, flags=re.I)[0].strip()
     # Strip prefixes like (A) , A. , 1. , (1)  (must have space following or delimiter)
     t = re.sub(r'^\([A-D1-4]\)\s*', '', t)
     t = re.sub(r'^[A-D1-4][\.\:]\s+', '', t)
@@ -170,6 +171,9 @@ def extract_passages_from_text(text, prefix, allowed_range=(31, 90)):
         
         if is_dir_header and has_passage_kw:
             dir_text = line.replace('**', '').strip()
+            if 'पठित्वा' in dir_text or 'अधोलिखित' in dir_text:
+                i += 1
+                continue
             q_start, q_end = extract_passage_range(dir_text)
             
             if q_start and q_end and allowed_range[0] <= q_start <= allowed_range[1]:

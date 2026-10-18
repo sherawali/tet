@@ -38,17 +38,17 @@ def clean_opt(s):
     if re.fullmatch(r'\([A-D1-4]\)', t):
         return f"Part {t}"
     # Truncate at markdown headers
-    t = re.split(r'(?:\n|^|\s{2,}|\s+)(?:\#{1,6}\s|\*{3,}|-{3,})', t)[0].strip()
-    # Truncate at section titles like ## Part II or Part II or भाग II
-    t = re.split(r'(?:\n|^|\s{2,}|\s+)(?:##\s*)?(?:भाग|Part)\s*(?:I{1,3}|IV|V|[1-5])\b', t, flags=re.I)[0].strip()
-    # Truncate at passage directives like **निम्नलिखित..., **Read the following..., *Directions..., Directions:
-    t = re.split(r'(?:\n|^|\s{2,}|\s+)(?:\*{1,2})?(?:निम्नलिखित|Read\s+the\s+following|Directions?|Passage|काव्यांश|गद्यांश|कविता)\b', t, flags=re.I)[0].strip()
+    t = re.split(r'\n\s*(?:\#{1,6}\s|\*{3,}|-{3,})', t)[0].strip()
+    # Truncate at section titles like ## Part II or Part II:
+    t = re.split(r'\n\s*(?:##\s*)?(?:भाग|Part)\s*(?:I{1,3}|IV|V|[1-5])\b', t, flags=re.I)[0].strip()
+    # Truncate at passage directives like **निम्नलिखित..., **Read the following..., *Directions:
+    t = re.split(r'\n\s*(?:\*{1,2})?(?:निम्नलिखित|Read\s+the\s+following|Directions?\s*:|Passage\s*:|काव्यांश\s*को\s*पढ़कर|गद्यांश\s*को\s*पढ़कर)', t, flags=re.I)[0].strip()
     # Truncate at italic passage titles like *बावड़ी..., *बरगद..., *The Stepwells..., *The Banyan...
     t = re.split(r'(?:\n|^|\s{2,})\*[^*]+\*', t)[0].strip()
-    # Truncate at answers or tags
-    t = re.split(r'(?:\n|^|\s{2,})(?:\*\*?(?:Ans|Answer|उत्तर)|\[(?:EN|HI|UTET|CTET))', t, flags=re.I)[0].strip()
-    # Truncate at next Q marker
-    t = re.split(r'(?:\n|^|\s{2,})(?:\*\*?Q\d+[\.:]|\d{1,3}\.)', t)[0].strip()
+    # Truncate at answers or tags (require opening bracket for tags)
+    t = re.split(r'(?:\n|^|\s{2,})(?:\*\*?(?:Ans|Answer|उत्तर)|\[(?:EN|HI|UTET|CTET)\])', t, flags=re.I)[0].strip()
+    # Truncate at next Q marker (only on newline with space)
+    t = re.split(r'\n\s*(?:\*\*?Q\d+[\.:]|\d{1,3}\.\s+[A-Za-z\u0900-\u097F])', t)[0].strip()
     # Strip leading markers like (A), A., 1., etc.
     t = re.sub(r'^\([A-D1-4]\)\s*', '', t)
     t = re.sub(r'^[A-D1-4][\.\:]\s+', '', t)
@@ -62,8 +62,8 @@ def truncate_option_block(content):
     cut_patterns = [
         r'\n\s*#{1,6}\s',
         r'\n\s*[-*]{3,}',
-        r'(?:\n\s*|\s{2,})(?:\*{1,2})?(?:Passage|Directions?|निम्नलिखित|Read\s+the\s+following|काव्यांश|गद्यांश|कविता)\b',
-        r'(?:\n\s*|\s{2,})(?:##\s*)?(?:भाग|Part)\s*(?:I{1,3}|IV|V|[1-5])\b',
+        r'\n\s*(?:\*{1,2})?(?:Passage\s*:|Directions?\s*:|निम्नलिखित|Read\s+the\s+following|काव्यांश\s*को\s*पढ़कर|गद्यांश\s*को\s*पढ़कर)',
+        r'\n\s*(?:##\s*)?(?:भाग|Part)\s*(?:I{1,3}|IV|V|[1-5])\b',
         r'\n\s*\*[^*]+\*',
         r'\n\s*\*\*Q\d+\.',
         r'\n\s*\*\*Answer',
