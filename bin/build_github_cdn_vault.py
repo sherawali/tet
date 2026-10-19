@@ -9,6 +9,11 @@ def build_cdn():
     cdn_dir = 'cdn'
     packs_dir = os.path.join(cdn_dir, 'packs')
     os.makedirs(packs_dir, exist_ok=True)
+    # Remove stale packs from earlier builds (they carry old/corrupted data and
+    # confuse audits; the manifest only references the freshly written files).
+    for fn in os.listdir(packs_dir):
+        if fn.startswith('pack-') and fn.endswith('.json'):
+            os.remove(os.path.join(packs_dir, fn))
 
     # 1. Connect to SQLite
     conn = sqlite3.connect(db_path)
@@ -167,8 +172,8 @@ def build_cdn():
     # 7. Build Manifest with remote_config
     manifest = {
         'schema': 2,
-        'bank_version': 2026101816,
-        'bank_version_str': '20261018_master_vault_clean_v16',
+        'bank_version': 2026101917,
+        'bank_version_str': '20261019_master_vault_clean_v17',
         'generated': datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ'),
         'total': total_q,
         'papers_count': len(forms_list),

@@ -672,13 +672,39 @@
   - `flutter test test/html_booklet_builder_test.dart`: **10/10 tests passed**.
   - **Signing Keys:** 100% safe, untouched, and secure.
 
+### 2026-10-19: Booklet Render Corruption Root-Cause Fix, Vault v17 Repair & CDN Rebuild
+- **Reported symptom (student booklet):** paragraphs/options merging, passage + poem questions rendering incomplete/wrong.
+- **ROOT CAUSE (found in `clean_opt` of `bin/build_master_vault.py` + `bin/ingest_ctet_vault.py`):**
+  - `^\(?[1-4]\)?\s+` stripped REAL numeric option values ("4 सेमी²"→"सेमी²", "2 घण्टे"→"घण्टे", "4 : 11"→": 11") → duplicated/empty-looking options.
+  - `^\([A-D1-4]\)\s*` ate the real leading marker of combination options ("(A), (B) and (C)"→", (B) and (C)", "(1) and (3)"→"and (3)") and Assertion-Reason options ("(A) is true but (R)"→"is true but (R)").
+  - `^[-*]\s*` ate minus signs ("-273 K"→"273 K").
+  - **FIXED in both scripts:** `_strip_true_marker()` only strips true markers, never when the remainder starts with `,`/another marker/`and|और|is|are|Both|दोनों`; bullets need whitespace. Unit-tested 15 cases.
+- **Passage corruption (CTET Jan 2020 Set-E = "2020-pyq"):**
+  - `ctet-p1-2020-pyq_p2` body was only an instruction stub — full **Graphology** prose RESTORED (6 paragraphs, testbook.com OCR cleaned) + dir_text restored; q127/q128 relinked to seq 7/8 (paper order Q121-128).
+  - `ctet-p1-2020-pyq_p1` instruction line ("गद्यांश पढ़कर प्रश्न 91–99...") moved to dir_text; q098/q099 relinked seq 7/8 (q097 is standalone Hindi grammar, correctly unlinked).
+  - `set-b_p1` CJK "。" → "।".
+- **New reusable tools:** `bin/audit_render_quality.py` (report → `bin/audit_render_quality_report.md`) + `bin/repair_passages_and_options.py` (idempotent, `--dry-run`; bank_version → `20261019_master_vault_clean_v17`).
+- **Repair scope (~60 questions fixed, answers never touched):** ratio/unit/number-eaten options (31a09956d29dffba, ee2fe2b861b85a7b, 84178bc000329263, 5a3017f490b0e804, 5881dff9a1f1cc91, c87f56e875592c97 + 3 speed-dup copies, 8ee9ef30138569da + 71ad96af1704b7ff, a47ac8d127ae6147, 4e5e3ade2b89c80a, ctet-p1-2026-pyq_q050, ctet-p2-ms-mock-08_q112, ctet-p2-ms-mock-01_q099/q101, 04_q095/q116, 05_q094/q101, 07_q114, 08_q117, mock times/ratio items, UTET 2021/22 board items…); marker-stripped EN combos restored via Hindi mirror (generic sweep); "Poem:"-header leaks in q099 options; ctet-p1-2024-pyq_q075 reconstructed from theexampillar.com (Answer–(2) confirms key).
+- **Audit residual (197 findings) = known/false-positive classes only:** 12 duplicate_options + 5 numeric-stripped are FLAGGED manual-verify items (`0fe8c6dfcf258691`, `16f91d714a7bd0e5`, `0235f2d925c7585c`, `fc7117021c48f3d2`, `ctet-p2-ms-mock-02_q113` source-dup, `ctet-p2-ms-mock-05_q111`, `e803e654d36cb122` false-positive "unit"); 171 passage_ref_but_unlinked mostly legit inline refs; 7 question_text + 2 section_header findings are phrasing false positives.
+- **Dart renderer hardening (`lib/services/html_booklet_builder.dart`):**
+  - `ensureOptionLabel` rewritten: generic continuation-marker repair ("(A)"/"(1)" heuristic; leaves complete "Both (A)…" options alone).
+  - New `formatOptionHtml` (marker repair + markdown + `\n`→`<br>`) used at all 4 option call-sites.
+  - `splitPassageDirections`: leaked "निर्देश/Directions/Read the extract" line moves to the directions display.
+  - `formatProseBody` reflows PDF wrap-newlines (paragraph creep fix).
+  - Default stem branch: `\n`→`<br>` now applied AFTER escaping (was rendering literal `&lt;br&gt;`).
+  - 2B/2C match-table branches gated behind `isMatchStem` (verified: only 1 dashed-pair stem in 9,720, keyword present; existing 10 tests unaffected).
+- **CDN rebuilt from repaired DB:** `bin/build_github_cdn_vault.py` now deletes stale packs first (130 stale corrupted packs removed!), manifest `bank_version = 2026101917 / 20261019_master_vault_clean_v17`, 49 packs + papers.json regenerated and spot-verified (q075 options, Graphology body in pack-0029).
+- **Needs Pitaaji's verification (FLAGGED, do not guess):** `6411f8088b636b61` (ratio "4 : 3 : 5" restored, stem% vs key may still be off), `ctet-p1-mock-06_q043` (key says "1 मी" but math says "1 मी 20 सेमी"), `fc7117021c48f3d2` option[3], `ctet-p2-ms-mock-02_q113` [1]/[3] source-dup, and the 5 unreconstructable items above.
+
 ---
 
 ## 📌 Next Steps & Timeline
 1. Master PRD Blueprint Prompt delivered in `prompts/TET_APP_COMPLETE_PRD_MASTER_PROMPT.md`.
 2. All 9,720 questions, 62 papers, and CDN packs live on GitHub `main` branch.
 3. Keystores (`*.jks`, `key.properties`) verified 100% safe and secure.
-4. Ready for app release packaging or further instructions from Pitaaji.
+4. **v17 repair is done locally (DB + Dart + CDN).** Next: Pitaaji runs `flutter analyze` + `flutter test` + builds the app and checks the previously broken booklet questions (CTET Jan 2020 Set-E Q121-128 Graphology, CTET 2024 Q64/71/74/75, ratio/unit maths questions).
+5. Verify the FLAGGED items in `bin/audit_render_quality_report.md` against source papers (list in 2026-10-19 entry above).
+6. After app test/approval — push CDN v17 live and close student report issues if verified.
 
 
 

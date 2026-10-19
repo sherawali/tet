@@ -30,27 +30,73 @@ class HtmlBookletBuilder {
   }
 
   static String formatProseBody(String body) {
+    // Paragraphs = blank-line separated. Single newlines inside a paragraph are
+    // PDF wrap artifacts: reflow them with spaces so paragraphs do not visually
+    // splinter into the question area below.
     final paragraphs = body.trim().split(RegExp(r'\n\s*\n'));
     final htmlP = <String>[];
     for (final p in paragraphs) {
       final s = p.trim();
       if (s.isNotEmpty) {
-        final cleanP = s.split('\n').map((l) => escape(l.trim())).where((l) => l.isNotEmpty).join('<br>');
-        htmlP.add('<p class="prose-p">$cleanP</p>');
+        final reflowed = s
+            .split('\n')
+            .map((l) => l.trim())
+            .where((l) => l.isNotEmpty)
+            .join(' ');
+        htmlP.add('<p class="prose-p">${escape(reflowed)}</p>');
       }
     }
     return htmlP.join('\n');
   }
 
+  /// Splits a leaked instruction/direction line off a passage body so it is
+  /// shown as directions instead of becoming the first "paragraph" of the
+  /// passage. Returns the merged directions and the cleaned body.
+  static ({String dir, String body}) splitPassageDirections(String body, String dir) {
+    var b = body.trim();
+    var d = dir.trim();
+    final instr = RegExp(
+      r'^\s*(?:\*\*)?(?:निर्देश|Directions?)\b[^\n]*',
+      caseSensitive: false,
+    );
+    final readInstr = RegExp(
+      r'^\s*(?:अधोलिखित|निम्नलिखित|नीचे\s+दिया\s+गया|Read\s+the\s+(?:extract|passage|poem))\b[^\n]*(?:पढ़कर|के\s+आधार|given\s+below)[^\n]*$',
+      caseSensitive: false,
+    );
+    final m = instr.firstMatch(b) ?? readInstr.firstMatch(b);
+    if (m != null) {
+      final line = m.group(0)!.trim().replaceAll(RegExp(r'[\*\s]+$'), '');
+      b = b.substring(m.end).trim();
+      if (d.isEmpty) {
+        d = line;
+      } else if (!d.contains(line) && line.length > 12) {
+        d = '$d\n$line';
+      }
+    }
+    return (dir: d, body: b);
+  }
+
   static String ensureOptionLabel(String opt) {
     var s = opt.trim();
-    if (RegExp(r'^(?:और\s*\(R\)|\(R\)\s*और|and\s*\(R\)|is\s*true\s*but\s*\(R\)|is\s*false\s*but\s*\(R\))', caseSensitive: false).hasMatch(s)) {
-      s = '(A) $s';
-    }
-    if (RegExp(r'^(?:और\s*\(B\)|\(B\)\s*और|and\s*\(B\)|is\s*true\s*but\s*\(B\)|is\s*false\s*but\s*\(B\))', caseSensitive: false).hasMatch(s)) {
-      s = '(A) $s';
+    // Safety net for stale vaults: an option that starts with a continuation
+    // fragment (", (B) and (C)", "and (3)", "is true but (R)") lost its real
+    // leading marker "(A)"/"(1)" at ingest time. Restore a display marker.
+    // Note: "Both (A) and (R) are true" is a COMPLETE option and is left alone.
+    final usesDigitMarkers = RegExp(r'\([1-9]\)').hasMatch(s);
+    final isContinuation = RegExp(
+      r'^(?:[,،]\s*\(|(?:और|तथा|and)\s*\(|is\s+(?:true|false|right|wrong)\b|are\s+(?:true|false|right|wrong)\b)',
+      caseSensitive: false,
+    ).hasMatch(s);
+    if (isContinuation) {
+      s = '${usesDigitMarkers ? '(1)' : '(A)'} $s';
     }
     return s;
+  }
+
+  /// Formats one option cell: continuation-marker repair + markdown + newline
+  /// preservation (multi-line combo options keep their line breaks).
+  static String formatOptionHtml(String opt) {
+    return formatInlineMarkdown(ensureOptionLabel(opt)).replaceAll('\n', '<br>');
   }
 
   static String formatInlineMarkdown(String text) {
@@ -314,11 +360,14 @@ class HtmlBookletBuilder {
     }
 
     // 2B. Check Match-The-Following Type 2: Dashed Pairs (e.g. 1. नीलगिरी – (a) अनाईमुडी 2. सतपुड़ा – (b) डोडाबेट्टा)
+    final isMatchStem = RegExp(r'(?:सुमेलित|मिलान|Match|युग्म|जोड़ा|जोड़े|कॉलम|स्तम्भ|सूची)', caseSensitive: false).hasMatch(text);
+    // Gated behind isMatchStem so a non-match stem with dashed pairs can never
+    // be misparsed into a table.
     final pairMatches = RegExp(
       r'(?:^|[\s\.\:\-।;,])(\d+|[a-eA-E]|[i-vI-V]+)[\.\)]\s*([^–\-]+?)\s*[–\-]\s*(?:\(([a-zA-Z0-9]+|[i-vI-V]+)\)|([a-zA-Z0-9]+|[i-vI-V]+)[\.\)])\s*([^0-9\–\-\n]+?)(?=(?:[\s\.\:\-।;,](?:\d+|[a-eA-E]|[i-vI-V]+)[\.\)]|$|\s*कूट\s*:|\s*कोड\s*:))',
     ).allMatches(text).toList();
 
-    if (pairMatches.length >= 2) {
+    if (isMatchStem && pairMatches.length >= 2) {
       final firstStart = pairMatches.first.start;
       final intro = firstStart > 0 ? text.substring(0, firstStart).trim() : '';
       final lastEnd = pairMatches.last.end;
@@ -350,7 +399,6 @@ class HtmlBookletBuilder {
       return b.toString();
     }
 
-    final isMatchStem = RegExp(r'(?:सुमेलित|मिलान|Match|युग्म|जोड़ा|जोड़े|कॉलम|स्तम्भ|सूची)', caseSensitive: false).hasMatch(text);
 
     // 2C. Check Match-The-Following Type 3: Alternating Pairs (e.g. A. X i. Y B. Z ii. W or (A) X (i) Y)
     final matchItems = RegExp(
@@ -382,7 +430,7 @@ class HtmlBookletBuilder {
         if (isAlternatingMatch) break;
       }
 
-      if (isAlternatingMatch && evenRaw.length == oddRaw.length) {
+      if (isMatchStem && isAlternatingMatch && evenRaw.length == oddRaw.length) {
         final firstStart = matchItems.first.start;
         final intro = firstStart > 0 ? text.substring(0, firstStart).trim() : '';
         var lastRightText = texts.last;
@@ -755,12 +803,14 @@ class HtmlBookletBuilder {
     }
 
     // 5. Default: Paragraph / Multi-line preservation
+    // (Replace \n with <br> AFTER escaping/markdown — otherwise the tags
+    // render as literal "&lt;br&gt;" text.)
     final paragraphs = text.split(RegExp(r'\n\s*\n'));
     if (paragraphs.length > 1) {
-      return paragraphs.map((p) => '<div class="stem-p">${formatInlineMarkdown(p.replaceAll('\n', '<br>'))}</div>').join('\n');
+      return paragraphs.map((p) => '<div class="stem-p">${formatInlineMarkdown(p).replaceAll('\n', '<br>')}</div>').join('\n');
     }
 
-    return '<div class="stem-p">${formatInlineMarkdown(text.replaceAll('\n', '<br>'))}</div>';
+    return '<div class="stem-p">${formatInlineMarkdown(text).replaceAll('\n', '<br>')}</div>';
   }
 
   /// Builds the complete HTML test booklet from a [TestSession]
@@ -1030,11 +1080,12 @@ class HtmlBookletBuilder {
         ];
         final qRangeStr = related.isNotEmpty ? ' (प्रश्न ${related.first}–${related.last})' : '';
         final typeLabel = isPoem ? 'काव्यांश / कविता$qRangeStr' : 'अपठित गद्यांश$qRangeStr';
-        final formattedBody = isPoem ? formatPoemBody(passage.cleanBody) : formatProseBody(passage.cleanBody);
+        final dirSplit = splitPassageDirections(passage.cleanBody, passage.displayDir);
+        final formattedBody = isPoem ? formatPoemBody(dirSplit.body) : formatProseBody(dirSplit.body);
 
         passagesDict[pid] = {
           'kind': passage.kind,
-          'dir': passage.displayDir,
+          'dir': dirSplit.dir,
           'body': formattedBody,
         };
 
@@ -1042,7 +1093,7 @@ class HtmlBookletBuilder {
         <div class="stimulus-wrapper" id="stimulus-$pid">
           <div class="stimulus-header ${isPoem ? 'poem-head' : ''}">
             <span>$icon</span>
-            <span><b>$typeLabel</b> — ${escape(passage.displayDir)}</span>
+            <span><b>$typeLabel</b> — ${escape(dirSplit.dir)}</span>
           </div>
           <div class="stimulus-content ${isPoem ? 'poem-body' : ''}">
             $formattedBody
@@ -1074,7 +1125,7 @@ class HtmlBookletBuilder {
         for (int i = 0; i < optsHi.length; i++) {
           h.writeln('          <div class="option-row" data-optidx="$i" onclick="selectOption($qNum, $i)">');
           h.writeln('            <span class="opt-badge">${optLetters[i]}</span>');
-          h.writeln('            <span>${formatInlineMarkdown(ensureOptionLabel(optsHi[i]))}</span>');
+          h.writeln('            <span>${formatOptionHtml(optsHi[i])}</span>');
           h.writeln('          </div>');
         }
         h.writeln('        </div>');
@@ -1089,7 +1140,7 @@ class HtmlBookletBuilder {
         for (int i = 0; i < optsEn.length; i++) {
           h.writeln('          <div class="option-row" data-optidx="$i" onclick="selectOption($qNum, $i)">');
           h.writeln('            <span class="opt-badge">${optLetters[i]}</span>');
-          h.writeln('            <span>${formatInlineMarkdown(ensureOptionLabel(optsEn[i]))}</span>');
+          h.writeln('            <span>${formatOptionHtml(optsEn[i])}</span>');
           h.writeln('          </div>');
         }
         h.writeln('        </div>');
@@ -1110,15 +1161,15 @@ class HtmlBookletBuilder {
         }
         h.writeln('      <div class="options-list $gridTwoClass">');
         for (int i = 0; i < optsHi.length; i++) {
-          final hiText = ensureOptionLabel(optsHi[i]);
-          final enText = (i < optsEn.length) ? ensureOptionLabel(optsEn[i]) : '';
+          final hiText = optsHi[i];
+          final enText = (i < optsEn.length) ? optsEn[i] : '';
           final hasDistinctEn = enText.trim().isNotEmpty && enText.trim() != hiText.trim();
           h.writeln('        <div class="option-row" data-optidx="$i" onclick="selectOption($qNum, $i)">');
           h.writeln('          <span class="opt-badge">${optLetters[i]}</span>');
           h.writeln('          <div class="opt-content">');
-          h.writeln('            <span class="opt-primary">${formatInlineMarkdown(hiText)}</span>');
+          h.writeln('            <span class="opt-primary">${formatOptionHtml(hiText)}</span>');
           if (hasDistinctEn) {
-            h.writeln('            <span class="opt-secondary">${formatInlineMarkdown(enText)}</span>');
+            h.writeln('            <span class="opt-secondary">${formatOptionHtml(enText)}</span>');
           }
           h.writeln('          </div>');
           h.writeln('        </div>');
@@ -1142,7 +1193,7 @@ class HtmlBookletBuilder {
         for (int i = 0; i < opts.length; i++) {
           h.writeln('        <div class="option-row" data-optidx="$i" onclick="selectOption($qNum, $i)">');
           h.writeln('          <span class="opt-badge">${optLetters[i]}</span>');
-          h.writeln('          <span>${formatInlineMarkdown(ensureOptionLabel(opts[i]))}</span>');
+          h.writeln('          <span>${formatOptionHtml(opts[i])}</span>');
           h.writeln('        </div>');
         }
         h.writeln('      </div>');

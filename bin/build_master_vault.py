@@ -29,11 +29,32 @@ def clean_opt(s):
     t = re.split(r'(?:\n|\s+)(?:[-*]{3,}|\#{1,6}\s|\*\*Source:|\*\*Ans|\bAnswer:)', t, flags=re.I)[0].strip()
     t = re.split(r'\n\s*(?:##\s*)?(?:भाग|Part)\s*(?:I{1,3}|IV|V|[1-5])\b', t, flags=re.I)[0].strip()
     t = re.split(r'\n\s*(?:\*{1,2})?(?:निम्नलिखित|Read\s+the\s+following|Directions?)\b', t, flags=re.I)[0].strip()
-    # Strip prefixes like (A) , A. , 1. , (1)  (must have space following or delimiter)
-    t = re.sub(r'^\([A-D1-4]\)\s*', '', t)
-    t = re.sub(r'^[A-D1-4][\.\:]\s+', '', t)
-    t = re.sub(r'^\(?[1-4]\)?\s+', '', t)
-    t = re.sub(r'^[-*]\s*', '', t)
+    # Strip TRUE leading option markers only ("(A) text", "A. text", "(1) text").
+    # NEVER strip:
+    #  - genuine numeric values ("4 सेमी²", "2 घण्टे", "4 : 11") — the old bare
+    #    "^\(?[1-4]\)?\s+" rule ate them and made options duplicate/empty;
+    #  - the first marker of a combination option ("(A), (B) and (C)",
+    #    "(1) and (2)") — the old rules ate it and left ", (B) and (C)";
+    #  - Assertion/Reason content markers ("(A) is true but (R)") — same bug;
+    #  - minus-signed values ("-273 K") — "^[-*]\s*" ate the sign.
+    def _strip_true_marker(tx):
+        m = re.match(r'^[\(（]\s*([A-Ea-e1-9])\s*[\)）]\s*(.*)$', tx, flags=re.S)
+        if not m:
+            m2 = re.match(r'^([A-Da-d1-4])[\.\:]\s+(.*)$', tx, flags=re.S)
+            if not m2:
+                return tx
+            rest = m2.group(2)
+            marker_txt = m2.group(1) + '.'
+        else:
+            rest = m.group(2)
+            marker_txt = '(' + m.group(1) + ')'
+        if (re.search(r'[\(（][A-Ea-e1-9][\)）]', rest)  # another marker inside -> combo/AR
+                or re.match(r'^\s*[,،]', rest)             # ", (B) ..." -> combo
+                or re.match(r'^(?:and|और|तथा|is|are|Both|दोनों)\b', rest, flags=re.I)):
+            return tx  # marker is part of the content
+        return rest.lstrip()
+    t = _strip_true_marker(t)
+    t = re.sub(r'^[-*\u2013\u2014]\s+', '', t)  # bullet dashes only (need space)
     t = re.sub(r'\s+', ' ', t).strip()
     return t
 

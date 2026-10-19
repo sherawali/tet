@@ -1,0 +1,217 @@
+# Render-Quality Audit Report
+
+DB: `assets/database/tet_mock_vault.db`
+
+Total findings: **197**
+
+## duplicate_options (12)
+
+- `a7dbdea4d70e91fa (english): ['Vidya + Alaya', 'Vidya + Laya', 'Vid + Yalaya', 'Vidya + Alaya']`
+- `16f91d714a7bd0e5 (hindi): ['मिनट', 'मिनट', '1/2 मिनट', '1/4 मिनट']`
+- `0fe8c6dfcf258691 (hindi): ['लाख', 'लाख', 'लाख', '10 लाख']`
+- `0fe8c6dfcf258691 (english): ['lakh', 'lakh', 'lakh', '10 lakh']`
+- `0235f2d925c7585c (hindi): ['1', '1', '1', '2']`
+- `0235f2d925c7585c (english): ['1', '1', '1', '2']`
+- `fc7117021c48f3d2 (hindi): ['(iv)(i)(ii)(iii)', '(i)(ii)(iv)(iii)', '(i)(ii)(iii)(iv)', '(i)(ii)(iii)(iv)']`
+- `fc7117021c48f3d2 (english): ['(iv)(i)(ii)(iii)', '(i)(ii)(iv)(iii)', '(i)(ii)(iii)(iv)', '(i)(ii)(iii)(iv)']`
+- `ctet-p2-ms-mock-02_q113 (hindi): ['3 एवं -4', '2 एवं 6', '3 एवं 4', '2 एवं 6']`
+- `ctet-p2-ms-mock-02_q113 (english): ['3 and -4', '2 and 6', '3 and 4', '2 and 6']`
+- `ctet-p2-ms-mock-05_q111 (hindi): ['4', '0', '2', '2']`
+- `ctet-p2-ms-mock-05_q111 (english): ['4', '0', '2', '2']`
+
+## option_numeric_value_stripped (5)
+
+- `e803e654d36cb122 (english)[0] = unit`
+- `16f91d714a7bd0e5 (hindi)[0] = मिनट`
+- `16f91d714a7bd0e5 (hindi)[1] = मिनट`
+- `16f91d714a7bd0e5 (english)[0] = minute`
+- `16f91d714a7bd0e5 (english)[1] = minutes`
+
+## passage_ref_but_unlinked (171)
+
+- `29bed4e57dc7a3cb`
+- `125d9b5083764a9a`
+- `af076ed6a464b722`
+- `07d3c4182e8a1ffb`
+- `a969f2b1f57e3dc5`
+- `2b19231183dc5f29`
+- `baff2c509d104978`
+- `ea3c607d680e0f0d`
+- `7176d7829b703e0d`
+- `3e967a5d8294a112`
+- `4bdd670f870d2080`
+- `344df2a6c592ea72`
+- `7332c463d11f79ed`
+- `910e88795d36757f`
+- `e69f79d52d997afe`
+- `c385d65a7fc5a613`
+- `d7881e0d2b3f13af`
+- `25241dd9ddd5b05b`
+- `c8fa2985fbd31ae2`
+- `af038af7efb21ba6`
+- `8b7ab25e97e40094`
+- `8ec6d8eeceeab173`
+- `2841a57a3b88aa3a`
+- `46b3c144be391fb3`
+- `b33ef4c470bfe55f`
+- `9e08476ac9fea739`
+- `6722988163f22c4e`
+- `373fa1e60ab9702d`
+- `4282a47cc2777656`
+- `bd127d411de76a26`
+- `d87c00c976110da0`
+- `b4759971be4b66c8`
+- `a06580d541a3c9c0`
+- `9aa34b47ecf4d3c8`
+- `037c687ae58da96f`
+- `d538a28abb43d341`
+- `9a666ca703afce2e`
+- `8c01ccd183c8d12b`
+- `8154347111dcceaa`
+- `f72df3bade24ce3e`
+- `f71bdb727667443e`
+- `f789346d232295cb`
+- `f9de903e62f98ce7`
+- `cc926de16fcd9f55`
+- `92b44a6787e2cd1b`
+- `806a05cf743cb9af`
+- `a622e928099c773d`
+- `c9a13772a7c2c673`
+- `382b73103b17f283`
+- `fd39774f30b6d36c`
+- `d28d51d568b7b023`
+- `c0891dff64e3d6ca`
+- `966bbfb0e4b3de1f`
+- `ctet-p1-2024-pyq_q132`
+- `ctet-p1-2021-pyq_q008`
+- `ctet-p1-2021-pyq_q121`
+- `ctet-p1-2021-pyq_q124`
+- `ctet-p1-2021-pyq_q125`
+- `ctet-p1-2021-pyq_q126`
+- `ctet-p1-2021-pyq_q132`
+- `ctet-p1-2021-pyq_q133`
+- `ctet-p1-2021-pyq_q134`
+- `ctet-p1-2020-pyq_q082`
+- `ctet-p1-2020-pyq_q132`
+- `ctet-p1-2020-pyq_q133`
+- `ctet-p1-2019-pyq_q121`
+- `ctet-p1-2019-pyq_q122`
+- `ctet-p1-2019-pyq_q123`
+- `ctet-p1-2019-pyq_q124`
+- `ctet-p1-2019-pyq_q129`
+- `ctet-p1-2019-pyq_q132`
+- `ctet-p1-2019-pyq_q135`
+- `ctet-p1-2018-pyq_q121`
+- `ctet-p1-2018-pyq_q122`
+- `ctet-p1-2018-pyq_q124`
+- `ctet-p1-2018-pyq_q125`
+- `ctet-p1-2018-pyq_q126`
+- `ctet-p1-2018-pyq_q127`
+- `ctet-p1-2018-pyq_q128`
+- `ctet-p1-2018-pyq_q129`
+- `ctet-p1-mock-03_q118`
+- `ctet-p1-mock-04_q026`
+- `ctet-p2-ms-mock-01_q025`
+- `ctet-p2-ms-mock-01_q061`
+- `ctet-p2-ms-mock-01_q065`
+- `ctet-p2-ms-mock-01_q066`
+- `ctet-p2-ms-mock-01_q081`
+- `ctet-p2-ms-mock-01_q086`
+- `ctet-p2-ms-mock-02_q059`
+- `ctet-p2-ms-mock-02_q061`
+- `ctet-p2-ms-mock-02_q062`
+- `ctet-p2-ms-mock-02_q065`
+- `ctet-p2-ms-mock-02_q066`
+- `ctet-p2-ms-mock-02_q067`
+- `ctet-p2-ms-mock-02_q081`
+- `ctet-p2-ms-mock-03_q031`
+- `ctet-p2-ms-mock-03_q067`
+- `ctet-p2-ms-mock-03_q078`
+- `ctet-p2-ms-mock-03_q085`
+- `ctet-p2-ms-mock-04_q031`
+- `ctet-p2-ms-mock-04_q061`
+- `ctet-p2-ms-mock-04_q062`
+- `ctet-p2-ms-mock-04_q065`
+- `ctet-p2-ms-mock-04_q066`
+- `ctet-p2-ms-mock-04_q068`
+- `ctet-p2-ms-mock-05_q031`
+- `ctet-p2-ms-mock-05_q047`
+- `ctet-p2-ms-mock-05_q061`
+- `ctet-p2-ms-mock-05_q068`
+- `ctet-p2-ms-mock-05_q089`
+- `ctet-p2-ms-mock-06_q031`
+- `ctet-p2-ms-mock-06_q061`
+- `ctet-p2-ms-mock-06_q067`
+- `ctet-p2-ms-mock-06_q068`
+- `ctet-p2-ms-mock-06_q085`
+- `ctet-p2-ms-mock-07_q031`
+- `ctet-p2-ms-mock-07_q061`
+- `ctet-p2-ms-mock-07_q068`
+- `ctet-p2-ms-mock-07_q082`
+- `ctet-p2-ms-mock-07_q085`
+- `ctet-p2-ms-mock-08_q031`
+- `ctet-p2-ms-mock-08_q038`
+- `ctet-p2-ms-mock-08_q068`
+- `ctet-p2-ms-mock-08_q087`
+- `ctet-p2-sst-mock-01_q061`
+- `ctet-p2-sst-mock-01_q065`
+- `ctet-p2-sst-mock-01_q066`
+- `ctet-p2-sst-mock-01_q124`
+- `ctet-p2-sst-mock-02_q061`
+- `ctet-p2-sst-mock-02_q062`
+- `ctet-p2-sst-mock-02_q065`
+- `ctet-p2-sst-mock-02_q066`
+- `ctet-p2-sst-mock-02_q067`
+- `ctet-p2-sst-mock-02_q081`
+- `ctet-p2-sst-mock-02_q097`
+- `ctet-p2-sst-mock-03_q031`
+- `ctet-p2-sst-mock-03_q067`
+- `ctet-p2-sst-mock-03_q077`
+- `ctet-p2-sst-mock-03_q084`
+- `ctet-p2-sst-mock-03_q121`
+- `ctet-p2-sst-mock-04_q031`
+- `ctet-p2-sst-mock-04_q060`
+- `ctet-p2-sst-mock-04_q061`
+- `ctet-p2-sst-mock-04_q062`
+- `ctet-p2-sst-mock-04_q065`
+- `ctet-p2-sst-mock-04_q066`
+- `ctet-p2-sst-mock-04_q068`
+- `ctet-p2-sst-mock-05_q031`
+- `ctet-p2-sst-mock-05_q061`
+- `ctet-p2-sst-mock-05_q068`
+- `ctet-p2-sst-mock-06_q009`
+- `ctet-p2-sst-mock-06_q031`
+- `ctet-p2-sst-mock-06_q061`
+- `ctet-p2-sst-mock-06_q067`
+- `ctet-p2-sst-mock-06_q068`
+- `ctet-p2-sst-mock-06_q078`
+- `ctet-p2-sst-mock-06_q085`
+- `ctet-p2-sst-mock-06_q086`
+- `ctet-p2-sst-mock-07_q031`
+- `ctet-p2-sst-mock-07_q061`
+- `ctet-p2-sst-mock-07_q068`
+- `ctet-p2-sst-mock-07_q086`
+- `ctet-p2-sst-mock-08_q031`
+- `ctet-p2-sst-mock-08_q038`
+- `ctet-p2-sst-mock-08_q058`
+- `ctet-p2-sst-mock-08_q068`
+- `ctet-p2-sst-mock-08_q077`
+- `ctet-p2-sst-mock-08_q081`
+- `ctet-p2-sst-mock-08_q084`
+- `ctet-p2-sst-mock-08_q097`
+- `ctet-p2-sst-mock-08_q116`
+
+## question_text_inside_option (7)
+
+- `8608d0a25d953764 (hindi)[0] = प्रकरण पूरा करने के बाद अभ्यास में दिये गये सभी प्रश्नों के उत्तर लिखवाना।`
+- `c4b597815314c0a3 (hindi)[0] = प्रकरण पूरा करने के बाद अभ्यास में दिये गये सभी प्रश्नों के उत्तर लिखवाना।`
+- `9c1b77b6a023adf6 (hindi)[1] = उनके लिए उपयुक्त खेलों में अन्य बच्चों के साथ भाग लेने के लिए प्रोत्साहित किया ज`
+- `ctet-p1-2024-pyq_q112 (hindi)[3] = क्या ये पुस्तकें एक से अधिक निर्देशात्मक प्रसंग में प्रयोग के लिए उपयुक्त हैं?`
+- `ctet-p1-2021-pyq_q115 (hindi)[2] = पाठ्यपुस्तक पर आधारित प्रश्नों के उत्तर देना।`
+- `ctet-p1-2019-pyq_q068 (hindi)[2] = बच्चों के उत्तरों को सही या गलत में आँकना।`
+- `ctet-p2-sst-mock-03_q106 (hindi)[2] = शिक्षक को अप्रत्याशित प्रश्नों के उत्तर देने एवं पाठ्यपुस्तक से आगे जाने देता है`
+
+## section_header_inside_stem (2)
+
+- `669de32792629ccf (hindi) = State the cause of regret in the poet in the beginning of the poem:`
+- `669de32792629ccf (english) = State the cause of regret in the poet in the beginning of the poem:`
