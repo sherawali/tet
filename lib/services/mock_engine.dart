@@ -130,9 +130,19 @@ class MockEngine {
     final Map<String, Passage> passageMap = {};
 
     final isPaper2 = config.exam.toLowerCase().endsWith('2');
+    final isCtet = config.exam.toLowerCase().startsWith('ctet');
 
-    final l1 = ExamService.instance.currentLang1.value.toLowerCase();
-    final l2 = ExamService.instance.currentLang2.value.toLowerCase();
+    // Vault section codes are not uniform:
+    //   CTET      → lang1_hindi / lang2_english
+    //   UTET 1/2  → hindi / english (some CTET-2/UTET-2 sets use hindi_2/english_1)
+    // Using the raw language name here silently produced empty language
+    // sections for CTET and for several UTET-2 sets.
+    final l1 = isCtet
+        ? 'lang1_hindi'
+        : ExamService.instance.currentLang1.value.toLowerCase();
+    final l2 = isCtet
+        ? 'lang2_english'
+        : ExamService.instance.currentLang2.value.toLowerCase();
 
     List<String> defaultSections;
     if (isPaper2) {
@@ -187,7 +197,7 @@ class MockEngine {
 
       // Pick intact reading comprehension passages for language sections (Hindi, English, Sanskrit)
       // Official Exam Standard: 1 Prose (गद्यांश) + 1 Poem (पद्यांश/काव्यांश)
-      if (passageGroups.isNotEmpty && (sec == 'hindi' || sec == 'english' || sec == 'sanskrit')) {
+      if (passageGroups.isNotEmpty && (sec.contains('hindi') || sec.contains('english') || sec.contains('sanskrit'))) {
         final List<String> prosePids = [];
         final List<String> poemPids = [];
 
@@ -366,7 +376,11 @@ class MockEngine {
 
     // 1. Try to load directly from paper_forms table
     try {
-      final forms = await db.getAvailablePaperForms(paper: isPaper2 ? 2 : 1, isPyqOnly: true);
+      final forms = await db.getAvailablePaperForms(
+        exam: currentExam.startsWith('c') ? 'ctet' : 'utet',
+        paper: isPaper2 ? 2 : 1,
+        isPyqOnly: true,
+      );
       Map<String, dynamic>? targetForm;
       for (final f in forms) {
         final fid = (f['id'] ?? '').toString().toLowerCase();

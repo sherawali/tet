@@ -145,7 +145,8 @@ class SyncService {
     try {
       final int previousCount = await db.getQuestionCount();
       final localVersionStr = await db.getMeta('bank_version');
-      final localVersion = int.tryParse(localVersionStr ?? '0') ?? 0;
+      final localVersionDigits = (localVersionStr ?? '').replaceAll(RegExp(r'\D'), '');
+      final localVersion = int.tryParse(localVersionDigits) ?? 0;
 
       onProgress?.call(0.05, 'बैंक घोषणा पत्र (manifest.json) जाँचा जा रहा है...');
 
@@ -169,6 +170,21 @@ class SyncService {
       final List<dynamic> packs = manifest['packs'] ?? [];
       final String remoteSig = _computePacksSignature(packs);
       final String? localSig = await db.getMeta('packs_signature');
+
+      // Never let an older remote CDN overwrite a newer bundled/local vault.
+      // (Without this guard, a v16 manifest silently reverted every local
+      // database repair on the next online launch.)
+      if (!force && !bypassCache && bankVersion > 0 && localVersion > 0 && bankVersion < localVersion) {
+        onProgress?.call(1.0, 'स्थानीय प्रश्न बैंक नवीनतम है (डाउनग्रेड रोका गया)');
+        return SyncResult(
+          success: true,
+          isUpToDate: true,
+          previousCount: previousCount,
+          newQuestionsAdded: 0,
+          totalCount: previousCount,
+          message: 'आपका स्थानीय प्रश्न बैंक सर्वर से नवीनतम है।',
+        );
+      }
 
       // Check if already up to date without re-downloading 40 packs (saving battery & bandwidth)
       final bool signatureMatches = localSig != null && localSig == remoteSig;

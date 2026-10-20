@@ -15,6 +15,11 @@ class DbHelper {
   static final DbHelper instance = DbHelper._internal();
   DbHelper._internal();
 
+  /// Version of the bundled SQLite vault in `assets/database/`.
+  /// Bumping this triggers a one-time copy from the asset bundle while keeping
+  /// the user's test history and mistake records intact.
+  static const String bundledVaultVersion = '2026102018';
+
   Database? _db;
 
   Future<Database> get database async {
@@ -184,7 +189,7 @@ class DbHelper {
           final v = res.isNotEmpty ? res.first['val']?.toString() : null;
           final qCountRes = await db.rawQuery('SELECT COUNT(*) as cnt FROM questions');
           final qCount = Sqflite.firstIntValue(qCountRes) ?? 0;
-          if (v != '20261018_master_vault_clean_v16' || qCount < 9720) {
+          if (v != bundledVaultVersion || qCount < 9720) {
             await _syncFromAssetDb(db);
           }
         } catch (_) {
@@ -202,7 +207,7 @@ class DbHelper {
       final v = res.isNotEmpty ? res.first['val']?.toString() : null;
       final qCountRes = await db.rawQuery('SELECT COUNT(*) as cnt FROM questions');
       final qCount = Sqflite.firstIntValue(qCountRes) ?? 0;
-      if (v != '20261018_master_vault_clean_v16' || qCount < 9720) {
+      if (v != bundledVaultVersion || qCount < 9720) {
         await _syncFromAssetDb(db);
       }
     } catch (_) {
@@ -580,6 +585,28 @@ class DbHelper {
   /// Public helper for constructing SQL where clauses based on exam and paper
   String examWhere(String? exam) => _examWhere(exam);
 
+  /// Language section codes differ across exams:
+  ///   CTET     → lang1_hindi / lang2_english
+  ///   UTET     → hindi / english
+  ///   UTET-2   → hindi_2 / english_1 in a few sets
+  /// This helper keeps paper assembly working for every variant.
+  static bool _langSectionMatch(
+    String section,
+    String lang,
+    int position,
+    bool isCtet,
+  ) {
+    final s = section.toLowerCase();
+    final l = lang.toLowerCase();
+    if (isCtet) {
+      return s == 'lang${position}_$l' || s.startsWith('lang${position}_');
+    }
+    if (s == l) return true;
+    if (s == '${l}_$position' || s == 'lang${position}_$l') return true;
+    if (position == 2 && (s == '${l}_1' || s == '${l}_2')) return true;
+    return false;
+  }
+
   String _examWhere(String? exam) {
     if (exam == null || exam.isEmpty) return '';
     final e = exam.toLowerCase().trim();
@@ -732,10 +759,11 @@ class DbHelper {
     final paperNum = isPaper2 ? 2 : 1;
 
     String? formId;
+    final isCtetForm = (exam ?? 'utet1').toLowerCase().startsWith('c');
     final forms = await db.query(
       'paper_forms',
-      where: 'paper = ? AND (exam_date LIKE ? OR id LIKE ? OR title LIKE ?)',
-      whereArgs: [paperNum, '%$year%', '%$year%', '%$year%'],
+      where: 'paper = ? AND exam = ? AND (exam_date LIKE ? OR id LIKE ? OR title LIKE ?)',
+      whereArgs: [paperNum, isCtetForm ? 'ctet' : 'utet', '%$year%', '%$year%', '%$year%'],
       limit: 1,
     );
     if (forms.isNotEmpty) {
@@ -759,8 +787,8 @@ class DbHelper {
       if (isPaper2) {
         final stream = ExamService.instance.isSocialStream ? 'social_studies' : 'math_science';
         final p2Cdp = allQs.where((q) => q.section.toLowerCase() == 'cdp').take(30).toList();
-        final p2L1 = allQs.where((q) => q.section.toLowerCase() == l1 || q.section.toLowerCase() == 'hindi').take(30).toList();
-        final p2L2 = allQs.where((q) => q.section.toLowerCase() == l2 || q.section.toLowerCase() == 'english').take(30).toList();
+        final p2L1 = allQs.where((q) => _langSectionMatch(q.section, l1, 1, isCtet)).take(30).toList();
+        final p2L2 = allQs.where((q) => _langSectionMatch(q.section, l2, 2, isCtet)).take(30).toList();
         final p2Stream = allQs.where((q) => q.section.toLowerCase() == stream).take(60).toList();
         final List<Question> ordered = [
           ...p2Cdp,
@@ -793,19 +821,23 @@ class DbHelper {
             mathQs.add(q);
           } else if (s == 'evs' && evsQs.length < 30) {
             evsQs.add(q);
-          } else if (s == l1 && (qnum == 0 || (qnum >= 91 && qnum <= 120)) && l1Qs.length < 30) {
+          } else if (_langSectionMatch(q.section, l1, 1, isCtet) && (qnum == 0 || (qnum >= 91 && qnum <= 120)) && l1Qs.length < 30) {
             l1Qs.add(q);
-          } else if (s == l2 && (qnum == 0 || (qnum >= 121 && qnum <= 150)) && l2Qs.length < 30) {
+          } else if (_langSectionMatch(q.section, l2, 2, isCtet) && (qnum == 0 || (qnum >= 121 && qnum <= 150)) && l2Qs.length < 30) {
             l2Qs.add(q);
           }
         }
         // Fallback for languages if appearances question numbers were not tagged
         if (l1Qs.length < 30) {
-          final remaining = allQs.where((q) => q.section.toLowerCase() == l1 && !l1Qs.contains(q));
+          final remaining = allQs.where((q) =>
+              _langSectionMatch(q.section, l1, 1, isCtet) && !l1Qs.contains(q));
           l1Qs.addAll(remaining.take(30 - l1Qs.length));
         }
         if (l2Qs.length < 30) {
-          final remaining = allQs.where((q) => q.section.toLowerCase() == l2 && !l2Qs.contains(q) && !l1Qs.contains(q));
+          final remaining = allQs.where((q) =>
+              _langSectionMatch(q.section, l2, 2, isCtet) &&
+              !l2Qs.contains(q) &&
+              !l1Qs.contains(q));
           l2Qs.addAll(remaining.take(30 - l2Qs.length));
         }
 
@@ -829,9 +861,9 @@ class DbHelper {
           final qnum = q.questionNumber ?? 0;
           if (s == 'cdp' && cdpQs.length < 30) {
             cdpQs.add(q);
-          } else if (s == l1 && (qnum == 0 || (qnum >= 31 && qnum <= 60)) && l1Qs.length < 30) {
+          } else if (_langSectionMatch(q.section, l1, 1, isCtet) && (qnum == 0 || (qnum >= 31 && qnum <= 60)) && l1Qs.length < 30) {
             l1Qs.add(q);
-          } else if (s == l2 && (qnum == 0 || (qnum >= 61 && qnum <= 90)) && l2Qs.length < 30) {
+          } else if (_langSectionMatch(q.section, l2, 2, isCtet) && (qnum == 0 || (qnum >= 61 && qnum <= 90)) && l2Qs.length < 30) {
             l2Qs.add(q);
           } else if (s == 'math' && mathQs.length < 30) {
             mathQs.add(q);
@@ -841,11 +873,15 @@ class DbHelper {
         }
         // Fallback for languages
         if (l1Qs.length < 30) {
-          final remaining = allQs.where((q) => q.section.toLowerCase() == l1 && !l1Qs.contains(q));
+          final remaining = allQs.where((q) =>
+              _langSectionMatch(q.section, l1, 1, isCtet) && !l1Qs.contains(q));
           l1Qs.addAll(remaining.take(30 - l1Qs.length));
         }
         if (l2Qs.length < 30) {
-          final remaining = allQs.where((q) => q.section.toLowerCase() == l2 && !l2Qs.contains(q) && !l1Qs.contains(q));
+          final remaining = allQs.where((q) =>
+              _langSectionMatch(q.section, l2, 2, isCtet) &&
+              !l2Qs.contains(q) &&
+              !l1Qs.contains(q));
           l2Qs.addAll(remaining.take(30 - l2Qs.length));
         }
 
@@ -1057,7 +1093,8 @@ class DbHelper {
     final db = await database;
 
     final formRes = await db.query('paper_forms', where: 'id = ?', whereArgs: [paperFormId]);
-    final isPaper2 = formRes.isNotEmpty && formRes.first['paper'] == 2;
+    final isPaper2 = (formRes.isNotEmpty && formRes.first['paper'] == 2) ||
+        (formRes.isEmpty && paperFormId.contains('-p2-'));
 
     String sql = '''
       SELECT a.question_number, a.section, q.*
@@ -1070,8 +1107,12 @@ class DbHelper {
     if (isPaper2) {
       final activeStream = stream ?? ExamService.instance.activeStream.name;
       final secFilter = (activeStream == 'socialStudies') ? 'social_studies' : 'math_science';
-      sql += " AND (a.section IN ('cdp', 'hindi', 'english') OR a.section = ?)";
-      args.add(secFilter);
+      final otherStream = (secFilter == 'math_science') ? 'social_studies' : 'math_science';
+      // Keep CDP + every language variant (hindi/english, hindi_2/english_1,
+      // lang1_hindi/lang2_english) and only exclude the *other* stream.
+      // The old allow-list dropped both language sections for CTET Paper 2.
+      sql += ' AND (a.section IS NULL OR a.section <> ?)';
+      args.add(otherStream);
     }
 
     sql += ' ORDER BY a.question_number ASC';

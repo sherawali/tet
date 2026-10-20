@@ -152,7 +152,7 @@ def build_cdn():
     appearances_list = [list(r) for r in appearances_rows]
 
     papers_data = {
-        'version': 2026101809,
+        'version': 2026102018,
         'forms': forms_list,
         'appearances': appearances_list
     }
@@ -167,8 +167,8 @@ def build_cdn():
     # 7. Build Manifest with remote_config
     manifest = {
         'schema': 2,
-        'bank_version': 2026101816,
-        'bank_version_str': '20261018_master_vault_clean_v16',
+        'bank_version': 2026102018,
+        'bank_version_str': '20261020_master_vault_clean_v18',
         'generated': datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ'),
         'total': total_q,
         'papers_count': len(forms_list),

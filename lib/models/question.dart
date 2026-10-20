@@ -356,6 +356,13 @@ class QuestionSanitizer {
   static String stripHtml(String? text) {
     if (text == null || text.trim().isEmpty) return '';
     var t = text
+        .replaceAll('\r\n', '\n')
+        .replaceAll('\r', '\n')
+        // Keep paragraph / line structure instead of flattening everything
+        // into a single line.  Exam stems rely on these breaks for kathan,
+        // match-the-following and multi-statement layout.
+        .replaceAll(RegExp(r'<br\s*/?>', caseSensitive: false), '\n')
+        .replaceAll(RegExp(r'</(?:p|div|li|tr|h[1-6])\s*>', caseSensitive: false), '\n')
         .replaceAll(RegExp(r'<[^>]*>'), '')
         .replaceAll('&nbsp;', ' ')
         .replaceAll('&amp;', '&')
@@ -371,7 +378,12 @@ class QuestionSanitizer {
     t = t.replaceAll(RegExp(r'^\s*\([A-Da-d1-4]\)\s*[\.\:\-]\s+(?=[अ-हA-Za-z])'), '');
     t = t.replaceAll(RegExp(r'^\s*#{1,6}\s*'), '');
 
-    return t.replaceAll(RegExp(r'\s+'), ' ').trim();
+    final lines = t.split('\n').map((line) {
+      return line.replaceAll(RegExp(r'[ \t]+'), ' ').trim();
+    });
+    t = lines.join('\n');
+    t = t.replaceAll(RegExp(r'\n{3,}'), '\n\n');
+    return t.trim();
   }
 
   static ({String cleaned, String? tag, String? year}) clean(String? raw) {

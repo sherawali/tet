@@ -1,6 +1,7 @@
 import 'dart:convert';
 import '../models/test_session.dart';
 import 'exam_service.dart';
+import 'question_layout_parser.dart';
 
 /// Converts any [TestSession] (official PYQ or dynamic generated Mock)
 /// into a standalone, ultra-premium, real-time HTML Question Booklet.
@@ -55,6 +56,20 @@ class HtmlBookletBuilder {
 
   static String formatInlineMarkdown(String text) {
     var s = escape(text);
+    // A few stems contain light inline HTML (mostly <u>…</u>).  escape()
+    // turns it into visible &lt;u&gt; text; restore the small safe whitelist
+    // so it renders as intended instead of leaking tags.
+    const allowedInlineTags = {
+      'u', 'b', 'i', 'em', 'strong', 'sup', 'sub', 'mark', 'small',
+    };
+    s = s.replaceAllMapped(
+      RegExp(r'&lt;(/?)([a-zA-Z]+)&gt;'),
+      (m) {
+        final tag = m.group(2)!.toLowerCase();
+        if (!allowedInlineTags.contains(tag)) return m.group(0)!;
+        return '<${m.group(1)}$tag>';
+      },
+    );
     // Convert code blocks ``` ... ```
     s = s.replaceAllMapped(
       RegExp(r'```(?:\w+)?\s*\n?(.*?)```', dotAll: true),
@@ -86,6 +101,14 @@ class HtmlBookletBuilder {
       (m) => '<span class="q-blank" title="रिक्त स्थान">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>',
     );
     return s;
+  }
+
+  /// Formats inline text while preserving line breaks as real `<br>` tags.
+  ///
+  /// Important: escaping must happen *before* inserting `<br>`, otherwise the
+  /// escaped text displays a literal `&lt;br&gt;` in the booklet.
+  static String formatMultilineInline(String text) {
+    return formatInlineMarkdown(text).replaceAll('\n', '<br>');
   }
 
   static int? _parseMarkerSequenceValue(String s, String style) {
@@ -185,6 +208,10 @@ class HtmlBookletBuilder {
         .replaceAll('**', '')
         .trim();
 
+    // 0B. Canonicalise inline structured labels (कथन-1, कथन १, etc.) without
+    // destroying paragraph/line structure.
+    text = QuestionLayoutParser.normalize(text);
+
     final conclusionPattern = RegExp(
       r'^(.*?)\s*([–—\-:ः]*\s*(?:सही\s*(?:विकल्प|उत्तर|कूट|कोड)|दिए\s*गए\s*विकल्प(?:ों)?|निम्नलिखित\s*(?:में\s*से\s*)?सही|उपर्युक्त|उपरोक्त|नीचे\s*दिए|इनमें\s*से|इनमें|Choose\s*the\s*correct|Select\s*the\s*correct|Select\s*from\s*the|Which\s*of\s*the\s*above|Code\s*:|Codes\s*:|कूट\s*:|कोड\s*:)[^\n]*)$',
       caseSensitive: false,
@@ -212,7 +239,7 @@ class HtmlBookletBuilder {
 
       if (tableStartIndex != -1 && tableDividerIndex != -1 && tableDividerIndex > tableStartIndex) {
         final introLines = lines.sublist(0, tableStartIndex).map((l) => l.trim()).where((l) => l.isNotEmpty).toList();
-        final intro = introLines.isNotEmpty ? introLines.join('<br>') : null;
+        final intro = introLines.isNotEmpty ? introLines.join('\n') : null;
         final headerLine = lines[tableStartIndex].trim();
         final rawHeaders = headerLine.split('|').map((c) => c.trim().replaceAll('**', '')).toList();
         final headers = rawHeaders.length > 2
@@ -231,12 +258,12 @@ class HtmlBookletBuilder {
           }
         }
         final postLines = lines.sublist(tableEndIndex + 1).map((l) => l.trim()).where((l) => l.isNotEmpty).toList();
-        final postTable = postLines.isNotEmpty ? postLines.join('<br>') : null;
+        final postTable = postLines.isNotEmpty ? postLines.join('\n') : null;
 
         final buffer = StringBuffer();
         buffer.write('<div class="q-table-wrapper">');
         if (intro != null) {
-          buffer.write('<div class="q-stem-intro">${formatInlineMarkdown(intro)}</div>');
+          buffer.write('<div class="q-stem-intro">${formatMultilineInline(intro)}</div>');
         }
         buffer.write('<table class="q-table"><thead><tr>');
         for (final h in headers) {
@@ -252,11 +279,48 @@ class HtmlBookletBuilder {
         }
         buffer.write('</tbody></table>');
         if (postTable != null) {
-          buffer.write('<div class="q-stem-post">${formatInlineMarkdown(postTable)}</div>');
+          buffer.write('<div class="q-stem-post">${formatMultilineInline(postTable)}</div>');
         }
         buffer.write('</div>');
         return buffer.toString();
       }
+    }
+
+    // 1B. Error-spotting questions use (A)…(D) to mark parts of one sentence,
+    // not independent statements.  Never turn them into a statement list.
+    final isErrorSpotting = RegExp(
+      r'(?:which\s+part.*?error|error\s+in\s+the\s+sentence|find\s+(?:out\s+)?the\s+error|identify\s+the\s+error|वाक्य\s+के\s+किस\s+भाग|किस\s+भाग\s+में\s+त्रुटि|त्रुटि\s+.*?भाग)',
+      caseSensitive: false,
+      dotAll: true,
+    ).hasMatch(text);
+    if (isErrorSpotting) {
+      return '<div class="stem-p">${formatMultilineInline(text)}</div>';
+    }
+
+    // 2. Universal match-the-following parser.  Handles the inline forms that
+    // dominate the vault (कॉलम A/B, सूची-I/II, स्तम्भ अ/ब, (P)/(I), दashed pairs).
+    final matchTable = QuestionLayoutParser.parseMatchTable(text);
+    if (matchTable != null) {
+      final b = StringBuffer();
+      b.write('<div class="match-table-wrapper">');
+      if (matchTable.intro != null) {
+        b.write('<div class="match-intro">${formatMultilineInline(matchTable.intro!)}</div>');
+      }
+      b.write('<table class="match-table"><thead><tr>');
+      b.write('<th>स्तम्भ I / सूची A</th><th>स्तम्भ II / सूची B</th>');
+      b.write('</tr></thead><tbody>');
+      for (final row in matchTable.rows) {
+        b.write('<tr>');
+        b.write('<td><b>${escape(row.leftMarker)}</b> ${formatInlineMarkdown(row.leftText)}</td>');
+        b.write('<td><b>${escape(row.rightMarker)}</b> ${formatInlineMarkdown(row.rightText)}</td>');
+        b.write('</tr>');
+      }
+      b.write('</tbody></table>');
+      if (matchTable.conclusion != null) {
+        b.write('<div class="match-conclusion">${formatMultilineInline(matchTable.conclusion!)}</div>');
+      }
+      b.write('</div>');
+      return b.toString();
     }
 
     // 2A. Check Match-The-Following Type 1: Sequential Columns (सूची-I / List-I followed by सूची-II / List-II or स्तम्भ 1/2 or कॉलम A/B)
@@ -422,7 +486,7 @@ class HtmlBookletBuilder {
 
     // 3. Check Explicit Multi-Statement (कथन (A), कथन (B) or Statement (A), Statement (B))
     final explicitStmtMatches = RegExp(
-      r'(?:^|[\s\.\:\-])(कथन\s*\(([A-Za-z0-9]+)\)|कथन\s*([A-Za-z0-9]+)|Statement\s*\(([A-Za-z0-9]+)\)|Statement\s*([A-Za-z0-9]+))\s*[:\-–—\.]\s*',
+      r'(?:^|[\s\.\:\-])(कथन\s*\(([A-Za-z0-9अ-ह]+)\)|कथन\s*([A-Za-z0-9अ-ह]+)|Statement\s*\(([A-Za-z0-9अ-ह]+)\)|Statement\s*([A-Za-z0-9अ-ह]+))\s*[:\-–—\.]\s*',
       caseSensitive: false,
     ).allMatches(text).toList();
 
@@ -720,7 +784,7 @@ class HtmlBookletBuilder {
       }
 
       if (statements.length >= 2) {
-        final intro = introLines.where((s) => s.isNotEmpty).join('<br>');
+        final intro = introLines.where((s) => s.isNotEmpty).join('\n');
         String? conclusion;
         final last = statements.removeLast();
         final cm = conclusionPattern.firstMatch(last.text);
@@ -734,7 +798,7 @@ class HtmlBookletBuilder {
         final b = StringBuffer();
         b.write('<div class="multi-statement-wrapper">');
         if (intro.isNotEmpty) {
-          b.write('<div class="stmt-intro">${formatInlineMarkdown(intro)}</div>');
+          b.write('<div class="stmt-intro">${formatMultilineInline(intro)}</div>');
         }
         b.write('<div class="stmt-list">');
         for (final st in statements) {
@@ -757,10 +821,10 @@ class HtmlBookletBuilder {
     // 5. Default: Paragraph / Multi-line preservation
     final paragraphs = text.split(RegExp(r'\n\s*\n'));
     if (paragraphs.length > 1) {
-      return paragraphs.map((p) => '<div class="stem-p">${formatInlineMarkdown(p.replaceAll('\n', '<br>'))}</div>').join('\n');
+      return paragraphs.map((p) => '<div class="stem-p">${formatMultilineInline(p)}</div>').join('\n');
     }
 
-    return '<div class="stem-p">${formatInlineMarkdown(text.replaceAll('\n', '<br>'))}</div>';
+    return '<div class="stem-p">${formatMultilineInline(text)}</div>';
   }
 
   /// Builds the complete HTML test booklet from a [TestSession]

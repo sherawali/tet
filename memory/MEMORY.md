@@ -680,16 +680,14 @@
 3. Keystores (`*.jks`, `key.properties`) verified 100% safe and secure.
 4. Ready for app release packaging or further instructions from Pitaaji.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+### 2026-10-20: V17 Deep Audit — Complex Hindi Rendering, Passage Recovery & Option/Answer Repair
+- **Full report:** `memory/AUDIT_V17_REPORT.md`.
+- **Shared parser:** Added `lib/services/question_layout_parser.dart` for `कथन`, `निष्कर्ष`, assertion–reason, multi-statement, poem, prose and match-the-following layouts. Both `HtmlBookletBuilder` and the native `FormattedQuestionStem` now use it.
+- **HTML booklet:** Canonical `कथन (1)/(2)` labels, multiline prose, safe inline-HTML whitelist, correct `<`/`>` escaping, match tables for `(A)/(i)`, `1./(a)`, `कॉलम A/B`, `सूची-I/II`, dashed pairs and unequal columns. English error-spotting segments are protected from the match parser.
+- **Vault repairs:** 9,720 questions / 9,720 unique IDs / 181 passages / 9,720 appearances / 0 orphan passages. All 62 forms verified (Paper 1: 39×150; Paper 2: 23×150/210). Exam tags canonicalized (`ctet1`, `ctet2`, `utet1`, `utet2`).
+- **Passage recovery:** Recovered and linked passages from `C:\Users\pujariji\Desktop\tetmaster`; 16 prose passages reclassified as poems. Unrecoverable source gaps are documented in the report (UTET P2 SET-A/D/E/G; UTET P1 SET-E/H/I/J/11/12 and partial SET-B/J, P2 SET-B/D).
+- **Options:** `bin/repair_option_text_v17.py` updated 74 questions; `bin/repair_english_options_v17.py` updated 57 questions. Restored lost leading digits (`2 घण्टे`, `1 and 2`, ratios, match codes), removed all duplicate options, and fixed misaligned English arrays. Remaining: 0 duplicate Hindi/English options, 0 empty options, 0 invalid answers, 0 bad prefixes.
+- **Wrong keys fixed:** formal-operational age → D; ribbon halving → A; 250 cm → D; `(2⁻¹+4⁻¹+6⁻¹+8⁻¹)x=1` → B (24/25); `(2ⁿ+2ⁿ)/(2ⁿ⁻²)` → D (8).
+- **Version/CDN:** Vault `2026102018` (`20261020_master_vault_clean_v18`); `DbHelper.bundledVaultVersion` bumped; CDN regenerated with 49 packs, 62 forms, 9,720 questions; 128 stale packs removed; all pack SHA-256 verified.
+- **Verification:** `flutter test` 42/42 passed; `flutter analyze lib` no issues; `PRAGMA integrity_check` ok; render audit `should_kathan 10/10`, `should_match 20/21`, `should_stmt 136/142` (remaining are false positives).
+- **Keystore / signing files:** 100% untouched and safe.

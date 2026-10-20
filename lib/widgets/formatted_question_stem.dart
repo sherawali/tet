@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../design_system/app_colors.dart';
 import '../design_system/app_radius.dart';
 import '../design_system/app_typography.dart';
+import '../services/question_layout_parser.dart';
 import 'smart_math_text.dart';
 
 /// Structured parsed question representation to avoid "khichdi" in complex board questions
@@ -103,6 +104,9 @@ class QuestionContentParser {
         .replaceAll('**', '')
         .trim();
 
+    // Canonicalise inline labels (कथन-1, कथन १, …) and preserve line breaks.
+    text = QuestionLayoutParser.normalize(text);
+
     // 1. Try Markdown Table parsing
     if (text.contains('|') && RegExp(r'\|\s*[-:]+[-| :]*\|').hasMatch(text)) {
       final lines = text.split('\n');
@@ -168,7 +172,25 @@ class QuestionContentParser {
       }
     }
 
-    // 2. Try Match-The-Column (Two-Column Side-by-Side Table)
+    // 2. Universal match-the-following parser (inline and multi-line forms).
+    final matchTable = QuestionLayoutParser.parseMatchTable(text);
+    if (matchTable != null) {
+      return MatchColumnContent(
+        intro: matchTable.intro,
+        pairs: [
+          for (final row in matchTable.rows)
+            (
+              leftMarker: row.leftMarker,
+              leftText: row.leftText,
+              rightMarker: row.rightMarker,
+              rightText: row.rightText,
+            ),
+        ],
+        conclusion: matchTable.conclusion,
+      );
+    }
+
+    // 2B. Fallback: Match-The-Column (Two-Column Side-by-Side Table)
     // Matches patterns like: (A) Malayalam (i) Goa (B) Konkani (ii) Kerala ...
     final matchItems = RegExp(r'(\((?:[A-Za-z0-9]+|[i-vI-V]+)\))\s*([^\(]+?)(?=\s*\((?:[A-Za-z0-9]+|[i-vI-V]+)\)|$)')
         .allMatches(text)
@@ -261,7 +283,7 @@ class QuestionContentParser {
     // 4. Try Explicit Statements parsing (कथन (A), कथन (B) or Statement (A), Statement (B))
     // This avoids chopping intro text like 'नीचे दिए गए कथनों (A) और (B) पर विचार कीजिए'
     final explicitStmtMatches = RegExp(
-      r'(?:^|[\s\.\:\-])(कथन\s*\(([A-Za-z0-9]+)\)|कथन\s*([A-Za-z0-9]+)|Statement\s*\(([A-Za-z0-9]+)\)|Statement\s*([A-Za-z0-9]+))\s*[:\-–—\.]\s*',
+      r'(?:^|[\s\.\:\-])(कथन\s*\(([A-Za-z0-9अ-ह]+)\)|कथन\s*([A-Za-z0-9अ-ह]+)|Statement\s*\(([A-Za-z0-9अ-ह]+)\)|Statement\s*([A-Za-z0-9अ-ह]+))\s*[:\-–—\.]\s*',
       caseSensitive: false,
     ).allMatches(text).toList();
 
@@ -291,6 +313,85 @@ class QuestionContentParser {
         statements: statements,
         conclusion: (conclusion != null && conclusion.isNotEmpty) ? conclusion : null,
       );
+    }
+
+    // 4B. Generic parenthesized statements: (A)/(B)/(C), (i)/(ii)/(iii),
+    // (1)/(2)/(3).  This is intentionally restricted to stems that look like
+    // statement questions so options embedded in ordinary stems are not
+    // chopped up.  Error-spotting stems use (A)…(D) for sentence parts, not
+    // statements, and must stay plain.
+    final isErrorSpotting = RegExp(
+      r'(?:which\s+part.*?error|error\s+in\s+the\s+sentence|find\s+(?:out\s+)?the\s+error|identify\s+the\s+error|वाक्य\s+के\s+किस\s+भाग|किस\s+भाग\s+में\s+त्रुटि|त्रुटि\s+.*?भाग)',
+      caseSensitive: false,
+      dotAll: true,
+    ).hasMatch(text);
+    final hasStmtIntro = RegExp(
+      r'(?:कथन|कथनों|विचार|पढ़िए|सत्य|सही|गलत|कूट|निम्नलिखित|निम्न|Statement|Statements|Consider|Following|Which)',
+      caseSensitive: false,
+    ).hasMatch(text);
+
+    if (hasStmtIntro && !isErrorSpotting) {
+      final styles = <RegExp>[
+        RegExp(r'\(([A-Ea-e])\)\s*'),
+        RegExp(r'\(([ivxIVX]{1,4})\)\s*'),
+        RegExp(r'\(([1-9])\)\s*'),
+      ];
+      List<RegExpMatch>? picked;
+      for (final re in styles) {
+        final ms = re.allMatches(text).toList();
+        if (ms.length < 3) continue;
+        final values = ms.map((m) => m.group(1)!.toLowerCase()).toList();
+        const roman = ['i', 'ii', 'iii', 'iv', 'v', 'vi', 'vii', 'viii', 'ix', 'x'];
+        var sequential = true;
+        if (values.every((v) => RegExp(r'^\d+$').hasMatch(v))) {
+          for (var i = 0; i < values.length; i++) {
+            if (int.parse(values[i]) != i + 1) sequential = false;
+          }
+        } else if (values.every((v) => RegExp(r'^[a-e]$').hasMatch(v))) {
+          for (var i = 0; i < values.length; i++) {
+            if (values[i] != String.fromCharCode(97 + i)) sequential = false;
+          }
+        } else if (values.every(roman.contains)) {
+          for (var i = 0; i < values.length; i++) {
+            if (values[i] != roman[i]) sequential = false;
+          }
+        } else {
+          sequential = false;
+        }
+        if (sequential) {
+          picked = ms;
+          break;
+        }
+      }
+
+      if (picked != null) {
+        final intro = text.substring(0, picked.first.start).trim();
+        final statements = <({String marker, String text})>[];
+        for (var i = 0; i < picked.length; i++) {
+          final start = picked[i].end;
+          final end = i + 1 < picked.length ? picked[i + 1].start : text.length;
+          statements.add((
+            marker: '(${picked[i].group(1)})',
+            text: text.substring(start, end).trim(),
+          ));
+        }
+        String? conclusion;
+        final last = statements.removeLast();
+        final cm = _conclusionPattern.firstMatch(last.text);
+        if (cm != null) {
+          statements.add((marker: last.marker, text: cm.group(1)!.trim()));
+          conclusion = cm.group(2)!.trim();
+        } else {
+          statements.add(last);
+        }
+        if (statements.length >= 2) {
+          return MultiStatementContent(
+            intro: intro.isNotEmpty ? intro : null,
+            statements: statements,
+            conclusion: (conclusion != null && conclusion.isNotEmpty) ? conclusion : null,
+          );
+        }
+      }
     }
 
     // 5. Try Newline-separated Multi-Statement (only if statements start on separate lines)
