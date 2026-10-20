@@ -236,6 +236,18 @@ scratch/tet_mock_vault_pre_options.db
 scratch/tet_mock_vault_pre_en_options.db
 ```
 
+The repaired vault and CDN were pushed to `origin/main` in commit `d37948b`. Live verification after push:
+
+```text
+manifest.bank_version: 2026102018
+manifest.bank_version_str: 20261020_master_vault_clean_v18
+questions: 9720
+papers: 62
+packs: 49
+papers.json version: 2026102018
+sample pack SHA-256: matches manifest
+```
+
 ---
 
 ## 6. Remaining Data-Quality Risks

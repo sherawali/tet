@@ -689,5 +689,6 @@
 - **Options:** `bin/repair_option_text_v17.py` updated 74 questions; `bin/repair_english_options_v17.py` updated 57 questions. Restored lost leading digits (`2 घण्टे`, `1 and 2`, ratios, match codes), removed all duplicate options, and fixed misaligned English arrays. Remaining: 0 duplicate Hindi/English options, 0 empty options, 0 invalid answers, 0 bad prefixes.
 - **Wrong keys fixed:** formal-operational age → D; ribbon halving → A; 250 cm → D; `(2⁻¹+4⁻¹+6⁻¹+8⁻¹)x=1` → B (24/25); `(2ⁿ+2ⁿ)/(2ⁿ⁻²)` → D (8).
 - **Version/CDN:** Vault `2026102018` (`20261020_master_vault_clean_v18`); `DbHelper.bundledVaultVersion` bumped; CDN regenerated with 49 packs, 62 forms, 9,720 questions; 128 stale packs removed; all pack SHA-256 verified.
+- **GitHub push:** Commit `d37948b` pushed to `origin/main`; live `cdn/manifest.json` verified as `2026102018` / `20261020_master_vault_clean_v18`, 9,720 questions, 62 papers, 49 packs. Live `papers.json` and pack SHA-256 also verified.
 - **Verification:** `flutter test` 42/42 passed; `flutter analyze lib` no issues; `PRAGMA integrity_check` ok; render audit `should_kathan 10/10`, `should_match 20/21`, `should_stmt 136/142` (remaining are false positives).
 - **Keystore / signing files:** 100% untouched and safe.
