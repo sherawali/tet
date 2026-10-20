@@ -17,10 +17,12 @@ import '../services/sync_service.dart';
 import '../services/mock_engine.dart';
 import 'mock_series_screen.dart';
 import 'subject_detail_screen.dart';
+import 'result_screen.dart';
 import '../widgets/flash_message_banner.dart';
 import '../services/premium_service.dart';
 import '../services/in_app_update_service.dart';
 import '../services/exam_service.dart';
+import '../services/exam_rules.dart';
 import '../widgets/premium_paywall_modal.dart';
 import '../widgets/question_report_sheet.dart';
 
@@ -2152,7 +2154,7 @@ class _HomeScreenState extends State<HomeScreen> {
     final passCount = _history.where((h) {
       final s = (h['score'] as num?)?.toInt() ?? 0;
       final t = (h['total'] as num?)?.toInt() ?? 150;
-      return s >= (t * 0.60).round();
+      return ExamRules.isGeneralPass(s, t);
     }).length;
 
     return ListView(
@@ -3806,69 +3808,117 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  Future<void> _openHistorySession(Map<String, dynamic> history) async {
+    final raw = history['session_json']?.toString();
+    if (raw == null || raw.isEmpty || raw == '{}') {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('इस पुराने परिणाम का विस्तृत विवरण उपलब्ध नहीं है।'),
+        ),
+      );
+      return;
+    }
+
+    try {
+      final session = TestSession.decode(raw);
+      if (!mounted) return;
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (_) => ResultScreen(session: session, fromHistory: true),
+        ),
+      );
+    } catch (error) {
+      debugPrint('Unable to reopen history session: $error');
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('परिणाम खोलने में त्रुटि हुई।')),
+      );
+    }
+  }
+
   Widget _buildHistoryCard(Map<String, dynamic> h, bool isDark) {
     final score = (h['score'] as num?)?.toInt() ?? 0;
     final total = (h['total'] as num?)?.toInt() ?? 150;
     final mode = h['mode'] as String? ?? 'predicted';
-    final isPass = score >= (total * 0.60).round();
+    final isPass = ExamRules.isGeneralPass(score, total);
 
-    return Container(
-      margin: const EdgeInsets.only(bottom: 8),
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-      decoration: BoxDecoration(
-        color: isDark ? AppColors.darkCard : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(6),
-        border: Border.all(
-          color: isDark ? AppColors.darkBorder : AppColors.lightBorder,
-          width: 1.0,
-        ),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Row(
-            children: [
-              Container(
-                width: 10,
-                height: 10,
-                decoration: BoxDecoration(
-                  color: isPass ? AppColors.success : AppColors.danger,
-                  shape: BoxShape.circle,
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 8),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          borderRadius: BorderRadius.circular(6),
+          onTap: () => _openHistorySession(h),
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+            decoration: BoxDecoration(
+              color: isDark ? AppColors.darkCard : AppColors.lightCard,
+              borderRadius: BorderRadius.circular(6),
+              border: Border.all(
+                color: isDark ? AppColors.darkBorder : AppColors.lightBorder,
+                width: 1.0,
+              ),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    Container(
+                      width: 10,
+                      height: 10,
+                      decoration: BoxDecoration(
+                        color: isPass ? AppColors.success : AppColors.danger,
+                        shape: BoxShape.circle,
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          AppStrings.historyMockType(mode),
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 13,
+                            color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
+                          ),
+                        ),
+                        Text(
+                          isPass ? AppStrings.historyQualified : AppStrings.historyPracticeNeeded,
+                          style: TextStyle(
+                            fontSize: 11,
+                            fontWeight: FontWeight.w600,
+                            color: isPass ? AppColors.success : AppColors.danger,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
-              ),
-              const SizedBox(width: 10),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    AppStrings.historyMockType(mode),
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 13,
-                      color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
+                Row(
+                  children: [
+                    Text(
+                      '$score / $total',
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                        color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
+                      ),
                     ),
-                  ),
-                  Text(
-                    isPass ? AppStrings.historyQualified : AppStrings.historyPracticeNeeded,
-                    style: TextStyle(
-                      fontSize: 11,
-                      fontWeight: FontWeight.w600,
-                      color: isPass ? AppColors.success : AppColors.danger,
+                    const SizedBox(width: 4),
+                    Icon(
+                      Icons.chevron_right_rounded,
+                      size: 18,
+                      color: isDark ? AppColors.darkTextMuted : AppColors.lightTextMuted,
                     ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-          Text(
-            '$score / $total',
-            style: TextStyle(
-              fontSize: 15,
-              fontWeight: FontWeight.bold,
-              color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
+                  ],
+                ),
+              ],
             ),
           ),
-        ],
+        ),
       ),
     );
   }

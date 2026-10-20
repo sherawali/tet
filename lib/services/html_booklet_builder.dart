@@ -1,6 +1,9 @@
 import 'dart:convert';
+import '../models/question.dart';
 import '../models/test_session.dart';
+import 'exam_rules.dart';
 import 'exam_service.dart';
+import '../widgets/question_figure_catalog.dart';
 import 'question_layout_parser.dart';
 
 /// Converts any [TestSession] (official PYQ or dynamic generated Mock)
@@ -832,6 +835,13 @@ class HtmlBookletBuilder {
     final questions = session.questions;
     final passages = session.passages;
     final totalQs = questions.length;
+    final timeLimitSeconds = session.config.timeLimitMinutes * 60;
+    final initialRemaining =
+        (timeLimitSeconds - session.elapsedSeconds).clamp(0, timeLimitSeconds);
+    final timeLimitText =
+        ExamRules.formatMinutes(session.config.timeLimitMinutes);
+    final generalPassMark = ExamRules.generalPassMark(totalQs);
+    final reservedPassMark = ExamRules.reservedPassMark(totalQs);
     final examCode = session.config.exam.toLowerCase();
     final isUtet = examCode.contains('utet');
     final isPaper2 = examCode.contains('2') || ExamService.instance.selectedPaper == 2;
@@ -867,39 +877,86 @@ class HtmlBookletBuilder {
     final l2Name = ExamService.instance.lang2LabelHindi;
     final l2NameEn = ExamService.instance.lang2LabelEnglish;
 
-    // Define sections based on exam and Paper 1 vs Paper 2
-    final sectionsDef = isPaper2
-        ? [
-            [1, 30, 'भाग I : बाल विकास एवं शिक्षण विज्ञान', 'PART I : Child Development and Pedagogy'],
-            [31, 60, 'भाग II : भाषा प्रथम – $l1Name', 'PART II : Language I – $l1NameEn'],
-            [61, 90, 'भाग III : भाषा द्वितीय – $l2Name', 'PART III : Language II – $l2NameEn'],
-            [91, 150, 'भाग IV : गणित एवं विज्ञान / सामाजिक अध्ययन (60 प्रश्न)', 'PART IV : Mathematics & Science / Social Studies (60 Questions)'],
-          ]
-        : (isUtet
-            ? [
-                [1, 30, 'भाग I : बाल विकास एवं शिक्षण विज्ञान', 'PART I : Child Development and Pedagogy'],
-                [31, 60, 'भाग II : भाषा प्रथम – $l1Name', 'PART II : Language I – $l1NameEn'],
-                [61, 90, 'भाग III : भाषा द्वितीय – $l2Name', 'PART III : Language II – $l2NameEn'],
-                [91, 120, 'भाग IV : गणित', 'PART IV : Mathematics'],
-                [121, 150, 'भाग V : पर्यावरण अध्ययन', 'PART V : Environmental Studies'],
-              ]
-            : [
-                [1, 30, 'भाग I : बाल विकास एवं शिक्षाशास्त्र', 'PART I : Child Development and Pedagogy'],
-                [31, 60, 'भाग II : गणित', 'PART II : Mathematics'],
-                [61, 90, 'भाग III : पर्यावरण अध्ययन', 'PART III : Environmental Studies'],
-                [91, 120, 'भाग IV : भाषा I – $l1Name', 'PART IV : Language I – $l1NameEn'],
-                [121, 150, 'भाग V : भाषा II – $l2Name', 'PART V : Language II – $l2NameEn'],
-              ]);
+    // Section banners are derived from the questions that were actually
+    // loaded.  Hard-coded question ranges were wrong for Paper-2 forms whose
+    // languages are Hindi/Hindi (set-f) or English/English (set-g), and for
+    // section tests that do not start at question 1.
+    ({String hi, String en}) sectionInfo(String code) {
+      switch (code) {
+        case 'cdp':
+          return (
+            hi: 'बाल विकास एवं शिक्षण विज्ञान',
+            en: 'Child Development and Pedagogy',
+          );
+        case 'hindi':
+          return (hi: 'भाषा प्रथम – $l1Name', en: 'Language I – $l1NameEn');
+        case 'english':
+          return (hi: 'भाषा द्वितीय – $l2Name', en: 'Language II – $l2NameEn');
+        case 'hindi_2':
+          return (hi: 'भाषा द्वितीय – हिन्दी', en: 'Language II – Hindi');
+        case 'english_1':
+          return (hi: 'भाषा प्रथम – अंग्रेज़ी', en: 'Language I – English');
+        case 'lang1_hindi':
+          return (hi: 'भाषा प्रथम – हिन्दी', en: 'Language I – Hindi');
+        case 'lang2_english':
+          return (hi: 'भाषा द्वितीय – अंग्रेज़ी', en: 'Language II – English');
+        case 'math':
+          return (hi: 'गणित', en: 'Mathematics');
+        case 'evs':
+          return (hi: 'पर्यावरण अध्ययन', en: 'Environmental Studies');
+        case 'math_science':
+          return (hi: 'गणित एवं विज्ञान', en: 'Mathematics & Science');
+        case 'social_studies':
+          return (hi: 'सामाजिक अध्ययन', en: 'Social Studies');
+        default:
+          final label = code.replaceAll('_', ' ').toUpperCase();
+          return (hi: label, en: label);
+      }
+    }
+
+    const roman = ['I', 'II', 'III', 'IV', 'V', 'VI'];
+    final sectionsDef = <({int start, int end, String hi, String en})>[];
+    if (questions.isNotEmpty) {
+      var startIndex = 0;
+      for (var i = 1; i <= questions.length; i++) {
+        final atBoundary =
+            i == questions.length || questions[i].section != questions[startIndex].section;
+        if (!atBoundary) continue;
+        final info = sectionInfo(questions[startIndex].section);
+        final partIndex = sectionsDef.length < roman.length
+            ? sectionsDef.length
+            : roman.length - 1;
+        final part = roman[partIndex];
+        sectionsDef.add((
+          start: startIndex + 1,
+          end: i,
+          hi: 'भाग $part : ${info.hi}',
+          en: 'PART $part : ${info.en}',
+        ));
+        startIndex = i;
+      }
+    }
 
     String getSectionTitle(int qNum) {
-      for (final s in sectionsDef) {
-        final start = s[0] as int;
-        final end = s[1] as int;
-        if (qNum >= start && qNum <= end) {
-          return s[2] as String;
+      for (final section in sectionsDef) {
+        if (qNum >= section.start && qNum <= section.end) {
+          return section.hi;
         }
       }
       return 'सामान्य';
+    }
+
+    String figureHtml(Question question) {
+      final svg = QuestionFigureCatalog.questionSvg(question.id);
+      return svg == null ? '' : '<div class="q-figure">$svg</div>';
+    }
+
+    String optionHtml(Question question, int index, String rawText) {
+      final svg = QuestionFigureCatalog.optionSvg(question.id, index);
+      if (svg != null) {
+        return '<div class="opt-figure">$svg</div>';
+      }
+      return formatInlineMarkdown(ensureOptionLabel(rawText));
     }
 
     final h = StringBuffer();
@@ -916,6 +973,8 @@ class HtmlBookletBuilder {
     h.writeln('</head>');
     h.writeln('<body>');
 
+    final initialClock = ExamRules.formatClock(initialRemaining);
+
     // CBT Control Bar (Ultra-responsive single-row sticky header)
     h.writeln('''
     <header class="cbt-bar">
@@ -924,7 +983,7 @@ class HtmlBookletBuilder {
         <div class="cbt-left">
           <div id="timer-box" title="समय शेष (Time Remaining)">
             <span class="t-icon">⏱️</span>
-            <span id="timer-val">02:30:00</span>
+            <span id="timer-val">$initialClock</span>
           </div>
         </div>
 
@@ -1028,7 +1087,7 @@ class HtmlBookletBuilder {
       </div>
 
       <div class="cover-time-marks">
-        <span>समय : 2 घण्टे 30 मिनट (150 मिनट)</span>
+        <span>समय : $timeLimitText (${session.config.timeLimitMinutes} मिनट)</span>
         <span>पूर्णांक : $totalQs अंक ($totalQs प्रश्न)</span>
       </div>
 
@@ -1044,7 +1103,7 @@ class HtmlBookletBuilder {
           <li>This question booklet contains $totalQs multiple choice questions. Each carries 1 mark.</li>
           <li>There is no negative marking for incorrect answers.</li>
           <li>Each question has four alternatives. Select the most appropriate option.</li>
-          <li>Click the button below to begin the test and start the timer.</li>
+          <li>The timer starts as soon as this booklet opens and is based on the real clock, even if the app is backgrounded.</li>
         </ol>
       </div>
 
@@ -1068,14 +1127,12 @@ class HtmlBookletBuilder {
       topicMap[qNumStr] = q.topicName ?? 'सामान्य';
 
       // Check section boundary
-      for (final s in sectionsDef) {
-        final start = s[0] as int;
-        final end = s[1] as int;
-        if (qNum == start) {
+      for (final section in sectionsDef) {
+        if (qNum == section.start) {
           h.writeln('''
           <div class="section-banner">
-            <h2>${s[2]}</h2>
-            <small>${s[3]} · प्रश्न संख्या $start से $end</small>
+            <h2>${section.hi}</h2>
+            <small>${section.en} · प्रश्न संख्या ${section.start} से ${section.end}</small>
           </div>
           ''');
         }
@@ -1134,11 +1191,12 @@ class HtmlBookletBuilder {
         h.writeln('          <span class="q-num">$qNum.</span>');
         h.writeln('          <div class="q-stem">${formatQuestionStemHtml(q.qHindi)}</div>');
         h.writeln('        </div>');
+        h.writeln(figureHtml(q));
         h.writeln('        <div class="options-list $gridTwoClass">');
         for (int i = 0; i < optsHi.length; i++) {
           h.writeln('          <div class="option-row" data-optidx="$i" onclick="selectOption($qNum, $i)">');
           h.writeln('            <span class="opt-badge">${optLetters[i]}</span>');
-          h.writeln('            <span>${formatInlineMarkdown(ensureOptionLabel(optsHi[i]))}</span>');
+          h.writeln('            <span>${optionHtml(q, i, optsHi[i])}</span>');
           h.writeln('          </div>');
         }
         h.writeln('        </div>');
@@ -1149,11 +1207,12 @@ class HtmlBookletBuilder {
         h.writeln('          <span class="q-num">$qNum.</span>');
         h.writeln('          <div class="q-stem">${formatQuestionStemHtml(q.qEnglish ?? "")}</div>');
         h.writeln('        </div>');
+        h.writeln(figureHtml(q));
         h.writeln('        <div class="options-list $gridTwoClass">');
         for (int i = 0; i < optsEn.length; i++) {
           h.writeln('          <div class="option-row" data-optidx="$i" onclick="selectOption($qNum, $i)">');
           h.writeln('            <span class="opt-badge">${optLetters[i]}</span>');
-          h.writeln('            <span>${formatInlineMarkdown(ensureOptionLabel(optsEn[i]))}</span>');
+          h.writeln('            <span>${optionHtml(q, i, optsEn[i])}</span>');
           h.writeln('          </div>');
         }
         h.writeln('        </div>');
@@ -1172,15 +1231,23 @@ class HtmlBookletBuilder {
           h.writeln('        <div class="q-stem-en-body">${formatQuestionStemHtml(q.qEnglish!)}</div>');
           h.writeln('      </div>');
         }
+        h.writeln(figureHtml(q));
         h.writeln('      <div class="options-list $gridTwoClass">');
         for (int i = 0; i < optsHi.length; i++) {
+          final hasOptionFigure = QuestionFigureCatalog.optionSvg(q.id, i) != null;
           final hiText = ensureOptionLabel(optsHi[i]);
           final enText = (i < optsEn.length) ? ensureOptionLabel(optsEn[i]) : '';
-          final hasDistinctEn = enText.trim().isNotEmpty && enText.trim() != hiText.trim();
+          final hasDistinctEn = !hasOptionFigure &&
+              enText.trim().isNotEmpty &&
+              enText.trim() != hiText.trim();
           h.writeln('        <div class="option-row" data-optidx="$i" onclick="selectOption($qNum, $i)">');
           h.writeln('          <span class="opt-badge">${optLetters[i]}</span>');
           h.writeln('          <div class="opt-content">');
-          h.writeln('            <span class="opt-primary">${formatInlineMarkdown(hiText)}</span>');
+          if (hasOptionFigure) {
+            h.writeln('            <span class="opt-primary">${optionHtml(q, i, hiText)}</span>');
+          } else {
+            h.writeln('            <span class="opt-primary">${formatInlineMarkdown(hiText)}</span>');
+          }
           if (hasDistinctEn) {
             h.writeln('            <span class="opt-secondary">${formatInlineMarkdown(enText)}</span>');
           }
@@ -1202,11 +1269,12 @@ class HtmlBookletBuilder {
         h.writeln('        <span class="q-num">$qNum.</span>');
         h.writeln('        <div class="q-stem">${formatQuestionStemHtml(stem)}</div>');
         h.writeln('      </div>');
+        h.writeln(figureHtml(q));
         h.writeln('      <div class="options-list $gridTwoClass">');
         for (int i = 0; i < opts.length; i++) {
           h.writeln('        <div class="option-row" data-optidx="$i" onclick="selectOption($qNum, $i)">');
           h.writeln('          <span class="opt-badge">${optLetters[i]}</span>');
-          h.writeln('          <span>${formatInlineMarkdown(ensureOptionLabel(opts[i]))}</span>');
+          h.writeln('          <span>${optionHtml(q, i, opts[i])}</span>');
           h.writeln('        </div>');
         }
         h.writeln('      </div>');
@@ -1376,6 +1444,10 @@ class HtmlBookletBuilder {
         .replaceAll('__SECTIONS__', jsonEncode(sectionMap))
         .replaceAll('__TOPICS__', jsonEncode(topicMap))
         .replaceAll('__TOTAL_QS__', totalQs.toString())
+        .replaceAll('__TIME_LIMIT__', timeLimitSeconds.toString())
+        .replaceAll('__INITIAL_REMAINING__', initialRemaining.toString())
+        .replaceAll('__GENERAL_PASS__', generalPassMark.toString())
+        .replaceAll('__RESERVED_PASS__', reservedPassMark.toString())
         .replaceAll('__PAPER_ID__', session.id)
         .replaceAll('__PASSAGES__', jsonEncode(passagesDict));
 
@@ -1777,6 +1849,10 @@ body {
 .q-header { display: flex; gap: 8px; align-items: flex-start; width: 100%; }
 .q-num { font-weight: 900; min-width: 30px; font-size: 16.5px; color: #000000; flex-shrink: 0; }
 .q-stem { flex: 1; min-width: 0; font-size: 16px; font-weight: 600; color: #0f172a; line-height: 1.65; word-break: break-word; }
+.q-figure { margin: 8px 0 10px; display: flex; justify-content: center; align-items: center; }
+.q-figure svg, .opt-figure svg { width: 100%; max-width: 340px; height: auto; display: block; }
+.opt-figure { margin: 2px 0 4px; }
+.opt-figure svg { max-width: 190px; }
 .stem-p { margin: 0 0 6px 0; line-height: 1.65; }
 .stem-p:last-child { margin-bottom: 0; }
 .kathan-wrapper { display: flex; flex-direction: column; gap: 8px; margin: 6px 0 8px; width: 100%; box-sizing: border-box; }
@@ -2477,12 +2553,16 @@ table { max-width: 100%; overflow-x: auto; display: block; }
   const SECTIONS = __SECTIONS__;
   const TOPICS = __TOPICS__;
   const TOTAL_QS = __TOTAL_QS__;
+  const TIME_LIMIT = __TIME_LIMIT__;
+  const GENERAL_PASS = __GENERAL_PASS__;
+  const RESERVED_PASS = __RESERVED_PASS__;
   const PAPER_ID = '__PAPER_ID__';
   const PASSAGES = __PASSAGES__;
 
   let responses = {};
   let reviewed = {};
-  let timeRemaining = 9000;
+  let timeRemaining = __INITIAL_REMAINING__;
+  let deadline = 0;
   let timerInterval = null;
   let testSubmitted = false;
 
@@ -2501,21 +2581,36 @@ table { max-width: 100%; overflow-x: auto; display: block; }
     return String(h).padStart(2,'0') + ':' + String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
   }
 
+  function computeRemaining() {
+    if (!deadline) return Math.max(0, timeRemaining);
+    return Math.max(0, Math.ceil((deadline - Date.now()) / 1000));
+  }
+
+  function tickTimer() {
+    timeRemaining = computeRemaining();
+    const el = document.getElementById('timer-val');
+    if (el) el.textContent = formatTime(timeRemaining);
+    const threshold = Math.min(900, Math.max(60, Math.floor(TIME_LIMIT * 0.10)));
+    if (timeRemaining <= threshold) {
+      const tb = document.getElementById('timer-box');
+      if (tb) tb.classList.add('timer-warning');
+    }
+    if (timeRemaining <= 0) {
+      if (timerInterval) clearInterval(timerInterval);
+      timerInterval = null;
+      submitTest(true);
+    }
+  }
+
   function startTimer() {
+    if (testSubmitted) return;
+    if (!deadline) {
+      deadline = Date.now() + Math.max(0, timeRemaining) * 1000;
+    }
     if (timerInterval) return;
-    timerInterval = setInterval(() => {
-      timeRemaining--;
-      const el = document.getElementById('timer-val');
-      if (el) el.textContent = formatTime(Math.max(0, timeRemaining));
-      if (timeRemaining <= 900) {
-        const tb = document.getElementById('timer-box');
-        if (tb) tb.classList.add('timer-warning');
-      }
-      if (timeRemaining <= 0) {
-        clearInterval(timerInterval);
-        submitTest(true);
-      }
-    }, 1000);
+    timerInterval = setInterval(tickTimer, 1000);
+    tickTimer();
+    saveState();
   }
 
   window.selectOption = function(qNum, optIdx) {
@@ -2651,7 +2746,10 @@ table { max-width: 100%; overflow-x: auto; display: block; }
     if (testSubmitted) return;
     closeConfirmModal();
     testSubmitted = true;
-    clearInterval(timerInterval);
+    if (timerInterval) clearInterval(timerInterval);
+    timerInterval = null;
+    timeRemaining = computeRemaining();
+    try { localStorage.removeItem('TET_TEST_' + PAPER_ID); } catch(e){}
 
     let correct = 0, wrong = 0, skipped = 0;
     const secStats = {};
@@ -2720,7 +2818,7 @@ table { max-width: 100%; overflow-x: auto; display: block; }
       wrongCount: wrong,
       skippedCount: skipped,
       totalQuestions: TOTAL_QS,
-      elapsedSeconds: 9000 - timeRemaining,
+      elapsedSeconds: Math.max(0, TIME_LIMIT - timeRemaining),
       responses: responses
     });
   };
@@ -2729,18 +2827,18 @@ table { max-width: 100%; overflow-x: auto; display: block; }
     const pct = ((correct / TOTAL_QS) * 100).toFixed(1);
 
     let verdictColor, verdictText, verdictSub;
-    if (correct >= 90) {
+    if (correct >= GENERAL_PASS) {
       verdictColor = '#16a34a';
       verdictText = '🎉 उत्तीर्ण (QUALIFIED) — सामान्य वर्ग कट-ऑफ पार!';
-      verdictSub = 'बधाई! आपने 60% (90+ अंक) प्राप्त कर शिक्षक पात्रता परीक्षा उत्तीर्ण कर ली है।';
-    } else if (correct >= 82) {
+      verdictSub = 'बधाई! आपने 60% (' + GENERAL_PASS + '+ अंक) प्राप्त कर शिक्षक पात्रता परीक्षा उत्तीर्ण कर ली है।';
+    } else if (correct >= RESERVED_PASS) {
       verdictColor = '#65a30d';
       verdictText = '👍 उत्तीर्ण (QUALIFIED) — आरक्षित श्रेणी (OBC/SC/ST कट-ऑफ पार)';
-      verdictSub = 'आपने आरक्षित वर्ग के न्यूनतम 55% (82 अंक) की पात्रता सुरक्षित कर ली है।';
+      verdictSub = 'आपने आरक्षित वर्ग के न्यूनतम 55% (' + RESERVED_PASS + ' अंक) की पात्रता सुरक्षित कर ली है।';
     } else {
       verdictColor = '#dc2626';
       verdictText = '⚠️ अनुत्तीर्ण (NOT QUALIFIED) — और अभ्यास की आवश्यकता';
-      verdictSub = 'पात्रता के लिए न्यूनतम 82 अंक (आरक्षित) अथवा 90 अंक (सामान्य) आवश्यक हैं।';
+      verdictSub = 'पात्रता के लिए न्यूनतम ' + RESERVED_PASS + ' अंक (आरक्षित) अथवा ' + GENERAL_PASS + ' अंक (सामान्य) आवश्यक हैं।';
     }
 
     const rScore = document.getElementById('res-score');
@@ -2765,7 +2863,7 @@ table { max-width: 100%; overflow-x: auto; display: block; }
     setTxt('kpi-pct', pct + '%');
     const accuracy = (correct + wrong) > 0 ? ((correct / (correct + wrong)) * 100).toFixed(1) : '0';
     setTxt('kpi-acc', accuracy + '%');
-    setTxt('kpi-time', formatTime(9000 - timeRemaining));
+    setTxt('kpi-time', formatTime(Math.max(0, TIME_LIMIT - timeRemaining)));
 
     let tableHtml = '<tr><th>खण्ड (Section)</th><th class="center">कुल</th><th class="center">सही</th><th class="center">गलत</th><th class="center">छोड़े</th><th style="width:30%">प्राप्तांक एवं प्रतिशत</th></tr>';
     for (const sName in secStats) {
@@ -2842,7 +2940,11 @@ table { max-width: 100%; overflow-x: auto; display: block; }
     document.querySelectorAll('.omr-bubble').forEach(b => b.classList.remove('filled'));
     document.querySelectorAll('.q-rev-btn').forEach(b => b.classList.remove('active'));
     document.querySelectorAll('.question-item').forEach(q => q.classList.remove('done'));
+    timeRemaining = TIME_LIMIT;
+    deadline = Date.now() + TIME_LIMIT * 1000;
     updateStats();
+    const tv = document.getElementById('timer-val');
+    if (tv) tv.textContent = formatTime(timeRemaining);
     try { localStorage.removeItem('TET_TEST_' + PAPER_ID); } catch(e){}
     notifyFlutter('resetTest', {});
   };
@@ -2853,6 +2955,7 @@ table { max-width: 100%; overflow-x: auto; display: block; }
         responses: responses,
         reviewed: reviewed,
         timeRemaining: timeRemaining,
+        deadline: deadline,
         savedAt: Date.now()
       }));
     } catch(e){}
@@ -2866,7 +2969,16 @@ table { max-width: 100%; overflow-x: auto; display: block; }
       if (data && data.responses) {
         responses = data.responses;
         reviewed = data.reviewed || {};
-        if (data.timeRemaining) timeRemaining = data.timeRemaining;
+        if (data.deadline && Number(data.deadline) > 0) {
+          deadline = Number(data.deadline);
+          timeRemaining = computeRemaining();
+        } else if (data.savedAt && typeof data.timeRemaining === 'number') {
+          deadline = Number(data.savedAt) + Number(data.timeRemaining) * 1000;
+          timeRemaining = computeRemaining();
+        } else if (typeof data.timeRemaining === 'number') {
+          timeRemaining = data.timeRemaining;
+          deadline = Date.now() + timeRemaining * 1000;
+        }
 
         for (const qNum in responses) {
           const idx = responses[qNum];
@@ -2952,15 +3064,29 @@ table { max-width: 100%; overflow-x: auto; display: block; }
   };
 
   window.addEventListener('DOMContentLoaded', () => {
+    restoreState();
     const tv = document.getElementById('timer-val');
     if (tv) tv.textContent = formatTime(timeRemaining);
-    restoreState();
     try {
       var savedLang = localStorage.getItem('booklet_lang_filter') || 'hi';
       setLangFilter(savedLang);
     } catch(e) {
       setLangFilter('hi');
     }
+    // The exam clock starts when the booklet opens.  It is driven by an
+    // absolute deadline so backgrounding the WebView cannot add time.
+    startTimer();
+  });
+
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) {
+      timeRemaining = computeRemaining();
+      tickTimer();
+    }
+  });
+  window.addEventListener('focus', () => {
+    timeRemaining = computeRemaining();
+    tickTimer();
   });
 })();
 ''';

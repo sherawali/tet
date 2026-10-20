@@ -4,6 +4,7 @@ import '../design_system/app_colors.dart';
 import '../design_system/app_radius.dart';
 import '../design_system/app_strings.dart';
 import '../services/language_service.dart';
+import 'question_figure_catalog.dart';
 
 /// Interactive Zoomable Diagram Viewer for Math & Science Questions
 /// Supports Markdown images `![alt](url)`, network/asset images, and native geometry vector diagrams.
@@ -27,6 +28,7 @@ class MathDiagramWidget extends StatelessWidget {
   /// Check if a question contains or requires a diagram
   static bool hasDiagram(String qId, String text) {
     if (_markdownImageRegex.hasMatch(text)) return true;
+    if (QuestionFigureCatalog.hasQuestionFigure(qId)) return true;
     if (qId.contains('utet-p1-2022-mathematics-q115')) return true;
     if (qId.contains('ctet-p1-2018-m-mathematics-q049')) return true;
     if (qId.contains('utet-p1-2020-mathematics-q117')) return true;
@@ -46,7 +48,15 @@ class MathDiagramWidget extends StatelessWidget {
       }
     }
 
-    // 2. Geometry figure for UTET 2022 Math Q115
+    // 2. Reconstructed figure for a question whose source image is missing.
+    if (QuestionFigureCatalog.hasQuestionFigure(questionId)) {
+      return QuestionFigureCatalog.buildQuestion(
+        questionId: questionId,
+        isDark: isDark,
+      );
+    }
+
+    // 3. Geometry figure for UTET 2022 Math Q115
     if (questionId.contains('utet-p1-2022-mathematics-q115')) {
       return _buildGeometryDiagramCard(context);
     }

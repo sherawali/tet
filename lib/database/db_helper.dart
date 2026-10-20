@@ -18,7 +18,7 @@ class DbHelper {
   /// Version of the bundled SQLite vault in `assets/database/`.
   /// Bumping this triggers a one-time copy from the asset bundle while keeping
   /// the user's test history and mistake records intact.
-  static const String bundledVaultVersion = '2026102018';
+  static const String bundledVaultVersion = '2026102019';
 
   Database? _db;
 
@@ -1059,6 +1059,7 @@ class DbHelper {
     String? exam,
     required int paper,
     bool? isPyqOnly,
+    String? stream,
   }) async {
     await ensureBundledAssetLoaded();
     final db = await database;
@@ -1068,6 +1069,19 @@ class DbHelper {
     if (exam != null && exam.isNotEmpty) {
       sql += ' AND exam = ?';
       args.add(exam.toLowerCase());
+    }
+
+    // Paper-2 candidates choose one optional stream.  CTET ships separate
+    // Math/Science and Social Studies mocks, so a Math/Science candidate must
+    // not even see the Social Studies form (and vice versa).  UTET forms carry
+    // both streams and therefore match either filter.
+    if (paper == 2) {
+      final active = stream ?? ExamService.instance.activeStream.name;
+      final streamSection =
+          active == AppStream.socialStudies.name ? 'social_studies' : 'math_science';
+      sql += ' AND EXISTS (SELECT 1 FROM appearances a '
+          'WHERE a.paper_form_id = paper_forms.id AND a.section = ?)';
+      args.add(streamSection);
     }
 
     if (isPyqOnly == true) {
@@ -1105,14 +1119,35 @@ class DbHelper {
     List<dynamic> args = [paperFormId];
 
     if (isPaper2) {
-      final activeStream = stream ?? ExamService.instance.activeStream.name;
-      final secFilter = (activeStream == 'socialStudies') ? 'social_studies' : 'math_science';
-      final otherStream = (secFilter == 'math_science') ? 'social_studies' : 'math_science';
-      // Keep CDP + every language variant (hindi/english, hindi_2/english_1,
-      // lang1_hindi/lang2_english) and only exclude the *other* stream.
-      // The old allow-list dropped both language sections for CTET Paper 2.
-      sql += ' AND (a.section IS NULL OR a.section <> ?)';
-      args.add(otherStream);
+      // Not every Paper-2 form stores both streams.  UTET forms do (210 rows),
+      // while CTET ships separate stream-specific mocks (150 rows).  Only
+      // remove the other stream when both are actually present; otherwise a
+      // Social Studies selection would delete the only 60 questions in a
+      // Math/Science mock and leave the candidate with 90 questions.
+      final availableRows = await db.rawQuery(
+        'SELECT DISTINCT section FROM appearances '
+        'WHERE paper_form_id = ? AND section IN (?, ?)',
+        [paperFormId, 'math_science', 'social_studies'],
+      );
+      final available = availableRows
+          .map((row) => row['section'] as String)
+          .where((section) => section.isNotEmpty)
+          .toSet();
+
+      if (available.length > 1) {
+        final activeStream = stream ?? ExamService.instance.activeStream.name;
+        final selectedSection = activeStream == AppStream.socialStudies.name
+            ? 'social_studies'
+            : 'math_science';
+        final otherStream = selectedSection == 'math_science'
+            ? 'social_studies'
+            : 'math_science';
+        // Keep CDP + every language variant (hindi/english,
+        // hindi_2/english_1, lang1_hindi/lang2_english) and only exclude the
+        // *other* optional stream.
+        sql += ' AND (a.section IS NULL OR a.section <> ?)';
+        args.add(otherStream);
+      }
     }
 
     sql += ' ORDER BY a.question_number ASC';

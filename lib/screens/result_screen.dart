@@ -14,11 +14,17 @@ import 'home_screen.dart';
 import '../database/db_helper.dart';
 import '../services/in_app_review_service.dart';
 import '../services/exam_service.dart';
+import '../services/exam_rules.dart';
 
 class ResultScreen extends StatefulWidget {
   final TestSession session;
+  final bool fromHistory;
 
-  const ResultScreen({super.key, required this.session});
+  const ResultScreen({
+    super.key,
+    required this.session,
+    this.fromHistory = false,
+  });
 
   @override
   State<ResultScreen> createState() => _ResultScreenState();
@@ -45,8 +51,11 @@ class _ResultScreenState extends State<ResultScreen> {
       _recurringWrongQuestions = questions;
     });
 
-    // Check and prompt In-App Review after test completion
-    InAppReviewService.instance.checkAndPromptReview();
+    // Review prompts belong to a freshly completed test, not to reopening an
+    // old result from History.
+    if (!widget.fromHistory) {
+      InAppReviewService.instance.checkAndPromptReview();
+    }
   }
 
   @override
@@ -54,9 +63,9 @@ class _ResultScreenState extends State<ResultScreen> {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final score = session.calculateScore();
     final total = session.questions.length;
-    final pct = total > 0 ? (score / total) * 100 : 0.0;
-    final isPassGeneral = score >= (total * 0.60).round();
-    final isPassReserved = score >= (total * 0.55).round();
+    final pct = ExamRules.percentage(score, total);
+    final isPassGeneral = ExamRules.isGeneralPass(score, total);
+    final isPassReserved = ExamRules.isReservedPass(score, total);
 
     final answeredCount = session.answeredCount;
     final accuracy = answeredCount > 0 ? (score / answeredCount) * 100 : 0.0;
@@ -604,17 +613,17 @@ class _ResultScreenState extends State<ResultScreen> {
     String adviceText;
     Color badgeColor;
 
-    if (score >= (total * 0.60).round()) {
+    if (ExamRules.isGeneralPass(score, total)) {
       headline = 'उत्कृष्ट तैयारी! आप 60% कट-ऑफ पार कर चुके हैं।';
       adviceText = 'आपकी मजबूत पकड़ बन चुकी है। अब शीर्ष मेरिट में स्थान बनाने के लिए उन 1-2 टॉपिक्स पर काम करें जिनमें गलतियाँ हुईं।';
       badgeColor = AppColors.success;
-    } else if (score >= (total * 0.55).round()) {
-      final needed = (total * 0.60).round() - score;
+    } else if (ExamRules.isReservedPass(score, total)) {
+      final needed = ExamRules.generalPassMark(total) - score;
       headline = 'सराहनीय! आप सामान्य कट-ऑफ के बहुत करीब हैं।';
       adviceText = 'आपको सामान्य वर्ग पार करने के लिए केवल $needed और अंक चाहिए। नीचे दिए कमजोर टॉपिक्स का पुनः अभ्यास करके आसानी से 100+ अंक ला सकते हैं।';
       badgeColor = AppColors.sealGold;
     } else {
-      final needed = (total * 0.55).round() - score;
+      final needed = ExamRules.reservedPassMark(total) - score;
       headline = AppStrings.targetedRevisionNeed;
       adviceText = 'आरक्षित वर्ग कट-ऑफ (55%) के लिए $needed और अंक आवश्यक हैं। घबराएं नहीं, पूर्व वर्ष के प्रश्नों (SET-R) और गलत प्रश्नों के पुनः अभ्यास से स्कोर तुरंत बढ़ेगा।';
       badgeColor = AppColors.danger;

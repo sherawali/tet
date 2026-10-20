@@ -49,6 +49,7 @@ def build_cdn():
     # 5. Pack in chunks of 200
     chunk_size = 200
     pack_records = []
+    written_pack_names = set()
     section_counts = {}
 
     for chunk_idx in range(0, total_q, chunk_size):
@@ -103,7 +104,10 @@ def build_cdn():
 
             q_list.append(q_obj)
 
-        p_list = [passages_dict[p] for p in needed_pids if p in passages_dict]
+        # Iterate the set in a stable order.  Otherwise Python's per-process
+        # string hash seed changes the pack byte order (and therefore every
+        # hash-based pack filename) on each build.
+        p_list = [passages_dict[p] for p in sorted(needed_pids) if p in passages_dict]
 
         pack_num = chunk_idx // chunk_size
         pack_content = {
@@ -121,6 +125,7 @@ def build_cdn():
 
         with open(pack_filepath, 'wb') as pf:
             pf.write(pack_json_bytes)
+        written_pack_names.add(pack_filename)
 
         pack_records.append({
             'id': f"{pack_num:04d}-{short_sha}",
@@ -130,6 +135,16 @@ def build_cdn():
             'count': len(q_list),
             'sections': sorted(list(pack_sections))
         })
+
+    # Remove packs left behind by earlier builds/hash changes so the folder
+    # always matches the manifest exactly.
+    for existing_name in os.listdir(packs_dir):
+        if (
+            existing_name.startswith("pack-")
+            and existing_name.endswith(".json")
+            and existing_name not in written_pack_names
+        ):
+            os.remove(os.path.join(packs_dir, existing_name))
 
     # 6. Extract paper_forms and appearances for full remote paper support
     cur.execute("SELECT id, exam, paper, exam_date, set_code, title, total_questions, modules_json FROM paper_forms ORDER BY id")
@@ -152,7 +167,7 @@ def build_cdn():
     appearances_list = [list(r) for r in appearances_rows]
 
     papers_data = {
-        'version': 2026102018,
+        'version': 2026102019,
         'forms': forms_list,
         'appearances': appearances_list
     }
@@ -167,8 +182,8 @@ def build_cdn():
     # 7. Build Manifest with remote_config
     manifest = {
         'schema': 2,
-        'bank_version': 2026102018,
-        'bank_version_str': '20261020_master_vault_clean_v18',
+        'bank_version': 2026102019,
+        'bank_version_str': '20261020_master_vault_clean_v19',
         'generated': datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ'),
         'total': total_q,
         'papers_count': len(forms_list),

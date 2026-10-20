@@ -9,6 +9,7 @@ import '../design_system/app_colors.dart';
 import '../design_system/app_snack_bar.dart';
 import '../widgets/question_report_sheet.dart';
 import '../services/html_booklet_builder.dart';
+import 'result_screen.dart';
 
 /// Standalone Real-Time HTML Question Booklet Screen
 /// Renders authentic board test booklet via webview_flutter with full
@@ -28,6 +29,7 @@ class HtmlBookletScreen extends StatefulWidget {
 class _HtmlBookletScreenState extends State<HtmlBookletScreen> {
   WebViewController? _controller;
   bool _isLoading = true;
+  bool _isSubmitting = false;
   String? _errorMessage;
   late final String _htmlContent;
 
@@ -202,25 +204,36 @@ class _HtmlBookletScreenState extends State<HtmlBookletScreen> {
   }
 
   Future<void> _onTestSubmittedFromHtml(Map<String, dynamic> data) async {
-    final score = data['score'] as int? ?? widget.session.calculateScore();
-    final elapsed = data['elapsedSeconds'] as int? ?? widget.session.elapsedSeconds;
+    if (_isSubmitting) return;
+    _isSubmitting = true;
 
     final respMap = data['responses'] as Map<String, dynamic>?;
     if (respMap != null) {
       respMap.forEach((k, v) {
         final qIndex = (int.tryParse(k) ?? 0) - 1;
-        if (qIndex >= 0 && v is int) {
-          widget.session.selectedAnswers[qIndex] = v;
-          widget.session.visitedIndices.add(qIndex);
+        if (qIndex >= 0 && qIndex < widget.session.questions.length) {
+          final answer = v is num ? v.toInt() : int.tryParse(v.toString());
+          if (answer != null && answer >= 0 && answer <= 3) {
+            widget.session.selectedAnswers[qIndex] = answer;
+            widget.session.visitedIndices.add(qIndex);
+          }
         }
       });
     }
 
+    final elapsed = (data['elapsedSeconds'] as num?)?.toInt() ??
+        widget.session.elapsedSeconds;
+    final score = widget.session.calculateScore();
+
     widget.session.isCompleted = true;
-    widget.session.elapsedSeconds = elapsed;
+    widget.session.elapsedSeconds = elapsed.clamp(
+      0,
+      widget.session.timeLimitSeconds,
+    );
     widget.session.endTime = DateTime.now();
 
-    // Record mistakes and save test history to SQLite
+    // Record mistakes and save the complete session.  The full snapshot is
+    // what allows a completed test to be reopened from History.
     try {
       await DbHelper.instance.saveTestHistory(
         id: widget.session.id,
@@ -228,23 +241,20 @@ class _HtmlBookletScreenState extends State<HtmlBookletScreen> {
         sectionFilter: widget.session.config.sectionFilter,
         score: score,
         total: widget.session.questions.length,
-        timeSpentSeconds: elapsed,
-        sessionJson: '{}',
+        timeSpentSeconds: widget.session.elapsedSeconds,
+        sessionJson: widget.session.encode(),
       );
       await DbHelper.instance.recordSessionMistakes(widget.session);
     } catch (e) {
       debugPrint('Error saving test results to DB: $e');
     }
 
-    if (mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('🎉 परीक्षा समाप्त! प्राप्तांक: $score / ${widget.session.questions.length}'),
-          backgroundColor: AppColors.success,
-          duration: const Duration(seconds: 4),
-        ),
-      );
-    }
+    if (!mounted) return;
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(
+        builder: (context) => ResultScreen(session: widget.session),
+      ),
+    );
   }
 
   Future<bool> _onWillPop() async {

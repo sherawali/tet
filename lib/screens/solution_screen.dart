@@ -11,6 +11,7 @@ import '../widgets/app_badge.dart';
 import '../widgets/formatted_question_stem.dart';
 import '../widgets/smart_math_text.dart';
 import '../widgets/question_report_sheet.dart';
+import '../widgets/question_figure_catalog.dart';
 import '../services/language_service.dart';
 
 enum SolutionFilter { all, incorrect, unattempted, correct }
@@ -432,22 +433,44 @@ class _SolutionScreenState extends State<SolutionScreen> {
       final engText = (q.hasEnglish && q.qEnglish != null && q.qEnglish!.trim().isNotEmpty)
           ? q.qEnglish!
           : q.qHindi;
-      return FormattedQuestionStem(
-        text: engText,
-        style: AppTypography.questionText(
-          color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
-        ).copyWith(fontSize: 15.5),
-        isDark: isDark,
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          FormattedQuestionStem(
+            text: engText,
+            style: AppTypography.questionText(
+              color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
+            ).copyWith(fontSize: 15.5),
+            isDark: isDark,
+          ),
+          if (QuestionFigureCatalog.hasQuestionFigure(q.id))
+            QuestionFigureCatalog.buildQuestion(
+              questionId: q.id,
+              isDark: isDark,
+              height: 170,
+            ),
+        ],
       );
     }
 
     if (mode == TestLanguageMode.onlyHindi) {
-      return FormattedQuestionStem(
-        text: q.qHindi,
-        style: AppTypography.questionText(
-          color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
-        ).copyWith(fontSize: 15.5),
-        isDark: isDark,
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          FormattedQuestionStem(
+            text: q.qHindi,
+            style: AppTypography.questionText(
+              color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
+            ).copyWith(fontSize: 15.5),
+            isDark: isDark,
+          ),
+          if (QuestionFigureCatalog.hasQuestionFigure(q.id))
+            QuestionFigureCatalog.buildQuestion(
+              questionId: q.id,
+              isDark: isDark,
+              height: 170,
+            ),
+        ],
       );
     }
 
@@ -490,6 +513,12 @@ class _SolutionScreenState extends State<SolutionScreen> {
             ),
           ),
         ],
+        if (QuestionFigureCatalog.hasQuestionFigure(q.id))
+          QuestionFigureCatalog.buildQuestion(
+            questionId: q.id,
+            isDark: isDark,
+            height: 170,
+          ),
       ],
     );
   }
@@ -497,6 +526,8 @@ class _SolutionScreenState extends State<SolutionScreen> {
   List<Widget> _buildSolOptions(Question q, int? userAns, bool isCorrect, bool isDark) {
     final mode = _languageMode;
     final int count = q.optionsHindi.length;
+
+    final hasOptionFigure = QuestionFigureCatalog.hasOptionFigures(q.id);
 
     return List.generate(count, (optIdx) {
       final isThisCorrectAnswer = optIdx == q.answer;
@@ -566,13 +597,20 @@ class _SolutionScreenState extends State<SolutionScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SmartMathText(
-                    primaryText,
-                    style: AppTypography.optionText(
-                      color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
-                    ).copyWith(fontSize: 14),
-                  ),
-                  if (secondaryText != null) ...[
+                  if (hasOptionFigure)
+                    QuestionFigureCatalog.buildOption(
+                      questionId: q.id,
+                      optionIndex: optIdx,
+                      isDark: isDark,
+                    )
+                  else
+                    SmartMathText(
+                      primaryText,
+                      style: AppTypography.optionText(
+                        color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
+                      ).copyWith(fontSize: 14),
+                    ),
+                  if (!hasOptionFigure && secondaryText != null) ...[
                     const SizedBox(height: 3),
                     SmartMathText(
                       secondaryText,
