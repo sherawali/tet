@@ -732,3 +732,9 @@
 - **Guards:** new `test/question_figures_test.dart` fails if any question points to a picture that is neither drawn nor described in the stem. `analysis_options.yaml` now excludes the local `scratch/` folder so `flutter analyze` is clean again.
 - **Verification:** 76/76 tests passed, `flutter analyze` no issues, `scripts/validate_vault.py --strict` passed, 62 papers / 9,300 questions / 27,485 options / 193 reading groups proved by `test/booklet_paper_integrity_test.dart`, 0 papers with a repeated question.
 - **Keystore / signing files:** 100% untouched and safe.
+
+- **Git:** commit `46bad6a` pushed to `origin/main`; live `cdn/manifest.json` verified as `2026102020` / `20261021_master_vault_clean_v20`, 9,720 questions, 62 papers, 49 packs, pack SHA-256 checked against the manifest (`pack-0009-0f523bad814b` = match).
+- **PR branches:** `release/v20-baseline` (b367c41, the last pre-v20 state) and `release/v20-renovation` (= main + `memory/AUDIT_V20_REPORT.md`). Comparing them shows the whole v20 renovation.
+- **PR blocker (known):** the fine-grained token in the git credential helper reads and writes the repo fine, but `POST /repos/sherawali/tet/pulls` returns `403 Resource not accessible by personal access token` - the token has no *Pull requests: write* scope. One-click alternative: `https://github.com/sherawali/tet/compare/release/v20-baseline...release/v20-renovation?expand=1` (the form is pre-filled, only "Create pull request" has to be clicked).
+- **Device check:** APK built and installed on the Infinix X698 with the phone in airplane mode - the app starts offline, the home screen and the booklets render, no Flutter exception in the logcat.
+- **Final numbers:** 77/77 tests passed, `flutter analyze` no issues, `scripts/validate_vault.py --strict` passed, 62 papers / 9,300 questions / 27,485 options / 193 reading groups proven by the booklet test.
