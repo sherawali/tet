@@ -122,6 +122,22 @@ class _HomeScreenState extends State<HomeScreen> {
     super.dispose();
   }
 
+  /// Re-reads the stored test history (a finished test is written while the
+  /// candidate is away from this screen).
+  Future<void> _refreshHistoryIfNeeded() async {
+    try {
+      final history = await _db.getTestHistory();
+      if (!mounted) return;
+      if (history.length == _history.length) {
+        final newest = history.isNotEmpty ? history.first['timestamp'] : null;
+        final currentNewest =
+            _history.isNotEmpty ? _history.first['timestamp'] : null;
+        if (newest == currentNewest) return;
+      }
+      setState(() => _history = history);
+    } catch (_) {}
+  }
+
   Future<void> _loadData() async {
     final currentExam = ExamService.instance.examCode;
     final total = await _db.getQuestionCount(currentExam);
@@ -2151,6 +2167,10 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _buildHistoryTab(bool isDark) {
+    // The history is filled while the candidate is inside a test, so it has
+    // to be re-read every time the tab is opened - otherwise the list stays
+    // empty until the app is restarted.
+    _refreshHistoryIfNeeded();
     final passCount = _history.where((h) {
       final s = (h['score'] as num?)?.toInt() ?? 0;
       final t = (h['total'] as num?)?.toInt() ?? 150;

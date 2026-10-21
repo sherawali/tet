@@ -1160,7 +1160,7 @@ class HtmlBookletBuilder {
       </div>
 
       <div class="cover-time-marks">
-        <span>समय : $timeLimitText (${session.config.timeLimitMinutes} मिनट)</span>
+        <span>समय : $timeLimitText${session.config.timeLimitMinutes >= 60 ? ' (${session.config.timeLimitMinutes} मिनट)' : ''}</span>
         <span>पूर्णांक : $totalQs अंक ($totalQs प्रश्न)</span>
       </div>
 
@@ -1470,7 +1470,7 @@ class HtmlBookletBuilder {
           <div class="c-stat-box"><b style="color:var(--success)" id="cf-ans">0</b><span>हल किए</span></div>
           <div class="c-stat-box"><b style="color:var(--text-muted)" id="cf-left">$totalQs</b><span>शेष</span></div>
         </div>
-        <div style="display:flex;gap:10px;justify-content:center">
+        <div class="modal-actions">
           <button class="cbt-btn cbt-btn-secondary" style="color:#0f172a;border:1.5px solid #cbd5e1" onclick="closeConfirmModal()">नहीं, जारी रखें</button>
           <button class="cbt-btn cbt-btn-primary" onclick="executeSubmit(false)">हाँ, जमा करें</button>
         </div>
@@ -1598,14 +1598,17 @@ html {
   scroll-behavior: smooth;
   width: 100%;
   max-width: 100%;
-  overflow-x: hidden;
+  /* `overflow-x: hidden` on html/body turns the page into a scroll
+     container and silently breaks `position: sticky` - the timer, the
+     palette and the submit button would scroll away on a phone. */
+  overflow-x: clip;
 }
 body {
   margin: 0;
   padding: 0;
   width: 100%;
   max-width: 100%;
-  overflow-x: hidden;
+  overflow-x: clip;
   background-color: var(--booklet-bg);
   color: var(--text-main);
   font-family: var(--font-hindi);
@@ -2796,6 +2799,21 @@ body.lang-mode-en .bilingual-desktop-grid .q-column:nth-child(1) .q-num { displa
 .option-row[aria-checked="true"] { font-weight: 700; }
 
 .q-topic-tag { color: #475569; }
+
+/* The confirm / result dialogs must stay usable on a 360 dp phone: the
+   buttons wrap instead of overlapping each other. */
+.modal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+.modal-actions .cbt-btn {
+  flex: 1 1 auto;
+  min-width: 46%;
+  white-space: normal;
+  line-height: 1.3;
+}
 
 @media (prefers-color-scheme: dark) {
 ${_darkThemeRules.replaceAll('DARK_ROOT', 'html:not([data-theme])')}

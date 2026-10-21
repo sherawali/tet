@@ -697,6 +697,15 @@ def repair_database() -> None:
         # total must therefore be 150, not 210.
         conn.execute("UPDATE paper_forms SET total_questions = 150 WHERE total_questions <> 150")
 
+        # User generated data must never ship inside the bundled asset:
+        # a fresh install would otherwise post the developer's old error
+        # reports to the tracker again and again.
+        for table in ("question_reports", "mistake_records", "test_history"):
+            try:
+                conn.execute(f"DELETE FROM {table}")
+            except sqlite3.OperationalError:
+                pass
+
         # Content integrity: unique questions per paper, contiguous passage
         # groups, answerable stems and a single source of truth for the key.
         swapped = dedupe_paper_questions(conn)
@@ -708,6 +717,13 @@ def repair_database() -> None:
 
         conn.execute(
             "INSERT INTO meta(key, val) VALUES('bank_version', ?) "
+            "ON CONFLICT(key) DO UPDATE SET val = excluded.val",
+            (str(VAULT_VERSION),),
+        )
+        # The marker of the bundled version travels with the asset, so a
+        # device never mistakes a downloaded (newer) bank for the bundle.
+        conn.execute(
+            "INSERT INTO meta(key, val) VALUES('bundled_version', ?) "
             "ON CONFLICT(key) DO UPDATE SET val = excluded.val",
             (str(VAULT_VERSION),),
         )

@@ -692,3 +692,14 @@
 - **GitHub push:** Commit `d37948b` pushed to `origin/main`; live `cdn/manifest.json` verified as `2026102018` / `20261020_master_vault_clean_v18`, 9,720 questions, 62 papers, 49 packs. Live `papers.json` and pack SHA-256 also verified.
 - **Verification:** `flutter test` 42/42 passed; `flutter analyze lib` no issues; `PRAGMA integrity_check` ok; render audit `should_kathan 10/10`, `should_match 20/21`, `should_stmt 136/142` (remaining are false positives).
 - **Keystore / signing files:** 100% untouched and safe.
+
+### 2026-10-21: V20 Device Test (real phone) - 5 bugs found and fixed
+- **Test:** Infinix X698 (1080x2460) par fresh install -> splash -> home -> booklet (150 Q + 30 Q drill) -> answer -> submit -> result -> history -> reopen. Har screen ka screenshot liya gaya, logcat scan kiya gaya. Koi crash, koi Flutter exception, koi render overflow nahi mila.
+- **Jo theek tha:** offline start (9,720 bank), 150-question UTET 2023 board paper ka booklet, 30-question drill, question types (plain/kathn/match/figure), chips, (A)-(D) options, result screen (score + section + topic analysis), history reopen (poora snapshot).
+- **5 bugs mile aur fix hue:**
+  1. **Sticky control bar scroll ke saath hat raha tha** - `body/html { overflow-x: hidden }` Chrome/WebView me `position: sticky` tod deta hai. Proof: bar top `-1800px` (hidden) vs `0` (pinned) with `overflow-x: clip`. Fix: `overflow-x: clip`.
+  2. **Bundled DB me 5 leftover test-reports** - har fresh install pe 5 GitHub issues post ho rahe the. Fix: `scripts/repair_vault.py` ab `question_reports`, `mistake_records`, `test_history` ko asset se purge karta hai.
+  3. **Confirm modal ke do buttons ek dusre pe overlap** ho rahe the (360dp screen). Fix: `.modal-actions` flex-wrap + min-width 46% + normal white-space.
+  4. **Cover pe "??? : 30 ???? (30 ????)"** double print. Fix: parenthetical sirf 60+ minute papers me.
+  5. **History list refresh nahi hoti thi** - test toh save hota tha par list khali dikhti thi (app restart tak). Fix: `_refreshHistoryIfNeeded()` history tab khulte hi.
+- **Verification:** 70/70 tests, analyze clean, validator pass, APK build + install + device par dono fixes (sticky bar, modal buttons) screenshot se confirm.
