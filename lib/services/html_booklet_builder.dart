@@ -2774,7 +2774,67 @@ DARK_ROOT {
   --text-muted: #94a3b8;
   --border-color: #334155;
 }
+
+/* --- text that inherits the dark background ------------------------- */
 DARK_ROOT .question-item, DARK_ROOT .q-group, DARK_ROOT .cover-page { background: #0f172a; }
+DARK_ROOT .q-stem, DARK_ROOT .stem-p, DARK_ROOT .q-num { color: #e2e8f0; }
+DARK_ROOT .prose-p, DARK_ROOT .poem-line { color: #e2e8f0; }
+DARK_ROOT .kathan-intro, DARK_ROOT .kathan-body { color: #e2e8f0; }
+DARK_ROOT .stmt-intro, DARK_ROOT .stmt-text, DARK_ROOT .stmt-conclusion { color: #e2e8f0; }
+DARK_ROOT .match-intro, DARK_ROOT .match-conclusion { color: #e2e8f0; }
+DARK_ROOT .opt-primary { color: #e2e8f0; }
+DARK_ROOT .opt-secondary { color: #94a3b8; }
+DARK_ROOT .q-topic-tag { background: #1e293b; color: #cbd5e1; }
+DARK_ROOT .q-marks { background: #1e1b4b; color: #c7d2fe; }
+DARK_ROOT .q-diff-easy { background: #14532d; color: #bbf7d0; }
+DARK_ROOT .q-diff-med { background: #451a03; color: #fde68a; }
+DARK_ROOT .q-diff-hard { background: #450a0a; color: #fecaca; }
+DARK_ROOT .q-group > .question-item { border-top-color: #1e293b; }
+DARK_ROOT .q-blank { border-bottom-color: #e2e8f0; }
+DARK_ROOT .option-row { background: #111c33; color: #e2e8f0; border-color: #334155; font-weight: 700; }
+DARK_ROOT .option-row:hover { background: #16233d; }
+DARK_ROOT .option-row.selected { background: #172554; color: #dbeafe; }
+DARK_ROOT .option-row.selected .opt-secondary { color: #93c5fd; }
+DARK_ROOT .option-row.correct-ans .opt-secondary { color: #86efac; }
+DARK_ROOT .option-row.wrong-ans .opt-secondary { color: #fca5a5; }
+DARK_ROOT .opt-badge { color: #cbd5e1; }
+DARK_ROOT .option-row.selected .opt-badge { color: #93c5fd; }
+
+/* --- assertion / reason cards -------------------------------------- */
+DARK_ROOT .kathan-box { background: #111c33; }
+DARK_ROOT .kathan-box.reason-box { background: #1c1636; }
+DARK_ROOT .kathan-box.vyakhyan-box { background: #241a06; }
+DARK_ROOT .kathan-conclusion { background: #1e293b; color: #cbd5e1; }
+DARK_ROOT .kathan-tag.tag-a { background: #1e3a8a; color: #bfdbfe; }
+DARK_ROOT .kathan-tag.tag-r { background: #3b0764; color: #ddd6fe; }
+DARK_ROOT .kathan-tag.tag-v { background: #451a03; color: #fde68a; }
+
+/* --- multi statement list ------------------------------------------ */
+DARK_ROOT .stmt-list { background: #111c33; border-color: #1e293b; }
+DARK_ROOT .stmt-marker { color: #93c5fd; }
+
+/* --- match / markdown tables ---------------------------------------- */
+DARK_ROOT .q-table td, DARK_ROOT .match-table td { background: #0f172a; color: #e2e8f0; }
+DARK_ROOT .q-table th, DARK_ROOT .match-table th { background: #1e293b; color: #e2e8f0; }
+DARK_ROOT .q-table th, DARK_ROOT .q-table td,
+DARK_ROOT .match-table th, DARK_ROOT .match-table td { border-color: #334155; }
+DARK_ROOT .match-table tr:nth-child(even) td { background: #131f38; }
+DARK_ROOT .match-conclusion { background: #1e293b; }
+
+/* --- bilingual translation block ------------------------------------ */
+DARK_ROOT .q-stem-translation { background: #111c33; border-left-color: #475569; color: #cbd5e1; }
+DARK_ROOT .lang-tag { background: #1e293b; color: #cbd5e1; }
+DARK_ROOT body.lang-mode-en .bilingual-mobile-stack .q-stem-en-body { color: #e2e8f0 !important; }
+DARK_ROOT body.lang-mode-en .bilingual-mobile-stack .opt-secondary { color: #94a3b8 !important; }
+
+/* --- stimulus ------------------------------------------------------- */
+DARK_ROOT .stimulus-wrapper { background: #0b1220; box-shadow: none; }
+DARK_ROOT .stimulus-header { background: #1e293b; color: #e2e8f0; }
+DARK_ROOT .stimulus-header.poem-head { background: #2e1065; color: #ddd6fe; }
+DARK_ROOT .stimulus-content { background: #0b1220; border-color: #334155; color: #e2e8f0; }
+DARK_ROOT .stimulus-content.poem-body { background: #0b1220; }
+
+/* --- cover page ----------------------------------------------------- */
 DARK_ROOT .cover-authority { color: #e2e8f0; }
 DARK_ROOT .cover-sub-auth { color: #94a3b8; }
 DARK_ROOT .cover-exam-title { color: #f8fafc; }
@@ -2784,28 +2844,23 @@ DARK_ROOT .cover-meta-box b { color: #94a3b8; }
 DARK_ROOT .roll-digit-box { border-color: #334155; background: #0b1220; color: #e2e8f0; }
 DARK_ROOT .set-badge-box { border-color: #334155; background: #0b1220; color: #e2e8f0; }
 DARK_ROOT .cover-instructions { color: #cbd5e1; }
-DARK_ROOT .stimulus-wrapper { background: #0b1220; box-shadow: none; }
-DARK_ROOT .stimulus-header { background: #1e293b; color: #e2e8f0; }
-DARK_ROOT .stimulus-header.poem-head { background: #2e1065; color: #ddd6fe; }
-DARK_ROOT .stimulus-content { background: #0b1220; border-color: #334155; color: #e2e8f0; }
-DARK_ROOT .stimulus-content.poem-body { background: #0b1220; }
-DARK_ROOT .prose-p, DARK_ROOT .poem-line { color: #e2e8f0; }
-DARK_ROOT .option-row { background: #111c33; color: #e2e8f0; border-color: #334155; font-weight: 700; }
-DARK_ROOT .option-row:hover { background: #16233d; }
-DARK_ROOT .option-row.selected { background: #172554; color: #dbeafe; }
-DARK_ROOT .opt-badge { color: #cbd5e1; }
-DARK_ROOT .option-row.selected .opt-badge { color: #93c5fd; }
-DARK_ROOT .q-num, DARK_ROOT .q-stem { color: #e2e8f0; }
-DARK_ROOT .q-topic-tag { background: #1e293b; color: #cbd5e1; }
-DARK_ROOT .q-marks { background: #1e1b4b; color: #c7d2fe; }
-DARK_ROOT .q-diff-easy { background: #14532d; color: #bbf7d0; }
-DARK_ROOT .q-diff-med { background: #451a03; color: #fde68a; }
-DARK_ROOT .q-diff-hard { background: #450a0a; color: #fecaca; }
-DARK_ROOT .q-table td, DARK_ROOT .match-table td { background: #0f172a; color: #e2e8f0; }
-DARK_ROOT .q-table th, DARK_ROOT .match-table th { background: #1e293b; color: #e2e8f0; }
-DARK_ROOT .q-table th, DARK_ROOT .q-table td, DARK_ROOT .match-table th, DARK_ROOT .match-table td { border-color: #334155; }
-DARK_ROOT .match-table tr:nth-child(even) td { background: #131f38; }
-DARK_ROOT .q-group > .question-item { border-top-color: #1e293b; }
+
+/* --- question footer, palette and result marks ----------------------- */
+DARK_ROOT .q-rev-btn { color: #cbd5e1; border-color: #334155; }
+DARK_ROOT .q-peek-btn { background: #0c4a6e; border-color: #0369a1; color: #bae6fd; }
+DARK_ROOT .q-report-btn { color: #fdba74; border-color: #7c2d12; }
+DARK_ROOT .palette-grid a { background: #111c33; color: #cbd5e1; border-color: #334155; }
+DARK_ROOT .result-mark.ok { background: #14532d; color: #bbf7d0; }
+DARK_ROOT .result-mark.wrong { background: #450a0a; color: #fecaca; }
+DARK_ROOT .result-mark.skipped { background: #1e293b; color: #cbd5e1; }
+
+/* --- modals and report sheet ---------------------------------------- */
+DARK_ROOT .confirm-card { background: #0f172a; border: 1px solid #334155; }
+DARK_ROOT .confirm-card h3 { color: #f1f5f9; }
+DARK_ROOT .confirm-card p { color: #cbd5e1; }
+DARK_ROOT .c-stat-box { background: #111c33; border-color: #334155; }
+DARK_ROOT .c-stat-box span { color: #94a3b8; }
+DARK_ROOT .rep-radio-label { background: #111c33; border-color: #334155; color: #e2e8f0; }
 ''';
 
   static const String _jsEngine = '''
