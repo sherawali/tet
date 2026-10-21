@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../design_system/app_snack_bar.dart';
+import '../design_system/app_typography.dart';
 import '../models/question.dart';
 import '../database/db_helper.dart';
 import '../services/github_report_service.dart';
@@ -186,7 +186,7 @@ class _QuestionReportSheetState extends State<QuestionReportSheet> {
                 Expanded(
                   child: Text(
                     'GitHub Key सेटअप',
-                    style: GoogleFonts.outfit(
+                    style: AppTypography.outfit(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                       color: textColor,
@@ -202,7 +202,7 @@ class _QuestionReportSheetState extends State<QuestionReportSheet> {
                 children: [
                   Text(
                     'छात्रों द्वारा रिपोर्ट की गई समस्याएं सीधे GitHub Issues पर दर्ज होंगी। Key ऐप में XOR Base64 मानक से 100% एन्क्रिप्ट होकर सुरक्षित रहती है।',
-                    style: GoogleFonts.notoSansDevanagari(
+                    style: AppTypography.notoSansDevanagari(
                       fontSize: 12.5,
                       color: isDark ? const Color(0xFF94A3B8) : const Color(0xFF64748B),
                       height: 1.45,
@@ -222,7 +222,7 @@ class _QuestionReportSheetState extends State<QuestionReportSheet> {
                     ),
                     child: Text(
                       statusMsg,
-                      style: GoogleFonts.notoSansDevanagari(
+                      style: AppTypography.notoSansDevanagari(
                         fontSize: 12,
                         fontWeight: FontWeight.w600,
                         color: isConfigured ? const Color(0xFF10B981) : const Color(0xFFF59E0B),
@@ -232,7 +232,7 @@ class _QuestionReportSheetState extends State<QuestionReportSheet> {
                   const SizedBox(height: 14),
                   Text(
                     'नया Personal Access Token पेस्ट करें:',
-                    style: GoogleFonts.outfit(
+                    style: AppTypography.outfit(
                       fontSize: 12.5,
                       fontWeight: FontWeight.w600,
                       color: textColor,
@@ -242,13 +242,13 @@ class _QuestionReportSheetState extends State<QuestionReportSheet> {
                   TextField(
                     controller: tokenController,
                     obscureText: isObscured,
-                    style: GoogleFonts.courierPrime(
+                    style: AppTypography.courierPrime(
                       fontSize: 13,
                       color: textColor,
                     ),
                     decoration: InputDecoration(
                       hintText: 'ghp_... या github_pat_...',
-                      hintStyle: GoogleFonts.courierPrime(
+                      hintStyle: AppTypography.courierPrime(
                         fontSize: 12,
                         color: Colors.grey,
                       ),
@@ -286,12 +286,12 @@ class _QuestionReportSheetState extends State<QuestionReportSheet> {
                   },
                   child: Text(
                     'हटाएं',
-                    style: GoogleFonts.outfit(color: Colors.redAccent, fontWeight: FontWeight.w600),
+                    style: AppTypography.outfit(color: Colors.redAccent, fontWeight: FontWeight.w600),
                   ),
                 ),
               TextButton(
                 onPressed: () => Navigator.pop(dlgCtx),
-                child: Text('रद्द करें', style: GoogleFonts.outfit(color: Colors.grey)),
+                child: Text('रद्द करें', style: AppTypography.outfit(color: Colors.grey)),
               ),
               ElevatedButton(
                 onPressed: isTesting
@@ -347,7 +347,7 @@ class _QuestionReportSheetState extends State<QuestionReportSheet> {
                       )
                     : Text(
                         'एन्क्रिप्ट और सहेजें',
-                        style: GoogleFonts.outfit(fontWeight: FontWeight.bold, color: Colors.black87),
+                        style: AppTypography.outfit(fontWeight: FontWeight.bold, color: Colors.black87),
                       ),
               ),
             ],
@@ -561,7 +561,7 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
                                 'प्रश्न में त्रुटि रिपोर्ट',
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
-                                style: GoogleFonts.outfit(
+                                style: AppTypography.outfit(
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
                                   color: textPrimary,
@@ -581,7 +581,7 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
                               ),
                               child: Text(
                                 'Q${widget.questionNumber}',
-                                style: GoogleFonts.outfit(
+                                style: AppTypography.outfit(
                                   fontSize: 11.5,
                                   fontWeight: FontWeight.w800,
                                   color: const Color(0xFFF59E0B),
@@ -597,7 +597,7 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
                               : 'प्रश्न संख्या ${widget.questionNumber} का विवरण दर्ज करें',
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
-                          style: GoogleFonts.notoSansDevanagari(
+                          style: AppTypography.notoSansDevanagari(
                             fontSize: 12,
                             color: textSecondary,
                           ),
@@ -658,7 +658,7 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
                               Expanded(
                                 child: Text(
                                   'आप इस प्रश्न की रिपोर्ट पहले दर्ज कर चुके हैं। (पिछली रिपोर्ट देखने हेतु टैप करें)',
-                                  style: GoogleFonts.notoSansDevanagari(
+                                  style: AppTypography.notoSansDevanagari(
                                     fontSize: 12,
                                     color: const Color(0xFFF59E0B),
                                     fontWeight: FontWeight.w600,
@@ -691,7 +691,7 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
                               const SizedBox(width: 6),
                               Text(
                                 'प्रश्न का संक्षिप्त अंश:',
-                                style: GoogleFonts.outfit(
+                                style: AppTypography.outfit(
                                   fontSize: 12,
                                   fontWeight: FontWeight.w700,
                                   color: textSecondary,
@@ -706,7 +706,7 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
                                 ),
                                 child: Text(
                                   'सही उत्तर: (${String.fromCharCode(65 + q.answer)})',
-                                  style: GoogleFonts.outfit(
+                                  style: AppTypography.outfit(
                                     fontSize: 11,
                                     fontWeight: FontWeight.w700,
                                     color: const Color(0xFF10B981),
@@ -718,7 +718,7 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
                           const SizedBox(height: 6),
                           Text(
                             shortPreview,
-                            style: GoogleFonts.notoSansDevanagari(
+                            style: AppTypography.notoSansDevanagari(
                               fontSize: 13,
                               height: 1.45,
                               color: textPrimary,
@@ -733,7 +733,7 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
                     // Section Title: Reason
                     Text(
                       'इस प्रश्न में क्या समस्या है? (समस्या चुनें)',
-                      style: GoogleFonts.outfit(
+                      style: AppTypography.outfit(
                         fontSize: 13.5,
                         fontWeight: FontWeight.w700,
                         color: textPrimary,
@@ -799,7 +799,7 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
                                     children: [
                                       Text(
                                         title,
-                                        style: GoogleFonts.outfit(
+                                        style: AppTypography.outfit(
                                           fontSize: 13.5,
                                           fontWeight: isSelected ? FontWeight.w700 : FontWeight.w600,
                                           color: isSelected ? textPrimary : textPrimary.withValues(alpha: 0.85),
@@ -808,7 +808,7 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
                                       const SizedBox(height: 2),
                                       Text(
                                         subtitle,
-                                        style: GoogleFonts.notoSansDevanagari(
+                                        style: AppTypography.notoSansDevanagari(
                                           fontSize: 11.5,
                                           color: textSecondary,
                                         ),
@@ -836,7 +836,7 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
                         LanguageService.instance.isHindi
                             ? 'आपके अनुसार सही उत्तर क्या होना चाहिए?'
                             : 'What do you believe is the correct answer?',
-                        style: GoogleFonts.outfit(
+                        style: AppTypography.outfit(
                           fontSize: 13,
                           fontWeight: FontWeight.w700,
                           color: const Color(0xFFF59E0B),
@@ -872,7 +872,7 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
                                   ),
                                   child: Text(
                                     '($opt)',
-                                    style: GoogleFonts.outfit(
+                                    style: AppTypography.outfit(
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold,
                                       color: isOptSel ? const Color(0xFFF59E0B) : textPrimary,
@@ -894,7 +894,7 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
                       children: [
                         Text(
                           'अतिरिक्त विवरण / टिप्पणी (वैकल्पिक)',
-                          style: GoogleFonts.outfit(
+                          style: AppTypography.outfit(
                             fontSize: 13,
                             fontWeight: FontWeight.w700,
                             color: textPrimary,
@@ -921,7 +921,7 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
                                   const SizedBox(width: 4),
                                   Text(
                                     'कीबोर्ड छुपाएं',
-                                    style: GoogleFonts.notoSansDevanagari(
+                                    style: AppTypography.notoSansDevanagari(
                                       fontSize: 11,
                                       fontWeight: FontWeight.w600,
                                       color: const Color(0xFFF59E0B),
@@ -953,13 +953,13 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
                           }
                         });
                       },
-                      style: GoogleFonts.notoSansDevanagari(
+                      style: AppTypography.notoSansDevanagari(
                         fontSize: 13.5,
                         color: textPrimary,
                       ),
                       decoration: InputDecoration(
                         hintText: 'पुस्तक संदर्भ, सही उत्तर का कारण या प्रश्न में क्या छूटा है संक्षेप में लिखें...',
-                        hintStyle: GoogleFonts.notoSansDevanagari(
+                        hintStyle: AppTypography.notoSansDevanagari(
                           fontSize: 12.5,
                           color: textSecondary.withValues(alpha: 0.7),
                         ),
@@ -991,7 +991,7 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
                           icon: const Icon(Icons.share_outlined, size: 16, color: Color(0xFF10B981)),
                           label: Text(
                             'कॉपी',
-                            style: GoogleFonts.outfit(
+                            style: AppTypography.outfit(
                               fontSize: 13,
                               fontWeight: FontWeight.w700,
                               color: const Color(0xFF10B981),
@@ -1047,7 +1047,7 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
                                         const SizedBox(width: 8),
                                         Text(
                                           'रिपोर्ट सबमिट करें',
-                                          style: GoogleFonts.outfit(
+                                          style: AppTypography.outfit(
                                             fontSize: 15,
                                             fontWeight: FontWeight.bold,
                                             color: Colors.white,
@@ -1229,7 +1229,7 @@ ${opt != null && opt.toString().isNotEmpty ? '💡 सुझाया गया 
                                 'मेरी रिपोर्ट की गई समस्याएं',
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
-                                style: GoogleFonts.outfit(
+                                style: AppTypography.outfit(
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
                                   color: textPrimary,
@@ -1245,7 +1245,7 @@ ${opt != null && opt.toString().isNotEmpty ? '💡 सुझाया गया 
                               ),
                               child: Text(
                                 '${_reports.length}',
-                                style: GoogleFonts.outfit(
+                                style: AppTypography.outfit(
                                   fontSize: 12,
                                   fontWeight: FontWeight.bold,
                                   color: const Color(0xFF10B981),
@@ -1256,7 +1256,7 @@ ${opt != null && opt.toString().isNotEmpty ? '💡 सुझाया गया 
                         ),
                         Text(
                           'प्रश्नों की समीक्षा स्थिति · 7 दिनों में स्वतः निस्तारित',
-                          style: GoogleFonts.notoSansDevanagari(
+                          style: AppTypography.notoSansDevanagari(
                             fontSize: 11.5,
                             color: textSecondary,
                           ),
@@ -1303,7 +1303,7 @@ ${opt != null && opt.toString().isNotEmpty ? '💡 सुझाया गया 
                                 const SizedBox(height: 16),
                                 Text(
                                   'कोई रिपोर्ट दर्ज नहीं है',
-                                  style: GoogleFonts.outfit(
+                                  style: AppTypography.outfit(
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
                                     color: textPrimary,
@@ -1313,7 +1313,7 @@ ${opt != null && opt.toString().isNotEmpty ? '💡 सुझाया गया 
                                 Text(
                                   'यदि किसी प्रश्न में उत्तर या प्रश्न अधूरा लगे, तो प्रश्न कार्ड पर "🚩 रिपोर्ट" बटन दबाकर रिपोर्ट दर्ज करें।',
                                   textAlign: TextAlign.center,
-                                  style: GoogleFonts.notoSansDevanagari(
+                                  style: AppTypography.notoSansDevanagari(
                                     fontSize: 13,
                                     color: textSecondary,
                                     height: 1.5,
@@ -1385,7 +1385,7 @@ ${opt != null && opt.toString().isNotEmpty ? '💡 सुझाया गया 
                                               ),
                                               child: Text(
                                                 'Q$qNum',
-                                                style: GoogleFonts.outfit(
+                                                style: AppTypography.outfit(
                                                   fontSize: 11.5,
                                                   fontWeight: FontWeight.bold,
                                                   color: const Color(0xFFF59E0B),
@@ -1440,7 +1440,7 @@ ${opt != null && opt.toString().isNotEmpty ? '💡 सुझाया गया 
                                                                 : (LanguageService.instance.isHindi ? 'समीक्षाधीन' : 'Under Review')),
                                                         maxLines: 1,
                                                         overflow: TextOverflow.ellipsis,
-                                                        style: GoogleFonts.outfit(
+                                                        style: AppTypography.outfit(
                                                           fontSize: 10.5,
                                                           fontWeight: FontWeight.w700,
                                                           color: isSolved
@@ -1487,7 +1487,7 @@ ${opt != null && opt.toString().isNotEmpty ? '💡 सुझाया गया 
                                                 paper,
                                                 maxLines: 1,
                                                 overflow: TextOverflow.ellipsis,
-                                                style: GoogleFonts.notoSansDevanagari(
+                                                style: AppTypography.notoSansDevanagari(
                                                   fontSize: 12,
                                                   fontWeight: FontWeight.w600,
                                                   color: textPrimary,
@@ -1497,7 +1497,7 @@ ${opt != null && opt.toString().isNotEmpty ? '💡 सुझाया गया 
                                             const SizedBox(width: 6),
                                             Text(
                                               reportCode,
-                                              style: GoogleFonts.outfit(
+                                              style: AppTypography.outfit(
                                                 fontSize: 11,
                                                 color: textSecondary,
                                               ),
@@ -1520,7 +1520,7 @@ ${opt != null && opt.toString().isNotEmpty ? '💡 सुझाया गया 
                                                   'समस्या: $reason',
                                                   maxLines: 1,
                                                   overflow: TextOverflow.ellipsis,
-                                                  style: GoogleFonts.notoSansDevanagari(
+                                                  style: AppTypography.notoSansDevanagari(
                                                     fontSize: 11.5,
                                                     fontWeight: FontWeight.w600,
                                                     color: const Color(0xFFEF4444),
@@ -1532,7 +1532,7 @@ ${opt != null && opt.toString().isNotEmpty ? '💡 सुझाया गया 
                                               const SizedBox(width: 6),
                                               Text(
                                                 displayDate,
-                                                style: GoogleFonts.outfit(
+                                                style: AppTypography.outfit(
                                                   fontSize: 10,
                                                   color: textSecondary.withValues(alpha: 0.7),
                                                 ),
@@ -1548,7 +1548,7 @@ ${opt != null && opt.toString().isNotEmpty ? '💡 सुझाया गया 
                                       stem,
                                       maxLines: 2,
                                       overflow: TextOverflow.ellipsis,
-                                      style: GoogleFonts.notoSansDevanagari(
+                                      style: AppTypography.notoSansDevanagari(
                                         fontSize: 12,
                                         color: textSecondary,
                                         height: 1.4,
@@ -1561,7 +1561,7 @@ ${opt != null && opt.toString().isNotEmpty ? '💡 सुझाया गया 
                                     const SizedBox(height: 4),
                                     Text(
                                       '💡 छात्र द्वारा सुझाया गया सही उत्तर: विकल्प ($opt)',
-                                      style: GoogleFonts.notoSansDevanagari(
+                                      style: AppTypography.notoSansDevanagari(
                                         fontSize: 12,
                                         fontWeight: FontWeight.bold,
                                         color: const Color(0xFFF59E0B),
@@ -1574,7 +1574,7 @@ ${opt != null && opt.toString().isNotEmpty ? '💡 सुझाया गया 
                                     const SizedBox(height: 4),
                                     Text(
                                       'टिप्पणी: $comment',
-                                      style: GoogleFonts.notoSansDevanagari(
+                                      style: AppTypography.notoSansDevanagari(
                                         fontSize: 12,
                                         fontStyle: FontStyle.italic,
                                         color: textPrimary.withValues(alpha: 0.85),
@@ -1589,7 +1589,7 @@ ${opt != null && opt.toString().isNotEmpty ? '💡 सुझाया गया 
                                       alignment: Alignment.centerRight,
                                       child: Text(
                                         displayDate,
-                                        style: GoogleFonts.outfit(
+                                        style: AppTypography.outfit(
                                           fontSize: 10.5,
                                           color: textSecondary.withValues(alpha: 0.7),
                                         ),

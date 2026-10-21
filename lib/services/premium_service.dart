@@ -89,7 +89,9 @@ class PremiumService {
 
   Future<void> init() async {
     // 0. Load cached remote config from SQLite
-    await _loadCachedRemoteConfig();
+    try {
+      await _loadCachedRemoteConfig();
+    } catch (_) {}
 
     // 1. Check local DB state
     try {
@@ -100,15 +102,20 @@ class PremiumService {
     } catch (_) {}
 
     // 2. Setup IAP Purchase Stream listener
-    _subscription = _iap.purchaseStream.listen(
-      _handlePurchaseUpdates,
-      onDone: () => _subscription?.cancel(),
-      onError: (error) {
-        _purchaseTimeoutTimer?.cancel();
-        purchaseError.value = error.toString();
-        isLoading.value = false;
-      },
-    );
+    try {
+      _subscription = _iap.purchaseStream.listen(
+        _handlePurchaseUpdates,
+        onDone: () => _subscription?.cancel(),
+        onError: (error) {
+          _purchaseTimeoutTimer?.cancel();
+          purchaseError.value = error.toString();
+          isLoading.value = false;
+        },
+      );
+    } catch (_) {
+      // Play Billing is not available on this platform - the app keeps
+      // working with the locally stored premium state.
+    }
 
     // 3. Load product details if store is available
     await loadProductDetails();
@@ -159,12 +166,15 @@ class PremiumService {
 
       final product = productsMap[productId] ?? productsMap[masterProductId] ?? productsMap[legacyProductId];
       if (product == null) {
-        // Fallback for offline or test builds
-        await unlockAllAccessLocally();
+        // The store is reachable but the product list could not be read -
+        // this is an offline or not-signed-in situation.  Access must NOT be
+        // unlocked here, otherwise a single tap while offline would grant
+        // the complete premium pass for free.
         _purchaseTimeoutTimer?.cancel();
+        purchaseError.value =
+            'Purchase needs an internet connection. Please try again online.';
         isLoading.value = false;
-        _purchaseSuccessController.add(true);
-        return true;
+        return false;
       }
 
       final PurchaseParam purchaseParam = PurchaseParam(productDetails: product);

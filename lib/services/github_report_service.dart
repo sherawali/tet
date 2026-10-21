@@ -188,7 +188,7 @@ class GitHubReportService {
           'User-Agent': 'TET-App-Report-Engine',
         },
         body: payload,
-      );
+      ).timeout(const Duration(seconds: 15));
 
       if (response.statusCode == 201) {
         debugPrint('GitHubReportService: Report #$reportId posted to GitHub Issue successfully!');
@@ -204,13 +204,18 @@ class GitHubReportService {
     }
   }
 
-  /// Syncs all pending offline reports stored in SQLite to GitHub
+  /// Syncs all pending offline reports stored in SQLite to GitHub.
+  ///
+  /// The whole loop has a time budget: a device without a connection must
+  /// not spend minutes on a socket that never answers.
   Future<int> syncPendingReports() async {
     final pending = await DbHelper.instance.getPendingReports();
     if (pending.isEmpty) return 0;
 
+    final budgetEnd = DateTime.now().add(const Duration(seconds: 45));
     int syncedCount = 0;
     for (final r in pending) {
+      if (DateTime.now().isAfter(budgetEnd)) break;
       final id = r['id'] as int? ?? 0;
       final qId = r['question_id']?.toString() ?? '';
       final qNum = r['question_number'] as int? ?? 0;

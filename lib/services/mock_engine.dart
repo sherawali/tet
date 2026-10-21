@@ -360,10 +360,29 @@ class MockEngine {
     required String paperFormId,
     String? stream,
   }) async {
-    return await db.loadPaperFormExam(
+    final result = await db.loadPaperFormExam(
       paperFormId: paperFormId,
       stream: stream ?? ExamService.instance.activeStream.name,
     );
+
+    // Every question of this paper must be able to show its own passage in
+    // the CBT screen *and* in the solution review.  Passages that are only
+    // available in the hard-coded official repository are resolved here.
+    final missing = <String>{};
+    for (final question in result.questions) {
+      final pid = question.passageId;
+      if (pid != null && pid.isNotEmpty && !result.passages.containsKey(pid)) {
+        missing.add(pid);
+      }
+    }
+    for (final pid in missing) {
+      final passage = OfficialPyqRepository.getPassage(pid);
+      if (passage != null) {
+        result.passages[pid] = passage;
+      }
+    }
+
+    return result;
   }
 
   /// Generate authentic full PYQ paper for a specific year

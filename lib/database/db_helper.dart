@@ -18,7 +18,7 @@ class DbHelper {
   /// Version of the bundled SQLite vault in `assets/database/`.
   /// Bumping this triggers a one-time copy from the asset bundle while keeping
   /// the user's test history and mistake records intact.
-  static const String bundledVaultVersion = '2026102018';
+  static const String bundledVaultVersion = '2026102020';
 
   Database? _db;
 
@@ -183,10 +183,15 @@ class DbHelper {
           await db.execute("ALTER TABLE question_reports ADD COLUMN status TEXT DEFAULT 'submitted'");
         } catch (_) {}
 
-        // Auto-seed or upgrade to all-offline database (4,620 authentic questions) from bundled asset
+        // Auto-seed or upgrade to all-offline database (9,720 authentic questions) from bundled asset
         try {
-          final res = await db.query('meta', where: 'key = ?', whereArgs: ['bank_version']);
-          final v = res.isNotEmpty ? res.first['val']?.toString() : null;
+          final res = await db.query('meta', where: 'key = ?', whereArgs: ['bundled_version']);
+          var v = res.isNotEmpty ? res.first['val']?.toString() : null;
+          if (v == null) {
+            // Legacy install: fall back to the bank version of the first import.
+            final legacy = await db.query('meta', where: 'key = ?', whereArgs: ['bank_version']);
+            v = legacy.isNotEmpty ? legacy.first['val']?.toString() : null;
+          }
           final qCountRes = await db.rawQuery('SELECT COUNT(*) as cnt FROM questions');
           final qCount = Sqflite.firstIntValue(qCountRes) ?? 0;
           if (v != bundledVaultVersion || qCount < 9720) {
@@ -199,25 +204,45 @@ class DbHelper {
     );
   }
 
-  /// Ensures pre-bundled offline database asset (9,720 questions, 62 papers) is fully loaded
-  Future<void> ensureBundledAssetLoaded() async {
+  /// Ensures the pre-bundled offline database asset (9,720 questions, 62 papers)
+  /// is fully loaded.
+  ///
+  /// The check uses the separate `bundled_version` key, never `bank_version`.
+  /// `bank_version` is raised by a CDN sync, and comparing it against the
+  /// bundled version would overwrite a freshly downloaded bank with the
+  /// bundled one on every single launch.
+  Future<bool> ensureBundledAssetLoaded() async {
     final db = await database;
     try {
-      final res = await db.query('meta', where: 'key = ?', whereArgs: ['bank_version']);
-      final v = res.isNotEmpty ? res.first['val']?.toString() : null;
+      final res = await db.query('meta', where: 'key = ?', whereArgs: ['bundled_version']);
+      final hasMarker = res.isNotEmpty;
+      var v = res.isNotEmpty ? res.first['val']?.toString() : null;
+      if (!hasMarker) {
+        // Legacy install: the bank on the device was seeded from the asset.
+        // Write the marker now, otherwise a later CDN sync (which raises
+        // bank_version) would look like "newer than the bundle" and the
+        // asset would overwrite the downloaded bank on the next launch.
+        await db.insert(
+          'meta',
+          {'key': 'bundled_version', 'val': bundledVaultVersion},
+          conflictAlgorithm: ConflictAlgorithm.replace,
+        );
+      }
       final qCountRes = await db.rawQuery('SELECT COUNT(*) as cnt FROM questions');
       final qCount = Sqflite.firstIntValue(qCountRes) ?? 0;
       if (v != bundledVaultVersion || qCount < 9720) {
-        await _syncFromAssetDb(db);
+        return await _syncFromAssetDb(db);
       }
+      return true;
     } catch (_) {
-      await _syncFromAssetDb(db);
+      return await _syncFromAssetDb(db);
     }
   }
 
-  /// Synchronize all 2,880 authentic questions and 109 passages from the pre-bundled asset DB
-  /// Guarantees that user's test_history and mistake_records are 100% preserved.
-  Future<void> _syncFromAssetDb(Database db) async {
+  /// Synchronize the authentic offline bank from the pre-bundled asset DB.
+  /// Guarantees that the user's test_history and mistake_records are 100%
+  /// preserved.  Returns false when the asset could not be imported.
+  Future<bool> _syncFromAssetDb(Database db) async {
     try {
       final dbPath = await getDatabasesPath();
       final tempAssetPath = join(dbPath, 'temp_asset_bundle.db');
@@ -312,6 +337,15 @@ class DbHelper {
           await txn.insert('meta', m, conflictAlgorithm: ConflictAlgorithm.replace);
         }
 
+        // Remember which bundled version is installed.  This key is never
+        // touched by a CDN sync, so a downloaded newer bank is not replaced
+        // by the bundled one on the next launch.
+        await txn.insert(
+          'meta',
+          {'key': 'bundled_version', 'val': bundledVaultVersion},
+          conflictAlgorithm: ConflictAlgorithm.replace,
+        );
+
         // Update report status for resolved questions
         try {
           await txn.execute("UPDATE question_reports SET status = 'solved' WHERE question_id IN ('b7fe812caa11aaea', '7570f6db99750223', '400c86ba7c4c9736')");
@@ -319,8 +353,10 @@ class DbHelper {
         } catch (_) {}
       });
       debugPrint('Successfully seeded ${assetQuestions.length} V2 questions from bundled asset DB!');
+      return true;
     } catch (e) {
       debugPrint('Error syncing from asset DB: $e');
+      return false;
     }
   }
 
@@ -667,6 +703,33 @@ class DbHelper {
     return map;
   }
 
+  /// Question count per section for one exam and one paper level.
+  ///
+  /// The subject hub uses this so that it only offers the sections the
+  /// selected paper really contains.
+  Future<Map<String, int>> getSectionCountsForPaper({
+    required String exam,
+    required int paper,
+  }) async {
+    final db = await database;
+    final res = await db.rawQuery(
+      '''
+      SELECT q.section AS section, COUNT(*) AS cnt
+      FROM appearances a
+      JOIN questions q ON q.id = a.question_id
+      JOIN paper_forms p ON p.id = a.paper_form_id
+      WHERE p.paper = ? AND p.exam = ?
+      GROUP BY q.section
+      ''',
+      [paper, exam],
+    );
+    final map = <String, int>{};
+    for (final row in res) {
+      map[row['section'] as String] = (row['cnt'] as num).toInt();
+    }
+    return map;
+  }
+
   Future<void> setMeta(String key, String val) async {
     final db = await database;
     await db.insert(
@@ -712,35 +775,48 @@ class DbHelper {
     return await db.query('test_history', orderBy: 'timestamp DESC');
   }
 
-  /// Get list of sorted distinct PYQ years from questions table
-  Future<List<String>> getDistinctPyqYears([String? exam]) async {
-    final isCtet = (exam ?? 'utet1').toLowerCase().startsWith('c');
-    if (isCtet) {
-      return [
-        '2026',
-        '2024',
-        '2023',
-        '2021 (दिसम्बर)',
-        '2021 (जनवरी)',
-        '2019',
-        '2018',
-        '2016',
-      ];
+  /// Get list of sorted distinct PYQ years from the paper forms.
+  ///
+  /// The list is derived from the forms themselves, because only a form can
+  /// actually be opened.  A hard coded list used to offer years (and month
+  /// variants) that no longer exist in the bank, which opened an empty paper.
+  Future<List<String>> getDistinctPyqYears([String? exam, int? paper]) async {
+    final db = await database;
+    final examKey =
+        (exam ?? 'utet1').toLowerCase().startsWith('c') ? 'ctet' : 'utet';
+    final args = <dynamic>[examKey];
+    var sql =
+        "SELECT DISTINCT exam_date FROM paper_forms "
+        "WHERE exam = ? AND exam_date IS NOT NULL AND exam_date != '' "
+        "AND exam_date NOT LIKE '%Mock%'";
+    if (paper != null) {
+      sql += ' AND paper = ?';
+      args.add(paper);
+    }
+    final formRows = await db.rawQuery(sql, args);
+    final formYears = <String>{};
+    for (final row in formRows) {
+      final date = (row['exam_date'] as String? ?? '').trim();
+      final yearMatch = RegExp(r'(20\d{2})').firstMatch(date);
+      if (yearMatch != null) formYears.add(yearMatch.group(1)!);
+    }
+    if (formYears.isNotEmpty) {
+      final sorted = formYears.toList()..sort((a, b) => b.compareTo(a));
+      return sorted;
     }
 
-    final db = await database;
+    // Fallback: the year column of the questions.
     final ex = _examWhere(exam);
     final where = ex.isNotEmpty
         ? "WHERE (years IS NOT NULL AND years != '') AND $ex"
         : "WHERE years IS NOT NULL AND years != ''";
     final res = await db.rawQuery('SELECT DISTINCT years FROM questions $where');
-    final Set<String> yearSet = {};
+    final yearSet = <String>{};
     for (final row in res) {
       final y = row['years'] as String?;
       if (y != null && y.isNotEmpty) {
-        final parts = y.split(RegExp(r'[,;/\s]+'));
-        for (final p in parts) {
-          final trimmed = p.trim();
+        for (final part in y.split(RegExp(r'[,;/\s]+'))) {
+          final trimmed = part.trim();
           if (trimmed.length == 4 && int.tryParse(trimmed) != null) {
             yearSet.add(trimmed);
           }
@@ -933,24 +1009,28 @@ class DbHelper {
     return ordered.isNotEmpty ? ordered : allQs;
   }
 
-  /// Get distinct PYQ years with their question counts
-  Future<Map<String, int>> getPyqYearsWithCounts([String? exam]) async {
-    final years = await getDistinctPyqYears(exam);
+  /// Get distinct PYQ years with their real question counts
+  Future<Map<String, int>> getPyqYearsWithCounts([
+    String? exam,
+    int? paper,
+  ]) async {
+    final years = await getDistinctPyqYears(exam, paper);
     final db = await database;
-    final isCtet = (exam ?? 'utet1').toLowerCase().startsWith('c');
+    final examKey =
+        (exam ?? 'utet1').toLowerCase().startsWith('c') ? 'ctet' : 'utet';
     final Map<String, int> result = {};
     for (final y in years) {
-      if (isCtet) {
-        result[y] = 150;
-      } else {
-        String sql = "SELECT COUNT(*) as cnt FROM questions WHERE (years LIKE ? OR years = ?)";
-        final ex = _examWhere(exam);
-        if (ex.isNotEmpty) {
-          sql += " AND $ex";
-        }
-        final res = await db.rawQuery(sql, ['%$y%', y]);
-        result[y] = Sqflite.firstIntValue(res) ?? 0;
+      final args = <dynamic>[examKey, '%$y%', '%$y%', '%$y%'];
+      var sql =
+          'SELECT COUNT(*) AS cnt FROM appearances a '
+          'JOIN paper_forms p ON p.id = a.paper_form_id '
+          'WHERE p.exam = ? AND (p.exam_date LIKE ? OR p.set_code LIKE ? OR p.id LIKE ?)';
+      if (paper != null) {
+        sql += ' AND p.paper = ?';
+        args.add(paper);
       }
+      final res = await db.rawQuery(sql, args);
+      result[y] = Sqflite.firstIntValue(res) ?? 0;
     }
     return result;
   }
@@ -1059,6 +1139,7 @@ class DbHelper {
     String? exam,
     required int paper,
     bool? isPyqOnly,
+    String? stream,
   }) async {
     await ensureBundledAssetLoaded();
     final db = await database;
@@ -1068,6 +1149,19 @@ class DbHelper {
     if (exam != null && exam.isNotEmpty) {
       sql += ' AND exam = ?';
       args.add(exam.toLowerCase());
+    }
+
+    // Paper-2 candidates choose one optional stream.  CTET ships separate
+    // Math/Science and Social Studies mocks, so a Math/Science candidate must
+    // not even see the Social Studies form (and vice versa).  UTET forms carry
+    // both streams and therefore match either filter.
+    if (paper == 2) {
+      final active = stream ?? ExamService.instance.activeStream.name;
+      final streamSection =
+          active == AppStream.socialStudies.name ? 'social_studies' : 'math_science';
+      sql += ' AND EXISTS (SELECT 1 FROM appearances a '
+          'WHERE a.paper_form_id = paper_forms.id AND a.section = ?)';
+      args.add(streamSection);
     }
 
     if (isPyqOnly == true) {
@@ -1105,14 +1199,35 @@ class DbHelper {
     List<dynamic> args = [paperFormId];
 
     if (isPaper2) {
-      final activeStream = stream ?? ExamService.instance.activeStream.name;
-      final secFilter = (activeStream == 'socialStudies') ? 'social_studies' : 'math_science';
-      final otherStream = (secFilter == 'math_science') ? 'social_studies' : 'math_science';
-      // Keep CDP + every language variant (hindi/english, hindi_2/english_1,
-      // lang1_hindi/lang2_english) and only exclude the *other* stream.
-      // The old allow-list dropped both language sections for CTET Paper 2.
-      sql += ' AND (a.section IS NULL OR a.section <> ?)';
-      args.add(otherStream);
+      // Not every Paper-2 form stores both streams.  UTET forms do (210 rows),
+      // while CTET ships separate stream-specific mocks (150 rows).  Only
+      // remove the other stream when both are actually present; otherwise a
+      // Social Studies selection would delete the only 60 questions in a
+      // Math/Science mock and leave the candidate with 90 questions.
+      final availableRows = await db.rawQuery(
+        'SELECT DISTINCT section FROM appearances '
+        'WHERE paper_form_id = ? AND section IN (?, ?)',
+        [paperFormId, 'math_science', 'social_studies'],
+      );
+      final available = availableRows
+          .map((row) => row['section'] as String)
+          .where((section) => section.isNotEmpty)
+          .toSet();
+
+      if (available.length > 1) {
+        final activeStream = stream ?? ExamService.instance.activeStream.name;
+        final selectedSection = activeStream == AppStream.socialStudies.name
+            ? 'social_studies'
+            : 'math_science';
+        final otherStream = selectedSection == 'math_science'
+            ? 'social_studies'
+            : 'math_science';
+        // Keep CDP + every language variant (hindi/english,
+        // hindi_2/english_1, lang1_hindi/lang2_english) and only exclude the
+        // *other* optional stream.
+        sql += ' AND (a.section IS NULL OR a.section <> ?)';
+        args.add(otherStream);
+      }
     }
 
     sql += ' ORDER BY a.question_number ASC';

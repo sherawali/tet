@@ -17,10 +17,14 @@ import '../services/sync_service.dart';
 import '../services/mock_engine.dart';
 import 'mock_series_screen.dart';
 import 'subject_detail_screen.dart';
+import 'result_screen.dart';
 import '../widgets/flash_message_banner.dart';
 import '../services/premium_service.dart';
 import '../services/in_app_update_service.dart';
 import '../services/exam_service.dart';
+import '../services/section_catalog.dart';
+import '../services/bank_facts.dart';
+import '../services/exam_rules.dart';
 import '../widgets/premium_paywall_modal.dart';
 import '../widgets/question_report_sheet.dart';
 
@@ -39,6 +43,8 @@ class _HomeScreenState extends State<HomeScreen> {
   int _totalQuestions = 0;
   int _pyqCount = 0;
   List<Map<String, dynamic>> _history = [];
+  /// Question count per section for the selected exam and paper.
+  Map<String, int> _sectionCounts = <String, int>{};
   List<String> _pyqYears = [];
   List<Map<String, dynamic>> _paperForms = [];
   List<Map<String, dynamic>> _pyqForms = [];
@@ -120,12 +126,31 @@ class _HomeScreenState extends State<HomeScreen> {
     super.dispose();
   }
 
+  /// Re-reads the stored test history (a finished test is written while the
+  /// candidate is away from this screen).
+  Future<void> _refreshHistoryIfNeeded() async {
+    try {
+      final history = await _db.getTestHistory();
+      if (!mounted) return;
+      if (history.length == _history.length) {
+        final newest = history.isNotEmpty ? history.first['timestamp'] : null;
+        final currentNewest =
+            _history.isNotEmpty ? _history.first['timestamp'] : null;
+        if (newest == currentNewest) return;
+      }
+      setState(() => _history = history);
+    } catch (_) {}
+  }
+
   Future<void> _loadData() async {
     final currentExam = ExamService.instance.examCode;
     final total = await _db.getQuestionCount(currentExam);
     final pyq = await _db.getPyqCount(currentExam);
     final history = await _db.getTestHistory();
-    final years = await _db.getDistinctPyqYears(currentExam);
+    final years = await _db.getDistinctPyqYears(
+      currentExam,
+      ExamService.instance.selectedPaper,
+    );
 
     // Database physical size & sync timestamp
     final sizeBytes = await _db.getDatabaseSizeBytes();
@@ -145,7 +170,12 @@ class _HomeScreenState extends State<HomeScreen> {
       }
     }
 
+    await BankFacts.refresh(_db);
     final examName = ExamService.instance.isUtet ? 'utet' : 'ctet';
+    final sectionCounts = await _db.getSectionCountsForPaper(
+      exam: examName,
+      paper: ExamService.instance.selectedPaper,
+    );
     final forms = await _db.getAvailablePaperForms(exam: examName, paper: ExamService.instance.selectedPaper);
     final pyqs = await _db.getAvailablePaperForms(exam: examName, paper: ExamService.instance.selectedPaper, isPyqOnly: true);
     final mocks = await _db.getAvailablePaperForms(exam: examName, paper: ExamService.instance.selectedPaper, isPyqOnly: false);
@@ -160,6 +190,7 @@ class _HomeScreenState extends State<HomeScreen> {
         _totalQuestions = total;
         _pyqCount = pyq;
         _history = history;
+        _sectionCounts = sectionCounts;
         _pyqYears = years;
         _paperForms = forms;
         _pyqForms = pyqs;
@@ -1020,7 +1051,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ? (isHi ? 'निःशुल्क' : 'FREE')
                 : (isPyq
                     ? (isHi ? 'विगत वर्ष' : 'PAST PAPER')
-                    : (isHi ? '150 प्रश्न सेट' : '150Q Mock Set'));
+                    : (isHi ? '${BankFacts.questionsPerPaper} प्रश्न सेट' : '${BankFacts.questionsPerPaper}Q Mock Set'));
             final tagColor = isFree
                 ? AppColors.correctGreen
                 : (isPyq ? AppColors.violet : AppColors.sealGold);
@@ -1031,8 +1062,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 setChar: setChar,
                 title: title,
                 subtitle: isHi
-                    ? '150 प्रश्न · 150 मिनट · सम्पूर्ण हल सहित'
-                    : '150 Questions · 150 Mins · Complete Solutions',
+                    ? '${BankFacts.questionsPerPaper} प्रश्न · ${BankFacts.questionsPerPaper} मिनट · सम्पूर्ण हल सहित'
+                    : '${BankFacts.questionsPerPaper} Questions · ${BankFacts.questionsPerPaper} Mins · Complete Solutions',
                 tag: tag,
                 tagColor: tagColor,
                 mode: isPyq ? MockMode.pyq : MockMode.predicted,
@@ -1047,8 +1078,8 @@ class _HomeScreenState extends State<HomeScreen> {
             setChar: isHi ? 'सेट-01' : 'SET-01',
             title: isHi ? 'UTET 2026 पेपर-1 मॉडल प्रश्न-पत्र 01' : 'UTET 2026 Paper-1 Model Test Paper 01',
             subtitle: isHi
-                ? '150 प्रश्न · 150 मिनट · सम्पूर्ण हल सहित'
-                : '150 Questions · 150 Mins · Complete Solutions',
+                ? '${BankFacts.questionsPerPaper} प्रश्न · ${BankFacts.questionsPerPaper} मिनट · सम्पूर्ण हल सहित'
+                : '${BankFacts.questionsPerPaper} Questions · ${BankFacts.questionsPerPaper} Mins · Complete Solutions',
             tag: isHi ? 'निःशुल्क' : 'FREE',
             tagColor: AppColors.correctGreen,
             mode: MockMode.predicted,
@@ -2149,10 +2180,14 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _buildHistoryTab(bool isDark) {
+    // The history is filled while the candidate is inside a test, so it has
+    // to be re-read every time the tab is opened - otherwise the list stays
+    // empty until the app is restarted.
+    _refreshHistoryIfNeeded();
     final passCount = _history.where((h) {
       final s = (h['score'] as num?)?.toInt() ?? 0;
-      final t = (h['total'] as num?)?.toInt() ?? 150;
-      return s >= (t * 0.60).round();
+      final t = (h['total'] as num?)?.toInt() ?? BankFacts.questionsPerPaper;
+      return ExamRules.isGeneralPass(s, t);
     }).length;
 
     return ListView(
@@ -2556,7 +2591,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         const SizedBox(height: 2),
                         Text(
-                          AppStrings.bankInfo(_totalQuestions, _pyqCount, 5),
+                          AppStrings.bankInfo(_totalQuestions, _pyqCount, BankFacts.subjectCount),
                           style: TextStyle(
                             fontSize: 12,
                             color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
@@ -3164,8 +3199,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     // Subtitle
                     Text(
                       isPyq
-                          ? (isHi ? '150 प्रामाणिक प्रश्न · सम्पूर्ण हल सहित' : '150 Authentic Questions · Complete Solutions')
-                          : (isHi ? '150 सम्भावित प्रश्न · 2026 परीक्षा पैटर्न' : '150 Predicted Questions · 2026 Exam Pattern'),
+                          ? (isHi ? '${BankFacts.questionsPerPaper} प्रामाणिक प्रश्न · सम्पूर्ण हल सहित' : '${BankFacts.questionsPerPaper} Authentic Questions · Complete Solutions')
+                          : (isHi ? '${BankFacts.questionsPerPaper} सम्भावित प्रश्न · 2026 परीक्षा पैटर्न' : '${BankFacts.questionsPerPaper} Predicted Questions · 2026 Exam Pattern'),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
@@ -3178,9 +3213,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        _buildMetaChip(Icons.quiz_outlined, isHi ? '150 प्रश्न' : '150 Questions', isDark, isPaper2),
-                        _buildMetaChip(Icons.timer_outlined, isHi ? '150 मिनट' : '150 Minutes', isDark, isPaper2),
-                        _buildMetaChip(Icons.military_tech_outlined, isHi ? '150 अंक' : '150 Marks', isDark, isPaper2),
+                        _buildMetaChip(Icons.quiz_outlined, isHi ? '${BankFacts.questionsPerPaper} प्रश्न' : '${BankFacts.questionsPerPaper} Questions', isDark, isPaper2),
+                        _buildMetaChip(Icons.timer_outlined, isHi ? '${BankFacts.questionsPerPaper} मिनट' : '${BankFacts.questionsPerPaper} Minutes', isDark, isPaper2),
+                        _buildMetaChip(Icons.military_tech_outlined, isHi ? '${BankFacts.questionsPerPaper} अंक' : '${BankFacts.questionsPerPaper} Marks', isDark, isPaper2),
                       ],
                     ),
 
@@ -3207,8 +3242,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         final config = MockConfig(
                           mode: isPyq ? MockMode.pyq : MockMode.predicted,
                           seed: randSeed,
-                          totalQuestions: 150,
-                          timeLimitMinutes: 150,
+                          totalQuestions: BankFacts.questionsPerPaper,
+                          timeLimitMinutes: BankFacts.questionsPerPaper,
                           exam: ExamService.instance.examCode,
                         );
                         _startMockTest(
@@ -3509,8 +3544,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     final config = MockConfig(
                       mode: MockMode.predicted,
                       seed: randSeed,
-                      totalQuestions: 150,
-                      timeLimitMinutes: 150,
+                      totalQuestions: BankFacts.questionsPerPaper,
+                      timeLimitMinutes: BankFacts.questionsPerPaper,
                       exam: ExamService.instance.examCode,
                     );
                     _startMockTest(config, formId: featuredFormId);
@@ -3569,8 +3604,8 @@ class _HomeScreenState extends State<HomeScreen> {
             final config = MockConfig(
               mode: mode,
               seed: randSeed,
-              totalQuestions: 150,
-              timeLimitMinutes: 150,
+              totalQuestions: BankFacts.questionsPerPaper,
+              timeLimitMinutes: BankFacts.questionsPerPaper,
               exam: ExamService.instance.examCode,
             );
             _startMockTest(
@@ -3698,25 +3733,80 @@ class _HomeScreenState extends State<HomeScreen> {
 );
   }
 
+  /// Section counts for the subject hub.  Only the sections that the
+  /// selected exam and paper really contain are offered.
+  Map<String, int> get _sectionCountsForGrid {
+    final map = <String, int>{};
+    for (final entry in _sectionCounts.entries) {
+      map[entry.key.toLowerCase()] = entry.value;
+    }
+    return map;
+  }
+
+  Color _colorForSection(String code) {
+    switch (code.toLowerCase()) {
+      case 'cdp':
+        return AppColors.cdp;
+      case 'hindi':
+      case 'hindi_2':
+      case 'lang1_hindi':
+        return AppColors.hindi;
+      case 'english':
+      case 'english_1':
+      case 'lang2_english':
+        return AppColors.english;
+      case 'math':
+        return AppColors.math;
+      case 'evs':
+        return AppColors.evs;
+      case 'math_science':
+      case 'science':
+        return AppColors.science;
+      case 'social_studies':
+      case 'social':
+      case 'sst':
+        return AppColors.social;
+      default:
+        return AppColors.primary;
+    }
+  }
+
   Widget _buildSubjectGrid(bool isDark) {
     final isPaper2 = ExamService.instance.isPaper2;
     final isHi = LanguageService.instance.isHindi;
-    final List<Map<String, dynamic>> subjects = isPaper2
-        ? [
-            {'sec': 'cdp', 'name': AppStrings.sectionName('cdp'), 'color': AppColors.cdp, 'label': isHi ? 'खण्ड I' : 'Section I'},
-            {'sec': 'hindi', 'name': AppStrings.sectionName('hindi'), 'color': AppColors.hindi, 'label': isHi ? 'खण्ड II' : 'Section II'},
-            {'sec': 'english', 'name': AppStrings.sectionName('english'), 'color': AppColors.english, 'label': isHi ? 'खण्ड III' : 'Section III'},
-            {'sec': 'math', 'name': AppStrings.sectionName('math'), 'color': AppColors.math, 'label': isHi ? 'खण्ड IV (A)' : 'Section IV (A)'},
-            {'sec': 'science', 'name': AppStrings.sectionName('science'), 'color': AppColors.science, 'label': isHi ? 'खण्ड IV (B)' : 'Section IV (B)'},
-            {'sec': 'social', 'name': AppStrings.sectionName('social'), 'color': AppColors.social, 'label': isHi ? 'खण्ड IV (C)' : 'Section IV (C)'},
-          ]
-        : [
-            {'sec': 'cdp', 'name': AppStrings.sectionName('cdp'), 'color': AppColors.cdp, 'label': isHi ? 'खण्ड I' : 'Section I'},
-            {'sec': 'hindi', 'name': AppStrings.sectionName('hindi'), 'color': AppColors.hindi, 'label': isHi ? 'खण्ड II' : 'Section II'},
-            {'sec': 'english', 'name': AppStrings.sectionName('english'), 'color': AppColors.english, 'label': isHi ? 'खण्ड III' : 'Section III'},
-            {'sec': 'math', 'name': AppStrings.sectionName('math'), 'color': AppColors.math, 'label': isHi ? 'खण्ड IV' : 'Section IV'},
-            {'sec': 'evs', 'name': AppStrings.sectionName('evs'), 'color': AppColors.evs, 'label': isHi ? 'खण्ड V' : 'Section V'},
-          ];
+    // The grid is built from the sections the vault really contains for the
+    // selected exam and paper.  A hard coded list used codes that the vault
+    // does not have (lang1_hindi, math_science, ...) and showed empty
+    // subjects with "0 questions".
+    final available = _sectionCountsForGrid;
+    final subjects = <Map<String, dynamic>>[];
+    var index = 0;
+    for (final code in SectionCatalog.forPaper(isPaper2 ? 2 : 1)) {
+      final count = available[code] ?? 0;
+      if (count <= 0) continue;
+      index++;
+      subjects.add({
+        'sec': code,
+        'name': AppStrings.sectionName(code),
+        'color': _colorForSection(code),
+        'label': isHi ? 'खण्ड $index' : 'Section $index',
+        'count': count,
+      });
+    }
+    if (subjects.isEmpty) {
+      return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+        child: Text(
+          isHi
+              ? 'इस बैंक में अभी कोई विषय उपलब्ध नहीं है।'
+              : 'No subjects are available in this bank yet.',
+          textAlign: TextAlign.center,
+          style: AppTypography.bodyMedium(
+            color: isDark ? AppColors.darkTextMuted : AppColors.lightTextMuted,
+          ),
+        ),
+      );
+    }
 
     return LayoutBuilder(
       builder: (context, constraints) {
@@ -3806,69 +3896,117 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  Future<void> _openHistorySession(Map<String, dynamic> history) async {
+    final raw = history['session_json']?.toString();
+    if (raw == null || raw.isEmpty || raw == '{}') {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('इस पुराने परिणाम का विस्तृत विवरण उपलब्ध नहीं है।'),
+        ),
+      );
+      return;
+    }
+
+    try {
+      final session = TestSession.decode(raw);
+      if (!mounted) return;
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (_) => ResultScreen(session: session, fromHistory: true),
+        ),
+      );
+    } catch (error) {
+      debugPrint('Unable to reopen history session: $error');
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('परिणाम खोलने में त्रुटि हुई।')),
+      );
+    }
+  }
+
   Widget _buildHistoryCard(Map<String, dynamic> h, bool isDark) {
     final score = (h['score'] as num?)?.toInt() ?? 0;
-    final total = (h['total'] as num?)?.toInt() ?? 150;
+    final total = (h['total'] as num?)?.toInt() ?? BankFacts.questionsPerPaper;
     final mode = h['mode'] as String? ?? 'predicted';
-    final isPass = score >= (total * 0.60).round();
+    final isPass = ExamRules.isGeneralPass(score, total);
 
-    return Container(
-      margin: const EdgeInsets.only(bottom: 8),
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-      decoration: BoxDecoration(
-        color: isDark ? AppColors.darkCard : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(6),
-        border: Border.all(
-          color: isDark ? AppColors.darkBorder : AppColors.lightBorder,
-          width: 1.0,
-        ),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Row(
-            children: [
-              Container(
-                width: 10,
-                height: 10,
-                decoration: BoxDecoration(
-                  color: isPass ? AppColors.success : AppColors.danger,
-                  shape: BoxShape.circle,
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 8),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          borderRadius: BorderRadius.circular(6),
+          onTap: () => _openHistorySession(h),
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+            decoration: BoxDecoration(
+              color: isDark ? AppColors.darkCard : AppColors.lightCard,
+              borderRadius: BorderRadius.circular(6),
+              border: Border.all(
+                color: isDark ? AppColors.darkBorder : AppColors.lightBorder,
+                width: 1.0,
+              ),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    Container(
+                      width: 10,
+                      height: 10,
+                      decoration: BoxDecoration(
+                        color: isPass ? AppColors.success : AppColors.danger,
+                        shape: BoxShape.circle,
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          AppStrings.historyMockType(mode),
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 13,
+                            color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
+                          ),
+                        ),
+                        Text(
+                          isPass ? AppStrings.historyQualified : AppStrings.historyPracticeNeeded,
+                          style: TextStyle(
+                            fontSize: 11,
+                            fontWeight: FontWeight.w600,
+                            color: isPass ? AppColors.success : AppColors.danger,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
-              ),
-              const SizedBox(width: 10),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    AppStrings.historyMockType(mode),
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 13,
-                      color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
+                Row(
+                  children: [
+                    Text(
+                      '$score / $total',
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                        color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
+                      ),
                     ),
-                  ),
-                  Text(
-                    isPass ? AppStrings.historyQualified : AppStrings.historyPracticeNeeded,
-                    style: TextStyle(
-                      fontSize: 11,
-                      fontWeight: FontWeight.w600,
-                      color: isPass ? AppColors.success : AppColors.danger,
+                    const SizedBox(width: 4),
+                    Icon(
+                      Icons.chevron_right_rounded,
+                      size: 18,
+                      color: isDark ? AppColors.darkTextMuted : AppColors.lightTextMuted,
                     ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-          Text(
-            '$score / $total',
-            style: TextStyle(
-              fontSize: 15,
-              fontWeight: FontWeight.bold,
-              color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
+                  ],
+                ),
+              ],
             ),
           ),
-        ],
+        ),
       ),
     );
   }

@@ -1,13 +1,16 @@
 {
   "version": 3,
-  "last_updated": "2026-10-18T06:56:00Z",
+  "last_updated": "2026-10-21T10:10:17Z",
   "messages": [
     {
       "id": "live_flash_2026_master",
       "title": "🔥 UTET & CTET 2026: 9,720 प्रश्नों का सम्पूर्ण मास्टर बैंक लाइव!",
+      "title_en": "🔥 UTET & CTET 2026: 9,720 Question Master Vault Live!",
       "message": "सभी 62 ओरिजिनल पेपर्स और मॉडल सेट्स 100% प्रामाणिक हल सहित उपलब्ध हैं। OMR व CBT मोड में अभी अभ्यास करें।",
-      "type": "notice",
+      "message_en": "All 62 original board papers & model mock sets available with verified pedagogical solutions. Practice in OMR or CBT mode now.",
       "action_label": "मॉक सीरीज़ देखें",
+      "action_label_en": "View Mock Series",
+      "type": "notice",
       "dismissible": true,
       "active": true
     },

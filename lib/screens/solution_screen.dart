@@ -11,6 +11,7 @@ import '../widgets/app_badge.dart';
 import '../widgets/formatted_question_stem.dart';
 import '../widgets/smart_math_text.dart';
 import '../widgets/question_report_sheet.dart';
+import '../widgets/question_figure_catalog.dart';
 import '../services/language_service.dart';
 
 enum SolutionFilter { all, incorrect, unattempted, correct }
@@ -27,6 +28,9 @@ class SolutionScreen extends StatefulWidget {
 class _SolutionScreenState extends State<SolutionScreen> {
   SolutionFilter _filter = SolutionFilter.all;
   late TestLanguageMode _languageMode;
+
+  /// Questions whose passage is shown in full instead of the short preview.
+  final Set<int> _expandedPassages = {};
 
   @override
   void initState() {
@@ -395,13 +399,47 @@ class _SolutionScreenState extends State<SolutionScreen> {
                                   ),
                                 ),
                                 const SizedBox(height: 8),
-                                Text(
-                                  passage.cleanBody,
-                                  maxLines: 5,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: AppTypography.passageBody(
-                                    color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary,
-                                  ).copyWith(fontSize: 13, height: passage.isPoem ? 1.5 : 1.4),
+                                InkWell(
+                                  onTap: () {
+                                    setState(() {
+                                      if (!_expandedPassages.add(qIdx)) {
+                                        _expandedPassages.remove(qIdx);
+                                      }
+                                    });
+                                  },
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        passage.cleanBody,
+                                        maxLines: _expandedPassages.contains(qIdx) ? null : 5,
+                                        overflow: _expandedPassages.contains(qIdx)
+                                            ? null
+                                            : TextOverflow.ellipsis,
+                                        style: AppTypography.passageBody(
+                                          color: isDark
+                                              ? AppColors.darkTextSecondary
+                                              : AppColors.lightTextSecondary,
+                                        ).copyWith(
+                                          fontSize: 13,
+                                          height: passage.isPoem ? 1.5 : 1.4,
+                                        ),
+                                      ),
+                                      const SizedBox(height: 4),
+                                      Text(
+                                        _expandedPassages.contains(qIdx)
+                                            ? 'संपूर्ण गद्यांश छिपाएँ ▲'
+                                            : 'पूरा गद्यांश पढ़ें ▼',
+                                        style: TextStyle(
+                                          fontSize: 11.5,
+                                          fontWeight: FontWeight.w700,
+                                          color: isDark
+                                              ? const Color(0xFF38BDF8)
+                                              : AppColors.primary,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ],
                             ),
@@ -432,22 +470,44 @@ class _SolutionScreenState extends State<SolutionScreen> {
       final engText = (q.hasEnglish && q.qEnglish != null && q.qEnglish!.trim().isNotEmpty)
           ? q.qEnglish!
           : q.qHindi;
-      return FormattedQuestionStem(
-        text: engText,
-        style: AppTypography.questionText(
-          color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
-        ).copyWith(fontSize: 15.5),
-        isDark: isDark,
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          FormattedQuestionStem(
+            text: engText,
+            style: AppTypography.questionText(
+              color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
+            ).copyWith(fontSize: 15.5),
+            isDark: isDark,
+          ),
+          if (QuestionFigureCatalog.hasQuestionFigure(q.id))
+            QuestionFigureCatalog.buildQuestion(
+              questionId: q.id,
+              isDark: isDark,
+              height: 170,
+            ),
+        ],
       );
     }
 
     if (mode == TestLanguageMode.onlyHindi) {
-      return FormattedQuestionStem(
-        text: q.qHindi,
-        style: AppTypography.questionText(
-          color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
-        ).copyWith(fontSize: 15.5),
-        isDark: isDark,
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          FormattedQuestionStem(
+            text: q.qHindi,
+            style: AppTypography.questionText(
+              color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
+            ).copyWith(fontSize: 15.5),
+            isDark: isDark,
+          ),
+          if (QuestionFigureCatalog.hasQuestionFigure(q.id))
+            QuestionFigureCatalog.buildQuestion(
+              questionId: q.id,
+              isDark: isDark,
+              height: 170,
+            ),
+        ],
       );
     }
 
@@ -490,6 +550,12 @@ class _SolutionScreenState extends State<SolutionScreen> {
             ),
           ),
         ],
+        if (QuestionFigureCatalog.hasQuestionFigure(q.id))
+          QuestionFigureCatalog.buildQuestion(
+            questionId: q.id,
+            isDark: isDark,
+            height: 170,
+          ),
       ],
     );
   }
@@ -497,6 +563,8 @@ class _SolutionScreenState extends State<SolutionScreen> {
   List<Widget> _buildSolOptions(Question q, int? userAns, bool isCorrect, bool isDark) {
     final mode = _languageMode;
     final int count = q.optionsHindi.length;
+
+    final hasOptionFigure = QuestionFigureCatalog.hasOptionFigures(q.id);
 
     return List.generate(count, (optIdx) {
       final isThisCorrectAnswer = optIdx == q.answer;
@@ -566,13 +634,20 @@ class _SolutionScreenState extends State<SolutionScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SmartMathText(
-                    primaryText,
-                    style: AppTypography.optionText(
-                      color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
-                    ).copyWith(fontSize: 14),
-                  ),
-                  if (secondaryText != null) ...[
+                  if (hasOptionFigure)
+                    QuestionFigureCatalog.buildOption(
+                      questionId: q.id,
+                      optionIndex: optIdx,
+                      isDark: isDark,
+                    )
+                  else
+                    SmartMathText(
+                      primaryText,
+                      style: AppTypography.optionText(
+                        color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
+                      ).copyWith(fontSize: 14),
+                    ),
+                  if (!hasOptionFigure && secondaryText != null) ...[
                     const SizedBox(height: 3),
                     SmartMathText(
                       secondaryText,

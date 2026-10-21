@@ -9,6 +9,7 @@ import '../widgets/app_badge.dart';
 import '../services/premium_service.dart';
 import '../services/exam_service.dart';
 import '../widgets/premium_paywall_modal.dart';
+import '../services/bank_facts.dart';
 
 class SubjectDetailScreen extends StatefulWidget {
   final String section;
@@ -287,7 +288,7 @@ class _SubjectDetailScreenState extends State<SubjectDetailScreen> {
 
                   // Section 1: Practice Sets (SET-01 to SET-07)
                   Text(
-                    'अभ्यास सेट्स (30 प्रश्न · 30 मिनट)',
+                    'अभ्यास सेट्स (${BankFacts.subjectSetQuestions} प्रश्न · ${BankFacts.subjectSetQuestions} मिनट)',
                     style: TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.bold,

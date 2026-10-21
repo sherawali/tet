@@ -1,6 +1,9 @@
 import 'dart:convert';
+import '../models/question.dart';
 import '../models/test_session.dart';
+import 'exam_rules.dart';
 import 'exam_service.dart';
+import '../widgets/question_figure_catalog.dart';
 import 'question_layout_parser.dart';
 
 /// Converts any [TestSession] (official PYQ or dynamic generated Mock)
@@ -49,7 +52,7 @@ class HtmlBookletBuilder {
       s = '(A) $s';
     }
     if (RegExp(r'^(?:और\s*\(B\)|\(B\)\s*और|and\s*\(B\)|is\s*true\s*but\s*\(B\)|is\s*false\s*but\s*\(B\))', caseSensitive: false).hasMatch(s)) {
-      s = '(A) $s';
+      s = '(B) $s';
     }
     return s;
   }
@@ -568,13 +571,39 @@ class HtmlBookletBuilder {
         dotAll: true,
       );
 
+      // "दावा (A) … तर्क (B) …" - the same question without a colon after the
+      // labels.  The parenthesised marker keeps the pattern unambiguous.
+      final arLoosePattern = RegExp(
+        r'^(.*?)(दावा|अभिकथन|कथनम्|Assertion)\s*\(([A-Za-z0-9])\)\s+(.*?)(तर्क|कारण|कारणम्|व्याख्या|प्रभाव|Reason|Explanation|Effect)\s*\(([A-Za-z0-9])\)\s+(.*?)$',
+        caseSensitive: false,
+        dotAll: true,
+      );
+
+      String? intro;
+      var aLabel = '';
+      var aText = '';
+      var rLabel = '';
+      var rText = '';
+
       final arMatch = arPattern.firstMatch(text);
       if (arMatch != null) {
-        final intro = arMatch.group(1)?.trim();
-        var aLabel = arMatch.group(2)!.trim();
-        var aText = arMatch.group(3)!.trim().replaceAll(RegExp(r'^[\s:\-–—ः.\*]+'), '').trim();
-        var rLabel = arMatch.group(4)!.trim();
-        var rText = arMatch.group(5)!.trim().replaceAll(RegExp(r'^[\s:\-–—ः.\*]+'), '').trim();
+        intro = arMatch.group(1)?.trim();
+        aLabel = arMatch.group(2)!.trim();
+        aText = arMatch.group(3)!.trim().replaceAll(RegExp(r'^[\s:\-–—ः.\*]+'), '').trim();
+        rLabel = arMatch.group(4)!.trim();
+        rText = arMatch.group(5)!.trim().replaceAll(RegExp(r'^[\s:\-–—ः.\*]+'), '').trim();
+      } else {
+        final loose = arLoosePattern.firstMatch(text);
+        if (loose != null) {
+          intro = loose.group(1)?.trim();
+          aLabel = '${loose.group(2)!} (${loose.group(3)!})';
+          aText = loose.group(4)!.trim();
+          rLabel = '${loose.group(5)!} (${loose.group(6)!})';
+          rText = loose.group(7)!.trim();
+        }
+      }
+
+      {
         String? conclusion;
 
         if (aLabel == '(A)' || aLabel == 'A') aLabel = 'अभिकथन (A)';
@@ -617,10 +646,17 @@ class HtmlBookletBuilder {
 
     // 4B. Check Inline Statement Evaluation (e.g. कथनों को पढ़िए / विचार कीजिए ... (i), (ii) or I., II.)
     final hasStmtIntro = RegExp(r'(?:कथन|कथनों|विचार|पढ़िए|सत्य|सही|गलत|कूट|निम्नलिखित|निम्न|Statement|Statements|Consider|Following|Which)', caseSensitive: false).hasMatch(text);
-    if (hasStmtIntro) {
+    // Many stems list their statements inline ("A. … B. … C. …") without any
+    // intro line, so the dot-notation pass below always runs.
+    final hasInlineDotList =
+        RegExp(r'(?:^|[\s\.\:\-–—।;,])((?:[i-vI-V]{1,4}|[1-9]|[A-Ea-e]))[\.\)]\s+')
+            .allMatches(text)
+            .length >=
+            2;
+    if (hasStmtIntro || hasInlineDotList) {
       // 4B-1: Parenthesized markers: (i), (ii), (iii) or (1), (2) or (A), (B)
       final allMatches = RegExp(r'(?:^|[\s\.\:\-–—।;,])\(((?:[A-Ea-e]|[i-vI-V]+|[1-9]))\)\s*').allMatches(text).toList();
-      if (allMatches.length >= 2) {
+      if (hasStmtIntro && allMatches.length >= 2) {
         // Group matches into strictly increasing sequential chains
         final candidates = <List<RegExpMatch>>[];
         List<RegExpMatch> currentSeq = [];
@@ -727,36 +763,44 @@ class HtmlBookletBuilder {
             final sText = text.substring(start, end).trim();
             statements.add((marker: marker, text: sText));
           }
-          String? conclusion;
-          final last = statements.removeLast();
-          final cm = conclusionPattern.firstMatch(last.text);
-          if (cm != null) {
-            statements.add((marker: last.marker, text: cm.group(1)!.trim()));
-            conclusion = cm.group(2)!.trim();
-          } else {
-            statements.add(last);
-          }
 
-          final b = StringBuffer();
-          b.write('<div class="multi-statement-wrapper">');
-          if (intro.isNotEmpty) {
-            b.write('<div class="stmt-intro">${formatInlineMarkdown(intro)}</div>');
+          // Guard against prose that merely mentions "A." and "B.": a real
+          // statement list either carries an intro line or clearly long parts.
+          final avgLen = statements.isEmpty
+              ? 0
+              : statements.fold<int>(0, (a, s) => a + s.text.length) / statements.length;
+          if (intro.isNotEmpty || avgLen >= 25) {
+            String? conclusion;
+            final last = statements.removeLast();
+            final cm = conclusionPattern.firstMatch(last.text);
+            if (cm != null) {
+              statements.add((marker: last.marker, text: cm.group(1)!.trim()));
+              conclusion = cm.group(2)!.trim();
+            } else {
+              statements.add(last);
+            }
+
+            final b = StringBuffer();
+            b.write('<div class="multi-statement-wrapper">');
+            if (intro.isNotEmpty) {
+              b.write('<div class="stmt-intro">${formatInlineMarkdown(intro)}</div>');
+            }
+            b.write('<div class="stmt-list">');
+            for (final st in statements) {
+              b.write('''
+                <div class="stmt-row">
+                  <span class="stmt-marker">${st.marker}</span>
+                  <span class="stmt-text">${formatInlineMarkdown(st.text)}</span>
+                </div>
+              ''');
+            }
+            b.write('</div>');
+            if (conclusion != null && conclusion.isNotEmpty) {
+              b.write('<div class="stmt-conclusion">${formatInlineMarkdown(conclusion)}</div>');
+            }
+            b.write('</div>');
+            return b.toString();
           }
-          b.write('<div class="stmt-list">');
-          for (final st in statements) {
-            b.write('''
-              <div class="stmt-row">
-                <span class="stmt-marker">${st.marker}</span>
-                <span class="stmt-text">${formatInlineMarkdown(st.text)}</span>
-              </div>
-            ''');
-          }
-          b.write('</div>');
-          if (conclusion != null && conclusion.isNotEmpty) {
-            b.write('<div class="stmt-conclusion">${formatInlineMarkdown(conclusion)}</div>');
-          }
-          b.write('</div>');
-          return b.toString();
         }
       }
     }
@@ -819,6 +863,12 @@ class HtmlBookletBuilder {
     }
 
     // 5. Default: Paragraph / Multi-line preservation
+    return _defaultStemHtml(text);
+  }
+
+  /// Plain, paragraph aware stem rendering used when no specialised renderer
+  /// matches the question.
+  static String _defaultStemHtml(String text) {
     final paragraphs = text.split(RegExp(r'\n\s*\n'));
     if (paragraphs.length > 1) {
       return paragraphs.map((p) => '<div class="stem-p">${formatMultilineInline(p)}</div>').join('\n');
@@ -827,11 +877,22 @@ class HtmlBookletBuilder {
     return '<div class="stem-p">${formatMultilineInline(text)}</div>';
   }
 
-  /// Builds the complete HTML test booklet from a [TestSession]
-  static String buildHtml(TestSession session) {
+  /// Builds the complete HTML test booklet from a [TestSession].
+  ///
+  /// [isDark] mirrors the theme of the app so the booklet always uses the
+  /// same colours as the Flutter UI.  When it is null the booklet follows
+  /// the system setting of the device.
+  static String buildHtml(TestSession session, {bool? isDark}) {
     final questions = session.questions;
     final passages = session.passages;
     final totalQs = questions.length;
+    final timeLimitSeconds = session.config.timeLimitMinutes * 60;
+    final initialRemaining =
+        (timeLimitSeconds - session.elapsedSeconds).clamp(0, timeLimitSeconds);
+    final timeLimitText =
+        ExamRules.formatMinutes(session.config.timeLimitMinutes);
+    final generalPassMark = ExamRules.generalPassMark(totalQs);
+    final reservedPassMark = ExamRules.reservedPassMark(totalQs);
     final examCode = session.config.exam.toLowerCase();
     final isUtet = examCode.contains('utet');
     final isPaper2 = examCode.contains('2') || ExamService.instance.selectedPaper == 2;
@@ -845,6 +906,14 @@ class HtmlBookletBuilder {
 
     // Prioritize session.setCode, fallback to seed-derived char
     final setCode = session.setCode ?? String.fromCharCode(65 + ((session.config.seed.abs()) % 4));
+
+    // A stable booklet number.  String.hashCode is randomised per process in
+    // Dart, so the booklet number used to change on every launch.
+    var bookletSeed = 0;
+    for (final unit in session.id.codeUnits) {
+      bookletSeed = (bookletSeed * 31 + unit) % 9000;
+    }
+    final bookletNumber = 1000 + bookletSeed;
 
     // Prioritize session.paperTitle, fallback to localized standard name
     final title = session.paperTitle ?? (isUtet
@@ -867,54 +936,116 @@ class HtmlBookletBuilder {
     final l2Name = ExamService.instance.lang2LabelHindi;
     final l2NameEn = ExamService.instance.lang2LabelEnglish;
 
-    // Define sections based on exam and Paper 1 vs Paper 2
-    final sectionsDef = isPaper2
-        ? [
-            [1, 30, 'भाग I : बाल विकास एवं शिक्षण विज्ञान', 'PART I : Child Development and Pedagogy'],
-            [31, 60, 'भाग II : भाषा प्रथम – $l1Name', 'PART II : Language I – $l1NameEn'],
-            [61, 90, 'भाग III : भाषा द्वितीय – $l2Name', 'PART III : Language II – $l2NameEn'],
-            [91, 150, 'भाग IV : गणित एवं विज्ञान / सामाजिक अध्ययन (60 प्रश्न)', 'PART IV : Mathematics & Science / Social Studies (60 Questions)'],
-          ]
-        : (isUtet
-            ? [
-                [1, 30, 'भाग I : बाल विकास एवं शिक्षण विज्ञान', 'PART I : Child Development and Pedagogy'],
-                [31, 60, 'भाग II : भाषा प्रथम – $l1Name', 'PART II : Language I – $l1NameEn'],
-                [61, 90, 'भाग III : भाषा द्वितीय – $l2Name', 'PART III : Language II – $l2NameEn'],
-                [91, 120, 'भाग IV : गणित', 'PART IV : Mathematics'],
-                [121, 150, 'भाग V : पर्यावरण अध्ययन', 'PART V : Environmental Studies'],
-              ]
-            : [
-                [1, 30, 'भाग I : बाल विकास एवं शिक्षाशास्त्र', 'PART I : Child Development and Pedagogy'],
-                [31, 60, 'भाग II : गणित', 'PART II : Mathematics'],
-                [61, 90, 'भाग III : पर्यावरण अध्ययन', 'PART III : Environmental Studies'],
-                [91, 120, 'भाग IV : भाषा I – $l1Name', 'PART IV : Language I – $l1NameEn'],
-                [121, 150, 'भाग V : भाषा II – $l2Name', 'PART V : Language II – $l2NameEn'],
-              ]);
+    // Section banners are derived from the questions that were actually
+    // loaded.  Hard-coded question ranges were wrong for Paper-2 forms whose
+    // languages are Hindi/Hindi (set-f) or English/English (set-g), and for
+    // section tests that do not start at question 1.
+    ({String hi, String en}) sectionInfo(String code) {
+      switch (code) {
+        case 'cdp':
+          return (
+            hi: 'बाल विकास एवं शिक्षण विज्ञान',
+            en: 'Child Development and Pedagogy',
+          );
+        case 'hindi':
+          return (hi: 'भाषा प्रथम – $l1Name', en: 'Language I – $l1NameEn');
+        case 'english':
+          return (hi: 'भाषा द्वितीय – $l2Name', en: 'Language II – $l2NameEn');
+        case 'hindi_2':
+          return (hi: 'भाषा द्वितीय – हिन्दी', en: 'Language II – Hindi');
+        case 'english_1':
+          return (hi: 'भाषा प्रथम – अंग्रेज़ी', en: 'Language I – English');
+        case 'lang1_hindi':
+          return (hi: 'भाषा प्रथम – हिन्दी', en: 'Language I – Hindi');
+        case 'lang2_english':
+          return (hi: 'भाषा द्वितीय – अंग्रेज़ी', en: 'Language II – English');
+        case 'math':
+          return (hi: 'गणित', en: 'Mathematics');
+        case 'evs':
+          return (hi: 'पर्यावरण अध्ययन', en: 'Environmental Studies');
+        case 'math_science':
+          return (hi: 'गणित एवं विज्ञान', en: 'Mathematics & Science');
+        case 'social_studies':
+          return (hi: 'सामाजिक अध्ययन', en: 'Social Studies');
+        default:
+          final label = code.replaceAll('_', ' ').toUpperCase();
+          return (hi: label, en: label);
+      }
+    }
 
-    String getSectionTitle(int qNum) {
-      for (final s in sectionsDef) {
-        final start = s[0] as int;
-        final end = s[1] as int;
-        if (qNum >= start && qNum <= end) {
-          return s[2] as String;
+    const roman = ['I', 'II', 'III', 'IV', 'V', 'VI'];
+    final sectionsDef = <({int start, int end, String hi, String en})>[];
+    final sectionTitleByCode = <String, String>{};
+    if (questions.isNotEmpty) {
+      // One banner per *logical* section, not per contiguous run.  UTET
+      // Paper-2 alternates math_science and social_studies question by
+      // question, which used to produce 123 banners (all labelled "भाग VI")
+      // inside a single booklet.
+      final order = <String>[];
+      final ranges = <String, ({int start, int end})>{};
+      for (var i = 0; i < questions.length; i++) {
+        final code = questions[i].section;
+        if (!ranges.containsKey(code)) {
+          order.add(code);
+          ranges[code] = (start: i + 1, end: i + 1);
+        } else {
+          final r = ranges[code]!;
+          ranges[code] = (start: r.start, end: i + 1);
         }
       }
-      return 'सामान्य';
+      for (var i = 0; i < order.length; i++) {
+        final info = sectionInfo(order[i]);
+        final part = roman[i < roman.length ? i : roman.length - 1];
+        final r = ranges[order[i]]!;
+        final hi = 'भाग $part : ${info.hi}';
+        final en = 'PART $part : ${info.en}';
+        sectionTitleByCode[order[i]] = hi;
+        sectionsDef.add((start: r.start, end: r.end, hi: hi, en: en));
+      }
+    }
+
+    String figureHtml(Question question) {
+      final svg = QuestionFigureCatalog.questionSvg(question.id);
+      return svg == null ? '' : '<div class="q-figure">$svg</div>';
+    }
+
+    String optionHtml(Question question, int index, String rawText) {
+      final svg = QuestionFigureCatalog.optionSvg(question.id, index);
+      if (svg != null) {
+        return '<div class="opt-figure">$svg</div>';
+      }
+      return formatInlineMarkdown(ensureOptionLabel(rawText));
     }
 
     final h = StringBuffer();
+    final themeAttr =
+        isDark == null ? '' : ' data-theme="${isDark ? 'dark' : 'light'}"';
     h.writeln('<!DOCTYPE html>');
-    h.writeln('<html lang="hi">');
+    h.writeln('<html lang="hi"$themeAttr>');
     h.writeln('<head>');
     h.writeln('  <meta charset="utf-8">');
     h.writeln('  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes">');
     h.writeln('  <title>${escape(title)} — रियल-टाइम टेस्ट बुकलेट</title>');
-    h.writeln('  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">');
-    h.writeln('  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>');
-    h.writeln('  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" onload="try{renderMathInElement(document.body);}catch(e){}"></script>');
+    // KaTeX is only pulled from the CDN when a paper really contains LaTeX.
+    // The bundled renderer already draws fractions, roots and exponents, so a
+    // normal paper stays completely offline capable.
+    final needsKatex = questions.any((q) {
+      final text = '${q.qHindi} ${q.qEnglish ?? ''}';
+      return text.contains(r'$') ||
+          text.contains(r'\(') ||
+          text.contains(r'\[') ||
+          text.contains(r'\frac');
+    });
+    if (needsKatex) {
+      h.writeln('  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">');
+      h.writeln('  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>');
+      h.writeln('  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" onload="try{renderMathInElement(document.body);}catch(e){}"></script>');
+    }
     h.writeln('  <style>$_cssContent</style>');
     h.writeln('</head>');
     h.writeln('<body>');
+
+    final initialClock = ExamRules.formatClock(initialRemaining);
 
     // CBT Control Bar (Ultra-responsive single-row sticky header)
     h.writeln('''
@@ -924,7 +1055,7 @@ class HtmlBookletBuilder {
         <div class="cbt-left">
           <div id="timer-box" title="समय शेष (Time Remaining)">
             <span class="t-icon">⏱️</span>
-            <span id="timer-val">02:30:00</span>
+            <span id="timer-val">$initialClock</span>
           </div>
         </div>
 
@@ -959,10 +1090,11 @@ class HtmlBookletBuilder {
       <!-- Sub-row: Language Switcher -->
       <div class="cbt-subbar">
         <div class="cbt-lang-switcher">
-          <button class="lang-pill-btn active" id="btn-lang-hi" onclick="setLangFilter('hi')">🇮🇳 केवल हिन्दी</button>
-          <button class="lang-pill-btn" id="btn-lang-both" onclick="setLangFilter('both')">🌐 दोनों (Bilingual)</button>
-          <button class="lang-pill-btn" id="btn-lang-en" onclick="setLangFilter('en')">🇬🇧 Only English</button>
+          <button class="lang-pill-btn active" id="btn-lang-hi" onclick="setLangFilter('hi')">🇮🇳 <span class="lp-long">केवल हिन्दी</span><span class="lp-short">हिंदी</span></button>
+          <button class="lang-pill-btn" id="btn-lang-both" onclick="setLangFilter('both')">🌐 <span class="lp-long">दोनों (Bilingual)</span><span class="lp-short">दोनों</span></button>
+          <button class="lang-pill-btn" id="btn-lang-en" onclick="setLangFilter('en')">🇬🇧 <span class="lp-long">Only English</span><span class="lp-short">EN</span></button>
         </div>
+        <div class="cbt-progress" aria-hidden="true"><div class="cbt-progress-fill" id="progress-fill"></div></div>
       </div>
     </header>
 
@@ -1023,12 +1155,12 @@ class HtmlBookletBuilder {
 
         <div class="cover-meta-box" style="text-align:right">
           <b>पुस्तिका संख्या (Booklet No.)</b>
-          <div style="font-family:monospace;font-size:16px;font-weight:bold;letter-spacing:1px">TET-$setCode-${session.id.hashCode.abs() % 10000}</div>
+          <div style="font-family:monospace;font-size:16px;font-weight:bold;letter-spacing:1px">TET-$setCode-$bookletNumber</div>
         </div>
       </div>
 
       <div class="cover-time-marks">
-        <span>समय : 2 घण्टे 30 मिनट (150 मिनट)</span>
+        <span>समय : $timeLimitText${session.config.timeLimitMinutes >= 60 ? ' (${session.config.timeLimitMinutes} मिनट)' : ''}</span>
         <span>पूर्णांक : $totalQs अंक ($totalQs प्रश्न)</span>
       </div>
 
@@ -1044,7 +1176,7 @@ class HtmlBookletBuilder {
           <li>This question booklet contains $totalQs multiple choice questions. Each carries 1 mark.</li>
           <li>There is no negative marking for incorrect answers.</li>
           <li>Each question has four alternatives. Select the most appropriate option.</li>
-          <li>Click the button below to begin the test and start the timer.</li>
+          <li>The timer starts as soon as this booklet opens and is based on the real clock, even if the app is backgrounded.</li>
         </ol>
       </div>
 
@@ -1059,23 +1191,29 @@ class HtmlBookletBuilder {
     // Questions Page
     h.writeln('<div class="paper-page">');
 
+    // The last question of every passage group, so a stimulus and its
+    // questions can be wrapped into one block that never gets split.
+    final passageLastIndex = <String, int>{};
+    for (int i = 0; i < questions.length; i++) {
+      final pid = questions[i].passageId;
+      if (pid != null) passageLastIndex[pid] = i;
+    }
+
     for (int idx = 0; idx < questions.length; idx++) {
       final q = questions[idx];
       final qNum = idx + 1;
       final qNumStr = qNum.toString();
       ansKey[qNumStr] = q.answer;
-      sectionMap[qNumStr] = getSectionTitle(qNum);
+      sectionMap[qNumStr] = sectionTitleByCode[q.section] ?? 'सामान्य';
       topicMap[qNumStr] = q.topicName ?? 'सामान्य';
 
       // Check section boundary
-      for (final s in sectionsDef) {
-        final start = s[0] as int;
-        final end = s[1] as int;
-        if (qNum == start) {
+      for (final section in sectionsDef) {
+        if (qNum == section.start) {
           h.writeln('''
           <div class="section-banner">
-            <h2>${s[2]}</h2>
-            <small>${s[3]} · प्रश्न संख्या $start से $end</small>
+            <h2>${section.hi}</h2>
+            <small>${section.en} · प्रश्न संख्या ${section.start} से ${section.end}</small>
           </div>
           ''');
         }
@@ -1083,27 +1221,34 @@ class HtmlBookletBuilder {
 
       // Check passage
       final pid = q.passageId;
-      if (pid != null && !renderedPassages.contains(pid) && passages.containsKey(pid)) {
-        renderedPassages.add(pid);
-        final passage = passages[pid]!;
+      final groupPid = (pid != null && passages.containsKey(pid)) ? pid : null;
+      final opensGroup = groupPid != null && !renderedPassages.contains(groupPid);
+      if (opensGroup) {
+        renderedPassages.add(groupPid);
+        final passage = passages[groupPid]!;
         final isPoem = passage.isPoem;
         final icon = isPoem ? '📜' : '📖';
         final related = [
           for (int i = 0; i < questions.length; i++)
-            if (questions[i].passageId == pid) i + 1
+            if (questions[i].passageId == groupPid) i + 1
         ];
         final qRangeStr = related.isNotEmpty ? ' (प्रश्न ${related.first}–${related.last})' : '';
         final typeLabel = isPoem ? 'काव्यांश / कविता$qRangeStr' : 'अपठित गद्यांश$qRangeStr';
         final formattedBody = isPoem ? formatPoemBody(passage.cleanBody) : formatProseBody(passage.cleanBody);
 
-        passagesDict[pid] = {
+        // Only the meta data of the passage is handed to the JavaScript.  The
+        // text itself is printed exactly once, inside the group, so it can
+        // never appear twice in the page and the booklet stays smaller.
+        passagesDict[groupPid] = {
           'kind': passage.kind,
           'dir': passage.displayDir,
-          'body': formattedBody,
         };
 
+        // The stimulus and its own questions live inside one group so the
+        // paragraph can never drift away from the questions it belongs to.
+        h.writeln('<section class="q-group" data-pid="$groupPid">');
         h.writeln('''
-        <div class="stimulus-wrapper" id="stimulus-$pid">
+        <div class="stimulus-wrapper" id="stimulus-$groupPid">
           <div class="stimulus-header ${isPoem ? 'poem-head' : ''}">
             <span>$icon</span>
             <span><b>$typeLabel</b> — ${escape(passage.displayDir)}</span>
@@ -1116,7 +1261,17 @@ class HtmlBookletBuilder {
       }
 
       final isBilingual = q.isBilingual && (q.optionsEnglish?.length == 4);
-      final optLetters = ['(1)', '(2)', '(3)', '(4)'];
+      final optLetters = ['(A)', '(B)', '(C)', '(D)'];
+
+      // Premium header chips: every question shows its marks and difficulty.
+      final diffLabel = q.difficulty == 1
+          ? ('आसान', 'easy')
+          : (q.difficulty == 3 ? ('कठिन', 'hard') : ('मध्यम', 'med'));
+      final headerMeta =
+          '<div class="q-head-meta">'
+          '<span class="q-chip q-marks">1 अंक</span>'
+          '<span class="q-chip q-diff q-diff-${diffLabel.$2}">${diffLabel.$1}</span>'
+          '</div>';
 
       h.writeln('<div class="question-item" id="qitem-$qNum" data-qnum="$qNum">');
 
@@ -1127,18 +1282,24 @@ class HtmlBookletBuilder {
         final gridTwoClass = maxLen < 26 ? 'grid-two' : '';
 
         h.writeln('  <div class="q-bilingual-wrapper">');
+        // The figure belongs to the question, not to a language column, so it
+        // is rendered exactly once above the two columns.
+        h.writeln(figureHtml(q));
         // 1. Desktop Dual-Column View (Screen width >= 769px)
         h.writeln('    <div class="bilingual-desktop-grid">');
         h.writeln('      <div class="q-column">');
         h.writeln('        <div class="q-header">');
         h.writeln('          <span class="q-num">$qNum.</span>');
-        h.writeln('          <div class="q-stem">${formatQuestionStemHtml(q.qHindi)}</div>');
+        h.writeln('          <div class="q-head-main">');
+        h.writeln('            $headerMeta');
+        h.writeln('            <div class="q-stem">${formatQuestionStemHtml(q.qHindi)}</div>');
+        h.writeln('          </div>');
         h.writeln('        </div>');
         h.writeln('        <div class="options-list $gridTwoClass">');
         for (int i = 0; i < optsHi.length; i++) {
-          h.writeln('          <div class="option-row" data-optidx="$i" onclick="selectOption($qNum, $i)">');
+          h.writeln('          <div class="option-row" data-optidx="$i" onclick="selectOption($qNum, $i)" role="radio" aria-checked="false" tabindex="0">');
           h.writeln('            <span class="opt-badge">${optLetters[i]}</span>');
-          h.writeln('            <span>${formatInlineMarkdown(ensureOptionLabel(optsHi[i]))}</span>');
+          h.writeln('            <span>${optionHtml(q, i, optsHi[i])}</span>');
           h.writeln('          </div>');
         }
         h.writeln('        </div>');
@@ -1146,14 +1307,16 @@ class HtmlBookletBuilder {
 
         h.writeln('      <div class="q-column">');
         h.writeln('        <div class="q-header">');
-        h.writeln('          <span class="q-num">$qNum.</span>');
-        h.writeln('          <div class="q-stem">${formatQuestionStemHtml(q.qEnglish ?? "")}</div>');
+        h.writeln('          <span class="q-num q-num-alt">$qNum.</span>');
+        h.writeln('          <div class="q-head-main">');
+        h.writeln('            <div class="q-stem">${formatQuestionStemHtml(q.qEnglish ?? "")}</div>');
+        h.writeln('          </div>');
         h.writeln('        </div>');
         h.writeln('        <div class="options-list $gridTwoClass">');
         for (int i = 0; i < optsEn.length; i++) {
-          h.writeln('          <div class="option-row" data-optidx="$i" onclick="selectOption($qNum, $i)">');
+          h.writeln('          <div class="option-row" data-optidx="$i" onclick="selectOption($qNum, $i)" role="radio" aria-checked="false" tabindex="0">');
           h.writeln('            <span class="opt-badge">${optLetters[i]}</span>');
-          h.writeln('            <span>${formatInlineMarkdown(ensureOptionLabel(optsEn[i]))}</span>');
+          h.writeln('            <span>${optionHtml(q, i, optsEn[i])}</span>');
           h.writeln('          </div>');
         }
         h.writeln('        </div>');
@@ -1164,7 +1327,10 @@ class HtmlBookletBuilder {
         h.writeln('    <div class="bilingual-mobile-stack">');
         h.writeln('      <div class="q-header">');
         h.writeln('        <span class="q-num">$qNum.</span>');
-        h.writeln('        <div class="q-stem q-stem-hi-text">${formatQuestionStemHtml(q.qHindi)}</div>');
+        h.writeln('        <div class="q-head-main">');
+        h.writeln('          $headerMeta');
+        h.writeln('          <div class="q-stem q-stem-hi-text">${formatQuestionStemHtml(q.qHindi)}</div>');
+        h.writeln('        </div>');
         h.writeln('      </div>');
         if (q.qEnglish != null && q.qEnglish!.trim().isNotEmpty) {
           h.writeln('      <div class="q-stem-translation">');
@@ -1174,13 +1340,20 @@ class HtmlBookletBuilder {
         }
         h.writeln('      <div class="options-list $gridTwoClass">');
         for (int i = 0; i < optsHi.length; i++) {
+          final hasOptionFigure = QuestionFigureCatalog.optionSvg(q.id, i) != null;
           final hiText = ensureOptionLabel(optsHi[i]);
           final enText = (i < optsEn.length) ? ensureOptionLabel(optsEn[i]) : '';
-          final hasDistinctEn = enText.trim().isNotEmpty && enText.trim() != hiText.trim();
-          h.writeln('        <div class="option-row" data-optidx="$i" onclick="selectOption($qNum, $i)">');
+          final hasDistinctEn = !hasOptionFigure &&
+              enText.trim().isNotEmpty &&
+              enText.trim() != hiText.trim();
+          h.writeln('        <div class="option-row" data-optidx="$i" onclick="selectOption($qNum, $i)" role="radio" aria-checked="false" tabindex="0">');
           h.writeln('          <span class="opt-badge">${optLetters[i]}</span>');
           h.writeln('          <div class="opt-content">');
-          h.writeln('            <span class="opt-primary">${formatInlineMarkdown(hiText)}</span>');
+          if (hasOptionFigure) {
+            h.writeln('            <span class="opt-primary">${optionHtml(q, i, hiText)}</span>');
+          } else {
+            h.writeln('            <span class="opt-primary">${formatInlineMarkdown(hiText)}</span>');
+          }
           if (hasDistinctEn) {
             h.writeln('            <span class="opt-secondary">${formatInlineMarkdown(enText)}</span>');
           }
@@ -1200,13 +1373,17 @@ class HtmlBookletBuilder {
         h.writeln('    <div class="q-column">');
         h.writeln('      <div class="q-header">');
         h.writeln('        <span class="q-num">$qNum.</span>');
-        h.writeln('        <div class="q-stem">${formatQuestionStemHtml(stem)}</div>');
+        h.writeln('        <div class="q-head-main">');
+        h.writeln('          $headerMeta');
+        h.writeln('          <div class="q-stem">${formatQuestionStemHtml(stem)}</div>');
+        h.writeln('        </div>');
         h.writeln('      </div>');
+        h.writeln(figureHtml(q));
         h.writeln('      <div class="options-list $gridTwoClass">');
         for (int i = 0; i < opts.length; i++) {
-          h.writeln('        <div class="option-row" data-optidx="$i" onclick="selectOption($qNum, $i)">');
+          h.writeln('        <div class="option-row" data-optidx="$i" onclick="selectOption($qNum, $i)" role="radio" aria-checked="false" tabindex="0">');
           h.writeln('          <span class="opt-badge">${optLetters[i]}</span>');
-          h.writeln('          <span>${formatInlineMarkdown(ensureOptionLabel(opts[i]))}</span>');
+          h.writeln('          <span>${optionHtml(q, i, opts[i])}</span>');
           h.writeln('        </div>');
         }
         h.writeln('      </div>');
@@ -1219,7 +1396,7 @@ class HtmlBookletBuilder {
       h.writeln('    <div class="q-meta-tags">');
       h.writeln('      <span class="q-topic-tag">🏷️ ${escape(q.topicName ?? 'सामान्य')}</span>');
       if (pid != null && passages.containsKey(pid)) {
-        h.writeln('      <button class="q-peek-btn" onclick="showPassageModal(\'$pid\')">📖 गद्यांश/पद्यांश देखें</button>');
+        h.writeln('      <button class="q-peek-btn" onclick="jumpToStimulus(\'$pid\')">⬆️ गद्यांश/पद्यांश देखें</button>');
       }
       h.writeln('    </div>');
       h.writeln('    <div class="q-btn-group">');
@@ -1230,6 +1407,11 @@ class HtmlBookletBuilder {
 
       h.writeln('  <div class="result-mark" id="mark-$qNum"></div>');
       h.writeln('</div>');
+
+      // Close the passage group right after the last of its questions.
+      if (groupPid != null && passageLastIndex[groupPid] == idx) {
+        h.writeln('</section>');
+      }
 
       if (qNum % 30 == 0 && qNum < totalQs) {
         h.writeln('<div class="pto-text">P. T. O. (कृपया पृष्ठ पलटिए)</div>');
@@ -1290,7 +1472,7 @@ class HtmlBookletBuilder {
           <div class="c-stat-box"><b style="color:var(--success)" id="cf-ans">0</b><span>हल किए</span></div>
           <div class="c-stat-box"><b style="color:var(--text-muted)" id="cf-left">$totalQs</b><span>शेष</span></div>
         </div>
-        <div style="display:flex;gap:10px;justify-content:center">
+        <div class="modal-actions">
           <button class="cbt-btn cbt-btn-secondary" style="color:#0f172a;border:1.5px solid #cbd5e1" onclick="closeConfirmModal()">नहीं, जारी रखें</button>
           <button class="cbt-btn cbt-btn-primary" onclick="executeSubmit(false)">हाँ, जमा करें</button>
         </div>
@@ -1376,6 +1558,10 @@ class HtmlBookletBuilder {
         .replaceAll('__SECTIONS__', jsonEncode(sectionMap))
         .replaceAll('__TOPICS__', jsonEncode(topicMap))
         .replaceAll('__TOTAL_QS__', totalQs.toString())
+        .replaceAll('__TIME_LIMIT__', timeLimitSeconds.toString())
+        .replaceAll('__INITIAL_REMAINING__', initialRemaining.toString())
+        .replaceAll('__GENERAL_PASS__', generalPassMark.toString())
+        .replaceAll('__RESERVED_PASS__', reservedPassMark.toString())
         .replaceAll('__PAPER_ID__', session.id)
         .replaceAll('__PASSAGES__', jsonEncode(passagesDict));
 
@@ -1386,7 +1572,7 @@ class HtmlBookletBuilder {
     return h.toString();
   }
 
-  static const String _cssContent = '''
+  static final String _cssContent = '''
 :root {
   --primary: #0f172a;
   --primary-light: #1e293b;
@@ -1414,14 +1600,17 @@ html {
   scroll-behavior: smooth;
   width: 100%;
   max-width: 100%;
-  overflow-x: hidden;
+  /* `overflow-x: hidden` on html/body turns the page into a scroll
+     container and silently breaks `position: sticky` - the timer, the
+     palette and the submit button would scroll away on a phone. */
+  overflow-x: clip;
 }
 body {
   margin: 0;
   padding: 0;
   width: 100%;
   max-width: 100%;
-  overflow-x: hidden;
+  overflow-x: clip;
   background-color: var(--booklet-bg);
   color: var(--text-main);
   font-family: var(--font-hindi);
@@ -1777,6 +1966,10 @@ body {
 .q-header { display: flex; gap: 8px; align-items: flex-start; width: 100%; }
 .q-num { font-weight: 900; min-width: 30px; font-size: 16.5px; color: #000000; flex-shrink: 0; }
 .q-stem { flex: 1; min-width: 0; font-size: 16px; font-weight: 600; color: #0f172a; line-height: 1.65; word-break: break-word; }
+.q-figure { margin: 8px 0 10px; display: flex; justify-content: center; align-items: center; }
+.q-figure svg, .opt-figure svg { width: 100%; max-width: 340px; height: auto; display: block; }
+.opt-figure { margin: 2px 0 4px; }
+.opt-figure svg { max-width: 190px; }
 .stem-p { margin: 0 0 6px 0; line-height: 1.65; }
 .stem-p:last-child { margin-bottom: 0; }
 .kathan-wrapper { display: flex; flex-direction: column; gap: 8px; margin: 6px 0 8px; width: 100%; box-sizing: border-box; }
@@ -2429,6 +2622,28 @@ body.lang-mode-en .bilingual-mobile-stack .opt-secondary {
   .cbt-btn-exit { width: 32px; font-size: 13px; }
   .hide-on-mobile { display: none !important; }
 
+  /* The language switcher must never push the page sideways on a narrow
+     phone - it stays on one row and scrolls if it really has to. */
+  .cbt-subbar { padding: 0 8px 6px; }
+  .cbt-lang-switcher {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 4px;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .cbt-lang-switcher::-webkit-scrollbar { display: none; }
+  .lang-pill-btn {
+    flex: 0 0 auto;
+    min-height: 34px;
+    padding: 6px 10px;
+    font-size: 11.5px;
+    white-space: nowrap;
+  }
+  .lp-short { display: none; }
+
   .paper-page { padding: 10px 8px; width: 100%; box-sizing: border-box; }
   .section-banner { margin: 14px 0 10px; padding: 8px 10px; border-radius: 6px; }
   .bilingual-desktop-grid { display: none; }
@@ -2436,10 +2651,27 @@ body.lang-mode-en .bilingual-mobile-stack .opt-secondary {
   .q-stem-translation { margin-left: 0; }
   .options-list { padding-left: 0; }
   .options-list.grid-two { grid-template-columns: 1fr; }
-  .option-row { padding: 8px 10px; font-size: 14.5px; }
+  /* Comfortable touch targets on a phone (at least 48dp high). */
+  .option-row {
+    padding: 11px 10px;
+    font-size: 14.5px;
+    min-height: 48px;
+    align-items: center;
+  }
   .opt-primary { font-size: 14.5px; }
   .opt-secondary { font-size: 13px; }
   .q-footer { padding-left: 0; flex-wrap: wrap; gap: 6px; }
+  .q-peek-btn, .q-rev-btn, .q-report-btn { min-height: 34px; padding: 6px 10px; }
+
+  /* Complex question types on a narrow screen. */
+  .stmt-row { gap: 8px; }
+  .stmt-marker { min-width: 26px; font-size: 13px; }
+  .stmt-text { font-size: 14px; }
+  .kathan-body { font-size: 14px; }
+  .kathan-tag { font-size: 10.5px; padding: 3px 7px; }
+  .match-table { font-size: 13px; }
+  .match-table th, .match-table td { padding: 6px 8px; }
+  .match-table th { font-size: 11.5px; }
 
   .cover-page { padding: 16px 10px; }
   .cover-meta-grid { grid-template-columns: 1fr; gap: 8px; }
@@ -2455,20 +2687,260 @@ body.lang-mode-en .bilingual-mobile-stack .opt-secondary {
   .cbt-btn { width: 32px; padding: 0; justify-content: center; }
   .cbt-btn span { font-size: 13px; margin: 0; }
   #timer-box { padding: 0 6px; font-size: 11.5px; }
+  .lang-pill-btn { font-size: 10.5px; padding: 6px 8px; min-height: 32px; }
+  .lp-long { display: none; }
+  .lp-short { display: inline; }
+  .option-row { padding: 10px 8px; font-size: 14px; }
+  .q-stem { font-size: 15px; }
+  .match-table { font-size: 12.5px; }
 }
 
 /* KaTeX and general overflow protection (prevents horizontal shifting) */
 .katex-display { overflow-x: auto; overflow-y: hidden; max-width: 100%; padding: 4px 0; }
 .katex { max-width: 100%; }
-table { max-width: 100%; overflow-x: auto; display: block; }
+table { max-width: 100%; }
+/* Wide tables scroll inside their own wrapper instead of breaking the page. */
+.q-table-wrapper, .match-table-wrapper { overflow-x: auto; max-width: 100%; }
+.q-table, .match-table { display: table; table-layout: auto; }
 
 @media print {
-  .cbt-bar, .palette-drawer, #result-modal, #omr-modal, #passage-modal, .q-footer { display: none !important; }
-  body { background: #fff !important; }
+  .cbt-bar, .palette-drawer, #result-modal, #omr-modal, #passage-modal,
+  #report-modal, #confirm-modal, .q-footer, .q-rev-btn, .q-report-btn,
+  .q-peek-btn { display: none !important; }
+  @page { size: A4; margin: 14mm 12mm; }
+  html, body { background: #fff !important; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   .booklet-container { box-shadow: none !important; max-width: 100% !important; }
-  .cover-page { page-break-after: always; }
-  .question-item { page-break-inside: avoid; }
+  .cover-page { page-break-after: always; break-after: page; }
+  .question-item, .q-group, .option-row, .q-figure, .stimulus-wrapper,
+  .section-banner { page-break-inside: avoid; break-inside: avoid; }
+  .stimulus-wrapper { page-break-after: avoid; break-after: avoid; }
+  table { display: table !important; width: 100% !important; overflow: visible !important; }
 }
+
+/* ------------------------------------------------------------------
+   Premium layer: passage groups, per-question meta, progress, a11y
+   ------------------------------------------------------------------ */
+.q-group {
+  display: block;
+  margin: 18px 0 24px;
+  padding: 14px 16px 6px;
+  border: 1px solid var(--border-color);
+  border-left: 4px solid var(--accent);
+  border-radius: 12px;
+  background: var(--paper-bg);
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05);
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+.q-group > .stimulus-wrapper { margin: 0 0 12px; }
+.q-group > .question-item {
+  border: none;
+  border-top: 1px dashed #e2e8f0;
+  border-radius: 0;
+  padding-left: 0;
+  padding-right: 0;
+  margin: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.q-group > .question-item:first-of-type { border-top: none; }
+.q-group > .question-item.done { border-left: none; padding-left: 0; }
+.stimulus-wrapper.flash {
+  animation: stimulusFlash 1.4s ease;
+  border-radius: 10px;
+}
+@keyframes stimulusFlash {
+  0%, 100% { box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+  30% { box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.45); }
+}
+
+.q-head-main { flex: 1; min-width: 0; }
+.q-head-meta { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 4px; }
+.q-chip {
+  display: inline-block;
+  font-size: 10.5px;
+  font-weight: 700;
+  line-height: 1.6;
+  padding: 1px 8px;
+  border-radius: 20px;
+  letter-spacing: 0.2px;
+}
+.q-marks { background: #eef2ff; color: #3730a3; }
+.q-diff-easy { background: #dcfce7; color: #166534; }
+.q-diff-med { background: #fef3c7; color: #92400e; }
+.q-diff-hard { background: #fee2e2; color: #991b1b; }
+
+/* The English column carries the number only when the Hindi column is
+   hidden, so a question is never numbered twice. */
+.q-num-alt { display: none; }
+body.lang-mode-en .q-num-alt { display: inline-block; }
+body.lang-mode-en .bilingual-desktop-grid .q-column:nth-child(1) .q-num { display: none; }
+
+.cbt-progress {
+  height: 4px;
+  width: 100%;
+  margin-top: 6px;
+  border-radius: 99px;
+  background: rgba(148, 163, 184, 0.25);
+  overflow: hidden;
+}
+.cbt-progress-fill {
+  height: 100%;
+  width: 0%;
+  border-radius: 99px;
+  background: linear-gradient(90deg, #2563eb, #16a34a);
+  transition: width 0.25s ease;
+}
+
+.option-row:focus-visible,
+.option-row:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.option-row[aria-checked="true"] { font-weight: 700; }
+
+.q-topic-tag { color: #475569; }
+
+/* The confirm / result dialogs must stay usable on a 360 dp phone: the
+   buttons wrap instead of overlapping each other. */
+.modal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+.modal-actions .cbt-btn {
+  flex: 1 1 auto;
+  min-width: 46%;
+  white-space: normal;
+  line-height: 1.3;
+}
+
+@media (prefers-color-scheme: dark) {
+${_darkThemeRules.replaceAll('DARK_ROOT', 'html:not([data-theme])')}
+}
+
+${_darkThemeRules.replaceAll('DARK_ROOT', 'html[data-theme="dark"]')}
+''';
+
+  /// Dark palette of the booklet.
+  ///
+  /// It is emitted twice: once for a device that is in dark mode and did not
+  /// set an explicit theme, and once for the theme the app itself is using.
+  /// The app always sets `data-theme`, so the booklet always matches the
+  /// Flutter UI and never mixes a dark booklet with a light app (or the
+  /// other way round).
+  static const String _darkThemeRules = '''
+DARK_ROOT {
+  --paper-bg: #0f172a;
+  --booklet-bg: #020617;
+  --text-main: #e2e8f0;
+  --text-muted: #94a3b8;
+  --border-color: #334155;
+}
+
+/* --- text that inherits the dark background ------------------------- */
+DARK_ROOT .question-item, DARK_ROOT .q-group, DARK_ROOT .cover-page { background: #0f172a; }
+DARK_ROOT .q-stem, DARK_ROOT .stem-p, DARK_ROOT .q-num { color: #e2e8f0; }
+DARK_ROOT .prose-p, DARK_ROOT .poem-line { color: #e2e8f0; }
+DARK_ROOT .kathan-intro, DARK_ROOT .kathan-body { color: #e2e8f0; }
+DARK_ROOT .stmt-intro, DARK_ROOT .stmt-text, DARK_ROOT .stmt-conclusion { color: #e2e8f0; }
+DARK_ROOT .match-intro, DARK_ROOT .match-conclusion { color: #e2e8f0; }
+DARK_ROOT .opt-primary { color: #e2e8f0; }
+DARK_ROOT .opt-secondary { color: #94a3b8; }
+DARK_ROOT .q-topic-tag { background: #1e293b; color: #cbd5e1; }
+DARK_ROOT .q-marks { background: #1e1b4b; color: #c7d2fe; }
+DARK_ROOT .q-diff-easy { background: #14532d; color: #bbf7d0; }
+DARK_ROOT .q-diff-med { background: #451a03; color: #fde68a; }
+DARK_ROOT .q-diff-hard { background: #450a0a; color: #fecaca; }
+DARK_ROOT .q-group > .question-item { border-top-color: #1e293b; }
+DARK_ROOT .q-blank { border-bottom-color: #e2e8f0; }
+DARK_ROOT .option-row { background: #111c33; color: #e2e8f0; border-color: #334155; font-weight: 700; }
+DARK_ROOT .option-row:hover { background: #16233d; }
+DARK_ROOT .option-row.selected { background: #172554; color: #dbeafe; }
+DARK_ROOT .option-row.selected .opt-secondary { color: #93c5fd; }
+DARK_ROOT .option-row.correct-ans .opt-secondary { color: #86efac; }
+DARK_ROOT .option-row.wrong-ans .opt-secondary { color: #fca5a5; }
+DARK_ROOT .opt-badge { color: #cbd5e1; }
+DARK_ROOT .option-row.selected .opt-badge { color: #93c5fd; }
+
+/* --- vector figures -------------------------------------------------- */
+DARK_ROOT .q-figure svg, DARK_ROOT .opt-figure svg { background: #0b1220; border-radius: 8px; }
+DARK_ROOT .q-figure svg line, DARK_ROOT .q-figure svg path,
+DARK_ROOT .q-figure svg rect, DARK_ROOT .q-figure svg circle,
+DARK_ROOT .opt-figure svg line, DARK_ROOT .opt-figure svg path,
+DARK_ROOT .opt-figure svg rect, DARK_ROOT .opt-figure svg circle { stroke: #cbd5e1; }
+DARK_ROOT .q-figure svg text, DARK_ROOT .opt-figure svg text { fill: #e2e8f0; }
+DARK_ROOT .q-figure svg [stroke="#2563eb"], DARK_ROOT .opt-figure svg [stroke="#2563eb"] { stroke: #60a5fa; }
+DARK_ROOT .q-figure svg [fill="#2563eb"], DARK_ROOT .opt-figure svg [fill="#2563eb"] { fill: #60a5fa; }
+DARK_ROOT .q-figure svg [fill="#dbeafe"], DARK_ROOT .opt-figure svg [fill="#dbeafe"] { fill: #1e3a5f; }
+DARK_ROOT .q-figure svg [fill="#eff6ff"], DARK_ROOT .opt-figure svg [fill="#eff6ff"] { fill: #1e293b; }
+DARK_ROOT .q-figure svg [fill="#bfdbfe"], DARK_ROOT .opt-figure svg [fill="#bfdbfe"] { fill: #334155; }
+DARK_ROOT .q-figure svg [stroke="#dc2626"], DARK_ROOT .q-figure svg [fill="#dc2626"] { stroke: #fca5a5; fill: #fca5a5; }
+DARK_ROOT .q-figure svg [stroke="#64748b"], DARK_ROOT .q-figure svg [fill="#64748b"] { stroke: #94a3b8; fill: #94a3b8; }
+
+/* --- assertion / reason cards -------------------------------------- */
+DARK_ROOT .kathan-box { background: #111c33; }
+DARK_ROOT .kathan-box.reason-box { background: #1c1636; }
+DARK_ROOT .kathan-box.vyakhyan-box { background: #241a06; }
+DARK_ROOT .kathan-conclusion { background: #1e293b; color: #cbd5e1; }
+DARK_ROOT .kathan-tag.tag-a { background: #1e3a8a; color: #bfdbfe; }
+DARK_ROOT .kathan-tag.tag-r { background: #3b0764; color: #ddd6fe; }
+DARK_ROOT .kathan-tag.tag-v { background: #451a03; color: #fde68a; }
+
+/* --- multi statement list ------------------------------------------ */
+DARK_ROOT .stmt-list { background: #111c33; border-color: #1e293b; }
+DARK_ROOT .stmt-marker { color: #93c5fd; }
+
+/* --- match / markdown tables ---------------------------------------- */
+DARK_ROOT .q-table td, DARK_ROOT .match-table td { background: #0f172a; color: #e2e8f0; }
+DARK_ROOT .q-table th, DARK_ROOT .match-table th { background: #1e293b; color: #e2e8f0; }
+DARK_ROOT .q-table th, DARK_ROOT .q-table td,
+DARK_ROOT .match-table th, DARK_ROOT .match-table td { border-color: #334155; }
+DARK_ROOT .match-table tr:nth-child(even) td { background: #131f38; }
+DARK_ROOT .match-conclusion { background: #1e293b; }
+
+/* --- bilingual translation block ------------------------------------ */
+DARK_ROOT .q-stem-translation { background: #111c33; border-left-color: #475569; color: #cbd5e1; }
+DARK_ROOT .lang-tag { background: #1e293b; color: #cbd5e1; }
+DARK_ROOT body.lang-mode-en .bilingual-mobile-stack .q-stem-en-body { color: #e2e8f0 !important; }
+DARK_ROOT body.lang-mode-en .bilingual-mobile-stack .opt-secondary { color: #94a3b8 !important; }
+
+/* --- stimulus ------------------------------------------------------- */
+DARK_ROOT .stimulus-wrapper { background: #0b1220; box-shadow: none; }
+DARK_ROOT .stimulus-header { background: #1e293b; color: #e2e8f0; }
+DARK_ROOT .stimulus-header.poem-head { background: #2e1065; color: #ddd6fe; }
+DARK_ROOT .stimulus-content { background: #0b1220; border-color: #334155; color: #e2e8f0; }
+DARK_ROOT .stimulus-content.poem-body { background: #0b1220; }
+
+/* --- cover page ----------------------------------------------------- */
+DARK_ROOT .cover-authority { color: #e2e8f0; }
+DARK_ROOT .cover-sub-auth { color: #94a3b8; }
+DARK_ROOT .cover-exam-title { color: #f8fafc; }
+DARK_ROOT .cover-exam-paper { color: #cbd5e1; }
+DARK_ROOT .cover-meta-box { border-color: #334155; }
+DARK_ROOT .cover-meta-box b { color: #94a3b8; }
+DARK_ROOT .roll-digit-box { border-color: #334155; background: #0b1220; color: #e2e8f0; }
+DARK_ROOT .set-badge-box { border-color: #334155; background: #0b1220; color: #e2e8f0; }
+DARK_ROOT .cover-instructions { color: #cbd5e1; }
+
+/* --- question footer, palette and result marks ----------------------- */
+DARK_ROOT .q-rev-btn { color: #cbd5e1; border-color: #334155; }
+DARK_ROOT .q-peek-btn { background: #0c4a6e; border-color: #0369a1; color: #bae6fd; }
+DARK_ROOT .q-report-btn { color: #fdba74; border-color: #7c2d12; }
+DARK_ROOT .palette-grid a { background: #111c33; color: #cbd5e1; border-color: #334155; }
+DARK_ROOT .result-mark.ok { background: #14532d; color: #bbf7d0; }
+DARK_ROOT .result-mark.wrong { background: #450a0a; color: #fecaca; }
+DARK_ROOT .result-mark.skipped { background: #1e293b; color: #cbd5e1; }
+
+/* --- modals and report sheet ---------------------------------------- */
+DARK_ROOT .confirm-card { background: #0f172a; border: 1px solid #334155; }
+DARK_ROOT .confirm-card h3 { color: #f1f5f9; }
+DARK_ROOT .confirm-card p { color: #cbd5e1; }
+DARK_ROOT .c-stat-box { background: #111c33; border-color: #334155; }
+DARK_ROOT .c-stat-box span { color: #94a3b8; }
+DARK_ROOT .rep-radio-label { background: #111c33; border-color: #334155; color: #e2e8f0; }
 ''';
 
   static const String _jsEngine = '''
@@ -2477,12 +2949,16 @@ table { max-width: 100%; overflow-x: auto; display: block; }
   const SECTIONS = __SECTIONS__;
   const TOPICS = __TOPICS__;
   const TOTAL_QS = __TOTAL_QS__;
+  const TIME_LIMIT = __TIME_LIMIT__;
+  const GENERAL_PASS = __GENERAL_PASS__;
+  const RESERVED_PASS = __RESERVED_PASS__;
   const PAPER_ID = '__PAPER_ID__';
   const PASSAGES = __PASSAGES__;
 
   let responses = {};
   let reviewed = {};
-  let timeRemaining = 9000;
+  let timeRemaining = __INITIAL_REMAINING__;
+  let deadline = 0;
   let timerInterval = null;
   let testSubmitted = false;
 
@@ -2501,21 +2977,50 @@ table { max-width: 100%; overflow-x: auto; display: block; }
     return String(h).padStart(2,'0') + ':' + String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
   }
 
+  function computeRemaining() {
+    if (!deadline) return Math.max(0, timeRemaining);
+    return Math.max(0, Math.ceil((deadline - Date.now()) / 1000));
+  }
+
+  function tickTimer() {
+    timeRemaining = computeRemaining();
+    const el = document.getElementById('timer-val');
+    if (el) el.textContent = formatTime(timeRemaining);
+    const threshold = Math.min(900, Math.max(60, Math.floor(TIME_LIMIT * 0.10)));
+    if (timeRemaining <= threshold) {
+      const tb = document.getElementById('timer-box');
+      if (tb) tb.classList.add('timer-warning');
+    }
+    if (timeRemaining <= 0) {
+      if (timerInterval) clearInterval(timerInterval);
+      timerInterval = null;
+      submitTest(true);
+    }
+  }
+
   function startTimer() {
+    if (testSubmitted) return;
+    if (!deadline) {
+      deadline = Date.now() + Math.max(0, timeRemaining) * 1000;
+    }
     if (timerInterval) return;
-    timerInterval = setInterval(() => {
-      timeRemaining--;
-      const el = document.getElementById('timer-val');
-      if (el) el.textContent = formatTime(Math.max(0, timeRemaining));
-      if (timeRemaining <= 900) {
-        const tb = document.getElementById('timer-box');
-        if (tb) tb.classList.add('timer-warning');
-      }
-      if (timeRemaining <= 0) {
-        clearInterval(timerInterval);
-        submitTest(true);
-      }
-    }, 1000);
+    timerInterval = setInterval(tickTimer, 1000);
+    tickTimer();
+    saveState();
+  }
+
+  // Option rows are looked up once per question and cached, so selecting an
+  // answer no longer scans the whole 150 question document.
+  const optRowCache = new Map();
+  function optionRows(qNum) {
+    let rows = optRowCache.get(qNum);
+    if (!rows) {
+      rows = Array.prototype.slice.call(
+        document.querySelectorAll('[data-qnum="' + qNum + '"] .option-row')
+      );
+      optRowCache.set(qNum, rows);
+    }
+    return rows;
   }
 
   window.selectOption = function(qNum, optIdx) {
@@ -2523,8 +3028,10 @@ table { max-width: 100%; overflow-x: auto; display: block; }
     startTimer();
     responses[qNum] = optIdx;
 
-    document.querySelectorAll('[data-qnum="'+qNum+'"] .option-row').forEach(row => {
-      row.classList.toggle('selected', parseInt(row.dataset.optidx) === optIdx);
+    optionRows(qNum).forEach(function(row) {
+      const active = parseInt(row.dataset.optidx, 10) === optIdx;
+      row.classList.toggle('selected', active);
+      row.setAttribute('aria-checked', active ? 'true' : 'false');
     });
 
     const qEl = document.getElementById('qitem-' + qNum);
@@ -2578,6 +3085,11 @@ table { max-width: 100%; overflow-x: auto; display: block; }
     if (sAns) sAns.textContent = answeredCount;
     if (sLeft) sLeft.textContent = TOTAL_QS - answeredCount;
     if (sRev) sRev.textContent = reviewCount;
+    const fill = document.getElementById('progress-fill');
+    if (fill) {
+      const pct = TOTAL_QS > 0 ? Math.round((answeredCount / TOTAL_QS) * 100) : 0;
+      fill.style.width = pct + '%';
+    }
   }
 
   window.togglePalette = function() {
@@ -2617,13 +3129,29 @@ table { max-width: 100%; overflow-x: auto; display: block; }
     const t = document.getElementById('p-modal-title');
     const b = document.getElementById('p-modal-text');
     if (t) t.textContent = (pData.kind === 'poem' ? '📜 काव्यांश / कविता' : '📖 अपठित गद्यांश');
-    if (b) b.innerHTML = pData.body;
+    // The passage text is printed only once, inside the question group, so
+    // this dialog points to it instead of repeating it.
+    if (b) {
+      b.innerHTML = '<p style="font-size:13.5px;line-height:1.7">' +
+        (pData.dir ? pData.dir : 'ऊपर पढ़ें।') + '</p>' +
+        '<p style="font-size:12.5px;color:#64748b;margin-top:10px">' +
+        'यह गद्यांश अपने प्रश्नों के साथ ऊपर दिया गया है।</p>';
+    }
     const m = document.getElementById('passage-modal');
     if (m) m.classList.add('open');
   };
   window.closePassageModal = function() {
     const m = document.getElementById('passage-modal');
     if (m) m.classList.remove('open');
+  };
+  // Scroll back to the stimulus that belongs to the current question.
+  window.jumpToStimulus = function(passageId) {
+    const el = document.getElementById('stimulus-' + passageId);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      el.classList.add('flash');
+      setTimeout(function() { el.classList.remove('flash'); }, 1400);
+    }
   };
 
   window.submitTest = function(auto) {
@@ -2651,7 +3179,10 @@ table { max-width: 100%; overflow-x: auto; display: block; }
     if (testSubmitted) return;
     closeConfirmModal();
     testSubmitted = true;
-    clearInterval(timerInterval);
+    if (timerInterval) clearInterval(timerInterval);
+    timerInterval = null;
+    timeRemaining = computeRemaining();
+    try { localStorage.removeItem('TET_TEST_' + PAPER_ID); } catch(e){}
 
     let correct = 0, wrong = 0, skipped = 0;
     const secStats = {};
@@ -2674,9 +3205,9 @@ table { max-width: 100%; overflow-x: auto; display: block; }
       const markEl = document.getElementById('mark-' + n);
       const userAns = responses[n];
 
-      const optRows = document.querySelectorAll('[data-qnum="'+n+'"] .option-row');
+      const optRows = optionRows(n);
       optRows.forEach(row => {
-        const idx = parseInt(row.dataset.optidx);
+        const idx = parseInt(row.dataset.optidx, 10);
         if (idx === ansKey) row.classList.add('correct-ans');
         else if (userAns === idx) row.classList.add('wrong-ans');
       });
@@ -2720,7 +3251,7 @@ table { max-width: 100%; overflow-x: auto; display: block; }
       wrongCount: wrong,
       skippedCount: skipped,
       totalQuestions: TOTAL_QS,
-      elapsedSeconds: 9000 - timeRemaining,
+      elapsedSeconds: Math.max(0, TIME_LIMIT - timeRemaining),
       responses: responses
     });
   };
@@ -2729,18 +3260,18 @@ table { max-width: 100%; overflow-x: auto; display: block; }
     const pct = ((correct / TOTAL_QS) * 100).toFixed(1);
 
     let verdictColor, verdictText, verdictSub;
-    if (correct >= 90) {
+    if (correct >= GENERAL_PASS) {
       verdictColor = '#16a34a';
       verdictText = '🎉 उत्तीर्ण (QUALIFIED) — सामान्य वर्ग कट-ऑफ पार!';
-      verdictSub = 'बधाई! आपने 60% (90+ अंक) प्राप्त कर शिक्षक पात्रता परीक्षा उत्तीर्ण कर ली है।';
-    } else if (correct >= 82) {
+      verdictSub = 'बधाई! आपने 60% (' + GENERAL_PASS + '+ अंक) प्राप्त कर शिक्षक पात्रता परीक्षा उत्तीर्ण कर ली है।';
+    } else if (correct >= RESERVED_PASS) {
       verdictColor = '#65a30d';
       verdictText = '👍 उत्तीर्ण (QUALIFIED) — आरक्षित श्रेणी (OBC/SC/ST कट-ऑफ पार)';
-      verdictSub = 'आपने आरक्षित वर्ग के न्यूनतम 55% (82 अंक) की पात्रता सुरक्षित कर ली है।';
+      verdictSub = 'आपने आरक्षित वर्ग के न्यूनतम 55% (' + RESERVED_PASS + ' अंक) की पात्रता सुरक्षित कर ली है।';
     } else {
       verdictColor = '#dc2626';
       verdictText = '⚠️ अनुत्तीर्ण (NOT QUALIFIED) — और अभ्यास की आवश्यकता';
-      verdictSub = 'पात्रता के लिए न्यूनतम 82 अंक (आरक्षित) अथवा 90 अंक (सामान्य) आवश्यक हैं।';
+      verdictSub = 'पात्रता के लिए न्यूनतम ' + RESERVED_PASS + ' अंक (आरक्षित) अथवा ' + GENERAL_PASS + ' अंक (सामान्य) आवश्यक हैं।';
     }
 
     const rScore = document.getElementById('res-score');
@@ -2765,7 +3296,7 @@ table { max-width: 100%; overflow-x: auto; display: block; }
     setTxt('kpi-pct', pct + '%');
     const accuracy = (correct + wrong) > 0 ? ((correct / (correct + wrong)) * 100).toFixed(1) : '0';
     setTxt('kpi-acc', accuracy + '%');
-    setTxt('kpi-time', formatTime(9000 - timeRemaining));
+    setTxt('kpi-time', formatTime(Math.max(0, TIME_LIMIT - timeRemaining)));
 
     let tableHtml = '<tr><th>खण्ड (Section)</th><th class="center">कुल</th><th class="center">सही</th><th class="center">गलत</th><th class="center">छोड़े</th><th style="width:30%">प्राप्तांक एवं प्रतिशत</th></tr>';
     for (const sName in secStats) {
@@ -2842,7 +3373,11 @@ table { max-width: 100%; overflow-x: auto; display: block; }
     document.querySelectorAll('.omr-bubble').forEach(b => b.classList.remove('filled'));
     document.querySelectorAll('.q-rev-btn').forEach(b => b.classList.remove('active'));
     document.querySelectorAll('.question-item').forEach(q => q.classList.remove('done'));
+    timeRemaining = TIME_LIMIT;
+    deadline = Date.now() + TIME_LIMIT * 1000;
     updateStats();
+    const tv = document.getElementById('timer-val');
+    if (tv) tv.textContent = formatTime(timeRemaining);
     try { localStorage.removeItem('TET_TEST_' + PAPER_ID); } catch(e){}
     notifyFlutter('resetTest', {});
   };
@@ -2853,6 +3388,7 @@ table { max-width: 100%; overflow-x: auto; display: block; }
         responses: responses,
         reviewed: reviewed,
         timeRemaining: timeRemaining,
+        deadline: deadline,
         savedAt: Date.now()
       }));
     } catch(e){}
@@ -2866,12 +3402,23 @@ table { max-width: 100%; overflow-x: auto; display: block; }
       if (data && data.responses) {
         responses = data.responses;
         reviewed = data.reviewed || {};
-        if (data.timeRemaining) timeRemaining = data.timeRemaining;
+        if (data.deadline && Number(data.deadline) > 0) {
+          deadline = Number(data.deadline);
+          timeRemaining = computeRemaining();
+        } else if (data.savedAt && typeof data.timeRemaining === 'number') {
+          deadline = Number(data.savedAt) + Number(data.timeRemaining) * 1000;
+          timeRemaining = computeRemaining();
+        } else if (typeof data.timeRemaining === 'number') {
+          timeRemaining = data.timeRemaining;
+          deadline = Date.now() + timeRemaining * 1000;
+        }
 
         for (const qNum in responses) {
           const idx = responses[qNum];
-          document.querySelectorAll('[data-qnum="'+qNum+'"] .option-row').forEach(row => {
-            row.classList.toggle('selected', parseInt(row.dataset.optidx) === idx);
+          optionRows(qNum).forEach(function(row) {
+            const active = parseInt(row.dataset.optidx, 10) === idx;
+            row.classList.toggle('selected', active);
+            row.setAttribute('aria-checked', active ? 'true' : 'false');
           });
           const qEl = document.getElementById('qitem-' + qNum);
           if (qEl) qEl.classList.add('done');
@@ -2952,15 +3499,69 @@ table { max-width: 100%; overflow-x: auto; display: block; }
   };
 
   window.addEventListener('DOMContentLoaded', () => {
+    restoreState();
     const tv = document.getElementById('timer-val');
     if (tv) tv.textContent = formatTime(timeRemaining);
-    restoreState();
+    updateStats();
     try {
       var savedLang = localStorage.getItem('booklet_lang_filter') || 'hi';
       setLangFilter(savedLang);
     } catch(e) {
       setLangFilter('hi');
     }
+    // The exam clock starts when the booklet opens.  It is driven by an
+    // absolute deadline so backgrounding the WebView cannot add time.
+    startTimer();
+  });
+
+  // Keyboard support: 1-4 / A-D pick an option, arrows move between
+  // questions, P opens the palette, Enter opens the OMR sheet.
+  let focusedQuestion = 1;
+  document.addEventListener('keydown', function(e) {
+    if (testSubmitted) return;
+    var tag = (e.target && e.target.tagName) || '';
+    if (tag === 'INPUT' || tag === 'TEXTAREA') return;
+    var active = document.activeElement;
+    if (active && active.closest) {
+      var host = active.closest('.question-item');
+      if (host && host.dataset && host.dataset.qnum) {
+        focusedQuestion = parseInt(host.dataset.qnum, 10) || focusedQuestion;
+      }
+    }
+    var key = e.key;
+    if (key >= '1' && key <= '4') {
+      selectOption(focusedQuestion, parseInt(key, 10) - 1);
+      e.preventDefault();
+    } else if (key === 'a' || key === 'A' || key === 'b' || key === 'B' ||
+               key === 'c' || key === 'C' || key === 'd' || key === 'D') {
+      selectOption(focusedQuestion, key.toLowerCase().charCodeAt(0) - 97);
+      e.preventDefault();
+    } else if (key === 'ArrowDown' || key === 'j') {
+      focusedQuestion = Math.min(TOTAL_QS, focusedQuestion + 1);
+      jumpToQuestion(focusedQuestion);
+      e.preventDefault();
+    } else if (key === 'ArrowUp' || key === 'k') {
+      focusedQuestion = Math.max(1, focusedQuestion - 1);
+      jumpToQuestion(focusedQuestion);
+      e.preventDefault();
+    } else if (key === 'p' || key === 'P') {
+      togglePalette();
+      e.preventDefault();
+    } else if (key === 'Enter') {
+      openOMR();
+      e.preventDefault();
+    }
+  });
+
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) {
+      timeRemaining = computeRemaining();
+      tickTimer();
+    }
+  });
+  window.addEventListener('focus', () => {
+    timeRemaining = computeRemaining();
+    tickTimer();
   });
 })();
 ''';

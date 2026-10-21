@@ -208,6 +208,20 @@ class Question {
     };
   }
 
+  /// Full serializable representation used by completed-test history.
+  ///
+  /// The key names intentionally match the SQLite columns so the same
+  /// [Question.fromDbMap] parser can safely reload old and new history rows.
+  Map<String, dynamic> toJson() {
+    return {
+      ...toDbMap(),
+      'question_number': questionNumber,
+    };
+  }
+
+  factory Question.fromJson(Map<String, dynamic> json) =>
+      Question.fromDbMap(json);
+
   factory Question.fromDbMap(Map<String, dynamic> map) {
     List<String> decodeOptions(dynamic raw) {
       if (raw == null) return [];

@@ -1,73 +1,187 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
-/// App typography system with bilingual Hindi (Noto Sans Devanagari) + English (Outfit/Inter) support
+/// App typography system with bilingual Hindi (Noto Sans Devanagari) + English
+/// (Outfit/Inter) support.
+///
+/// The three faces are bundled with the app (see `pubspec.yaml`), so the exam
+/// looks exactly the same with or without an internet connection.  They are
+/// variable fonts, therefore the weight is selected through the "wght" axis.
 class AppTypography {
+  const AppTypography._();
+
+  static const String _latin = 'Outfit';
+  static const String _devanagari = 'Noto Sans Devanagari';
+  static const String _ui = 'Inter';
+
+  /// If a bundled face ever fails to load, the system font takes over so the
+  /// text can never become invisible.
+  static const List<String> _fallback = <String>[
+    'Noto Sans Devanagari',
+    'Nirmala UI',
+    'Mangal',
+    'Roboto',
+    'sans-serif',
+  ];
+
+  static List<FontVariation> _w(double weight) =>
+      <FontVariation>[FontVariation('wght', weight)];
+
   // English / Numerics style (Outfit)
-  static TextStyle displayLarge({Color? color}) => GoogleFonts.outfit(
+  static TextStyle displayLarge({Color? color}) => TextStyle(
+        fontFamily: _latin,
+        fontFamilyFallback: _fallback,
+        fontVariations: _w(700),
         fontSize: 28,
-        fontWeight: FontWeight.w700,
         letterSpacing: -0.5,
         color: color,
       );
 
-  static TextStyle titleLarge({Color? color}) => GoogleFonts.outfit(
+  static TextStyle titleLarge({Color? color}) => TextStyle(
+        fontFamily: _latin,
+        fontFamilyFallback: _fallback,
+        fontVariations: _w(700),
         fontSize: 20,
-        fontWeight: FontWeight.w700,
         letterSpacing: -0.2,
         color: color,
       );
 
-  static TextStyle titleMedium({Color? color}) => GoogleFonts.outfit(
+  static TextStyle titleMedium({Color? color}) => TextStyle(
+        fontFamily: _latin,
+        fontFamilyFallback: _fallback,
+        fontVariations: _w(600),
         fontSize: 16,
-        fontWeight: FontWeight.w600,
         color: color,
       );
 
   // Question & Reading Content Style (Bilingual Optimized)
   static TextStyle questionText({Color? color, double fontSize = 16.5}) =>
-      GoogleFonts.notoSansDevanagari(
+      TextStyle(
+        fontFamily: _devanagari,
+        fontFamilyFallback: _fallback,
+        fontVariations: _w(500),
         fontSize: fontSize,
-        fontWeight: FontWeight.w500,
         height: 1.6,
         letterSpacing: 0.1,
         color: color,
       );
 
   static TextStyle optionText({Color? color, double fontSize = 15.0}) =>
-      GoogleFonts.notoSansDevanagari(
+      TextStyle(
+        fontFamily: _devanagari,
+        fontFamilyFallback: _fallback,
+        fontVariations: _w(400),
         fontSize: fontSize,
-        fontWeight: FontWeight.w400,
         height: 1.5,
         color: color,
       );
 
-  static TextStyle passageBody({Color? color}) =>
-      GoogleFonts.notoSansDevanagari(
+  static TextStyle passageBody({Color? color}) => TextStyle(
+        fontFamily: _devanagari,
+        fontFamilyFallback: _fallback,
+        fontVariations: _w(400),
         fontSize: 14.5,
-        fontWeight: FontWeight.w400,
         height: 1.7,
         color: color,
       );
 
-  static TextStyle bodyMedium({Color? color}) => GoogleFonts.inter(
+  static TextStyle bodyMedium({Color? color}) => TextStyle(
+        fontFamily: _ui,
+        fontFamilyFallback: _fallback,
+        fontVariations: _w(400),
         fontSize: 14,
-        fontWeight: FontWeight.w400,
         height: 1.5,
         color: color,
       );
 
-  static TextStyle labelSmall({Color? color}) => GoogleFonts.inter(
+  static TextStyle labelSmall({Color? color}) => TextStyle(
+        fontFamily: _ui,
+        fontFamilyFallback: _fallback,
+        fontVariations: _w(600),
         fontSize: 11.5,
-        fontWeight: FontWeight.w600,
         letterSpacing: 0.5,
         color: color,
       );
 
-  static TextStyle numericTimer({Color? color}) => GoogleFonts.outfit(
+  static TextStyle numericTimer({Color? color}) => TextStyle(
+        fontFamily: _latin,
+        fontFamilyFallback: _fallback,
+        fontVariations: _w(700),
         fontSize: 18,
-        fontWeight: FontWeight.w700,
         letterSpacing: 1.0,
         color: color,
       );
+
+  // ------------------------------------------------------------------
+  // Drop-in replacements for the former `GoogleFonts.*` calls.  They use
+  // the bundled faces, so the report sheet and the snack bars look the
+  // same as the rest of the app and work without a connection.
+  // ------------------------------------------------------------------
+
+  static double _wght(FontWeight? weight) {
+    if (weight == null) return 400;
+    return weight.value.toDouble();
+  }
+
+  static TextStyle outfit({
+    double? fontSize,
+    FontWeight? fontWeight,
+    Color? color,
+    double? letterSpacing,
+    double? height,
+    FontStyle? fontStyle,
+    double? alpha,
+  }) =>
+      TextStyle(
+        fontFamily: _latin,
+        fontFamilyFallback: _fallback,
+        fontVariations: _w(_wght(fontWeight)),
+        fontSize: fontSize,
+        letterSpacing: letterSpacing,
+        height: height,
+        fontStyle: fontStyle,
+        color: _withAlpha(color, alpha),
+      );
+
+  static TextStyle notoSansDevanagari({
+    double? fontSize,
+    FontWeight? fontWeight,
+    Color? color,
+    double? letterSpacing,
+    double? height,
+    FontStyle? fontStyle,
+    double? alpha,
+  }) =>
+      TextStyle(
+        fontFamily: _devanagari,
+        fontFamilyFallback: _fallback,
+        fontVariations: _w(_wght(fontWeight)),
+        fontSize: fontSize,
+        letterSpacing: letterSpacing,
+        height: height,
+        fontStyle: fontStyle,
+        color: _withAlpha(color, alpha),
+      );
+
+  /// Monospace face for the report comment field.
+  static TextStyle courierPrime({
+    double? fontSize,
+    FontWeight? fontWeight,
+    Color? color,
+    double? letterSpacing,
+    double? height,
+  }) =>
+      TextStyle(
+        fontFamily: 'monospace',
+        fontFamilyFallback: const <String>['Courier New', 'monospace'],
+        fontSize: fontSize,
+        letterSpacing: letterSpacing,
+        height: height,
+        color: color,
+      );
+
+  static Color? _withAlpha(Color? color, double? alpha) {
+    if (color == null) return null;
+    if (alpha == null) return color;
+    return color.withValues(alpha: alpha);
+  }
 }

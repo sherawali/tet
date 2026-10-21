@@ -5,6 +5,7 @@ import '../design_system/app_colors.dart';
 import '../design_system/app_typography.dart';
 import '../design_system/app_radius.dart';
 import '../models/test_session.dart';
+import '../services/section_catalog.dart';
 import '../models/question.dart';
 import '../models/passage.dart';
 import '../models/mock_config.dart';
@@ -16,6 +17,7 @@ import '../widgets/smart_math_text.dart';
 import '../widgets/exam_special_render_engine.dart';
 import '../widgets/passage_display_card.dart';
 import '../widgets/question_report_sheet.dart';
+import '../widgets/question_figure_catalog.dart';
 import '../database/db_helper.dart';
 import '../design_system/app_strings.dart';
 import 'result_screen.dart';
@@ -34,40 +36,77 @@ class CbtExamScreen extends StatefulWidget {
   State<CbtExamScreen> createState() => _CbtExamScreenState();
 }
 
-class _CbtExamScreenState extends State<CbtExamScreen> {
+class _CbtExamScreenState extends State<CbtExamScreen>
+    with WidgetsBindingObserver {
   late int _currentIndex;
   late final ValueNotifier<int> _remainingSecondsNotifier;
   Timer? _timer;
+  late DateTime _deadline;
   late TestLanguageMode _languageMode;
+  bool _submitting = false;
+  bool _paperIsEmpty = false;
   final ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
     _languageMode = TestLanguageMode.onlyHindi;
+    if (widget.session.questions.isEmpty) {
+      // A paper without questions would crash the index maths below.
+      _paperIsEmpty = true;
+      _currentIndex = 0;
+      _remainingSecondsNotifier = ValueNotifier<int>(0);
+      return;
+    }
     _currentIndex = widget.initialQuestionIndex.clamp(0, widget.session.questions.length - 1);
     final totalSecs = widget.session.config.timeLimitMinutes * 60;
     final initialRemaining = (totalSecs - widget.session.elapsedSeconds).clamp(0, totalSecs);
     _remainingSecondsNotifier = ValueNotifier<int>(initialRemaining);
+    _deadline = DateTime.now().add(Duration(seconds: initialRemaining));
     widget.session.visitedIndices.add(_currentIndex);
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
     _startTimer();
   }
 
+  int get _secondsLeft {
+    final remaining = _deadline.difference(DateTime.now()).inSeconds;
+    final limit = widget.session.config.timeLimitMinutes * 60;
+    return remaining.clamp(0, limit);
+  }
+
+  void _syncTimer({bool submitWhenExpired = true}) {
+    if (_submitting) return;
+    final remaining = _secondsLeft;
+    _remainingSecondsNotifier.value = remaining;
+    widget.session.elapsedSeconds =
+        (widget.session.config.timeLimitMinutes * 60) - remaining;
+    if (remaining <= 0 && submitWhenExpired) {
+      _timer?.cancel();
+      _submitTest(autoSubmit: true);
+    }
+  }
+
   void _startTimer() {
-    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      if (_remainingSecondsNotifier.value > 0) {
-        _remainingSecondsNotifier.value--;
-        widget.session.elapsedSeconds++;
-      } else {
-        _timer?.cancel();
-        _submitTest(autoSubmit: true);
-      }
-    });
+    _syncTimer();
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) => _syncTimer());
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      _syncTimer();
+    } else if (state == AppLifecycleState.paused ||
+        state == AppLifecycleState.inactive) {
+      // Recompute before the OS suspends the periodic timer so the elapsed
+      // value reflects the real wall clock as closely as possible.
+      _syncTimer(submitWhenExpired: false);
+    }
   }
 
   @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
     _timer?.cancel();
     _remainingSecondsNotifier.dispose();
     _scrollController.dispose();
@@ -138,26 +177,34 @@ class _CbtExamScreenState extends State<CbtExamScreen> {
   }
 
   Future<void> _submitTest({bool autoSubmit = false}) async {
+    if (_submitting) return;
     _timer?.cancel();
+    _syncTimer(submitWhenExpired: false);
+    _submitting = true;
     widget.session.isCompleted = true;
     widget.session.endTime = DateTime.now();
 
     final score = widget.session.calculateScore();
     final total = widget.session.questions.length;
 
-    // Save to local database
-    await DbHelper.instance.saveTestHistory(
-      id: widget.session.id,
-      mode: widget.session.config.mode.shortTitle,
-      sectionFilter: widget.session.config.sectionFilter,
-      score: score,
-      total: total,
-      timeSpentSeconds: widget.session.elapsedSeconds,
-      sessionJson: '{}',
-    );
+    // Save the full session snapshot so the completed test can be reopened
+    // from History and reviewed question by question.
+    try {
+      await DbHelper.instance.saveTestHistory(
+        id: widget.session.id,
+        mode: widget.session.config.mode.shortTitle,
+        sectionFilter: widget.session.config.sectionFilter,
+        score: score,
+        total: total,
+        timeSpentSeconds: widget.session.elapsedSeconds,
+        sessionJson: widget.session.encode(),
+      );
 
-    // Track user mistakes and weaknesses across tests
-    await DbHelper.instance.recordSessionMistakes(widget.session);
+      // Track user mistakes and weaknesses across tests
+      await DbHelper.instance.recordSessionMistakes(widget.session);
+    } catch (error) {
+      debugPrint('Unable to save CBT test result: $error');
+    }
 
     if (!mounted) return;
     Navigator.of(context).pushReplacement(
@@ -637,6 +684,35 @@ class _CbtExamScreenState extends State<CbtExamScreen> {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    if (_paperIsEmpty) {
+      return Scaffold(
+        appBar: AppBar(title: const Text('परीक्षा')),
+        body: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(28),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Icon(Icons.error_outline_rounded, size: 46),
+                const SizedBox(height: 12),
+                Text(
+                  'इस प्रश्न-पत्र में कोई प्रश्न नहीं मिला।\nकृपया दूसरा प्रश्न-पत्र चुनें।',
+                  textAlign: TextAlign.center,
+                  style: AppTypography.bodyMedium(
+                    color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
+                  ),
+                ),
+                const SizedBox(height: 18),
+                FilledButton(
+                  onPressed: () => Navigator.of(context).maybePop(),
+                  child: const Text('वापस जाएँ'),
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
+    }
     final q = _currentQ;
     final selectedOpt = widget.session.selectedAnswers[_currentIndex];
     final isMarked = widget.session.markedForReview.contains(_currentIndex);
@@ -738,8 +814,14 @@ class _CbtExamScreenState extends State<CbtExamScreen> {
             ],
           ),
           bottom: PreferredSize(
-            preferredSize: const Size.fromHeight(38),
-            child: _buildSectionTabBar(isDark),
+            preferredSize: const Size.fromHeight(64),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                _buildProgressStrip(isDark),
+                _buildSectionTabBar(isDark),
+              ],
+            ),
           ),
         ),
         body: Column(
@@ -896,6 +978,8 @@ class _CbtExamScreenState extends State<CbtExamScreen> {
         }
       }
 
+      final hasOptionFigure = QuestionFigureCatalog.hasOptionFigures(q.id);
+
       return Padding(
         padding: const EdgeInsets.only(bottom: 12.0),
         child: AppCard(
@@ -938,17 +1022,24 @@ class _CbtExamScreenState extends State<CbtExamScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SmartMathText(
-                      primaryText,
-                      style: AppTypography.optionText(
-                        color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
-                        fontSize: 16.5,
-                      ).copyWith(
-                        height: 1.55,
-                        fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
+                    if (hasOptionFigure)
+                      QuestionFigureCatalog.buildOption(
+                        questionId: q.id,
+                        optionIndex: optIdx,
+                        isDark: isDark,
+                      )
+                    else
+                      SmartMathText(
+                        primaryText,
+                        style: AppTypography.optionText(
+                          color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
+                          fontSize: 16.5,
+                        ).copyWith(
+                          height: 1.55,
+                          fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
+                        ),
                       ),
-                    ),
-                    if (secondaryText != null) ...[
+                    if (!hasOptionFigure && secondaryText != null) ...[
                       const SizedBox(height: 6),
                       SmartMathText(
                         secondaryText,
@@ -970,6 +1061,50 @@ class _CbtExamScreenState extends State<CbtExamScreen> {
     });
   }
 
+  Widget _buildProgressStrip(bool isDark) {
+    final total = widget.session.questions.length;
+    final answered = widget.session.selectedAnswers.length;
+    final review = widget.session.markedForReview.length;
+    final ratio = total == 0 ? 0.0 : answered / total;
+    final track = isDark ? const Color(0xFF1E293B) : const Color(0xFFE2E8F0);
+    final fill = isDark ? const Color(0xFF38BDF8) : AppColors.primary;
+    final labelColor =
+        isDark ? AppColors.darkTextMuted : AppColors.lightTextMuted;
+
+    return Container(
+      padding: const EdgeInsets.fromLTRB(16, 7, 16, 5),
+      child: Row(
+        children: [
+          Expanded(
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(99),
+              child: LinearProgressIndicator(
+                value: ratio,
+                minHeight: 6,
+                backgroundColor: track,
+                valueColor: AlwaysStoppedAnimation<Color>(fill),
+              ),
+            ),
+          ),
+          const SizedBox(width: 10),
+          Text(
+            'हल: $answered/$total',
+            style: AppTypography.labelSmall(color: labelColor)
+                .copyWith(fontWeight: FontWeight.w700, fontSize: 11.5),
+          ),
+          if (review > 0) ...[
+            const SizedBox(width: 8),
+            Text(
+              'समीक्षा: $review',
+              style: AppTypography.labelSmall(color: labelColor)
+                  .copyWith(fontWeight: FontWeight.w700, fontSize: 11.5),
+            ),
+          ],
+        ],
+      ),
+    );
+  }
+
   Widget _buildSectionTabBar(bool isDark) {
     final questions = widget.session.questions;
     final isSingleSection = widget.session.config.sectionFilter != null;
@@ -987,15 +1122,10 @@ class _CbtExamScreenState extends State<CbtExamScreen> {
     }
 
     // Dynamic section boundaries detected from actual questions in the session
-    final sectionNames = {
-      'cdp': 'CDP',
-      'hindi': 'हिन्दी',
-      'english': 'English',
-      'math': 'गणित',
-      'evs': 'EVS',
-      'sans': 'संस्कृत',
-      'science': 'विज्ञान',
-      'social': 'सामाजिक अध्ययन',
+    // Section labels come from the shared catalogue so that every vault
+    // code (lang1_hindi, math_science, ...) gets a readable name.
+    final sectionNames = <String, String>{
+      for (final code in SectionCatalog.order) code: SectionCatalog.short(code),
     };
 
     final discoveredSections = <Map<String, dynamic>>[];

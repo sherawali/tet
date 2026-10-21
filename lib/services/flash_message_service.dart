@@ -3,6 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/flash_message.dart';
 import '../database/db_helper.dart';
+import 'bank_facts.dart';
 
 class FlashMessageService {
   static final FlashMessageService _instance = FlashMessageService._internal();
@@ -19,6 +20,9 @@ class FlashMessageService {
   /// Fetch active flash messages from GitHub CDN or local fallback
   Future<List<FlashMessage>> getActiveMessages() async {
     List<FlashMessage> allMessages = [];
+
+    // The counts in the built-in broadcasts come from the bank itself.
+    await BankFacts.refresh(_db);
 
     // 1. Try raw GitHub / CDN URL with cache busting
     try {
@@ -50,12 +54,12 @@ class FlashMessageService {
 
     // 3. Define master multi-slide broadcasts with 100% pure Hindi and pure English
     final defaultBroadcasts = [
-      const FlashMessage(
+      FlashMessage(
         id: 'live_flash_2026_master',
-        title: '🔥 UTET एवं CTET 2026: 9,720 प्रश्नों का सम्पूर्ण बैंक उपलब्ध!',
-        message: 'सभी 62 प्रामाणिक बोर्ड प्रश्न-पत्र एवं 20 मॉडल सेट्स सम्पूर्ण हल सहित उपलब्ध हैं। OMR एवं CBT मोड में अभ्यास करें।',
-        titleEn: '🔥 UTET & CTET 2026: 9,720 Question Bank Live!',
-        messageEn: 'All 62 authentic board solved papers and 20 model test sets with complete solutions. Practice in OMR & CBT mode.',
+        title: '🔥 UTET एवं CTET 2026: ${BankFacts.format(BankFacts.questionCount)} प्रश्नों का सम्पूर्ण बैंक उपलब्ध!',
+        message: 'सभी ${BankFacts.paperCount} प्रामाणिक बोर्ड प्रश्न-पत्र एवं मॉडल सेट्स सम्पूर्ण हल सहित उपलब्ध हैं। OMR एवं CBT मोड में अभ्यास करें।',
+        titleEn: '🔥 UTET & CTET 2026: ${BankFacts.format(BankFacts.questionCount)} Question Bank Live!',
+        messageEn: 'All ${BankFacts.paperCount} authentic board solved papers and model test sets with complete solutions. Practice in OMR & CBT mode.',
         type: 'notice',
         actionLabel: 'मॉडल प्रश्न-पत्र देखें',
         actionLabelEn: 'View Mock Series',

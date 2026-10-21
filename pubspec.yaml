@@ -1,7 +1,7 @@
 name: tet_app
 description: "A new Flutter project."
 publish_to: 'none'
-version: 0.1.0+1
+version: 1.0.0+1
 
 environment:
   sdk: ^3.11.5
@@ -32,3 +32,16 @@ flutter:
   assets:
     - assets/images/
     - assets/database/
+  # The typography is bundled so the app keeps its premium look without a
+  # network connection.  All three faces are variable fonts, the weight is
+  # selected through the "wght" axis.
+  fonts:
+    - family: Outfit
+      fonts:
+        - asset: assets/fonts/Outfit.ttf
+    - family: Noto Sans Devanagari
+      fonts:
+        - asset: assets/fonts/NotoSansDevanagari.ttf
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/Inter.ttf

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -9,6 +10,7 @@ import '../design_system/app_colors.dart';
 import '../design_system/app_snack_bar.dart';
 import '../widgets/question_report_sheet.dart';
 import '../services/html_booklet_builder.dart';
+import 'result_screen.dart';
 
 /// Standalone Real-Time HTML Question Booklet Screen
 /// Renders authentic board test booklet via webview_flutter with full
@@ -28,17 +30,28 @@ class HtmlBookletScreen extends StatefulWidget {
 class _HtmlBookletScreenState extends State<HtmlBookletScreen> {
   WebViewController? _controller;
   bool _isLoading = true;
+  bool _isSubmitting = false;
   String? _errorMessage;
-  late final String _htmlContent;
+  String? _htmlContent;
+  Timer? _loadWatchdog;
 
   @override
   void initState() {
     super.initState();
     // Immersive sticky for full exam focus
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+  }
 
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (_htmlContent != null) return;
+
+    // The booklet is built once, with the theme the app is currently using,
+    // so the booklet and the Flutter UI always look the same.
     try {
-      _htmlContent = HtmlBookletBuilder.buildHtml(widget.session);
+      final isDark = Theme.of(context).brightness == Brightness.dark;
+      _htmlContent = HtmlBookletBuilder.buildHtml(widget.session, isDark: isDark);
       _initWebView();
     } catch (e) {
       setState(() {
@@ -50,21 +63,24 @@ class _HtmlBookletScreenState extends State<HtmlBookletScreen> {
 
   @override
   void dispose() {
+    _loadWatchdog?.cancel();
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
     super.dispose();
   }
 
   void _initWebView() {
     try {
+      final isDark = Theme.of(context).brightness == Brightness.dark;
       final controller = WebViewController()
         ..setJavaScriptMode(JavaScriptMode.unrestricted)
-        ..setBackgroundColor(Colors.white)
+        ..setBackgroundColor(isDark ? const Color(0xFF020617) : Colors.white)
         ..setNavigationDelegate(
           NavigationDelegate(
             onPageStarted: (url) {
               if (mounted) setState(() => _isLoading = true);
             },
             onPageFinished: (url) {
+              _loadWatchdog?.cancel();
               if (mounted) {
                 setState(() {
                   _isLoading = false;
@@ -75,6 +91,7 @@ class _HtmlBookletScreenState extends State<HtmlBookletScreen> {
             onWebResourceError: (error) {
               // Ignore benign minor resource errors (like favicon 404)
               if (error.errorCode != -1 && error.description.contains('ERR_FILE_NOT_FOUND')) return;
+              _loadWatchdog?.cancel();
               if (mounted && _isLoading) {
                 setState(() {
                   _errorMessage = 'बुकलेट लोड करने में समस्या: ${error.description}';
@@ -88,9 +105,20 @@ class _HtmlBookletScreenState extends State<HtmlBookletScreen> {
           'BookletChannel',
           onMessageReceived: _handleJsMessage,
         )
-        ..loadHtmlString(_htmlContent);
+        ..loadHtmlString(_htmlContent!);
 
       _controller = controller;
+
+      // Watchdog: a booklet is a local string, so it must render in a
+      // moment.  If the WebView does not report back (broken WebView, stuck
+      // resource) the overlay is released anyway so the candidate is never
+      // stuck on a spinner.
+      _loadWatchdog?.cancel();
+      _loadWatchdog = Timer(const Duration(seconds: 8), () {
+        if (mounted && _isLoading) {
+          setState(() => _isLoading = false);
+        }
+      });
     } catch (e) {
       if (mounted) {
         setState(() {
@@ -148,7 +176,7 @@ class _HtmlBookletScreenState extends State<HtmlBookletScreen> {
           break;
 
         case 'refreshTest':
-          _controller?.loadHtmlString(_htmlContent);
+          _controller?.loadHtmlString(_htmlContent ?? '');
           break;
 
         case 'testSubmitted':
@@ -202,25 +230,36 @@ class _HtmlBookletScreenState extends State<HtmlBookletScreen> {
   }
 
   Future<void> _onTestSubmittedFromHtml(Map<String, dynamic> data) async {
-    final score = data['score'] as int? ?? widget.session.calculateScore();
-    final elapsed = data['elapsedSeconds'] as int? ?? widget.session.elapsedSeconds;
+    if (_isSubmitting) return;
+    _isSubmitting = true;
 
     final respMap = data['responses'] as Map<String, dynamic>?;
     if (respMap != null) {
       respMap.forEach((k, v) {
         final qIndex = (int.tryParse(k) ?? 0) - 1;
-        if (qIndex >= 0 && v is int) {
-          widget.session.selectedAnswers[qIndex] = v;
-          widget.session.visitedIndices.add(qIndex);
+        if (qIndex >= 0 && qIndex < widget.session.questions.length) {
+          final answer = v is num ? v.toInt() : int.tryParse(v.toString());
+          if (answer != null && answer >= 0 && answer <= 3) {
+            widget.session.selectedAnswers[qIndex] = answer;
+            widget.session.visitedIndices.add(qIndex);
+          }
         }
       });
     }
 
+    final elapsed = (data['elapsedSeconds'] as num?)?.toInt() ??
+        widget.session.elapsedSeconds;
+    final score = widget.session.calculateScore();
+
     widget.session.isCompleted = true;
-    widget.session.elapsedSeconds = elapsed;
+    widget.session.elapsedSeconds = elapsed.clamp(
+      0,
+      widget.session.timeLimitSeconds,
+    );
     widget.session.endTime = DateTime.now();
 
-    // Record mistakes and save test history to SQLite
+    // Record mistakes and save the complete session.  The full snapshot is
+    // what allows a completed test to be reopened from History.
     try {
       await DbHelper.instance.saveTestHistory(
         id: widget.session.id,
@@ -228,23 +267,20 @@ class _HtmlBookletScreenState extends State<HtmlBookletScreen> {
         sectionFilter: widget.session.config.sectionFilter,
         score: score,
         total: widget.session.questions.length,
-        timeSpentSeconds: elapsed,
-        sessionJson: '{}',
+        timeSpentSeconds: widget.session.elapsedSeconds,
+        sessionJson: widget.session.encode(),
       );
       await DbHelper.instance.recordSessionMistakes(widget.session);
     } catch (e) {
       debugPrint('Error saving test results to DB: $e');
     }
 
-    if (mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('🎉 परीक्षा समाप्त! प्राप्तांक: $score / ${widget.session.questions.length}'),
-          backgroundColor: AppColors.success,
-          duration: const Duration(seconds: 4),
-        ),
-      );
-    }
+    if (!mounted) return;
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(
+        builder: (context) => ResultScreen(session: widget.session),
+      ),
+    );
   }
 
   Future<bool> _onWillPop() async {
