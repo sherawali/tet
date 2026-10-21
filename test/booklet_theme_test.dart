@@ -130,4 +130,28 @@ void main() {
       isTrue,
     );
   });
+
+  group('compact screens (S23 and smaller)', () {
+    final css = HtmlBookletBuilder.buildHtml(session(), isDark: false);
+
+    test('options keep a 48dp touch target on phones', () {
+      expect(css.contains('@media (max-width: 768px)'), isTrue);
+      expect(
+        css.contains('min-height: 48px'),
+        isTrue,
+        reason: 'option rows must stay at least 48dp high on a phone',
+      );
+    });
+
+    test('the language switcher wraps instead of overflowing', () {
+      expect(css.contains('flex-wrap: wrap'), isTrue);
+      expect(css.contains('.cbt-lang-switcher'), isTrue);
+    });
+
+    test('complex question types get compact styling on phones', () {
+      expect(css.contains('.stmt-row { gap: 8px; }'), isTrue);
+      expect(css.contains('.kathan-body { font-size: 14px; }'), isTrue);
+      expect(css.contains('.match-table { font-size: 13px; }'), isTrue);
+    });
+  });
 }

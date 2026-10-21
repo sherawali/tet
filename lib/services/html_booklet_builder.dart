@@ -2617,6 +2617,24 @@ body.lang-mode-en .bilingual-mobile-stack .opt-secondary {
   .cbt-btn-exit { width: 32px; font-size: 13px; }
   .hide-on-mobile { display: none !important; }
 
+  /* The language switcher must never push the page sideways on a narrow
+     phone - it wraps instead of overflowing. */
+  .cbt-subbar { padding: 0 8px 6px; }
+  .cbt-lang-switcher {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    width: 100%;
+    max-width: 100%;
+  }
+  .lang-pill-btn {
+    flex: 1 1 auto;
+    min-height: 34px;
+    padding: 6px 8px;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+
   .paper-page { padding: 10px 8px; width: 100%; box-sizing: border-box; }
   .section-banner { margin: 14px 0 10px; padding: 8px 10px; border-radius: 6px; }
   .bilingual-desktop-grid { display: none; }
@@ -2624,10 +2642,27 @@ body.lang-mode-en .bilingual-mobile-stack .opt-secondary {
   .q-stem-translation { margin-left: 0; }
   .options-list { padding-left: 0; }
   .options-list.grid-two { grid-template-columns: 1fr; }
-  .option-row { padding: 8px 10px; font-size: 14.5px; }
+  /* Comfortable touch targets on a phone (at least 48dp high). */
+  .option-row {
+    padding: 11px 10px;
+    font-size: 14.5px;
+    min-height: 48px;
+    align-items: center;
+  }
   .opt-primary { font-size: 14.5px; }
   .opt-secondary { font-size: 13px; }
   .q-footer { padding-left: 0; flex-wrap: wrap; gap: 6px; }
+  .q-peek-btn, .q-rev-btn, .q-report-btn { min-height: 34px; padding: 6px 10px; }
+
+  /* Complex question types on a narrow screen. */
+  .stmt-row { gap: 8px; }
+  .stmt-marker { min-width: 26px; font-size: 13px; }
+  .stmt-text { font-size: 14px; }
+  .kathan-body { font-size: 14px; }
+  .kathan-tag { font-size: 10.5px; padding: 3px 7px; }
+  .match-table { font-size: 13px; }
+  .match-table th, .match-table td { padding: 6px 8px; }
+  .match-table th { font-size: 11.5px; }
 
   .cover-page { padding: 16px 10px; }
   .cover-meta-grid { grid-template-columns: 1fr; gap: 8px; }
@@ -2643,6 +2678,10 @@ body.lang-mode-en .bilingual-mobile-stack .opt-secondary {
   .cbt-btn { width: 32px; padding: 0; justify-content: center; }
   .cbt-btn span { font-size: 13px; margin: 0; }
   #timer-box { padding: 0 6px; font-size: 11.5px; }
+  .lang-pill-btn { font-size: 10.5px; padding: 6px 6px; min-height: 32px; }
+  .option-row { padding: 10px 8px; font-size: 14px; }
+  .q-stem { font-size: 15px; }
+  .match-table { font-size: 12.5px; }
 }
 
 /* KaTeX and general overflow protection (prevents horizontal shifting) */
