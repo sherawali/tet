@@ -18,7 +18,7 @@ class DbHelper {
   /// Version of the bundled SQLite vault in `assets/database/`.
   /// Bumping this triggers a one-time copy from the asset bundle while keeping
   /// the user's test history and mistake records intact.
-  static const String bundledVaultVersion = '2026102019';
+  static const String bundledVaultVersion = '2026102020';
 
   Database? _db;
 

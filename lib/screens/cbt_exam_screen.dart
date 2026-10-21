@@ -43,6 +43,7 @@ class _CbtExamScreenState extends State<CbtExamScreen>
   late DateTime _deadline;
   late TestLanguageMode _languageMode;
   bool _submitting = false;
+  bool _paperIsEmpty = false;
   final ScrollController _scrollController = ScrollController();
 
   @override
@@ -50,6 +51,13 @@ class _CbtExamScreenState extends State<CbtExamScreen>
     super.initState();
     WidgetsBinding.instance.addObserver(this);
     _languageMode = TestLanguageMode.onlyHindi;
+    if (widget.session.questions.isEmpty) {
+      // A paper without questions would crash the index maths below.
+      _paperIsEmpty = true;
+      _currentIndex = 0;
+      _remainingSecondsNotifier = ValueNotifier<int>(0);
+      return;
+    }
     _currentIndex = widget.initialQuestionIndex.clamp(0, widget.session.questions.length - 1);
     final totalSecs = widget.session.config.timeLimitMinutes * 60;
     final initialRemaining = (totalSecs - widget.session.elapsedSeconds).clamp(0, totalSecs);
@@ -675,6 +683,35 @@ class _CbtExamScreenState extends State<CbtExamScreen>
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    if (_paperIsEmpty) {
+      return Scaffold(
+        appBar: AppBar(title: const Text('परीक्षा')),
+        body: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(28),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Icon(Icons.error_outline_rounded, size: 46),
+                const SizedBox(height: 12),
+                Text(
+                  'इस प्रश्न-पत्र में कोई प्रश्न नहीं मिला।\nकृपया दूसरा प्रश्न-पत्र चुनें।',
+                  textAlign: TextAlign.center,
+                  style: AppTypography.bodyMedium(
+                    color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
+                  ),
+                ),
+                const SizedBox(height: 18),
+                FilledButton(
+                  onPressed: () => Navigator.of(context).maybePop(),
+                  child: const Text('वापस जाएँ'),
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
+    }
     final q = _currentQ;
     final selectedOpt = widget.session.selectedAnswers[_currentIndex];
     final isMarked = widget.session.markedForReview.contains(_currentIndex);
@@ -776,8 +813,14 @@ class _CbtExamScreenState extends State<CbtExamScreen>
             ],
           ),
           bottom: PreferredSize(
-            preferredSize: const Size.fromHeight(38),
-            child: _buildSectionTabBar(isDark),
+            preferredSize: const Size.fromHeight(64),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                _buildProgressStrip(isDark),
+                _buildSectionTabBar(isDark),
+              ],
+            ),
           ),
         ),
         body: Column(
@@ -1015,6 +1058,50 @@ class _CbtExamScreenState extends State<CbtExamScreen>
         ),
       );
     });
+  }
+
+  Widget _buildProgressStrip(bool isDark) {
+    final total = widget.session.questions.length;
+    final answered = widget.session.selectedAnswers.length;
+    final review = widget.session.markedForReview.length;
+    final ratio = total == 0 ? 0.0 : answered / total;
+    final track = isDark ? const Color(0xFF1E293B) : const Color(0xFFE2E8F0);
+    final fill = isDark ? const Color(0xFF38BDF8) : AppColors.primary;
+    final labelColor =
+        isDark ? AppColors.darkTextMuted : AppColors.lightTextMuted;
+
+    return Container(
+      padding: const EdgeInsets.fromLTRB(16, 7, 16, 5),
+      child: Row(
+        children: [
+          Expanded(
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(99),
+              child: LinearProgressIndicator(
+                value: ratio,
+                minHeight: 6,
+                backgroundColor: track,
+                valueColor: AlwaysStoppedAnimation<Color>(fill),
+              ),
+            ),
+          ),
+          const SizedBox(width: 10),
+          Text(
+            'हल: $answered/$total',
+            style: AppTypography.labelSmall(color: labelColor)
+                .copyWith(fontWeight: FontWeight.w700, fontSize: 11.5),
+          ),
+          if (review > 0) ...[
+            const SizedBox(width: 8),
+            Text(
+              'समीक्षा: $review',
+              style: AppTypography.labelSmall(color: labelColor)
+                  .copyWith(fontWeight: FontWeight.w700, fontSize: 11.5),
+            ),
+          ],
+        ],
+      ),
+    );
   }
 
   Widget _buildSectionTabBar(bool isDark) {

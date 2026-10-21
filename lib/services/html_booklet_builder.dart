@@ -52,7 +52,7 @@ class HtmlBookletBuilder {
       s = '(A) $s';
     }
     if (RegExp(r'^(?:और\s*\(B\)|\(B\)\s*और|and\s*\(B\)|is\s*true\s*but\s*\(B\)|is\s*false\s*but\s*\(B\))', caseSensitive: false).hasMatch(s)) {
-      s = '(A) $s';
+      s = '(B) $s';
     }
     return s;
   }
@@ -571,13 +571,39 @@ class HtmlBookletBuilder {
         dotAll: true,
       );
 
+      // "दावा (A) … तर्क (B) …" - the same question without a colon after the
+      // labels.  The parenthesised marker keeps the pattern unambiguous.
+      final arLoosePattern = RegExp(
+        r'^(.*?)(दावा|अभिकथन|कथनम्|Assertion)\s*\(([A-Za-z0-9])\)\s+(.*?)(तर्क|कारण|कारणम्|व्याख्या|प्रभाव|Reason|Explanation|Effect)\s*\(([A-Za-z0-9])\)\s+(.*?)$',
+        caseSensitive: false,
+        dotAll: true,
+      );
+
+      String? intro;
+      var aLabel = '';
+      var aText = '';
+      var rLabel = '';
+      var rText = '';
+
       final arMatch = arPattern.firstMatch(text);
       if (arMatch != null) {
-        final intro = arMatch.group(1)?.trim();
-        var aLabel = arMatch.group(2)!.trim();
-        var aText = arMatch.group(3)!.trim().replaceAll(RegExp(r'^[\s:\-–—ः.\*]+'), '').trim();
-        var rLabel = arMatch.group(4)!.trim();
-        var rText = arMatch.group(5)!.trim().replaceAll(RegExp(r'^[\s:\-–—ः.\*]+'), '').trim();
+        intro = arMatch.group(1)?.trim();
+        aLabel = arMatch.group(2)!.trim();
+        aText = arMatch.group(3)!.trim().replaceAll(RegExp(r'^[\s:\-–—ः.\*]+'), '').trim();
+        rLabel = arMatch.group(4)!.trim();
+        rText = arMatch.group(5)!.trim().replaceAll(RegExp(r'^[\s:\-–—ः.\*]+'), '').trim();
+      } else {
+        final loose = arLoosePattern.firstMatch(text);
+        if (loose != null) {
+          intro = loose.group(1)?.trim();
+          aLabel = '${loose.group(2)!} (${loose.group(3)!})';
+          aText = loose.group(4)!.trim();
+          rLabel = '${loose.group(5)!} (${loose.group(6)!})';
+          rText = loose.group(7)!.trim();
+        }
+      }
+
+      {
         String? conclusion;
 
         if (aLabel == '(A)' || aLabel == 'A') aLabel = 'अभिकथन (A)';
@@ -620,10 +646,17 @@ class HtmlBookletBuilder {
 
     // 4B. Check Inline Statement Evaluation (e.g. कथनों को पढ़िए / विचार कीजिए ... (i), (ii) or I., II.)
     final hasStmtIntro = RegExp(r'(?:कथन|कथनों|विचार|पढ़िए|सत्य|सही|गलत|कूट|निम्नलिखित|निम्न|Statement|Statements|Consider|Following|Which)', caseSensitive: false).hasMatch(text);
-    if (hasStmtIntro) {
+    // Many stems list their statements inline ("A. … B. … C. …") without any
+    // intro line, so the dot-notation pass below always runs.
+    final hasInlineDotList =
+        RegExp(r'(?:^|[\s\.\:\-–—।;,])((?:[i-vI-V]{1,4}|[1-9]|[A-Ea-e]))[\.\)]\s+')
+            .allMatches(text)
+            .length >=
+            2;
+    if (hasStmtIntro || hasInlineDotList) {
       // 4B-1: Parenthesized markers: (i), (ii), (iii) or (1), (2) or (A), (B)
       final allMatches = RegExp(r'(?:^|[\s\.\:\-–—।;,])\(((?:[A-Ea-e]|[i-vI-V]+|[1-9]))\)\s*').allMatches(text).toList();
-      if (allMatches.length >= 2) {
+      if (hasStmtIntro && allMatches.length >= 2) {
         // Group matches into strictly increasing sequential chains
         final candidates = <List<RegExpMatch>>[];
         List<RegExpMatch> currentSeq = [];
@@ -730,36 +763,44 @@ class HtmlBookletBuilder {
             final sText = text.substring(start, end).trim();
             statements.add((marker: marker, text: sText));
           }
-          String? conclusion;
-          final last = statements.removeLast();
-          final cm = conclusionPattern.firstMatch(last.text);
-          if (cm != null) {
-            statements.add((marker: last.marker, text: cm.group(1)!.trim()));
-            conclusion = cm.group(2)!.trim();
-          } else {
-            statements.add(last);
-          }
 
-          final b = StringBuffer();
-          b.write('<div class="multi-statement-wrapper">');
-          if (intro.isNotEmpty) {
-            b.write('<div class="stmt-intro">${formatInlineMarkdown(intro)}</div>');
+          // Guard against prose that merely mentions "A." and "B.": a real
+          // statement list either carries an intro line or clearly long parts.
+          final avgLen = statements.isEmpty
+              ? 0
+              : statements.fold<int>(0, (a, s) => a + s.text.length) / statements.length;
+          if (intro.isNotEmpty || avgLen >= 25) {
+            String? conclusion;
+            final last = statements.removeLast();
+            final cm = conclusionPattern.firstMatch(last.text);
+            if (cm != null) {
+              statements.add((marker: last.marker, text: cm.group(1)!.trim()));
+              conclusion = cm.group(2)!.trim();
+            } else {
+              statements.add(last);
+            }
+
+            final b = StringBuffer();
+            b.write('<div class="multi-statement-wrapper">');
+            if (intro.isNotEmpty) {
+              b.write('<div class="stmt-intro">${formatInlineMarkdown(intro)}</div>');
+            }
+            b.write('<div class="stmt-list">');
+            for (final st in statements) {
+              b.write('''
+                <div class="stmt-row">
+                  <span class="stmt-marker">${st.marker}</span>
+                  <span class="stmt-text">${formatInlineMarkdown(st.text)}</span>
+                </div>
+              ''');
+            }
+            b.write('</div>');
+            if (conclusion != null && conclusion.isNotEmpty) {
+              b.write('<div class="stmt-conclusion">${formatInlineMarkdown(conclusion)}</div>');
+            }
+            b.write('</div>');
+            return b.toString();
           }
-          b.write('<div class="stmt-list">');
-          for (final st in statements) {
-            b.write('''
-              <div class="stmt-row">
-                <span class="stmt-marker">${st.marker}</span>
-                <span class="stmt-text">${formatInlineMarkdown(st.text)}</span>
-              </div>
-            ''');
-          }
-          b.write('</div>');
-          if (conclusion != null && conclusion.isNotEmpty) {
-            b.write('<div class="stmt-conclusion">${formatInlineMarkdown(conclusion)}</div>');
-          }
-          b.write('</div>');
-          return b.toString();
         }
       }
     }
@@ -822,6 +863,12 @@ class HtmlBookletBuilder {
     }
 
     // 5. Default: Paragraph / Multi-line preservation
+    return _defaultStemHtml(text);
+  }
+
+  /// Plain, paragraph aware stem rendering used when no specialised renderer
+  /// matches the question.
+  static String _defaultStemHtml(String text) {
     final paragraphs = text.split(RegExp(r'\n\s*\n'));
     if (paragraphs.length > 1) {
       return paragraphs.map((p) => '<div class="stem-p">${formatMultilineInline(p)}</div>').join('\n');
@@ -855,6 +902,14 @@ class HtmlBookletBuilder {
 
     // Prioritize session.setCode, fallback to seed-derived char
     final setCode = session.setCode ?? String.fromCharCode(65 + ((session.config.seed.abs()) % 4));
+
+    // A stable booklet number.  String.hashCode is randomised per process in
+    // Dart, so the booklet number used to change on every launch.
+    var bookletSeed = 0;
+    for (final unit in session.id.codeUnits) {
+      bookletSeed = (bookletSeed * 31 + unit) % 9000;
+    }
+    final bookletNumber = 1000 + bookletSeed;
 
     // Prioritize session.paperTitle, fallback to localized standard name
     final title = session.paperTitle ?? (isUtet
@@ -916,34 +971,33 @@ class HtmlBookletBuilder {
 
     const roman = ['I', 'II', 'III', 'IV', 'V', 'VI'];
     final sectionsDef = <({int start, int end, String hi, String en})>[];
+    final sectionTitleByCode = <String, String>{};
     if (questions.isNotEmpty) {
-      var startIndex = 0;
-      for (var i = 1; i <= questions.length; i++) {
-        final atBoundary =
-            i == questions.length || questions[i].section != questions[startIndex].section;
-        if (!atBoundary) continue;
-        final info = sectionInfo(questions[startIndex].section);
-        final partIndex = sectionsDef.length < roman.length
-            ? sectionsDef.length
-            : roman.length - 1;
-        final part = roman[partIndex];
-        sectionsDef.add((
-          start: startIndex + 1,
-          end: i,
-          hi: 'भाग $part : ${info.hi}',
-          en: 'PART $part : ${info.en}',
-        ));
-        startIndex = i;
-      }
-    }
-
-    String getSectionTitle(int qNum) {
-      for (final section in sectionsDef) {
-        if (qNum >= section.start && qNum <= section.end) {
-          return section.hi;
+      // One banner per *logical* section, not per contiguous run.  UTET
+      // Paper-2 alternates math_science and social_studies question by
+      // question, which used to produce 123 banners (all labelled "भाग VI")
+      // inside a single booklet.
+      final order = <String>[];
+      final ranges = <String, ({int start, int end})>{};
+      for (var i = 0; i < questions.length; i++) {
+        final code = questions[i].section;
+        if (!ranges.containsKey(code)) {
+          order.add(code);
+          ranges[code] = (start: i + 1, end: i + 1);
+        } else {
+          final r = ranges[code]!;
+          ranges[code] = (start: r.start, end: i + 1);
         }
       }
-      return 'सामान्य';
+      for (var i = 0; i < order.length; i++) {
+        final info = sectionInfo(order[i]);
+        final part = roman[i < roman.length ? i : roman.length - 1];
+        final r = ranges[order[i]]!;
+        final hi = 'भाग $part : ${info.hi}';
+        final en = 'PART $part : ${info.en}';
+        sectionTitleByCode[order[i]] = hi;
+        sectionsDef.add((start: r.start, end: r.end, hi: hi, en: en));
+      }
     }
 
     String figureHtml(Question question) {
@@ -966,9 +1020,21 @@ class HtmlBookletBuilder {
     h.writeln('  <meta charset="utf-8">');
     h.writeln('  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes">');
     h.writeln('  <title>${escape(title)} — रियल-टाइम टेस्ट बुकलेट</title>');
-    h.writeln('  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">');
-    h.writeln('  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>');
-    h.writeln('  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" onload="try{renderMathInElement(document.body);}catch(e){}"></script>');
+    // KaTeX is only pulled from the CDN when a paper really contains LaTeX.
+    // The bundled renderer already draws fractions, roots and exponents, so a
+    // normal paper stays completely offline capable.
+    final needsKatex = questions.any((q) {
+      final text = '${q.qHindi} ${q.qEnglish ?? ''}';
+      return text.contains(r'$') ||
+          text.contains(r'\(') ||
+          text.contains(r'\[') ||
+          text.contains(r'\frac');
+    });
+    if (needsKatex) {
+      h.writeln('  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">');
+      h.writeln('  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>');
+      h.writeln('  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" onload="try{renderMathInElement(document.body);}catch(e){}"></script>');
+    }
     h.writeln('  <style>$_cssContent</style>');
     h.writeln('</head>');
     h.writeln('<body>');
@@ -1022,6 +1088,7 @@ class HtmlBookletBuilder {
           <button class="lang-pill-btn" id="btn-lang-both" onclick="setLangFilter('both')">🌐 दोनों (Bilingual)</button>
           <button class="lang-pill-btn" id="btn-lang-en" onclick="setLangFilter('en')">🇬🇧 Only English</button>
         </div>
+        <div class="cbt-progress" aria-hidden="true"><div class="cbt-progress-fill" id="progress-fill"></div></div>
       </div>
     </header>
 
@@ -1082,7 +1149,7 @@ class HtmlBookletBuilder {
 
         <div class="cover-meta-box" style="text-align:right">
           <b>पुस्तिका संख्या (Booklet No.)</b>
-          <div style="font-family:monospace;font-size:16px;font-weight:bold;letter-spacing:1px">TET-$setCode-${session.id.hashCode.abs() % 10000}</div>
+          <div style="font-family:monospace;font-size:16px;font-weight:bold;letter-spacing:1px">TET-$setCode-$bookletNumber</div>
         </div>
       </div>
 
@@ -1118,12 +1185,20 @@ class HtmlBookletBuilder {
     // Questions Page
     h.writeln('<div class="paper-page">');
 
+    // The last question of every passage group, so a stimulus and its
+    // questions can be wrapped into one block that never gets split.
+    final passageLastIndex = <String, int>{};
+    for (int i = 0; i < questions.length; i++) {
+      final pid = questions[i].passageId;
+      if (pid != null) passageLastIndex[pid] = i;
+    }
+
     for (int idx = 0; idx < questions.length; idx++) {
       final q = questions[idx];
       final qNum = idx + 1;
       final qNumStr = qNum.toString();
       ansKey[qNumStr] = q.answer;
-      sectionMap[qNumStr] = getSectionTitle(qNum);
+      sectionMap[qNumStr] = sectionTitleByCode[q.section] ?? 'सामान्य';
       topicMap[qNumStr] = q.topicName ?? 'सामान्य';
 
       // Check section boundary
@@ -1140,27 +1215,32 @@ class HtmlBookletBuilder {
 
       // Check passage
       final pid = q.passageId;
-      if (pid != null && !renderedPassages.contains(pid) && passages.containsKey(pid)) {
-        renderedPassages.add(pid);
-        final passage = passages[pid]!;
+      final groupPid = (pid != null && passages.containsKey(pid)) ? pid : null;
+      final opensGroup = groupPid != null && !renderedPassages.contains(groupPid);
+      if (opensGroup) {
+        renderedPassages.add(groupPid);
+        final passage = passages[groupPid]!;
         final isPoem = passage.isPoem;
         final icon = isPoem ? '📜' : '📖';
         final related = [
           for (int i = 0; i < questions.length; i++)
-            if (questions[i].passageId == pid) i + 1
+            if (questions[i].passageId == groupPid) i + 1
         ];
         final qRangeStr = related.isNotEmpty ? ' (प्रश्न ${related.first}–${related.last})' : '';
         final typeLabel = isPoem ? 'काव्यांश / कविता$qRangeStr' : 'अपठित गद्यांश$qRangeStr';
         final formattedBody = isPoem ? formatPoemBody(passage.cleanBody) : formatProseBody(passage.cleanBody);
 
-        passagesDict[pid] = {
+        passagesDict[groupPid] = {
           'kind': passage.kind,
           'dir': passage.displayDir,
           'body': formattedBody,
         };
 
+        // The stimulus and its own questions live inside one group so the
+        // paragraph can never drift away from the questions it belongs to.
+        h.writeln('<section class="q-group" data-pid="$groupPid">');
         h.writeln('''
-        <div class="stimulus-wrapper" id="stimulus-$pid">
+        <div class="stimulus-wrapper" id="stimulus-$groupPid">
           <div class="stimulus-header ${isPoem ? 'poem-head' : ''}">
             <span>$icon</span>
             <span><b>$typeLabel</b> — ${escape(passage.displayDir)}</span>
@@ -1173,7 +1253,17 @@ class HtmlBookletBuilder {
       }
 
       final isBilingual = q.isBilingual && (q.optionsEnglish?.length == 4);
-      final optLetters = ['(1)', '(2)', '(3)', '(4)'];
+      final optLetters = ['(A)', '(B)', '(C)', '(D)'];
+
+      // Premium header chips: every question shows its marks and difficulty.
+      final diffLabel = q.difficulty == 1
+          ? ('आसान', 'easy')
+          : (q.difficulty == 3 ? ('कठिन', 'hard') : ('मध्यम', 'med'));
+      final headerMeta =
+          '<div class="q-head-meta">'
+          '<span class="q-chip q-marks">1 अंक</span>'
+          '<span class="q-chip q-diff q-diff-${diffLabel.$2}">${diffLabel.$1}</span>'
+          '</div>';
 
       h.writeln('<div class="question-item" id="qitem-$qNum" data-qnum="$qNum">');
 
@@ -1184,17 +1274,22 @@ class HtmlBookletBuilder {
         final gridTwoClass = maxLen < 26 ? 'grid-two' : '';
 
         h.writeln('  <div class="q-bilingual-wrapper">');
+        // The figure belongs to the question, not to a language column, so it
+        // is rendered exactly once above the two columns.
+        h.writeln(figureHtml(q));
         // 1. Desktop Dual-Column View (Screen width >= 769px)
         h.writeln('    <div class="bilingual-desktop-grid">');
         h.writeln('      <div class="q-column">');
         h.writeln('        <div class="q-header">');
         h.writeln('          <span class="q-num">$qNum.</span>');
-        h.writeln('          <div class="q-stem">${formatQuestionStemHtml(q.qHindi)}</div>');
+        h.writeln('          <div class="q-head-main">');
+        h.writeln('            $headerMeta');
+        h.writeln('            <div class="q-stem">${formatQuestionStemHtml(q.qHindi)}</div>');
+        h.writeln('          </div>');
         h.writeln('        </div>');
-        h.writeln(figureHtml(q));
         h.writeln('        <div class="options-list $gridTwoClass">');
         for (int i = 0; i < optsHi.length; i++) {
-          h.writeln('          <div class="option-row" data-optidx="$i" onclick="selectOption($qNum, $i)">');
+          h.writeln('          <div class="option-row" data-optidx="$i" onclick="selectOption($qNum, $i)" role="radio" aria-checked="false" tabindex="0">');
           h.writeln('            <span class="opt-badge">${optLetters[i]}</span>');
           h.writeln('            <span>${optionHtml(q, i, optsHi[i])}</span>');
           h.writeln('          </div>');
@@ -1204,13 +1299,14 @@ class HtmlBookletBuilder {
 
         h.writeln('      <div class="q-column">');
         h.writeln('        <div class="q-header">');
-        h.writeln('          <span class="q-num">$qNum.</span>');
-        h.writeln('          <div class="q-stem">${formatQuestionStemHtml(q.qEnglish ?? "")}</div>');
+        h.writeln('          <span class="q-num q-num-alt">$qNum.</span>');
+        h.writeln('          <div class="q-head-main">');
+        h.writeln('            <div class="q-stem">${formatQuestionStemHtml(q.qEnglish ?? "")}</div>');
+        h.writeln('          </div>');
         h.writeln('        </div>');
-        h.writeln(figureHtml(q));
         h.writeln('        <div class="options-list $gridTwoClass">');
         for (int i = 0; i < optsEn.length; i++) {
-          h.writeln('          <div class="option-row" data-optidx="$i" onclick="selectOption($qNum, $i)">');
+          h.writeln('          <div class="option-row" data-optidx="$i" onclick="selectOption($qNum, $i)" role="radio" aria-checked="false" tabindex="0">');
           h.writeln('            <span class="opt-badge">${optLetters[i]}</span>');
           h.writeln('            <span>${optionHtml(q, i, optsEn[i])}</span>');
           h.writeln('          </div>');
@@ -1223,7 +1319,10 @@ class HtmlBookletBuilder {
         h.writeln('    <div class="bilingual-mobile-stack">');
         h.writeln('      <div class="q-header">');
         h.writeln('        <span class="q-num">$qNum.</span>');
-        h.writeln('        <div class="q-stem q-stem-hi-text">${formatQuestionStemHtml(q.qHindi)}</div>');
+        h.writeln('        <div class="q-head-main">');
+        h.writeln('          $headerMeta');
+        h.writeln('          <div class="q-stem q-stem-hi-text">${formatQuestionStemHtml(q.qHindi)}</div>');
+        h.writeln('        </div>');
         h.writeln('      </div>');
         if (q.qEnglish != null && q.qEnglish!.trim().isNotEmpty) {
           h.writeln('      <div class="q-stem-translation">');
@@ -1231,7 +1330,6 @@ class HtmlBookletBuilder {
           h.writeln('        <div class="q-stem-en-body">${formatQuestionStemHtml(q.qEnglish!)}</div>');
           h.writeln('      </div>');
         }
-        h.writeln(figureHtml(q));
         h.writeln('      <div class="options-list $gridTwoClass">');
         for (int i = 0; i < optsHi.length; i++) {
           final hasOptionFigure = QuestionFigureCatalog.optionSvg(q.id, i) != null;
@@ -1240,7 +1338,7 @@ class HtmlBookletBuilder {
           final hasDistinctEn = !hasOptionFigure &&
               enText.trim().isNotEmpty &&
               enText.trim() != hiText.trim();
-          h.writeln('        <div class="option-row" data-optidx="$i" onclick="selectOption($qNum, $i)">');
+          h.writeln('        <div class="option-row" data-optidx="$i" onclick="selectOption($qNum, $i)" role="radio" aria-checked="false" tabindex="0">');
           h.writeln('          <span class="opt-badge">${optLetters[i]}</span>');
           h.writeln('          <div class="opt-content">');
           if (hasOptionFigure) {
@@ -1267,12 +1365,15 @@ class HtmlBookletBuilder {
         h.writeln('    <div class="q-column">');
         h.writeln('      <div class="q-header">');
         h.writeln('        <span class="q-num">$qNum.</span>');
-        h.writeln('        <div class="q-stem">${formatQuestionStemHtml(stem)}</div>');
+        h.writeln('        <div class="q-head-main">');
+        h.writeln('          $headerMeta');
+        h.writeln('          <div class="q-stem">${formatQuestionStemHtml(stem)}</div>');
+        h.writeln('        </div>');
         h.writeln('      </div>');
         h.writeln(figureHtml(q));
         h.writeln('      <div class="options-list $gridTwoClass">');
         for (int i = 0; i < opts.length; i++) {
-          h.writeln('        <div class="option-row" data-optidx="$i" onclick="selectOption($qNum, $i)">');
+          h.writeln('        <div class="option-row" data-optidx="$i" onclick="selectOption($qNum, $i)" role="radio" aria-checked="false" tabindex="0">');
           h.writeln('          <span class="opt-badge">${optLetters[i]}</span>');
           h.writeln('          <span>${optionHtml(q, i, opts[i])}</span>');
           h.writeln('        </div>');
@@ -1287,7 +1388,7 @@ class HtmlBookletBuilder {
       h.writeln('    <div class="q-meta-tags">');
       h.writeln('      <span class="q-topic-tag">🏷️ ${escape(q.topicName ?? 'सामान्य')}</span>');
       if (pid != null && passages.containsKey(pid)) {
-        h.writeln('      <button class="q-peek-btn" onclick="showPassageModal(\'$pid\')">📖 गद्यांश/पद्यांश देखें</button>');
+        h.writeln('      <button class="q-peek-btn" onclick="jumpToStimulus(\'$pid\')">⬆️ गद्यांश/पद्यांश देखें</button>');
       }
       h.writeln('    </div>');
       h.writeln('    <div class="q-btn-group">');
@@ -1298,6 +1399,11 @@ class HtmlBookletBuilder {
 
       h.writeln('  <div class="result-mark" id="mark-$qNum"></div>');
       h.writeln('</div>');
+
+      // Close the passage group right after the last of its questions.
+      if (groupPid != null && passageLastIndex[groupPid] == idx) {
+        h.writeln('</section>');
+      }
 
       if (qNum % 30 == 0 && qNum < totalQs) {
         h.writeln('<div class="pto-text">P. T. O. (कृपया पृष्ठ पलटिए)</div>');
@@ -2536,14 +2642,141 @@ body.lang-mode-en .bilingual-mobile-stack .opt-secondary {
 /* KaTeX and general overflow protection (prevents horizontal shifting) */
 .katex-display { overflow-x: auto; overflow-y: hidden; max-width: 100%; padding: 4px 0; }
 .katex { max-width: 100%; }
-table { max-width: 100%; overflow-x: auto; display: block; }
+table { max-width: 100%; }
+/* Wide tables scroll inside their own wrapper instead of breaking the page. */
+.q-table-wrapper, .match-table-wrapper { overflow-x: auto; max-width: 100%; }
+.q-table, .match-table { display: table; table-layout: auto; }
 
 @media print {
-  .cbt-bar, .palette-drawer, #result-modal, #omr-modal, #passage-modal, .q-footer { display: none !important; }
-  body { background: #fff !important; }
+  .cbt-bar, .palette-drawer, #result-modal, #omr-modal, #passage-modal,
+  #report-modal, #confirm-modal, .q-footer, .q-rev-btn, .q-report-btn,
+  .q-peek-btn { display: none !important; }
+  @page { size: A4; margin: 14mm 12mm; }
+  html, body { background: #fff !important; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   .booklet-container { box-shadow: none !important; max-width: 100% !important; }
-  .cover-page { page-break-after: always; }
-  .question-item { page-break-inside: avoid; }
+  .cover-page { page-break-after: always; break-after: page; }
+  .question-item, .q-group, .option-row, .q-figure, .stimulus-wrapper,
+  .section-banner { page-break-inside: avoid; break-inside: avoid; }
+  .stimulus-wrapper { page-break-after: avoid; break-after: avoid; }
+  table { display: table !important; width: 100% !important; overflow: visible !important; }
+}
+
+/* ------------------------------------------------------------------
+   Premium layer: passage groups, per-question meta, progress, a11y
+   ------------------------------------------------------------------ */
+.q-group {
+  display: block;
+  margin: 18px 0 24px;
+  padding: 14px 16px 6px;
+  border: 1px solid var(--border-color);
+  border-left: 4px solid var(--accent);
+  border-radius: 12px;
+  background: var(--paper-bg);
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05);
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+.q-group > .stimulus-wrapper { margin: 0 0 12px; }
+.q-group > .question-item {
+  border: none;
+  border-top: 1px dashed #e2e8f0;
+  border-radius: 0;
+  padding-left: 0;
+  padding-right: 0;
+  margin: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.q-group > .question-item:first-of-type { border-top: none; }
+.q-group > .question-item.done { border-left: none; padding-left: 0; }
+.stimulus-wrapper.flash {
+  animation: stimulusFlash 1.4s ease;
+  border-radius: 10px;
+}
+@keyframes stimulusFlash {
+  0%, 100% { box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+  30% { box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.45); }
+}
+
+.q-head-main { flex: 1; min-width: 0; }
+.q-head-meta { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 4px; }
+.q-chip {
+  display: inline-block;
+  font-size: 10.5px;
+  font-weight: 700;
+  line-height: 1.6;
+  padding: 1px 8px;
+  border-radius: 20px;
+  letter-spacing: 0.2px;
+}
+.q-marks { background: #eef2ff; color: #3730a3; }
+.q-diff-easy { background: #dcfce7; color: #166534; }
+.q-diff-med { background: #fef3c7; color: #92400e; }
+.q-diff-hard { background: #fee2e2; color: #991b1b; }
+
+/* The English column carries the number only when the Hindi column is
+   hidden, so a question is never numbered twice. */
+.q-num-alt { display: none; }
+body.lang-mode-en .q-num-alt { display: inline-block; }
+body.lang-mode-en .bilingual-desktop-grid .q-column:nth-child(1) .q-num { display: none; }
+
+.cbt-progress {
+  height: 4px;
+  width: 100%;
+  margin-top: 6px;
+  border-radius: 99px;
+  background: rgba(148, 163, 184, 0.25);
+  overflow: hidden;
+}
+.cbt-progress-fill {
+  height: 100%;
+  width: 0%;
+  border-radius: 99px;
+  background: linear-gradient(90deg, #2563eb, #16a34a);
+  transition: width 0.25s ease;
+}
+
+.option-row:focus-visible,
+.option-row:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.option-row[aria-checked="true"] { font-weight: 700; }
+
+.q-topic-tag { color: #475569; }
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper-bg: #0f172a;
+    --booklet-bg: #020617;
+    --text-main: #e2e8f0;
+    --text-muted: #94a3b8;
+    --border-color: #334155;
+  }
+  .question-item, .q-group, .cover-page { background: #0f172a; }
+  .stimulus-wrapper { background: #0b1220; box-shadow: none; }
+  .stimulus-header { background: #1e293b; color: #e2e8f0; }
+  .stimulus-header.poem-head { background: #2e1065; color: #ddd6fe; }
+  .stimulus-content { background: #0b1220; border-color: #334155; color: #e2e8f0; }
+  .stimulus-content.poem-body { background: #0b1220; }
+  .prose-p, .poem-line { color: #e2e8f0; }
+  .option-row { background: #111c33; color: #e2e8f0; border-color: #334155; }
+  .option-row:hover { background: #16233d; }
+  .option-row.selected { background: #172554; color: #dbeafe; }
+  .opt-badge { color: #cbd5e1; }
+  .option-row.selected .opt-badge { color: #93c5fd; }
+  .q-num, .q-stem { color: #e2e8f0; }
+  .q-topic-tag { background: #1e293b; color: #cbd5e1; }
+  .q-marks { background: #1e1b4b; color: #c7d2fe; }
+  .q-diff-easy { background: #14532d; color: #bbf7d0; }
+  .q-diff-med { background: #451a03; color: #fde68a; }
+  .q-diff-hard { background: #450a0a; color: #fecaca; }
+  .q-table td, .match-table td { background: #0f172a; color: #e2e8f0; }
+  .q-table th, .match-table th { background: #1e293b; color: #e2e8f0; }
+  .q-table th, .q-table td, .match-table th, .match-table td { border-color: #334155; }
+  .match-table tr:nth-child(even) td { background: #131f38; }
+  .q-group > .question-item { border-top-color: #1e293b; }
 }
 ''';
 
@@ -2613,13 +2846,29 @@ table { max-width: 100%; overflow-x: auto; display: block; }
     saveState();
   }
 
+  // Option rows are looked up once per question and cached, so selecting an
+  // answer no longer scans the whole 150 question document.
+  const optRowCache = new Map();
+  function optionRows(qNum) {
+    let rows = optRowCache.get(qNum);
+    if (!rows) {
+      rows = Array.prototype.slice.call(
+        document.querySelectorAll('[data-qnum="' + qNum + '"] .option-row')
+      );
+      optRowCache.set(qNum, rows);
+    }
+    return rows;
+  }
+
   window.selectOption = function(qNum, optIdx) {
     if (testSubmitted) return;
     startTimer();
     responses[qNum] = optIdx;
 
-    document.querySelectorAll('[data-qnum="'+qNum+'"] .option-row').forEach(row => {
-      row.classList.toggle('selected', parseInt(row.dataset.optidx) === optIdx);
+    optionRows(qNum).forEach(function(row) {
+      const active = parseInt(row.dataset.optidx, 10) === optIdx;
+      row.classList.toggle('selected', active);
+      row.setAttribute('aria-checked', active ? 'true' : 'false');
     });
 
     const qEl = document.getElementById('qitem-' + qNum);
@@ -2673,6 +2922,11 @@ table { max-width: 100%; overflow-x: auto; display: block; }
     if (sAns) sAns.textContent = answeredCount;
     if (sLeft) sLeft.textContent = TOTAL_QS - answeredCount;
     if (sRev) sRev.textContent = reviewCount;
+    const fill = document.getElementById('progress-fill');
+    if (fill) {
+      const pct = TOTAL_QS > 0 ? Math.round((answeredCount / TOTAL_QS) * 100) : 0;
+      fill.style.width = pct + '%';
+    }
   }
 
   window.togglePalette = function() {
@@ -2719,6 +2973,15 @@ table { max-width: 100%; overflow-x: auto; display: block; }
   window.closePassageModal = function() {
     const m = document.getElementById('passage-modal');
     if (m) m.classList.remove('open');
+  };
+  // Scroll back to the stimulus that belongs to the current question.
+  window.jumpToStimulus = function(passageId) {
+    const el = document.getElementById('stimulus-' + passageId);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      el.classList.add('flash');
+      setTimeout(function() { el.classList.remove('flash'); }, 1400);
+    }
   };
 
   window.submitTest = function(auto) {
@@ -2772,9 +3035,9 @@ table { max-width: 100%; overflow-x: auto; display: block; }
       const markEl = document.getElementById('mark-' + n);
       const userAns = responses[n];
 
-      const optRows = document.querySelectorAll('[data-qnum="'+n+'"] .option-row');
+      const optRows = optionRows(n);
       optRows.forEach(row => {
-        const idx = parseInt(row.dataset.optidx);
+        const idx = parseInt(row.dataset.optidx, 10);
         if (idx === ansKey) row.classList.add('correct-ans');
         else if (userAns === idx) row.classList.add('wrong-ans');
       });
@@ -2982,8 +3245,10 @@ table { max-width: 100%; overflow-x: auto; display: block; }
 
         for (const qNum in responses) {
           const idx = responses[qNum];
-          document.querySelectorAll('[data-qnum="'+qNum+'"] .option-row').forEach(row => {
-            row.classList.toggle('selected', parseInt(row.dataset.optidx) === idx);
+          optionRows(qNum).forEach(function(row) {
+            const active = parseInt(row.dataset.optidx, 10) === idx;
+            row.classList.toggle('selected', active);
+            row.setAttribute('aria-checked', active ? 'true' : 'false');
           });
           const qEl = document.getElementById('qitem-' + qNum);
           if (qEl) qEl.classList.add('done');
@@ -3067,6 +3332,7 @@ table { max-width: 100%; overflow-x: auto; display: block; }
     restoreState();
     const tv = document.getElementById('timer-val');
     if (tv) tv.textContent = formatTime(timeRemaining);
+    updateStats();
     try {
       var savedLang = localStorage.getItem('booklet_lang_filter') || 'hi';
       setLangFilter(savedLang);
@@ -3076,6 +3342,45 @@ table { max-width: 100%; overflow-x: auto; display: block; }
     // The exam clock starts when the booklet opens.  It is driven by an
     // absolute deadline so backgrounding the WebView cannot add time.
     startTimer();
+  });
+
+  // Keyboard support: 1-4 / A-D pick an option, arrows move between
+  // questions, P opens the palette, Enter opens the OMR sheet.
+  let focusedQuestion = 1;
+  document.addEventListener('keydown', function(e) {
+    if (testSubmitted) return;
+    var tag = (e.target && e.target.tagName) || '';
+    if (tag === 'INPUT' || tag === 'TEXTAREA') return;
+    var active = document.activeElement;
+    if (active && active.closest) {
+      var host = active.closest('.question-item');
+      if (host && host.dataset && host.dataset.qnum) {
+        focusedQuestion = parseInt(host.dataset.qnum, 10) || focusedQuestion;
+      }
+    }
+    var key = e.key;
+    if (key >= '1' && key <= '4') {
+      selectOption(focusedQuestion, parseInt(key, 10) - 1);
+      e.preventDefault();
+    } else if (key === 'a' || key === 'A' || key === 'b' || key === 'B' ||
+               key === 'c' || key === 'C' || key === 'd' || key === 'D') {
+      selectOption(focusedQuestion, key.toLowerCase().charCodeAt(0) - 97);
+      e.preventDefault();
+    } else if (key === 'ArrowDown' || key === 'j') {
+      focusedQuestion = Math.min(TOTAL_QS, focusedQuestion + 1);
+      jumpToQuestion(focusedQuestion);
+      e.preventDefault();
+    } else if (key === 'ArrowUp' || key === 'k') {
+      focusedQuestion = Math.max(1, focusedQuestion - 1);
+      jumpToQuestion(focusedQuestion);
+      e.preventDefault();
+    } else if (key === 'p' || key === 'P') {
+      togglePalette();
+      e.preventDefault();
+    } else if (key === 'Enter') {
+      openOMR();
+      e.preventDefault();
+    }
   });
 
   document.addEventListener('visibilitychange', () => {

@@ -19,6 +19,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import re
 import sqlite3
 from datetime import datetime, timezone
 from pathlib import Path
@@ -27,6 +28,9 @@ ROOT = Path(__file__).resolve().parents[1]
 DB_PATH = ROOT / "assets" / "database" / "tet_mock_vault.db"
 CDN_DIR = ROOT / "cdn"
 PACK_DIR = CDN_DIR / "packs"
+
+VAULT_VERSION = 2026102020
+VAULT_VERSION_STR = "20261021_master_vault_clean_v20"
 
 CORRUPT_PASSAGE_ID = "utet-p1-set-c__stim_061"
 CLEAN_DIRECTION = "निम्नलिखित गद्यांश को पढ़कर प्रश्नों के उत्तर दीजिए।"
@@ -300,6 +304,308 @@ def reindex_passage(conn: sqlite3.Connection, passage_id: str) -> None:
         )
 
 
+# --------------------------------------------------------------------------
+# v20 content-integrity repairs
+# --------------------------------------------------------------------------
+
+# Questions whose stem points at a stimulus ("उपर्युक्त काव्यांश / पद / पद्यांश
+# / गद्यांश") that does not exist anywhere in the vault.  A candidate cannot
+# answer them, so the slot is refilled with a vetted question of the same
+# section.  The original rows keep their identity and form placement.
+UNANSWERABLE_QUESTIONS = {
+    "adbe479d06b877fa",  # utet-p1-set-b  Q49
+    "8f453dc771389b4c",  # utet-p1-set-d  Q50
+    "7f1d63495debe7d5",  # utet-p1-set-d  Q51
+    "eaaff24a7b35f54b",  # utet-p1-set-f  Q56
+    "51002bd95527682c",  # utet-p1-set-j  Q48
+    "460690c7c98df82c",  # utet-p2-set-a  Q37
+    "eba40fdedd5a4871",  # utet-p2-set-b  Q37
+    "d7c9a1c870e3681d",  # utet-p2-set-b  Q38
+    "30ec542094b9b142",  # utet-p2-set-d  Q32
+    "25a9c0125e1d7a24",  # utet-p2-set-d  Q34
+    "f72df3bade24ce3e",  # utet-p2-set-d  Q44
+    "29bb04fab60e7f08",  # utet-p2-set-e  Q54
+    "758239262d9f03e9",  # utet-p2-set-f  Q50
+}
+
+# The CTET 2020 Paper-1 prose passage was interrupted by an unrelated
+# error-spotting item (Q134).  Swapping the two positions keeps the passage
+# questions contiguous (Q129-Q134) so the booklet never splits a group.
+PASSAGE_POSITION_SWAPS = [("ctet-p1-2020-pyq", 134, 135)]
+
+# "उपर्युक्त काव्यांश / पद / पद्यांश / गद्यांश" - a reference to a stimulus
+# that is not part of the question itself.
+MISSING_STIMULUS_RE = re.compile(
+    "\u0909\u092a\u0930\u094d\u092f\u0941\u0915\u094d\u0924\\s+"
+    "(\u0915\u093e\u0935\u094d\u092f\u093e\u0902\u0936|\u0915\u093e\u0935\u094d\u092f|"
+    "\u092a\u0926|\u092a\u0926\u094d\u092f\u093e\u0902\u0936|\u0917\u0926\u094d\u092f\u093e\u0902\u0936|"
+    "\u092a\u0902\u0915\u094d\u0924\u093f\u092f\u093e\u0901)"
+)
+
+
+def _load_appearances(conn: sqlite3.Connection) -> list[dict]:
+    rows = conn.execute(
+        "SELECT a.id, a.paper_form_id, a.question_number, a.question_id, "
+        "       q.q_hindi, q.section, q.exams, q.passage_id, q.difficulty "
+        "FROM appearances a JOIN questions q ON q.id = a.question_id"
+    ).fetchall()
+    return [
+        {
+            "aid": row[0],
+            "form": row[1],
+            "qn": row[2],
+            "qid": row[3],
+            "stem": row[4] or "",
+            "section": row[5],
+            "exams": row[6],
+            "pid": row[7],
+            "difficulty": row[8],
+        }
+        for row in rows
+    ]
+
+
+def dedupe_paper_questions(conn: sqlite3.Connection) -> int:
+    """Make sure no paper prints the same question twice.
+
+    The mock generator sampled some questions twice inside a single paper.
+    Instead of dropping questions we swap the duplicated slot with an
+    equally-typed question from another paper that is used exactly once in the
+    whole vault, so every paper keeps 150 *different* questions and the bank
+    keeps all 9,720 questions.
+    """
+    rows = _load_appearances(conn)
+    if not rows:
+        return 0
+
+    form_rows: dict[str, list[dict]] = {}
+    stem_total: dict[str, int] = {}
+    form_stems: dict[str, dict[str, int]] = {}
+    for row in rows:
+        form_rows.setdefault(row["form"], []).append(row)
+        stem_total[row["stem"]] = stem_total.get(row["stem"], 0) + 1
+        form_stems.setdefault(row["form"], {})
+        form_stems[row["form"]][row["stem"]] = (
+            form_stems[row["form"]].get(row["stem"], 0) + 1
+        )
+
+    # Duplicates are rows that share both the text *and* the passage.  Two
+    # passage questions with the same generic wording ("What is the main idea
+    # of the passage?") belong to different passages and are legitimate.
+    targets: list[dict] = []
+    for form in sorted(form_rows):
+        groups: dict[tuple[str, str], list[dict]] = {}
+        for row in sorted(
+            form_rows[form], key=lambda r: (r["qn"], r["qid"], r["aid"])
+        ):
+            groups.setdefault((row["stem"], row["pid"] or ""), []).append(row)
+        for key in sorted(groups):
+            group = groups[key]
+            for row in group[1:]:
+                targets.append(row)
+
+    donors = [
+        row
+        for row in rows
+        if not row["pid"] and stem_total.get(row["stem"], 0) == 1
+    ]
+    donors.sort(key=lambda r: r["qid"])
+
+    swaps = 0
+    for target in targets:
+        pick = None
+        for donor in donors:
+            if donor["aid"] == target["aid"]:
+                continue
+            if donor["form"] == target["form"]:
+                continue
+            if donor["section"] != target["section"]:
+                continue
+            if donor["exams"] != target["exams"]:
+                continue
+            if donor["stem"] in form_stems[target["form"]]:
+                continue
+            if target["stem"] in form_stems[donor["form"]]:
+                continue
+            if form_stems[donor["form"]].get(donor["stem"], 0) != 1:
+                continue
+            pick = donor
+            break
+        if pick is None:
+            continue
+
+        # Swap the two questions between their papers.
+        conn.execute(
+            "UPDATE appearances SET question_id = ? WHERE id = ?",
+            (pick["qid"], target["aid"]),
+        )
+        conn.execute(
+            "UPDATE appearances SET question_id = ? WHERE id = ?",
+            (target["qid"], pick["aid"]),
+        )
+
+        form_stems[target["form"]][target["stem"]] -= 1
+        form_stems[target["form"]][pick["stem"]] = (
+            form_stems[target["form"]].get(pick["stem"], 0) + 1
+        )
+        form_stems[pick["form"]][pick["stem"]] -= 1
+        form_stems[pick["form"]][target["stem"]] = (
+            form_stems[pick["form"]].get(target["stem"], 0) + 1
+        )
+        target["stem"], pick["stem"] = pick["stem"], target["stem"]
+        target["qid"], pick["qid"] = pick["qid"], target["qid"]
+        swaps += 1
+
+    return swaps
+
+
+def fix_passage_positions(conn: sqlite3.Connection) -> int:
+    """Move an interrupting question out of a passage group.
+
+    The swap is only applied while the passage group is still split, which
+    keeps the repair idempotent.
+    """
+    fixed = 0
+    for form, first, second in PASSAGE_POSITION_SWAPS:
+        rows = conn.execute(
+            "SELECT a.id, a.question_number, q.passage_id FROM appearances a "
+            "JOIN questions q ON q.id = a.question_id "
+            "WHERE a.paper_form_id = ? AND a.question_number IN (?, ?) "
+            "ORDER BY a.question_number",
+            (form, first, second),
+        ).fetchall()
+        if len(rows) != 2:
+            continue
+        passage_id = rows[1][2]
+        if not passage_id:
+            continue
+        numbers = sorted(
+            r[0]
+            for r in conn.execute(
+                "SELECT a.question_number FROM appearances a "
+                "JOIN questions q ON q.id = a.question_id "
+                "WHERE a.paper_form_id = ? AND q.passage_id = ?",
+                (form, passage_id),
+            )
+        )
+        if numbers and numbers[-1] - numbers[0] + 1 == len(numbers):
+            # Already contiguous - nothing to do.
+            continue
+        conn.execute(
+            "UPDATE appearances SET question_number = ? WHERE id = ?", (second, rows[0][0])
+        )
+        conn.execute(
+            "UPDATE appearances SET question_number = ? WHERE id = ?", (first, rows[1][0])
+        )
+        fixed += 1
+    return fixed
+
+
+def replace_unanswerable_questions(conn: sqlite3.Connection) -> int:
+    """Refill slots whose stimulus is missing from the entire vault."""
+    rows = _load_appearances(conn)
+    if not rows:
+        return 0
+
+    by_id = {row["qid"]: row for row in rows}
+    stem_total: dict[str, int] = {}
+    form_stems: dict[str, set[str]] = {}
+    for row in rows:
+        stem_total[row["stem"]] = stem_total.get(row["stem"], 0) + 1
+        form_stems.setdefault(row["form"], set()).add(row["stem"])
+
+    replaced = 0
+    for qid in sorted(UNANSWERABLE_QUESTIONS):
+        target = by_id.get(qid)
+        if target is None:
+            continue
+        # Only refill while the row still points at a stimulus that the
+        # vault does not contain.  This keeps the repair idempotent.
+        if not MISSING_STIMULUS_RE.search(target["stem"] or ""):
+            continue
+        donor = None
+        for candidate in sorted(rows, key=lambda r: r["qid"]):
+            if candidate["qid"] == qid:
+                continue
+            if candidate["pid"]:
+                continue
+            if candidate["section"] != target["section"]:
+                continue
+            if candidate["exams"] != target["exams"]:
+                continue
+            if candidate["qid"] in UNANSWERABLE_QUESTIONS:
+                continue
+            if stem_total.get(candidate["stem"], 0) != 1:
+                continue
+            if candidate["stem"] in form_stems[target["form"]]:
+                continue
+            donor = candidate
+            break
+        if donor is None:
+            continue
+
+        source = conn.execute(
+            "SELECT q_hindi, q_english, options_hindi, options_english, answer, p_score, "
+            "       topic_name, difficulty FROM questions WHERE id = ?",
+            (donor["qid"],),
+        ).fetchone()
+        conn.execute(
+            "UPDATE questions SET q_hindi = ?, q_english = ?, options_hindi = ?, "
+            "options_english = ?, answer = ?, p_score = ?, topic_name = ?, difficulty = ? "
+            "WHERE id = ?",
+            (
+                source[0],
+                source[1],
+                source[2],
+                source[3],
+                source[4],
+                source[5],
+                source[6],
+                source[7],
+                qid,
+            ),
+        )
+        stem_total[target["stem"]] = stem_total.get(target["stem"], 0) - 1
+        stem_total[donor["stem"]] = stem_total.get(donor["stem"], 0) + 1
+        form_stems[target["form"]].discard(target["stem"])
+        form_stems[target["form"]].add(donor["stem"])
+        replaced += 1
+
+    return replaced
+
+
+def sync_official_answer_keys(conn: sqlite3.Connection) -> int:
+    """Keep the printed answer key identical to the repaired question key."""
+    cur = conn.execute(
+        "UPDATE appearances SET official_option_id = "
+        "  char(65 + (SELECT answer FROM questions q WHERE q.id = appearances.question_id)) "
+        "WHERE official_option_id IS NULL OR official_option_id <> "
+        "  char(65 + (SELECT answer FROM questions q WHERE q.id = appearances.question_id))"
+    )
+    return cur.rowcount
+
+
+def normalise_modules(conn: sqlite3.Connection) -> int:
+    """Store the real section codes of every paper in ``modules_json``."""
+    changed = 0
+    for (form,) in conn.execute("SELECT id FROM paper_forms ORDER BY id").fetchall():
+        sections: list[str] = []
+        for (section,) in conn.execute(
+            "SELECT section FROM appearances WHERE paper_form_id = ? "
+            "ORDER BY question_number, id",
+            (form,),
+        ).fetchall():
+            if section and section not in sections:
+                sections.append(section)
+        payload = json.dumps(sections, ensure_ascii=False, separators=(",", ":"))
+        conn.execute(
+            "UPDATE paper_forms SET modules_json = ? WHERE id = ? AND modules_json <> ?",
+            (payload, form, payload),
+        )
+        changed += 1
+    return changed
+
+
 def repair_database() -> None:
     conn = sqlite3.connect(DB_PATH)
     try:
@@ -363,8 +669,28 @@ def repair_database() -> None:
         # total must therefore be 150, not 210.
         conn.execute("UPDATE paper_forms SET total_questions = 150 WHERE total_questions <> 150")
 
+        # Content integrity: unique questions per paper, contiguous passage
+        # groups, answerable stems and a single source of truth for the key.
+        swapped = dedupe_paper_questions(conn)
+        repositioned = fix_passage_positions(conn)
+        refilled = replace_unanswerable_questions(conn)
+        keys = sync_official_answer_keys(conn)
+        normalise_modules(conn)
+
+        conn.execute(
+            "INSERT INTO meta(key, val) VALUES('bank_version', ?) "
+            "ON CONFLICT(key) DO UPDATE SET val = excluded.val",
+            (str(VAULT_VERSION),),
+        )
+
         conn.commit()
         print("SQLite vault repaired")
+        print(
+            f"  duplicate paper questions swapped : {swapped}\n"
+            f"  passage positions fixed          : {repositioned}\n"
+            f"  unanswerable slots refilled      : {refilled}\n"
+            f"  answer keys re-synchronised       : {keys}"
+        )
     except Exception:
         conn.rollback()
         raise
@@ -376,8 +702,8 @@ def repair_papers_json() -> None:
     path = CDN_DIR / "papers.json"
     data = json.loads(path.read_text(encoding="utf-8"))
     changed = False
-    if data.get("version") != 2026102019:
-        data["version"] = 2026102019
+    if data.get("version") != VAULT_VERSION:
+        data["version"] = VAULT_VERSION
         changed = True
     for form in data.get("forms", []):
         if form.get("total_questions") != 150:
@@ -410,11 +736,11 @@ def update_manifest(new_pack_entries: dict[str, dict]) -> None:
         "appearances_count": len(json.loads(papers_bytes)["appearances"]),
     }
 
-    manifest["bank_version"] = 2026102019
-    manifest["bank_version_str"] = "20261020_master_vault_clean_v19"
+    manifest["bank_version"] = VAULT_VERSION
+    manifest["bank_version_str"] = VAULT_VERSION_STR
     manifest["generated"] = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     write_pretty_json(manifest_path, manifest)
-    print("manifest.json updated to v19")
+    print(f"manifest.json updated to v{VAULT_VERSION}")
 
     # Store the new version and download signature in the bundled vault so
     # the app does not immediately re-download the same data.
@@ -426,7 +752,7 @@ def update_manifest(new_pack_entries: dict[str, dict]) -> None:
     try:
         conn.execute("BEGIN")
         for key, value in (
-            ("bank_version", "2026102019"),
+            ("bank_version", str(VAULT_VERSION)),
             ("packs_signature", signature),
             ("last_synced", datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")),
         ):

@@ -316,6 +316,77 @@ def validate_db(report: Report) -> dict:
     ).fetchall()
     report.require(not still_attached, f"Standalone grammar questions still attached: {still_attached}")
 
+    # --- v20 content integrity -----------------------------------------
+    # 1. No paper may print the same question twice.
+    duplicate_papers = conn.execute(
+        "SELECT a.paper_form_id, q.q_hindi, COUNT(*) AS n "
+        "FROM appearances a JOIN questions q ON q.id = a.question_id "
+        "GROUP BY a.paper_form_id, q.q_hindi, IFNULL(q.passage_id, '') "
+        "HAVING n > 1"
+    ).fetchall()
+    report.require(
+        not duplicate_papers,
+        f"Papers contain duplicate questions: {[(r[0], r[2]) for r in duplicate_papers[:10]]}",
+    )
+
+    # 2. The printed answer key must match the repaired question key.
+    key_mismatch = conn.execute(
+        "SELECT a.question_id FROM appearances a JOIN questions q ON q.id = a.question_id "
+        "WHERE IFNULL(a.official_option_id, '') <> char(65 + q.answer)"
+    ).fetchall()
+    report.require(not key_mismatch, f"Answer key drift: {[r[0] for r in key_mismatch[:10]]}")
+
+    # 3. Every paper must expose exactly the questions 1..150 once the
+    #    optional Paper-2 stream has been filtered out.
+    forms = conn.execute("SELECT id FROM paper_forms").fetchall()
+    for (form,) in forms:
+        rows = conn.execute(
+            "SELECT question_number, section FROM appearances WHERE paper_form_id = ?",
+            (form,),
+        ).fetchall()
+        sections = {r[1] for r in rows}
+        streams = sections & {"math_science", "social_studies"}
+        for stream in streams or {None}:
+            if stream is None:
+                numbers = [r[0] for r in rows]
+            else:
+                other = "social_studies" if stream == "math_science" else "math_science"
+                numbers = [r[0] for r in rows if r[1] != other]
+            report.require(
+                sorted(numbers) == list(range(1, 151)),
+                f"Paper {form} does not expose a clean 1..150 sequence for stream {stream}",
+            )
+
+    # 4. modules_json must describe the sections the paper really contains.
+    for form, modules in conn.execute("SELECT id, modules_json FROM paper_forms"):
+        try:
+            declared = json.loads(modules or "[]")
+        except json.JSONDecodeError:
+            declared = []
+        real: list[str] = []
+        for (section,) in conn.execute(
+            "SELECT section FROM appearances WHERE paper_form_id = ? ORDER BY question_number, id",
+            (form,),
+        ):
+            if section and section not in real:
+                real.append(section)
+        report.require(
+            declared == real,
+            f"Paper {form} declares modules {declared} but contains {real}",
+        )
+
+    # 5. No question may point at a stimulus that the vault does not have.
+    missing_stimulus = conn.execute(
+        "SELECT id FROM questions WHERE passage_id IS NULL AND ("
+        "q_hindi LIKE '%उपर्युक्त काव्यांश%' OR q_hindi LIKE '%उपर्युक्त पद%' "
+        "OR q_hindi LIKE '%उपर्युक्त पद्यांश%' OR q_hindi LIKE '%उपर्युक्त गद्यांश%'"
+        ")"
+    ).fetchall()
+    report.require(
+        not missing_stimulus,
+        f"Questions without their stimulus: {[r[0] for r in missing_stimulus[:10]]}",
+    )
+
     conn.close()
     return stats
 
@@ -329,7 +400,7 @@ def validate_cdn(report: Report) -> None:
         return
 
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-    report.require(manifest.get("bank_version") == 2026102019, "CDN version is not v19")
+    report.require(manifest.get("bank_version") == 2026102020, "CDN version is not v19")
     report.require(manifest.get("total") == 9720, "CDN question total is not 9720")
 
     pack_questions: dict[str, dict] = {}

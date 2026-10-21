@@ -29,6 +29,9 @@ class _SolutionScreenState extends State<SolutionScreen> {
   SolutionFilter _filter = SolutionFilter.all;
   late TestLanguageMode _languageMode;
 
+  /// Questions whose passage is shown in full instead of the short preview.
+  final Set<int> _expandedPassages = {};
+
   @override
   void initState() {
     super.initState();
@@ -396,13 +399,47 @@ class _SolutionScreenState extends State<SolutionScreen> {
                                   ),
                                 ),
                                 const SizedBox(height: 8),
-                                Text(
-                                  passage.cleanBody,
-                                  maxLines: 5,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: AppTypography.passageBody(
-                                    color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary,
-                                  ).copyWith(fontSize: 13, height: passage.isPoem ? 1.5 : 1.4),
+                                InkWell(
+                                  onTap: () {
+                                    setState(() {
+                                      if (!_expandedPassages.add(qIdx)) {
+                                        _expandedPassages.remove(qIdx);
+                                      }
+                                    });
+                                  },
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        passage.cleanBody,
+                                        maxLines: _expandedPassages.contains(qIdx) ? null : 5,
+                                        overflow: _expandedPassages.contains(qIdx)
+                                            ? null
+                                            : TextOverflow.ellipsis,
+                                        style: AppTypography.passageBody(
+                                          color: isDark
+                                              ? AppColors.darkTextSecondary
+                                              : AppColors.lightTextSecondary,
+                                        ).copyWith(
+                                          fontSize: 13,
+                                          height: passage.isPoem ? 1.5 : 1.4,
+                                        ),
+                                      ),
+                                      const SizedBox(height: 4),
+                                      Text(
+                                        _expandedPassages.contains(qIdx)
+                                            ? 'संपूर्ण गद्यांश छिपाएँ ▲'
+                                            : 'पूरा गद्यांश पढ़ें ▼',
+                                        style: TextStyle(
+                                          fontSize: 11.5,
+                                          fontWeight: FontWeight.w700,
+                                          color: isDark
+                                              ? const Color(0xFF38BDF8)
+                                              : AppColors.primary,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ],
                             ),

@@ -86,7 +86,24 @@ class QuestionContentParser {
     dotAll: true,
   );
 
+  /// Parsing a stem is regex heavy and a 150 question paper re-parses the
+  /// same stems on every rebuild, so results are cached.
+  static final Map<String, ParsedQuestionContent> _cache =
+      <String, ParsedQuestionContent>{};
+  static const int _cacheLimit = 600;
+
   static ParsedQuestionContent parse(String rawText) {
+    final cached = _cache[rawText];
+    if (cached != null) return cached;
+    final parsed = _parseUncached(rawText);
+    if (_cache.length >= _cacheLimit) {
+      _cache.remove(_cache.keys.first);
+    }
+    _cache[rawText] = parsed;
+    return parsed;
+  }
+
+  static ParsedQuestionContent _parseUncached(String rawText) {
     var text = rawText.trim();
     if (text.isEmpty) return const PlainQuestionContent('');
 

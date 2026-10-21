@@ -22,6 +22,13 @@ class FigureSpec {
   final int option;
 
   const FigureSpec(this.kind, {this.option = -1});
+
+  @override
+  bool operator ==(Object other) =>
+      other is FigureSpec && other.kind == kind && other.option == option;
+
+  @override
+  int get hashCode => Object.hash(kind, option);
 }
 
 class QuestionFigureCatalog {
