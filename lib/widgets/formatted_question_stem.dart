@@ -565,9 +565,9 @@ class FormattedQuestionStem extends StatelessWidget {
             _buildStatementBox(
               label: aLabel,
               content: aText,
-              badgeColor: isDark ? const Color(0xFFF59E0B) : const Color(0xFFB45309),
-              badgeBg: isDark ? const Color(0xFF2E1C07) : const Color(0xFFFEF3C7),
-              borderColor: isDark ? const Color(0xFF451A03) : const Color(0xFFFDE68A),
+              badgeColor: isDark ? AppColors.goldBright : AppColors.sealGold,
+              badgeBg: isDark ? AppColors.primaryDark : AppColors.sealGoldSubtle,
+              borderColor: isDark ? AppColors.warningDark : AppColors.goldBright,
               style: defaultStyle,
             ),
             const SizedBox(height: 8),
@@ -576,9 +576,9 @@ class FormattedQuestionStem extends StatelessWidget {
             _buildStatementBox(
               label: rLabel,
               content: rText,
-              badgeColor: isDark ? const Color(0xFF38BDF8) : const Color(0xFF0284C7),
-              badgeBg: isDark ? const Color(0xFF0C243C) : const Color(0xFFE0F2FE),
-              borderColor: isDark ? const Color(0xFF075985) : const Color(0xFFBAE6FD),
+              badgeColor: isDark ? AppColors.accentBright : AppColors.accent,
+              badgeBg: isDark ? AppColors.primary : AppColors.accentSoft,
+              borderColor: isDark ? AppColors.accent : AppColors.accentSoft,
               style: defaultStyle,
             ),
 
@@ -612,10 +612,10 @@ class FormattedQuestionStem extends StatelessWidget {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
               decoration: BoxDecoration(
-                color: isDark ? const Color(0xFF131B2A) : const Color(0xFFF8FAFC),
+                color: isDark ? AppColors.darkCard : AppColors.darkTextPrimary,
                 borderRadius: AppRadius.roundedSm,
                 border: Border.all(
-                  color: isDark ? AppColors.darkBorder : const Color(0xFFE2E8F0),
+                  color: isDark ? AppColors.darkBorder : AppColors.borderStrong,
                   width: 1,
                 ),
               ),
@@ -630,7 +630,7 @@ class FormattedQuestionStem extends StatelessWidget {
                         Container(
                           padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                           decoration: BoxDecoration(
-                            color: isDark ? Colors.white12 : const Color(0xFFE2E8F0),
+                            color: isDark ? Colors.white12 : AppColors.borderStrong,
                             borderRadius: BorderRadius.circular(4),
                           ),
                           child: Text(
@@ -722,10 +722,10 @@ class FormattedQuestionStem extends StatelessWidget {
   }
 
   Widget _buildTable(List<String> headers, List<List<String>> rows, TextStyle baseStyle) {
-    final borderColor = isDark ? const Color(0xFF334155) : const Color(0xFFCBD5E1);
-    final headerBg = isDark ? const Color(0xFF1E293B) : const Color(0xFFF1F5F9);
-    final rowZebraBg = isDark ? const Color(0xFF0F172A) : Colors.white;
-    final rowAltBg = isDark ? const Color(0xFF141F32) : const Color(0xFFF8FAFC);
+    final borderColor = isDark ? AppColors.lightTextSecondary : AppColors.lightBorder;
+    final headerBg = isDark ? AppColors.primaryLight : AppColors.primarySubtle;
+    final rowZebraBg = isDark ? AppColors.primary : Colors.white;
+    final rowAltBg = isDark ? AppColors.darkCard : AppColors.darkTextPrimary;
 
     return Container(
       width: double.infinity,
@@ -794,10 +794,10 @@ class FormattedQuestionStem extends StatelessWidget {
     List<({String leftMarker, String leftText, String rightMarker, String rightText})> pairs,
     TextStyle baseStyle,
   ) {
-    final borderColor = isDark ? const Color(0xFF334155) : const Color(0xFFCBD5E1);
-    final headerBg = isDark ? const Color(0xFF1E293B) : const Color(0xFFF1F5F9);
-    final rowZebraBg = isDark ? const Color(0xFF0F172A) : Colors.white;
-    final rowAltBg = isDark ? const Color(0xFF141F32) : const Color(0xFFF8FAFC);
+    final borderColor = isDark ? AppColors.lightTextSecondary : AppColors.lightBorder;
+    final headerBg = isDark ? AppColors.primaryLight : AppColors.primarySubtle;
+    final rowZebraBg = isDark ? AppColors.primary : Colors.white;
+    final rowAltBg = isDark ? AppColors.darkCard : AppColors.darkTextPrimary;
 
     return Container(
       width: double.infinity,
@@ -829,7 +829,7 @@ class FormattedQuestionStem extends StatelessWidget {
                   style: baseStyle.copyWith(
                     fontWeight: FontWeight.w800,
                     fontSize: 12.5,
-                    color: isDark ? const Color(0xFF94A3B8) : const Color(0xFF475569),
+                    color: isDark ? AppColors.darkTextSecondary : AppColors.deskGray,
                     letterSpacing: 0.5,
                   ),
                 ),
@@ -841,7 +841,7 @@ class FormattedQuestionStem extends StatelessWidget {
                   style: baseStyle.copyWith(
                     fontWeight: FontWeight.w800,
                     fontSize: 12.5,
-                    color: isDark ? const Color(0xFF94A3B8) : const Color(0xFF475569),
+                    color: isDark ? AppColors.darkTextSecondary : AppColors.deskGray,
                     letterSpacing: 0.5,
                   ),
                 ),
@@ -864,13 +864,13 @@ class FormattedQuestionStem extends StatelessWidget {
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 1.5),
                         decoration: BoxDecoration(
-                          color: isDark ? const Color(0xFF1E293B) : const Color(0xFFE0E7FF),
+                          color: isDark ? AppColors.primaryLight : const Color(0xFFE0E7FF),
                           borderRadius: BorderRadius.circular(4),
                         ),
                         child: Text(
                           p.leftMarker,
                           style: TextStyle(
-                            color: isDark ? const Color(0xFF818CF8) : const Color(0xFF4338CA),
+                            color: isDark ? AppColors.indigoText : const Color(0xFF4338CA),
                             fontWeight: FontWeight.bold,
                             fontSize: 12,
                           ),
@@ -899,13 +899,13 @@ class FormattedQuestionStem extends StatelessWidget {
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 1.5),
                         decoration: BoxDecoration(
-                          color: isDark ? const Color(0xFF1C2D37) : const Color(0xFFE0F2FE),
+                          color: isDark ? const Color(0xFF1C2D37) : AppColors.accentSoft,
                           borderRadius: BorderRadius.circular(4),
                         ),
                         child: Text(
                           p.rightMarker,
                           style: TextStyle(
-                            color: isDark ? const Color(0xFF38BDF8) : const Color(0xFF0284C7),
+                            color: isDark ? AppColors.accentBright : AppColors.accent,
                             fontWeight: FontWeight.bold,
                             fontSize: 11.5,
                           ),

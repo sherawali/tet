@@ -101,7 +101,7 @@ class MathDiagramWidget extends StatelessWidget {
   }
 
   Widget _buildImageCard(BuildContext context, String alt, String url) {
-    final borderColor = isDark ? const Color(0xFF334155) : const Color(0xFFCBD5E1);
+    final borderColor = isDark ? AppColors.lightTextSecondary : AppColors.lightBorder;
     final isNetwork = url.startsWith('http://') || url.startsWith('https://');
 
     return GestureDetector(
@@ -116,7 +116,7 @@ class MathDiagramWidget extends StatelessWidget {
         margin: const EdgeInsets.symmetric(vertical: 10),
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
-          color: isDark ? const Color(0xFF0F172A) : const Color(0xFFF8FAFC),
+          color: isDark ? AppColors.primary : AppColors.darkTextPrimary,
           borderRadius: AppRadius.roundedBase,
           border: Border.all(color: borderColor, width: 1.2),
         ),
@@ -171,7 +171,7 @@ class MathDiagramWidget extends StatelessWidget {
   }
 
   Widget _buildGeometryDiagramCard(BuildContext context) {
-    final borderColor = isDark ? const Color(0xFF334155) : const Color(0xFFCBD5E1);
+    final borderColor = isDark ? AppColors.lightTextSecondary : AppColors.lightBorder;
 
     return GestureDetector(
       onTap: () => _openZoomDialog(
@@ -189,7 +189,7 @@ class MathDiagramWidget extends StatelessWidget {
         margin: const EdgeInsets.symmetric(vertical: 10),
         padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
-          color: isDark ? const Color(0xFF0F172A) : Colors.white,
+          color: isDark ? AppColors.primary : Colors.white,
           borderRadius: AppRadius.roundedBase,
           border: Border.all(color: borderColor, width: 1.2),
           boxShadow: [
@@ -208,7 +208,7 @@ class MathDiagramWidget extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
                   decoration: BoxDecoration(
-                    color: isDark ? const Color(0xFF1E293B) : const Color(0xFFEEF2FF),
+                    color: isDark ? AppColors.primaryLight : AppColors.infoSurface,
                     borderRadius: BorderRadius.circular(4),
                   ),
                   child: const Text(
@@ -216,19 +216,19 @@ class MathDiagramWidget extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 11.5,
                       fontWeight: FontWeight.bold,
-                      color: Color(0xFF6366F1),
+                      color: AppColors.violet,
                     ),
                   ),
                 ),
                 Row(
                   children: [
-                    Icon(Icons.zoom_in_rounded, size: 16, color: isDark ? const Color(0xFF94A3B8) : const Color(0xFF64748B)),
+                    Icon(Icons.zoom_in_rounded, size: 16, color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted),
                     const SizedBox(width: 4),
                     Text(
                       'ज़ूम करें',
                       style: TextStyle(
                         fontSize: 11.5,
-                        color: isDark ? const Color(0xFF94A3B8) : const Color(0xFF64748B),
+                        color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -288,7 +288,7 @@ class MathDiagramWidget extends StatelessWidget {
                 ClipRRect(
                   borderRadius: AppRadius.roundedSm,
                   child: Container(
-                    color: isDark ? const Color(0xFF0B132B) : const Color(0xFFF8FAFC),
+                    color: isDark ? AppColors.primaryDark : AppColors.darkTextPrimary,
                     padding: const EdgeInsets.all(12),
                     constraints: const BoxConstraints(maxHeight: 380),
                     child: InteractiveViewer(
@@ -323,29 +323,29 @@ class _UtetGeometryPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final linePaint = Paint()
-      ..color = isDark ? const Color(0xFF38BDF8) : const Color(0xFF0284C7)
+      ..color = isDark ? AppColors.accentBright : AppColors.accent
       ..strokeWidth = 2.4
       ..strokeCap = StrokeCap.round
       ..style = PaintingStyle.stroke;
 
     final auxPaint = Paint()
-      ..color = isDark ? const Color(0xFF94A3B8) : const Color(0xFF64748B)
+      ..color = isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted
       ..strokeWidth = 1.2
       ..style = PaintingStyle.stroke;
 
     final arcPaint = Paint()
-      ..color = isDark ? const Color(0xFFF59E0B) : const Color(0xFFD97706)
+      ..color = isDark ? AppColors.goldBright : AppColors.sealGoldLight
       ..strokeWidth = 1.8
       ..style = PaintingStyle.stroke;
 
     final textStyle = TextStyle(
-      color: isDark ? const Color(0xFFF8FAFC) : const Color(0xFF0F172A),
+      color: isDark ? AppColors.darkTextPrimary : AppColors.primary,
       fontSize: 13,
       fontWeight: FontWeight.bold,
     );
 
     final angleTextStyle = TextStyle(
-      color: isDark ? const Color(0xFFFBBF24) : const Color(0xFFB45309),
+      color: isDark ? AppColors.goldBright : AppColors.sealGold,
       fontSize: 11.5,
       fontWeight: FontWeight.bold,
     );
@@ -482,7 +482,7 @@ extension _MathDiagramCustomHelper on MathDiagramWidget {
     required double width,
     required double height,
   }) {
-    final borderColor = isDark ? const Color(0xFF334155) : const Color(0xFFCBD5E1);
+    final borderColor = isDark ? AppColors.lightTextSecondary : AppColors.lightBorder;
 
     return GestureDetector(
       onTap: () => _openZoomDialog(
@@ -498,7 +498,7 @@ extension _MathDiagramCustomHelper on MathDiagramWidget {
         margin: const EdgeInsets.symmetric(vertical: 10),
         padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
-          color: isDark ? const Color(0xFF0F172A) : Colors.white,
+          color: isDark ? AppColors.primary : Colors.white,
           borderRadius: AppRadius.roundedBase,
           border: Border.all(color: borderColor, width: 1.2),
           boxShadow: [
@@ -517,7 +517,7 @@ extension _MathDiagramCustomHelper on MathDiagramWidget {
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
                   decoration: BoxDecoration(
-                    color: isDark ? const Color(0xFF1E293B) : const Color(0xFFEEF2FF),
+                    color: isDark ? AppColors.primaryLight : AppColors.infoSurface,
                     borderRadius: BorderRadius.circular(4),
                   ),
                   child: Text(
@@ -525,7 +525,7 @@ extension _MathDiagramCustomHelper on MathDiagramWidget {
                     style: const TextStyle(
                       fontSize: 11.5,
                       fontWeight: FontWeight.bold,
-                      color: Color(0xFF6366F1),
+                      color: AppColors.violet,
                     ),
                   ),
                 ),
@@ -534,14 +534,14 @@ extension _MathDiagramCustomHelper on MathDiagramWidget {
                     Icon(
                       Icons.zoom_in_rounded,
                       size: 16,
-                      color: isDark ? const Color(0xFF94A3B8) : const Color(0xFF64748B),
+                      color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
                     ),
                     const SizedBox(width: 4),
                     Text(
                       'ज़ूम करें',
                       style: TextStyle(
                         fontSize: 11.5,
-                        color: isDark ? const Color(0xFF94A3B8) : const Color(0xFF64748B),
+                        color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -572,17 +572,17 @@ class _CtetNumberLinePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final linePaint = Paint()
-      ..color = isDark ? const Color(0xFFCBD5E1) : const Color(0xFF1E293B)
+      ..color = isDark ? AppColors.lightBorder : AppColors.primaryLight
       ..strokeWidth = 2.5
       ..style = PaintingStyle.stroke;
 
     final tickPaint = Paint()
-      ..color = isDark ? const Color(0xFF94A3B8) : const Color(0xFF334155)
+      ..color = isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary
       ..strokeWidth = 2.0
       ..style = PaintingStyle.stroke;
 
     final accentPaint = Paint()
-      ..color = const Color(0xFFEF4444)
+      ..color = AppColors.danger
       ..style = PaintingStyle.fill;
 
     final centerY = size.height * 0.52;
@@ -604,13 +604,13 @@ class _CtetNumberLinePainter extends CustomPainter {
     final labelStyle = TextStyle(
       fontSize: 11,
       fontWeight: FontWeight.bold,
-      color: isDark ? const Color(0xFFE2E8F0) : const Color(0xFF0F172A),
+      color: isDark ? AppColors.borderStrong : AppColors.primary,
     );
 
     final pointLabelStyle = const TextStyle(
       fontSize: 15,
       fontWeight: FontWeight.w900,
-      color: Color(0xFFEF4444),
+      color: AppColors.danger,
     );
 
     for (int i = 0; i < totalTicks; i++) {
@@ -675,17 +675,17 @@ class _TriangularPrismPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final linePaint = Paint()
-      ..color = isDark ? const Color(0xFF38BDF8) : const Color(0xFF0284C7)
+      ..color = isDark ? AppColors.accentBright : AppColors.accent
       ..strokeWidth = 2.2
       ..style = PaintingStyle.stroke;
 
     final dashedPaint = Paint()
-      ..color = isDark ? const Color(0xFF64748B) : const Color(0xFF94A3B8)
+      ..color = isDark ? AppColors.lightTextMuted : AppColors.darkTextSecondary
       ..strokeWidth = 1.8
       ..style = PaintingStyle.stroke;
 
     final faceFill = Paint()
-      ..color = (isDark ? const Color(0xFF0284C7) : const Color(0xFF38BDF8))
+      ..color = (isDark ? AppColors.accent : AppColors.accentBright)
           .withValues(alpha: 0.12)
       ..style = PaintingStyle.fill;
 
@@ -724,7 +724,7 @@ class _TriangularPrismPainter extends CustomPainter {
     _drawDashed(canvas, e, f, dashedPaint);
 
     // Vertices dots
-    final dotPaint = Paint()..color = const Color(0xFF6366F1)..style = PaintingStyle.fill;
+    final dotPaint = Paint()..color = AppColors.violet..style = PaintingStyle.fill;
     for (final pt in [a, b, c, d, e, f]) {
       canvas.drawCircle(pt, 3.5, dotPaint);
     }
@@ -757,17 +757,17 @@ class _ShadedFractionPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final borderPaint = Paint()
-      ..color = isDark ? const Color(0xFFE2E8F0) : const Color(0xFF0F172A)
+      ..color = isDark ? AppColors.borderStrong : AppColors.primary
       ..strokeWidth = 2.0
       ..style = PaintingStyle.stroke;
 
     final gridPaint = Paint()
-      ..color = isDark ? const Color(0xFF64748B) : const Color(0xFF94A3B8)
+      ..color = isDark ? AppColors.lightTextMuted : AppColors.darkTextSecondary
       ..strokeWidth = 1.2
       ..style = PaintingStyle.stroke;
 
     final shadedPaint = Paint()
-      ..color = const Color(0xFF6366F1).withValues(alpha: isDark ? 0.6 : 0.45)
+      ..color = AppColors.violet.withValues(alpha: isDark ? 0.6 : 0.45)
       ..style = PaintingStyle.fill;
 
     const marginX = 20.0;

@@ -3,6 +3,7 @@ import '../design_system/app_colors.dart';
 import '../design_system/app_radius.dart';
 import '../design_system/app_typography.dart';
 import '../design_system/app_shadows.dart';
+import '../design_system/app_motion.dart';
 
 enum AppButtonVariant { primary, secondary, outline, danger, success }
 
@@ -74,7 +75,8 @@ class _AppButtonState extends State<AppButton> {
 
     return AnimatedScale(
       scale: _isPressed && isInteractive ? 0.97 : 1.0,
-      duration: const Duration(milliseconds: 100),
+      duration: AppMotion.fast,
+              curve: AppMotion.standard,
       child: Container(
         width: widget.width,
         height: widget.height,
@@ -112,6 +114,9 @@ class _AppButtonState extends State<AppButton> {
                         ],
                         Text(
                           widget.label,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          textAlign: TextAlign.center,
                           style: AppTypography.titleMedium(color: fg).copyWith(
                             fontSize: 14.5,
                             fontWeight: FontWeight.w600,

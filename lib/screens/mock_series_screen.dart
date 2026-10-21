@@ -40,7 +40,14 @@ class _MockSeriesScreenState extends State<MockSeriesScreen> {
   Future<void> _loadForms() async {
     setState(() => _isLoading = true);
     final paper = ExamService.instance.selectedPaper;
-    final forms = await _engine.db.getAvailablePaperForms(paper: paper, isPyqOnly: false);
+    // The list belongs to the exam that is selected, otherwise the UTET and
+    // the CTET mocks would be mixed under one heading.
+    final examName = ExamService.instance.isUtet ? 'utet' : 'ctet';
+    final forms = await _engine.db.getAvailablePaperForms(
+      exam: examName,
+      paper: paper,
+      isPyqOnly: false,
+    );
     if (!mounted) return;
     setState(() {
       _forms = forms;
@@ -109,15 +116,29 @@ class _MockSeriesScreenState extends State<MockSeriesScreen> {
     return AppStrings.formatSetBadge('MOCK ${(index + 1).toString().padLeft(2, "0")}');
   }
 
+  /// The heading always names the exam, the paper and - for paper 2 - the
+  /// stream, so a candidate can never mix the two streams.
+  String _headerTitle() {
+    final isHi = AppStrings.isHindi;
+    final exam = ExamService.instance.isUtet ? 'UTET' : 'CTET';
+    final paper = ExamService.instance.selectedPaper;
+    if (paper == 2) {
+      final stream = ExamService.instance.isSocialStream
+          ? AppStrings.streamSocialStudies
+          : AppStrings.streamMathScience;
+      return isHi ? '$exam पेपर-2 · $stream' : '$exam Paper-2 · $stream';
+    }
+    return isHi ? '$exam पेपर-1' : '$exam Paper-1';
+  }
+
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final currentPaper = ExamService.instance.selectedPaper;
 
     return Scaffold(
       backgroundColor: isDark ? AppColors.darkBg : AppColors.lightBg,
       appBar: AppBar(
-        title: Text('${AppStrings.mockSeriesTitle} (Paper $currentPaper)'),
+        title: Text(_headerTitle()),
         backgroundColor: isDark ? AppColors.darkCard : AppColors.primary,
         foregroundColor: Colors.white,
         elevation: 0,
@@ -322,8 +343,8 @@ class _MockSeriesScreenState extends State<MockSeriesScreen> {
                                 ElevatedButton.icon(
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor: isLocked
-                                        ? (isDark ? const Color(0xFF1E293B) : const Color(0xFFF8FAFC))
-                                        : (isDark ? AppColors.darkCardElevated : const Color(0xFFF1F5F9)),
+                                        ? (isDark ? AppColors.primaryLight : AppColors.darkTextPrimary)
+                                        : (isDark ? AppColors.darkCardElevated : AppColors.primarySubtle),
                                     foregroundColor: isLocked
                                         ? AppColors.sealGold
                                         : (isDark ? AppColors.sealGoldLight : AppColors.primary),

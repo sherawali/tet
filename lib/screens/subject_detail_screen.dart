@@ -249,7 +249,7 @@ class _SubjectDetailScreenState extends State<SubjectDetailScreen> {
                           builder: (context, isUnlocked, _) {
                             return ElevatedButton.icon(
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: isUnlocked ? widget.sectionColor : const Color(0xFF1E293B),
+                                backgroundColor: isUnlocked ? widget.sectionColor : AppColors.primaryLight,
                                 foregroundColor: isUnlocked ? Colors.white : AppColors.sealGold,
                                 minimumSize: const Size(double.infinity, 42),
                                 shape: RoundedRectangleBorder(
@@ -398,7 +398,7 @@ class _SubjectDetailScreenState extends State<SubjectDetailScreen> {
                                 ElevatedButton(
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor: isLocked
-                                        ? (isDark ? const Color(0xFF1E293B) : const Color(0xFFF1F5F9))
+                                        ? (isDark ? AppColors.primaryLight : AppColors.primarySubtle)
                                         : widget.sectionColor,
                                     foregroundColor: isLocked ? AppColors.sealGold : Colors.white,
                                     padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),

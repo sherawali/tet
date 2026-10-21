@@ -1,6 +1,7 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
+import '../design_system/app_colors.dart';
 
 /// Vector replacements for questions whose source images were never present in
 /// the extracted bank.  The same catalogue feeds Flutter (CustomPainter) and
@@ -404,14 +405,14 @@ class _FigureCanvas extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final borderColor =
-        isDark ? const Color(0xFF334155) : const Color(0xFFCBD5E1);
+        isDark ? AppColors.lightTextSecondary : AppColors.lightBorder;
     return Container(
       width: double.infinity,
       height: height,
       margin: const EdgeInsets.symmetric(vertical: 8),
       padding: const EdgeInsets.all(6),
       decoration: BoxDecoration(
-        color: isDark ? const Color(0xFF0F172A) : const Color(0xFFF8FAFC),
+        color: isDark ? AppColors.primary : AppColors.darkTextPrimary,
         borderRadius: BorderRadius.circular(10),
         border: Border.all(color: borderColor),
       ),
@@ -428,9 +429,9 @@ class _FigurePainter extends CustomPainter {
 
   _FigurePainter({required this.spec, required this.isDark});
 
-  Color get _ink => isDark ? const Color(0xFFE2E8F0) : const Color(0xFF334155);
-  Color get _accent => isDark ? const Color(0xFF60A5FA) : const Color(0xFF2563EB);
-  Color get _muted => isDark ? const Color(0xFF94A3B8) : const Color(0xFF64748B);
+  Color get _ink => isDark ? AppColors.borderStrong : AppColors.lightTextSecondary;
+  Color get _accent => isDark ? AppColors.accentBright : AppColors.optionSelectedBorder;
+  Color get _muted => isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -522,9 +523,9 @@ class _FigurePainter extends CustomPainter {
         _text(canvas, 'v', 90, 90, color: _accent);
         _text(canvas, 'e⁻', 76, 132, color: _accent);
         _arrow(canvas, const Offset(212, 72), const Offset(212, 140),
-            const Color(0xFFDC2626));
-        _text(canvas, 'F', 246, 128, color: const Color(0xFFDC2626));
-        _text(canvas, 'into paper', 246, 146, size: 10, color: const Color(0xFFDC2626));
+            AppColors.danger);
+        _text(canvas, 'F', 246, 128, color: AppColors.danger);
+        _text(canvas, 'into paper', 246, 146, size: 10, color: AppColors.danger);
         _text(canvas, 'B (into page)', 66, 24, size: 11, color: _muted);
         break;
       case FigureKind.triangleValue:
@@ -568,7 +569,7 @@ class _FigurePainter extends CustomPainter {
         _text(canvas, 'Q', 296, 32);
         _text(canvas, 'R', 258, 152);
         _text(canvas, 'S', 100, 152);
-        _text(canvas, 'θ', 186, 104, color: const Color(0xFFDC2626), size: 18);
+        _text(canvas, 'θ', 186, 104, color: AppColors.danger, size: 18);
         _text(canvas, 'ABCD and PQRS are parallelograms', 170, 186, size: 11, color: _muted);
         break;
       case FigureKind.solidCube:
@@ -767,7 +768,7 @@ class _FigurePainter extends CustomPainter {
     _text(canvas, 'Q', 150, 182, color: _accent);
     _text(canvas, '100°', 110, 102, color: _accent);
     _text(canvas, '140°', 217, 152, color: _accent);
-    _text(canvas, '?', 160, 140, color: const Color(0xFFDC2626), size: 16);
+    _text(canvas, '?', 160, 140, color: AppColors.danger, size: 16);
     _text(canvas, 'OP ∥ RS', 170, 20, size: 12, color: _muted);
   }
 

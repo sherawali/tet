@@ -8,6 +8,7 @@ import '../services/language_service.dart';
 import '../database/db_helper.dart';
 import '../services/in_app_update_service.dart';
 import 'home_screen.dart';
+import '../design_system/app_motion.dart';
 
 class SplashSyncScreen extends StatefulWidget {
   const SplashSyncScreen({super.key});
@@ -74,7 +75,7 @@ class _SplashSyncScreenState extends State<SplashSyncScreen> {
           opacity: anim,
           child: child,
         ),
-        transitionDuration: const Duration(milliseconds: 400),
+        transitionDuration: AppMotion.page,
       ),
     );
   }
@@ -177,7 +178,7 @@ class _SplashSyncScreenState extends State<SplashSyncScreen> {
                             'assets/images/app_logo.png',
                             fit: BoxFit.cover,
                             errorBuilder: (context, error, stackTrace) => Container(
-                              color: const Color(0xFF0F172A),
+                              color: AppColors.primary,
                               child: const Center(
                                 child: Icon(
                                   Icons.menu_book_rounded,
@@ -218,7 +219,7 @@ class _SplashSyncScreenState extends State<SplashSyncScreen> {
                           color: isDark ? AppColors.darkCard.withValues(alpha: 0.8) : Colors.white.withValues(alpha: 0.9),
                           borderRadius: BorderRadius.circular(12),
                           border: Border.all(
-                            color: isDark ? AppColors.darkBorder : const Color(0xFFE2E8F0),
+                            color: isDark ? AppColors.darkBorder : AppColors.borderStrong,
                             width: 1.0,
                           ),
                           boxShadow: [
@@ -236,7 +237,7 @@ class _SplashSyncScreenState extends State<SplashSyncScreen> {
                               child: LinearProgressIndicator(
                                 value: _isError ? 0 : (_progress > 0 ? _progress : null),
                                 minHeight: 6,
-                                backgroundColor: isDark ? AppColors.darkBorder : const Color(0xFFE2E8F0),
+                                backgroundColor: isDark ? AppColors.darkBorder : AppColors.borderStrong,
                                 valueColor: AlwaysStoppedAnimation<Color>(
                                   _isError ? AppColors.danger : AppColors.sealGold,
                                 ),

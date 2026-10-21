@@ -156,10 +156,10 @@ class _ResultScreenState extends State<ResultScreen> {
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: isPassGeneral
-                      ? [const Color(0xFF064E3B), const Color(0xFF0F172A)]
+                      ? [const Color(0xFF064E3B), AppColors.primary]
                       : (isPassReserved
-                          ? [const Color(0xFF78350F), const Color(0xFF0F172A)]
-                          : [const Color(0xFF450A0A), const Color(0xFF0F172A)]),
+                          ? [AppColors.warningDark, AppColors.primary]
+                          : [const Color(0xFF450A0A), AppColors.primary]),
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                 ),
@@ -232,10 +232,10 @@ class _ResultScreenState extends State<ResultScreen> {
               Container(
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: isDark ? const Color(0xFF1E293B) : const Color(0xFFFFFBEB),
+                  color: isDark ? AppColors.primaryLight : const Color(0xFFFFFBEB),
                   borderRadius: AppRadius.roundedBase,
                   border: Border.all(
-                    color: isDark ? AppColors.sealGold : const Color(0xFFF59E0B),
+                    color: isDark ? AppColors.sealGold : AppColors.goldBright,
                     width: 1.5,
                   ),
                 ),
@@ -262,7 +262,7 @@ class _ResultScreenState extends State<ResultScreen> {
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 15,
-                                  color: isDark ? AppColors.darkTextPrimary : const Color(0xFF92400E),
+                                  color: isDark ? AppColors.darkTextPrimary : AppColors.goldText,
                                 ),
                               ),
                               const SizedBox(height: 2),
@@ -270,7 +270,7 @@ class _ResultScreenState extends State<ResultScreen> {
                                 AppStrings.rePracticeSub(wrongQuestions.length),
                                 style: TextStyle(
                                   fontSize: 12,
-                                  color: isDark ? AppColors.darkTextSecondary : const Color(0xFFB45309),
+                                  color: isDark ? AppColors.darkTextSecondary : AppColors.sealGold,
                                 ),
                               ),
                             ],
@@ -632,10 +632,10 @@ class _ResultScreenState extends State<ResultScreen> {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: isDark ? AppColors.darkCard : const Color(0xFFF0FDF4),
+        color: isDark ? AppColors.darkCard : AppColors.successSubtle,
         borderRadius: AppRadius.roundedBase,
         border: Border.all(
-          color: isDark ? AppColors.darkBorder : const Color(0xFFBBF7D0),
+          color: isDark ? AppColors.darkBorder : AppColors.successBorder,
           width: 1.2,
         ),
       ),
@@ -659,7 +659,7 @@ class _ResultScreenState extends State<ResultScreen> {
                   style: TextStyle(
                     fontSize: 15,
                     fontWeight: FontWeight.bold,
-                    color: isDark ? AppColors.darkTextPrimary : const Color(0xFF166534),
+                    color: isDark ? AppColors.darkTextPrimary : AppColors.successText,
                   ),
                 ),
               ),
@@ -680,7 +680,7 @@ class _ResultScreenState extends State<ResultScreen> {
             style: TextStyle(
               fontSize: 12,
               height: 1.4,
-              color: isDark ? AppColors.darkTextSecondary : const Color(0xFF374151),
+              color: isDark ? AppColors.darkTextSecondary : AppColors.grayText,
             ),
           ),
           if (weakTopics.isNotEmpty) ...[
@@ -691,7 +691,7 @@ class _ResultScreenState extends State<ResultScreen> {
                 color: isDark ? AppColors.darkCardElevated : Colors.white,
                 borderRadius: BorderRadius.circular(6),
                 border: Border.all(
-                  color: isDark ? AppColors.darkBorder : const Color(0xFFE5E7EB),
+                  color: isDark ? AppColors.darkBorder : AppColors.grayBorder,
                 ),
               ),
               child: Column(
@@ -786,10 +786,10 @@ class _ResultScreenState extends State<ResultScreen> {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: isDark ? const Color(0xFF1E1B4B) : const Color(0xFFFEF2F2),
+        color: isDark ? AppColors.indigoSurface : const Color(0xFFFEF2F2),
         borderRadius: AppRadius.roundedBase,
         border: Border.all(
-          color: isDark ? const Color(0xFF818CF8) : const Color(0xFFFCA5A5),
+          color: isDark ? AppColors.indigoText : AppColors.dangerBorder,
           width: 1.4,
         ),
         boxShadow: const [
@@ -902,7 +902,7 @@ class _ResultScreenState extends State<ResultScreen> {
           Container(
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
-              color: isDark ? const Color(0xFF0F172A) : Colors.white,
+              color: isDark ? AppColors.primary : Colors.white,
               borderRadius: BorderRadius.circular(6),
             ),
             child: const Row(

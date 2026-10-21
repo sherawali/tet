@@ -291,8 +291,13 @@ class AppStrings {
       SectionCatalog.name(sec, hindi: _isHi);
 
   // Paper Selector Strings
-  static String get paper1Tab => _isHi ? '📘 पेपर-1 (प्राथमिक स्तर)' : '📘 Paper-1 (Primary Level)';
-  static String get paper2Tab => _isHi ? '📙 पेपर-2 (उच्च प्राथमिक)' : '📙 Paper-2 (Upper Primary)';
+  /// The paper switcher always says the same thing, in every screen.
+  static String get paper1Label =>
+      _isHi ? 'पेपर-1 (कक्षा 1–5)' : 'Paper-1 (Classes 1–5)';
+  static String get paper2Label =>
+      _isHi ? 'पेपर-2 (कक्षा 6–8)' : 'Paper-2 (Classes 6–8)';
+  static String get paper1Tab => '📘 $paper1Label';
+  static String get paper2Tab => '📙 $paper2Label';
   static String get paperSelectorHeader => _isHi ? 'परीक्षा स्तर चयन' : 'Select Exam Level';
   static String get paperSelectorDesc => _isHi
       ? 'प्राथमिक स्तर (कक्षा 1 से 5) या उच्च प्राथमिक स्तर (कक्षा 6 से 8) चुनें'
@@ -525,6 +530,20 @@ class AppStrings {
     final parts = getStampParts(rawSet, isHindi: isHindi);
     return '${parts.top} ${parts.bottom}';
   }
+
+  // Paper-2 streams (Mathematics & Science / Social Studies)
+  static String get streamSwitcherLabel =>
+      _isHi ? 'विषय वर्ग (खंड IV)' : 'Subject Stream (Section IV)';
+  static String get streamMathScience =>
+      _isHi ? 'गणित एवं विज्ञान' : 'Math & Science';
+  static String get streamSocialStudies =>
+      _isHi ? 'सामाजिक अध्ययन' : 'Social Studies';
+  static String get streamBoth =>
+      _isHi ? 'दोनों वर्ग' : 'Both Streams';
+  static String streamQuestions(int count) =>
+      _isHi ? '$count प्रश्न' : '$count Qs';
+  static String get streamChanged =>
+      _isHi ? 'विषय वर्ग बदल दिया गया' : 'Subject stream changed';
 
   // Subject Practice Hub
   static String subjectPracticeHubTitle(String sec) => _isHi ? '$sec अभ्यास हब' : '$sec Practice Hub';

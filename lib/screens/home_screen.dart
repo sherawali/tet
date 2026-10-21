@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../design_system/app_colors.dart';
+import '../design_system/app_dialogs.dart';
 import '../design_system/app_typography.dart';
 import '../design_system/app_strings.dart';
 import '../services/language_service.dart';
@@ -28,6 +29,7 @@ import '../services/bank_facts.dart';
 import '../services/exam_rules.dart';
 import '../widgets/premium_paywall_modal.dart';
 import '../widgets/question_report_sheet.dart';
+import '../design_system/app_motion.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -72,6 +74,15 @@ class _HomeScreenState extends State<HomeScreen> {
     _loadData();
     _checkRemoteUpdateSilently();
     SyncService.onDatabaseUpdated.addListener(_onDatabaseUpdatedListener);
+    // The stream can also be changed in the PYQ vault, so the home screen
+    // has to follow it.
+    ExamService.instance.currentStream.addListener(_onStreamChanged);
+  }
+
+  void _onStreamChanged() {
+    if (mounted) {
+      _loadData();
+    }
   }
 
   void _checkRemoteUpdateSilently() async {
@@ -112,7 +123,7 @@ class _HomeScreenState extends State<HomeScreen> {
       if (_heroCarouselController.hasClients) {
         _heroCarouselController.animateToPage(
           nextPage,
-          duration: const Duration(milliseconds: 600),
+          duration: AppMotion.page,
           curve: Curves.easeInOutCubic,
         );
       }
@@ -124,6 +135,7 @@ class _HomeScreenState extends State<HomeScreen> {
     _carouselTimer?.cancel();
     _heroCarouselController.dispose();
     SyncService.onDatabaseUpdated.removeListener(_onDatabaseUpdatedListener);
+    ExamService.instance.currentStream.removeListener(_onStreamChanged);
     super.dispose();
   }
 
@@ -266,7 +278,7 @@ class _HomeScreenState extends State<HomeScreen> {
       builder: (ctx) {
         return Container(
           decoration: BoxDecoration(
-            color: isDark ? const Color(0xFF0F172A) : Colors.white,
+            color: isDark ? AppColors.primary : Colors.white,
             borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
             border: Border.all(
               color: isAdded
@@ -504,35 +516,15 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> _confirmCleanAndResync() async {
-    final confirmed = await showDialog<bool>(
-      context: context,
-      builder: (ctx) => AlertDialog(
-        title: Text(
-          AppStrings.dbCleanDialogTitle,
-          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
-        ),
-        content: Text(
-          AppStrings.dbCleanDialogDesc,
-          style: const TextStyle(fontSize: 13.5, height: 1.45),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(ctx).pop(false),
-            child: Text(AppStrings.dbCancelBtn),
-          ),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              backgroundColor: AppColors.danger,
-              foregroundColor: Colors.white,
-            ),
-            onPressed: () => Navigator.of(ctx).pop(true),
-            child: Text(
-              AppStrings.dbCleanConfirmBtn,
-              style: const TextStyle(fontWeight: FontWeight.bold),
-            ),
-          ),
-        ],
-      ),
+    final confirmed = await AppDialogs.confirm(
+      context,
+      title: AppStrings.dbCleanDialogTitle,
+      message: AppStrings.dbCleanDialogDesc,
+      confirmLabel: AppStrings.dbCleanConfirmBtn,
+      cancelLabel: AppStrings.dbCancelBtn,
+      destructive: true,
+      icon: Icons.cleaning_services_rounded,
+      isHindi: AppStrings.isHindi,
     );
 
     if (confirmed == true) {
@@ -581,7 +573,7 @@ class _HomeScreenState extends State<HomeScreen> {
       builder: (ctx) {
         return Container(
           decoration: BoxDecoration(
-            color: isDark ? const Color(0xFF0F172A) : Colors.white,
+            color: isDark ? AppColors.primary : Colors.white,
             borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
             border: Border.all(color: AppColors.sealGold, width: 1.5),
           ),
@@ -746,7 +738,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ],
                   ),
-                  backgroundColor: const Color(0xFF0F172A), // Deep Slate Navy
+                  backgroundColor: AppColors.primary, // Deep Slate Navy
                   elevation: 8,
                   duration: const Duration(seconds: 2),
                   behavior: SnackBarBehavior.floating,
@@ -813,7 +805,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         Text(
                           AppStrings.appSubtitle,
                           style: TextStyle(
-                            color: isDark ? AppColors.darkTextSecondary : const Color(0xFF94A3B8),
+                            color: isDark ? AppColors.darkTextSecondary : AppColors.darkTextSecondary,
                             fontSize: 11,
                           ),
                         ),
@@ -942,10 +934,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 colors: [Color(0xFF0F172A), Color(0xFF1E3A8A)],
               ),
               borderRadius: BorderRadius.circular(8),
-              border: Border.all(color: const Color(0xFF38BDF8), width: 1.5),
+              border: Border.all(color: AppColors.accentBright, width: 1.5),
               boxShadow: [
                 BoxShadow(
-                  color: const Color(0xFF38BDF8).withValues(alpha: 0.25),
+                  color: AppColors.accentBright.withValues(alpha: 0.25),
                   blurRadius: 8,
                   offset: const Offset(0, 2),
                 ),
@@ -980,8 +972,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF38BDF8),
-                    foregroundColor: const Color(0xFF0F172A),
+                    backgroundColor: AppColors.accentBright,
+                    foregroundColor: AppColors.primary,
                     padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                     minimumSize: const Size(0, 32),
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
@@ -1017,23 +1009,31 @@ class _HomeScreenState extends State<HomeScreen> {
               width: 4,
               height: 18,
               decoration: BoxDecoration(
-                color: ExamService.instance.isPaper2 ? const Color(0xFF8B5CF6) : AppColors.sealGold,
+                color: ExamService.instance.isPaper2 ? AppColors.violetBright : AppColors.sealGold,
                 borderRadius: BorderRadius.circular(2),
               ),
             ),
             const SizedBox(width: 8),
-            Text(
-              _mockForms.isNotEmpty
-                  ? (isHi
-                      ? '2026 मॉडल प्रश्न-पत्र (${_mockForms.length} सेट)'
-                      : '2026 Model Test Papers (${_mockForms.length} Sets)')
-                  : (isHi
-                      ? 'विगत वर्ष प्रश्न-पत्र (${_paperForms.length} सेट)'
-                      : 'Previous Year Solved Papers (${_paperForms.length} Sets)'),
-              style: AppTypography.titleMedium(
-                color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
-              ).copyWith(fontSize: 14.5),
+            Expanded(
+              child: Text(
+                _mockForms.isNotEmpty
+                    ? (isHi
+                        ? '2026 मॉडल प्रश्न-पत्र (${_mockForms.length} सेट)'
+                        : '2026 Model Test Papers (${_mockForms.length} Sets)')
+                    : (isHi
+                        ? 'विगत वर्ष प्रश्न-पत्र (${_paperForms.length} सेट)'
+                        : 'Previous Year Solved Papers (${_paperForms.length} Sets)'),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: AppTypography.titleMedium(
+                  color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
+                ).copyWith(fontSize: 14.5),
+              ),
             ),
+            if (ExamService.instance.isPaper2) ...[
+              const SizedBox(width: 8),
+              _buildStreamBadge(isDark),
+            ],
           ],
         ),
         const SizedBox(height: 12),
@@ -1109,7 +1109,7 @@ class _HomeScreenState extends State<HomeScreen> {
               margin: const EdgeInsets.only(bottom: 14),
               padding: const EdgeInsets.all(5),
               decoration: BoxDecoration(
-                color: isDark ? AppColors.darkCard : const Color(0xFFF1F5F9),
+                color: isDark ? AppColors.darkCard : AppColors.primarySubtle,
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(
                   color: isDark ? AppColors.darkBorder : AppColors.lightBorder,
@@ -1131,7 +1131,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           },
                           borderRadius: BorderRadius.circular(8),
                           child: AnimatedContainer(
-                            duration: const Duration(milliseconds: 200),
+                            duration: AppMotion.base,
+                            curve: AppMotion.standard,
                             padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 6),
                             decoration: BoxDecoration(
                               color: !isCtet
@@ -1191,7 +1192,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           },
                           borderRadius: BorderRadius.circular(8),
                           child: AnimatedContainer(
-                            duration: const Duration(milliseconds: 200),
+                            duration: AppMotion.base,
+                            curve: AppMotion.standard,
                             padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 6),
                             decoration: BoxDecoration(
                               color: isCtet
@@ -1269,15 +1271,16 @@ class _HomeScreenState extends State<HomeScreen> {
                             },
                             borderRadius: BorderRadius.circular(6),
                             child: AnimatedContainer(
-                              duration: const Duration(milliseconds: 200),
+                              duration: AppMotion.base,
+                              curve: AppMotion.standard,
                               padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 4),
                               decoration: BoxDecoration(
                                 color: !isP2
-                                    ? (isDark ? const Color(0xFF0284C7).withValues(alpha: 0.22) : const Color(0xFFE0F2FE))
+                                    ? (isDark ? AppColors.accent.withValues(alpha: 0.22) : AppColors.accentSoft)
                                     : Colors.transparent,
                                 borderRadius: BorderRadius.circular(6),
                                 border: !isP2
-                                    ? Border.all(color: const Color(0xFF0284C7), width: 1.5)
+                                    ? Border.all(color: AppColors.accent, width: 1.5)
                                     : null,
                               ),
                               child: FittedBox(
@@ -1288,16 +1291,16 @@ class _HomeScreenState extends State<HomeScreen> {
                                     Icon(
                                       !isP2 ? Icons.check_circle_rounded : Icons.radio_button_unchecked_rounded,
                                       size: 13,
-                                      color: !isP2 ? const Color(0xFF0284C7) : (isDark ? AppColors.darkTextMuted : AppColors.lightTextMuted),
+                                      color: !isP2 ? AppColors.accent : (isDark ? AppColors.darkTextMuted : AppColors.lightTextMuted),
                                     ),
                                     const SizedBox(width: 4),
                                     Text(
-                                      AppStrings.isHindi ? 'पेपर-1 (कक्षा 1–5)' : 'Paper-1 (Classes 1–5)',
+                                      AppStrings.paper1Label,
                                       style: TextStyle(
                                         fontSize: 11.5,
                                         fontWeight: !isP2 ? FontWeight.w800 : FontWeight.w600,
                                         color: !isP2
-                                            ? (isDark ? const Color(0xFF38BDF8) : const Color(0xFF0369A1))
+                                            ? (isDark ? AppColors.accentBright : const Color(0xFF0369A1))
                                             : (isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary),
                                       ),
                                     ),
@@ -1319,15 +1322,16 @@ class _HomeScreenState extends State<HomeScreen> {
                             },
                             borderRadius: BorderRadius.circular(6),
                             child: AnimatedContainer(
-                              duration: const Duration(milliseconds: 200),
+                              duration: AppMotion.base,
+                              curve: AppMotion.standard,
                               padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 4),
                               decoration: BoxDecoration(
                                 color: isP2
-                                    ? (isDark ? const Color(0xFF8B5CF6).withValues(alpha: 0.25) : const Color(0xFFF3E8FF))
+                                    ? (isDark ? AppColors.violetBright.withValues(alpha: 0.25) : AppColors.violetSoft)
                                     : Colors.transparent,
                                 borderRadius: BorderRadius.circular(6),
                                 border: isP2
-                                    ? Border.all(color: const Color(0xFF8B5CF6), width: 1.5)
+                                    ? Border.all(color: AppColors.violetBright, width: 1.5)
                                     : null,
                               ),
                               child: FittedBox(
@@ -1338,16 +1342,16 @@ class _HomeScreenState extends State<HomeScreen> {
                                     Icon(
                                       isP2 ? Icons.check_circle_rounded : Icons.radio_button_unchecked_rounded,
                                       size: 13,
-                                      color: isP2 ? const Color(0xFF8B5CF6) : (isDark ? AppColors.darkTextMuted : AppColors.lightTextMuted),
+                                      color: isP2 ? AppColors.violetBright : (isDark ? AppColors.darkTextMuted : AppColors.lightTextMuted),
                                     ),
                                     const SizedBox(width: 4),
                                     Text(
-                                      AppStrings.isHindi ? 'पेपर-2 (कक्षा 6–8)' : 'Paper-2 (Classes 6–8)',
+                                      AppStrings.paper2Label,
                                       style: TextStyle(
                                         fontSize: 11.5,
                                         fontWeight: isP2 ? FontWeight.w800 : FontWeight.w600,
                                         color: isP2
-                                            ? (isDark ? const Color(0xFFA78BFA) : const Color(0xFF6D28D9))
+                                            ? (isDark ? AppColors.violetLight : AppColors.violet)
                                             : (isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary),
                                       ),
                                     ),
@@ -1360,12 +1364,136 @@ class _HomeScreenState extends State<HomeScreen> {
                       ],
                     ),
                   ),
+                  _buildStreamSwitcherRow(isDark),
                 ],
               ),
             );
           },
         );
       },
+    );
+  }
+
+  /// Paper 2 has two streams (Mathematics & Science / Social Studies).
+  /// Without this row the candidate cannot tell which one a paper belongs
+  /// to, so the stream is always visible and switchable.
+  Widget _buildStreamSwitcherRow(bool isDark) {
+    if (!ExamService.instance.isPaper2) return const SizedBox.shrink();
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const SizedBox(height: 10),
+        Row(
+          children: [
+            Icon(
+              Icons.tune_rounded,
+              size: 13,
+              color: isDark ? AppColors.darkTextMuted : AppColors.lightTextMuted,
+            ),
+            const SizedBox(width: 5),
+            Text(
+              AppStrings.streamSwitcherLabel,
+              style: TextStyle(
+                fontSize: 11.5,
+                fontWeight: FontWeight.w600,
+                color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary,
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 6),
+        Container(
+          padding: const EdgeInsets.all(3),
+          decoration: BoxDecoration(
+            color: isDark ? AppColors.darkCardElevated : Colors.white,
+            borderRadius: BorderRadius.circular(8),
+            border: Border.all(
+              color: isDark ? AppColors.darkBorder : AppColors.lightBorder,
+              width: 1.0,
+            ),
+          ),
+          child: Row(
+            children: [
+              Expanded(
+                child: _buildStreamOption(isDark, social: false),
+              ),
+              const SizedBox(width: 4),
+              Expanded(
+                child: _buildStreamOption(isDark, social: true),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildStreamOption(bool isDark, {required bool social}) {
+    final active = ExamService.instance.isSocialStream == social;
+    const streamBlue = Color(0xFF0284C7);
+    const streamViolet = Color(0xFF8B5CF6);
+    final accent = social ? streamViolet : streamBlue;
+    final accentText = social
+        ? (isDark ? AppColors.violetLight : AppColors.violet)
+        : (isDark ? AppColors.accentBright : const Color(0xFF0369A1));
+    final tint = social
+        ? (isDark ? streamViolet.withValues(alpha: 0.25) : AppColors.violetSoft)
+        : (isDark ? streamBlue.withValues(alpha: 0.22) : AppColors.accentSoft);
+
+    return InkWell(
+      onTap: () async {
+        if (active) return;
+        await ExamService.instance.setStream(
+          social ? AppStream.socialStudies : AppStream.mathScience,
+        );
+        if (!mounted) return;
+        _loadData();
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(AppStrings.streamChanged)),
+        );
+      },
+      borderRadius: BorderRadius.circular(6),
+      child: AnimatedContainer(
+        duration: AppMotion.base,
+        curve: AppMotion.standard,
+        padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 4),
+        decoration: BoxDecoration(
+          color: active ? tint : Colors.transparent,
+          borderRadius: BorderRadius.circular(6),
+          border: active ? Border.all(color: accent, width: 1.5) : null,
+        ),
+        child: FittedBox(
+          fit: BoxFit.scaleDown,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                active
+                    ? Icons.check_circle_rounded
+                    : Icons.radio_button_unchecked_rounded,
+                size: 13,
+                color: active
+                    ? accent
+                    : (isDark ? AppColors.darkTextMuted : AppColors.lightTextMuted),
+              ),
+              const SizedBox(width: 4),
+              Text(
+                social ? AppStrings.streamSocialStudies : AppStrings.streamMathScience,
+                style: TextStyle(
+                  fontSize: 11.5,
+                  fontWeight: active ? FontWeight.w800 : FontWeight.w600,
+                  color: active
+                      ? accentText
+                      : (isDark
+                          ? AppColors.darkTextSecondary
+                          : AppColors.lightTextSecondary),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 
@@ -1816,7 +1944,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     onTap: () => ExamService.instance.setTestMode(AppTestMode.cbt),
                     borderRadius: BorderRadius.circular(8),
                     child: AnimatedContainer(
-                      duration: const Duration(milliseconds: 200),
+                      duration: AppMotion.base,
+                      curve: AppMotion.standard,
                       padding: const EdgeInsets.all(12),
                       decoration: BoxDecoration(
                         color: isCbt
@@ -1870,7 +1999,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     onTap: () => ExamService.instance.setTestMode(AppTestMode.booklet),
                     borderRadius: BorderRadius.circular(8),
                     child: AnimatedContainer(
-                      duration: const Duration(milliseconds: 200),
+                      duration: AppMotion.base,
+                      curve: AppMotion.standard,
                       padding: const EdgeInsets.all(12),
                       decoration: BoxDecoration(
                         color: !isCbt
@@ -2068,10 +2198,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                     decoration: BoxDecoration(
-                      color: isDark ? const Color(0xFF0F172A) : const Color(0xFFF1F5F9),
+                      color: isDark ? AppColors.primary : AppColors.primarySubtle,
                       borderRadius: BorderRadius.circular(6),
                       border: Border.all(
-                        color: isDark ? AppColors.darkBorder : const Color(0xFFCBD5E1),
+                        color: isDark ? AppColors.darkBorder : AppColors.lightBorder,
                       ),
                     ),
                     child: Row(
@@ -2083,7 +2213,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             AppStrings.langNotice,
                             style: TextStyle(
                               fontSize: 11.5,
-                              color: isDark ? AppColors.darkTextSecondary : const Color(0xFF475569),
+                              color: isDark ? AppColors.darkTextSecondary : AppColors.deskGray,
                               height: 1.35,
                             ),
                           ),
@@ -2105,7 +2235,7 @@ class _HomeScreenState extends State<HomeScreen> {
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
-        backgroundColor: isDark ? const Color(0xFF0F172A) : Colors.white,
+        backgroundColor: isDark ? AppColors.primary : Colors.white,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
           side: const BorderSide(color: AppColors.sealGold, width: 1.5),
@@ -2139,7 +2269,7 @@ class _HomeScreenState extends State<HomeScreen> {
             onPressed: () => Navigator.of(ctx).pop(),
             style: ElevatedButton.styleFrom(
               backgroundColor: AppColors.sealGold,
-              foregroundColor: const Color(0xFF0F172A),
+              foregroundColor: AppColors.primary,
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
             ),
             child: Text(AppStrings.understoodBtn),
@@ -2489,7 +2619,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ElevatedButton.icon(
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.sealGold,
-                        foregroundColor: const Color(0xFF0F172A),
+                        foregroundColor: AppColors.primary,
                         padding: const EdgeInsets.symmetric(vertical: 11, horizontal: 16),
                         minimumSize: const Size(double.infinity, 42),
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
@@ -2728,7 +2858,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                     decoration: BoxDecoration(
-                      color: isDark ? AppColors.darkCardElevated : const Color(0xFFF1F5F9),
+                      color: isDark ? AppColors.darkCardElevated : AppColors.primarySubtle,
                       borderRadius: BorderRadius.circular(4),
                       border: Border.all(
                         color: isDark ? AppColors.darkBorder : AppColors.lightBorder,
@@ -2754,7 +2884,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                     decoration: BoxDecoration(
-                      color: isDark ? AppColors.darkCardElevated : const Color(0xFFF1F5F9),
+                      color: isDark ? AppColors.darkCardElevated : AppColors.primarySubtle,
                       borderRadius: BorderRadius.circular(4),
                       border: Border.all(
                         color: isDark ? AppColors.darkBorder : AppColors.lightBorder,
@@ -2818,7 +2948,7 @@ class _HomeScreenState extends State<HomeScreen> {
               // Action Button 1: Check & Update (Normal Sync)
               ElevatedButton.icon(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: isDark ? AppColors.darkCardElevated : const Color(0xFFF1F5F9),
+                  backgroundColor: isDark ? AppColors.darkCardElevated : AppColors.primarySubtle,
                   foregroundColor: isDark ? AppColors.sealGoldLight : AppColors.primary,
                   padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
                   shape: RoundedRectangleBorder(
@@ -3061,8 +3191,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildMetaChip(IconData icon, String label, bool isDark, [bool isPaper2 = false]) {
     final chipColor = isPaper2
-        ? const Color(0xFFA78BFA)
-        : (isDark ? AppColors.sealGoldLight : const Color(0xFF0284C7));
+        ? AppColors.violetLight
+        : (isDark ? AppColors.sealGoldLight : AppColors.accent);
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -3100,13 +3230,13 @@ class _HomeScreenState extends State<HomeScreen> {
               Container(
                 padding: const EdgeInsets.all(4),
                 decoration: BoxDecoration(
-                  color: (isPaper2 ? const Color(0xFF8B5CF6) : AppColors.sealGold).withValues(alpha: 0.15),
+                  color: (isPaper2 ? AppColors.violetBright : AppColors.sealGold).withValues(alpha: 0.15),
                   shape: BoxShape.circle,
                 ),
                 child: Icon(
                   Icons.verified_rounded,
                   size: 15,
-                  color: isPaper2 ? const Color(0xFF8B5CF6) : AppColors.sealGold,
+                  color: isPaper2 ? AppColors.violetBright : AppColors.sealGold,
                 ),
               ),
               const SizedBox(width: 6),
@@ -3126,10 +3256,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               const SizedBox(width: 8),
+              if (isPaper2) ...[
+                _buildStreamBadge(isDark),
+                const SizedBox(width: 8),
+              ],
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                 decoration: BoxDecoration(
-                  color: isDark ? AppColors.darkCardElevated : const Color(0xFFF1F5F9),
+                  color: isDark ? AppColors.darkCardElevated : AppColors.primarySubtle,
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(
                     color: isDark ? AppColors.darkBorder : AppColors.lightBorder,
@@ -3141,7 +3275,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   style: TextStyle(
                     fontSize: 11,
                     fontWeight: FontWeight.w600,
-                    color: isPaper2 ? const Color(0xFFA78BFA) : (isDark ? AppColors.sealGoldLight : const Color(0xFF0284C7)),
+                    color: isPaper2 ? AppColors.violetLight : (isDark ? AppColors.sealGoldLight : AppColors.accent),
                   ),
                 ),
               ),
@@ -3200,8 +3334,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(
                     color: isPaper2
-                        ? const Color(0xFF8B5CF6)
-                        : (isDark ? AppColors.sealGold : const Color(0xFF0284C7)),
+                        ? AppColors.violetBright
+                        : (isDark ? AppColors.sealGold : AppColors.accent),
                     width: 1.5,
                   ),
                   boxShadow: [
@@ -3224,11 +3358,11 @@ class _HomeScreenState extends State<HomeScreen> {
                         Container(
                           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
                           decoration: BoxDecoration(
-                            color: isDark ? const Color(0xFF1E293B) : const Color(0xFFF1F5F9),
+                            color: isDark ? AppColors.primaryLight : AppColors.primarySubtle,
                             border: Border.all(
                               color: isPaper2
-                                  ? const Color(0xFF8B5CF6)
-                                  : (isDark ? AppColors.sealGold : const Color(0xFF0284C7)),
+                                  ? AppColors.violetBright
+                                  : (isDark ? AppColors.sealGold : AppColors.accent),
                               width: 1.4,
                             ),
                             borderRadius: BorderRadius.circular(5),
@@ -3243,8 +3377,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                   fontWeight: FontWeight.bold,
                                   letterSpacing: 0.5,
                                   color: isPaper2
-                                      ? const Color(0xFFA78BFA)
-                                      : (isDark ? AppColors.sealGoldLight : const Color(0xFF0284C7)),
+                                      ? AppColors.violetLight
+                                      : (isDark ? AppColors.sealGoldLight : AppColors.accent),
                                 ),
                               ),
                               const SizedBox(width: 4),
@@ -3254,8 +3388,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                   fontSize: 13,
                                   fontWeight: FontWeight.w900,
                                   color: isPaper2
-                                      ? const Color(0xFFA78BFA)
-                                      : (isDark ? AppColors.sealGoldLight : const Color(0xFF0284C7)),
+                                      ? AppColors.violetLight
+                                      : (isDark ? AppColors.sealGoldLight : AppColors.accent),
                                 ),
                               ),
                             ],
@@ -3281,7 +3415,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   label: isPaper2
                                       ? (isHi ? 'कक्षा 6-8' : 'Classes 6-8')
                                       : (isHi ? 'कक्षा 1-5' : 'Classes 1-5'),
-                                  color: isPaper2 ? const Color(0xFF8B5CF6) : const Color(0xFF0284C7),
+                                  color: isPaper2 ? AppColors.violetBright : AppColors.accent,
                                   isSolid: false,
                                 ),
                                 const SizedBox(width: 5),
@@ -3339,8 +3473,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         backgroundColor: isPaper2
-                            ? (isDark ? const Color(0xFF8B5CF6) : const Color(0xFF7C3AED))
-                            : (isDark ? AppColors.sealGold : const Color(0xFF0284C7)),
+                            ? (isDark ? AppColors.violetBright : AppColors.math)
+                            : (isDark ? AppColors.sealGold : AppColors.accent),
                         foregroundColor: (isPaper2 || !isDark) ? Colors.white : AppColors.darkBg,
                         padding: const EdgeInsets.symmetric(vertical: 8),
                         minimumSize: const Size(double.infinity, 38),
@@ -3404,15 +3538,16 @@ class _HomeScreenState extends State<HomeScreen> {
             children: List.generate(carouselList.length, (dotIdx) {
               final isSelected = dotIdx == _currentCarouselPage;
               return AnimatedContainer(
-                duration: const Duration(milliseconds: 250),
+                duration: AppMotion.slow,
+                curve: AppMotion.standard,
                 margin: const EdgeInsets.symmetric(horizontal: 3),
                 width: isSelected ? 20 : 6,
                 height: 5,
                 decoration: BoxDecoration(
                   color: isSelected
                       ? (isPaper2
-                          ? const Color(0xFF8B5CF6)
-                          : (isDark ? AppColors.sealGold : const Color(0xFF0284C7)))
+                          ? AppColors.violetBright
+                          : (isDark ? AppColors.sealGold : AppColors.accent))
                       : (isDark ? Colors.white24 : Colors.black12),
                   borderRadius: BorderRadius.circular(3),
                 ),
@@ -3491,7 +3626,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       constraints: const BoxConstraints(minWidth: 54, minHeight: 54),
                       padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
                       decoration: BoxDecoration(
-                        color: isDark ? AppColors.darkCardElevated : const Color(0xFFF8FAFC),
+                        color: isDark ? AppColors.darkCardElevated : AppColors.darkTextPrimary,
                         border: Border.all(
                           color: isDark ? AppColors.sealGoldLight : AppColors.primary,
                           width: 2,
@@ -3754,7 +3889,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       constraints: const BoxConstraints(minWidth: 46, minHeight: 46),
                       padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 4),
                       decoration: BoxDecoration(
-                        color: isDark ? AppColors.darkCardElevated : const Color(0xFFF8FAFC),
+                        color: isDark ? AppColors.darkCardElevated : AppColors.darkTextPrimary,
                         border: Border.all(
                           color: isDark ? AppColors.sealGoldLight : AppColors.primary,
                           width: 1.5,
@@ -3887,6 +4022,41 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
+  /// A small badge that names the active paper-2 stream.
+  Widget _buildStreamBadge(bool isDark) {
+    final social = ExamService.instance.isSocialStream;
+    final color = social ? AppColors.violetBright : AppColors.accent;
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+      decoration: BoxDecoration(
+        color: color.withValues(alpha: isDark ? 0.25 : 0.14),
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: color.withValues(alpha: 0.6), width: 1),
+      ),
+      child: Text(
+        social ? AppStrings.streamSocialStudies : AppStrings.streamMathScience,
+        style: TextStyle(
+          fontSize: 10.5,
+          fontWeight: FontWeight.w700,
+          color: social
+              ? (isDark ? AppColors.violetLight : AppColors.violet)
+              : (isDark ? AppColors.accentBright : const Color(0xFF0369A1)),
+        ),
+      ),
+    );
+  }
+
+  /// Paper 2 runs in two streams and the candidate attempts only one of
+  /// them, so the *other* stream must not be offered at all.  Every other
+  /// section (CDP, the languages) stays.
+  bool _isInactiveStreamSection(String code) {
+    final key = code.toLowerCase();
+    final isSocial = key == 'social_studies' || key == 'social' || key == 'sst';
+    final isMath = key == 'math_science' || key == 'science';
+    if (!isSocial && !isMath) return false;
+    return ExamService.instance.isSocialStream ? isMath : isSocial;
+  }
+
   Widget _buildSubjectGrid(bool isDark) {
     final isPaper2 = ExamService.instance.isPaper2;
     final isHi = LanguageService.instance.isHindi;
@@ -3898,6 +4068,9 @@ class _HomeScreenState extends State<HomeScreen> {
     final subjects = <Map<String, dynamic>>[];
     var index = 0;
     for (final code in SectionCatalog.forPaper(isPaper2 ? 2 : 1)) {
+      // Paper 2 has two streams, but the candidate attempts only one of
+      // them, so the other stream must not show up in the grid.
+      if (isPaper2 && _isInactiveStreamSection(code)) continue;
       final count = available[code] ?? 0;
       if (count <= 0) continue;
       index++;

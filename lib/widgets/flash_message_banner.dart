@@ -5,6 +5,7 @@ import '../design_system/app_radius.dart';
 import '../models/flash_message.dart';
 import '../services/flash_message_service.dart';
 import '../services/language_service.dart';
+import '../design_system/app_motion.dart';
 
 class FlashMessageBanner extends StatefulWidget {
   final VoidCallback? onActionTap;
@@ -51,7 +52,7 @@ class _FlashMessageBannerState extends State<FlashMessageBanner> {
       final nextPage = (_currentPage + 1) % _messages.length;
       _pageController.animateToPage(
         nextPage,
-        duration: const Duration(milliseconds: 600),
+        duration: AppMotion.page,
         curve: Curves.easeInOutCubic,
       );
     });
@@ -103,7 +104,7 @@ class _FlashMessageBannerState extends State<FlashMessageBanner> {
         return Container(
           margin: const EdgeInsets.only(bottom: 14),
           decoration: BoxDecoration(
-            color: isDark ? const Color(0xFF0F172A) : const Color(0xFF1E293B),
+            color: isDark ? AppColors.primary : AppColors.primaryLight,
             borderRadius: AppRadius.roundedMd,
             border: Border.all(
               color: AppColors.sealGold.withValues(alpha: 0.6),
@@ -140,7 +141,7 @@ class _FlashMessageBannerState extends State<FlashMessageBanner> {
                     final IconData typeIcon;
                     switch (msg.type) {
                       case 'update':
-                        accentColor = const Color(0xFF38BDF8);
+                        accentColor = AppColors.accentBright;
                         typeIcon = Icons.system_update_rounded;
                         break;
                       case 'success':
@@ -149,7 +150,7 @@ class _FlashMessageBannerState extends State<FlashMessageBanner> {
                         break;
                       case 'alert':
                       case 'warning':
-                        accentColor = const Color(0xFFF59E0B);
+                        accentColor = AppColors.goldBright;
                         typeIcon = Icons.notification_important_rounded;
                         break;
                       default:
@@ -242,7 +243,7 @@ class _FlashMessageBannerState extends State<FlashMessageBanner> {
                             Container(
                               padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
                               decoration: BoxDecoration(
-                                color: const Color(0xFF334155),
+                                color: AppColors.lightTextSecondary,
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               child: Text(
@@ -289,17 +290,18 @@ class _FlashMessageBannerState extends State<FlashMessageBanner> {
                     onTap: () {
                       _pageController.animateToPage(
                         idx,
-                        duration: const Duration(milliseconds: 350),
+                        duration: AppMotion.slow,
                         curve: Curves.easeInOutCubic,
                       );
                     },
                     child: AnimatedContainer(
-                      duration: const Duration(milliseconds: 250),
+                      duration: AppMotion.slow,
+                      curve: AppMotion.standard,
                       margin: const EdgeInsets.symmetric(horizontal: 3),
                       width: isActive ? 18 : 6,
                       height: 5,
                       decoration: BoxDecoration(
-                        color: isActive ? AppColors.sealGold : const Color(0xFF475569),
+                        color: isActive ? AppColors.sealGold : AppColors.deskGray,
                         borderRadius: BorderRadius.circular(3),
                       ),
                     ),

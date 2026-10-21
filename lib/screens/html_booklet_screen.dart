@@ -7,6 +7,7 @@ import '../models/test_session.dart';
 import '../models/mock_config.dart';
 import '../database/db_helper.dart';
 import '../design_system/app_colors.dart';
+import '../design_system/app_dialogs.dart';
 import '../design_system/app_snack_bar.dart';
 import '../widgets/question_report_sheet.dart';
 import '../services/html_booklet_builder.dart';
@@ -73,7 +74,7 @@ class _HtmlBookletScreenState extends State<HtmlBookletScreen> {
       final isDark = Theme.of(context).brightness == Brightness.dark;
       final controller = WebViewController()
         ..setJavaScriptMode(JavaScriptMode.unrestricted)
-        ..setBackgroundColor(isDark ? const Color(0xFF020617) : Colors.white)
+        ..setBackgroundColor(isDark ? AppColors.primaryDark : Colors.white)
         ..setNavigationDelegate(
           NavigationDelegate(
             onPageStarted: (url) {
@@ -287,45 +288,18 @@ class _HtmlBookletScreenState extends State<HtmlBookletScreen> {
     final answered = widget.session.selectedAnswers.length;
     final total = widget.session.questions.length;
 
-    final action = await showDialog<String>(
-      context: context,
-      barrierDismissible: false,
-      builder: (ctx) => AlertDialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        title: Row(
-          children: const [
-            Icon(Icons.warning_amber_rounded, color: AppColors.warning),
-            SizedBox(width: 8),
-            Text('परीक्षा से बाहर निकलें?', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-          ],
-        ),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('आपने $total में से $answered प्रश्न हल किए हैं।'),
-            const SizedBox(height: 12),
-            const Text(
-              'यदि आप अभी बाहर जाते हैं, तो आपका मौजूदा टेस्ट सत्र समाप्त हो जाएगा।',
-              style: TextStyle(fontSize: 13, color: Colors.grey),
-            ),
-          ],
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(ctx, 'continue'),
-            child: const Text('▶ हल करना जारी रखें', style: TextStyle(color: AppColors.success, fontWeight: FontWeight.bold)),
-          ),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(backgroundColor: AppColors.danger),
-            onPressed: () => Navigator.pop(ctx, 'exit'),
-            child: const Text('✕ बाहर निकलें', style: TextStyle(color: Colors.white)),
-          ),
-        ],
-      ),
+    final leave = await AppDialogs.confirm(
+      context,
+      title: 'परीक्षा से बाहर निकलें?',
+      message:
+          'आपने $total में से $answered प्रश्न हल किए हैं। यदि आप अभी बाहर जाते हैं, तो आपका मौजूदा टेस्ट सत्र समाप्त हो जाएगा।',
+      confirmLabel: '✕ बाहर निकलें',
+      cancelLabel: '▶ हल करना जारी रखें',
+      destructive: true,
+      icon: Icons.warning_amber_rounded,
     );
 
-    return action == 'exit';
+    return leave;
   }
 
   @override
@@ -341,7 +315,7 @@ class _HtmlBookletScreenState extends State<HtmlBookletScreen> {
         }
       },
       child: Scaffold(
-        backgroundColor: const Color(0xFF0F172A),
+        backgroundColor: AppColors.primary,
         body: SafeArea(
           top: true,
           bottom: false,

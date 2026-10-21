@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../design_system/app_colors.dart';
 import '../design_system/app_radius.dart';
 import '../design_system/app_typography.dart';
 import '../models/passage.dart';
@@ -60,16 +61,16 @@ class _PassageDisplayCardState extends State<PassageDisplayCard> {
 
     // Theme tokens
     final headerBg = isPoem
-        ? (isDark ? const Color(0xFF2E1065).withValues(alpha: 0.6) : const Color(0xFFF5F3FF))
-        : (isDark ? const Color(0xFF0F172A).withValues(alpha: 0.8) : const Color(0xFFEFF6FF));
+        ? (isDark ? AppColors.primaryDark.withValues(alpha: 0.6) : AppColors.violetSoft)
+        : (isDark ? AppColors.primary.withValues(alpha: 0.8) : const Color(0xFFEFF6FF));
 
     final borderColor = isPoem
-        ? (isDark ? const Color(0xFF6B21A8) : const Color(0xFFDDD6FE))
-        : (isDark ? const Color(0xFF1E3A8A) : const Color(0xFFBFDBFE));
+        ? (isDark ? AppColors.violet : AppColors.violetSoft)
+        : (isDark ? AppColors.accent : AppColors.accentSoft);
 
     final badgeColor = isPoem
-        ? (isDark ? const Color(0xFFC084FC) : const Color(0xFF7C3AED))
-        : (isDark ? const Color(0xFF60A5FA) : const Color(0xFF2563EB));
+        ? (isDark ? AppColors.violetLight : AppColors.math)
+        : (isDark ? AppColors.accentBright : AppColors.optionSelectedBorder);
 
     final badgeBg = badgeColor.withValues(alpha: isDark ? 0.2 : 0.12);
 
@@ -111,7 +112,7 @@ class _PassageDisplayCardState extends State<PassageDisplayCard> {
                       style: TextStyle(
                         fontSize: 13,
                         fontWeight: FontWeight.w600,
-                        color: isDark ? Colors.white : const Color(0xFF1E293B),
+                        color: isDark ? Colors.white : AppColors.primaryLight,
                       ),
                     ),
                   ),
@@ -194,7 +195,7 @@ class _PassageDisplayCardState extends State<PassageDisplayCard> {
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2.5),
                         decoration: BoxDecoration(
-                          color: isDark ? Colors.black26 : const Color(0xFFE2E8F0),
+                          color: isDark ? Colors.black26 : AppColors.borderStrong,
                           borderRadius: BorderRadius.circular(4),
                         ),
                         child: Text(
@@ -202,7 +203,7 @@ class _PassageDisplayCardState extends State<PassageDisplayCard> {
                           style: TextStyle(
                             fontSize: 10.5,
                             fontWeight: FontWeight.w600,
-                            color: isDark ? const Color(0xFF94A3B8) : const Color(0xFF475569),
+                            color: isDark ? AppColors.darkTextSecondary : AppColors.deskGray,
                           ),
                         ),
                       ),
@@ -211,7 +212,7 @@ class _PassageDisplayCardState extends State<PassageDisplayCard> {
                     Icon(
                       _isExpanded ? Icons.keyboard_arrow_up_rounded : Icons.keyboard_arrow_down_rounded,
                       size: 20,
-                      color: isDark ? const Color(0xFF94A3B8) : const Color(0xFF64748B),
+                      color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
                     ),
                   ],
                 ),
@@ -226,10 +227,10 @@ class _PassageDisplayCardState extends State<PassageDisplayCard> {
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
                 decoration: BoxDecoration(
-                  color: isDark ? const Color(0xFF1E293B).withValues(alpha: 0.5) : const Color(0xFFF8FAFC),
+                  color: isDark ? AppColors.primaryLight.withValues(alpha: 0.5) : AppColors.darkTextPrimary,
                   border: Border(
                     bottom: BorderSide(
-                      color: isDark ? const Color(0xFF334155) : const Color(0xFFE2E8F0),
+                      color: isDark ? AppColors.lightTextSecondary : AppColors.borderStrong,
                       width: 0.8,
                     ),
                   ),
@@ -240,7 +241,7 @@ class _PassageDisplayCardState extends State<PassageDisplayCard> {
                     fontSize: 12.5,
                     fontStyle: FontStyle.italic,
                     fontWeight: FontWeight.w500,
-                    color: isDark ? const Color(0xFF94A3B8) : const Color(0xFF64748B),
+                    color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
                     height: 1.4,
                   ),
                 ),
@@ -256,7 +257,7 @@ class _PassageDisplayCardState extends State<PassageDisplayCard> {
               decoration: BoxDecoration(
                 color: isPoem
                     ? (isDark ? const Color(0xFF1E1430).withValues(alpha: 0.5) : const Color(0xFFFCFAFF))
-                    : (isDark ? const Color(0xFF0F172A).withValues(alpha: 0.3) : const Color(0xFFFFFFFF)),
+                    : (isDark ? AppColors.primary.withValues(alpha: 0.3) : AppColors.lightCard),
               ),
               child: SelectableText(
                 widget.passage.cleanBody,
@@ -265,7 +266,7 @@ class _PassageDisplayCardState extends State<PassageDisplayCard> {
                   fontSize: isPoem ? 16.0 : 15.0,
                   height: isPoem ? 2.0 : 1.7,
                   fontStyle: isPoem ? FontStyle.italic : FontStyle.normal,
-                  color: isDark ? const Color(0xFFE2E8F0) : const Color(0xFF1E293B),
+                  color: isDark ? AppColors.borderStrong : AppColors.primaryLight,
                   letterSpacing: isPoem ? 0.3 : 0.1,
                 ),
               ),

@@ -21,7 +21,7 @@ class AppBadge extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final effectiveColor = (isDark && (color == AppColors.primary || color == AppColors.primaryLight || color == AppColors.primaryDark))
-        ? const Color(0xFF38BDF8)
+        ? AppColors.accentBright
         : color;
 
     return Container(
@@ -40,6 +40,8 @@ class AppBadge extends StatelessWidget {
           ],
           Text(
             label,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
             style: AppTypography.labelSmall(
               color: isSolid ? Colors.white : effectiveColor,
             ).copyWith(fontWeight: FontWeight.w600),

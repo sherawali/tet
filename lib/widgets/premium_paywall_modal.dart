@@ -49,7 +49,7 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
       context: context,
       barrierDismissible: false,
       builder: (ctx) => AlertDialog(
-        backgroundColor: isDark ? const Color(0xFF0F172A) : Colors.white,
+        backgroundColor: isDark ? AppColors.primary : Colors.white,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
           side: const BorderSide(color: AppColors.sealGold, width: 2),
@@ -104,7 +104,7 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
               decoration: BoxDecoration(
-                color: isDark ? const Color(0xFF1E293B) : const Color(0xFFF0FDF4),
+                color: isDark ? AppColors.primaryLight : AppColors.successSubtle,
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(color: AppColors.correctGreen.withValues(alpha: 0.4)),
               ),
@@ -134,7 +134,7 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
               onPressed: () => Navigator.of(ctx).pop(),
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppColors.sealGold,
-                foregroundColor: const Color(0xFF0F172A),
+                foregroundColor: AppColors.primary,
                 padding: const EdgeInsets.symmetric(vertical: 12),
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
               ),
@@ -155,7 +155,7 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
 
     return Container(
       decoration: BoxDecoration(
-        color: isDark ? const Color(0xFF0F172A) : Colors.white,
+        color: isDark ? AppColors.primary : Colors.white,
         borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
         border: Border.all(
           color: AppColors.sealGold.withValues(alpha: 0.4),
@@ -281,7 +281,7 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
                   decoration: BoxDecoration(
-                    color: isDark ? const Color(0xFF1E293B) : const Color(0xFFF8FAFC),
+                    color: isDark ? AppColors.primaryLight : AppColors.darkTextPrimary,
                     borderRadius: BorderRadius.circular(12),
                     border: Border.all(
                       color: isDark ? Colors.white12 : Colors.black.withValues(alpha: 0.08),
@@ -379,7 +379,7 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
                             },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.sealGold,
-                        foregroundColor: const Color(0xFF0F172A),
+                        foregroundColor: AppColors.primary,
                         padding: const EdgeInsets.symmetric(vertical: 14),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
@@ -486,8 +486,8 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
           color: isSelected
               ? (isDark
                   ? AppColors.sealGold.withValues(alpha: 0.15)
-                  : const Color(0xFFFEF9C3))
-              : (isDark ? const Color(0xFF1E293B) : const Color(0xFFF8FAFC)),
+                  : AppColors.goldSoft)
+              : (isDark ? AppColors.primaryLight : AppColors.darkTextPrimary),
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
             color: isSelected

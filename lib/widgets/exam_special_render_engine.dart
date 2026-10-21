@@ -100,13 +100,13 @@ class ExamSpecialRenderEngine extends StatelessWidget {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2.5),
               decoration: BoxDecoration(
-                color: (isDark ? const Color(0xFF38BDF8) : AppColors.primary).withValues(alpha: isDark ? 0.2 : 0.12),
+                color: (isDark ? AppColors.accentBright : AppColors.primary).withValues(alpha: isDark ? 0.2 : 0.12),
                 borderRadius: AppRadius.roundedSm,
               ),
               child: Text(
                 'हिन्दी (Hindi)',
                 style: AppTypography.labelSmall(
-                  color: isDark ? const Color(0xFF38BDF8) : AppColors.primary,
+                  color: isDark ? AppColors.accentBright : AppColors.primary,
                 ).copyWith(fontSize: 11, fontWeight: FontWeight.bold),
               ),
             ),
@@ -141,10 +141,10 @@ class ExamSpecialRenderEngine extends StatelessWidget {
             width: double.infinity,
             padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
             decoration: BoxDecoration(
-              color: isDark ? const Color(0xFF131B2A) : const Color(0xFFF8FAFC),
+              color: isDark ? AppColors.darkCard : AppColors.darkTextPrimary,
               borderRadius: AppRadius.roundedBase,
               border: Border.all(
-                color: isDark ? const Color(0xFF26334D) : const Color(0xFFCBD5E1),
+                color: isDark ? AppColors.darkBorder : AppColors.lightBorder,
                 width: 1.0,
               ),
             ),
@@ -156,13 +156,13 @@ class ExamSpecialRenderEngine extends StatelessWidget {
                     Icon(
                       Icons.translate_rounded,
                       size: 14,
-                      color: isDark ? const Color(0xFF94A3B8) : const Color(0xFF64748B),
+                      color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
                     ),
                     const SizedBox(width: 5),
                     Text(
                       'English Translation',
                       style: AppTypography.labelSmall(
-                        color: isDark ? const Color(0xFF94A3B8) : const Color(0xFF64748B),
+                        color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
                       ).copyWith(fontWeight: FontWeight.bold, fontSize: 11),
                     ),
                   ],
@@ -173,7 +173,7 @@ class ExamSpecialRenderEngine extends StatelessWidget {
                   isDark: isDark,
                   isTranslation: true,
                   style: AppTypography.bodyMedium(
-                    color: isDark ? const Color(0xFFCBD5E1) : const Color(0xFF334155),
+                    color: isDark ? AppColors.lightBorder : AppColors.lightTextSecondary,
                   ).copyWith(fontSize: 15.0, height: 1.5, fontStyle: FontStyle.italic),
                 ),
               ],

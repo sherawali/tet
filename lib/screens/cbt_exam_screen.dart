@@ -21,6 +21,7 @@ import '../widgets/question_figure_catalog.dart';
 import '../database/db_helper.dart';
 import '../design_system/app_strings.dart';
 import 'result_screen.dart';
+import '../design_system/app_motion.dart';
 
 class CbtExamScreen extends StatefulWidget {
   final TestSession session;
@@ -141,7 +142,7 @@ class _CbtExamScreenState extends State<CbtExamScreen>
     });
     _scrollController.animateTo(
       0,
-      duration: const Duration(milliseconds: 200),
+      duration: AppMotion.base,
       curve: Curves.easeInOut,
     );
   }
@@ -296,7 +297,7 @@ class _CbtExamScreenState extends State<CbtExamScreen>
                 Container(
                   padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
                   decoration: BoxDecoration(
-                    color: isDark ? AppColors.darkCardElevated : const Color(0xFFF1F5F9),
+                    color: isDark ? AppColors.darkCardElevated : AppColors.primarySubtle,
                     borderRadius: AppRadius.roundedBase,
                     border: Border.all(
                       color: isDark ? AppColors.darkBorder : AppColors.lightBorder,
@@ -449,7 +450,7 @@ class _CbtExamScreenState extends State<CbtExamScreen>
                         _buildLegendBadge('हल किया', AppColors.success),
                         _buildLegendBadge('समीक्षा', AppColors.warning),
                         _buildLegendBadge('छोड़ा गया', AppColors.danger),
-                        _buildLegendBadge('नहीं देखा', isDark ? const Color(0xFF94A3B8) : AppColors.lightTextMuted),
+                        _buildLegendBadge('नहीं देखा', isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted),
                       ],
                     ),
                     const SizedBox(height: 16),
@@ -483,8 +484,8 @@ class _CbtExamScreenState extends State<CbtExamScreen>
                               btnBg = AppColors.danger;
                               break;
                             case QuestionStatus.notVisited:
-                              btnBg = isDark ? const Color(0xFF1E293B) : const Color(0xFFE2E8F0);
-                              textFg = isDark ? const Color(0xFFCBD5E1) : const Color(0xFF475569);
+                              btnBg = isDark ? AppColors.primaryLight : AppColors.borderStrong;
+                              textFg = isDark ? AppColors.lightBorder : AppColors.deskGray;
                               break;
                           }
 
@@ -499,7 +500,7 @@ class _CbtExamScreenState extends State<CbtExamScreen>
                                 color: btnBg,
                                 borderRadius: AppRadius.roundedSm,
                                 border: isCurrent
-                                    ? Border.all(color: isDark ? const Color(0xFF38BDF8) : AppColors.primary, width: 2)
+                                    ? Border.all(color: isDark ? AppColors.accentBright : AppColors.primary, width: 2)
                                     : null,
                               ),
                               child: Center(
@@ -547,7 +548,12 @@ class _CbtExamScreenState extends State<CbtExamScreen>
           decoration: BoxDecoration(color: color, shape: BoxShape.circle),
         ),
         const SizedBox(width: 5),
-        Text(label, style: AppTypography.labelSmall(color: color)),
+        Text(
+          label,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          style: AppTypography.labelSmall(color: color),
+        ),
       ],
     );
   }
@@ -741,7 +747,7 @@ class _CbtExamScreenState extends State<CbtExamScreen>
                   final isLow = seconds < 600;
                   final timerColor = isLow
                       ? AppColors.danger
-                      : (isDark ? const Color(0xFF38BDF8) : AppColors.primary);
+                      : (isDark ? AppColors.accentBright : AppColors.primary);
                   return Container(
                     padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                     decoration: BoxDecoration(
@@ -791,7 +797,7 @@ class _CbtExamScreenState extends State<CbtExamScreen>
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Icon(Icons.language_rounded, size: 15, color: isDark ? const Color(0xFF38BDF8) : AppColors.primary),
+                      Icon(Icons.language_rounded, size: 15, color: isDark ? AppColors.accentBright : AppColors.primary),
                       const SizedBox(width: 5),
                       Text(
                         _languageMode.badgeLabel,
@@ -854,13 +860,13 @@ class _CbtExamScreenState extends State<CbtExamScreen>
                           if (q.displayTag != null || q.isPyq)
                             AppBadge(
                               label: q.displayTag ?? 'PYQ ${q.years ?? ''}',
-                              color: isDark ? const Color(0xFFA78BFA) : AppColors.violet,
+                              color: isDark ? AppColors.violetLight : AppColors.violet,
                               icon: Icons.history_edu_rounded,
                             ),
                           if (q.topicName != null)
                             AppBadge(
                               label: q.topicName!,
-                              color: isDark ? const Color(0xFF38BDF8) : AppColors.primary,
+                              color: isDark ? AppColors.accentBright : AppColors.primary,
                             ),
                           InkWell(
                             onTap: () => _showReportQuestionDialog(q, _currentIndex + 1),
@@ -868,10 +874,10 @@ class _CbtExamScreenState extends State<CbtExamScreen>
                             child: Container(
                               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3.5),
                               decoration: BoxDecoration(
-                                color: const Color(0xFFD97706).withValues(alpha: isDark ? 0.22 : 0.12),
+                                color: AppColors.sealGoldLight.withValues(alpha: isDark ? 0.22 : 0.12),
                                 borderRadius: BorderRadius.circular(6),
                                 border: Border.all(
-                                  color: const Color(0xFFD97706).withValues(alpha: 0.45),
+                                  color: AppColors.sealGoldLight.withValues(alpha: 0.45),
                                   width: 1,
                                 ),
                               ),
@@ -885,7 +891,7 @@ class _CbtExamScreenState extends State<CbtExamScreen>
                                     style: TextStyle(
                                       fontSize: 11.5,
                                       fontWeight: FontWeight.w700,
-                                      color: isDark ? const Color(0xFFFBBF24) : const Color(0xFFB45309),
+                                      color: isDark ? AppColors.goldBright : AppColors.sealGold,
                                     ),
                                   ),
                                 ],
@@ -985,10 +991,10 @@ class _CbtExamScreenState extends State<CbtExamScreen>
         child: AppCard(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
           color: isSelected
-              ? (isDark ? const Color(0xFF1E1B4B) : const Color(0xFFEEF2FF))
+              ? (isDark ? AppColors.indigoSurface : AppColors.infoSurface)
               : null,
           border: isSelected
-              ? BorderSide(color: isDark ? const Color(0xFF6366F1) : AppColors.primary, width: 2.0)
+              ? BorderSide(color: isDark ? AppColors.violet : AppColors.primary, width: 2.0)
               : BorderSide(
                   color: isDark ? AppColors.darkBorder : AppColors.lightBorder,
                   width: 1.0,
@@ -1002,7 +1008,7 @@ class _CbtExamScreenState extends State<CbtExamScreen>
                 height: 32,
                 decoration: BoxDecoration(
                   color: isSelected
-                      ? (isDark ? const Color(0xFF6366F1) : AppColors.primary)
+                      ? (isDark ? AppColors.violet : AppColors.primary)
                       : (isDark ? AppColors.darkCardElevated : AppColors.lightBorder),
                   shape: BoxShape.circle,
                 ),
@@ -1044,7 +1050,7 @@ class _CbtExamScreenState extends State<CbtExamScreen>
                       SmartMathText(
                         secondaryText,
                         style: TextStyle(
-                          color: isDark ? const Color(0xFF94A3B8) : const Color(0xFF475569),
+                          color: isDark ? AppColors.darkTextSecondary : AppColors.deskGray,
                           fontStyle: FontStyle.italic,
                           fontSize: 13.5,
                           height: 1.45,
@@ -1066,8 +1072,8 @@ class _CbtExamScreenState extends State<CbtExamScreen>
     final answered = widget.session.selectedAnswers.length;
     final review = widget.session.markedForReview.length;
     final ratio = total == 0 ? 0.0 : answered / total;
-    final track = isDark ? const Color(0xFF1E293B) : const Color(0xFFE2E8F0);
-    final fill = isDark ? const Color(0xFF38BDF8) : AppColors.primary;
+    final track = isDark ? AppColors.primaryLight : AppColors.borderStrong;
+    final fill = isDark ? AppColors.accentBright : AppColors.primary;
     final labelColor =
         isDark ? AppColors.darkTextMuted : AppColors.lightTextMuted;
 
@@ -1116,7 +1122,7 @@ class _CbtExamScreenState extends State<CbtExamScreen>
         alignment: Alignment.centerLeft,
         child: Text(
           'सेक्शन: ${widget.session.config.sectionFilter!.toUpperCase()}',
-          style: AppTypography.labelSmall(color: isDark ? const Color(0xFF38BDF8) : AppColors.primary),
+          style: AppTypography.labelSmall(color: isDark ? AppColors.accentBright : AppColors.primary),
         ),
       );
     }
@@ -1166,7 +1172,7 @@ class _CbtExamScreenState extends State<CbtExamScreen>
             child: ChoiceChip(
               label: Text('${s['name']} ($count)'),
               selected: isCurrentSec,
-              selectedColor: isDark ? const Color(0xFF2563EB) : AppColors.primary,
+              selectedColor: isDark ? AppColors.optionSelectedBorder : AppColors.primary,
               labelStyle: AppTypography.labelSmall(
                 color: isCurrentSec ? Colors.white : (isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary),
               ),

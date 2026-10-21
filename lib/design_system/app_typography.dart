@@ -53,6 +53,54 @@ class AppTypography {
         color: color,
       );
 
+  /// A card or a list entry that carries a slightly smaller heading.
+  static TextStyle titleSmall({Color? color}) => TextStyle(
+        fontFamily: _latin,
+        fontFamilyFallback: _fallback,
+        fontVariations: _w(600),
+        fontSize: 14,
+        color: color,
+      );
+
+  /// The big number of a result card.
+  static TextStyle displayMedium({Color? color}) => TextStyle(
+        fontFamily: _latin,
+        fontFamilyFallback: _fallback,
+        fontVariations: _w(700),
+        fontSize: 44,
+        letterSpacing: -1,
+        color: color,
+      );
+
+  /// A label that belongs to a chip or a small caption.
+  static TextStyle labelMedium({Color? color}) => TextStyle(
+        fontFamily: _ui,
+        fontFamilyFallback: _fallback,
+        fontVariations: _w(600),
+        fontSize: 13,
+        color: color,
+      );
+
+  /// The smallest readable body text (help lines under a title).
+  static TextStyle bodySmall({Color? color}) => TextStyle(
+        fontFamily: _ui,
+        fontFamilyFallback: _fallback,
+        fontVariations: _w(400),
+        fontSize: 12,
+        height: 1.45,
+        color: color,
+      );
+
+  /// A short Hindi or English line under a heading.
+  static TextStyle caption({Color? color}) => TextStyle(
+        fontFamily: _devanagari,
+        fontFamilyFallback: _fallback,
+        fontVariations: _w(400),
+        fontSize: 12.5,
+        height: 1.45,
+        color: color,
+      );
+
   // Question & Reading Content Style (Bilingual Optimized)
   static TextStyle questionText({Color? color, double fontSize = 16.5}) =>
       TextStyle(

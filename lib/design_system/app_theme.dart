@@ -50,6 +50,26 @@ class AppTheme {
         thickness: 1,
         space: 1,
       ),
+      dialogTheme: _dialogTheme(
+        surface: AppColors.darkCard,
+        title: AppColors.darkTextPrimary,
+        body: AppColors.darkTextSecondary,
+        border: AppColors.darkBorder,
+      ),
+      bottomSheetTheme: const BottomSheetThemeData(
+        backgroundColor: AppColors.darkCard,
+        surfaceTintColor: Colors.transparent,
+        modalBackgroundColor: AppColors.darkCard,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+        ),
+      ),
+      snackBarTheme: SnackBarThemeData(
+        backgroundColor: AppColors.darkCardElevated,
+        contentTextStyle: const TextStyle(color: AppColors.darkTextPrimary),
+        behavior: SnackBarBehavior.floating,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      ),
     );
   }
 
@@ -98,6 +118,57 @@ class AppTheme {
         color: AppColors.lightBorder,
         thickness: 1,
         space: 1,
+      ),
+      dialogTheme: _dialogTheme(
+        surface: AppColors.lightCard,
+        title: AppColors.lightTextPrimary,
+        body: AppColors.lightTextSecondary,
+        border: AppColors.lightBorder,
+      ),
+      bottomSheetTheme: const BottomSheetThemeData(
+        backgroundColor: AppColors.lightCard,
+        surfaceTintColor: Colors.transparent,
+        modalBackgroundColor: AppColors.lightCard,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+        ),
+      ),
+      snackBarTheme: SnackBarThemeData(
+        backgroundColor: AppColors.primary,
+        contentTextStyle: const TextStyle(color: Colors.white),
+        behavior: SnackBarBehavior.floating,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      ),
+    );
+  }
+
+  /// Every dialog of the app gets the same surface, the same corner radius
+  /// and the same gold hairline, so no two dialogs look different.
+  static DialogThemeData _dialogTheme({
+    required Color surface,
+    required Color title,
+    required Color body,
+    required Color border,
+  }) {
+    return DialogThemeData(
+      backgroundColor: surface,
+      surfaceTintColor: Colors.transparent,
+      elevation: 0,
+      shape: RoundedRectangleBorder(
+        borderRadius: AppRadius.roundedLg,
+        side: BorderSide(color: border, width: 1.2),
+      ),
+      titleTextStyle: TextStyle(
+        fontFamily: 'Outfit',
+        fontSize: 18,
+        fontWeight: FontWeight.w700,
+        color: title,
+      ),
+      contentTextStyle: TextStyle(
+        fontFamily: 'Noto Sans Devanagari',
+        fontSize: 14,
+        height: 1.5,
+        color: body,
       ),
     );
   }

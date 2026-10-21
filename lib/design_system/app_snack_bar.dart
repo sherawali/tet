@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'app_typography.dart';
+import 'app_colors.dart';
 
 /// Ultra-Premium Toast & SnackBar System
 /// Matches the app's authentic Examination Authority & Obsidian Gold / Sapphire theme.
@@ -17,8 +18,8 @@ class AppSnackBar {
       title: title ?? 'रिपोर्ट दर्ज कर ली गई है',
       message: message ?? 'प्रश्न $questionNumber · संदर्भ कोड: $reportCode · विशेषज्ञ दल जांच करेगा',
       icon: Icons.verified_rounded,
-      accentColor: const Color(0xFFF59E0B), // Seal Amber Gold
-      backgroundColor: const Color(0xFF0F172A), // Obsidian Slate
+      accentColor: AppColors.goldBright, // Seal Amber Gold
+      backgroundColor: AppColors.primary, // Obsidian Slate
       duration: const Duration(seconds: 4),
     );
   }
@@ -34,8 +35,8 @@ class AppSnackBar {
       title: title,
       message: message,
       icon: Icons.check_circle_rounded,
-      accentColor: const Color(0xFF10B981), // Emerald Green
-      backgroundColor: const Color(0xFF0F172A),
+      accentColor: AppColors.success, // Emerald Green
+      backgroundColor: AppColors.primary,
       duration: duration,
     );
   }
@@ -51,8 +52,8 @@ class AppSnackBar {
       title: title,
       message: message,
       icon: Icons.error_rounded,
-      accentColor: const Color(0xFFEF4444), // Crimson
-      backgroundColor: const Color(0xFF0F172A),
+      accentColor: AppColors.danger, // Crimson
+      backgroundColor: AppColors.primary,
       duration: duration,
     );
   }
@@ -68,8 +69,8 @@ class AppSnackBar {
       title: title,
       message: message,
       icon: Icons.info_rounded,
-      accentColor: const Color(0xFF38BDF8), // Sky Blue
-      backgroundColor: const Color(0xFF0F172A),
+      accentColor: AppColors.accentBright, // Sky Blue
+      backgroundColor: AppColors.primary,
       duration: duration,
     );
   }
@@ -80,7 +81,7 @@ class AppSnackBar {
     String? message,
     required IconData icon,
     required Color accentColor,
-    Color backgroundColor = const Color(0xFF0F172A),
+    Color backgroundColor = AppColors.primary,
     Duration duration = const Duration(seconds: 3),
     VoidCallback? onAction,
     String? actionLabel,
@@ -190,7 +191,7 @@ class AppSnackBar {
                                 style: AppTypography.notoSansDevanagari(
                                   fontSize: 12.5,
                                   fontWeight: FontWeight.w500,
-                                  color: const Color(0xFFCBD5E1),
+                                  color: AppColors.lightBorder,
                                   height: 1.35,
                                 ),
                               ),

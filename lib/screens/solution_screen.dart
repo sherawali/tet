@@ -300,10 +300,10 @@ class _SolutionScreenState extends State<SolutionScreen> {
                               child: Container(
                                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3.5),
                                 decoration: BoxDecoration(
-                                  color: const Color(0xFFD97706).withValues(alpha: isDark ? 0.22 : 0.12),
+                                  color: AppColors.sealGoldLight.withValues(alpha: isDark ? 0.22 : 0.12),
                                   borderRadius: BorderRadius.circular(6),
                                   border: Border.all(
-                                    color: const Color(0xFFD97706).withValues(alpha: 0.45),
+                                    color: AppColors.sealGoldLight.withValues(alpha: 0.45),
                                     width: 1,
                                   ),
                                 ),
@@ -317,7 +317,7 @@ class _SolutionScreenState extends State<SolutionScreen> {
                                       style: TextStyle(
                                         fontSize: 11.5,
                                         fontWeight: FontWeight.w700,
-                                        color: isDark ? const Color(0xFFFBBF24) : const Color(0xFFB45309),
+                                        color: isDark ? AppColors.goldBright : AppColors.sealGold,
                                       ),
                                     ),
                                   ],
@@ -352,7 +352,7 @@ class _SolutionScreenState extends State<SolutionScreen> {
                           Container(
                             padding: const EdgeInsets.all(12),
                             decoration: BoxDecoration(
-                              color: isDark ? const Color(0xFF161E2E) : const Color(0xFFF1F5F9),
+                              color: isDark ? AppColors.darkCard : AppColors.primarySubtle,
                               borderRadius: AppRadius.roundedSm,
                             ),
                             child: Column(
@@ -379,10 +379,10 @@ class _SolutionScreenState extends State<SolutionScreen> {
                                   width: double.infinity,
                                   padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                                   decoration: BoxDecoration(
-                                    color: isDark ? const Color(0xFF1E293B) : const Color(0xFFFEF3C7),
+                                    color: isDark ? AppColors.primaryLight : AppColors.sealGoldSubtle,
                                     border: Border(
                                       left: BorderSide(
-                                        color: isDark ? AppColors.primary : const Color(0xFFB45309),
+                                        color: isDark ? AppColors.primary : AppColors.sealGold,
                                         width: 2.5,
                                       ),
                                     ),
@@ -394,7 +394,7 @@ class _SolutionScreenState extends State<SolutionScreen> {
                                       fontStyle: FontStyle.italic,
                                       fontSize: 11.5,
                                       fontWeight: FontWeight.w600,
-                                      color: isDark ? const Color(0xFFE2E8F0) : const Color(0xFF78350F),
+                                      color: isDark ? AppColors.borderStrong : AppColors.warningDark,
                                     ),
                                   ),
                                 ),
@@ -434,7 +434,7 @@ class _SolutionScreenState extends State<SolutionScreen> {
                                           fontSize: 11.5,
                                           fontWeight: FontWeight.w700,
                                           color: isDark
-                                              ? const Color(0xFF38BDF8)
+                                              ? AppColors.accentBright
                                               : AppColors.primary,
                                         ),
                                       ),
@@ -533,7 +533,7 @@ class _SolutionScreenState extends State<SolutionScreen> {
             width: double.infinity,
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
-              color: isDark ? const Color(0xFF131B2A) : const Color(0xFFF1F5F9),
+              color: isDark ? AppColors.darkCard : AppColors.primarySubtle,
               borderRadius: AppRadius.roundedSm,
               border: Border.all(
                 color: AppColors.violet.withValues(alpha: 0.25),

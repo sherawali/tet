@@ -409,8 +409,8 @@ class _PyqVaultScreenState extends State<PyqVaultScreen> {
                                 ElevatedButton.icon(
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor: isLocked
-                                        ? (isDark ? const Color(0xFF1E293B) : const Color(0xFFF8FAFC))
-                                        : (isDark ? AppColors.darkCardElevated : const Color(0xFFF1F5F9)),
+                                        ? (isDark ? AppColors.primaryLight : AppColors.darkTextPrimary)
+                                        : (isDark ? AppColors.darkCardElevated : AppColors.primarySubtle),
                                     foregroundColor: isLocked
                                         ? AppColors.sealGold
                                         : (isDark ? AppColors.sealGoldLight : AppColors.primary),
