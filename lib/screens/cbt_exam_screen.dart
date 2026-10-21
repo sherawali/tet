@@ -1231,13 +1231,15 @@ class _CbtExamScreenState extends State<CbtExamScreen>
             const Spacer(),
 
             // Save & Next
-            AppButton(
-              label: _currentIndex == widget.session.questions.length - 1
-                  ? (_languageMode == TestLanguageMode.onlyEnglish ? 'Submit' : 'सबमिट करें')
-                  : (_languageMode == TestLanguageMode.onlyEnglish ? 'Save & Next' : 'सेव एवं आगे'),
-              variant: AppButtonVariant.primary,
-              height: 42,
-              onPressed: _saveAndNext,
+            Flexible(
+              child: AppButton(
+                label: _currentIndex == widget.session.questions.length - 1
+                    ? (_languageMode == TestLanguageMode.onlyEnglish ? 'Submit' : 'सबमिट करें')
+                    : (_languageMode == TestLanguageMode.onlyEnglish ? 'Save & Next' : 'सेव एवं आगे'),
+                variant: AppButtonVariant.primary,
+                height: 42,
+                onPressed: _saveAndNext,
+              ),
             ),
           ],
         ),

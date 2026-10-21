@@ -769,3 +769,33 @@
   checked on the device (home, settings, booklet, question page, result, subject practice).
 - **Keystore / signing files:** the new key is stored in three safe places, the old one
   never existed, nothing was overwritten.
+
+### 2026-10-21: V20 Design Pass - paper-2 stream, one palette, one motion, one dialog
+- **Paper-2 stream (the complaint):** the candidate could not tell which paper was
+  Mathematics & Science and which was Social Studies.  Now the home screen has a
+  third row in the exam switcher (Subject Stream), a stream badge on the paper
+  lists and on the hero header, the subject grid only offers the active stream,
+  and the home screen follows a stream change made in the PYQ vault.  The mock
+  series screen lists the papers of the selected exam only and its heading names
+  the exam, the paper and the stream.
+- **Colours:** about 400 hard coded `Color(0xFF......)` literals are now
+  `AppColors.*` tokens; the missing bright, soft and deep variants were added.
+- **Motion:** `AppMotion` holds the durations and the curves.  Every animation
+  uses it and every `AnimatedContainer` runs with an explicit curve (nine of
+  them used the linear default before).
+- **Dialogs and sheets:** the theme owns the dialog and the sheet look, and
+  `AppDialogs.confirm` / `AppSheet` are the shared shapes.  The booklet exit
+  dialog and the database clean dialog use them; every sheet has the same
+  radius, hairline, barrier and handle.
+- **Typography:** the scale has the missing steps (titleSmall, displayMedium,
+  labelMedium, bodySmall, caption) and the booklet CSS went from twenty font
+  sizes to thirteen.
+- **Titles:** the paper switcher says the same thing on the home screen and in
+  the settings ("Paper-1 (Classes 1-5)").
+- **Guard:** `test/design_system_guard_test.dart` fails when a screen hard codes
+  a colour, invents its own animation duration, animates without a curve, or
+  when the booklet type scale grows again.  84 tests pass, analyze is clean.
+- **Device check (Infinix X698, light and dark):** home, settings, exam switcher,
+  subject grid, subject practice, booklet cover, question page, result, CBT
+  screen, exit dialog, paywall - no overflow, no crash.
+- **Keystore / signing files:** untouched and safe.
