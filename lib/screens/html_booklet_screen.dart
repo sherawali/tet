@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -32,6 +33,7 @@ class _HtmlBookletScreenState extends State<HtmlBookletScreen> {
   bool _isSubmitting = false;
   String? _errorMessage;
   String? _htmlContent;
+  Timer? _loadWatchdog;
 
   @override
   void initState() {
@@ -61,6 +63,7 @@ class _HtmlBookletScreenState extends State<HtmlBookletScreen> {
 
   @override
   void dispose() {
+    _loadWatchdog?.cancel();
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
     super.dispose();
   }
@@ -77,6 +80,7 @@ class _HtmlBookletScreenState extends State<HtmlBookletScreen> {
               if (mounted) setState(() => _isLoading = true);
             },
             onPageFinished: (url) {
+              _loadWatchdog?.cancel();
               if (mounted) {
                 setState(() {
                   _isLoading = false;
@@ -87,6 +91,7 @@ class _HtmlBookletScreenState extends State<HtmlBookletScreen> {
             onWebResourceError: (error) {
               // Ignore benign minor resource errors (like favicon 404)
               if (error.errorCode != -1 && error.description.contains('ERR_FILE_NOT_FOUND')) return;
+              _loadWatchdog?.cancel();
               if (mounted && _isLoading) {
                 setState(() {
                   _errorMessage = 'बुकलेट लोड करने में समस्या: ${error.description}';
@@ -103,6 +108,17 @@ class _HtmlBookletScreenState extends State<HtmlBookletScreen> {
         ..loadHtmlString(_htmlContent!);
 
       _controller = controller;
+
+      // Watchdog: a booklet is a local string, so it must render in a
+      // moment.  If the WebView does not report back (broken WebView, stuck
+      // resource) the overlay is released anyway so the candidate is never
+      // stuck on a spinner.
+      _loadWatchdog?.cancel();
+      _loadWatchdog = Timer(const Duration(seconds: 8), () {
+        if (mounted && _isLoading) {
+          setState(() => _isLoading = false);
+        }
+      });
     } catch (e) {
       if (mounted) {
         setState(() {

@@ -30,14 +30,28 @@ class _SplashSyncScreenState extends State<SplashSyncScreen> {
   }
 
   Future<void> _checkAndStartSync() async {
-    // Ensure all 4,620 authentic offline questions and 68 passages are loaded from bundled asset
-    await _db.ensureBundledAssetLoaded();
+    // Ensure the authentic offline bank (9,720 questions / 181 passages) is
+    // loaded from the bundled asset.  This never needs a connection.
+    final loaded = await _db.ensureBundledAssetLoaded();
     final count = await _db.getQuestionCount();
+
+    if (!loaded && count == 0) {
+      // The bundled bank could not be opened at all - show the retry state
+      // instead of an empty exam.
+      if (mounted) {
+        setState(() {
+          _isError = true;
+          _progress = 0;
+          _statusMessage = AppStrings.splashNoInternet;
+        });
+      }
+      return;
+    }
 
     if (mounted) {
       setState(() {
         _progress = 1.0;
-        _statusMessage = AppStrings.splashAvailable(count > 0 ? count : 4620);
+        _statusMessage = AppStrings.splashAvailable(count > 0 ? count : 9720);
       });
     }
     await Future.delayed(const Duration(milliseconds: 600));

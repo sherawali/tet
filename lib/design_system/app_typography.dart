@@ -110,4 +110,78 @@ class AppTypography {
         letterSpacing: 1.0,
         color: color,
       );
+
+  // ------------------------------------------------------------------
+  // Drop-in replacements for the former `GoogleFonts.*` calls.  They use
+  // the bundled faces, so the report sheet and the snack bars look the
+  // same as the rest of the app and work without a connection.
+  // ------------------------------------------------------------------
+
+  static double _wght(FontWeight? weight) {
+    if (weight == null) return 400;
+    return weight.value.toDouble();
+  }
+
+  static TextStyle outfit({
+    double? fontSize,
+    FontWeight? fontWeight,
+    Color? color,
+    double? letterSpacing,
+    double? height,
+    FontStyle? fontStyle,
+    double? alpha,
+  }) =>
+      TextStyle(
+        fontFamily: _latin,
+        fontFamilyFallback: _fallback,
+        fontVariations: _w(_wght(fontWeight)),
+        fontSize: fontSize,
+        letterSpacing: letterSpacing,
+        height: height,
+        fontStyle: fontStyle,
+        color: _withAlpha(color, alpha),
+      );
+
+  static TextStyle notoSansDevanagari({
+    double? fontSize,
+    FontWeight? fontWeight,
+    Color? color,
+    double? letterSpacing,
+    double? height,
+    FontStyle? fontStyle,
+    double? alpha,
+  }) =>
+      TextStyle(
+        fontFamily: _devanagari,
+        fontFamilyFallback: _fallback,
+        fontVariations: _w(_wght(fontWeight)),
+        fontSize: fontSize,
+        letterSpacing: letterSpacing,
+        height: height,
+        fontStyle: fontStyle,
+        color: _withAlpha(color, alpha),
+      );
+
+  /// Monospace face for the report comment field.
+  static TextStyle courierPrime({
+    double? fontSize,
+    FontWeight? fontWeight,
+    Color? color,
+    double? letterSpacing,
+    double? height,
+  }) =>
+      TextStyle(
+        fontFamily: 'monospace',
+        fontFamilyFallback: const <String>['Courier New', 'monospace'],
+        fontSize: fontSize,
+        letterSpacing: letterSpacing,
+        height: height,
+        color: color,
+      );
+
+  static Color? _withAlpha(Color? color, double? alpha) {
+    if (color == null) return null;
+    if (alpha == null) return color;
+    return color.withValues(alpha: alpha);
+  }
 }

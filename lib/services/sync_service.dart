@@ -186,9 +186,12 @@ class SyncService {
         );
       }
 
-      // Check if already up to date without re-downloading 40 packs (saving battery & bandwidth)
+      // Check if already up to date without re-downloading 40 packs (saving battery & bandwidth).
+      // A manual "sync now" also uses this path: the manifest is re-read, but
+      // identical packs are never downloaded twice.  Only an explicit
+      // `bypassCache` forces a full refresh.
       final bool signatureMatches = localSig != null && localSig == remoteSig;
-      if (!force && !bypassCache && previousCount > 0 && bankVersion <= localVersion && totalQuestions == previousCount && signatureMatches) {
+      if (!bypassCache && previousCount > 0 && bankVersion <= localVersion && totalQuestions == previousCount && signatureMatches) {
         onProgress?.call(1.0, 'प्रश्न बैंक पहले से ही पूरी तरह अद्यतन (Up-to-Date) है!');
         return SyncResult(
           success: true,

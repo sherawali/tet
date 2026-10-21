@@ -1090,9 +1090,9 @@ class HtmlBookletBuilder {
       <!-- Sub-row: Language Switcher -->
       <div class="cbt-subbar">
         <div class="cbt-lang-switcher">
-          <button class="lang-pill-btn active" id="btn-lang-hi" onclick="setLangFilter('hi')">🇮🇳 केवल हिन्दी</button>
-          <button class="lang-pill-btn" id="btn-lang-both" onclick="setLangFilter('both')">🌐 दोनों (Bilingual)</button>
-          <button class="lang-pill-btn" id="btn-lang-en" onclick="setLangFilter('en')">🇬🇧 Only English</button>
+          <button class="lang-pill-btn active" id="btn-lang-hi" onclick="setLangFilter('hi')">🇮🇳 <span class="lp-long">केवल हिन्दी</span><span class="lp-short">हिंदी</span></button>
+          <button class="lang-pill-btn" id="btn-lang-both" onclick="setLangFilter('both')">🌐 <span class="lp-long">दोनों (Bilingual)</span><span class="lp-short">दोनों</span></button>
+          <button class="lang-pill-btn" id="btn-lang-en" onclick="setLangFilter('en')">🇬🇧 <span class="lp-long">Only English</span><span class="lp-short">EN</span></button>
         </div>
         <div class="cbt-progress" aria-hidden="true"><div class="cbt-progress-fill" id="progress-fill"></div></div>
       </div>
@@ -2618,22 +2618,26 @@ body.lang-mode-en .bilingual-mobile-stack .opt-secondary {
   .hide-on-mobile { display: none !important; }
 
   /* The language switcher must never push the page sideways on a narrow
-     phone - it wraps instead of overflowing. */
+     phone - it stays on one row and scrolls if it really has to. */
   .cbt-subbar { padding: 0 8px 6px; }
   .cbt-lang-switcher {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 4px;
     width: 100%;
     max-width: 100%;
+    overflow-x: auto;
+    scrollbar-width: none;
   }
+  .cbt-lang-switcher::-webkit-scrollbar { display: none; }
   .lang-pill-btn {
-    flex: 1 1 auto;
+    flex: 0 0 auto;
     min-height: 34px;
-    padding: 6px 8px;
-    font-size: 11px;
+    padding: 6px 10px;
+    font-size: 11.5px;
     white-space: nowrap;
   }
+  .lp-short { display: none; }
 
   .paper-page { padding: 10px 8px; width: 100%; box-sizing: border-box; }
   .section-banner { margin: 14px 0 10px; padding: 8px 10px; border-radius: 6px; }
@@ -2678,7 +2682,9 @@ body.lang-mode-en .bilingual-mobile-stack .opt-secondary {
   .cbt-btn { width: 32px; padding: 0; justify-content: center; }
   .cbt-btn span { font-size: 13px; margin: 0; }
   #timer-box { padding: 0 6px; font-size: 11.5px; }
-  .lang-pill-btn { font-size: 10.5px; padding: 6px 6px; min-height: 32px; }
+  .lang-pill-btn { font-size: 10.5px; padding: 6px 8px; min-height: 32px; }
+  .lp-long { display: none; }
+  .lp-short { display: inline; }
   .option-row { padding: 10px 8px; font-size: 14px; }
   .q-stem { font-size: 15px; }
   .match-table { font-size: 12.5px; }

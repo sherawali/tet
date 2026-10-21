@@ -1,4 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- The app is fully usable offline: the question bank, the papers, the
+         figures, the fonts and the result history all live on the device.
+         The permission is only needed for the optional updates (new question
+         bank from the CDN, flash messages, error reports) and for the Play
+         Store billing.  Without it a release build could never update. -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <application
         android:label="tet_app"
         android:name="${applicationName}"

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'app_typography.dart';
 
 /// Ultra-Premium Toast & SnackBar System
 /// Matches the app's authentic Examination Authority & Obsidian Gold / Sapphire theme.
@@ -174,7 +174,7 @@ class AppSnackBar {
                               title,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
-                              style: GoogleFonts.outfit(
+                              style: AppTypography.outfit(
                                 fontSize: 14.5,
                                 fontWeight: FontWeight.w700,
                                 color: Colors.white,
@@ -187,7 +187,7 @@ class AppSnackBar {
                                 message,
                                 maxLines: 2,
                                 overflow: TextOverflow.ellipsis,
-                                style: GoogleFonts.notoSansDevanagari(
+                                style: AppTypography.notoSansDevanagari(
                                   fontSize: 12.5,
                                   fontWeight: FontWeight.w500,
                                   color: const Color(0xFFCBD5E1),
@@ -214,7 +214,7 @@ class AppSnackBar {
                           ),
                           child: Text(
                             actionLabel,
-                            style: GoogleFonts.outfit(
+                            style: AppTypography.outfit(
                               fontSize: 12,
                               fontWeight: FontWeight.bold,
                               color: accentColor,

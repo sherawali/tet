@@ -183,10 +183,15 @@ class DbHelper {
           await db.execute("ALTER TABLE question_reports ADD COLUMN status TEXT DEFAULT 'submitted'");
         } catch (_) {}
 
-        // Auto-seed or upgrade to all-offline database (4,620 authentic questions) from bundled asset
+        // Auto-seed or upgrade to all-offline database (9,720 authentic questions) from bundled asset
         try {
-          final res = await db.query('meta', where: 'key = ?', whereArgs: ['bank_version']);
-          final v = res.isNotEmpty ? res.first['val']?.toString() : null;
+          final res = await db.query('meta', where: 'key = ?', whereArgs: ['bundled_version']);
+          var v = res.isNotEmpty ? res.first['val']?.toString() : null;
+          if (v == null) {
+            // Legacy install: fall back to the bank version of the first import.
+            final legacy = await db.query('meta', where: 'key = ?', whereArgs: ['bank_version']);
+            v = legacy.isNotEmpty ? legacy.first['val']?.toString() : null;
+          }
           final qCountRes = await db.rawQuery('SELECT COUNT(*) as cnt FROM questions');
           final qCount = Sqflite.firstIntValue(qCountRes) ?? 0;
           if (v != bundledVaultVersion || qCount < 9720) {
@@ -199,25 +204,45 @@ class DbHelper {
     );
   }
 
-  /// Ensures pre-bundled offline database asset (9,720 questions, 62 papers) is fully loaded
-  Future<void> ensureBundledAssetLoaded() async {
+  /// Ensures the pre-bundled offline database asset (9,720 questions, 62 papers)
+  /// is fully loaded.
+  ///
+  /// The check uses the separate `bundled_version` key, never `bank_version`.
+  /// `bank_version` is raised by a CDN sync, and comparing it against the
+  /// bundled version would overwrite a freshly downloaded bank with the
+  /// bundled one on every single launch.
+  Future<bool> ensureBundledAssetLoaded() async {
     final db = await database;
     try {
-      final res = await db.query('meta', where: 'key = ?', whereArgs: ['bank_version']);
-      final v = res.isNotEmpty ? res.first['val']?.toString() : null;
+      final res = await db.query('meta', where: 'key = ?', whereArgs: ['bundled_version']);
+      final hasMarker = res.isNotEmpty;
+      var v = res.isNotEmpty ? res.first['val']?.toString() : null;
+      if (!hasMarker) {
+        // Legacy install: the bank on the device was seeded from the asset.
+        // Write the marker now, otherwise a later CDN sync (which raises
+        // bank_version) would look like "newer than the bundle" and the
+        // asset would overwrite the downloaded bank on the next launch.
+        await db.insert(
+          'meta',
+          {'key': 'bundled_version', 'val': bundledVaultVersion},
+          conflictAlgorithm: ConflictAlgorithm.replace,
+        );
+      }
       final qCountRes = await db.rawQuery('SELECT COUNT(*) as cnt FROM questions');
       final qCount = Sqflite.firstIntValue(qCountRes) ?? 0;
       if (v != bundledVaultVersion || qCount < 9720) {
-        await _syncFromAssetDb(db);
+        return await _syncFromAssetDb(db);
       }
+      return true;
     } catch (_) {
-      await _syncFromAssetDb(db);
+      return await _syncFromAssetDb(db);
     }
   }
 
-  /// Synchronize all 2,880 authentic questions and 109 passages from the pre-bundled asset DB
-  /// Guarantees that user's test_history and mistake_records are 100% preserved.
-  Future<void> _syncFromAssetDb(Database db) async {
+  /// Synchronize the authentic offline bank from the pre-bundled asset DB.
+  /// Guarantees that the user's test_history and mistake_records are 100%
+  /// preserved.  Returns false when the asset could not be imported.
+  Future<bool> _syncFromAssetDb(Database db) async {
     try {
       final dbPath = await getDatabasesPath();
       final tempAssetPath = join(dbPath, 'temp_asset_bundle.db');
@@ -312,6 +337,15 @@ class DbHelper {
           await txn.insert('meta', m, conflictAlgorithm: ConflictAlgorithm.replace);
         }
 
+        // Remember which bundled version is installed.  This key is never
+        // touched by a CDN sync, so a downloaded newer bank is not replaced
+        // by the bundled one on the next launch.
+        await txn.insert(
+          'meta',
+          {'key': 'bundled_version', 'val': bundledVaultVersion},
+          conflictAlgorithm: ConflictAlgorithm.replace,
+        );
+
         // Update report status for resolved questions
         try {
           await txn.execute("UPDATE question_reports SET status = 'solved' WHERE question_id IN ('b7fe812caa11aaea', '7570f6db99750223', '400c86ba7c4c9736')");
@@ -319,8 +353,10 @@ class DbHelper {
         } catch (_) {}
       });
       debugPrint('Successfully seeded ${assetQuestions.length} V2 questions from bundled asset DB!');
+      return true;
     } catch (e) {
       debugPrint('Error syncing from asset DB: $e');
+      return false;
     }
   }
 
