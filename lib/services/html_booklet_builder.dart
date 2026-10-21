@@ -2755,6 +2755,15 @@ body.lang-mode-en .bilingual-desktop-grid .q-column:nth-child(1) .q-num { displa
     --border-color: #334155;
   }
   .question-item, .q-group, .cover-page { background: #0f172a; }
+  .cover-authority { color: #e2e8f0; }
+  .cover-sub-auth { color: #94a3b8; }
+  .cover-exam-title { color: #f8fafc; }
+  .cover-exam-paper { color: #cbd5e1; }
+  .cover-meta-box { border-color: #334155; }
+  .cover-meta-box b { color: #94a3b8; }
+  .roll-digit-box { border-color: #334155; background: #0b1220; color: #e2e8f0; }
+  .set-badge-box { border-color: #334155; background: #0b1220; color: #e2e8f0; }
+  .cover-instructions { color: #cbd5e1; }
   .stimulus-wrapper { background: #0b1220; box-shadow: none; }
   .stimulus-header { background: #1e293b; color: #e2e8f0; }
   .stimulus-header.poem-head { background: #2e1065; color: #ddd6fe; }
