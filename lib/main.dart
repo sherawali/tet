@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'design_system/app_theme.dart';
 import 'services/language_service.dart';
@@ -10,6 +11,11 @@ import 'screens/splash_sync_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // The typography is bundled with the app, so fonts are never downloaded at
+  // runtime.  This keeps the exam screen stable (and instantly rendered) on a
+  // slow or missing connection.
+  GoogleFonts.config.allowRuntimeFetching = false;
 
   // Desktop FFI initialization if running on Windows desktop
   if (!kIsWeb && (Platform.isWindows || Platform.isLinux || Platform.isMacOS)) {

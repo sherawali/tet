@@ -606,6 +606,34 @@ def normalise_modules(conn: sqlite3.Connection) -> int:
     return changed
 
 
+def sync_topic_indexes(conn: sqlite3.Connection) -> int:
+    """Align ``questions.topic_index`` with the CDN topic catalogue.
+
+    The packs address their topics by the index of the alphabetically
+    sorted topic list.  The bundled SQLite still carried a zero for every
+    row, which made the column useless for offline topic filters.
+    """
+    topics = [
+        r[0]
+        for r in conn.execute(
+            "SELECT DISTINCT topic_name FROM questions "
+            "WHERE topic_name IS NOT NULL AND topic_name != '' ORDER BY topic_name"
+        )
+    ]
+    topic_to_index = {topic: index for index, topic in enumerate(topics)}
+    updated = 0
+    for qid, topic in conn.execute(
+        "SELECT id, topic_name FROM questions WHERE topic_name IS NOT NULL AND topic_name != ''"
+    ).fetchall():
+        index = topic_to_index.get(topic, 0)
+        conn.execute(
+            "UPDATE questions SET topic_index = ? WHERE id = ? AND topic_index <> ?",
+            (index, qid, index),
+        )
+        updated += 1
+    return updated
+
+
 def repair_database() -> None:
     conn = sqlite3.connect(DB_PATH)
     try:
@@ -676,6 +704,7 @@ def repair_database() -> None:
         refilled = replace_unanswerable_questions(conn)
         keys = sync_official_answer_keys(conn)
         normalise_modules(conn)
+        topics = sync_topic_indexes(conn)
 
         conn.execute(
             "INSERT INTO meta(key, val) VALUES('bank_version', ?) "
@@ -689,7 +718,8 @@ def repair_database() -> None:
             f"  duplicate paper questions swapped : {swapped}\n"
             f"  passage positions fixed          : {repositioned}\n"
             f"  unanswerable slots refilled      : {refilled}\n"
-            f"  answer keys re-synchronised       : {keys}"
+            f"  answer keys re-synchronised       : {keys}\n"
+            f"  topic indexes aligned            : {topics}"
         )
     except Exception:
         conn.rollback()

@@ -387,6 +387,28 @@ def validate_db(report: Report) -> dict:
         f"Questions without their stimulus: {[r[0] for r in missing_stimulus[:10]]}",
     )
 
+    # 6. The topic index of every question must match the CDN catalogue.
+    topics = [
+        r[0]
+        for r in conn.execute(
+            "SELECT DISTINCT topic_name FROM questions "
+            "WHERE topic_name IS NOT NULL AND topic_name != '' ORDER BY topic_name"
+        )
+    ]
+    topic_index = {topic: index for index, topic in enumerate(topics)}
+    bad_topic = [
+        (qid, topic, topic_index.get(topic, 0), stored)
+        for qid, topic, stored in conn.execute(
+            "SELECT id, topic_name, topic_index FROM questions "
+            "WHERE topic_name IS NOT NULL AND topic_name != ''"
+        )
+        if stored != topic_index.get(topic, 0)
+    ]
+    report.require(
+        not bad_topic,
+        f"Topic index drift: {bad_topic[:10]}",
+    )
+
     conn.close()
     return stats
 
