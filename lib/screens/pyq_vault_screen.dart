@@ -22,6 +22,15 @@ class _PyqVaultScreenState extends State<PyqVaultScreen> {
   final DbHelper _db = DbHelper.instance;
   final MockEngine _engine = MockEngine();
   List<Map<String, dynamic>> _forms = [];
+
+  /// Number of questions in the loaded papers (from `paper_forms`).
+  int get _paperSize {
+    for (final form in _forms) {
+      final total = form['total_questions'];
+      if (total is int && total > 0) return total;
+    }
+    return 150;
+  }
   bool _isLoading = true;
   String? _generatingFormId;
 
@@ -68,7 +77,7 @@ class _PyqVaultScreenState extends State<PyqVaultScreen> {
         mode: MockMode.pyq,
         seed: 2026100 + index * 999,
         totalQuestions: data.questions.length,
-        timeLimitMinutes: 150,
+        timeLimitMinutes: _paperSize,
         exam: ExamService.instance.examCode,
       );
 
@@ -382,8 +391,8 @@ class _PyqVaultScreenState extends State<PyqVaultScreen> {
                                           const SizedBox(height: 3),
                                           Text(
                                             AppStrings.isHindi
-                                                ? '150 प्रश्न · 150 मिनट · सम्पूर्ण हल सहित'
-                                                : '150 Questions · 150 Mins · Complete Solutions',
+                                                ? '$_paperSize प्रश्न · $_paperSize मिनट · सम्पूर्ण हल सहित'
+                                                : '$_paperSize Questions · $_paperSize Mins · Complete Solutions',
                                             style: TextStyle(
                                               fontSize: 11.5,
                                               color: Color(0xFF64748B),

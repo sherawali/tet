@@ -19,6 +19,15 @@ class MockSeriesScreen extends StatefulWidget {
 class _MockSeriesScreenState extends State<MockSeriesScreen> {
   final MockEngine _engine = MockEngine();
   List<Map<String, dynamic>> _forms = [];
+
+  /// Number of questions in the loaded papers (from `paper_forms`).
+  int get _paperSize {
+    for (final form in _forms) {
+      final total = form['total_questions'];
+      if (total is int && total > 0) return total;
+    }
+    return 150;
+  }
   bool _isLoading = true;
   String? _loadingFormId;
 
@@ -65,7 +74,7 @@ class _MockSeriesScreenState extends State<MockSeriesScreen> {
         mode: MockMode.predicted,
         seed: 2026100 + index * 777,
         totalQuestions: data.questions.length,
-        timeLimitMinutes: 150,
+        timeLimitMinutes: _paperSize,
         exam: ExamService.instance.examCode,
       );
 
@@ -155,7 +164,7 @@ class _MockSeriesScreenState extends State<MockSeriesScreen> {
                               ),
                               const SizedBox(height: 3),
                               Text(
-                                '${_forms.length} सम्पूर्ण 150-प्रश्नों वाले मॉक पेपर्स उपलब्ध हैं।',
+                                '${_forms.length} सम्पूर्ण $_paperSize-प्रश्नों वाले मॉक पेपर्स उपलब्ध हैं।',
                                 style: TextStyle(
                                   fontSize: 12,
                                   color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
@@ -166,7 +175,7 @@ class _MockSeriesScreenState extends State<MockSeriesScreen> {
                                 spacing: 6,
                                 children: [
                                   AppBadge(label: 'Verified Board Key', color: AppColors.sealGold),
-                                  const AppBadge(label: '150 Qs Standard', color: AppColors.cdp),
+                                  AppBadge(label: '$_paperSize Qs Standard', color: AppColors.cdp),
                                 ],
                               ),
                             ],
@@ -294,7 +303,9 @@ class _MockSeriesScreenState extends State<MockSeriesScreen> {
                                           ),
                                           const SizedBox(height: 3),
                                           Text(
-                                            AppStrings.isHindi ? '150 प्रश्न · 150 मिनट · पूर्ण प्रामाणिक मॉक' : '150 Questions · 150 Mins · Authentic Mock',
+                                            AppStrings.isHindi
+                                                ? '$_paperSize प्रश्न · $_paperSize मिनट · पूर्ण प्रामाणिक मॉक'
+                                                : '$_paperSize Questions · $_paperSize Mins · Authentic Mock',
                                             style: TextStyle(
                                               fontSize: 11.5,
                                               color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,

@@ -1,5 +1,7 @@
 import '../services/language_service.dart';
 import '../services/exam_service.dart';
+import '../services/section_catalog.dart';
+import '../services/bank_facts.dart';
 
 class AppStrings {
   static bool get _isHi => LanguageService.instance.isHindi;
@@ -48,22 +50,31 @@ class AppStrings {
       : (_isHi ? 'UTET $currentExamYear मुख्य मॉडल प्रश्न-पुस्तिका' : 'UTET $currentExamYear Master Model Booklet');
   static String get heroDesc => _isCtet
       ? (_isHi
-          ? 'केन्द्रीय परीक्षा पाठ्यक्रम पर आधारित सम्पूर्ण 150 प्रश्नों का प्रामाणिक मॉडल पेपर।'
-          : 'Complete 150-question mock paper based on standard pattern.')
+          ? 'केन्द्रीय परीक्षा पाठ्यक्रम पर आधारित सम्पूर्ण ${BankFacts.questionsPerPaper} प्रश्नों का प्रामाणिक मॉडल पेपर।'
+          : 'Complete ${BankFacts.questionsPerPaper}-question mock paper based on standard pattern.')
       : (_isHi
-          ? 'उत्तराखण्ड परीक्षा पैटर्न पर आधारित सम्पूर्ण 150 प्रश्नों का प्रामाणिक मॉडल पेपर।'
-          : 'Complete 150-question authentic model paper based on Uttarakhand pattern.');
-  static String get heroTotalQuestions => _isHi ? '150 बहुविकल्पीय प्रश्न' : '150 MCQs';
-  static String get heroTime => _isHi ? 'समय : 2:30 घण्टे' : 'Time : 2:30 Hrs';
-  static String get heroMarks => _isHi ? 'पूर्णांक : 150 अंक' : 'Marks : 150';
+          ? 'उत्तराखण्ड परीक्षा पैटर्न पर आधारित सम्पूर्ण ${BankFacts.questionsPerPaper} प्रश्नों का प्रामाणिक मॉडल पेपर।'
+          : 'Complete ${BankFacts.questionsPerPaper}-question authentic model paper based on Uttarakhand pattern.');
+  static String get heroTotalQuestions => _isHi
+      ? '${BankFacts.questionsPerPaper} बहुविकल्पीय प्रश्न'
+      : '${BankFacts.questionsPerPaper} MCQs';
+  static String get heroTime {
+    final h = BankFacts.questionsPerPaper ~/ 60;
+    final m = BankFacts.questionsPerPaper % 60;
+    final clock = m == 0 ? '$h' : (h == 0 ? '$m' : '$h:$m');
+    return _isHi ? 'समय : $clock घण्टे' : 'Time : $clock Hrs';
+  }
+  static String get heroMarks => _isHi
+      ? 'पूर्णांक : ${BankFacts.questionsPerPaper} अंक'
+      : 'Marks : ${BankFacts.questionsPerPaper}';
   static String get heroBtn => _isHi
       ? '📖 प्रश्न-पुस्तिका हल करें'
       : '📖 Open & Solve Booklet';
 
   // Booklet Sets
   static String get completeBookletsHeading => _isHi
-      ? 'सम्पूर्ण प्रश्न-पुस्तिकाएं (150 प्रश्न · 150 मिनट)'
-      : 'Complete Exam Booklets (150 Qs · 150 Mins)';
+      ? 'सम्पूर्ण प्रश्न-पुस्तिकाएं (${BankFacts.questionsPerPaper} प्रश्न · ${BankFacts.questionsPerPaper} मिनट)'
+      : 'Complete Exam Booklets (${BankFacts.questionsPerPaper} Qs · ${BankFacts.questionsPerPaper} Mins)';
 
   static String get setQTitle => _isHi ? 'सेट-Q : सर्वाधिक पूछे गए प्रश्न' : 'SET-Q : Frequently Repeated Questions';
   static String get setQSub => _isHi ? '2+ वर्ष चक्रीय व उच्च अंकदायी प्रश्न' : '2+ Years Recurring & High-Yield Questions';
@@ -85,8 +96,8 @@ class AppStrings {
 
   // Subject Booklets
   static String get subjectBookletsHeading => _isHi
-      ? 'खण्ड-वार अभ्यास पुस्तिकाएं (30 प्रश्न · 30 मिनट)'
-      : 'Subject-wise Mini Booklets (30 Qs · 30 Mins)';
+      ? 'खण्ड-वार अभ्यास पुस्तिकाएं (${BankFacts.subjectSetQuestions} प्रश्न · ${BankFacts.subjectSetQuestions} मिनट)'
+      : 'Subject-wise Mini Booklets (${BankFacts.subjectSetQuestions} Qs · ${BankFacts.subjectSetQuestions} Mins)';
 
   static String get pastHistoryHeading => _isHi ? 'पिछले टेस्ट परिणाम' : 'Past Test History';
   static String get doubleBackExit => _isHi ? 'ऐप बंद करने के लिए दोबारा बैक दबाएं' : 'Press back again to exit app';
@@ -102,7 +113,9 @@ class AppStrings {
   static String get subjectPracticeDesc => _isHi
       ? 'प्रत्येक विषय में 30 प्रामाणिक प्रश्न और 30 मिनट का समय'
       : '30 authentic questions & 30 minutes for each subject';
-  static String get subjectCardTime => _isHi ? '30 प्रश्न · 30 मिनट' : '30 Qs · 30 Mins';
+  static String get subjectCardTime => _isHi
+      ? '${BankFacts.subjectSetQuestions} प्रश्न · ${BankFacts.subjectSetQuestions} मिनट'
+      : '${BankFacts.subjectSetQuestions} Qs · ${BankFacts.subjectSetQuestions} Mins';
   static String get startSubjectTestBtn => _isHi ? 'हल शुरू करें ▾' : 'Start Practice ▾';
 
   // Test History
@@ -262,29 +275,8 @@ class AppStrings {
   static String get paperBadge => ExamService.instance.paperBadge;
 
   // Section Names (Pure Hindi vs Pure English)
-  static String sectionName(String sec) {
-    switch (sec.toLowerCase()) {
-      case 'cdp':
-        return _isHi ? 'बाल विकास एवं शिक्षाशास्त्र' : 'Child Development & Pedagogy';
-      case 'hindi':
-        return _isHi ? 'हिन्दी भाषा प्रथम' : 'Hindi Language I';
-      case 'english':
-        return _isHi ? 'अंग्रेजी भाषा द्वितीय' : 'English Language II';
-      case 'math':
-        return _isHi ? 'गणित' : 'Mathematics';
-      case 'evs':
-        return _isHi ? 'पर्यावरण अध्ययन' : 'Environmental Studies';
-      case 'science':
-        return _isHi ? 'सामान्य विज्ञान' : 'General Science';
-      case 'social':
-      case 'sst':
-        return _isHi ? 'सामाजिक अध्ययन एवं विज्ञान' : 'Social Science';
-      case 'sanskrit':
-        return _isHi ? 'संस्कृत भाषा द्वितीय' : 'Sanskrit Language II';
-      default:
-        return sec.toUpperCase();
-    }
-  }
+  static String sectionName(String sec) =>
+      SectionCatalog.name(sec, hindi: _isHi);
 
   // Paper Selector Strings
   static String get paper1Tab => _isHi ? '📘 पेपर-1 (प्राथमिक स्तर)' : '📘 Paper-1 (Primary Level)';
@@ -305,8 +297,8 @@ class AppStrings {
       ? '2026 मॉडल प्रश्न-पत्र'
       : '2026 Model Test Papers';
   static String get gatewayMocksSub => _isHi
-      ? '20 सम्पूर्ण प्रामाणिक मॉक सेट'
-      : '20 complete authentic mock sets';
+      ? '${BankFacts.paperCount} सम्पूर्ण प्रामाणिक मॉक सेट'
+      : '${BankFacts.paperCount} complete authentic mock sets';
 
   // PYQ Section
   static String get pyqVaultTitle => _isHi
@@ -324,27 +316,32 @@ class AppStrings {
       ? '${_isCtet ? "CTET" : "UTET"} $year विगत वर्ष प्रश्न-पत्र'
       : '${_isCtet ? "CTET" : "UTET"} $year Solved Paper';
   static String pyqVaultCardDesc(int count) => _isHi
-      ? '$count प्रामाणिक पूर्व वर्ष प्रश्न · 5 विषय'
-      : '$count Authentic Questions · 5 Sections';
+      ? '$count प्रामाणिक पूर्व वर्ष प्रश्न · ${BankFacts.subjectCount} विषय'
+      : '$count Authentic Questions · ${BankFacts.subjectCount} Sections';
   static String get startPyqExamBtn => _isHi ? '📖 प्रश्न-पत्र हल करें' : '📖 Solve Paper';
 
   // Mock Series Screen
   static String get mockSeriesTitle => _isHi
-      ? '10 ${_isCtet ? "CTET" : "UTET"} मॉडल प्रश्न-पुस्तिकाएं ($currentExamYear)'
-      : '10 ${_isCtet ? "CTET" : "UTET"} Model Question Booklets ($currentExamYear)';
-  static String get mockSeriesSubtitle => _isCtet
-      ? (_isHi
-          ? 'केन्द्रीय परीक्षा पैटर्न पर विश्लेषित 1,500 प्रश्नों की सम्पूर्ण CTET मॉडल टेस्ट शृंखला'
-          : 'Complete 1,500-question CTET model test series curated on standard pattern')
-      : (_isHi
-          ? 'उत्तराखण्ड परीक्षा पैटर्न पर विश्लेषित 1,500 प्रश्नों की सम्पूर्ण UTET मॉडल टेस्ट शृंखला'
-          : 'Complete 1,500-question UTET model test series curated on standard pattern');
+      ? '${BankFacts.paperCount} ${_isCtet ? "CTET" : "UTET"} मॉडल प्रश्न-पुस्तिकाएं ($currentExamYear)'
+      : '${BankFacts.paperCount} ${_isCtet ? "CTET" : "UTET"} Model Question Booklets ($currentExamYear)';
+  static String get mockSeriesSubtitle {
+    final total = BankFacts.format(
+      BankFacts.paperCount * BankFacts.questionsPerPaper,
+    );
+    return _isCtet
+        ? (_isHi
+            ? 'केन्द्रीय परीक्षा पैटर्न पर विश्लेषित $total प्रश्नों की सम्पूर्ण CTET मॉडल टेस्ट शृंखला'
+            : 'Complete $total-question CTET model test series curated on standard pattern')
+        : (_isHi
+            ? 'उत्तराखण्ड परीक्षा पैटर्न पर विश्लेषित $total प्रश्नों की सम्पूर्ण UTET मॉडल टेस्ट शृंखला'
+            : 'Complete $total-question UTET model test series curated on standard pattern');
+  }
   static String mockSeriesCardTitle(int num) => _isHi
       ? 'सेट-${num.toString().padLeft(2, '0')} : ${_isCtet ? "CTET" : "UTET"} $currentExamYear मॉडल प्रश्न-पुस्तिका'
       : 'SET-${num.toString().padLeft(2, '0')} : ${_isCtet ? "CTET" : "UTET"} $currentExamYear Model Booklet';
   static String get mockSeriesCardDesc => _isHi
-      ? '150 बहुविकल्पीय प्रश्न · 150 मिनट · पूर्णांक 150'
-      : '150 MCQs · 150 Minutes · 150 Marks';
+      ? '${BankFacts.questionsPerPaper} बहुविकल्पीय प्रश्न · ${BankFacts.questionsPerPaper} मिनट · पूर्णांक ${BankFacts.questionsPerPaper}'
+      : '${BankFacts.questionsPerPaper} MCQs · ${BankFacts.questionsPerPaper} Minutes · ${BankFacts.questionsPerPaper} Marks';
   static String get freshMockGenerateBtn => _isHi
       ? '⚡ नया असीमित मॉडल प्रश्न-पत्र तैयार करें'
       : '⚡ Generate Fresh Practice Mock';
@@ -522,7 +519,9 @@ class AppStrings {
   static String subjectPracticeHubDesc(int total) => _isHi
       ? 'बैंक में कुल $total प्रामाणिक प्रश्न उपलब्ध हैं'
       : 'Total $total authentic questions available in bank';
-  static String subjectSetTitle(int num) => _isHi ? 'सेट-$num : 30 प्रश्न अभ्यास' : 'Set-$num : 30 Questions Practice';
+  static String subjectSetTitle(int num) => _isHi
+      ? 'सेट-\$num : ${BankFacts.subjectSetQuestions} प्रश्न अभ्यास'
+      : 'Set-\$num : ${BankFacts.subjectSetQuestions} Questions Practice';
   static String get topicsDrillHeading => _isHi ? 'टॉपिक-वार गहन अभ्यास' : 'Topic-wise Focused Drills';
   static String get startPracticeBtn => _isHi ? 'हल शुरू करें ▾' : 'Start Practice ▾';
   static String topicDrillTitle(String topic) => _isHi ? '$topic ड्रिल' : '$topic Drill';
@@ -532,25 +531,27 @@ class AppStrings {
   // Premium & In-App Purchase Gate (IAP)
   static String get premiumPassTitle => _isHi ? 'TET $currentExamYear प्रो परीक्षा पास' : 'TET $currentExamYear Pro Master Pass';
   static String get premiumPassSubtitle => _isHi
-      ? 'एक मॉक टेस्ट पूर्णतः निःशुल्क है। बाकी सभी 62+ मॉडल प्रश्न-पुस्तिकाएं, विगत वर्ष पेपर्स और 9,720+ प्रश्नों को आजीवन अनलॉक करें।'
-      : 'One full mock test is completely free. Unlock all 62+ exam booklets, previous year papers, and 9,720+ questions forever.';
+      ? 'एक मॉक टेस्ट पूर्णतः निःशुल्क है। बाकी सभी ${BankFacts.paperCount}+ मॉडल प्रश्न-पुस्तिकाएं, विगत वर्ष पेपर्स और ${BankFacts.format(BankFacts.questionCount)}+ प्रश्नों को आजीवन अनलॉक करें।'
+      : 'One full mock test is completely free. Unlock all ${BankFacts.paperCount}+ exam booklets, previous year papers, and ${BankFacts.format(BankFacts.questionCount)}+ questions forever.';
 
   static String get proPackMasterTitle => _isHi ? 'मास्टर ऑल-एक्सेस प्रो पास' : 'Master All-Access Pro Pass';
   static String get proPackMasterSub => _isHi
-      ? 'दोनों पेपर (पेपर 1 + पेपर 2), UTET और CTET, सभी 62+ टेस्ट, 9,720+ प्रश्न व आजीवन अपडेट'
-      : 'Both Papers (Paper 1 + 2), UTET & CTET, all 62+ full tests, 9,720+ questions & lifetime updates';
+      ? 'दोनों पेपर (पेपर 1 + पेपर 2), UTET और CTET, सभी ${BankFacts.paperCount}+ टेस्ट, ${BankFacts.format(BankFacts.questionCount)}+ प्रश्न व आजीवन अपडेट'
+      : 'Both Papers (Paper 1 + 2), UTET & CTET, all ${BankFacts.paperCount}+ full tests, ${BankFacts.format(BankFacts.questionCount)}+ questions & lifetime updates';
   static String get proPackMasterPrice => _isHi ? '₹599 (80% सीमित छूट)' : '₹599 (80% Limited Off)';
   static String get proPackMasterTag => _isHi ? '⭐ सर्वोत्तम मूल्य · शिक्षकों की पसंद' : '⭐ Best Value · Most Popular';
 
   static String get proPackSingleTitle => _isHi ? 'एकल पेपर प्रो पास' : 'Single Paper Pro Pass';
   static String get proPackSingleSub => _isHi
-      ? 'चयनित पेपर के सभी 28+ टेस्ट, सम्पूर्ण समाधान एवं विस्तृत विश्लेषण'
-      : 'All 28+ full tests, complete solutions & analytics for selected paper';
+      ? 'चयनित पेपर के सभी ${BankFacts.paperCount}+ टेस्ट, सम्पूर्ण समाधान एवं विस्तृत विश्लेषण'
+      : 'All ${BankFacts.paperCount}+ full tests, complete solutions & analytics for selected paper';
   static String get proPackSinglePrice => _isHi ? '₹299' : '₹299';
   static String get proPackSingleTag => _isHi ? 'छात्र पैक' : 'Student Pack';
 
-  static String get premiumFeature1 => _isHi ? '62+ सम्पूर्ण 150-प्रश्नों की प्रश्न-पुस्तिकाएं' : '62+ Full 150-Question Exam Booklets';
-  static String get premiumFeature2 => _isHi ? 'विगत 10+ वर्षों के सभी प्रामाणिक बोर्ड प्रश्न-पत्र' : '10+ Years Authentic Board Solved Papers';
+  static String get premiumFeature1 => _isHi
+      ? '${BankFacts.paperCount}+ सम्पूर्ण ${BankFacts.questionsPerPaper}-प्रश्नों की प्रश्न-पुस्तिकाएं'
+      : '${BankFacts.paperCount}+ Full ${BankFacts.questionsPerPaper}-Question Exam Booklets';
+  static String get premiumFeature2 => _isHi ? 'विगत ${BankFacts.pyqCount}+ वर्षों के सभी प्रामाणिक बोर्ड प्रश्न-पत्र' : '${BankFacts.pyqCount}+ Years Authentic Board Solved Papers';
   static String get premiumFeature3 => _isHi ? 'विस्तृत व्याख्या सहित सम्पूर्ण हल व सटीक विश्लेषण' : 'Detailed Explanations & Performance Analytics';
   static String get premiumFeature4 => _isHi ? '100% विज्ञापन-मुक्त · बिना इंटरनेट आजीवन पूर्ण एक्सेस' : '100% Ad-Free · Complete Offline Access for Life';
 
@@ -570,8 +571,8 @@ class AppStrings {
   // Congratulations Dialog
   static String get congratulationsTitle => _isHi ? 'बधाई हो! प्रो पास सक्रिय हो गया' : 'Congratulations! Pro Pass Activated';
   static String get congratulationsSub => _isHi
-      ? 'आपकी प्रो सदस्यता सफलतापूर्वक सक्रिय कर दी गई है। अब आप सभी 62+ प्रश्न-पुस्तिकाओं और विगत वर्ष पेपर्स को बिना किसी रोक-टोक के हल कर सकते हैं।'
-      : 'Your Pro membership is now active. You have full unlimited access to all 62+ exam booklets and previous year papers.';
+      ? 'आपकी प्रो सदस्यता सफलतापूर्वक सक्रिय कर दी गई है। अब आप सभी ${BankFacts.paperCount}+ प्रश्न-पुस्तिकाओं और विगत वर्ष पेपर्स को बिना किसी रोक-टोक के हल कर सकते हैं।'
+      : 'Your Pro membership is now active. You have full unlimited access to all ${BankFacts.paperCount}+ exam booklets and previous year papers.';
   static String get startPreparingBtn => _isHi ? 'तैयारी शुरू करें' : 'Start Preparing';
 
   // Sanskrit Upcoming Notice
@@ -649,7 +650,7 @@ class AppStrings {
       : 'Computer test · Large clear font · Full screen · Easy on the eyes';
   static String get bookletModeTitle => _isHi ? '📄 प्रश्न-पुस्तिका मोड' : '📄 Question Booklet';
   static String get bookletModeSub => _isHi
-      ? 'मानक परीक्षा पेपर · 150 प्रश्न सूची · OMR शीट शैली'
-      : 'Standard exam paper · 150 questions list · OMR sheet style';
+      ? 'मानक परीक्षा पेपर · ${BankFacts.questionsPerPaper} प्रश्न सूची · OMR शीट शैली'
+      : 'Standard exam paper · ${BankFacts.questionsPerPaper} questions list · OMR sheet style';
 }
 

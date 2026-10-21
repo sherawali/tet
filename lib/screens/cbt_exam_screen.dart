@@ -5,6 +5,7 @@ import '../design_system/app_colors.dart';
 import '../design_system/app_typography.dart';
 import '../design_system/app_radius.dart';
 import '../models/test_session.dart';
+import '../services/section_catalog.dart';
 import '../models/question.dart';
 import '../models/passage.dart';
 import '../models/mock_config.dart';
@@ -1121,15 +1122,10 @@ class _CbtExamScreenState extends State<CbtExamScreen>
     }
 
     // Dynamic section boundaries detected from actual questions in the session
-    final sectionNames = {
-      'cdp': 'CDP',
-      'hindi': 'हिन्दी',
-      'english': 'English',
-      'math': 'गणित',
-      'evs': 'EVS',
-      'sans': 'संस्कृत',
-      'science': 'विज्ञान',
-      'social': 'सामाजिक अध्ययन',
+    // Section labels come from the shared catalogue so that every vault
+    // code (lang1_hindi, math_science, ...) gets a readable name.
+    final sectionNames = <String, String>{
+      for (final code in SectionCatalog.order) code: SectionCatalog.short(code),
     };
 
     final discoveredSections = <Map<String, dynamic>>[];

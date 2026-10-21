@@ -703,6 +703,33 @@ class DbHelper {
     return map;
   }
 
+  /// Question count per section for one exam and one paper level.
+  ///
+  /// The subject hub uses this so that it only offers the sections the
+  /// selected paper really contains.
+  Future<Map<String, int>> getSectionCountsForPaper({
+    required String exam,
+    required int paper,
+  }) async {
+    final db = await database;
+    final res = await db.rawQuery(
+      '''
+      SELECT q.section AS section, COUNT(*) AS cnt
+      FROM appearances a
+      JOIN questions q ON q.id = a.question_id
+      JOIN paper_forms p ON p.id = a.paper_form_id
+      WHERE p.paper = ? AND p.exam = ?
+      GROUP BY q.section
+      ''',
+      [paper, exam],
+    );
+    final map = <String, int>{};
+    for (final row in res) {
+      map[row['section'] as String] = (row['cnt'] as num).toInt();
+    }
+    return map;
+  }
+
   Future<void> setMeta(String key, String val) async {
     final db = await database;
     await db.insert(
@@ -748,35 +775,48 @@ class DbHelper {
     return await db.query('test_history', orderBy: 'timestamp DESC');
   }
 
-  /// Get list of sorted distinct PYQ years from questions table
-  Future<List<String>> getDistinctPyqYears([String? exam]) async {
-    final isCtet = (exam ?? 'utet1').toLowerCase().startsWith('c');
-    if (isCtet) {
-      return [
-        '2026',
-        '2024',
-        '2023',
-        '2021 (दिसम्बर)',
-        '2021 (जनवरी)',
-        '2019',
-        '2018',
-        '2016',
-      ];
+  /// Get list of sorted distinct PYQ years from the paper forms.
+  ///
+  /// The list is derived from the forms themselves, because only a form can
+  /// actually be opened.  A hard coded list used to offer years (and month
+  /// variants) that no longer exist in the bank, which opened an empty paper.
+  Future<List<String>> getDistinctPyqYears([String? exam, int? paper]) async {
+    final db = await database;
+    final examKey =
+        (exam ?? 'utet1').toLowerCase().startsWith('c') ? 'ctet' : 'utet';
+    final args = <dynamic>[examKey];
+    var sql =
+        "SELECT DISTINCT exam_date FROM paper_forms "
+        "WHERE exam = ? AND exam_date IS NOT NULL AND exam_date != '' "
+        "AND exam_date NOT LIKE '%Mock%'";
+    if (paper != null) {
+      sql += ' AND paper = ?';
+      args.add(paper);
+    }
+    final formRows = await db.rawQuery(sql, args);
+    final formYears = <String>{};
+    for (final row in formRows) {
+      final date = (row['exam_date'] as String? ?? '').trim();
+      final yearMatch = RegExp(r'(20\d{2})').firstMatch(date);
+      if (yearMatch != null) formYears.add(yearMatch.group(1)!);
+    }
+    if (formYears.isNotEmpty) {
+      final sorted = formYears.toList()..sort((a, b) => b.compareTo(a));
+      return sorted;
     }
 
-    final db = await database;
+    // Fallback: the year column of the questions.
     final ex = _examWhere(exam);
     final where = ex.isNotEmpty
         ? "WHERE (years IS NOT NULL AND years != '') AND $ex"
         : "WHERE years IS NOT NULL AND years != ''";
     final res = await db.rawQuery('SELECT DISTINCT years FROM questions $where');
-    final Set<String> yearSet = {};
+    final yearSet = <String>{};
     for (final row in res) {
       final y = row['years'] as String?;
       if (y != null && y.isNotEmpty) {
-        final parts = y.split(RegExp(r'[,;/\s]+'));
-        for (final p in parts) {
-          final trimmed = p.trim();
+        for (final part in y.split(RegExp(r'[,;/\s]+'))) {
+          final trimmed = part.trim();
           if (trimmed.length == 4 && int.tryParse(trimmed) != null) {
             yearSet.add(trimmed);
           }
@@ -969,24 +1009,28 @@ class DbHelper {
     return ordered.isNotEmpty ? ordered : allQs;
   }
 
-  /// Get distinct PYQ years with their question counts
-  Future<Map<String, int>> getPyqYearsWithCounts([String? exam]) async {
-    final years = await getDistinctPyqYears(exam);
+  /// Get distinct PYQ years with their real question counts
+  Future<Map<String, int>> getPyqYearsWithCounts([
+    String? exam,
+    int? paper,
+  ]) async {
+    final years = await getDistinctPyqYears(exam, paper);
     final db = await database;
-    final isCtet = (exam ?? 'utet1').toLowerCase().startsWith('c');
+    final examKey =
+        (exam ?? 'utet1').toLowerCase().startsWith('c') ? 'ctet' : 'utet';
     final Map<String, int> result = {};
     for (final y in years) {
-      if (isCtet) {
-        result[y] = 150;
-      } else {
-        String sql = "SELECT COUNT(*) as cnt FROM questions WHERE (years LIKE ? OR years = ?)";
-        final ex = _examWhere(exam);
-        if (ex.isNotEmpty) {
-          sql += " AND $ex";
-        }
-        final res = await db.rawQuery(sql, ['%$y%', y]);
-        result[y] = Sqflite.firstIntValue(res) ?? 0;
+      final args = <dynamic>[examKey, '%$y%', '%$y%', '%$y%'];
+      var sql =
+          'SELECT COUNT(*) AS cnt FROM appearances a '
+          'JOIN paper_forms p ON p.id = a.paper_form_id '
+          'WHERE p.exam = ? AND (p.exam_date LIKE ? OR p.set_code LIKE ? OR p.id LIKE ?)';
+      if (paper != null) {
+        sql += ' AND p.paper = ?';
+        args.add(paper);
       }
+      final res = await db.rawQuery(sql, args);
+      result[y] = Sqflite.firstIntValue(res) ?? 0;
     }
     return result;
   }
