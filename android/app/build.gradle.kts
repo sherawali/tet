@@ -52,6 +52,12 @@ android {
     }
 
     buildTypes {
+        debug {
+            // The debug build lives next to the release build, so both can
+            // be installed on the same phone.
+            applicationIdSuffix = ".debug"
+            versionNameSuffix = "-debug"
+        }
         release {
             signingConfig = if (hasReleaseKey) {
                 signingConfigs.getByName("release")

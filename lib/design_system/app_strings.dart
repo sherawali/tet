@@ -532,8 +532,8 @@ class AppStrings {
       ? 'बैंक में कुल $total प्रामाणिक प्रश्न उपलब्ध हैं'
       : 'Total $total authentic questions available in bank';
   static String subjectSetTitle(int num) => _isHi
-      ? 'सेट-\$num : ${BankFacts.subjectSetQuestions} प्रश्न अभ्यास'
-      : 'Set-\$num : ${BankFacts.subjectSetQuestions} Questions Practice';
+      ? 'सेट-$num : ${BankFacts.subjectSetQuestions} प्रश्न अभ्यास'
+      : 'Set-$num : ${BankFacts.subjectSetQuestions} Questions Practice';
   static String get topicsDrillHeading => _isHi ? 'टॉपिक-वार गहन अभ्यास' : 'Topic-wise Focused Drills';
   static String get startPracticeBtn => _isHi ? 'हल शुरू करें ▾' : 'Start Practice ▾';
   static String topicDrillTitle(String topic) => _isHi ? '$topic ड्रिल' : '$topic Drill';
