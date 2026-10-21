@@ -45,6 +45,7 @@ app.*.map.json
 /android/app/release
 
 # Keystores & Signing Keys (CRITICAL SAFETY)
+keys-backup/
 *.jks
 *.keystore
 key.properties
