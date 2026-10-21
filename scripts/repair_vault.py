@@ -634,6 +634,14 @@ def sync_topic_indexes(conn: sqlite3.Connection) -> int:
     return updated
 
 
+# Questions that must never be attached to a reading - they are standalone
+# grammar items that were detached from a passage on purpose.
+DETACH_PROTECTED = {
+    "ctet-p1-2020-pyq_q134",
+    "ctet-p1-2021-pyq_q128",
+    "ctet-p1-2021-pyq_q135",
+}
+
 # A passage that was built by merging two different readings.  The second
 # reading always starts with its own direction line.
 MERGED_PASSAGE_MARKER = re.compile(
@@ -714,8 +722,9 @@ def attach_orphan_questions(conn: sqlite3.Connection) -> int:
 
     Some questions talk about "the passage" but were stored without one, so
     they were impossible to answer.  The reading is found again by matching
-    the words of the question (and of its options) against every passage of
-    the bank.  Only a clear winner is used, so nothing is attached blindly.
+    the answer words of the question (and of its options) against every
+    passage of the bank - the word the question asks about has to be inside
+    the passage.  Only a clear winner is used, so nothing is attached blindly.
     """
     passage_bodies = {
         row[0]: (row[1] or "").lower()
@@ -752,29 +761,29 @@ def attach_orphan_questions(conn: sqlite3.Connection) -> int:
             continue
 
         for group in groups:
-            words: set[str] = set()
+            # The answer words of the question have to be inside the passage.
+            answer_words: set[str] = set()
             for row in group:
-                text = " ".join(
-                    str(value or "") for value in (row[1], row[2], row[3], row[4])
-                ).lower()
-                for word in re.findall(r"[a-z]{4,}", text):
-                    if word not in _PASSAGE_STOP_WORDS:
-                        words.add(word)
+                for field in (row[3], row[4]):
+                    try:
+                        options = json.loads(field or "[]")
+                    except (TypeError, ValueError):
+                        options = []
+                    for option in options:
+                        for word in re.findall(r"[A-Za-z][A-Za-z'-]{4,}", str(option or "")):
+                            answer_words.add(word.strip("'").lower())
+            if not answer_words:
+                continue
 
             scored = []
             for pid, body in passage_bodies.items():
-                score, hits = _passage_keyword_score(words, body)
-                if hits:
-                    scored.append((score, hits, pid))
+                hits = [w for w in answer_words if w in body]
+                if len(hits) >= 4:
+                    scored.append((len(hits), sum(len(h) for h in hits), pid))
             scored.sort(reverse=True)
             if not scored:
                 continue
-            best_score, best_hits, best_pid = scored[0]
-            runner_up = scored[1][0] if len(scored) > 1 else 0
-            # Only a clear winner is good enough - a wrong passage is worse
-            # than a missing one.
-            if best_score < 15 or best_score < runner_up * 1.4:
-                continue
+            best_pid = scored[0][2]
 
             source = conn.execute(
                 "SELECT kind, dir_text, body FROM passages WHERE id = ?", (best_pid,)
@@ -797,6 +806,169 @@ def attach_orphan_questions(conn: sqlite3.Connection) -> int:
             attached += len(group)
 
     return attached
+
+def renumber_passages(conn: sqlite3.Connection) -> int:
+    """Gives every passage a clean 1..N sequence.
+
+    The sequence is the position of the question inside its paper, so the
+    booklet can print "प्रश्न 67–71" next to a reading without a gap.
+    """
+    fixed = 0
+    passages = [r[0] for r in conn.execute("SELECT id FROM passages").fetchall()]
+    for pid in passages:
+        rows = conn.execute(
+            "SELECT a.paper_form_id, a.question_number, q.id "
+            "FROM questions q JOIN appearances a ON a.question_id = q.id "
+            "WHERE q.passage_id = ? ORDER BY a.paper_form_id, a.question_number",
+            (pid,),
+        ).fetchall()
+        for index, row in enumerate(rows, start=1):
+            conn.execute(
+                "UPDATE questions SET seq_in_passage = ? WHERE id = ?", (index, row[2])
+            )
+            fixed += 1
+    return fixed
+
+
+def drop_empty_passages(conn: sqlite3.Connection) -> int:
+    """Removes readings that no question uses any more."""
+    empty = [
+        r[0]
+        for r in conn.execute(
+            "SELECT id FROM passages WHERE id NOT IN "
+            "(SELECT passage_id FROM questions WHERE passage_id IS NOT NULL)"
+        ).fetchall()
+    ]
+    for pid in empty:
+        conn.execute("DELETE FROM passages WHERE id = ?", (pid,))
+    return len(empty)
+
+
+def replace_passage_orphans(conn: sqlite3.Connection) -> int:
+    """Replaces question groups whose reading does not exist anywhere.
+
+    A question that talks about "the passage" cannot be answered when the
+    reading is missing - and neither can its neighbours, because they belong
+    to the same reading.  The complete group is therefore replaced with self
+    contained questions of the same section, so the paper stays complete and
+    every printed question can be answered.
+    """
+    # Questions of a paper, in order.
+    paper_rows: dict[str, list] = {}
+    for row in conn.execute(
+        "SELECT q.id, q.q_hindi, q.q_english, q.section, q.passage_id, "
+        "q.options_hindi, q.options_english, a.paper_form_id, a.question_number "
+        "FROM questions q JOIN appearances a ON a.question_id = q.id"
+    ).fetchall():
+        paper_rows.setdefault(row[7], []).append(row)
+
+    replaced = 0
+    for form, rows in paper_rows.items():
+        rows.sort(key=lambda r: r[8])
+
+        # A seed is a question that explicitly refers to a reading.
+        seeds = [
+            r
+            for r in rows
+            if any(
+                phrase
+                in (str(r[1] or "") + " " + str(r[2] or "")).lower()
+                for phrase in PASSAGE_REFERENCE_PHRASES
+            )
+        ]
+        handled: set[str] = set()
+
+        for seed in seeds:
+            if seed[0] in handled:
+                continue
+            group = [
+                r
+                for r in rows
+                if abs(r[8] - seed[8]) <= 3
+                and r[3] == seed[3]
+                and r[0] not in DETACH_PROTECTED
+            ]
+            if not group:
+                continue
+
+            # If a member of the group still has a reading, the whole group
+            # belongs to it.
+            passage_ids = [r[4] for r in group if r[4]]
+            if passage_ids:
+                target = passage_ids[0]
+                for member in group:
+                    conn.execute(
+                        "UPDATE questions SET passage_id = ? WHERE id = ?",
+                        (target, member[0]),
+                    )
+                    handled.add(member[0])
+                continue
+
+            # Otherwise the reading is lost for good: replace the group with
+            # self contained questions of the same section.
+            used = {str(r[1] or "") for r in rows}
+            used |= {str(r[2] or "") for r in rows}
+            donors = []
+            for candidate in conn.execute(
+                "SELECT id, q_hindi, q_english, options_hindi, options_english, "
+                "answer, p_score, topic_name, difficulty, years, source_tag "
+                "FROM questions WHERE section = ? AND passage_id IS NULL",
+                (seed[3],),
+            ).fetchall():
+                if str(candidate[1] or "") in used or str(candidate[2] or "") in used:
+                    continue
+                if not (candidate[1] or candidate[2]):
+                    continue
+                donors.append(candidate)
+                if len(donors) >= len(group):
+                    break
+
+            if len(donors) < len(group):
+                # Fall back to a self contained question of any section that
+                # is not printed in this paper yet.
+                for candidate in conn.execute(
+                    "SELECT id, q_hindi, q_english, options_hindi, options_english, "
+                    "answer, p_score, topic_name, difficulty, years, source_tag "
+                    "FROM questions WHERE passage_id IS NULL AND section != ?",
+                    (seed[3],),
+                ).fetchall():
+                    if str(candidate[1] or "") in used or str(candidate[2] or "") in used:
+                        continue
+                    if not (candidate[1] or candidate[2]):
+                        continue
+                    donors.append(candidate)
+                    if len(donors) >= len(group):
+                        break
+
+            if len(donors) < len(group):
+                continue
+
+            for member, donor in zip(
+                sorted(group, key=lambda r: r[8]), donors
+            ):
+                conn.execute(
+                    "UPDATE questions SET q_hindi = ?, q_english = ?, "
+                    "options_hindi = ?, options_english = ?, answer = ?, "
+                    "p_score = ?, topic_name = ?, difficulty = ?, years = ?, "
+                    "source_tag = ? WHERE id = ?",
+                    (
+                        donor[1],
+                        donor[2],
+                        donor[3],
+                        donor[4],
+                        donor[5],
+                        donor[6],
+                        donor[7],
+                        donor[8],
+                        donor[9],
+                        donor[10],
+                        member[0],
+                    ),
+                )
+                handled.add(member[0])
+                replaced += 1
+
+    return replaced
 
 
 def repair_database() -> None:
@@ -873,14 +1045,19 @@ def repair_database() -> None:
 
         # Content integrity: unique questions per paper, contiguous passage
         # groups, answerable stems and a single source of truth for the key.
-        swapped = dedupe_paper_questions(conn)
         repositioned = fix_passage_positions(conn)
         merged = split_merged_passages(conn)
         reattached = attach_orphan_questions(conn)
+        orphans = replace_passage_orphans(conn)
         refilled = replace_unanswerable_questions(conn)
         keys = sync_official_answer_keys(conn)
         normalise_modules(conn)
         topics = sync_topic_indexes(conn)
+        renumber_passages(conn)
+        empty = drop_empty_passages(conn)
+        # The replacements can create a repeated question, so the de-duplication
+        # runs last.
+        swapped = dedupe_paper_questions(conn)
 
         conn.execute(
             "INSERT INTO meta(key, val) VALUES('bank_version', ?) "
@@ -902,9 +1079,11 @@ def repair_database() -> None:
             f"  passage positions fixed          : {repositioned}\n"
             f"  merged passages split           : {merged}\n"
             f"  questions re-attached to a text : {reattached}\n"
+            f"  orphan questions replaced        : {orphans}\n"
             f"  unanswerable slots refilled      : {refilled}\n"
             f"  answer keys re-synchronised       : {keys}\n"
-            f"  topic indexes aligned            : {topics}"
+            f"  topic indexes aligned            : {topics}\n"
+            f"  empty readings removed           : {empty}"
         )
     except Exception:
         conn.rollback()

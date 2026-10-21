@@ -2865,6 +2865,21 @@ DARK_ROOT .option-row.wrong-ans .opt-secondary { color: #fca5a5; }
 DARK_ROOT .opt-badge { color: #cbd5e1; }
 DARK_ROOT .option-row.selected .opt-badge { color: #93c5fd; }
 
+/* --- vector figures -------------------------------------------------- */
+DARK_ROOT .q-figure svg, DARK_ROOT .opt-figure svg { background: #0b1220; border-radius: 8px; }
+DARK_ROOT .q-figure svg line, DARK_ROOT .q-figure svg path,
+DARK_ROOT .q-figure svg rect, DARK_ROOT .q-figure svg circle,
+DARK_ROOT .opt-figure svg line, DARK_ROOT .opt-figure svg path,
+DARK_ROOT .opt-figure svg rect, DARK_ROOT .opt-figure svg circle { stroke: #cbd5e1; }
+DARK_ROOT .q-figure svg text, DARK_ROOT .opt-figure svg text { fill: #e2e8f0; }
+DARK_ROOT .q-figure svg [stroke="#2563eb"], DARK_ROOT .opt-figure svg [stroke="#2563eb"] { stroke: #60a5fa; }
+DARK_ROOT .q-figure svg [fill="#2563eb"], DARK_ROOT .opt-figure svg [fill="#2563eb"] { fill: #60a5fa; }
+DARK_ROOT .q-figure svg [fill="#dbeafe"], DARK_ROOT .opt-figure svg [fill="#dbeafe"] { fill: #1e3a5f; }
+DARK_ROOT .q-figure svg [fill="#eff6ff"], DARK_ROOT .opt-figure svg [fill="#eff6ff"] { fill: #1e293b; }
+DARK_ROOT .q-figure svg [fill="#bfdbfe"], DARK_ROOT .opt-figure svg [fill="#bfdbfe"] { fill: #334155; }
+DARK_ROOT .q-figure svg [stroke="#dc2626"], DARK_ROOT .q-figure svg [fill="#dc2626"] { stroke: #fca5a5; fill: #fca5a5; }
+DARK_ROOT .q-figure svg [stroke="#64748b"], DARK_ROOT .q-figure svg [fill="#64748b"] { stroke: #94a3b8; fill: #94a3b8; }
+
 /* --- assertion / reason cards -------------------------------------- */
 DARK_ROOT .kathan-box { background: #111c33; }
 DARK_ROOT .kathan-box.reason-box { background: #1c1636; }

@@ -15,6 +15,10 @@ enum FigureKind {
   solidCube,
   cubeNet,
   solidShapes,
+  parallelAngles,
+  fourShapes,
+  splitRectangle,
+  triangularPrism,
 }
 
 class FigureSpec {
@@ -43,6 +47,14 @@ class QuestionFigureCatalog {
     '240502e5a4f70e25': FigureSpec(FigureKind.parallelograms),
     'ctet-p1-2018-pyq_q056': FigureSpec(FigureKind.solidCube),
     'ctet-p1-2018-pyq_q058': FigureSpec(FigureKind.solidCube),
+    // OP || RS with the two angles marked (UTET Paper-1, set-D).
+    '25a91897876ef150': FigureSpec(FigureKind.parallelAngles),
+    // The four shapes the statement question talks about.
+    'ctet-p1-2018-pyq_q047': FigureSpec(FigureKind.fourShapes),
+    // Rectangle cut in two, the upper half in three and the lower half in four.
+    'd726e769bed17822': FigureSpec(FigureKind.splitRectangle),
+    // Solid with two triangular and three rectangular faces.
+    '7162186106ad5143': FigureSpec(FigureKind.triangularPrism),
   };
 
   static const Set<String> _optionFigureIds = {
@@ -99,33 +111,41 @@ class QuestionFigureCatalog {
     const accent = '#2563eb';
     const muted = '#64748b';
 
-    String text(int x, int y, String value,
-            {int size = 13, String color = stroke, String weight = '600'}) =>
-        '<text x="$x" y="$y" text-anchor="middle" font-family="Arial, sans-serif" '
-        'font-size="$size" font-weight="$weight" fill="$color">$value</text>';
+    String num2s(num value) {
+      if (value == value.roundToDouble()) return value.toStringAsFixed(0);
+      return value.toStringAsFixed(1);
+    }
 
-    String line(int x1, int y1, int x2, int y2,
-            {String color = stroke, int width = 2, String dash = ''}) =>
-        '<line x1="$x1" y1="$y1" x2="$x2" y2="$y2" stroke="$color" '
-        'stroke-width="$width" ${dash.isEmpty ? '' : 'stroke-dasharray="$dash"'} />';
+    String text(num x, num y, String value,
+            {num size = 13, String color = stroke, String weight = '600'}) =>
+        '<text x="${num2s(x)}" y="${num2s(y)}" text-anchor="middle" '
+        'font-family="Arial, sans-serif" font-size="${num2s(size)}" '
+        'font-weight="$weight" fill="$color">$value</text>';
 
-    String rect(int x, int y, int w, int h,
-            {String color = stroke, int width = 2, String fill = 'none'}) =>
-        '<rect x="$x" y="$y" width="$w" height="$h" rx="2" fill="$fill" '
-        'stroke="$color" stroke-width="$width" />';
+    String line(num x1, num y1, num x2, num y2,
+            {String color = stroke, num width = 2, String dash = ''}) =>
+        '<line x1="${num2s(x1)}" y1="${num2s(y1)}" x2="${num2s(x2)}" '
+        'y2="${num2s(y2)}" stroke="$color" stroke-width="${num2s(width)}" '
+        '${dash.isEmpty ? '' : 'stroke-dasharray="$dash"'} />';
 
-    String circle(int cx, int cy, int r,
-            {String color = stroke, int width = 2, String fill = 'none'}) =>
-        '<circle cx="$cx" cy="$cy" r="$r" fill="$fill" stroke="$color" '
-        'stroke-width="$width" />';
+    String rect(num x, num y, num w, num h,
+            {String color = stroke, num width = 2, String fill = 'none'}) =>
+        '<rect x="${num2s(x)}" y="${num2s(y)}" width="${num2s(w)}" '
+        'height="${num2s(h)}" rx="2" fill="$fill" stroke="$color" '
+        'stroke-width="${num2s(width)}" />';
 
-    String path(String d, {String color = stroke, int width = 2, String fill = 'none'}) =>
-        '<path d="$d" fill="$fill" stroke="$color" stroke-width="$width" '
+    String circle(num cx, num cy, num r,
+            {String color = stroke, num width = 2, String fill = 'none'}) =>
+        '<circle cx="${num2s(cx)}" cy="${num2s(cy)}" r="${num2s(r)}" '
+        'fill="$fill" stroke="$color" stroke-width="${num2s(width)}" />';
+
+    String path(String d, {String color = stroke, num width = 2, String fill = 'none'}) =>
+        '<path d="$d" fill="$fill" stroke="$color" stroke-width="${num2s(width)}" '
         'stroke-linejoin="round" stroke-linecap="round" />';
 
-    String wrap(String body, {int w = 340, int h = 190}) =>
-        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 $w $h" '
-        'role="img" style="width:100%;max-width:${w}px;height:auto">$body</svg>';
+    String wrap(String body, {num w = 340, num h = 190}) =>
+        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${num2s(w)} ${num2s(h)}" '
+        'role="img" style="width:100%;max-width:${num2s(w)}px;height:auto">$body</svg>';
 
     switch (spec.kind) {
       case FigureKind.triangleRatio:
@@ -308,6 +328,64 @@ class QuestionFigureCatalog {
         body.write(text(170, 178, 'Shape ${String.fromCharCode(65 + spec.option)}',
             size: 10, color: muted));
         return wrap(body.toString(), h: 190);
+      case FigureKind.parallelAngles:
+        // Two parallel segments with a broken line P - Q - R below them.
+        return wrap(
+          line(40, 74.4, 133.5, 74.4) +
+              line(203.6, 123, 300, 123) +
+              line(133.5, 74.4, 150, 168) +
+              line(203.6, 123, 150, 168) +
+              text(32, 78, 'O') +
+              text(133.5, 60, 'P') +
+              text(197, 142, 'R') +
+              text(308, 127, 'S') +
+              text(150, 182, 'Q', color: accent) +
+              text(110, 102, '100°', color: accent) +
+              text(217, 152, '140°', color: accent) +
+              text(160, 140, '?', color: '#dc2626', size: 16) +
+              text(170, 20, 'OP ∥ RS', size: 12, color: muted),
+        );
+      case FigureKind.fourShapes:
+        // Square, rhombus, rectangle and a quadrilateral that is not a
+        // parallelogram - the shapes the statement question refers to.
+        return wrap(
+          rect(24, 50, 50, 50, color: accent) +
+              path('M110 95 L132 55 L154 95 L132 135 Z', color: accent) +
+              rect(180, 60, 65, 40) +
+              path('M265 100 L288 55 L320 55 L335 100 Z') +
+              text(49, 168, 'A') +
+              text(132, 168, 'B') +
+              text(212, 168, 'C') +
+              text(300, 168, 'D') +
+              text(170, 186, 'दिए गए आकार / given shapes', size: 11, color: muted),
+        );
+      case FigureKind.splitRectangle:
+        // Upper half in three parts, lower half in four; two parts of each
+        // row are shaded.
+        return wrap(
+          rect(40, 30, 260, 140) +
+              rect(40, 30, 87, 70, color: accent, fill: '#dbeafe') +
+              rect(127, 30, 86, 70, color: accent, fill: '#dbeafe') +
+              rect(170, 100, 65, 70, color: accent, fill: '#dbeafe') +
+              rect(235, 100, 65, 70, color: accent, fill: '#dbeafe') +
+              line(127, 30, 127, 100) +
+              line(213, 30, 213, 100) +
+              line(40, 100, 300, 100) +
+              line(105, 100, 105, 170) +
+              line(170, 100, 170, 170) +
+              line(235, 100, 235, 170) +
+              text(170, 186, 'छायांकित भाग = 2/6 + 2/8 = 7/12', size: 11, color: muted),
+        );
+      case FigureKind.triangularPrism:
+        return wrap(
+          path('M60 150 L60 60 L130 105 Z', color: accent) +
+              path('M140 125 L140 35 L210 80 Z') +
+              line(60, 60, 140, 35) +
+              line(130, 105, 210, 80) +
+              line(60, 150, 140, 125) +
+              text(170, 182, 'त्रिभुजाकार प्रिज्म / triangular prism',
+                  size: 11, color: muted),
+        );
     }
   }
 }
@@ -502,6 +580,18 @@ class _FigurePainter extends CustomPainter {
       case FigureKind.solidShapes:
         _drawSolidShape(canvas, stroke, accent, spec.option);
         break;
+      case FigureKind.parallelAngles:
+        _drawParallelAngles(canvas, stroke, accent);
+        break;
+      case FigureKind.fourShapes:
+        _drawFourShapes(canvas, stroke, accent);
+        break;
+      case FigureKind.splitRectangle:
+        _drawSplitRectangle(canvas, stroke, accent);
+        break;
+      case FigureKind.triangularPrism:
+        _drawTriangularPrism(canvas, stroke, accent);
+        break;
     }
     canvas.restore();
   }
@@ -660,6 +750,91 @@ class _FigurePainter extends CustomPainter {
     }
     _text(canvas, 'Shape ${String.fromCharCode(65 + option)}', 170, 178,
         size: 10, color: _muted);
+  }
+
+  void _drawParallelAngles(Canvas canvas, Paint stroke, Paint accent) {
+    final p = const Offset(133.5, 74.4);
+    final r = const Offset(203.6, 123);
+    const q = Offset(150, 168);
+    canvas.drawLine(const Offset(40, 74.4), p, stroke);
+    canvas.drawLine(r, const Offset(300, 123), stroke);
+    canvas.drawLine(p, q, stroke);
+    canvas.drawLine(r, q, stroke);
+    _text(canvas, 'O', 32, 78);
+    _text(canvas, 'P', 133.5, 60);
+    _text(canvas, 'R', 197, 142);
+    _text(canvas, 'S', 308, 127);
+    _text(canvas, 'Q', 150, 182, color: _accent);
+    _text(canvas, '100°', 110, 102, color: _accent);
+    _text(canvas, '140°', 217, 152, color: _accent);
+    _text(canvas, '?', 160, 140, color: const Color(0xFFDC2626), size: 16);
+    _text(canvas, 'OP ∥ RS', 170, 20, size: 12, color: _muted);
+  }
+
+  void _drawFourShapes(Canvas canvas, Paint stroke, Paint accent) {
+    final shade = Paint()..color = _accent.withValues(alpha: 0.18);
+    final square = Rect.fromLTWH(24, 50, 50, 50);
+    canvas.drawRect(square, shade);
+    canvas.drawRect(square, accent);
+    final rhombus = Path()
+      ..moveTo(110, 95)
+      ..lineTo(132, 55)
+      ..lineTo(154, 95)
+      ..lineTo(132, 135)
+      ..close();
+    canvas.drawPath(rhombus, shade);
+    canvas.drawPath(rhombus, accent);
+    canvas.drawRect(const Rect.fromLTWH(180, 60, 65, 40), stroke);
+    final trapezium = Path()
+      ..moveTo(265, 100)
+      ..lineTo(288, 55)
+      ..lineTo(320, 55)
+      ..lineTo(335, 100)
+      ..close();
+    canvas.drawPath(trapezium, stroke);
+    _text(canvas, 'A', 49, 168);
+    _text(canvas, 'B', 132, 168);
+    _text(canvas, 'C', 212, 168);
+    _text(canvas, 'D', 300, 168);
+    _text(canvas, 'दिए गए आकार / given shapes', 170, 186, size: 11, color: _muted);
+  }
+
+  void _drawSplitRectangle(Canvas canvas, Paint stroke, Paint accent) {
+    final shade = Paint()..color = _accent.withValues(alpha: 0.22);
+    canvas.drawRect(const Rect.fromLTWH(40, 30, 260, 140), stroke);
+    canvas.drawRect(const Rect.fromLTWH(40, 30, 87, 70), shade);
+    canvas.drawRect(const Rect.fromLTWH(127, 30, 86, 70), shade);
+    canvas.drawRect(const Rect.fromLTWH(170, 100, 65, 70), shade);
+    canvas.drawRect(const Rect.fromLTWH(235, 100, 65, 70), shade);
+    canvas.drawLine(const Offset(127, 30), const Offset(127, 100), stroke);
+    canvas.drawLine(const Offset(213, 30), const Offset(213, 100), stroke);
+    canvas.drawLine(const Offset(40, 100), const Offset(300, 100), stroke);
+    canvas.drawLine(const Offset(105, 100), const Offset(105, 170), stroke);
+    canvas.drawLine(const Offset(170, 100), const Offset(170, 170), stroke);
+    canvas.drawLine(const Offset(235, 100), const Offset(235, 170), stroke);
+    _text(canvas, 'छायांकित भाग = 2/6 + 2/8 = 7/12', 170, 186,
+        size: 11, color: _muted);
+  }
+
+  void _drawTriangularPrism(Canvas canvas, Paint stroke, Paint accent) {
+    final front = Path()
+      ..moveTo(60, 150)
+      ..lineTo(60, 60)
+      ..lineTo(130, 105)
+      ..close();
+    final back = Path()
+      ..moveTo(140, 125)
+      ..lineTo(140, 35)
+      ..lineTo(210, 80)
+      ..close();
+    canvas.drawPath(front, Paint()..color = _accent.withValues(alpha: 0.14));
+    canvas.drawPath(front, accent);
+    canvas.drawPath(back, stroke);
+    canvas.drawLine(const Offset(60, 60), const Offset(140, 35), stroke);
+    canvas.drawLine(const Offset(130, 105), const Offset(210, 80), stroke);
+    canvas.drawLine(const Offset(60, 150), const Offset(140, 125), stroke);
+    _text(canvas, 'त्रिभुजाकार प्रिज्म / triangular prism', 170, 182,
+        size: 11, color: _muted);
   }
 
   void _arrow(Canvas canvas, Offset from, Offset to, Color color) {

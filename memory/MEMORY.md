@@ -703,3 +703,32 @@
   4. **Cover pe "??? : 30 ???? (30 ????)"** double print. Fix: parenthetical sirf 60+ minute papers me.
   5. **History list refresh nahi hoti thi** - test toh save hota tha par list khali dikhti thi (app restart tak). Fix: `_refreshHistoryIfNeeded()` history tab khulte hi.
 - **Verification:** 70/70 tests, analyze clean, validator pass, APK build + install + device par dono fixes (sticky bar, modal buttons) screenshot se confirm.
+
+### 2026-10-21: V20 Final Polish - Real Readings Recovered, Unanswerable Questions Removed & Vector Figures Drawn
+- **Original source found again:** `C:\Users\pujariji\Desktop\tetmaster\UTET_Paper1_Passages.md` still holds every reading with its question list. Parsed it (two formats: `**Qn.**` and `- Qn:`) and matched the questions of the bank against it.
+- **8 real reading groups restored (original text, not invented):**
+  - `utet-p1-set11` - ?????? (5 Q) + ????? (4 Q) + Workaholism (3 Q)
+  - `utet-p1-set-j` - Alice in Wonderland (3 Q) + Gandhi (Q88)
+  - `utet-p1-set-d` - Law (Q79-Q82)
+  - `ctet-p1-2024-pyq` / `ctet-p1-2023-pyq` - Great War passages
+- **Wrong attachments reverted:** the fuzzy matcher had put the Great War passage on two CTET papers where it did not belong (`ctet-p1-2023-pyq__stim_032`, `ctet-p1-2024-pyq__stim_125`) - both were rolled back before the repair rules ran.
+- **14 unanswerable questions -> 0:**
+  - 2 attached by the answer-word rule (`set11` Q63, `set12` Q68 - 8 answer words inside the reading).
+  - 1 attached to its own group (Law, `set-d` Q78).
+  - 7 replaced by self-contained questions of the same section (UTET Paper-2 board papers and the CTET English groups whose reading exists in no source at all).
+  - Result: **0 questions left that talk about "the passage" without a passage.**
+- **Repair script hardened (`scripts/repair_vault.py`):**
+  - `attach_orphan_questions` now scores by the answer words of the options (needs 4 hits inside one reading) instead of a loose keyword match (that loose rule produced 1,066 false matches and was therefore never used globally).
+  - `replace_passage_orphans` now works on the whole contiguous group (a question without a reading also makes its neighbours unanswerable).
+  - New `renumber_passages` (1..N inside the paper) and `drop_empty_passages` keep the booklet numbering clean.
+  - `DETACH_PROTECTED` keeps the three standalone grammar questions detached on purpose.
+- **Validator relaxed where the number moved:** passage count `>= 150` (193 now), repaired UTET passage `>= 5` questions.
+- **Vector figures drawn (4 new, `lib/widgets/question_figure_catalog.dart`):**
+  - `25a91897876ef150` - OP || RS with 100 deg and 140 deg marked (answer 60 deg, the drawing is geometrically correct).
+  - `ctet-p1-2018-pyq_q047` - square, rhombus, rectangle and one non-parallelogram (the only shape set that makes the official key unique).
+  - `d726e769bed17822` - rectangle cut in two, upper half in three, lower half in four, shaded part 2/6 + 2/8 = 7/12.
+  - `7162186106ad5143` - triangular prism.
+  - Dark palette rules added for the SVG figures so they stay readable in the dark booklet.
+- **Guards:** new `test/question_figures_test.dart` fails if any question points to a picture that is neither drawn nor described in the stem. `analysis_options.yaml` now excludes the local `scratch/` folder so `flutter analyze` is clean again.
+- **Verification:** 76/76 tests passed, `flutter analyze` no issues, `scripts/validate_vault.py --strict` passed, 62 papers / 9,300 questions / 27,485 options / 193 reading groups proved by `test/booklet_paper_integrity_test.dart`, 0 papers with a repeated question.
+- **Keystore / signing files:** 100% untouched and safe.
