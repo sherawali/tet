@@ -215,29 +215,61 @@ def build_cdn():
     with open(manifest_path, 'w', encoding='utf-8') as mf:
         json.dump(manifest, mf, ensure_ascii=False, indent=2)
 
-    # 8. Flash Messages (Keep existing bilingual messages)
+    # 8. Flash Messages - the counts are always taken from the bank, so the
+    #    banner can never claim a number that the vault does not have.
     flash_path = os.path.join(cdn_dir, 'flash_messages.json')
-    if not os.path.exists(flash_path):
-        flash = {
-            'version': 3,
-            'last_updated': datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ'),
-            'messages': [
-                {
-                    'id': 'live_flash_2026_master',
-                    'title': '🔥 UTET & CTET 2026: 9,720 प्रश्नों का सम्पूर्ण मास्टर बैंक लाइव!',
-                    'title_en': '🔥 UTET & CTET 2026: 9,720 Question Master Vault Live!',
-                    'message': 'सभी 62 ओरिजिनल पेपर्स और मॉडल सेट्स 100% प्रामाणिक हल सहित उपलब्ध हैं। OMR व CBT मोड में अभी अभ्यास करें।',
-                    'message_en': 'All 62 original board papers & model mock sets available with verified pedagogical solutions. Practice in OMR or CBT mode now.',
-                    'action_label': 'मॉक सीरीज़ देखें',
-                    'action_label_en': 'View Mock Series',
-                    'type': 'notice',
-                    'dismissible': True,
-                    'active': True
-                }
-            ]
-        }
-        with open(flash_path, 'w', encoding='utf-8') as ff:
-            json.dump(flash, ff, ensure_ascii=False, indent=2)
+    question_count = cur.execute("SELECT COUNT(*) FROM questions").fetchone()[0]
+    paper_count = cur.execute("SELECT COUNT(*) FROM paper_forms").fetchone()[0]
+    pyq_count = cur.execute(
+        "SELECT COUNT(*) FROM paper_forms WHERE exam_date NOT LIKE '%Mock%'"
+    ).fetchone()[0]
+
+    def _fmt(value):
+        raw = str(value)
+        out = []
+        for index, char in enumerate(raw):
+            if index > 0 and (len(raw) - index) % 3 == 0:
+                out.append(',')
+            out.append(char)
+        return ''.join(out)
+
+    messages = []
+    if os.path.exists(flash_path):
+        try:
+            with open(flash_path, 'r', encoding='utf-8') as ff:
+                messages = json.load(ff).get('messages', [])
+        except Exception:
+            messages = []
+
+    master = {
+        'id': 'live_flash_2026_master',
+        'title': f'🔥 UTET & CTET 2026: {_fmt(question_count)} प्रश्नों का सम्पूर्ण मास्टर बैंक लाइव!',
+        'title_en': f'🔥 UTET & CTET 2026: {_fmt(question_count)} Question Master Vault Live!',
+        'message': (
+            f'सभी {paper_count} ओरिजिनल पेपर्स और मॉडल सेट्स 100% प्रामाणिक हल सहित उपलब्ध हैं। '
+            'OMR व CBT मोड में अभी अभ्यास करें।'
+        ),
+        'message_en': (
+            f'All {paper_count} original board papers & model mock sets available with '
+            'verified pedagogical solutions. Practice in OMR or CBT mode now.'
+        ),
+        'action_label': 'मॉक सीरीज़ देखें',
+        'action_label_en': 'View Mock Series',
+        'type': 'notice',
+        'dismissible': True,
+        'active': True,
+    }
+    messages = [m for m in messages if m.get('id') != master['id']]
+    messages.insert(0, master)
+
+    flash = {
+        'version': 3,
+        'last_updated': datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ'),
+        'messages': messages,
+    }
+    with open(flash_path, 'w', encoding='utf-8') as ff:
+        json.dump(flash, ff, ensure_ascii=False, indent=2)
+    print(f"Flash messages refreshed: {question_count} questions, {paper_count} papers")
 
     conn.close()
     print("=" * 80)
