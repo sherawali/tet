@@ -13,12 +13,23 @@ class AppTypography {
   static const String _devanagari = 'Noto Sans Devanagari';
   static const String _ui = 'Inter';
 
+  /// If a bundled face ever fails to load, the system font takes over so the
+  /// text can never become invisible.
+  static const List<String> _fallback = <String>[
+    'Noto Sans Devanagari',
+    'Nirmala UI',
+    'Mangal',
+    'Roboto',
+    'sans-serif',
+  ];
+
   static List<FontVariation> _w(double weight) =>
       <FontVariation>[FontVariation('wght', weight)];
 
   // English / Numerics style (Outfit)
   static TextStyle displayLarge({Color? color}) => TextStyle(
         fontFamily: _latin,
+        fontFamilyFallback: _fallback,
         fontVariations: _w(700),
         fontSize: 28,
         letterSpacing: -0.5,
@@ -27,6 +38,7 @@ class AppTypography {
 
   static TextStyle titleLarge({Color? color}) => TextStyle(
         fontFamily: _latin,
+        fontFamilyFallback: _fallback,
         fontVariations: _w(700),
         fontSize: 20,
         letterSpacing: -0.2,
@@ -35,6 +47,7 @@ class AppTypography {
 
   static TextStyle titleMedium({Color? color}) => TextStyle(
         fontFamily: _latin,
+        fontFamilyFallback: _fallback,
         fontVariations: _w(600),
         fontSize: 16,
         color: color,
@@ -44,6 +57,7 @@ class AppTypography {
   static TextStyle questionText({Color? color, double fontSize = 16.5}) =>
       TextStyle(
         fontFamily: _devanagari,
+        fontFamilyFallback: _fallback,
         fontVariations: _w(500),
         fontSize: fontSize,
         height: 1.6,
@@ -54,6 +68,7 @@ class AppTypography {
   static TextStyle optionText({Color? color, double fontSize = 15.0}) =>
       TextStyle(
         fontFamily: _devanagari,
+        fontFamilyFallback: _fallback,
         fontVariations: _w(400),
         fontSize: fontSize,
         height: 1.5,
@@ -62,6 +77,7 @@ class AppTypography {
 
   static TextStyle passageBody({Color? color}) => TextStyle(
         fontFamily: _devanagari,
+        fontFamilyFallback: _fallback,
         fontVariations: _w(400),
         fontSize: 14.5,
         height: 1.7,
@@ -70,6 +86,7 @@ class AppTypography {
 
   static TextStyle bodyMedium({Color? color}) => TextStyle(
         fontFamily: _ui,
+        fontFamilyFallback: _fallback,
         fontVariations: _w(400),
         fontSize: 14,
         height: 1.5,
@@ -78,6 +95,7 @@ class AppTypography {
 
   static TextStyle labelSmall({Color? color}) => TextStyle(
         fontFamily: _ui,
+        fontFamilyFallback: _fallback,
         fontVariations: _w(600),
         fontSize: 11.5,
         letterSpacing: 0.5,
@@ -86,6 +104,7 @@ class AppTypography {
 
   static TextStyle numericTimer({Color? color}) => TextStyle(
         fontFamily: _latin,
+        fontFamilyFallback: _fallback,
         fontVariations: _w(700),
         fontSize: 18,
         letterSpacing: 1.0,

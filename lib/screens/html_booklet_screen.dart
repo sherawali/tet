@@ -31,16 +31,25 @@ class _HtmlBookletScreenState extends State<HtmlBookletScreen> {
   bool _isLoading = true;
   bool _isSubmitting = false;
   String? _errorMessage;
-  late final String _htmlContent;
+  String? _htmlContent;
 
   @override
   void initState() {
     super.initState();
     // Immersive sticky for full exam focus
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+  }
 
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (_htmlContent != null) return;
+
+    // The booklet is built once, with the theme the app is currently using,
+    // so the booklet and the Flutter UI always look the same.
     try {
-      _htmlContent = HtmlBookletBuilder.buildHtml(widget.session);
+      final isDark = Theme.of(context).brightness == Brightness.dark;
+      _htmlContent = HtmlBookletBuilder.buildHtml(widget.session, isDark: isDark);
       _initWebView();
     } catch (e) {
       setState(() {
@@ -58,9 +67,10 @@ class _HtmlBookletScreenState extends State<HtmlBookletScreen> {
 
   void _initWebView() {
     try {
+      final isDark = Theme.of(context).brightness == Brightness.dark;
       final controller = WebViewController()
         ..setJavaScriptMode(JavaScriptMode.unrestricted)
-        ..setBackgroundColor(Colors.white)
+        ..setBackgroundColor(isDark ? const Color(0xFF020617) : Colors.white)
         ..setNavigationDelegate(
           NavigationDelegate(
             onPageStarted: (url) {
@@ -90,7 +100,7 @@ class _HtmlBookletScreenState extends State<HtmlBookletScreen> {
           'BookletChannel',
           onMessageReceived: _handleJsMessage,
         )
-        ..loadHtmlString(_htmlContent);
+        ..loadHtmlString(_htmlContent!);
 
       _controller = controller;
     } catch (e) {
@@ -150,7 +160,7 @@ class _HtmlBookletScreenState extends State<HtmlBookletScreen> {
           break;
 
         case 'refreshTest':
-          _controller?.loadHtmlString(_htmlContent);
+          _controller?.loadHtmlString(_htmlContent ?? '');
           break;
 
         case 'testSubmitted':

@@ -877,8 +877,12 @@ class HtmlBookletBuilder {
     return '<div class="stem-p">${formatMultilineInline(text)}</div>';
   }
 
-  /// Builds the complete HTML test booklet from a [TestSession]
-  static String buildHtml(TestSession session) {
+  /// Builds the complete HTML test booklet from a [TestSession].
+  ///
+  /// [isDark] mirrors the theme of the app so the booklet always uses the
+  /// same colours as the Flutter UI.  When it is null the booklet follows
+  /// the system setting of the device.
+  static String buildHtml(TestSession session, {bool? isDark}) {
     final questions = session.questions;
     final passages = session.passages;
     final totalQs = questions.length;
@@ -1014,8 +1018,10 @@ class HtmlBookletBuilder {
     }
 
     final h = StringBuffer();
+    final themeAttr =
+        isDark == null ? '' : ' data-theme="${isDark ? 'dark' : 'light'}"';
     h.writeln('<!DOCTYPE html>');
-    h.writeln('<html lang="hi">');
+    h.writeln('<html lang="hi"$themeAttr>');
     h.writeln('<head>');
     h.writeln('  <meta charset="utf-8">');
     h.writeln('  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes">');
@@ -1564,7 +1570,7 @@ class HtmlBookletBuilder {
     return h.toString();
   }
 
-  static const String _cssContent = '''
+  static final String _cssContent = '''
 :root {
   --primary: #0f172a;
   --primary-light: #1e293b;
@@ -2747,46 +2753,59 @@ body.lang-mode-en .bilingual-desktop-grid .q-column:nth-child(1) .q-num { displa
 .q-topic-tag { color: #475569; }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --paper-bg: #0f172a;
-    --booklet-bg: #020617;
-    --text-main: #e2e8f0;
-    --text-muted: #94a3b8;
-    --border-color: #334155;
-  }
-  .question-item, .q-group, .cover-page { background: #0f172a; }
-  .cover-authority { color: #e2e8f0; }
-  .cover-sub-auth { color: #94a3b8; }
-  .cover-exam-title { color: #f8fafc; }
-  .cover-exam-paper { color: #cbd5e1; }
-  .cover-meta-box { border-color: #334155; }
-  .cover-meta-box b { color: #94a3b8; }
-  .roll-digit-box { border-color: #334155; background: #0b1220; color: #e2e8f0; }
-  .set-badge-box { border-color: #334155; background: #0b1220; color: #e2e8f0; }
-  .cover-instructions { color: #cbd5e1; }
-  .stimulus-wrapper { background: #0b1220; box-shadow: none; }
-  .stimulus-header { background: #1e293b; color: #e2e8f0; }
-  .stimulus-header.poem-head { background: #2e1065; color: #ddd6fe; }
-  .stimulus-content { background: #0b1220; border-color: #334155; color: #e2e8f0; }
-  .stimulus-content.poem-body { background: #0b1220; }
-  .prose-p, .poem-line { color: #e2e8f0; }
-  .option-row { background: #111c33; color: #e2e8f0; border-color: #334155; }
-  .option-row:hover { background: #16233d; }
-  .option-row.selected { background: #172554; color: #dbeafe; }
-  .opt-badge { color: #cbd5e1; }
-  .option-row.selected .opt-badge { color: #93c5fd; }
-  .q-num, .q-stem { color: #e2e8f0; }
-  .q-topic-tag { background: #1e293b; color: #cbd5e1; }
-  .q-marks { background: #1e1b4b; color: #c7d2fe; }
-  .q-diff-easy { background: #14532d; color: #bbf7d0; }
-  .q-diff-med { background: #451a03; color: #fde68a; }
-  .q-diff-hard { background: #450a0a; color: #fecaca; }
-  .q-table td, .match-table td { background: #0f172a; color: #e2e8f0; }
-  .q-table th, .match-table th { background: #1e293b; color: #e2e8f0; }
-  .q-table th, .q-table td, .match-table th, .match-table td { border-color: #334155; }
-  .match-table tr:nth-child(even) td { background: #131f38; }
-  .q-group > .question-item { border-top-color: #1e293b; }
+${_darkThemeRules.replaceAll('DARK_ROOT', 'html:not([data-theme])')}
 }
+
+${_darkThemeRules.replaceAll('DARK_ROOT', 'html[data-theme="dark"]')}
+''';
+
+  /// Dark palette of the booklet.
+  ///
+  /// It is emitted twice: once for a device that is in dark mode and did not
+  /// set an explicit theme, and once for the theme the app itself is using.
+  /// The app always sets `data-theme`, so the booklet always matches the
+  /// Flutter UI and never mixes a dark booklet with a light app (or the
+  /// other way round).
+  static const String _darkThemeRules = '''
+DARK_ROOT {
+  --paper-bg: #0f172a;
+  --booklet-bg: #020617;
+  --text-main: #e2e8f0;
+  --text-muted: #94a3b8;
+  --border-color: #334155;
+}
+DARK_ROOT .question-item, DARK_ROOT .q-group, DARK_ROOT .cover-page { background: #0f172a; }
+DARK_ROOT .cover-authority { color: #e2e8f0; }
+DARK_ROOT .cover-sub-auth { color: #94a3b8; }
+DARK_ROOT .cover-exam-title { color: #f8fafc; }
+DARK_ROOT .cover-exam-paper { color: #cbd5e1; }
+DARK_ROOT .cover-meta-box { border-color: #334155; }
+DARK_ROOT .cover-meta-box b { color: #94a3b8; }
+DARK_ROOT .roll-digit-box { border-color: #334155; background: #0b1220; color: #e2e8f0; }
+DARK_ROOT .set-badge-box { border-color: #334155; background: #0b1220; color: #e2e8f0; }
+DARK_ROOT .cover-instructions { color: #cbd5e1; }
+DARK_ROOT .stimulus-wrapper { background: #0b1220; box-shadow: none; }
+DARK_ROOT .stimulus-header { background: #1e293b; color: #e2e8f0; }
+DARK_ROOT .stimulus-header.poem-head { background: #2e1065; color: #ddd6fe; }
+DARK_ROOT .stimulus-content { background: #0b1220; border-color: #334155; color: #e2e8f0; }
+DARK_ROOT .stimulus-content.poem-body { background: #0b1220; }
+DARK_ROOT .prose-p, DARK_ROOT .poem-line { color: #e2e8f0; }
+DARK_ROOT .option-row { background: #111c33; color: #e2e8f0; border-color: #334155; font-weight: 700; }
+DARK_ROOT .option-row:hover { background: #16233d; }
+DARK_ROOT .option-row.selected { background: #172554; color: #dbeafe; }
+DARK_ROOT .opt-badge { color: #cbd5e1; }
+DARK_ROOT .option-row.selected .opt-badge { color: #93c5fd; }
+DARK_ROOT .q-num, DARK_ROOT .q-stem { color: #e2e8f0; }
+DARK_ROOT .q-topic-tag { background: #1e293b; color: #cbd5e1; }
+DARK_ROOT .q-marks { background: #1e1b4b; color: #c7d2fe; }
+DARK_ROOT .q-diff-easy { background: #14532d; color: #bbf7d0; }
+DARK_ROOT .q-diff-med { background: #451a03; color: #fde68a; }
+DARK_ROOT .q-diff-hard { background: #450a0a; color: #fecaca; }
+DARK_ROOT .q-table td, DARK_ROOT .match-table td { background: #0f172a; color: #e2e8f0; }
+DARK_ROOT .q-table th, DARK_ROOT .match-table th { background: #1e293b; color: #e2e8f0; }
+DARK_ROOT .q-table th, DARK_ROOT .q-table td, DARK_ROOT .match-table th, DARK_ROOT .match-table td { border-color: #334155; }
+DARK_ROOT .match-table tr:nth-child(even) td { background: #131f38; }
+DARK_ROOT .q-group > .question-item { border-top-color: #1e293b; }
 ''';
 
   static const String _jsEngine = '''
