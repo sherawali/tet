@@ -634,6 +634,171 @@ def sync_topic_indexes(conn: sqlite3.Connection) -> int:
     return updated
 
 
+# A passage that was built by merging two different readings.  The second
+# reading always starts with its own direction line.
+MERGED_PASSAGE_MARKER = re.compile(
+    r"(?:Direction|Read)\s*\(?\s*Q\.?\s*No\.?\s*\d+\s*(?:to|से)\s*\d+\s*\)?\s*:",
+    re.IGNORECASE,
+)
+
+# Questions that clearly talk about a reading but have no reading attached.
+PASSAGE_REFERENCE_PHRASES = (
+    "in the given passage",
+    "in the passage",
+    "according to the passage",
+    "the passage",
+    "उपर्युक्त गद्यांश",
+    "गद्यांश के आधार पर",
+    "उपर्युक्त काव्यांश",
+    "उपर्युक्त पद",
+    "उपर्युक्त पद्यांश",
+)
+
+# Words that are too common to identify a passage.
+_PASSAGE_STOP_WORDS = set(
+    """according passage given below read following question questions answer based
+    word words mean means meaning title most appropriate main thrust writer choose
+    identify pick find select best suitable used what which who why how when where
+    does did are was were the and for that this these those with without from as at
+    by its their there here about into over under between during called known called
+    choose suitable activity related hotel staff things thing happen happens animals
+    natural particular something understand think behaviour behavior phrase
+    expression compared employees values value culture corporate find means
+    name question number"""
+    .split()
+)
+
+
+def _passage_exists(conn: sqlite3.Connection, body: str) -> bool:
+    if not body:
+        return False
+    row = conn.execute(
+        "SELECT id FROM passages WHERE REPLACE(REPLACE(body, CHAR(10), ' '), CHAR(13), ' ') "
+        "= REPLACE(REPLACE(?, CHAR(10), ' '), CHAR(13), ' ') LIMIT 1",
+        (body,),
+    ).fetchone()
+    return row is not None
+
+
+def split_merged_passages(conn: sqlite3.Connection) -> int:
+    """Cuts a passage that accidentally swallowed the next reading.
+
+    The merged row printed the first reading and then the second one, so the
+    candidate saw the paragraph of another set of questions.
+    """
+    fixed = 0
+    for pid, body in conn.execute("SELECT id, body FROM passages").fetchall():
+        if not body:
+            continue
+        match = MERGED_PASSAGE_MARKER.search(body)
+        if not match:
+            continue
+        first = body[: match.start()].rstrip()
+        rest = body[match.end():]
+        # The remainder starts with the instruction line of the second reading.
+        parts = rest.split("\n\n", 1)
+        second = parts[1].strip() if len(parts) > 1 else ""
+        if second and _passage_exists(conn, second):
+            conn.execute("UPDATE passages SET body = ? WHERE id = ?", (first, pid))
+            fixed += 1
+    return fixed
+
+
+def _passage_keyword_score(words: set[str], body: str) -> tuple[int, int]:
+    hits = [w for w in words if w in body]
+    return sum(len(h) for h in hits), len(hits)
+
+
+def attach_orphan_questions(conn: sqlite3.Connection) -> int:
+    """Gives a reading back to the questions that lost it.
+
+    Some questions talk about "the passage" but were stored without one, so
+    they were impossible to answer.  The reading is found again by matching
+    the words of the question (and of its options) against every passage of
+    the bank.  Only a clear winner is used, so nothing is attached blindly.
+    """
+    passage_bodies = {
+        row[0]: (row[1] or "").lower()
+        for row in conn.execute("SELECT id, body FROM passages")
+    }
+
+    orphans = []
+    for row in conn.execute(
+        "SELECT q.id, q.q_hindi, q.q_english, q.options_hindi, q.options_english, "
+        "a.paper_form_id, a.question_number "
+        "FROM questions q JOIN appearances a ON a.question_id = q.id "
+        "WHERE q.passage_id IS NULL"
+    ).fetchall():
+        text = " ".join(
+            str(value or "") for value in (row[1], row[2], row[3], row[4])
+        ).lower()
+        if any(phrase in text for phrase in PASSAGE_REFERENCE_PHRASES):
+            orphans.append(row)
+
+    by_form: dict[str, list] = {}
+    for row in orphans:
+        by_form.setdefault(row[5], []).append(row)
+
+    attached = 0
+    for form, rows in by_form.items():
+        rows.sort(key=lambda r: r[6])
+        groups: list[list] = []
+        for row in rows:
+            if groups and row[6] - groups[-1][-1][6] > 3:
+                groups.append([row])
+            else:
+                groups[-1].append(row) if groups else groups.append([row])
+        if not groups:
+            continue
+
+        for group in groups:
+            words: set[str] = set()
+            for row in group:
+                text = " ".join(
+                    str(value or "") for value in (row[1], row[2], row[3], row[4])
+                ).lower()
+                for word in re.findall(r"[a-z]{4,}", text):
+                    if word not in _PASSAGE_STOP_WORDS:
+                        words.add(word)
+
+            scored = []
+            for pid, body in passage_bodies.items():
+                score, hits = _passage_keyword_score(words, body)
+                if hits:
+                    scored.append((score, hits, pid))
+            scored.sort(reverse=True)
+            if not scored:
+                continue
+            best_score, best_hits, best_pid = scored[0]
+            runner_up = scored[1][0] if len(scored) > 1 else 0
+            # Only a clear winner is good enough - a wrong passage is worse
+            # than a missing one.
+            if best_score < 15 or best_score < runner_up * 1.4:
+                continue
+
+            source = conn.execute(
+                "SELECT kind, dir_text, body FROM passages WHERE id = ?", (best_pid,)
+            ).fetchone()
+            if source is None:
+                continue
+
+            new_id = f"{form}__stim_{group[0][6]:03d}"
+            conn.execute(
+                "INSERT INTO passages (id, kind, dir_text, body) VALUES (?, ?, ?, ?) "
+                "ON CONFLICT(id) DO UPDATE SET kind = excluded.kind, "
+                "dir_text = excluded.dir_text, body = excluded.body",
+                (new_id, source[0], source[1], source[2]),
+            )
+            for index, row in enumerate(group, start=1):
+                conn.execute(
+                    "UPDATE questions SET passage_id = ?, seq_in_passage = ? WHERE id = ?",
+                    (new_id, index, row[0]),
+                )
+            attached += len(group)
+
+    return attached
+
+
 def repair_database() -> None:
     conn = sqlite3.connect(DB_PATH)
     try:
@@ -710,6 +875,8 @@ def repair_database() -> None:
         # groups, answerable stems and a single source of truth for the key.
         swapped = dedupe_paper_questions(conn)
         repositioned = fix_passage_positions(conn)
+        merged = split_merged_passages(conn)
+        reattached = attach_orphan_questions(conn)
         refilled = replace_unanswerable_questions(conn)
         keys = sync_official_answer_keys(conn)
         normalise_modules(conn)
@@ -733,6 +900,8 @@ def repair_database() -> None:
         print(
             f"  duplicate paper questions swapped : {swapped}\n"
             f"  passage positions fixed          : {repositioned}\n"
+            f"  merged passages split           : {merged}\n"
+            f"  questions re-attached to a text : {reattached}\n"
             f"  unanswerable slots refilled      : {refilled}\n"
             f"  answer keys re-synchronised       : {keys}\n"
             f"  topic indexes aligned            : {topics}"

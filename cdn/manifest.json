@@ -2,7 +2,7 @@
   "schema": 2,
   "bank_version": 2026102020,
   "bank_version_str": "20261021_master_vault_clean_v20",
-  "generated": "2026-10-21T08:33:25Z",
+  "generated": "2026-10-21T09:16:14Z",
   "total": 9720,
   "papers_count": 62,
   "topics": [
@@ -2562,10 +2562,10 @@
       ]
     },
     {
-      "id": "0009-5fc505fdfcaa",
-      "file": "packs/pack-0009-5fc505fdfcaa.json",
-      "sha256": "5fc505fdfcaa2d4a3f8f6935e090019407aa50b7dc745a6a125696497a666fd1",
-      "bytes": 112328,
+      "id": "0009-393b8b86f760",
+      "file": "packs/pack-0009-393b8b86f760.json",
+      "sha256": "393b8b86f76036620d407c40ab281065cf9b2c5ff5915f0ad621fab29faf9f63",
+      "bytes": 112301,
       "count": 200,
       "sections": [
         "cdp",
@@ -2583,30 +2583,30 @@
       ]
     },
     {
-      "id": "0011-dc37e6dfea85",
-      "file": "packs/pack-0011-dc37e6dfea85.json",
-      "sha256": "dc37e6dfea8531be8d3d6465766a0b67a0d5edc6ad9d57f7af04d40b26738bc6",
-      "bytes": 102217,
+      "id": "0011-1e48aa95e6f0",
+      "file": "packs/pack-0011-1e48aa95e6f0.json",
+      "sha256": "1e48aa95e6f04fdb561e68b1392133dbf5f63ae6e6fc9483af7867c462d2dbe7",
+      "bytes": 101287,
       "count": 200,
       "sections": [
         "english"
       ]
     },
     {
-      "id": "0012-e092daf85894",
-      "file": "packs/pack-0012-e092daf85894.json",
-      "sha256": "e092daf8589495bdadeaeaa04c8a096acaf8cd90dd27b9be83096d7c5f27502a",
-      "bytes": 99705,
+      "id": "0012-5b6ff723dc16",
+      "file": "packs/pack-0012-5b6ff723dc16.json",
+      "sha256": "5b6ff723dc165623c097262fc1bffe6a3bf01868e7be215ce870a4e0d85e01c7",
+      "bytes": 100487,
       "count": 200,
       "sections": [
         "english"
       ]
     },
     {
-      "id": "0013-1cff5c1073b5",
-      "file": "packs/pack-0013-1cff5c1073b5.json",
-      "sha256": "1cff5c1073b54382524f01057f4bd6747c91849cad230f4b7907aeacfe5e5e78",
-      "bytes": 107299,
+      "id": "0013-6bd0c7f3899b",
+      "file": "packs/pack-0013-6bd0c7f3899b.json",
+      "sha256": "6bd0c7f3899ba81a2a26e8be24c6f0e3e63fa390ec8526ea6ccdb6fbb0af6060",
+      "bytes": 108108,
       "count": 200,
       "sections": [
         "english",
@@ -2799,20 +2799,20 @@
       ]
     },
     {
-      "id": "0032-dd1d2a178856",
-      "file": "packs/pack-0032-dd1d2a178856.json",
-      "sha256": "dd1d2a178856b2607c593c20c90d7eebcdc5347bf333b32b734a81dc0008db28",
-      "bytes": 132936,
+      "id": "0032-25272fcffbb4",
+      "file": "packs/pack-0032-25272fcffbb4.json",
+      "sha256": "25272fcffbb4d8062e4c751bf50e5c00e39f1f68a71e22769d0917c7c8b8dabe",
+      "bytes": 133755,
       "count": 200,
       "sections": [
         "lang2_english"
       ]
     },
     {
-      "id": "0033-9b4b1efc7548",
-      "file": "packs/pack-0033-9b4b1efc7548.json",
-      "sha256": "9b4b1efc75489e6113baf871d67c9e9840b56c5fc6d8312ece5bb4c49f8285d7",
-      "bytes": 126307,
+      "id": "0033-2f28fd6def56",
+      "file": "packs/pack-0033-2f28fd6def56.json",
+      "sha256": "2f28fd6def56ed29d69afce3d006e8fc6a4784df6bbcbb28b58802f0f96c37b6",
+      "bytes": 127128,
       "count": 200,
       "sections": [
         "lang2_english",

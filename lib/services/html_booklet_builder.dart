@@ -1236,10 +1236,12 @@ class HtmlBookletBuilder {
         final typeLabel = isPoem ? 'काव्यांश / कविता$qRangeStr' : 'अपठित गद्यांश$qRangeStr';
         final formattedBody = isPoem ? formatPoemBody(passage.cleanBody) : formatProseBody(passage.cleanBody);
 
+        // Only the meta data of the passage is handed to the JavaScript.  The
+        // text itself is printed exactly once, inside the group, so it can
+        // never appear twice in the page and the booklet stays smaller.
         passagesDict[groupPid] = {
           'kind': passage.kind,
           'dir': passage.displayDir,
-          'body': formattedBody,
         };
 
         // The stimulus and its own questions live inside one group so the
@@ -3112,7 +3114,14 @@ DARK_ROOT .rep-radio-label { background: #111c33; border-color: #334155; color: 
     const t = document.getElementById('p-modal-title');
     const b = document.getElementById('p-modal-text');
     if (t) t.textContent = (pData.kind === 'poem' ? '📜 काव्यांश / कविता' : '📖 अपठित गद्यांश');
-    if (b) b.innerHTML = pData.body;
+    // The passage text is printed only once, inside the question group, so
+    // this dialog points to it instead of repeating it.
+    if (b) {
+      b.innerHTML = '<p style="font-size:13.5px;line-height:1.7">' +
+        (pData.dir ? pData.dir : 'ऊपर पढ़ें।') + '</p>' +
+        '<p style="font-size:12.5px;color:#64748b;margin-top:10px">' +
+        'यह गद्यांश अपने प्रश्नों के साथ ऊपर दिया गया है।</p>';
+    }
     const m = document.getElementById('passage-modal');
     if (m) m.classList.add('open');
   };

@@ -83,7 +83,7 @@ def validate_db(report: Report) -> dict:
         appearances=appearance_count,
     )
     report.require(question_count == 9720, f"Unexpected question count: {question_count}")
-    report.require(passage_count == 181, f"Unexpected passage count: {passage_count}")
+    report.require(passage_count == 186, f"Unexpected passage count: {passage_count}")
     report.require(form_count == 62, f"Unexpected paper form count: {form_count}")
     report.require(appearance_count == 9720, f"Unexpected appearance count: {appearance_count}")
 
