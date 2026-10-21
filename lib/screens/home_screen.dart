@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:math';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../design_system/app_colors.dart';
@@ -1640,6 +1641,118 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  /// Debug only: lets the tester look at the paid app and the free app
+  /// without paying anything.  The card is not part of a release build.
+  Widget _buildDebugProPassCard(bool isDark) {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      margin: const EdgeInsets.only(bottom: 16),
+      decoration: BoxDecoration(
+        color: isDark ? AppColors.darkCard : AppColors.lightCard,
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(
+          color: isDark ? AppColors.darkBorder : AppColors.lightBorder,
+          width: 1.5,
+        ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Container(
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: AppColors.correctGreen.withValues(alpha: 0.15),
+                  shape: BoxShape.circle,
+                ),
+                child: const Icon(Icons.bug_report_rounded,
+                    color: AppColors.correctGreen, size: 20),
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      AppStrings.debugProPassTitle,
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                        color:
+                            isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
+                      ),
+                    ),
+                    const SizedBox(height: 2),
+                    Text(
+                      AppStrings.debugProPassDesc,
+                      style: TextStyle(
+                        fontSize: 12,
+                        height: 1.35,
+                        color: isDark
+                            ? AppColors.darkTextSecondary
+                            : AppColors.lightTextMuted,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
+          ValueListenableBuilder<bool>(
+            valueListenable: PremiumService.instance.isPremiumUnlocked,
+            builder: (context, isUnlocked, _) {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SwitchListTile(
+                    value: isUnlocked,
+                    onChanged: (value) async {
+                      await PremiumService.instance.setDebugPremiumOverride(value);
+                      if (!context.mounted) return;
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            value
+                                ? AppStrings.debugProPassPaid
+                                : AppStrings.debugProPassFree,
+                          ),
+                        ),
+                      );
+                    },
+                    contentPadding: EdgeInsets.zero,
+                    activeThumbColor: AppColors.correctGreen,
+                    title: Text(
+                      isUnlocked
+                          ? AppStrings.debugProPassPaid
+                          : AppStrings.debugProPassFree,
+                      style: TextStyle(
+                        fontSize: 13.5,
+                        fontWeight: FontWeight.w600,
+                        color:
+                            isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
+                      ),
+                    ),
+                    subtitle: Text(
+                      AppStrings.debugProPassDesc,
+                      style: TextStyle(
+                        fontSize: 11.5,
+                        color: isDark
+                            ? AppColors.darkTextSecondary
+                            : AppColors.lightTextMuted,
+                      ),
+                    ),
+                  ),
+                ],
+              );
+            },
+          ),
+        ],
+      ),
+    );
+  }
+
   Widget _buildSettingsTestModeCard(bool isDark) {
     return Container(
       padding: const EdgeInsets.all(16),
@@ -2397,6 +2510,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
         // 1. Target Exam Switcher Card
         _buildSettingsExamCard(isDark),
+
+        // 1b. Debug only: switch between the free and the paid experience
+        if (kDebugMode) _buildDebugProPassCard(isDark),
 
         // 2. Default Test Mode Card (CBT vs Booklet)
         _buildSettingsTestModeCard(isDark),

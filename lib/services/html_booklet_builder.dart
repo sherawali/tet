@@ -2934,6 +2934,41 @@ DARK_ROOT .result-mark.ok { background: #14532d; color: #bbf7d0; }
 DARK_ROOT .result-mark.wrong { background: #450a0a; color: #fecaca; }
 DARK_ROOT .result-mark.skipped { background: #1e293b; color: #cbd5e1; }
 
+/* --- the result card of the booklet ---------------------------------- */
+DARK_ROOT .result-card { background: #0f172a; border: 1px solid #334155; }
+DARK_ROOT .result-top-summary { border-bottom-color: #334155; }
+DARK_ROOT .score-circle { color: #f8fafc; }
+DARK_ROOT .kpi-box { background: #111c33; border-color: #334155; }
+DARK_ROOT .kpi-box b { color: #e2e8f0; }
+DARK_ROOT .kpi-box span { color: #94a3b8; }
+DARK_ROOT .res-table th, DARK_ROOT .res-table td { border-color: #334155; }
+DARK_ROOT .res-table th { background: #1e293b; color: #e2e8f0; }
+DARK_ROOT .res-table td { color: #e2e8f0; }
+DARK_ROOT .prog-bar { background: #1e293b; }
+DARK_ROOT .weak-list { background: #241a06; border-color: #78350f; }
+DARK_ROOT .weak-list h4 { color: #fcd34d; }
+DARK_ROOT .weak-list li { color: #e2e8f0; }
+DARK_ROOT .result-actions .cbt-btn { color: #e2e8f0; }
+
+/* --- the report sheet of the booklet ---------------------------------- */
+DARK_ROOT .report-card { background: #0f172a; border: 1px solid #334155; }
+DARK_ROOT .report-body { color: #e2e8f0; }
+DARK_ROOT .rep-radio-label:hover { background: #16233d; border-color: #475569; }
+
+/* --- the passage window of the booklet -------------------------------- */
+DARK_ROOT #passage-modal { background: #0f172a; }
+DARK_ROOT .p-modal-body { color: #e2e8f0; }
+
+/* --- the confirm dialog of the booklet -------------------------------- */
+DARK_ROOT .c-stat-box b { color: #e2e8f0; }
+
+/* --- the OMR sheet of the booklet ------------------------------------- */
+DARK_ROOT .omr-sheet-card { background: #0f172a; border: 1px solid #334155; }
+DARK_ROOT .omr-row { border-bottom-color: #1e293b; color: #cbd5e1; }
+DARK_ROOT .omr-bubble { border-color: #64748b; color: #cbd5e1; }
+DARK_ROOT .omr-bubble:hover { background: #1e293b; }
+DARK_ROOT .omr-bubble.filled { background: #2563eb; color: #fff; border-color: #2563eb; }
+
 /* --- modals and report sheet ---------------------------------------- */
 DARK_ROOT .confirm-card { background: #0f172a; border: 1px solid #334155; }
 DARK_ROOT .confirm-card h3 { color: #f1f5f9; }

@@ -9,6 +9,18 @@ class AppStrings {
   static bool get _isCtet => ExamService.instance.isCtet;
   static int get currentExamYear => DateTime.now().year;
 
+  // Debug only (never shipped in a release build)
+  static String get debugProPassTitle => _isHi ? 'Pro Pass (Debug)' : 'Pro Pass (Debug)';
+  static String get debugProPassDesc => _isHi
+      ? 'बिना पैमेंट के paid और free दोनों रूप देखें। Debug build में ही दिखता है।'
+      : 'See the paid and the free experience without paying. Shown in debug builds only.';
+  static String get debugProPassPaid => _isHi
+      ? 'सभी पेपर खुले हैं (paid view)'
+      : 'All papers are open (paid view)';
+  static String get debugProPassFree => _isHi
+      ? 'सिर्फ मुफ़्त पेपर (free view)'
+      : 'Only the free paper (free view)';
+
   // App Header
   static String get appTitle => _isHi ? 'शिक्षक पात्रता परीक्षा' : 'Teacher Eligibility Test';
   static String get appSubtitle => _isCtet

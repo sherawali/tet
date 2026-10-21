@@ -177,7 +177,12 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
             MediaQuery.of(context).padding.bottom +
             18,
       ),
-      child: ValueListenableBuilder<bool>(
+      child: ConstrainedBox(
+        // The sheet never grows past the screen, the rest scrolls.
+        constraints: BoxConstraints(
+          maxHeight: MediaQuery.of(context).size.height * 0.92,
+        ),
+        child: ValueListenableBuilder<bool>(
         valueListenable: _premiumService.isPremiumUnlocked,
         builder: (context, isUnlocked, _) {
           return SingleChildScrollView(
@@ -406,37 +411,47 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    TextButton(
-                      onPressed: () async {
-                        final restored = await _premiumService.restorePurchases();
-                        if (context.mounted) {
-                          if (restored) {
-                            Navigator.of(context).pop();
-                            _showCongratulationsDialog(context);
-                          } else {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(AppStrings.premiumNoPurchasesFound),
-                              ),
-                            );
+                    Flexible(
+                      child: TextButton(
+                        onPressed: () async {
+                          final restored = await _premiumService.restorePurchases();
+                          if (context.mounted) {
+                            if (restored) {
+                              Navigator.of(context).pop();
+                              _showCongratulationsDialog(context);
+                            } else {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(AppStrings.premiumNoPurchasesFound),
+                                ),
+                              );
+                            }
                           }
-                        }
-                      },
-                      child: Text(
-                        AppStrings.premiumRestoreBtn,
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary,
+                        },
+                        child: Text(
+                          AppStrings.premiumRestoreBtn,
+                          textAlign: TextAlign.center,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary,
+                          ),
                         ),
                       ),
                     ),
-                    TextButton(
-                      onPressed: () => Navigator.of(context).pop(),
-                      child: Text(
-                        AppStrings.premiumCloseBtn,
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary,
+                    Flexible(
+                      child: TextButton(
+                        onPressed: () => Navigator.of(context).pop(),
+                        child: Text(
+                          AppStrings.premiumCloseBtn,
+                          textAlign: TextAlign.center,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary,
+                          ),
                         ),
                       ),
                     ),
@@ -446,6 +461,7 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
             ),
           );
         },
+        ),
       ),
     );
   }
@@ -481,6 +497,7 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
           ),
         ),
         child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Icon(
               isSelected
@@ -494,19 +511,21 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
+                  // The title and the tag share one wrap, so a long title
+                  // never gets squeezed into a single letter per line.
+                  Wrap(
+                    spacing: 8,
+                    runSpacing: 4,
+                    crossAxisAlignment: WrapCrossAlignment.center,
                     children: [
-                      Flexible(
-                        child: Text(
-                          title,
-                          style: TextStyle(
-                            fontSize: 13.5,
-                            fontWeight: FontWeight.bold,
-                            color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
-                          ),
+                      Text(
+                        title,
+                        style: TextStyle(
+                          fontSize: 13.5,
+                          fontWeight: FontWeight.bold,
+                          color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
                         ),
                       ),
-                      const SizedBox(width: 6),
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                         decoration: BoxDecoration(
@@ -544,12 +563,18 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
               ),
             ),
             const SizedBox(width: 8),
-            Text(
-              price,
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w900,
-                color: isSelected ? AppColors.sealGold : (isDark ? Colors.white70 : Colors.black87),
+            // The price may be long, so it wraps instead of running out of
+            // the card.
+            ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 108),
+              child: Text(
+                price,
+                textAlign: TextAlign.right,
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w900,
+                  color: isSelected ? AppColors.sealGold : (isDark ? Colors.white70 : Colors.black87),
+                ),
               ),
             ),
           ],

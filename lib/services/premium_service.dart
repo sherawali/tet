@@ -233,6 +233,20 @@ class PremiumService {
     isPremiumUnlocked.value = false;
   }
 
+  /// Debug only: switch between the free and the paid experience.
+  ///
+  /// The switch is stored in the local database, so it stays until it is
+  /// turned off again.  It does not exist in a release build and it never
+  /// touches the store.
+  Future<void> setDebugPremiumOverride(bool enabled) async {
+    if (!kDebugMode) return;
+    if (enabled) {
+      await unlockAllAccessLocally();
+    } else {
+      await lockAllAccessLocally();
+    }
+  }
+
   void _handlePurchaseUpdates(List<PurchaseDetails> purchaseDetailsList) async {
     _purchaseTimeoutTimer?.cancel();
 

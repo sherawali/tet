@@ -103,6 +103,23 @@ void main() {
       '.q-rev-btn',
       '.q-topic-tag',
       '.q-marks',
+      // The white cards of the booklet must not stay white in dark mode.
+      '.result-card',
+      '.result-top-summary',
+      '.kpi-box',
+      '.res-table th',
+      '.res-table td',
+      '.weak-list',
+      '.prog-bar',
+      '.report-card',
+      '.report-body',
+      '#passage-modal',
+      '.p-modal-body',
+      '.confirm-card',
+      '.c-stat-box',
+      '.omr-sheet-card',
+      '.omr-row',
+      '.omr-bubble',
     ];
 
     for (final selector in critical) {
