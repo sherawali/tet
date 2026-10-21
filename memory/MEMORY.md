@@ -738,3 +738,34 @@
 - **PR blocker (known):** the fine-grained token in the git credential helper reads and writes the repo fine, but `POST /repos/sherawali/tet/pulls` returns `403 Resource not accessible by personal access token` - the token has no *Pull requests: write* scope. One-click alternative: `https://github.com/sherawali/tet/compare/release/v20-baseline...release/v20-renovation?expand=1` (the form is pre-filled, only "Create pull request" has to be clicked).
 - **Device check:** APK built and installed on the Infinix X698 with the phone in airplane mode - the app starts offline, the home screen and the booklets render, no Flutter exception in the logcat.
 - **Final numbers:** 77/77 tests passed, `flutter analyze` no issues, `scripts/validate_vault.py --strict` passed, 62 papers / 9,300 questions / 27,485 options / 193 reading groups proven by the booklet test.
+
+### 2026-10-21: Release polish - payment sheet overflow, white result card, debug switch, signing key
+- **Payment sheet overflow (fixed):** the tier card squeezed the long title into one letter
+  per line and the price ran out of the card (43 px), the restore/close row overflowed by
+  90 px. The title and the tag now share a `Wrap`, the price has a maximum width, the
+  bottom row wraps. New test `test/premium_paywall_test.dart` renders the sheet on
+  360 dp and 320 dp.
+- **White result card (fixed):** the result modal of the booklet had a hard coded
+  `background: #fff`, so in dark mode the text was invisible. The dark palette now covers
+  the result card, the KPI boxes, the result table, the weak topic list, the progress bar,
+  the report sheet, the passage window and the OMR sheet. The theme test guards all of them.
+- **Debug switch (new):** the settings tab has a *Pro Pass (Debug)* switch (only in debug
+  builds) that unlocks every paper, so the paid and the free experience can both be seen
+  without paying. The switch is stored in the local database.
+- **Devanagari trap:** a Devanagari string that goes through a PowerShell pipe arrives as
+  `????`. Anything with Hindi text has to be written with the editor tool or with
+  `\uXXXX` escapes - never through the shell.
+- **Signing key:** the old keystore was lost twice and no key existed anywhere on the
+  machine. `bin/setup_release_keystore.py` creates one (RSA 2048, 30 years) and keeps the
+  key plus the password in three places (project, `keys-backup/`, Desktop).
+  `keys-backup/` is now ignored by git as well.
+- **Package id:** `com.example.tet_app` -> `com.sherawali.tet`, launcher name
+  `शिक्षक पात्रता परीक्षा`. The release build is signed with the new key and shrunk with
+  R8 (`proguard-rules.pro` keeps the Play Billing classes).
+- **Release state:** the GitHub release `v20` is a **draft with no assets** - nothing is
+  public. The APK (66 MB) and the AAB (54 MB) are built and installed on the device
+  (Infinix X698) and both run offline.
+- **Verification:** 79/79 tests passed, `flutter analyze` no issues, dark and light theme
+  checked on the device (home, settings, booklet, question page, result, subject practice).
+- **Keystore / signing files:** the new key is stored in three safe places, the old one
+  never existed, nothing was overwritten.
