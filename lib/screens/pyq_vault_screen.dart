@@ -219,7 +219,7 @@ class _PyqVaultScreenState extends State<PyqVaultScreen> {
                               children: [
                                 Text(
                                   LanguageService.instance.isHindi ? 'विषय वर्ग (खण्ड IV)' : 'Subject Stream (Section IV)',
-                                  style: const TextStyle(fontSize: 11, color: Color(0xFF64748B), fontWeight: FontWeight.bold),
+                                  style: const TextStyle(fontSize: 11, color: AppColors.lightTextMuted, fontWeight: FontWeight.bold),
                                 ),
                                 Text(
                                   ExamService.instance.isMathScienceStream
@@ -395,7 +395,7 @@ class _PyqVaultScreenState extends State<PyqVaultScreen> {
                                                 : '$_paperSize Questions · $_paperSize Mins · Complete Solutions',
                                             style: TextStyle(
                                               fontSize: 11.5,
-                                              color: Color(0xFF64748B),
+                                              color: AppColors.lightTextMuted,
                                             ),
                                           ),
                                         ],

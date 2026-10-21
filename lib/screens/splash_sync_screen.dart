@@ -55,7 +55,7 @@ class _SplashSyncScreenState extends State<SplashSyncScreen> {
         _statusMessage = AppStrings.splashAvailable(count > 0 ? count : 9720);
       });
     }
-    await Future.delayed(const Duration(milliseconds: 600));
+    await Future.delayed(AppMotion.page);
     if (!mounted) return;
     _navigateToHome();
 
@@ -92,8 +92,8 @@ class _SplashSyncScreenState extends State<SplashSyncScreen> {
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: isDark
-                ? const [Color(0xFF0F172A), Color(0xFF0B1120), Color(0xFF020617)]
-                : const [Color(0xFFFFFDF8), Color(0xFFF8FAFC), Color(0xFFF1F5F9)],
+                ? const [AppColors.primary, AppColors.primaryDark, AppColors.primaryDark]
+                : const [AppColors.lightCard, AppColors.darkTextPrimary, AppColors.primarySubtle],
           ),
         ),
         child: SafeArea(

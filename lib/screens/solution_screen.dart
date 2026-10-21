@@ -13,6 +13,7 @@ import '../widgets/smart_math_text.dart';
 import '../widgets/question_report_sheet.dart';
 import '../widgets/question_figure_catalog.dart';
 import '../services/language_service.dart';
+import '../design_system/app_sheet.dart';
 
 enum SolutionFilter { all, incorrect, unattempted, correct }
 
@@ -40,9 +41,8 @@ class _SolutionScreenState extends State<SolutionScreen> {
 
   void _showLanguageSelectorSheet() {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    showModalBottomSheet(
-      context: context,
-      backgroundColor: Colors.transparent,
+    AppSheet.show(
+      context,
       builder: (ctx) {
         return Container(
           padding: const EdgeInsets.fromLTRB(20, 16, 20, 16),
@@ -310,7 +310,7 @@ class _SolutionScreenState extends State<SolutionScreen> {
                                 child: Row(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
-                                    const Icon(Icons.flag_rounded, size: 13, color: Color(0xFFF59E0B)),
+                                    const Icon(Icons.flag_rounded, size: 13, color: AppColors.goldBright),
                                     const SizedBox(width: 4),
                                     Text(
                                       'रिपोर्ट',

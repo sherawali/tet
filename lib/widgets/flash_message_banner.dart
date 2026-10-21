@@ -204,7 +204,7 @@ class _FlashMessageBannerState extends State<FlashMessageBanner> {
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
                                   style: const TextStyle(
-                                    color: Color(0xFFCBD5E1),
+                                    color: AppColors.lightBorder,
                                     fontSize: 11.5,
                                     height: 1.35,
                                   ),
@@ -249,7 +249,7 @@ class _FlashMessageBannerState extends State<FlashMessageBanner> {
                               child: Text(
                                 '${index + 1}/${_messages.length}',
                                 style: const TextStyle(
-                                  color: Color(0xFF94A3B8),
+                                  color: AppColors.darkTextSecondary,
                                   fontSize: 9.5,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -264,7 +264,7 @@ class _FlashMessageBannerState extends State<FlashMessageBanner> {
                               tooltip: LanguageService.instance.isHindi ? 'हटाएं' : 'Dismiss',
                               icon: const Icon(
                                 Icons.close_rounded,
-                                color: Color(0xFF94A3B8),
+                                color: AppColors.darkTextSecondary,
                                 size: 17,
                               ),
                               onPressed: () => _dismissCurrent(index),

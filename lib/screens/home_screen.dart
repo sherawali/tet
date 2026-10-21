@@ -30,6 +30,7 @@ import '../services/exam_rules.dart';
 import '../widgets/premium_paywall_modal.dart';
 import '../widgets/question_report_sheet.dart';
 import '../design_system/app_motion.dart';
+import '../design_system/app_sheet.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -271,15 +272,13 @@ class _HomeScreenState extends State<HomeScreen> {
     final isAdded = result.success && result.newQuestionsAdded > 0;
     final isUpToDate = result.success && (result.isUpToDate || result.newQuestionsAdded == 0);
 
-    showModalBottomSheet(
-      context: context,
-      backgroundColor: Colors.transparent,
-      isScrollControlled: true,
+    AppSheet.show(
+      context,
       builder: (ctx) {
         return Container(
           decoration: BoxDecoration(
-            color: isDark ? AppColors.primary : Colors.white,
-            borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
+            color: isDark ? AppColors.darkCard : AppColors.lightCard,
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
             border: Border.all(
               color: isAdded
                   ? AppColors.sealGold
@@ -566,15 +565,13 @@ class _HomeScreenState extends State<HomeScreen> {
     final totalQ = result['questionCount'] as int? ?? _totalQuestions;
     final orphanDeleted = result['orphanDeleted'] as int? ?? 0;
 
-    showModalBottomSheet(
-      context: context,
-      backgroundColor: Colors.transparent,
-      isScrollControlled: true,
+    AppSheet.show(
+      context,
       builder: (ctx) {
         return Container(
           decoration: BoxDecoration(
-            color: isDark ? AppColors.primary : Colors.white,
-            borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
+            color: isDark ? AppColors.darkCard : AppColors.lightCard,
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
             border: Border.all(color: AppColors.sealGold, width: 1.5),
           ),
           child: SafeArea(
@@ -819,7 +816,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   tooltip: AppStrings.myReportsTooltip,
                   icon: const Icon(
                     Icons.flag_rounded,
-                    color: Color(0xFFF59E0B),
+                    color: AppColors.goldBright,
                   ),
                   onPressed: () => ReportedQuestionsSheet.show(context),
                 ),
@@ -931,7 +928,7 @@ class _HomeScreenState extends State<HomeScreen> {
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
               gradient: const LinearGradient(
-                colors: [Color(0xFF0F172A), Color(0xFF1E3A8A)],
+                colors: [AppColors.primary, AppColors.accent],
               ),
               borderRadius: BorderRadius.circular(8),
               border: Border.all(color: AppColors.accentBright, width: 1.5),
@@ -948,10 +945,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 Container(
                   padding: const EdgeInsets.all(8),
                   decoration: const BoxDecoration(
-                    color: Color(0xFF38BDF8),
+                    color: AppColors.accentBright,
                     shape: BoxShape.circle,
                   ),
-                  child: const Icon(Icons.cloud_download_rounded, color: Color(0xFF0F172A), size: 20),
+                  child: const Icon(Icons.cloud_download_rounded, color: AppColors.primary, size: 20),
                 ),
                 const SizedBox(width: 10),
                 Expanded(
@@ -965,7 +962,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       const SizedBox(height: 2),
                       Text(
                         isHi ? 'नवीनतम प्रश्न व सुधार ऑफ़लाइन डाउनलोड करने के लिए टैप करें।' : 'Tap to sync latest questions for offline practice.',
-                        style: const TextStyle(color: Color(0xFFCBD5E1), fontSize: 11),
+                        style: const TextStyle(color: AppColors.lightBorder, fontSize: 11),
                       ),
                     ],
                   ),
@@ -1300,7 +1297,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         fontSize: 11.5,
                                         fontWeight: !isP2 ? FontWeight.w800 : FontWeight.w600,
                                         color: !isP2
-                                            ? (isDark ? AppColors.accentBright : const Color(0xFF0369A1))
+                                            ? (isDark ? AppColors.accentBright : AppColors.accentDark)
                                             : (isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary),
                                       ),
                                     ),
@@ -1431,12 +1428,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildStreamOption(bool isDark, {required bool social}) {
     final active = ExamService.instance.isSocialStream == social;
-    const streamBlue = Color(0xFF0284C7);
-    const streamViolet = Color(0xFF8B5CF6);
+    const streamBlue = AppColors.accent;
+    const streamViolet = AppColors.violetBright;
     final accent = social ? streamViolet : streamBlue;
     final accentText = social
         ? (isDark ? AppColors.violetLight : AppColors.violet)
-        : (isDark ? AppColors.accentBright : const Color(0xFF0369A1));
+        : (isDark ? AppColors.accentBright : AppColors.accentDark);
     final tint = social
         ? (isDark ? streamViolet.withValues(alpha: 0.25) : AppColors.violetSoft)
         : (isDark ? streamBlue.withValues(alpha: 0.22) : AppColors.accentSoft);
@@ -1863,7 +1860,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                     subtitle: Text(
-                      AppStrings.debugProPassDesc,
+                      AppStrings.debugProPassSwitchSub,
                       style: TextStyle(
                         fontSize: 11.5,
                         color: isDark
@@ -3313,23 +3310,23 @@ class _HomeScreenState extends State<HomeScreen> {
                           ? const LinearGradient(
                               begin: Alignment.topLeft,
                               end: Alignment.bottomRight,
-                              colors: [Color(0xFF0F172A), Color(0xFF3B0764)],
+                              colors: [AppColors.primary, AppColors.paper2VioletDeep],
                             )
                           : const LinearGradient(
                               begin: Alignment.topLeft,
                               end: Alignment.bottomRight,
-                              colors: [Color(0xFF0F172A), Color(0xFF0C4A6E)],
+                              colors: [AppColors.primary, AppColors.paper2BlueDeep],
                             ))
                       : (isPaper2
                           ? const LinearGradient(
                               begin: Alignment.topLeft,
                               end: Alignment.bottomRight,
-                              colors: [Colors.white, Color(0xFFFAF5FF)],
+                              colors: [Colors.white, AppColors.paper2VioletSoft],
                             )
                           : const LinearGradient(
                               begin: Alignment.topLeft,
                               end: Alignment.bottomRight,
-                              colors: [Colors.white, Color(0xFFF0F9FF)],
+                              colors: [Colors.white, AppColors.paper2BlueSoft],
                             )),
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(
@@ -4040,7 +4037,7 @@ class _HomeScreenState extends State<HomeScreen> {
           fontWeight: FontWeight.w700,
           color: social
               ? (isDark ? AppColors.violetLight : AppColors.violet)
-              : (isDark ? AppColors.accentBright : const Color(0xFF0369A1)),
+              : (isDark ? AppColors.accentBright : AppColors.accentDark),
         ),
       ),
     );

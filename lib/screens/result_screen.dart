@@ -156,10 +156,10 @@ class _ResultScreenState extends State<ResultScreen> {
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: isPassGeneral
-                      ? [const Color(0xFF064E3B), AppColors.primary]
+                      ? [AppColors.successDeep, AppColors.primary]
                       : (isPassReserved
                           ? [AppColors.warningDark, AppColors.primary]
-                          : [const Color(0xFF450A0A), AppColors.primary]),
+                          : [AppColors.dangerDeep, AppColors.primary]),
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                 ),
@@ -232,7 +232,7 @@ class _ResultScreenState extends State<ResultScreen> {
               Container(
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: isDark ? AppColors.primaryLight : const Color(0xFFFFFBEB),
+                  color: isDark ? AppColors.primaryLight : AppColors.warningSubtle,
                   borderRadius: AppRadius.roundedBase,
                   border: Border.all(
                     color: isDark ? AppColors.sealGold : AppColors.goldBright,
@@ -786,7 +786,7 @@ class _ResultScreenState extends State<ResultScreen> {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: isDark ? AppColors.indigoSurface : const Color(0xFFFEF2F2),
+        color: isDark ? AppColors.indigoSurface : AppColors.dangerSubtle,
         borderRadius: AppRadius.roundedBase,
         border: Border.all(
           color: isDark ? AppColors.indigoText : AppColors.dangerBorder,

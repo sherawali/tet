@@ -97,6 +97,23 @@ class AppColors {
   static const Color indigoSurface = Color(0xFF1E1B4B);
   static const Color indigoText = Color(0xFF818CF8);
 
+  // ---- the last few tokens (paper themes and soft surfaces) -------------
+  static const Color accentDark = Color(0xFF0369A1); // Sky 700
+  static const Color lightSurface = Color(0xFFFAFAFA); // Neutral card
+  static const Color indigoSoft = Color(0xFFE0E7FF); // Indigo 100
+  static const Color indigoDeep = Color(0xFF4338CA); // Indigo 700
+  static const Color tealDark = Color(0xFF1C2D37); // Deep teal chip
+  static const Color skySoft = Color(0xFFEFF6FF); // Very light sky
+  static const Color darkCardDeep = Color(0xFF131B2E); // Deeper card
+  static const Color violetDeep = Color(0xFF1E1430); // Deep violet
+  static const Color paperWhite = Color(0xFFFCFAFF); // Paper white
+  static const Color successDeep = Color(0xFF064E3B); // Deep green
+  static const Color dangerDeep = Color(0xFF450A0A); // Deep red
+  static const Color paper2VioletDeep = Color(0xFF3B0764); // Paper 2 violet
+  static const Color paper2BlueDeep = Color(0xFF0C4A6E); // Paper 2 blue
+  static const Color paper2VioletSoft = Color(0xFFFAF5FF); // Paper 2 tint
+  static const Color paper2BlueSoft = Color(0xFFF0F9FF); // Paper 2 tint
+
   // Neutral helpers for the light theme.
   static const Color grayText = Color(0xFF374151);
   static const Color grayBorder = Color(0xFFE5E7EB);

@@ -22,6 +22,7 @@ import '../database/db_helper.dart';
 import '../design_system/app_strings.dart';
 import 'result_screen.dart';
 import '../design_system/app_motion.dart';
+import '../design_system/app_sheet.dart';
 
 class CbtExamScreen extends StatefulWidget {
   final TestSession session;
@@ -221,10 +222,8 @@ class _CbtExamScreenState extends State<CbtExamScreen>
     final total = widget.session.questions.length;
     final notAnswered = total - answered;
 
-    showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      backgroundColor: Colors.transparent,
+    AppSheet.show(
+      context,
       builder: (ctx) {
         final isDark = Theme.of(ctx).brightness == Brightness.dark;
 
@@ -396,10 +395,8 @@ class _CbtExamScreenState extends State<CbtExamScreen>
   }
 
   void _showPalette() {
-    showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      backgroundColor: Colors.transparent,
+    AppSheet.show(
+      context,
       builder: (ctx) {
         final isDark = Theme.of(ctx).brightness == Brightness.dark;
 
@@ -560,9 +557,8 @@ class _CbtExamScreenState extends State<CbtExamScreen>
 
   void _showLanguageSelectorSheet() {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    showModalBottomSheet(
-      context: context,
-      backgroundColor: Colors.transparent,
+    AppSheet.show(
+      context,
       builder: (ctx) {
         return Container(
           padding: const EdgeInsets.fromLTRB(20, 16, 20, 16),
@@ -884,7 +880,7 @@ class _CbtExamScreenState extends State<CbtExamScreen>
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  const Icon(Icons.flag_rounded, size: 13, color: Color(0xFFF59E0B)),
+                                  const Icon(Icons.flag_rounded, size: 13, color: AppColors.goldBright),
                                   const SizedBox(width: 4),
                                   Text(
                                     'रिपोर्ट',

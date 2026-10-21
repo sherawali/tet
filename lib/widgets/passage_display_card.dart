@@ -62,7 +62,7 @@ class _PassageDisplayCardState extends State<PassageDisplayCard> {
     // Theme tokens
     final headerBg = isPoem
         ? (isDark ? AppColors.primaryDark.withValues(alpha: 0.6) : AppColors.violetSoft)
-        : (isDark ? AppColors.primary.withValues(alpha: 0.8) : const Color(0xFFEFF6FF));
+        : (isDark ? AppColors.primary.withValues(alpha: 0.8) : AppColors.skySoft);
 
     final borderColor = isPoem
         ? (isDark ? AppColors.violet : AppColors.violetSoft)
@@ -78,7 +78,7 @@ class _PassageDisplayCardState extends State<PassageDisplayCard> {
         ? 'अपठित काव्यांश / कविता$qRangeSuffix'
         : 'अपठित गद्यांश$qRangeSuffix';
 
-    final cardBg = isDark ? const Color(0xFF131B2E) : Colors.white;
+    final cardBg = isDark ? AppColors.darkCardDeep : Colors.white;
 
     // Compact reference bar (used for subsequent questions in booklet mode)
     if (widget.isCompactReference && !_isExpanded) {
@@ -256,7 +256,7 @@ class _PassageDisplayCardState extends State<PassageDisplayCard> {
               ),
               decoration: BoxDecoration(
                 color: isPoem
-                    ? (isDark ? const Color(0xFF1E1430).withValues(alpha: 0.5) : const Color(0xFFFCFAFF))
+                    ? (isDark ? AppColors.violetDeep.withValues(alpha: 0.5) : AppColors.paperWhite)
                     : (isDark ? AppColors.primary.withValues(alpha: 0.3) : AppColors.lightCard),
               ),
               child: SelectableText(

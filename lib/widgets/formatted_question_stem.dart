@@ -684,7 +684,7 @@ class FormattedQuestionStem extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 9),
       decoration: BoxDecoration(
-        color: isDark ? AppColors.darkCardElevated : const Color(0xFFFAFAFA),
+        color: isDark ? AppColors.darkCardElevated : AppColors.lightSurface,
         borderRadius: AppRadius.roundedSm,
         border: Border.all(color: borderColor, width: 1),
       ),
@@ -864,13 +864,13 @@ class FormattedQuestionStem extends StatelessWidget {
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 1.5),
                         decoration: BoxDecoration(
-                          color: isDark ? AppColors.primaryLight : const Color(0xFFE0E7FF),
+                          color: isDark ? AppColors.primaryLight : AppColors.indigoSoft,
                           borderRadius: BorderRadius.circular(4),
                         ),
                         child: Text(
                           p.leftMarker,
                           style: TextStyle(
-                            color: isDark ? AppColors.indigoText : const Color(0xFF4338CA),
+                            color: isDark ? AppColors.indigoText : AppColors.indigoDeep,
                             fontWeight: FontWeight.bold,
                             fontSize: 12,
                           ),
@@ -899,7 +899,7 @@ class FormattedQuestionStem extends StatelessWidget {
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 1.5),
                         decoration: BoxDecoration(
-                          color: isDark ? const Color(0xFF1C2D37) : AppColors.accentSoft,
+                          color: isDark ? AppColors.tealDark : AppColors.accentSoft,
                           borderRadius: BorderRadius.circular(4),
                         ),
                         child: Text(

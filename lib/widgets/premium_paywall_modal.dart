@@ -3,15 +3,14 @@ import 'package:flutter/material.dart';
 import '../design_system/app_colors.dart';
 import '../design_system/app_strings.dart';
 import '../services/premium_service.dart';
+import '../design_system/app_sheet.dart';
 
 class PremiumPaywallModal extends StatefulWidget {
   const PremiumPaywallModal({super.key});
 
   static Future<void> show(BuildContext context) {
-    return showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      backgroundColor: Colors.transparent,
+    return AppSheet.show(
+      context,
       builder: (_) => const PremiumPaywallModal(),
     );
   }
@@ -155,7 +154,7 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
 
     return Container(
       decoration: BoxDecoration(
-        color: isDark ? AppColors.primary : Colors.white,
+        color: isDark ? AppColors.darkCard : AppColors.lightCard,
         borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
         border: Border.all(
           color: AppColors.sealGold.withValues(alpha: 0.4),
@@ -193,7 +192,7 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
                 // Top drag handle
                 Center(
                   child: Container(
-                    width: 44,
+                    width: 42,
                     height: 5,
                     decoration: BoxDecoration(
                       color: isDark ? Colors.white24 : Colors.black12,
@@ -392,7 +391,7 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
                               width: 20,
                               child: CircularProgressIndicator(
                                 strokeWidth: 2,
-                                valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF0F172A)),
+                                valueColor: AlwaysStoppedAnimation<Color>(AppColors.primary),
                               ),
                             )
                           : Text(

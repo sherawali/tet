@@ -9,6 +9,7 @@ import '../database/db_helper.dart';
 import '../services/github_report_service.dart';
 import '../services/language_service.dart';
 import '../design_system/app_motion.dart';
+import '../design_system/app_sheet.dart';
 
 /// Ultra-Premium Question Report Bottom Sheet
 /// Matches the authentic Examination Authority & Obsidian Slate luxury aesthetic.
@@ -38,11 +39,8 @@ class QuestionReportSheet extends StatefulWidget {
     VoidCallback? onReportSubmitted,
   }) {
     HapticFeedback.mediumImpact();
-    return showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      backgroundColor: Colors.transparent,
-      barrierColor: Colors.black87.withValues(alpha: 0.75),
+    return AppSheet.show(
+      context,
       builder: (ctx) => QuestionReportSheet(
         question: question,
         questionNumber: questionNumber,
@@ -116,11 +114,11 @@ class _QuestionReportSheetState extends State<QuestionReportSheet> {
 
   void _onFocusChange() {
     if (_commentFocusNode.hasFocus) {
-      Future.delayed(const Duration(milliseconds: 250), () {
+      Future.delayed(AppMotion.slow, () {
         if (mounted && _scrollController.hasClients) {
           _scrollController.animateTo(
             _scrollController.position.maxScrollExtent,
-            duration: const Duration(milliseconds: 280),
+            duration: AppMotion.slow,
             curve: Curves.easeOutCubic,
           );
         }
@@ -946,11 +944,11 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
                       scrollPadding: const EdgeInsets.only(bottom: 160),
                       onSubmitted: (_) => FocusScope.of(context).unfocus(),
                       onTap: () {
-                        Future.delayed(const Duration(milliseconds: 250), () {
+                        Future.delayed(AppMotion.slow, () {
                           if (mounted && _scrollController.hasClients) {
                             _scrollController.animateTo(
                               _scrollController.position.maxScrollExtent,
-                              duration: const Duration(milliseconds: 280),
+                              duration: AppMotion.slow,
                               curve: Curves.easeOutCubic,
                             );
                           }
@@ -1030,7 +1028,6 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
                             child: ElevatedButton(
                               onPressed: _isSubmitting ? null : _submitReport,
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.transparent,
                                 shadowColor: Colors.transparent,
                                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                               ),
@@ -1081,11 +1078,8 @@ class ReportedQuestionsSheet extends StatefulWidget {
 
   static Future<void> show(BuildContext context) {
     HapticFeedback.mediumImpact();
-    return showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      backgroundColor: Colors.transparent,
-      barrierColor: Colors.black87.withValues(alpha: 0.8),
+    return AppSheet.show(
+      context,
       builder: (ctx) => const ReportedQuestionsSheet(),
     );
   }

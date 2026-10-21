@@ -17,6 +17,9 @@ class AppStrings {
   static String get debugProPassPaid => _isHi
       ? 'सभी पेपर खुले हैं (paid view)'
       : 'All papers are open (paid view)';
+  static String get debugProPassSwitchSub => _isHi
+      ? 'स्विच ON = paid view, OFF = free view'
+      : 'Switch ON = paid view, OFF = free view';
   static String get debugProPassFree => _isHi
       ? 'सिर्फ मुफ़्त पेपर (free view)'
       : 'Only the free paper (free view)';
