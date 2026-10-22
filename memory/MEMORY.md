@@ -1091,3 +1091,16 @@
   integrity. Now proves 63 papers / 9,450 questions / 27,843 options /
   193 passage groups render.
 - flutter analyze clean, git clean, everything pushed.
+
+- Final phone walkthrough (fresh install): home renders, cloud-sync banner
+  runs, the paper list shows the right badges (mock 01 "Nihshulk", mocks
+  02/03 "Pro Pass"), the free flagship booklet opens with its real cover
+  (set code, roll number, bilingual instructions), a locked paper takes
+  you to the two-pack paywall, and the DB state is clean: bank_version
+  2026102021, 63 papers, 5 free flagship ids, no premium anywhere.
+  Note: tapping the home flagship while the carousel had rotated to a
+  locked slide correctly shows the paywall - the badge and the tap agree.
+  All 20 test files pass after fixing the stale 62-paper count in
+  booklet_paper_integrity_test (63 papers / 9,450 questions / 27,843
+  options / 193 passage groups now proven). App state at commit cebaccb
+  is release-ready pending the Play Console products.
