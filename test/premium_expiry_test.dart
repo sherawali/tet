@@ -44,4 +44,84 @@ void main() {
     final lockedState = await DbHelper.instance.getMeta(_unlockKey);
     expect(lockedState, '0');
   });
+
+  test('a single paper pass opens only its direction', () async {
+    final service = PremiumService.instance;
+
+    // ₹399 buyer picks "CTET Paper-2".
+    await service.unlockAllAccessLocally(
+      productId: PassPlan.singlePaperProductId,
+      singlePaperScope: 'ctet-p2',
+    );
+    expect(service.isPaperFree(formId: 'ctet-p2-ms-mock-02'), isTrue);
+    expect(service.isPaperFree(formId: 'ctet-p2-sst-mock-07'), isTrue);
+
+    // The rest of the vault stays behind the paywall (index 5, so the free
+    // first-paper sample rule does not color the check; the flagship papers
+    // stay free for everyone by design).
+    expect(service.isPaperFree(formId: 'ctet-p1-mock-05', index: 5), isFalse);
+    expect(service.isPaperFree(formId: 'utet-p1-mock-09', index: 5), isFalse);
+    expect(service.isPaperFree(formId: 'utet-p2-set-d', index: 5), isFalse);
+    // And the flagship free papers remain free as always.
+    expect(service.isPaperFree(formId: 'utet-p2-set-b', index: 5), isTrue);
+
+    // The direction also opens nothing for other papers of other exams.
+    expect(
+      PremiumService.instance.hasUnlockedAccess,
+      isFalse,
+      reason: 'subject drills are exam-wide, single paper pass never gets them',
+    );
+
+    // An upgrade to the exam pass swallows the scope.
+    await service.unlockAllAccessLocally(productId: PassPlan.ctetProductId);
+    expect(service.isPaperFree(formId: 'ctet-p1-mock-05', index: 5), isTrue);
+    expect(service.isPaperFree(formId: 'utet-p1-mock-09', index: 5), isFalse);
+
+    await service.lockAllAccessLocally();
+  });
+
+  test('the pass survives a restart, an update and runs out honestly', () async {
+    final service = PremiumService.instance;
+
+    // Buy: the expiry lands 60 days ahead and the scope is stored.
+    await service.unlockAllAccessLocally(
+      productId: PassPlan.singlePaperProductId,
+      singlePaperScope: 'utet-p1',
+    );
+    expect(service.activePassDaysLeft, inInclusiveRange(59, 60));
+
+    // Replay of a fresh start (restart / update / reinstall).
+    await service.reloadFromDatabase();
+    expect(service.isPaperFree(formId: 'utet-p1-mock-05'), isTrue);
+    expect(service.isPaperFree(formId: 'ctet-p2-ms-mock-05', index: 5), isFalse);
+    expect(service.activePassDaysLeft, inInclusiveRange(59, 60));
+
+    // The store re-delivers the same single purchase: nothing moves.
+    final expiryBefore = await DbHelper.instance.getMeta(_expiryKey);
+    await service.unlockAllAccessLocally(
+      productId: PassPlan.singlePaperProductId,
+      singlePaperScope: 'utet-p1',
+    );
+    expect(await DbHelper.instance.getMeta(_expiryKey), expiryBefore);
+
+    // The last day still shows one day and still opens the direction.
+    final lastDay = DateTime.now().add(const Duration(hours: 2));
+    await DbHelper.instance.setMeta(_expiryKey, lastDay.toIso8601String());
+    await service.reloadFromDatabase();
+    expect(service.activePassDaysLeft, 1);
+    expect(service.isPaperFree(formId: 'utet-p1-mock-05'), isTrue);
+    expect(service.isPaperFree(formId: 'ctet-p2-ms-mock-05', index: 5), isFalse);
+
+    // The day after the expiry everything is locked again.
+    final yesterday = DateTime.now().subtract(const Duration(hours: 2));
+    await DbHelper.instance.setMeta(_expiryKey, yesterday.toIso8601String());
+    await service.reloadFromDatabase();
+    expect(service.isPremiumUnlocked.value, isFalse);
+    expect(service.isPaperFree(formId: 'utet-p1-mock-05', index: 5), isFalse);
+    expect(service.hasUnlockedAccess, isFalse);
+
+    // And the scope is gone with the pass.
+    final scope = await DbHelper.instance.getMeta('is_premium_single_scope');
+    expect(scope ?? '', '');
+  });
 }

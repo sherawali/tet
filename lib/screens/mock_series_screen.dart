@@ -84,7 +84,7 @@ class _MockSeriesScreenState extends State<MockSeriesScreen> {
       formId: formId,
       index: index,
     );
-    final isPremium = PremiumService.instance.isPremiumUnlocked.value;
+    final isPremium = PremiumService.instance.hasUnlockedAccess;
     if (!isPremium && !isFree) {
       PremiumPaywallModal.show(context);
       return;

@@ -67,7 +67,9 @@ class _SubjectDetailScreenState extends State<SubjectDetailScreen> {
   }
 
   Future<void> _startSubjectPractice(int setNumber, {bool isFresh = false}) async {
-    final isPremium = PremiumService.instance.isPremiumUnlocked.value;
+    // Subject drills are not part of a single paper pass; only an exam or
+    // full pass opens them, and only while the pass still runs.
+    final isPremium = PremiumService.instance.hasUnlockedAccess;
     if (!isPremium && (setNumber > 1 || isFresh)) {
       PremiumPaywallModal.show(context);
       return;
@@ -129,7 +131,8 @@ class _SubjectDetailScreenState extends State<SubjectDetailScreen> {
   }
 
   Future<void> _startTopicDrill(String topicName, int count) async {
-    final isPremium = PremiumService.instance.isPremiumUnlocked.value;
+    // Topic drills are not part of a single paper pass either.
+    final isPremium = PremiumService.instance.hasUnlockedAccess;
     if (!isPremium) {
       PremiumPaywallModal.show(context);
       return;

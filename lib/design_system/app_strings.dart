@@ -754,8 +754,16 @@ class AppStrings {
   static String get proPackCtetTitle =>
       _isHi ? 'CTET प्रो पास' : 'CTET Pro Pass';
   static String get proPackSingleSub => _isHi
-      ? 'चुना हुआ एक पेपर · उसके सभी 1 मॉक + हल + विश्लेषण · 60 दिन'
-      : 'One chosen paper · its full 1 mock + solutions + analysis · 60 days';
+      ? 'चुनी हुई दिशा (पेपर-1 या पेपर-2) के सभी पेपर · हल + विश्लेषण · 60 दिन'
+      : 'One chosen direction (Paper-1 or Paper-2) with every of its papers · solutions + analysis · 60 days';
+  static String proPackSingleSubFor(String exam, int forms) => _isHi
+      ? '${exam.toUpperCase()} ${_isHi ? 'के सभी $forms पेपर · हल + विश्लेषण · 60 दिन' : ''}'
+      : '${exam.toUpperCase()} · all $forms papers · solutions + analysis · 60 days';
+  static String get proPackWhichPaper => _isHi
+      ? 'कौन-सा पेपर? (₹399 वाला पास इसी का होगा)'
+      : 'Which paper? (the ₹399 pass covers this one)';
+  static String get proPackPaper1Label => _isHi ? 'पेपर-1' : 'Paper-1';
+  static String get proPackPaper2Label => _isHi ? 'पेपर-2' : 'Paper-2';
   static String get proPackUtetSub => _isHi
       ? 'UTET Paper-1 + Paper-2 · 21 मॉक + 8 PYQ पेपर + 4,616 प्रश्न · 12 महीने'
       : 'UTET Paper-1 + Paper-2 · 21 mocks + 8 PYQ papers + 4,616 questions · 12 months';
@@ -765,15 +773,20 @@ class AppStrings {
   static String get proPackFullSubNew => _isHi
       ? 'UTET Paper-1 & 2 + CTET Paper-1 & 2 · सभी 47 मॉक + 16 PYQ + 9,720 प्रश्न · 12 महीने'
       : 'UTET Paper-1 & 2 + CTET Paper-1 & 2 · all 47 mocks + 16 PYQ + 9,720 questions · 12 months';
-  static List<String> get proPackSingleBullets => _isHi
-      ? const [
-          'सिर्फ वही एक पेपर जिससे आप आए हैं',
-          'उसकी पूरी हल सहित मॉक + विश्लेषण',
+  static List<String> proPackSingleBulletsFor({
+    required String examLabel,
+    required String paperLabel,
+    required int forms,
+    required int questions,
+  }) => _isHi
+      ? <String>[
+          '$examLabel $paperLabel के सभी $forms पेपर',
+          '${BankFacts.format(questions)} प्रश्न · हल एवं विश्लेषण',
           'केवल 60 दिन के लिए',
         ]
-      : const [
-          'Exactly the one paper you came from',
-          'Its full mock with solutions + analysis',
+      : <String>[
+          'Every one of the $forms papers of $examLabel $paperLabel',
+          '${BankFacts.format(questions)} questions · solutions and analysis',
           'For 60 days only',
         ];
   static List<String> get proPackUtetBullets => _isHi

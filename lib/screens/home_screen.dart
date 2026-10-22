@@ -2226,10 +2226,10 @@ class _HomeScreenState extends State<HomeScreen> {
   /// The note about the day the active pass runs out.
   String _passExpiryNote() {
     final service = PremiumService.instance;
-    final expiry = service.activeExpiry;
-    if (expiry == null) return '';
-    final days = expiry.difference(DateTime.now()).inDays;
-    if (days <= 0) return '';
+    if (service.activeExpiry == null) return '';
+    // Day 1 is the last day: the note must not vanish before the lock does.
+    final days = service.activePassDaysLeft;
+    if (days == null || days <= 0) return '';
     final product = service.activeProductId;
     final renews = product == null
         ? ''
@@ -3352,7 +3352,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       onPressed: () {
                         final isFree = PremiumService.instance.isPaperFree(formId: formId, index: index);
-                        final isUnlocked = PremiumService.instance.isPremiumUnlocked.value;
+                        final isUnlocked = PremiumService.instance.hasUnlockedAccess;
                         if (!isFree && !isUnlocked) {
                           PremiumPaywallModal.show(context);
                           return;
@@ -3706,7 +3706,8 @@ class _HomeScreenState extends State<HomeScreen> {
     return ValueListenableBuilder<bool>(
       valueListenable: PremiumService.instance.isPremiumUnlocked,
       builder: (context, isUnlocked, _) {
-        final bool canOpen = isFree || isUnlocked;
+        // A single paper pass or an expired pass must not open everything.
+        final bool canOpen = isFree || PremiumService.instance.hasUnlockedAccess;
 
         return InkWell(
           onTap: () {

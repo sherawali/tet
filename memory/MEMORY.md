@@ -1021,3 +1021,36 @@
 - `PremiumService._iap` is lazy now, so a desktop test runner without the
   store plugin stays alive while the entitlement storage is exercised.
 - Full analyze clean, debug APK rebuilt and installed on the phone.
+
+
+### 2026-10-22 night III - the single paper pass finally says what it buys
+- **The R399 pass used to open the whole app.** It bought no scope at all
+  (`_singlePaperFormId` existed but was never assigned), and the blanket
+  "premium = everything" branch of `isPaperFree` opened every paper, every
+  drill. Worse, an exam pass leaked into the other exam through the same
+  branch.
+- Now: the single paper pass buys **a direction** - the paywall card has
+  Paper-1 / Paper-2 chips and follows the exam selector, so a buyer pays
+  R399 for "UTET Paper-1" (22 papers, 3,146 questions) or "CTET Paper-2"
+  (16 papers, 2,400 questions) and gets exactly that for 60 days. The
+  scope rides on the service to the purchase stream (`_pendingSingleScope`)
+  and after a successful purchase it is stored in the database
+  (`is_premium_single_scope`), so a restart restores it. An upgrade to the
+  exam or the full pass swallows the scope.
+- `isPaperFree` is scope-aware now: full pass opens all papers, exam pass
+  only its exam (the form id prefix tells), single pass only the bought
+  direction; free flagship papers and the first-paper-of-each-list sample
+  stay as they were. Every screen gate reads the new `hasUnlockedAccess`
+  (expiry live + tier aware), so a pass that runs out while the app is open
+  locks the screens at once and single-pass holders can never start drills.
+- `PassPlan.paperOf/scopeMatches` decode the direction; counts fixed in
+  BankFacts (22/3,146 UTET P1, 7/1,470 UTET P2, 18/2,700 CTET P1,
+  16/2,400 CTET P2).
+- **The countdown is absolute and restart-safe** (ISO expiry in the db,
+  never recomputed from a purchase date): `test/premium_expiry_test.dart`
+  replays restart/update/reinstall (59-60 days of 60), the last day shows
+  1 day and still opens the direction, the day after everything locks and
+  the scope vanishes. A re-delivered purchase moves no date (24h tolerance,
+  real renewals only).
+- Proven on the phone: the single card lists the direction, P2 changes the
+  numbers live. 7 test files pass, analyze clean, APK installed.

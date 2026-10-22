@@ -66,7 +66,7 @@ class _PyqVaultScreenState extends State<PyqVaultScreen> {
       formId: formId,
       index: index,
     );
-    final isPremium = PremiumService.instance.isPremiumUnlocked.value;
+    final isPremium = PremiumService.instance.hasUnlockedAccess;
     if (!isPremium && !isFree) {
       PremiumPaywallModal.show(context);
       return;

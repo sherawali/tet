@@ -28,6 +28,15 @@ class BankFacts {
   static const int ctetPyqCount = 8;
   static const int utetQuestionCount = 4616;
   static const int ctetQuestionCount = 5100;
+  /// Per direction (exam + paper), the single ₹399 pass shows them.
+  static const int utetP1FormCount = 22;
+  static const int utetP1QuestionCount = 3146;
+  static const int utetP2FormCount = 7;
+  static const int utetP2QuestionCount = 1470;
+  static const int ctetP1FormCount = 18;
+  static const int ctetP1QuestionCount = 2700;
+  static const int ctetP2FormCount = 16;
+  static const int ctetP2QuestionCount = 2400;
   /// Every question of the vault, both exams together.
   static const int vaultQuestionCount = 9720;
 

@@ -130,8 +130,18 @@ class PremiumService {
   /// The day the active pass runs out (null when it does not run out).
   DateTime? get activeExpiry => _activeExpiry;
 
-  /// The paper a single paper pass was bought for.
-  String? _singlePaperFormId;
+  /// The paper a single paper pass was bought for (a direction like
+  /// `utet-p1` or a whole form id).  Persisted, so it survives a restart.
+  String? _singlePaperScope;
+
+  /// The product of the single paper pass lives under its own meta key,
+  /// because it is the only scope the store does not carry.
+  static const String singleScopeMetaKey = 'is_premium_single_scope';
+
+  /// The product a pending single purchase belongs to (the scope is chosen
+  /// in the paywall money a moment before the buy button is pressed and
+  /// handed to the purchase stream later).
+  String? _pendingSingleScope;
 
   /// The price of a product.
   ///
@@ -158,14 +168,17 @@ class PremiumService {
   bool isPaperFree({String? formId, int index = 0}) {
     if (remoteAllMocksFree) return true;
 
+    final passValid = isPremiumUnlocked.value && _passIsValid;
+    final tier = PassPlan.tierOf(_activeProductId ?? '');
+
     if (formId != null) {
-      // The pass of the candidate.
+      // The pass of the candidate decides per paper.
       final productId = _activeProductId;
       if (productId != null && _passIsValid) {
         if (PassPlan.unlocksPaper(
           productId,
           formId,
-          singlePaperFormId: _singlePaperFormId,
+          singlePaperScope: _singlePaperScope,
         )) {
           return true;
         }
@@ -174,9 +187,16 @@ class PremiumService {
       if (remoteFreeFormIds.contains(formId)) return true;
       if (defaultFreePaperIds.contains(formId)) return true;
       if (remotePaidFormIds.contains(formId)) return false;
+      // Unknown paper: only a full pass opens it; an exam pass opens its
+      // own exam (the id prefix tells), a single paper pass never.
+      if (passValid && tier == 'full') return true;
+    } else if (passValid && tier != 'single') {
+      // Without a paper id (the sets and drills) the app already scopes by
+      // exam, so an exam or a full pass opens; a single paper pass does
+      // not - ₹399 buys one direction, not the drills.
+      return true;
     }
 
-    if (isPremiumUnlocked.value) return true;
     return index == 0;
   }
 
@@ -186,6 +206,17 @@ class PremiumService {
     if (expiry == null) return true;
     return expiry.isAfter(DateTime.now());
   }
+
+  /// Does a full pass (single, exam or full) still run?
+  ///
+  /// The screens use this getter as the gate instead of reading
+  /// `isPremiumUnlocked` directly, so a pass that runs out while the app is
+  /// open locks the screens at once, and the caller of a single paper pass
+  /// (which opens only its direction) is treated as not fully unlocked.
+  bool get hasUnlockedAccess =>
+      isPremiumUnlocked.value &&
+      _passIsValid &&
+      PassPlan.tierOf(_activeProductId ?? '') != 'single';
 
   /// The days the active pass still has, null when there is no pass.
   int? get activePassDaysLeft {
@@ -268,6 +299,9 @@ class PremiumService {
         if (expiry != null && expiry.isNotEmpty) {
           _activeExpiry = DateTime.tryParse(expiry);
         }
+        final scope = await DbHelper.instance.getMeta(singleScopeMetaKey);
+        _singlePaperScope =
+            (scope != null && scope.isNotEmpty) ? scope : null;
         // A pass that has run out does not open the papers any more.
         if (_activeExpiry == null || _activeExpiry!.isAfter(DateTime.now())) {
           isPremiumUnlocked.value = true;
@@ -298,6 +332,15 @@ class PremiumService {
       // The store could not be reached - the app simply stays in the free
       // mode and the candidate can try again from the payment sheet.
     }
+  }
+
+  /// Re-reads the stored entitlement from the database.
+  ///
+  /// The tests use it to replay a fresh start of the app (restart, update,
+  /// reinstall); a session may also call it to notice a pass that ran out
+  /// while the app stayed open.
+  Future<void> reloadFromDatabase() async {
+    await _restoreLocalState();
   }
 
   /// Reads the product details from the Play Store.
@@ -336,12 +379,22 @@ class PremiumService {
   ///
   /// The future completes with the real result of the store round trip, so
   /// the caller can tell a successful purchase from a cancelled or a failed
-  /// one.  Nothing is unlocked unless the store confirmed a purchase.
-  Future<PremiumPurchaseResult> buyProduct(String productId) async {
+  /// one.  Nothing is unlocked unless the store confirmed a purchase.  A
+  /// single paper purchase carries the direction it was bought for, because
+  /// the store only knows the product id.
+  Future<PremiumPurchaseResult> buyProduct(
+    String productId, {
+    String? singlePaperScope,
+  }) async {
     if (isPremiumUnlocked.value) return PremiumPurchaseResult.unlocked;
 
     isLoading.value = true;
     purchaseError.value = null;
+
+    // The scope of a single paper purchase rides on the service, because it
+    // arrives in the purchase stream a moment later without any context.
+    _pendingSingleScope =
+        PassPlan.tierOf(productId) == 'single' ? singlePaperScope : null;
 
     final completer = Completer<PremiumPurchaseResult>();
     _pendingRequest = completer;
@@ -492,7 +545,10 @@ class PremiumService {
 
   /// Activates the pass and stores it in the local database, so it survives
   /// an app restart.
-  Future<void> unlockAllAccessLocally({String? productId}) async {
+  Future<void> unlockAllAccessLocally({
+    String? productId,
+    String? singlePaperScope,
+  }) async {
     if (productId != null) {
       final newExpiry = DateTime.now().add(
         Duration(days: PassPlan.daysOf(productId)),
@@ -517,6 +573,28 @@ class PremiumService {
           );
         } catch (_) {}
       }
+      // The scope only matters while the pass is a single paper pass; any
+      // wider pass (one exam or everything) swallows the scope again, so a
+      // later upgrade never leaves a stale single direction behind.
+      if (PassPlan.tierOf(productId) == 'single') {
+        _singlePaperScope = singlePaperScope ?? _singlePaperScope;
+        try {
+          await DbHelper.instance.setMeta(
+            singleScopeMetaKey,
+            _singlePaperScope ?? '',
+          );
+        } catch (_) {}
+      } else {
+        _singlePaperScope = null;
+        try {
+          await DbHelper.instance.setMeta(singleScopeMetaKey, '');
+        } catch (_) {}
+      }
+    } else if (singlePaperScope != null) {
+      _singlePaperScope = singlePaperScope;
+      try {
+        await DbHelper.instance.setMeta(singleScopeMetaKey, singlePaperScope);
+      } catch (_) {}
     }
     try {
       await DbHelper.instance.setMeta(unlockMetaKey, '1');
@@ -528,6 +606,10 @@ class PremiumService {
   }
 
   Future<void> lockAllAccessLocally() async {
+    _singlePaperScope = null;
+    try {
+      await DbHelper.instance.setMeta(singleScopeMetaKey, '');
+    } catch (_) {}
     try {
       await DbHelper.instance.setMeta(unlockMetaKey, '0');
       await DbHelper.instance.setMeta(productMetaKey, '');
@@ -605,7 +687,11 @@ class PremiumService {
           // The purchase is owned - bought now or restored from the store -
           // so the pass is activated and stored in the local database.
           await _completePurchase(purchaseDetails);
-          await unlockAllAccessLocally(productId: purchaseDetails.productID);
+          await unlockAllAccessLocally(
+            productId: purchaseDetails.productID,
+            singlePaperScope: _pendingSingleScope,
+          );
+          _pendingSingleScope = null;
           isLoading.value = false;
           _finishRequest(PremiumPurchaseResult.unlocked);
           _purchaseSuccessController.add(true);

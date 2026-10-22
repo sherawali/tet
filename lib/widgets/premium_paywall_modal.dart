@@ -7,6 +7,7 @@ import '../design_system/app_shadows.dart';
 import '../design_system/app_typography.dart';
 import '../design_system/app_strings.dart';
 import '../services/premium_service.dart';
+import '../services/bank_facts.dart';
 import '../design_system/app_sheet.dart';
 
 class PremiumPaywallModal extends StatefulWidget {
@@ -27,6 +28,7 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
   final PremiumService _premiumService = PremiumService.instance;
   String _selectedTier = PremiumService.masterProductId;
   String _selectedExam = 'utet';
+  int _selectedPaper = 1;
   StreamSubscription<bool>? _successSubscription;
   bool _celebrationShown = false;
 
@@ -34,6 +36,18 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
   String get _examProductId => _selectedExam == 'ctet'
       ? PremiumService.ctetProductId
       : PremiumService.utetProductId;
+
+  /// The direction a single paper pass is bought for, e.g. `utet-p1`.
+  String get _singleScope => '$_selectedExam-p$_selectedPaper';
+
+  /// The papers and questions of the chosen direction (fixed in BankFacts).
+  (int, int) get _singleCounts => (_selectedExam, _selectedPaper) == ('utet', 1)
+      ? (BankFacts.utetP1FormCount, BankFacts.utetP1QuestionCount)
+      : (_selectedExam, _selectedPaper) == ('utet', 2)
+          ? (BankFacts.utetP2FormCount, BankFacts.utetP2QuestionCount)
+          : (_selectedExam, _selectedPaper) == ('ctet', 1)
+              ? (BankFacts.ctetP1FormCount, BankFacts.ctetP1QuestionCount)
+              : (BankFacts.ctetP2FormCount, BankFacts.ctetP2QuestionCount);
 
   @override
   void initState() {
@@ -49,7 +63,94 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
     super.dispose();
   }
 
-  /// The chooser of the exam of the "one exam" pass.
+  /// The chooser of the paper of the single ₹399 pass (P1 or P2 of the
+  /// chosen exam).
+  Widget _buildSinglePaperSelector({
+    required String examLabel,
+    required String paperLabel,
+    required bool isDark,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.only(top: AppSpacing.sm),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            AppStrings.proPackWhichPaper,
+            style: AppTypography.labelMedium(
+              color: isDark
+                  ? AppColors.darkTextSecondary
+                  : AppColors.lightTextSecondary,
+            ),
+          ),
+          const SizedBox(height: AppSpacing.xs),
+          Row(
+            children: [
+              Expanded(
+                child: _buildPaperChip(
+                  isDark,
+                  label: AppStrings.proPackPaper1Label,
+                  selected: _selectedPaper == 1,
+                  onTap: () => setState(() => _selectedPaper = 1),
+                ),
+              ),
+              const SizedBox(width: AppSpacing.sm),
+              Expanded(
+                child: _buildPaperChip(
+                  isDark,
+                  label: AppStrings.proPackPaper2Label,
+                  selected: _selectedPaper == 2,
+                  onTap: () => setState(() => _selectedPaper = 2),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildPaperChip(
+    bool isDark, {
+    required String label,
+    required bool selected,
+    required VoidCallback onTap,
+  }) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: AppRadius.roundedMd,
+      child: Container(
+        padding: const EdgeInsets.symmetric(
+          horizontal: AppSpacing.sm,
+          vertical: AppSpacing.xs,
+        ),
+        decoration: BoxDecoration(
+          color: selected
+              ? AppColors.sealGold.withValues(alpha: 0.15)
+              : (isDark ? AppColors.primaryLight : AppColors.lightSurface),
+          borderRadius: AppRadius.roundedMd,
+          border: Border.all(
+            color: selected
+                ? AppColors.sealGold
+                : (isDark ? AppColors.darkBorder : AppColors.borderStrong),
+          ),
+        ),
+        child: Text(
+          label,
+          textAlign: TextAlign.center,
+          style: AppTypography.titleSmall(
+            color: selected
+                ? AppColors.sealGold
+                : (isDark
+                    ? AppColors.darkTextSecondary
+                    : AppColors.lightTextSecondary),
+          ),
+        ),
+      ),
+    );
+  }
+
+  /// The selector of the exam of the "one exam" pass.
   Widget _buildExamSelector(bool isDark) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -525,17 +626,34 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
                   const SizedBox(height: AppSpacing.sm),
 
                   // Tier 3: Single Paper Pro Pass
-                  _buildTierCard(
-                    tierId: PremiumService.singlePaperProductId,
-                    title: AppStrings.proPackSingleTitleNew,
-                    subtitle: AppStrings.proPackSingleSub,
-                    bulletLines: AppStrings.proPackSingleBullets,
-                    price:
-                        _premiumService.priceOf(PremiumService.singlePaperProductId),
-                    badgeText: AppStrings.proPackValidDays,
-                    isPopular: false,
-                    isDark: isDark,
-                  ),
+                  Builder(builder: (context) {
+                    final (forms, questions) = _singleCounts;
+                    final examLabel = _selectedExam.toUpperCase();
+                    final paperLabel = _selectedPaper == 1
+                        ? AppStrings.proPackPaper1Label
+                        : AppStrings.proPackPaper2Label;
+                    return _buildTierCard(
+                      tierId: PremiumService.singlePaperProductId,
+                      title: AppStrings.proPackSingleTitleNew,
+                      subtitle: AppStrings.proPackSingleSub,
+                      bulletLines: AppStrings.proPackSingleBulletsFor(
+                        examLabel: examLabel,
+                        paperLabel: paperLabel,
+                        forms: forms,
+                        questions: questions,
+                      ),
+                      price: _premiumService
+                          .priceOf(PremiumService.singlePaperProductId),
+                      badgeText: AppStrings.proPackValidDays,
+                      isPopular: false,
+                      isDark: isDark,
+                      extra: _buildSinglePaperSelector(
+                        examLabel: examLabel,
+                        paperLabel: paperLabel,
+                        isDark: isDark,
+                      ),
+                    );
+                  }),
                   const SizedBox(height: AppSpacing.sm),
 
                   // The promise of the pass
@@ -665,7 +783,13 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
                                 ? null
                                 : () async {
                                     final result = await _premiumService
-                                        .buyProduct(_selectedTier);
+                                        .buyProduct(
+                                      _selectedTier,
+                                      singlePaperScope: _selectedTier ==
+                                              PremiumService.singlePaperProductId
+                                          ? _singleScope
+                                          : null,
+                                    );
                                     if (!context.mounted) return;
 
                                     if (result == PremiumPurchaseResult.unlocked) {
@@ -783,6 +907,7 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
     List<String> bulletLines = const [],
     String? anchorText,
     String? noteText,
+    Widget? extra,
   }) {
     final isSelected = _selectedTier == tierId;
 
@@ -905,6 +1030,9 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
                       ),
                     ),
                   ],
+                  // The single paper pass carries a chooser of the paper
+                  // (P1/P2) inside the card.
+                  ?extra,
                 ],
               ),
             ),

@@ -165,8 +165,7 @@ class _FlashMessageBannerState extends State<FlashMessageBanner> {
 
     // A locked paper may not be opened for free.
     final premium = PremiumService.instance;
-    if (!premium.isPremiumUnlocked.value &&
-        !premium.isPaperFree(formId: formId)) {
+    if (!premium.hasUnlockedAccess && !premium.isPaperFree(formId: formId)) {
       PremiumPaywallModal.show(context);
       return;
     }

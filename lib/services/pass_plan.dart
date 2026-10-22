@@ -104,19 +104,43 @@ class PassPlan {
     return 'all';
   }
 
+  /// The paper (p1 or p2) a form belongs to, taken from its form id.
+  ///
+  /// Every id of the vault follows `utet-p1-…` / `ctet-p2-…`, so the paper
+  /// is always readable.  Null for strange ids.
+  static String? paperOf(String formId) {
+    final id = formId.toLowerCase();
+    if (RegExp(r'-p1-').hasMatch(id)) return 'p1';
+    if (RegExp(r'-p2-').hasMatch(id)) return 'p2';
+    return null;
+  }
+
+  /// Does a single pass open this paper?
+  ///
+  /// The scope is either a full form id (`utet-p1-fullmock`, opens exactly
+  /// that paper) or a direction (`utet-p1`, opens every paper of that
+  /// paper of that exam - the ₹399 pass the paywall sells today).
+  static bool singleScopeMatches(String? scope, String formId) {
+    if (scope == null || scope.isEmpty) return false;
+    if (scope == formId) return true;
+    final parts = scope.split('-');
+    if (parts.length != 2) return false;
+    return examOfPaper(formId) == parts[0] && paperOf(formId) == parts[1];
+  }
+
   /// Does a pass open a paper?
   ///
-  /// A single paper pass opens only the paper it was bought for, an exam pass
-  /// opens every paper of that exam, and the full access pass opens
-  /// everything.
+  /// A single paper pass opens only the paper or the direction it was
+  /// bought for, an exam pass opens every paper of that exam, and the full
+  /// access pass opens everything.
   static bool unlocksPaper(
     String productId,
     String formId, {
-    String? singlePaperFormId,
+    String? singlePaperScope,
   }) {
     final tier = tierOf(productId);
     if (tier == 'single') {
-      return singlePaperFormId != null && singlePaperFormId == formId;
+      return singleScopeMatches(singlePaperScope, formId);
     }
     if (tier == 'full') return true;
     return examOfPaper(formId) == examOf(productId);
