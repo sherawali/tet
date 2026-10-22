@@ -116,6 +116,29 @@ class _HomeScreenState extends State<HomeScreen> {
     // The stream can also be changed in the PYQ vault, so the home screen
     // has to follow it.
     ExamService.instance.currentStream.addListener(_onStreamChanged);
+    // A flexible update downloads in the background; when the store says the
+    // new version is ready, offer the restart here (the home screen lives
+    // for the whole session, the splash screen does not).
+    InAppUpdateService.instance.flexibleUpdateReady.addListener(
+      _onFlexibleUpdateReady,
+    );
+  }
+
+  void _onFlexibleUpdateReady() {
+    if (!InAppUpdateService.instance.flexibleUpdateReady.value) return;
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(AppStrings.updateReadyToast),
+        duration: const Duration(seconds: 60),
+        action: SnackBarAction(
+          label: AppStrings.updateRestartBtn,
+          onPressed: () {
+            InAppUpdateService.instance.completeFlexibleUpdate();
+          },
+        ),
+      ),
+    );
   }
 
   void _onStreamChanged() {
@@ -175,6 +198,9 @@ class _HomeScreenState extends State<HomeScreen> {
     _heroCarouselController.dispose();
     SyncService.onDatabaseUpdated.removeListener(_onDatabaseUpdatedListener);
     ExamService.instance.currentStream.removeListener(_onStreamChanged);
+    InAppUpdateService.instance.flexibleUpdateReady.removeListener(
+      _onFlexibleUpdateReady,
+    );
     super.dispose();
   }
 

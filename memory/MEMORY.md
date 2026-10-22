@@ -977,3 +977,33 @@
   history). Reminded.
 - Tests: 11 files serial on Windows, all pass; full `flutter analyze`
   clean.
+
+
+### 2026-10-22 late night - the burr hunt: manifest, billing, in-app updates
+- **Manifest:** audited permission by permission - nothing to change. No
+  stray storage / notification / ad-id permission, no cleartext traffic,
+  only MainActivity exported (correct), no FileProvider, backup stays on
+  (the entitlement is a Play-validated cache, so a restored db self-heals).
+  Debug builds cannot buy (they are com.tetrank.pro.debug - by design).
+- **Billing micro-rules, verified:** cancel on the sheet changes nothing
+  and restores the button; a bad or unmeaningful product id is
+  acknowledged and thrown away; a purchase of another app never opens this
+  pass; the busy loader can never stick (watchdog); pending (UPI) shows a
+  clear message and unlocks automatically when the bank confirms, in the
+  same session or on the next start (the init restore covers a payment
+  that confirms while the app was closed).
+- **Bug 1 - the pass could stretch:** every re-delivery of an owned
+  purchase pushed the expiry to "now + term" again, so an active pass
+  never aged. The expiry is monotonic now - only a later date (a real
+  renewal) moves it.
+- **Bug 2 - a flexible update installed nothing:** the store downloads, the
+  app never listened and never restarted into the new version. There is an
+  install-status listener now; when the download is ready the home screen
+  shows "Update downloaded - restart" with a Restart button. After the
+  update the sqlite entitlement (and history) survive; the init restore
+  re-checks the pass against the store.
+- Known (by design, honest): with any pass active the paywall shows only
+  the active badge - an in-app upgrade from UTET to full is not offered
+  while the pass runs; the owner buys the second pass on Play if ever
+  needed. The bundled token is already gone (previous round).
+- Tests pass (4 files serial), full analyze clean.

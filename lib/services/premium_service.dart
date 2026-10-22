@@ -490,17 +490,23 @@ class PremiumService {
   /// an app restart.
   Future<void> unlockAllAccessLocally({String? productId}) async {
     if (productId != null) {
-      _activeProductId = productId;
-      _activeExpiry = DateTime.now().add(
+      final newExpiry = DateTime.now().add(
         Duration(days: PassPlan.daysOf(productId)),
       );
-      try {
-        await DbHelper.instance.setMeta(productMetaKey, productId);
-        await DbHelper.instance.setMeta(
-          expiryMetaKey,
-          _activeExpiry!.toIso8601String(),
-        );
-      } catch (_) {}
+      _activeProductId = productId;
+      // A pass never shortens and never stretches: the store re-delivers an
+      // owned purchase on every start, and only a later expiry (a real
+      // renewal) may push the date forward.
+      if (_activeExpiry == null || newExpiry.isAfter(_activeExpiry!)) {
+        _activeExpiry = newExpiry;
+        try {
+          await DbHelper.instance.setMeta(productMetaKey, productId);
+          await DbHelper.instance.setMeta(
+            expiryMetaKey,
+            _activeExpiry!.toIso8601String(),
+          );
+        } catch (_) {}
+      }
     }
     try {
       await DbHelper.instance.setMeta(unlockMetaKey, '1');

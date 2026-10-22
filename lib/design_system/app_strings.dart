@@ -942,6 +942,10 @@ class AppStrings {
   static String get checkingUpdate => _isHi ? 'जाँच हो रही है...' : 'Checking for updates...';
   static String get appUpToDate => _isHi ? 'आपका ऐप नवीनतम संस्करण पर है।' : 'Your app is up to date.';
   static String get updateFound => _isHi ? 'नया संस्करण उपलब्ध है!' : 'New update available!';
+  static String get updateReadyToast => _isHi
+      ? 'अपडेट डाउनलोड हो गया है · रीस्टार्ट करके नया संस्करण लगाएँ'
+      : 'Update downloaded · restart to install the new version';
+  static String get updateRestartBtn => _isHi ? 'रीस्टार्ट करें' : 'Restart';
 
   // In-App Review (IAR)
   static String get reviewPromptTitle => _isHi ? 'क्या आपको हमारी परीक्षा प्रश्न-पुस्तिकाएं पसंद आईं?' : 'Loving our Exam Booklets?';
