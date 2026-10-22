@@ -861,3 +861,31 @@
   create in the Play Console.
 - **`memory/RELEASE_REPORT_v20.md`** is the full release report: what the
   candidate gets, what is on the screen, what is ready and what is still open.
+
+### 2026-10-22: The pass plan is live, the flash message opens, the booklet closes
+- **The pass plan (365 days, no lifetime)** - `lib/services/pass_plan.dart` holds the
+  product ids, the fallback prices, the length of every pass and which papers it
+  opens.  A UTET pass opens the UTET papers, a CTET pass the CTET papers, the full
+  access pass everything, and a pass that has run out opens nothing.
+  The price is read from the Play Store, so a price change needs no new release.
+  `docs/PLAY_STORE_PASS_SETUP.md` lists the products to create.
+- **Free or paid without a new app release** - `bin/remote_access.json` replaced the
+  hard coded free / paid lists of the CDN builder.
+- **The flash message** opens its target (a paper, a screen or a link) and a
+  dismissed message stays dismissed after a restart (it is stored per message id).
+- **The booklet** - the OMR sheet and the palette open *and* close (the button is a
+  toggle, the sheet has an X, the barrier closes it); the four buttons of the top bar
+  have their own icon, a bilingual label and an active state; the booklet starts in
+  the language of the app; the cover, the counters, the OMR legend and the difficulty
+  chip follow that language.
+- **The history tab** overflowed by 585 px - the header was not flexible.  Fixed, and
+  the card is one piece again.
+- **The settings** has one card style, buttons that say what they do, a busy state and
+  an honest "your device is offline" instead of pretending.
+- **The badges and the hero chips** can really cut their label now (a Text in a
+  `Row(mainAxisSize: min)` had an unbounded width, so the ellipsis never worked).
+- **The paper-2 titles** carry their stream, so a maths paper and a social studies
+  paper can never be mixed up.
+- **Verification:** 19 test files, all pass; `flutter analyze` clean; the phone
+  (Infinix X698, offline) shows the new paywall, the OMR sheet opening and closing,
+  the redesigned buttons and the clean history.
