@@ -286,7 +286,7 @@ class _SubjectDetailScreenState extends State<SubjectDetailScreen> {
 
                   // Section 1: Practice Sets (SET-01 to SET-07)
                   Text(
-                    'अभ्यास सेट्स (${BankFacts.subjectSetQuestions} प्रश्न · ${BankFacts.subjectSetQuestions} मिनट)',
+                    AppStrings.practiceSetsHeading(BankFacts.subjectSetQuestions),
                     style: AppTypography.titleMedium(
                       color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
                     ),

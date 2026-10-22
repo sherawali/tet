@@ -669,6 +669,43 @@ class AppStrings {
       ? '$size प्रश्न · $size मिनट · सत्यापित उत्तर सहित बोर्ड पेपर'
       : '$size questions · $size minutes · board paper with verified answers';
 
+  static String resultTargetedHeadline(int needed) => _isHi
+      ? 'गहन अभ्यास की आवश्यकता'
+      : 'Targeted Revision Needed';
+  static String resultTargetedAdvice(int needed) => _isHi
+      ? 'आरक्षित वर्ग कट-ऑफ 55% के लिए $needed और अंक आवश्यक हैं। घबराएं नहीं, पूर्व वर्ष के प्रश्नों (SET-R) और गलत प्रश्नों के पुनः अभ्यास से स्कोर तुरंत बढ़ेगा।'
+      : 'You need $needed more marks for the reserved seat 55%. Do not worry - practising the previous year papers (SET-R) and the questions you got wrong will lift the score right away.';
+
+  // ---- bilingual labels for the exam and the result screens --------------
+  static String get reportLabel => _isHi ? 'रिपोर्ट' : 'Report';
+  static String get answeredCountLabel => _isHi ? 'हल: ' : 'Answered: ';
+  static String get reviewCountLabel => _isHi ? 'समीक्षा: ' : 'Review: ';
+  static String get sectionLabel => _isHi ? 'सेक्शन: ' : 'Section: ';
+  static String get emptyPaperTitle => _isHi
+      ? 'इस प्रश्न-पत्र में कोई प्रश्न नहीं मिला। कृपया दूसरा प्रश्न-पत्र चुनें।'
+      : 'No questions were found in this paper. Please choose another paper.';
+  static String get wrongTimesLabel => _isHi ? 'बार गलत' : 'wrong times';
+  static String get directionLabel => _isHi ? 'निर्देश : ' : 'Direction: ';
+  static String practiceSetsHeading(int count) => _isHi
+      ? 'अभ्यास सेट्स ($count प्रश्न · $count मिनट)'
+      : 'Practice Sets ($count questions · $count minutes)';
+  static String get rightDirectionAdvice => _isHi
+      ? 'सही दिशा में सुधार: इन टॉपिक्स के प्रश्न रटने के बजाय पहले इनके नियम और बुनियादी सिद्धांत समझें। फिर नीचे दिए बटन से सिर्फ़ इन्हीं गलत हुए प्रश्नों का अभ्यास करें।'
+      : 'The right way to improve: understand the rules and the basics of these topics instead of memorising them. Then use the button below to practise only the questions you got wrong.';
+  static String retestWrongQuestions(int count) => _isHi
+      ? '🎯 बार-बार गलत हुए ($count) प्रश्नों का री-टेस्ट हल करें'
+      : '🎯 Re-test the $count questions you keep getting wrong';
+
+  static String exitExamMessage(int total, int answered) => _isHi
+      ? 'आपने $total में से $answered प्रश्न हल किए हैं। यदि आप अभी बाहर जाते हैं, तो आपका मौजूदा टेस्ट सत्र समाप्त हो जाएगा।'
+      : 'You have answered $answered of $total questions. If you leave now, this test session will end.';
+  static String get zoomLabel => _isHi ? 'ज़ूम करें' : 'Zoom';
+  static String get pinchToZoomHint => _isHi
+      ? 'पिंच करके बड़ा/छोटा करें (Pinch to Zoom & Pan)'
+      : 'Pinch to zoom and pan';
+  static String questionNumberLabel(int number) =>
+      _isHi ? 'प्रश्न $number' : 'Question $number';
+
   // ---- bilingual wording for the buttons and cards ------------------------
   static String get verifiedTestPapersHeading =>
       _isHi ? 'प्रामाणिक बने-बनाए टेस्ट पेपर्स' : 'Verified Ready-Made Test Papers';

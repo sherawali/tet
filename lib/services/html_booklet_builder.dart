@@ -1269,7 +1269,8 @@ class HtmlBookletBuilder {
           : (q.difficulty == 3 ? ('कठिन', 'hard') : ('मध्यम', 'med'));
       final headerMeta =
           '<div class="q-head-meta">'
-          '<span class="q-chip q-marks">1 अंक</span>'
+          '<span class="q-chip q-marks"><span class="t-hi">1 अंक</span>'
+          '<span class="t-en">1 Mark</span></span>'
           '<span class="q-chip q-diff q-diff-${diffLabel.$2}">${diffLabel.$1}</span>'
           '</div>';
 
@@ -2643,6 +2644,11 @@ body.lang-mode-en .bilingual-mobile-stack .opt-secondary {
     white-space: nowrap;
   }
   .lp-short { display: none; }
+  /* --- text that follows the booklet language ------------------------- */
+  .t-en { display: none; }
+  body.lang-mode-en .t-hi { display: none; }
+  body.lang-mode-en .t-en { display: inline; }
+
 
   .paper-page { padding: 10px 8px; width: 100%; box-sizing: border-box; }
   .section-banner { margin: 14px 0 10px; padding: 8px 10px; border-radius: 6px; }
@@ -3170,7 +3176,8 @@ DARK_ROOT .rep-radio-label { background: #111c33; border-color: #334155; color: 
       b.innerHTML = '<p style="font-size:13.5px;line-height:1.7">' +
         (pData.dir ? pData.dir : 'ऊपर पढ़ें।') + '</p>' +
         '<p style="font-size:12.5px;color:#64748b;margin-top:10px">' +
-        'यह गद्यांश अपने प्रश्नों के साथ ऊपर दिया गया है।</p>';
+        '<span class="t-hi">यह गद्यांश अपने प्रश्नों के साथ ऊपर दिया गया है।</span>'
+        '<span class="t-en">This passage is printed above with its questions.</span></p>';
     }
     const m = document.getElementById('passage-modal');
     if (m) m.classList.add('open');
@@ -3371,8 +3378,8 @@ DARK_ROOT .rep-radio-label { background: #111c33; border-color: #334155; color: 
     if (rm) rm.classList.add('open');
 
     const ca = document.getElementById('cbt-actions');
-    if (ca) ca.innerHTML = '<button class="cbt-btn cbt-btn-primary" onclick="reopenResult()"><span>📊</span> <span class="btn-text">परिणाम</span></button> ' +
-                           '<button class="cbt-btn cbt-btn-secondary" onclick="location.reload()"><span>🔄</span> <span class="btn-text">रीटेस्ट</span></button> ' +
+    if (ca) ca.innerHTML = '<button class="cbt-btn cbt-btn-primary" onclick="reopenResult()"><span>📊</span> <span class="btn-text t-hi">परिणाम</span><span class="btn-text t-en">Result</span></button> ' +
+                           '<button class="cbt-btn cbt-btn-secondary" onclick="location.reload()"><span>🔄</span> <span class="btn-text t-hi">रीटेस्ट</span><span class="btn-text t-en">Retest</span></button> ' +
                            '<button class="cbt-btn cbt-btn-exit" onclick="requestExitTest()" title="बाहर निकलें"><span>✕</span></button>';
   }
 

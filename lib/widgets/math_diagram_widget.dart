@@ -221,7 +221,7 @@ class MathDiagramWidget extends StatelessWidget {
                     Icon(Icons.zoom_in_rounded, size: 16, color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted),
                     const SizedBox(width: AppSpacing.xs),
                     Text(
-                      'ज़ूम करें',
+                      AppStrings.zoomLabel,
                       style: AppTypography.labelSmall(
                         color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
                       ),
@@ -293,7 +293,7 @@ class MathDiagramWidget extends StatelessWidget {
                 ),
                 const SizedBox(height: AppSpacing.sm),
                 Text(
-                  'पिंच करके बड़ा/छोटा करें (Pinch to Zoom & Pan)',
+                  AppStrings.pinchToZoomHint,
                   style: AppTypography.labelSmall(
                     color: AppColors.lightTextMuted,
                   ),
@@ -533,7 +533,7 @@ extension _MathDiagramCustomHelper on MathDiagramWidget {
                     ),
                     const SizedBox(width: AppSpacing.xs),
                     Text(
-                      'ज़ूम करें',
+                      AppStrings.zoomLabel,
                       style: AppTypography.labelSmall(
                         color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
                       ),

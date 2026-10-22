@@ -343,7 +343,7 @@ class _SolutionScreenState extends State<SolutionScreen> {
                                     const Icon(Icons.flag_rounded, size: 13, color: AppColors.goldBright),
                                     const SizedBox(width: AppSpacing.xs),
                                     Text(
-                                      'रिपोर्ट',
+                                      AppStrings.reportLabel,
                                       style: AppTypography.labelSmall(
                                         color: isDark ? AppColors.goldBright : AppColors.sealGold,
                                       ),
@@ -423,7 +423,7 @@ class _SolutionScreenState extends State<SolutionScreen> {
                                     borderRadius: AppRadius.roundedSm,
                                   ),
                                   child: Text(
-                                    'निर्देश : ${passage.displayDir}',
+                                    '${AppStrings.directionLabel}${passage.displayDir}',
                                     style: AppTypography.labelSmall(
                                       color: isDark ? AppColors.borderStrong : AppColors.warningDark,
                                     ).copyWith(fontStyle: FontStyle.italic),

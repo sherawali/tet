@@ -89,4 +89,43 @@ void main() {
     expect(sizes.length, lessThanOrEqualTo(14),
         reason: 'the booklet uses too many font sizes: $sizes');
   });
+
+  test('no screen hard codes a Hindi label', () {
+    // Every label of the exam flow lives in app_strings.dart, so the whole
+    // app can speak Hindi or English.  A Hindi only string in a screen is a
+    // label that stays Hindi in the English mode.
+    const examFlow = <String>[
+      'lib/screens/home_screen.dart',
+      'lib/screens/cbt_exam_screen.dart',
+      'lib/screens/result_screen.dart',
+      'lib/screens/solution_screen.dart',
+      'lib/screens/subject_detail_screen.dart',
+      'lib/screens/mock_series_screen.dart',
+      'lib/screens/pyq_vault_screen.dart',
+      'lib/widgets/math_diagram_widget.dart',
+      'lib/widgets/passage_display_card.dart',
+    ];
+    final devanagari = RegExp(r'[\u0900-\u097F]');
+    final latin = RegExp(r'[A-Za-z]{3,}');
+    final problems = <String>[];
+
+    for (final path in examFlow) {
+      final file = File(path);
+      if (!file.existsSync()) continue;
+      final lines = file.readAsLinesSync();
+      for (var i = 0; i < lines.length; i++) {
+        final line = lines[i].trim();
+        if (!line.startsWith("'") && !line.startsWith('"')) continue;
+        if (!devanagari.hasMatch(line)) continue;
+        // A line that picks its language is fine.
+        if (line.contains('isHi') || line.contains('isHindi')) continue;
+        // A label that carries both languages is fine.
+        if (latin.hasMatch(line)) continue;
+        problems.add('$path:${i + 1} -> ${line.substring(0, line.length > 70 ? 70 : line.length)}');
+      }
+    }
+    expect(problems, isEmpty,
+        reason: 'these labels stay Hindi in the English mode: '
+            '${problems.join(' | ')}');
+  });
 }

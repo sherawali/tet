@@ -799,3 +799,36 @@
   subject grid, subject practice, booklet cover, question page, result, CBT
   screen, exit dialog, paywall - no overflow, no crash.
 - **Keystore / signing files:** untouched and safe.
+
+### 2026-10-22: V20 Full Polish Round - agents, question data, language and layout
+- **Question data (agent):** the whole bank was audited again.  104 questions had an
+  English column that belonged to the next question (the source dump had a shifted
+  English column), 35 English stems and 68 English option lists were curated, and one
+  answer key was wrong.  New scripts: `scripts/audit_question_data.py`,
+  `scripts/vault_content_fixes.py`, `scripts/vault_data_rules.py`,
+  `scripts/generate_foreign_families.py`.  The validator now also catches a shifted
+  English column.  Result: 9,720 questions, 193 passages, 62 papers, **0 findings**,
+  validator green, CDN rebuilt (49 packs, hashes match).
+- **Typography (agents):** the home screen and every other screen moved onto
+  `AppTypography`, `AppSpacing` and `AppRadius`; the inline sizes are gone.  The
+  booklet CSS went from twenty font sizes to thirteen.  New shared widgets:
+  `AppLoadingState` and `AppEmptyState`.
+- **Titles:** every screen title now names the exam, the paper and (for paper 2) the
+  stream.  The app bar carries the exam and the paper only, because the long label
+  was cut on a 360 dp phone.
+- **Language:** the whole app speaks one language at a time.  The exam screen, the
+  result screen, the solution screen, the subject screen, the diagram, the passage
+  card and the booklet (marks chip, result buttons, passage note) all follow the
+  chosen language now.  A guard test fails when a Hindi only label sneaks back in.
+- **Layout bugs found on the phone and fixed:**
+  - the stream badge squeezed the section heading into five lines on a 360 dp phone,
+  - the meta chips of the hero card made the carousel card wider than the screen,
+  - the mock series screen said "no mock papers available" for UTET Paper-2 (which has
+    no mocks, only the seven board papers),
+  - the app bar titles of the paper list, the result and the solution screen were cut.
+- **Guards:** `test/design_system_guard_test.dart` (no hard coded colour, no own
+  animation duration, no animation without a curve, one booklet type scale, no Hindi
+  only label) and `test/screen_layout_test.dart` (result, solution and CBT screen on a
+  360 dp phone, light and dark).  91 tests pass, analyze clean.
+- **Release:** still a draft, nothing published.  The signing key, the package id
+  `com.sherawali.tet` and the R8 release build are ready.

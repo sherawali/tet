@@ -759,7 +759,7 @@ class _CbtExamScreenState extends State<CbtExamScreen>
                   ),
                   const SizedBox(height: AppSpacing.base),
                   Text(
-                    'इस प्रश्न-पत्र में कोई प्रश्न नहीं मिला।\nकृपया दूसरा प्रश्न-पत्र चुनें।',
+                    AppStrings.emptyPaperTitle,
                     textAlign: TextAlign.center,
                     style: AppTypography.bodyMedium(
                       color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
@@ -991,7 +991,7 @@ class _CbtExamScreenState extends State<CbtExamScreen>
                                   const Icon(Icons.flag_rounded, size: 13, color: AppColors.goldBright),
                                   const SizedBox(width: AppSpacing.xs),
                                   Text(
-                                    'रिपोर्ट',
+                                    AppStrings.reportLabel,
                                     style: AppTypography.labelSmall(
                                       color: isDark ? AppColors.goldBright : AppColors.sealGold,
                                     ),
@@ -1206,13 +1206,13 @@ class _CbtExamScreenState extends State<CbtExamScreen>
           ),
           const SizedBox(width: AppSpacing.sm),
           Text(
-            'हल: $answered/$total',
+            '${AppStrings.answeredCountLabel}$answered/$total',
             style: AppTypography.labelSmall(color: labelColor),
           ),
           if (review > 0) ...[
             const SizedBox(width: AppSpacing.sm),
             Text(
-              'समीक्षा: $review',
+              '${AppStrings.reviewCountLabel}$review',
               style: AppTypography.labelSmall(color: labelColor),
             ),
           ],
@@ -1231,7 +1231,7 @@ class _CbtExamScreenState extends State<CbtExamScreen>
         padding: const EdgeInsets.symmetric(horizontal: AppSpacing.base),
         alignment: Alignment.centerLeft,
         child: Text(
-          'सेक्शन: ${widget.session.config.sectionFilter!.toUpperCase()}',
+          '${AppStrings.sectionLabel}${widget.session.config.sectionFilter!.toUpperCase()}',
           style: AppTypography.labelSmall(color: isDark ? AppColors.accentBright : AppColors.primary),
         ),
       );

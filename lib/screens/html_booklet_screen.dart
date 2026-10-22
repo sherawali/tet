@@ -7,6 +7,7 @@ import '../models/test_session.dart';
 import '../models/mock_config.dart';
 import '../database/db_helper.dart';
 import '../design_system/app_colors.dart';
+import '../design_system/app_strings.dart';
 import '../design_system/app_typography.dart';
 import '../design_system/app_spacing.dart';
 import '../design_system/app_dialogs.dart';
@@ -295,8 +296,7 @@ class _HtmlBookletScreenState extends State<HtmlBookletScreen> {
     final leave = await AppDialogs.confirm(
       context,
       title: 'परीक्षा से बाहर निकलें?',
-      message:
-          'आपने $total में से $answered प्रश्न हल किए हैं। यदि आप अभी बाहर जाते हैं, तो आपका मौजूदा टेस्ट सत्र समाप्त हो जाएगा।',
+      message: AppStrings.exitExamMessage(total, answered),
       confirmLabel: '✕ बाहर निकलें',
       cancelLabel: '▶ हल करना जारी रखें',
       destructive: true,

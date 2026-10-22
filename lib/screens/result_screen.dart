@@ -673,7 +673,7 @@ class _ResultScreenState extends State<ResultScreen> {
     } else {
       final needed = ExamRules.reservedPassMark(total) - score;
       headline = AppStrings.targetedRevisionNeed;
-      adviceText = 'आरक्षित वर्ग कट-ऑफ (55%) के लिए $needed और अंक आवश्यक हैं। घबराएं नहीं, पूर्व वर्ष के प्रश्नों (SET-R) और गलत प्रश्नों के पुनः अभ्यास से स्कोर तुरंत बढ़ेगा।';
+      adviceText = AppStrings.resultTargetedAdvice(needed);
       badgeColor = AppColors.danger;
     }
 
@@ -939,7 +939,7 @@ class _ResultScreenState extends State<ResultScreen> {
                         borderRadius: AppRadius.roundedFull,
                       ),
                       child: Text(
-                        '$wrongs बार गलत',
+                        '$wrongs ${AppStrings.wrongTimesLabel}',
                         style: AppTypography.labelSmall(
                           color: AppColors.darkTextPrimary,
                         ),
@@ -966,7 +966,7 @@ class _ResultScreenState extends State<ResultScreen> {
                 const SizedBox(width: AppSpacing.sm),
                 Expanded(
                   child: Text(
-                    'सही दिशा में सुधार: इन टॉपिक्स के प्रश्न रटने के बजाय पहले इनके नियम और बुनियादी सिद्धांत समझें। फिर नीचे दिए बटन से सिर्फ इन्हीं गलत हुए प्रश्नों का अभ्यास करें।',
+                    AppStrings.rightDirectionAdvice,
                     style: AppTypography.bodySmall(
                       color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextPrimary,
                     ),
@@ -1007,7 +1007,7 @@ class _ResultScreenState extends State<ResultScreen> {
                 },
                 icon: const Icon(Icons.replay_circle_filled_rounded, size: 20),
                 label: Text(
-                  '🎯 बार-बार गलत हुए (${_recurringWrongQuestions.length}) प्रश्नों का री-टेस्ट हल करें',
+                  AppStrings.retestWrongQuestions(_recurringWrongQuestions.length),
                   textAlign: TextAlign.center,
                 ),
               ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../design_system/app_colors.dart';
+import '../design_system/app_strings.dart';
 import '../design_system/app_radius.dart';
 import '../design_system/app_spacing.dart';
 import '../design_system/app_shadows.dart';
@@ -208,7 +209,7 @@ class _PassageDisplayCardState extends State<PassageDisplayCard> {
                           borderRadius: AppRadius.roundedSm,
                         ),
                         child: Text(
-                          'प्रश्न ${widget.seqInPassage}',
+                          AppStrings.questionNumberLabel(widget.seqInPassage ?? 0),
                           style: AppTypography.labelSmall(
                             color: isDark ? AppColors.darkTextSecondary : AppColors.deskGray,
                           ),
