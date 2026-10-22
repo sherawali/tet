@@ -1875,6 +1875,27 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                   ),
+                  TextButton(
+                    onPressed: () async {
+                      await PremiumService.instance.resetPurchasesForTesting();
+                      if (!context.mounted) return;
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(AppStrings.debugResetPass),
+                        ),
+                      );
+                    },
+                    style: TextButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xs),
+                      alignment: Alignment.centerLeft,
+                    ),
+                    child: Text(
+                      AppStrings.debugResetPass,
+                      style: AppTypography.labelSmall(
+                        color: AppColors.danger,
+                      ),
+                    ),
+                  ),
                 ],
               );
             },

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import '../design_system/app_colors.dart';
 import '../design_system/app_radius.dart';
@@ -677,6 +678,22 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
                   _buildEkParikshaCard(isDark: isDark),
                   const SizedBox(height: AppSpacing.sm),
 
+                  // Debug builds cannot buy on Play, so the mock buy note
+                  // tells the tester what the Buy button will do.
+                  if (kDebugMode) ...[
+                    Padding(
+                      padding: const EdgeInsets.only(top: AppSpacing.sm),
+                      child: Text(
+                        AppStrings.debugBuyNote,
+                        textAlign: TextAlign.center,
+                        style: AppTypography.labelSmall(
+                          color: AppColors.sealGold,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: AppSpacing.sm),
+                  ],
+
                   // The promise of the pass
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -844,6 +861,24 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
                                     AppStrings.premiumUnlockBtn,
                                     textAlign: TextAlign.center,
                                   ),
+                          ),
+                        // Debug only: drop the mock pass so another pack
+                        // can be tried from a clean state.
+                        if (isUnlocked && kDebugMode)
+                          Padding(
+                            padding: const EdgeInsets.only(top: AppSpacing.sm),
+                            child: TextButton(
+                              onPressed: () async {
+                                await _premiumService.resetPurchasesForTesting();
+                              },
+                              child: Text(
+                                AppStrings.debugResetPass,
+                                textAlign: TextAlign.center,
+                                style: AppTypography.titleSmall(
+                                  color: AppColors.danger,
+                                ),
+                              ),
+                            ),
                           ),
                         const SizedBox(height: AppSpacing.sm),
 

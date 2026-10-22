@@ -60,6 +60,14 @@ class AppStrings {
       ? 'सिर्फ मुफ़्त पेपर (free view)'
       : 'Only the free paper (free view)';
 
+  /// The mock buy of a debug build (never in a release).
+  static String get debugBuyNote => _isHi
+      ? '🧪 डिबग बिल्ड: पैक चुनकर Buy दबाओ — Play की खरीद नहीं होगी, पर अनलॉक असली रास्ते से लगेगा (वही दिन, वही दायरा)।'
+      : '🧪 Debug build: pick a pack and press Buy - no Play billing, but the real unlock path runs (same days, same scope).';
+  static String get debugResetPass => _isHi
+      ? '🧪 पास रीसेट करो (दूसरा पैक आज़माओ)'
+      : '🧪 Reset the pass (try another pack)';
+
   // App Header
   static String get appTitle => '$examName ${paperName(currentPaperNumber)}';
   static String get appSubtitle => isPaper2

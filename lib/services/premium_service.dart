@@ -386,6 +386,13 @@ class PremiumService {
     String productId, {
     String? singlePaperScope,
   }) async {
+    // A debug build cannot talk to Play Billing (a release install is
+    // needed for that), so the tester presses the same buy button and the
+    // mock buy runs the very same unlock code a real purchase would run.
+    if (kDebugMode) {
+      return mockBuyForDebug(productId, singlePaperScope: singlePaperScope);
+    }
+
     if (isPremiumUnlocked.value) return PremiumPurchaseResult.unlocked;
 
     isLoading.value = true;
@@ -646,6 +653,49 @@ class PremiumService {
     _activeProductId = null;
     _activeExpiry = null;
     isPremiumUnlocked.value = false;
+  }
+
+  /// Debug only: a mock buy that unlocks the chosen pack without the store.
+  ///
+  /// Play Billing cannot run in a debug build, so the tester buys through
+  /// this door instead - and it writes exactly what a real purchase would
+  /// write: the product, the absolute expiry of 365 days, the direction
+  /// scope and the unlock flag, all in the database.  A restart keeps it,
+  /// the expiry test rules apply, the packed papers open and nothing else.
+  Future<PremiumPurchaseResult> mockBuyForDebug(
+    String productId, {
+    String? singlePaperScope,
+  }) async {
+    if (!kDebugMode) return PremiumPurchaseResult.failed;
+    // A direction choice without a scope must fail loudly, the way a
+    // store buys nothing without a product.
+    if (PassPlan.tierOf(productId) == 'single' &&
+        (singlePaperScope == null || singlePaperScope.isEmpty)) {
+      purchaseError.value = 'failed';
+      return PremiumPurchaseResult.failed;
+    }
+    if (isPremiumUnlocked.value) return PremiumPurchaseResult.unlocked;
+
+    isLoading.value = true;
+    purchaseError.value = null;
+    // A moment of the same working state the Play sheet gives, so the
+    // tester sees the loader of the real flow too.
+    await Future<void>.delayed(const Duration(milliseconds: 700));
+    await unlockAllAccessLocally(
+      productId: productId,
+      singlePaperScope: singlePaperScope,
+    );
+    isLoading.value = false;
+    _purchaseSuccessController.add(true);
+    return PremiumPurchaseResult.unlocked;
+  }
+
+  /// Debug only: clears every trace of a pass, so another pack can be
+  /// tried from a clean state.
+  Future<void> resetPurchasesForTesting() async {
+    if (!kDebugMode) return;
+    await setDebugPremiumOverride(false);
+    await lockAllAccessLocally();
   }
 
   Future<void> _handlePurchaseUpdates(List<PurchaseDetails> purchaseDetailsList) async {
