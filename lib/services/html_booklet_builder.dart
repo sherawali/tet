@@ -1486,7 +1486,7 @@ class HtmlBookletBuilder {
          onclick="if (event.target === this) { closeOMR(); }">
       <div class="omr-sheet-card">
         <div class="omr-head">
-          <span style="font-weight:700"><span class="t-hi">📝 वास्तविक OMR शीट व्यू (1-$totalQs प्रश्न)</span><span class="t-en">📝 Real OMR Sheet View (1-$totalQs Questions)</span></span>
+          <span style="font-weight:700"><span class="t-hi">📝 वास्तविक OMR शीट देखें (1-$totalQs प्रश्न)</span><span class="t-en">📝 Real OMR Sheet View (1-$totalQs Questions)</span></span>
           <button class="omr-close-btn" onclick="closeOMR()"
                   title="OMR शीट बंद करें / Close OMR Sheet" aria-label="OMR शीट बंद करें / Close OMR Sheet">
             <span aria-hidden="true">✕</span>
