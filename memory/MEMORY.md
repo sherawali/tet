@@ -1104,3 +1104,10 @@
   booklet_paper_integrity_test (63 papers / 9,450 questions / 27,843
   options / 193 passage groups now proven). App state at commit cebaccb
   is release-ready pending the Play Console products.
+
+## 2026-10-22 - Debug mock-buy + reset (b62bbef)
+- buyProduct in kDebugMode routes to mockBuyForDebug: writes the same DB rows a real purchase writes (product, absolute expiry, scope, unlock flag); single scope missing fails loudly.
+- resetPurchasesForTesting clears the debug override + all pass meta; red buttons in paywall (under active box) and settings debug card.
+- Paywall debug note (gold, above promise row) tells the tester what Buy will do.
+- Phone proof (Infinix X698, debug build): 2499 buy -> celebration + 365d countdown + renewal 2499 shown; restart kept the pass; reset -> free again; 999 UTET-P1 buy -> all 21 UTET P1 mock sets green, CTET P1 mocks locked, CTET card tap routes to paywall not booklet (no leak); final reset left premium meta empty (unlock=0, product/scope/expiry empty strings).
+- Analyze clean; premium_expiry_test green; screenshots build/_audit/b1..b25.
