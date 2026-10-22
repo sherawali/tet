@@ -808,13 +808,13 @@ class AppStrings {
   static String get premiumPassTitle =>
       _isHi ? 'UTET एवं CTET $currentExamYear प्रो पास' : 'UTET & CTET $currentExamYear Pro Pass';
   static String get premiumPassSubtitle => _isHi
-      ? 'एक मॉडल प्रश्न-पत्र पूर्णतः निःशुल्क है। बाकी सभी ${BankFacts.paperCount}+ मॉडल प्रश्न-पत्र, विगत वर्ष प्रश्न-पत्र और ${BankFacts.format(BankFacts.questionCount)}+ प्रश्न आजीवन अनलॉक करें।'
-      : 'One model test paper is completely free. Unlock all ${BankFacts.paperCount}+ model test papers, previous year solved papers, and ${BankFacts.format(BankFacts.questionCount)}+ questions forever.';
+      ? 'एक मॉडल प्रश्न-पत्र पूर्णतः निःशुल्क है। बाकी सभी ${BankFacts.paperCount}+ मॉडल प्रश्न-पत्र, विगत वर्ष प्रश्न-पत्र और ${BankFacts.format(BankFacts.questionCount)}+ प्रश्न 12 महीने के लिए अनलॉक करें।'
+      : 'One model test paper is completely free. Unlock all ${BankFacts.paperCount}+ model test papers, previous year solved papers, and ${BankFacts.format(BankFacts.questionCount)}+ questions for a full year.';
 
   static String get proPackMasterTitle => _isHi ? 'मास्टर ऑल-एक्सेस प्रो पास' : 'Master All-Access Pro Pass';
   static String get proPackMasterSub => _isHi
-      ? 'दोनों पेपर (पेपर-1 + पेपर-2), UTET और CTET, सभी ${BankFacts.paperCount}+ टेस्ट, ${BankFacts.format(BankFacts.questionCount)}+ प्रश्न व आजीवन अपडेट'
-      : 'Both papers (Paper-1 + Paper-2), UTET & CTET, all ${BankFacts.paperCount}+ full tests, ${BankFacts.format(BankFacts.questionCount)}+ questions & lifetime updates';
+      ? 'दोनों पेपर (पेपर-1 + पेपर-2), UTET और CTET, सभी ${BankFacts.paperCount}+ टेस्ट, ${BankFacts.format(BankFacts.questionCount)}+ प्रश्न व 12 महीने के अपडेट'
+      : 'Both papers (Paper-1 + Paper-2), UTET & CTET, all ${BankFacts.paperCount}+ full tests, ${BankFacts.format(BankFacts.questionCount)}+ questions & 12 months of updates';
   static String get proPackMasterPrice =>
       _isHi ? '₹599 (80% तक छूट)' : '₹599 (Up to 80% Off)';
   static String get proPackMasterTag => _isHi ? '⭐ सर्वोत्तम मूल्य · शिक्षकों की पसंद' : '⭐ Best Value · Most Popular';
@@ -833,7 +833,7 @@ class AppStrings {
       ? 'विगत वर्षों के ${BankFacts.pyqCount}+ प्रामाणिक बोर्ड प्रश्न-पत्र'
       : '${BankFacts.pyqCount}+ authentic previous year board papers';
   static String get premiumFeature3 => _isHi ? 'विस्तृत व्याख्या सहित सम्पूर्ण हल व सटीक विश्लेषण' : 'Detailed Explanations & Performance Analytics';
-  static String get premiumFeature4 => _isHi ? '100% विज्ञापन-मुक्त · बिना इंटरनेट आजीवन पूर्ण एक्सेस' : '100% Ad-Free · Complete Offline Access for Life';
+  static String get premiumFeature4 => _isHi ? '100% विज्ञापन-मुक्त · बिना इंटरनेट पूर्ण एक्सेस' : '100% Ad-Free · Complete Offline Access';
 
   static String get premiumUnlockBtn => _isHi ? '👑 प्रो पास अनलॉक करें' : '👑 Unlock Pro Pass';
   static String get premiumRestoreBtn => _isHi ? 'खरीद पुनर्स्थापित करें' : 'Restore Purchases';
@@ -943,3 +943,5 @@ class AppStrings {
       : 'Standard exam paper · ${BankFacts.questionsPerPaper} questions list · OMR sheet style';
 }
 
+
+// NOTE: edited in the Pro-pass round of 2026-10-22 (no lifetime wording, tighter paper gate).

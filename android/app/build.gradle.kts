@@ -33,7 +33,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.sherawali.tet"
+        applicationId = "com.tetrank.pro"
         minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode

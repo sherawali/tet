@@ -77,13 +77,19 @@ class _MockSeriesScreenState extends State<MockSeriesScreen> {
   }
 
   Future<void> _startMockPaper(Map<String, dynamic> form, int index) async {
+    // The gate follows the badge: the same `isPaperFree` check decides
+    // whether the card shows FREE and whether the tap opens it.
+    final String formId = form['id'] as String;
+    final isFree = PremiumService.instance.isPaperFree(
+      formId: formId,
+      index: index,
+    );
     final isPremium = PremiumService.instance.isPremiumUnlocked.value;
-    if (!isPremium && index > 0) {
+    if (!isPremium && !isFree) {
       PremiumPaywallModal.show(context);
       return;
     }
 
-    final formId = form['id'] as String;
     setState(() => _loadingFormId = formId);
 
     try {
@@ -382,3 +388,5 @@ class _MockSeriesScreenState extends State<MockSeriesScreen> {
     return const AppLoadingState();
   }
 }
+
+// NOTE: edited in the Pro-pass round of 2026-10-22 (no lifetime wording, tighter paper gate).

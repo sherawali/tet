@@ -535,17 +535,19 @@ class PremiumService {
         enabled ? '1' : '0',
       );
     } catch (_) {}
+    // The switch decides what the tester sees right now, in this session:
+    // ON = the paid app (full access pass), OFF = the free app.  The real
+    // entitlement stays untouched in the database and comes back on the
+    // next start of the app.
     if (enabled) {
+      _activeProductId = PassPlan.fullAccessProductId;
+      _activeExpiry = null;
       isPremiumUnlocked.value = true;
       return;
     }
-    // The switch is off again: only a real purchase may keep the pass.
-    try {
-      final savedState = await DbHelper.instance.getMeta(unlockMetaKey);
-      isPremiumUnlocked.value = savedState == '1';
-    } catch (_) {
-      isPremiumUnlocked.value = false;
-    }
+    _activeProductId = null;
+    _activeExpiry = null;
+    isPremiumUnlocked.value = false;
   }
 
   Future<void> _handlePurchaseUpdates(List<PurchaseDetails> purchaseDetailsList) async {
@@ -606,3 +608,5 @@ class PremiumService {
     storeStatus.dispose();
   }
 }
+
+// NOTE: edited in the Pro-pass round of 2026-10-22 (no lifetime wording, tighter paper gate).
