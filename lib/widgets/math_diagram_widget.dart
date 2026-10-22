@@ -2,6 +2,9 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import '../design_system/app_colors.dart';
 import '../design_system/app_radius.dart';
+import '../design_system/app_spacing.dart';
+import '../design_system/app_shadows.dart';
+import '../design_system/app_typography.dart';
 import '../design_system/app_strings.dart';
 import '../services/language_service.dart';
 import 'question_figure_catalog.dart';
@@ -113,8 +116,8 @@ class MathDiagramWidget extends StatelessWidget {
             : Image.asset(url, fit: BoxFit.contain),
       ),
       child: Container(
-        margin: const EdgeInsets.symmetric(vertical: 10),
-        padding: const EdgeInsets.all(10),
+        margin: const EdgeInsets.symmetric(vertical: AppSpacing.sm),
+        padding: const EdgeInsets.all(AppSpacing.sm),
         decoration: BoxDecoration(
           color: isDark ? AppColors.primary : AppColors.darkTextPrimary,
           borderRadius: AppRadius.roundedBase,
@@ -131,8 +134,8 @@ class MathDiagramWidget extends StatelessWidget {
                       fit: BoxFit.contain,
                       errorBuilder: (context, error, stackTrace) => const Center(
                         child: Padding(
-                          padding: EdgeInsets.all(16),
-                          child: Icon(Icons.broken_image_rounded, size: 36, color: Colors.grey),
+                          padding: EdgeInsets.all(AppSpacing.base),
+                          child: Icon(Icons.broken_image_rounded, size: 36, color: AppColors.lightTextMuted),
                         ),
                       ),
                     )
@@ -142,24 +145,22 @@ class MathDiagramWidget extends StatelessWidget {
                       fit: BoxFit.contain,
                       errorBuilder: (context, error, stackTrace) => const Center(
                         child: Padding(
-                          padding: EdgeInsets.all(16),
-                          child: Icon(Icons.broken_image_rounded, size: 36, color: Colors.grey),
+                          padding: EdgeInsets.all(AppSpacing.base),
+                          child: Icon(Icons.broken_image_rounded, size: 36, color: AppColors.lightTextMuted),
                         ),
                       ),
                     ),
             ),
-            const SizedBox(height: 6),
+            const SizedBox(height: AppSpacing.xs),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(Icons.zoom_in_rounded, size: 16, color: isDark ? Colors.white60 : Colors.black54),
-                const SizedBox(width: 4),
+                Icon(Icons.zoom_in_rounded, size: 16, color: isDark ? AppColors.darkIconMuted : AppColors.lightIconMuted),
+                const SizedBox(width: AppSpacing.xs),
                 Text(
                   AppStrings.tapToZoom,
-                  style: TextStyle(
-                    fontSize: 12,
-                    color: isDark ? Colors.white60 : Colors.black54,
-                    fontWeight: FontWeight.w500,
+                  style: AppTypography.bodySmall(
+                    color: isDark ? AppColors.darkTextMuted : AppColors.lightTextMuted,
                   ),
                 ),
               ],
@@ -186,19 +187,13 @@ class MathDiagramWidget extends StatelessWidget {
         ),
       ),
       child: Container(
-        margin: const EdgeInsets.symmetric(vertical: 10),
-        padding: const EdgeInsets.all(12),
+        margin: const EdgeInsets.symmetric(vertical: AppSpacing.sm),
+        padding: const EdgeInsets.all(AppSpacing.md),
         decoration: BoxDecoration(
-          color: isDark ? AppColors.primary : Colors.white,
+          color: isDark ? AppColors.primary : AppColors.lightCard,
           borderRadius: AppRadius.roundedBase,
           border: Border.all(color: borderColor, width: 1.2),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withValues(alpha: isDark ? 0.3 : 0.05),
-              blurRadius: 8,
-              offset: const Offset(0, 2),
-            ),
-          ],
+          boxShadow: isDark ? AppShadows.darkCard : AppShadows.card,
         ),
         child: Column(
           children: [
@@ -206,16 +201,17 @@ class MathDiagramWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: AppSpacing.sm,
+                    vertical: AppSpacing.xs,
+                  ),
                   decoration: BoxDecoration(
                     color: isDark ? AppColors.primaryLight : AppColors.infoSurface,
-                    borderRadius: BorderRadius.circular(4),
+                    borderRadius: AppRadius.roundedSm,
                   ),
-                  child: const Text(
+                  child: Text(
                     '📐 रेखागणित चित्र (Geometry Fig.)',
-                    style: TextStyle(
-                      fontSize: 11.5,
-                      fontWeight: FontWeight.bold,
+                    style: AppTypography.labelSmall(
                       color: AppColors.violet,
                     ),
                   ),
@@ -223,20 +219,18 @@ class MathDiagramWidget extends StatelessWidget {
                 Row(
                   children: [
                     Icon(Icons.zoom_in_rounded, size: 16, color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted),
-                    const SizedBox(width: 4),
+                    const SizedBox(width: AppSpacing.xs),
                     Text(
                       'ज़ूम करें',
-                      style: TextStyle(
-                        fontSize: 11.5,
+                      style: AppTypography.labelSmall(
                         color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
-                        fontWeight: FontWeight.w600,
                       ),
                     ),
                   ],
                 ),
               ],
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: AppSpacing.sm),
             Center(
               child: SizedBox(
                 width: 300,
@@ -260,7 +254,7 @@ class MathDiagramWidget extends StatelessWidget {
           backgroundColor: isDark ? AppColors.darkCard : AppColors.lightCard,
           shape: RoundedRectangleBorder(borderRadius: AppRadius.roundedBase),
           child: Padding(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.all(AppSpacing.base),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -270,9 +264,7 @@ class MathDiagramWidget extends StatelessWidget {
                     Expanded(
                       child: Text(
                         title,
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
+                        style: AppTypography.titleSmall(
                           color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
                         ),
                       ),
@@ -284,12 +276,12 @@ class MathDiagramWidget extends StatelessWidget {
                     ),
                   ],
                 ),
-                const SizedBox(height: 12),
+                const SizedBox(height: AppSpacing.md),
                 ClipRRect(
                   borderRadius: AppRadius.roundedSm,
                   child: Container(
                     color: isDark ? AppColors.primaryDark : AppColors.darkTextPrimary,
-                    padding: const EdgeInsets.all(12),
+                    padding: const EdgeInsets.all(AppSpacing.md),
                     constraints: const BoxConstraints(maxHeight: 380),
                     child: InteractiveViewer(
                       panEnabled: true,
@@ -299,10 +291,12 @@ class MathDiagramWidget extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 8),
-                const Text(
+                const SizedBox(height: AppSpacing.sm),
+                Text(
                   'पिंच करके बड़ा/छोटा करें (Pinch to Zoom & Pan)',
-                  style: TextStyle(fontSize: 11.5, color: Colors.grey),
+                  style: AppTypography.labelSmall(
+                    color: AppColors.lightTextMuted,
+                  ),
                 ),
               ],
             ),
@@ -338,16 +332,12 @@ class _UtetGeometryPainter extends CustomPainter {
       ..strokeWidth = 1.8
       ..style = PaintingStyle.stroke;
 
-    final textStyle = TextStyle(
+    final textStyle = AppTypography.labelMedium(
       color: isDark ? AppColors.darkTextPrimary : AppColors.primary,
-      fontSize: 13,
-      fontWeight: FontWeight.bold,
     );
 
-    final angleTextStyle = TextStyle(
+    final angleTextStyle = AppTypography.labelSmall(
       color: isDark ? AppColors.goldBright : AppColors.sealGold,
-      fontSize: 11.5,
-      fontWeight: FontWeight.bold,
     );
 
     // Coordinates:
@@ -406,8 +396,18 @@ class _UtetGeometryPainter extends CustomPainter {
       false,
       arcPaint,
     );
-    _drawText(canvas, '?', const Offset(168, 98), angleTextStyle.copyWith(fontSize: 14, fontWeight: FontWeight.w900));
-
+    // The '?' mark is the emphasis of the diagram, so it keeps the heavier
+    // weight of the drawing (the scale size is the titleSmall one).
+    _drawText(
+      canvas,
+      '?',
+      const Offset(168, 98),
+      AppTypography.outfit(
+        fontSize: 14,
+        fontWeight: FontWeight.w900,
+        color: angleTextStyle.color,
+      ),
+    );
     // 7. Labels for points O, P, Q, R, S
     _drawText(canvas, 'O', const Offset(20, 32), textStyle);
     _drawText(canvas, 'P', const Offset(142, 24), textStyle);
@@ -495,19 +495,13 @@ extension _MathDiagramCustomHelper on MathDiagramWidget {
         ),
       ),
       child: Container(
-        margin: const EdgeInsets.symmetric(vertical: 10),
-        padding: const EdgeInsets.all(12),
+        margin: const EdgeInsets.symmetric(vertical: AppSpacing.sm),
+        padding: const EdgeInsets.all(AppSpacing.md),
         decoration: BoxDecoration(
-          color: isDark ? AppColors.primary : Colors.white,
+          color: isDark ? AppColors.primary : AppColors.lightCard,
           borderRadius: AppRadius.roundedBase,
           border: Border.all(color: borderColor, width: 1.2),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withValues(alpha: isDark ? 0.3 : 0.05),
-              blurRadius: 8,
-              offset: const Offset(0, 2),
-            ),
-          ],
+          boxShadow: isDark ? AppShadows.darkCard : AppShadows.card,
         ),
         child: Column(
           children: [
@@ -515,16 +509,17 @@ extension _MathDiagramCustomHelper on MathDiagramWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: AppSpacing.sm,
+                    vertical: AppSpacing.xs,
+                  ),
                   decoration: BoxDecoration(
                     color: isDark ? AppColors.primaryLight : AppColors.infoSurface,
-                    borderRadius: BorderRadius.circular(4),
+                    borderRadius: AppRadius.roundedSm,
                   ),
                   child: Text(
                     badgeText,
-                    style: const TextStyle(
-                      fontSize: 11.5,
-                      fontWeight: FontWeight.bold,
+                    style: AppTypography.labelSmall(
                       color: AppColors.violet,
                     ),
                   ),
@@ -536,20 +531,18 @@ extension _MathDiagramCustomHelper on MathDiagramWidget {
                       size: 16,
                       color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
                     ),
-                    const SizedBox(width: 4),
+                    const SizedBox(width: AppSpacing.xs),
                     Text(
                       'ज़ूम करें',
-                      style: TextStyle(
-                        fontSize: 11.5,
+                      style: AppTypography.labelSmall(
                         color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
-                        fontWeight: FontWeight.w600,
                       ),
                     ),
                   ],
                 ),
               ],
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: AppSpacing.sm),
             Center(
               child: SizedBox(
                 width: width,
@@ -601,14 +594,13 @@ class _CtetNumberLinePainter extends CustomPainter {
     final tickSpacing = (endX - startX - 32) / (totalTicks - 1);
     final firstTickX = startX + 16;
 
-    final labelStyle = TextStyle(
-      fontSize: 11,
-      fontWeight: FontWeight.bold,
+    final labelStyle = AppTypography.labelSmall(
       color: isDark ? AppColors.borderStrong : AppColors.primary,
     );
 
-    final pointLabelStyle = const TextStyle(
-      fontSize: 15,
+    // The point markers are the loudest thing on the number line.
+    final pointLabelStyle = AppTypography.outfit(
+      fontSize: 16,
       fontWeight: FontWeight.w900,
       color: AppColors.danger,
     );

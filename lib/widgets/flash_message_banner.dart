@@ -2,6 +2,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import '../design_system/app_colors.dart';
 import '../design_system/app_radius.dart';
+import '../design_system/app_spacing.dart';
+import '../design_system/app_shadows.dart';
+import '../design_system/app_typography.dart';
 import '../models/flash_message.dart';
 import '../services/flash_message_service.dart';
 import '../services/language_service.dart';
@@ -102,7 +105,7 @@ class _FlashMessageBannerState extends State<FlashMessageBanner> {
         final isHi = lang == AppLang.hi;
 
         return Container(
-          margin: const EdgeInsets.only(bottom: 14),
+          margin: const EdgeInsets.only(bottom: AppSpacing.md),
           decoration: BoxDecoration(
             color: isDark ? AppColors.primary : AppColors.primaryLight,
             borderRadius: AppRadius.roundedMd,
@@ -110,13 +113,7 @@ class _FlashMessageBannerState extends State<FlashMessageBanner> {
               color: AppColors.sealGold.withValues(alpha: 0.6),
               width: 1.4,
             ),
-            boxShadow: const [
-              BoxShadow(
-                color: Color(0x33000000),
-                blurRadius: 8,
-                offset: Offset(0, 3),
-              ),
-            ],
+            boxShadow: AppShadows.darkCard,
           ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -159,14 +156,19 @@ class _FlashMessageBannerState extends State<FlashMessageBanner> {
                     }
 
                     return Padding(
-                      padding: const EdgeInsets.fromLTRB(14, 10, 8, 4),
+                      padding: const EdgeInsets.fromLTRB(
+                        AppSpacing.md,
+                        AppSpacing.sm,
+                        AppSpacing.sm,
+                        AppSpacing.xs,
+                      ),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           // Notice Icon Badge
                           Container(
-                            margin: const EdgeInsets.only(top: 2),
-                            padding: const EdgeInsets.all(7),
+                            margin: const EdgeInsets.only(top: AppSpacing.xs),
+                            padding: const EdgeInsets.all(AppSpacing.sm),
                             decoration: BoxDecoration(
                               color: accentColor.withValues(alpha: 0.18),
                               shape: BoxShape.circle,
@@ -178,7 +180,7 @@ class _FlashMessageBannerState extends State<FlashMessageBanner> {
                               size: 20,
                             ),
                           ),
-                          const SizedBox(width: 10),
+                          const SizedBox(width: AppSpacing.sm),
 
                           // Full Text Content
                           Expanded(
@@ -188,45 +190,37 @@ class _FlashMessageBannerState extends State<FlashMessageBanner> {
                               children: [
                                 Text(
                                   title,
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: const TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 13,
-                                    height: 1.25,
-                                    letterSpacing: 0.2,
-                                  ),
+                                  maxLines: 2,
+                                  style: AppTypography.titleSmall(
+                                    color: AppColors.darkTextPrimary,
+                                  ).copyWith(height: 1.25, letterSpacing: 0.2),
                                 ),
-                                const SizedBox(height: 3),
+                                const SizedBox(height: AppSpacing.xs),
                                 Text(
                                   message,
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
-                                  style: const TextStyle(
-                                    color: AppColors.lightBorder,
-                                    fontSize: 11.5,
-                                    height: 1.35,
-                                  ),
+                                  style: AppTypography.bodySmall(
+                                    color: AppColors.darkTextSecondary,
+                                  ).copyWith(height: 1.35),
                                 ),
                                 if (actionLabel != null && widget.onActionTap != null) ...[
-                                  const SizedBox(height: 6),
+                                  const SizedBox(height: AppSpacing.xs),
                                   GestureDetector(
                                     onTap: widget.onActionTap,
                                     child: Container(
-                                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: AppSpacing.sm,
+                                        vertical: AppSpacing.xs,
+                                      ),
                                       decoration: BoxDecoration(
                                         color: accentColor.withValues(alpha: 0.2),
-                                        borderRadius: BorderRadius.circular(4),
+                                        borderRadius: AppRadius.roundedSm,
                                         border: Border.all(color: accentColor, width: 1),
                                       ),
                                       child: Text(
                                         '👉 $actionLabel',
-                                        style: TextStyle(
-                                          color: accentColor,
-                                          fontSize: 11,
-                                          fontWeight: FontWeight.bold,
-                                        ),
+                                        style: AppTypography.labelSmall(color: accentColor),
                                       ),
                                     ),
                                   ),
@@ -241,21 +235,22 @@ class _FlashMessageBannerState extends State<FlashMessageBanner> {
                         children: [
                           if (_messages.length > 1) ...[
                             Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: AppSpacing.xs,
+                                vertical: 2,
+                              ),
                               decoration: BoxDecoration(
-                                color: AppColors.lightTextSecondary,
-                                borderRadius: BorderRadius.circular(10),
+                                color: AppColors.primaryDark,
+                                borderRadius: AppRadius.roundedFull,
                               ),
                               child: Text(
                                 '${index + 1}/${_messages.length}',
-                                style: const TextStyle(
+                                style: AppTypography.labelSmall(
                                   color: AppColors.darkTextSecondary,
-                                  fontSize: 9.5,
-                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
                             ),
-                            const SizedBox(width: 2),
+                            const SizedBox(width: AppSpacing.xs),
                           ],
                           if (msg.isDismissible)
                             IconButton(
@@ -281,7 +276,7 @@ class _FlashMessageBannerState extends State<FlashMessageBanner> {
           // Multi-message Interactive Dots Indicator
           if (_messages.length > 1)
             Padding(
-              padding: const EdgeInsets.only(bottom: 7),
+              padding: const EdgeInsets.only(bottom: AppSpacing.sm),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: List.generate(_messages.length, (idx) {
@@ -297,12 +292,12 @@ class _FlashMessageBannerState extends State<FlashMessageBanner> {
                     child: AnimatedContainer(
                       duration: AppMotion.slow,
                       curve: AppMotion.standard,
-                      margin: const EdgeInsets.symmetric(horizontal: 3),
+                      margin: const EdgeInsets.symmetric(horizontal: AppSpacing.xs),
                       width: isActive ? 18 : 6,
                       height: 5,
                       decoration: BoxDecoration(
                         color: isActive ? AppColors.sealGold : AppColors.deskGray,
-                        borderRadius: BorderRadius.circular(3),
+                        borderRadius: AppRadius.roundedFull,
                       ),
                     ),
                   );

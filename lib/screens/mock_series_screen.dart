@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 import '../design_system/app_colors.dart';
+import '../design_system/app_typography.dart';
+import '../design_system/app_radius.dart';
+import '../design_system/app_spacing.dart';
 import '../design_system/app_strings.dart';
+import '../design_system/app_snack_bar.dart';
 import '../services/mock_engine.dart';
 import '../models/test_session.dart';
 import '../models/mock_config.dart';
 import '../widgets/app_badge.dart';
+import '../widgets/app_button.dart';
+import '../widgets/app_card.dart';
+import '../widgets/app_state_views.dart';
 import '../services/premium_service.dart';
 import '../services/exam_service.dart';
 import '../widgets/premium_paywall_modal.dart';
@@ -71,8 +78,9 @@ class _MockSeriesScreenState extends State<MockSeriesScreen> {
       setState(() => _loadingFormId = null);
 
       if (data.questions.isEmpty) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('इस पेपर के प्रश्न उपलब्ध नहीं हैं')),
+        AppSnackBar.showError(
+          context,
+          title: 'इस पेपर के प्रश्न उपलब्ध नहीं हैं',
         );
         return;
       }
@@ -102,8 +110,9 @@ class _MockSeriesScreenState extends State<MockSeriesScreen> {
     } catch (e) {
       if (!mounted) return;
       setState(() => _loadingFormId = null);
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(AppStrings.loadError(e.toString()))),
+      AppSnackBar.showError(
+        context,
+        title: AppStrings.loadError(e.toString()),
       );
     }
   }
@@ -116,21 +125,6 @@ class _MockSeriesScreenState extends State<MockSeriesScreen> {
     return AppStrings.formatSetBadge('MOCK ${(index + 1).toString().padLeft(2, "0")}');
   }
 
-  /// The heading always names the exam, the paper and - for paper 2 - the
-  /// stream, so a candidate can never mix the two streams.
-  String _headerTitle() {
-    final isHi = AppStrings.isHindi;
-    final exam = ExamService.instance.isUtet ? 'UTET' : 'CTET';
-    final paper = ExamService.instance.selectedPaper;
-    if (paper == 2) {
-      final stream = ExamService.instance.isSocialStream
-          ? AppStrings.streamSocialStudies
-          : AppStrings.streamMathScience;
-      return isHi ? '$exam पेपर-2 · $stream' : '$exam Paper-2 · $stream';
-    }
-    return isHi ? '$exam पेपर-1' : '$exam Paper-1';
-  }
-
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
@@ -138,65 +132,65 @@ class _MockSeriesScreenState extends State<MockSeriesScreen> {
     return Scaffold(
       backgroundColor: isDark ? AppColors.darkBg : AppColors.lightBg,
       appBar: AppBar(
-        title: Text(_headerTitle()),
+        title: Text(AppStrings.mockSeriesTitle),
         backgroundColor: isDark ? AppColors.darkCard : AppColors.primary,
-        foregroundColor: Colors.white,
+        foregroundColor: AppColors.darkTextPrimary,
         elevation: 0,
       ),
       body: SafeArea(
         child: _isLoading
-            ? const Center(child: CircularProgressIndicator())
+            ? _buildLoadingState(isDark)
             : ListView(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: AppSpacing.base,
+                  vertical: AppSpacing.base,
+                ),
                 children: [
                   // Series Header Banner
-                  Container(
-                    padding: const EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                      color: isDark ? AppColors.darkCard : AppColors.lightCard,
-                      borderRadius: BorderRadius.circular(8),
-                      border: Border.all(
-                        color: AppColors.sealGold,
-                        width: 1.5,
-                      ),
-                    ),
+                  AppCard(
+                    padding: const EdgeInsets.all(AppSpacing.base),
+                    border: BorderSide(color: AppColors.sealGold, width: 1.2),
                     child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
-                          padding: const EdgeInsets.all(10),
+                          padding: const EdgeInsets.all(AppSpacing.sm),
                           decoration: BoxDecoration(
                             color: AppColors.sealGold.withValues(alpha: 0.15),
                             shape: BoxShape.circle,
                           ),
                           child: const Icon(Icons.stars_rounded, color: AppColors.sealGold, size: 28),
                         ),
-                        const SizedBox(width: 12),
+                        const SizedBox(width: AppSpacing.md),
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'प्रामाणिक बने-बनाए टेस्ट पेपर्स',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
+                                AppStrings.verifiedTestPapersHeading,
+                                style: AppTypography.titleMedium(
                                   color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
                                 ),
                               ),
-                              const SizedBox(height: 3),
+                              const SizedBox(height: AppSpacing.xs),
                               Text(
-                                '${_forms.length} सम्पूर्ण $_paperSize-प्रश्नों वाले मॉक पेपर्स उपलब्ध हैं।',
-                                style: TextStyle(
-                                  fontSize: 12,
+                                AppStrings.verifiedTestPapersDesc(_forms.length, _paperSize),
+                                style: AppTypography.bodySmall(
                                   color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
                                 ),
                               ),
-                              const SizedBox(height: 6),
+                              const SizedBox(height: AppSpacing.xs),
                               Wrap(
-                                spacing: 6,
+                                spacing: AppSpacing.xs,
+                                runSpacing: AppSpacing.xs,
                                 children: [
                                   AppBadge(label: 'Verified Board Key', color: AppColors.sealGold),
-                                  AppBadge(label: '$_paperSize Qs Standard', color: AppColors.cdp),
+                                  AppBadge(
+                                    label: AppStrings.isHindi
+                                        ? '$_paperSize प्रश्न मानक'
+                                        : '$_paperSize Qs Standard',
+                                    color: AppColors.cdp,
+                                  ),
                                 ],
                               ),
                             ],
@@ -205,24 +199,14 @@ class _MockSeriesScreenState extends State<MockSeriesScreen> {
                       ],
                     ),
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: AppSpacing.lg),
 
                   // Pre-built Mock Booklet Cards
                   ValueListenableBuilder<bool>(
                     valueListenable: PremiumService.instance.isPremiumUnlocked,
                     builder: (context, isUnlocked, _) {
                       if (_forms.isEmpty) {
-                        return Center(
-                          child: Padding(
-                            padding: const EdgeInsets.all(32),
-                            child: Text(
-                              AppStrings.isHindi ? 'कोई मॉक पेपर उपलब्ध नहीं है' : 'No mock papers available',
-                              style: TextStyle(
-                                color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
-                              ),
-                            ),
-                          ),
-                        );
+                        return _buildEmptyState(isDark);
                       }
 
                       return Column(
@@ -236,151 +220,120 @@ class _MockSeriesScreenState extends State<MockSeriesScreen> {
                           final isFree = PremiumService.instance.isPaperFree(formId: formId, index: idx);
                           final isLocked = !isFree && !isUnlocked;
 
-                          return Container(
-                            margin: const EdgeInsets.only(bottom: 12),
-                            padding: const EdgeInsets.all(16),
-                            decoration: BoxDecoration(
-                              color: isDark ? AppColors.darkCard : AppColors.lightCard,
-                              borderRadius: BorderRadius.circular(8),
-                              border: Border.all(
+                          return Padding(
+                            padding: const EdgeInsets.only(bottom: AppSpacing.md),
+                            child: AppCard(
+                              padding: const EdgeInsets.all(AppSpacing.base),
+                              border: BorderSide(
                                 color: isLocked
                                     ? (isDark ? AppColors.darkBorder : AppColors.lightBorder)
                                     : AppColors.sealGold.withValues(alpha: 0.6),
-                                width: 1.0,
+                                width: 1.2,
                               ),
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      width: 48,
-                                      height: 48,
-                                      decoration: BoxDecoration(
-                                        color: isDark ? AppColors.darkCardElevated : AppColors.lightBg,
-                                        borderRadius: BorderRadius.circular(8),
-                                        border: Border.all(
-                                          color: isFree ? AppColors.correctGreen : AppColors.sealGold,
-                                          width: 1.5,
-                                        ),
-                                      ),
-                                      child: Column(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        children: [
-                                          Text(
-                                            stampParts.top,
-                                            style: TextStyle(
-                                              fontSize: 8,
-                                              fontWeight: FontWeight.bold,
-                                              color: isFree ? AppColors.correctGreen : AppColors.sealGold,
-                                            ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        width: 48,
+                                        height: 48,
+                                        decoration: BoxDecoration(
+                                          color: isDark ? AppColors.darkCardElevated : AppColors.lightBg,
+                                          borderRadius: AppRadius.roundedSm,
+                                          border: Border.all(
+                                            color: isFree ? AppColors.correctGreen : AppColors.sealGold,
+                                            width: 1.5,
                                           ),
-                                          FittedBox(
-                                            fit: BoxFit.scaleDown,
-                                            child: Text(
-                                              stampParts.bottom,
-                                              style: TextStyle(
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w900,
+                                        ),
+                                        child: Column(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              stampParts.top,
+                                              style: AppTypography.outfit(
+                                                fontSize: 8,
+                                                fontWeight: FontWeight.w700,
                                                 color: isFree ? AppColors.correctGreen : AppColors.sealGold,
                                               ),
                                             ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    const SizedBox(width: 14),
-                                    Expanded(
-                                      child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          Row(
-                                            children: [
-                                              Expanded(
-                                                child: Text(
-                                                  title,
-                                                  style: TextStyle(
-                                                    fontSize: 14.5,
-                                                    fontWeight: FontWeight.bold,
-                                                    color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
-                                                  ),
+                                            FittedBox(
+                                              fit: BoxFit.scaleDown,
+                                              child: Text(
+                                                stampParts.bottom,
+                                                style: AppTypography.outfit(
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w900,
+                                                  color: isFree ? AppColors.correctGreen : AppColors.sealGold,
                                                 ),
                                               ),
-                                              if (isFree)
-                                                AppBadge(
-                                                  label: AppStrings.premiumFreeBadge,
-                                                  color: AppColors.correctGreen,
-                                                  isSolid: true,
-                                                )
-                                              else if (isLocked)
-                                                AppBadge(
-                                                  label: AppStrings.premiumLockedBadge,
-                                                  color: AppColors.sealGold,
-                                                  isSolid: true,
-                                                ),
-                                            ],
-                                          ),
-                                          const SizedBox(height: 3),
-                                          Text(
-                                            AppStrings.isHindi
-                                                ? '$_paperSize प्रश्न · $_paperSize मिनट · पूर्ण प्रामाणिक मॉक'
-                                                : '$_paperSize Questions · $_paperSize Mins · Authentic Mock',
-                                            style: TextStyle(
-                                              fontSize: 11.5,
-                                              color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
                                             ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(height: 12),
-
-                                // Action Button
-                                ElevatedButton.icon(
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: isLocked
-                                        ? (isDark ? AppColors.primaryLight : AppColors.darkTextPrimary)
-                                        : (isDark ? AppColors.darkCardElevated : AppColors.primarySubtle),
-                                    foregroundColor: isLocked
-                                        ? AppColors.sealGold
-                                        : (isDark ? AppColors.sealGoldLight : AppColors.primary),
-                                    minimumSize: const Size(double.infinity, 40),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(6),
-                                      side: BorderSide(
-                                        color: isLocked
-                                            ? AppColors.sealGold.withValues(alpha: 0.5)
-                                            : (isDark ? AppColors.sealGoldLight : AppColors.primary),
-                                        width: 1.0,
-                                      ),
-                                    ),
-                                  ),
-                                  onPressed: isBusy ? null : () => _startMockPaper(form, idx),
-                                  icon: isBusy
-                                      ? const SizedBox(
-                                          width: 16,
-                                          height: 16,
-                                          child: CircularProgressIndicator(strokeWidth: 2),
-                                        )
-                                      : Icon(
-                                          isLocked ? Icons.lock_rounded : Icons.menu_book_rounded,
-                                          size: 18,
-                                          color: isLocked ? AppColors.sealGold : null,
+                                          ],
                                         ),
-                                  label: Text(
-                                    isBusy
+                                      ),
+                                      const SizedBox(width: AppSpacing.md),
+                                      Expanded(
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Row(
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                Expanded(
+                                                  child: Text(
+                                                    title,
+                                                    style: AppTypography.titleSmall(
+                                                      color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
+                                                    ),
+                                                  ),
+                                                ),
+                                                if (isFree)
+                                                  AppBadge(
+                                                    label: AppStrings.premiumFreeBadge,
+                                                    color: AppColors.correctGreen,
+                                                    isSolid: true,
+                                                  )
+                                                else if (isLocked)
+                                                  AppBadge(
+                                                    label: AppStrings.premiumLockedBadge,
+                                                    color: AppColors.sealGold,
+                                                    isSolid: true,
+                                                  ),
+                                              ],
+                                            ),
+                                            const SizedBox(height: AppSpacing.xs),
+                                            Text(
+                                              AppStrings.mockPaperSubtitle(_paperSize),
+                                              style: AppTypography.bodySmall(
+                                                color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(height: AppSpacing.md),
+
+                                  // Action Button
+                                  AppButton(
+                                    label: isBusy
                                         ? (AppStrings.isHindi ? 'पेपर खुल रहा है...' : 'Opening paper...')
                                         : (isLocked
                                             ? (AppStrings.isHindi ? '🔒 $title प्रो पास से अनलॉक करें' : '🔒 Unlock $title with Pro Pass')
                                             : (AppStrings.isHindi ? '📖 $title हल करें' : '📖 Solve $title')),
-                                    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
+                                    variant: isLocked
+                                        ? AppButtonVariant.outline
+                                        : AppButtonVariant.primary,
+                                    icon: isLocked ? Icons.lock_rounded : Icons.menu_book_rounded,
+                                    isLoading: isBusy,
+                                    width: double.infinity,
+                                    height: 44,
+                                    onPressed: isBusy ? null : () => _startMockPaper(form, idx),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           );
                         }),
@@ -391,5 +344,19 @@ class _MockSeriesScreenState extends State<MockSeriesScreen> {
               ),
       ),
     );
+  }
+
+  /// The empty state of this screen.
+  Widget _buildEmptyState(bool isDark) {
+    return AppEmptyState(
+      icon: Icons.inbox_rounded,
+      accent: AppColors.sealGold,
+      title: AppStrings.isHindi ? 'कोई मॉक पेपर उपलब्ध नहीं है' : 'No mock papers available',
+    );
+  }
+
+  /// The loading state of this screen.
+  Widget _buildLoadingState(bool isDark) {
+    return const AppLoadingState();
   }
 }

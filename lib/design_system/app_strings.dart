@@ -1,6 +1,7 @@
 import '../services/language_service.dart';
 import '../services/exam_service.dart';
 import '../services/section_catalog.dart';
+import '../services/exam_rules.dart';
 import '../services/bank_facts.dart';
 
 class AppStrings {
@@ -8,6 +9,41 @@ class AppStrings {
   static bool get isHindi => _isHi;
   static bool get _isCtet => ExamService.instance.isCtet;
   static int get currentExamYear => DateTime.now().year;
+
+  // ── Exam, paper and subject-stream context ───────────────────────────
+  // One wording for the exam, one for the paper and one for the paper-2
+  // stream.  Every screen title is built from these three, so a candidate
+  // can never mix a UTET paper-1 question with a CTET paper-2 one.
+  static String get examName => _isCtet ? 'CTET' : 'UTET';
+
+  /// The paper the candidate is working on (1 or 2).
+  static int get currentPaperNumber => ExamService.instance.selectedPaper;
+
+  /// The one wording for a paper: "पेपर-1" / "Paper-1".
+  static String paperName(int paper) => _isHi ? 'पेपर-$paper' : 'Paper-$paper';
+
+  /// The active paper-2 stream. Empty on paper 1.
+  static String get activeStreamName => ExamService.instance.isPaper2
+      ? (ExamService.instance.isSocialStream
+          ? streamSocialStudies
+          : streamMathScience)
+      : '';
+
+  /// "CTET पेपर-2 · गणित एवं विज्ञान" - exam, paper and (paper 2) stream.
+  static String get examPaperStreamLabel {
+    final base = '$examName ${paperName(currentPaperNumber)}';
+    final stream = activeStreamName;
+    return stream.isEmpty ? base : '$base · $stream';
+  }
+
+  /// Builds a screen title that always names the exam, the paper and the
+  /// paper-2 stream, so no two papers ever look the same on screen.
+  static String screenTitle(String hi, String en) =>
+      _isHi ? '$examPaperStreamLabel · $hi' : '$examPaperStreamLabel · $en';
+
+  /// The exam pattern gives every language section the same number of
+  /// questions, so the count lives in one place only.
+  static const int languageSectionQuestions = 30;
 
   // Debug only (never shipped in a release build)
   static String get debugProPassTitle => _isHi ? 'Pro Pass (Debug)' : 'Pro Pass (Debug)';
@@ -25,10 +61,14 @@ class AppStrings {
       : 'Only the free paper (free view)';
 
   // App Header
-  static String get appTitle => _isHi ? 'शिक्षक पात्रता परीक्षा' : 'Teacher Eligibility Test';
-  static String get appSubtitle => _isCtet
-      ? (_isHi ? 'CTET $currentExamYear डिजिटल प्रश्न-पुस्तिका' : 'CTET $currentExamYear Digital Booklet Portal')
-      : (_isHi ? 'UTET $currentExamYear डिजिटल प्रश्न-पुस्तिका' : 'UTET $currentExamYear Digital Booklet Portal');
+  static String get appTitle => '$examName ${paperName(currentPaperNumber)}';
+  static String get appSubtitle => isPaper2
+      ? (_isHi
+          ? '$currentExamYear डिजिटल प्रश्न-पुस्तिका · $activeStreamName'
+          : '$currentExamYear Digital Booklet · $activeStreamName')
+      : (_isHi
+          ? '$currentExamYear डिजिटल प्रश्न-पुस्तिका पोर्टल'
+          : '$currentExamYear Digital Booklet Portal');
   static String get bankSyncTooltip => _isHi ? 'बैंक अपडेट करें' : 'Update Bank Online';
   static String get langToggleLabel => _isHi ? 'ENG' : 'हिन्दी';
 
@@ -37,13 +77,18 @@ class AppStrings {
   static String get offlineBadge => _isHi ? '100% ऑफलाइन' : '100% Offline';
   static String bankInfo(int total, int pyq, int subjects) => _isHi
       ? '$total कुल प्रश्न · $pyq विगत वर्ष प्रश्न · $subjects विषय'
-      : '$total Total Questions · $pyq Previous Papers · $subjects Subjects';
+      : '$total Total Questions · $pyq Previous Year Questions · $subjects Subjects';
 
   // Splash Screen
-  static String get splashTitle => _isHi ? 'शिक्षक पात्रता परीक्षा' : 'Teacher Eligibility Test';
+  static String get splashTitle =>
+      _isHi ? 'UTET एवं CTET शिक्षक पात्रता परीक्षा' : 'UTET & CTET Teacher Eligibility Test';
   static String get splashSubtitle => _isHi
-      ? 'UTET एवं CTET डिजिटल प्रश्न-पुस्तिका एवं परीक्षा विश्लेषण पोर्टल'
-      : 'UTET & CTET Digital Question Booklet & Exam Analysis Portal';
+      ? 'UTET एवं CTET $currentExamYear डिजिटल प्रश्न-पुस्तिका एवं परीक्षा विश्लेषण पोर्टल'
+      : 'UTET & CTET $currentExamYear Digital Question Booklet & Exam Analysis Portal';
+  /// The paper the app will open with, shown on the splash screen.
+  static String get splashTargetLabel => _isHi
+      ? 'वर्तमान लक्ष्य : $examPaperStreamLabel'
+      : 'Current target : $examPaperStreamLabel';
   static String get splashCheckingBank => _isHi ? 'ऑफलाइन बैंक की जाँच हो रही है...' : 'Verifying offline bank...';
   static String splashAvailable(int count) => _isHi
       ? '$count प्रश्न ऑफलाइन उपलब्ध हैं!'
@@ -60,36 +105,39 @@ class AppStrings {
   static String get hitRibbon => _isCtet
       ? (_isHi ? 'NCERT एवं CBSE पाठ्यक्रम पर पूर्णतः आधारित' : '100% Based on NCERT & CBSE Curriculum')
       : (_isHi ? 'विगत वर्षों के परीक्षा पैटर्न पर पूर्णतः आधारित' : '100% Based on Previous Exam Pattern');
-  static String get heroTitle => _isCtet
-      ? (_isHi ? 'CTET $currentExamYear मुख्य मॉडल प्रश्न-पुस्तिका' : 'CTET $currentExamYear Master Model Booklet')
-      : (_isHi ? 'UTET $currentExamYear मुख्य मॉडल प्रश्न-पुस्तिका' : 'UTET $currentExamYear Master Model Booklet');
+  static String get heroTitle => _isHi
+      ? '$examPaperStreamLabel · $currentExamYear मुख्य मॉडल प्रश्न-पत्र'
+      : '$examPaperStreamLabel · $currentExamYear Flagship Model Test Paper';
   static String get heroDesc => _isCtet
       ? (_isHi
-          ? 'केन्द्रीय परीक्षा पाठ्यक्रम पर आधारित सम्पूर्ण ${BankFacts.questionsPerPaper} प्रश्नों का प्रामाणिक मॉडल पेपर।'
-          : 'Complete ${BankFacts.questionsPerPaper}-question mock paper based on standard pattern.')
+          ? 'केन्द्रीय परीक्षा पाठ्यक्रम पर आधारित सम्पूर्ण ${BankFacts.questionsPerPaper} प्रश्नों का प्रामाणिक मॉडल प्रश्न-पत्र।'
+          : 'Complete ${BankFacts.questionsPerPaper}-question authentic model test paper based on the standard pattern.')
       : (_isHi
-          ? 'उत्तराखण्ड परीक्षा पैटर्न पर आधारित सम्पूर्ण ${BankFacts.questionsPerPaper} प्रश्नों का प्रामाणिक मॉडल पेपर।'
-          : 'Complete ${BankFacts.questionsPerPaper}-question authentic model paper based on Uttarakhand pattern.');
+          ? 'उत्तराखण्ड परीक्षा पैटर्न पर आधारित सम्पूर्ण ${BankFacts.questionsPerPaper} प्रश्नों का प्रामाणिक मॉडल प्रश्न-पत्र।'
+          : 'Complete ${BankFacts.questionsPerPaper}-question authentic model test paper based on the Uttarakhand pattern.');
   static String get heroTotalQuestions => _isHi
       ? '${BankFacts.questionsPerPaper} बहुविकल्पीय प्रश्न'
       : '${BankFacts.questionsPerPaper} MCQs';
   static String get heroTime {
-    final h = BankFacts.questionsPerPaper ~/ 60;
-    final m = BankFacts.questionsPerPaper % 60;
-    final clock = m == 0 ? '$h' : (h == 0 ? '$m' : '$h:$m');
-    return _isHi ? 'समय : $clock घण्टे' : 'Time : $clock Hrs';
+    final total = BankFacts.questionsPerPaper;
+    final h = total ~/ 60;
+    final m = total % 60;
+    if (_isHi) {
+      return m == 0 ? 'समय : $h घंटे' : 'समय : $h घंटे $m मिनट';
+    }
+    return m == 0 ? 'Time : $h Hrs' : 'Time : $h Hrs $m Min';
   }
   static String get heroMarks => _isHi
       ? 'पूर्णांक : ${BankFacts.questionsPerPaper} अंक'
       : 'Marks : ${BankFacts.questionsPerPaper}';
   static String get heroBtn => _isHi
-      ? '📖 प्रश्न-पुस्तिका हल करें'
-      : '📖 Open & Solve Booklet';
+      ? '📖 मॉडल प्रश्न-पत्र हल करें'
+      : '📖 Open & Solve Model Test Paper';
 
   // Booklet Sets
   static String get completeBookletsHeading => _isHi
-      ? 'सम्पूर्ण प्रश्न-पुस्तिकाएं (${BankFacts.questionsPerPaper} प्रश्न · ${BankFacts.questionsPerPaper} मिनट)'
-      : 'Complete Exam Booklets (${BankFacts.questionsPerPaper} Qs · ${BankFacts.questionsPerPaper} Mins)';
+      ? '$examPaperStreamLabel · सम्पूर्ण प्रश्न-पुस्तिकाएं (${BankFacts.questionsPerPaper} प्रश्न · ${BankFacts.questionsPerPaper} मिनट)'
+      : '$examPaperStreamLabel · Complete Exam Booklets (${BankFacts.questionsPerPaper} Qs · ${BankFacts.questionsPerPaper} Mins)';
 
   static String get setQTitle => _isHi ? 'सेट-Q : सर्वाधिक पूछे गए प्रश्न' : 'SET-Q : Frequently Repeated Questions';
   static String get setQSub => _isHi ? '2+ वर्ष चक्रीय व उच्च अंकदायी प्रश्न' : '2+ Years Recurring & High-Yield Questions';
@@ -111,10 +159,11 @@ class AppStrings {
 
   // Subject Booklets
   static String get subjectBookletsHeading => _isHi
-      ? 'खण्ड-वार अभ्यास पुस्तिकाएं (${BankFacts.subjectSetQuestions} प्रश्न · ${BankFacts.subjectSetQuestions} मिनट)'
-      : 'Subject-wise Mini Booklets (${BankFacts.subjectSetQuestions} Qs · ${BankFacts.subjectSetQuestions} Mins)';
+      ? '$examPaperStreamLabel · खण्ड-वार अभ्यास पुस्तिकाएं (${BankFacts.subjectSetQuestions} प्रश्न · ${BankFacts.subjectSetQuestions} मिनट)'
+      : '$examPaperStreamLabel · Subject-wise Practice Booklets (${BankFacts.subjectSetQuestions} Qs · ${BankFacts.subjectSetQuestions} Mins)';
 
-  static String get pastHistoryHeading => _isHi ? 'पिछले टेस्ट परिणाम' : 'Past Test History';
+  static String get pastHistoryHeading =>
+      screenTitle('पिछले टेस्ट का रिकॉर्ड', 'Past Test History');
   static String get doubleBackExit => _isHi ? 'ऐप बंद करने के लिए दोबारा बैक दबाएं' : 'Press back again to exit app';
 
   // Navigation Bar
@@ -124,31 +173,35 @@ class AppStrings {
   static String get navSettings => _isHi ? 'सेटिंग्स' : 'Settings';
 
   // Subject Practice Portal
-  static String get subjectPracticeHeading => _isHi ? 'खण्ड-वार अभ्यास पुस्तिकाएं' : 'Subject-wise Practice Booklets';
+  static String get subjectPracticeHeading =>
+      screenTitle('खण्ड-वार अभ्यास पुस्तिकाएं', 'Subject-wise Practice Booklets');
   static String get subjectPracticeDesc => _isHi
-      ? 'प्रत्येक विषय में 30 प्रामाणिक प्रश्न और 30 मिनट का समय'
-      : '30 authentic questions & 30 minutes for each subject';
+      ? 'प्रत्येक विषय में ${BankFacts.subjectSetQuestions} प्रामाणिक प्रश्न और ${BankFacts.subjectSetQuestions} मिनट का समय'
+      : '${BankFacts.subjectSetQuestions} authentic questions & ${BankFacts.subjectSetQuestions} minutes for each subject';
   static String get subjectCardTime => _isHi
       ? '${BankFacts.subjectSetQuestions} प्रश्न · ${BankFacts.subjectSetQuestions} मिनट'
       : '${BankFacts.subjectSetQuestions} Qs · ${BankFacts.subjectSetQuestions} Mins';
   static String get startSubjectTestBtn => _isHi ? 'हल शुरू करें ▾' : 'Start Practice ▾';
 
   // Test History
-  static String get historyTitle => _isHi ? 'पिछले टेस्ट का रिकॉर्ड' : 'Past Test History';
+  static String get historyTitle =>
+      screenTitle('पिछले टेस्ट का रिकॉर्ड', 'Past Test History');
   static String historySummary(int count, int pass) => _isHi
       ? 'कुल टेस्ट: $count · उत्तीर्ण: $pass'
       : 'Total Tests: $count · Qualified: $pass';
   static String get historyEmptyTitle => _isHi ? 'कोई पिछला टेस्ट रिकॉर्ड नहीं मिला' : 'No Test History Found';
   static String get historyEmptyDesc => _isHi
-      ? 'आपने अभी तक कोई टेस्ट नहीं दिया है। मुख्य परीक्षा पत्र (SET-P) से अभ्यास की शुरुआत करें!'
-      : 'You have not attempted any tests yet. Start your practice with the $currentExamYear Predicted Paper (SET-P)!';
-  static String get historyStartCta => _isHi ? '📖 SET-P प्रश्न-पुस्तिका हल करें' : '📖 Solve SET-P Booklet';
+      ? 'आपने अभी तक कोई टेस्ट नहीं दिया है। $examPaperStreamLabel $currentExamYear मॉडल प्रश्न-पत्र से अभ्यास की शुरुआत करें।'
+      : 'You have not attempted any test yet. Begin with the $examPaperStreamLabel $currentExamYear model test paper.';
+  static String get historyStartCta =>
+      _isHi ? '📖 मॉडल प्रश्न-पत्र हल करें' : '📖 Solve Model Test Paper';
   static String historyMockType(String mode) => _isHi ? 'मॉक टेस्ट ($mode)' : 'Mock Test ($mode)';
   static String get historyQualified => _isHi ? 'उत्तीर्ण' : 'Qualified';
   static String get historyPracticeNeeded => _isHi ? 'अभ्यास आवश्यक' : 'Needs Practice';
 
   // Settings Screen
-  static String get settingsTitle => _isHi ? 'ऐप सेटिंग्स एवं भाषा' : 'App Settings & Language';
+  static String get settingsTitle =>
+      screenTitle('ऐप सेटिंग्स एवं भाषा', 'App Settings & Language');
   static String get settingsLangHeader => _isHi ? 'भाषा चयन / App Language' : 'App Language / भाषा चयन';
   static String get settingsLangDesc => _isHi
       ? 'पूरी ऐप की भाषा एक क्लिक में हिन्दी या अंग्रेजी में बदलें'
@@ -243,9 +296,14 @@ class AppStrings {
   static String get submitBtn => _isHi ? 'जमा' : 'Submit';
 
   // Result Screen
-  static String get resultsTitle => _isHi ? 'परीक्षा परिणाम एवं विश्लेषण' : 'Exam Results & Analysis';
-  static String get passGeneral => _isHi ? '🎉 बधाई! आप उत्तीर्ण हैं (60%+)' : '🎉 Congratulations! You Passed (60%+)';
-  static String get passReserved => _isHi ? '⭐ आरक्षित वर्ग में उत्तीर्ण (55%+)' : '⭐ Qualified in Reserved Category (55%+)';
+  static String get resultsTitle =>
+      screenTitle('परीक्षा परिणाम एवं विश्लेषण', 'Exam Results & Analysis');
+  static String get passGeneral => _isHi
+      ? '🎉 बधाई! आप उत्तीर्ण हैं (${(ExamRules.generalPassRatio * 100).round()}%+)'
+      : '🎉 Congratulations! You Passed (${(ExamRules.generalPassRatio * 100).round()}%+)';
+  static String get passReserved => _isHi
+      ? '⭐ आरक्षित वर्ग में उत्तीर्ण (${(ExamRules.reservedPassRatio * 100).round()}%+)'
+      : '⭐ Qualified in Reserved Category (${(ExamRules.reservedPassRatio * 100).round()}%+)';
   static String get needMorePractice => _isHi ? '🎯 और अभ्यास की आवश्यकता है' : '🎯 More Practice Needed';
   static String get rePracticeTitle => _isHi ? 'गलत प्रश्नों का पुनः अभ्यास' : 'Re-practice Incorrect Questions';
   static String rePracticeSub(int count) => _isHi
@@ -261,7 +319,9 @@ class AppStrings {
   static String get backHomeBtn => _isHi ? 'मुख्य पृष्ठ पर वापस जाएं' : 'Return to Home Screen';
 
   // Solution Screen
-  static String get solutionsTitle => _isHi ? 'विस्तृत उत्तर कुंजी एवं हल' : 'Answer Key & Detailed Solutions';
+  static String get solutionsTitle => screenTitle(
+      'विस्तृत उत्तर कुंजी एवं हल',
+      'Answer Key & Detailed Solutions');
   static String get solFilterAll => _isHi ? 'सभी' : 'All';
   static String get solFilterIncorrect => _isHi ? 'गलत' : 'Incorrect';
   static String get solFilterUnattempted => _isHi ? 'छोड़े गए' : 'Unattempted';
@@ -296,69 +356,65 @@ class AppStrings {
   // Paper Selector Strings
   /// The paper switcher always says the same thing, in every screen.
   static String get paper1Label =>
-      _isHi ? 'पेपर-1 (कक्षा 1–5)' : 'Paper-1 (Classes 1–5)';
+      _isHi ? '${paperName(1)} (कक्षा 1–5)' : '${paperName(1)} (Classes 1–5)';
   static String get paper2Label =>
-      _isHi ? 'पेपर-2 (कक्षा 6–8)' : 'Paper-2 (Classes 6–8)';
+      _isHi ? '${paperName(2)} (कक्षा 6–8)' : '${paperName(2)} (Classes 6–8)';
   static String get paper1Tab => '📘 $paper1Label';
   static String get paper2Tab => '📙 $paper2Label';
-  static String get paperSelectorHeader => _isHi ? 'परीक्षा स्तर चयन' : 'Select Exam Level';
+  static String get paperSelectorHeader => _isHi ? 'पेपर चयन' : 'Select Paper';
   static String get paperSelectorDesc => _isHi
-      ? 'प्राथमिक स्तर (कक्षा 1 से 5) या उच्च प्राथमिक स्तर (कक्षा 6 से 8) चुनें'
-      : 'Choose between Primary Level (Class 1 to 5) or Upper Primary Level (Class 6 to 8)';
+      ? '${paperName(1)} (कक्षा 1–5) या ${paperName(2)} (कक्षा 6–8) चुनें'
+      : 'Choose ${paperName(1)} (Classes 1–5) or ${paperName(2)} (Classes 6–8)';
 
   // Gateway Cards on Home Booklets
   static String get gatewayPyqTitle => _isHi
-      ? 'विगत वर्ष प्रश्न-पत्र संग्रह'
-      : 'Previous Year Solved Papers';
+      ? '$examPaperStreamLabel · विगत वर्ष प्रश्न-पत्र संग्रह'
+      : '$examPaperStreamLabel · Previous Year Solved Papers';
   static String get gatewayPyqSub => _isHi
       ? 'विगत वर्षों के सभी प्रामाणिक प्रश्न-पत्र'
       : 'All previous year board papers';
   static String get gatewayMocksTitle => _isHi
-      ? '2026 मॉडल प्रश्न-पत्र'
-      : '2026 Model Test Papers';
+      ? '$examPaperStreamLabel · $currentExamYear मॉडल प्रश्न-पत्र'
+      : '$examPaperStreamLabel · $currentExamYear Model Test Papers';
   static String get gatewayMocksSub => _isHi
-      ? '${BankFacts.paperCount} सम्पूर्ण प्रामाणिक मॉक सेट'
-      : '${BankFacts.paperCount} complete authentic mock sets';
+      ? '${BankFacts.paperCount} सम्पूर्ण प्रामाणिक मॉडल प्रश्न-पत्र'
+      : '${BankFacts.paperCount} complete authentic model test papers';
 
   // PYQ Section
-  static String get pyqVaultTitle => _isHi
-      ? '${_isCtet ? "CTET" : "UTET"} विगत वर्ष प्रश्न-पत्र'
-      : '${_isCtet ? "CTET" : "UTET"} Previous Year Solved Papers';
+  static String get pyqVaultTitle =>
+      screenTitle('विगत वर्ष प्रश्न-पत्र', 'Previous Year Solved Papers');
   static String get pyqVaultSubtitle => _isCtet
       ? (_isHi
-          ? 'केन्द्रीय शिक्षक पात्रता परीक्षा के विगत वर्ष प्रश्न-पत्र'
-          : 'Previous year question papers of CTET')
+          ? 'केन्द्रीय शिक्षक पात्रता परीक्षा ($examName) के विगत वर्ष प्रश्न-पत्र'
+          : 'Previous year question papers of $examName')
       : (_isHi
-          ? 'उत्तराखण्ड शिक्षक पात्रता परीक्षा के विगत वर्ष प्रश्न-पत्र'
-          : 'Previous year question papers of UTET');
-  static String get pyqVaultBadge => _isHi ? 'विगत वर्ष प्रश्न-पत्र' : 'Previous Year Paper';
+          ? 'उत्तराखण्ड शिक्षक पात्रता परीक्षा ($examName) के विगत वर्ष प्रश्न-पत्र'
+          : 'Previous year question papers of $examName');
+  static String get pyqVaultBadge =>
+      _isHi ? 'विगत वर्ष प्रश्न-पत्र' : 'Previous Year Solved Paper';
   static String pyqVaultCardTitle(String year) => _isHi
-      ? '${_isCtet ? "CTET" : "UTET"} $year विगत वर्ष प्रश्न-पत्र'
-      : '${_isCtet ? "CTET" : "UTET"} $year Solved Paper';
+      ? '$examPaperStreamLabel · $year विगत वर्ष प्रश्न-पत्र'
+      : '$examPaperStreamLabel · $year Previous Year Solved Paper';
   static String pyqVaultCardDesc(int count) => _isHi
       ? '$count प्रामाणिक पूर्व वर्ष प्रश्न · ${BankFacts.subjectCount} विषय'
-      : '$count Authentic Questions · ${BankFacts.subjectCount} Sections';
+      : '$count Authentic Questions · ${BankFacts.subjectCount} Subjects';
   static String get startPyqExamBtn => _isHi ? '📖 प्रश्न-पत्र हल करें' : '📖 Solve Paper';
 
   // Mock Series Screen
   static String get mockSeriesTitle => _isHi
-      ? '${BankFacts.paperCount} ${_isCtet ? "CTET" : "UTET"} मॉडल प्रश्न-पुस्तिकाएं ($currentExamYear)'
-      : '${BankFacts.paperCount} ${_isCtet ? "CTET" : "UTET"} Model Question Booklets ($currentExamYear)';
+      ? '$examPaperStreamLabel · $currentExamYear मॉडल प्रश्न-पत्र'
+      : '$examPaperStreamLabel · $currentExamYear Model Test Papers';
   static String get mockSeriesSubtitle {
     final total = BankFacts.format(
       BankFacts.paperCount * BankFacts.questionsPerPaper,
     );
-    return _isCtet
-        ? (_isHi
-            ? 'केन्द्रीय परीक्षा पैटर्न पर विश्लेषित $total प्रश्नों की सम्पूर्ण CTET मॉडल टेस्ट शृंखला'
-            : 'Complete $total-question CTET model test series curated on standard pattern')
-        : (_isHi
-            ? 'उत्तराखण्ड परीक्षा पैटर्न पर विश्लेषित $total प्रश्नों की सम्पूर्ण UTET मॉडल टेस्ट शृंखला'
-            : 'Complete $total-question UTET model test series curated on standard pattern');
+    return _isHi
+        ? 'मानक परीक्षा पैटर्न पर आधारित $total प्रश्नों की ${BankFacts.paperCount} प्रामाणिक मॉडल प्रश्न-पत्र शृंखला'
+        : '$total-question series of ${BankFacts.paperCount} authentic model test papers curated on the standard exam pattern';
   }
   static String mockSeriesCardTitle(int num) => _isHi
-      ? 'सेट-${num.toString().padLeft(2, '0')} : ${_isCtet ? "CTET" : "UTET"} $currentExamYear मॉडल प्रश्न-पुस्तिका'
-      : 'SET-${num.toString().padLeft(2, '0')} : ${_isCtet ? "CTET" : "UTET"} $currentExamYear Model Booklet';
+      ? 'सेट-${num.toString().padLeft(2, '0')} · $examPaperStreamLabel · $currentExamYear मॉडल प्रश्न-पत्र'
+      : 'SET-${num.toString().padLeft(2, '0')} · $examPaperStreamLabel · $currentExamYear Model Test Paper';
   static String get mockSeriesCardDesc => _isHi
       ? '${BankFacts.questionsPerPaper} बहुविकल्पीय प्रश्न · ${BankFacts.questionsPerPaper} मिनट · पूर्णांक ${BankFacts.questionsPerPaper}'
       : '${BankFacts.questionsPerPaper} MCQs · ${BankFacts.questionsPerPaper} Minutes · ${BankFacts.questionsPerPaper} Marks';
@@ -376,12 +432,21 @@ class AppStrings {
     final rawTitle = form['title']?.toString() ?? '';
 
     final paperStr = isHi ? 'पेपर-$paper' : 'Paper-$paper';
+    // The paper-2 stream belongs to the paper name, so a stream paper is
+    // never mistaken for the other one.
+    final streamTag = isHi
+        ? (fid.contains('sst-mock')
+            ? '(सामाजिक अध्ययन)'
+            : '(गणित एवं विज्ञान)')
+        : (fid.contains('sst-mock')
+            ? '(Social Studies)'
+            : '(Mathematics & Science)');
 
     // 1. UTET Paper 1 Fullmock Board Paper
     if (fid == 'utet-p1-fullmock') {
       return isHi
-          ? '$exam 2023 $paperStr आधिकारिक बोर्ड प्रश्न-पत्र'
-          : '$exam 2023 $paperStr Official Board Solved Paper';
+          ? '$exam $paperStr · 2023 आधिकारिक बोर्ड प्रश्न-पत्र'
+          : '$exam $paperStr · 2023 Official Board Solved Paper';
     }
 
     // 2. UTET Paper 1 Mocks
@@ -399,8 +464,8 @@ class AppStrings {
         num = '01';
       }
       return isHi
-          ? '$exam 2026 $paperStr मॉडल प्रश्न-पत्र $num'
-          : '$exam 2026 $paperStr Model Test Paper $num';
+          ? '$exam $paperStr · $currentExamYear मॉडल प्रश्न-पत्र $num'
+          : '$exam $paperStr · $currentExamYear Model Test Paper $num';
     }
 
     // 3. UTET Paper 2 Board Papers
@@ -412,17 +477,17 @@ class AppStrings {
           RegExp(r'set-?([a-g])', caseSensitive: false).firstMatch(rawTitle);
       final setLetter = setM?.group(1)?.toUpperCase() ?? 'A';
       return isHi
-          ? '$exam $year $paperStr (सेट-$setLetter) बोर्ड प्रश्न-पत्र'
-          : '$exam $year $paperStr (Set-$setLetter) Board Solved Paper';
+          ? '$exam $paperStr · $year (सेट-$setLetter) बोर्ड प्रश्न-पत्र'
+          : '$exam $paperStr · $year (Set-$setLetter) Board Solved Paper';
     }
 
     // 4. CTET Paper 1 PYQs
     if (fid.startsWith('ctet-p1-') && fid.endsWith('-pyq')) {
       final yearM = RegExp(r'20\d\d').firstMatch(fid);
-      final year = yearM?.group(0) ?? '2026';
+      final year = yearM?.group(0) ?? '$currentExamYear';
       return isHi
-          ? '$exam $year $paperStr विगत वर्ष प्रश्न-पत्र'
-          : '$exam $year $paperStr Previous Year Solved Paper';
+          ? '$exam $paperStr · $year विगत वर्ष प्रश्न-पत्र'
+          : '$exam $paperStr · $year Previous Year Solved Paper';
     }
 
     // 5. CTET Paper 1 Mocks
@@ -430,33 +495,33 @@ class AppStrings {
       final numM = RegExp(r'mock-(\d+)').firstMatch(fid) ?? RegExp(r'(\d+)').firstMatch(setCode);
       final num = numM != null ? numM.group(1)!.padLeft(2, '0') : '01';
       return isHi
-          ? '$exam 2026 $paperStr मॉडल प्रश्न-पत्र $num'
-          : '$exam 2026 $paperStr Model Test Paper $num';
+          ? '$exam $paperStr · $currentExamYear मॉडल प्रश्न-पत्र $num'
+          : '$exam $paperStr · $currentExamYear Model Test Paper $num';
     }
 
     // 6. CTET Paper 2 Math & Science Mocks
     if (fid.contains('ms-mock')) {
       final numM = RegExp(r'mock-(\d+)').firstMatch(fid) ?? RegExp(r'(\d+)').firstMatch(setCode);
       final num = numM != null ? numM.group(1)!.padLeft(2, '0') : '01';
-      final stream = isHi ? '(गणित एवं विज्ञान)' : '(Math & Science)';
       return isHi
-          ? '$exam $paperStr $stream मॉडल प्रश्न-पत्र $num'
-          : '$exam $paperStr $stream Model Test Paper $num';
+          ? '$exam $paperStr · $streamTag · $currentExamYear मॉडल प्रश्न-पत्र $num'
+          : '$exam $paperStr · $streamTag · $currentExamYear Model Test Paper $num';
     }
 
     // 7. CTET Paper 2 Social Studies Mocks
     if (fid.contains('sst-mock')) {
       final numM = RegExp(r'mock-(\d+)').firstMatch(fid) ?? RegExp(r'(\d+)').firstMatch(setCode);
       final num = numM != null ? numM.group(1)!.padLeft(2, '0') : '01';
-      final stream = isHi ? '(सामाजिक अध्ययन)' : '(Social Science)';
       return isHi
-          ? '$exam $paperStr $stream मॉडल प्रश्न-पत्र $num'
-          : '$exam $paperStr $stream Model Test Paper $num';
+          ? '$exam $paperStr · $streamTag · $currentExamYear मॉडल प्रश्न-पत्र $num'
+          : '$exam $paperStr · $streamTag · $currentExamYear Model Test Paper $num';
     }
 
     // Fallback Translation for any custom or dynamic forms
     if (rawTitle.isEmpty) {
-      return isHi ? '$exam $paperStr अभ्यास प्रश्न-पत्र' : '$exam $paperStr Practice Paper';
+      return isHi
+          ? '$exam $paperStr · अभ्यास प्रश्न-पत्र'
+          : '$exam $paperStr · Practice Paper';
     }
 
     if (isHi) {
@@ -466,7 +531,9 @@ class AppStrings {
           .replaceAll(RegExp(r'Paper[- ]*1\b', caseSensitive: false), 'पेपर-1')
           .replaceAll(RegExp(r'Paper[- ]*2\b', caseSensitive: false), 'पेपर-2')
           .replaceAll(RegExp(r'Model Paper\b', caseSensitive: false), 'मॉडल प्रश्न-पत्र')
+          .replaceAll(RegExp(r'Model Booklet\b', caseSensitive: false), 'मॉडल प्रश्न-पत्र')
           .replaceAll('मॉडल पेपर', 'मॉडल प्रश्न-पत्र')
+          .replaceAll('मॉडल प्रश्न-पुस्तिका', 'मॉडल प्रश्न-पत्र')
           .replaceAll('बोर्ड पेपर', 'बोर्ड प्रश्न-पत्र')
           .replaceAll('विगत वर्ष पेपर', 'विगत वर्ष प्रश्न-पत्र')
           .replaceAll('Set-', 'सेट-')
@@ -480,9 +547,11 @@ class AppStrings {
           .replaceAll('विगत वर्ष प्रश्न-पत्र', 'Previous Year Solved Paper')
           .replaceAll('विगत वर्ष पेपर', 'Previous Year Solved Paper')
           .replaceAll('मॉडल प्रश्न-पत्र', 'Model Test Paper')
+          .replaceAll('मॉडल प्रश्न-पुस्तिका', 'Model Test Paper')
           .replaceAll('मॉडल पेपर', 'Model Test Paper')
-          .replaceAll('गणित एवं विज्ञान', 'Math & Science')
-          .replaceAll('सामाजिक अध्ययन', 'Social Science')
+          .replaceAll('मॉडल पेपर', 'Model Test Paper')
+          .replaceAll('गणित एवं विज्ञान', 'Mathematics & Science')
+          .replaceAll('सामाजिक अध्ययन', 'Social Studies')
           .replaceAll('पेपर-1', 'Paper-1')
           .replaceAll('पेपर-2', 'Paper-2')
           .replaceAll('सेट-', 'Set-')
@@ -538,18 +607,90 @@ class AppStrings {
   static String get streamSwitcherLabel =>
       _isHi ? 'विषय वर्ग (खंड IV)' : 'Subject Stream (Section IV)';
   static String get streamMathScience =>
-      _isHi ? 'गणित एवं विज्ञान' : 'Math & Science';
+      _isHi ? 'गणित एवं विज्ञान' : 'Mathematics & Science';
   static String get streamSocialStudies =>
       _isHi ? 'सामाजिक अध्ययन' : 'Social Studies';
   static String get streamBoth =>
-      _isHi ? 'दोनों वर्ग' : 'Both Streams';
+      _isHi ? 'दोनों विषय वर्ग' : 'Both Streams';
   static String streamQuestions(int count) =>
       _isHi ? '$count प्रश्न' : '$count Qs';
   static String get streamChanged =>
       _isHi ? 'विषय वर्ग बदल दिया गया' : 'Subject stream changed';
 
+  // ── Screen titles ────────────────────────────────────────────────────
+  // Every one of them names the exam, the paper and - for paper 2 - the
+  // subject stream, so a candidate always knows what they are solving.
+
+  /// Home · Booklets tab.
+  static String get homeBookletsTitle =>
+      screenTitle('प्रश्न-पुस्तिकाएं', 'Booklets');
+
+  /// Home · Subjects tab.
+  static String get homeSubjectsTitle =>
+      screenTitle('विषय अभ्यास', 'Subject Practice');
+
+  /// Home · History tab.
+  static String get homeHistoryTitle => historyTitle;
+
+  /// Home · Settings tab.
+  static String get homeSettingsTitle => settingsTitle;
+
+  /// The heading above the paper list on the home screen.
+  static String paperListHeading(int count) => _isHi
+      ? '$examPaperStreamLabel · $currentExamYear मॉडल प्रश्न-पत्र ($count सेट)'
+      : '$examPaperStreamLabel · $currentExamYear Model Test Papers ($count Sets)';
+
+  /// The CBT exam screen.
+  static String get cbtExamTitle => screenTitle('CBT परीक्षा', 'CBT Exam');
+
+  /// The CBT exam screen, empty paper state.
+  static String get examEmptyStateTitle => screenTitle('परीक्षा', 'Exam');
+
+  /// The reported questions screen.
+  static String get reportedQuestionsTitle =>
+      screenTitle('रिपोर्ट की गई प्रश्न', 'Reported Questions');
+
+  static String get streamShortMathScience => _isHi ? 'गणित-विज्ञान' : 'M&S';
+  static String get streamShortSocialStudies => _isHi ? 'सामाजिक' : 'SST';
+
+  // ---- bilingual wording for the buttons and cards ------------------------
+  static String get verifiedTestPapersHeading =>
+      _isHi ? 'प्रामाणिक बने-बनाए टेस्ट पेपर्स' : 'Verified Ready-Made Test Papers';
+  static String verifiedTestPapersDesc(int count, int size) => _isHi
+      ? '$count सम्पूर्ण $size-प्रश्नों वाले मॉडल पेपर्स उपलब्ध हैं।'
+      : '$count complete mock papers with $size questions each.';
+  static String get freshSetButton => _isHi
+      ? '⚡ फ्रेश 30-प्रश्न सेट जनरेट करें'
+      : '⚡ Generate a fresh 30-question set';
+  static String get freshSetLocked => _isHi
+      ? '🔒 फ्रेश 30-प्रश्न सेट (पास से अनलॉक करें)'
+      : '🔒 Fresh 30-question set (unlock with the pass)';
+  static String get buildingSet => _isHi ? 'सेट बन रहा है...' : 'Building the set...';
+  static String get unlockLabel => _isHi ? 'अनलॉक' : 'Unlock';
+  static String get solveLabel => _isHi ? 'हल करें' : 'Solve';
+  static String get drillLabel => _isHi ? 'ड्रिल' : 'Drill';
+  static String get changeStreamLabel =>
+      _isHi ? 'स्ट्रीम बदलें ⇄' : 'Change stream ⇄';
+  static String topicsCount(int count) =>
+      _isHi ? '$count विषय' : '$count topics';
+  static String get resultPassedHeadline =>
+      _isHi ? 'बहुत बढ़िया! आपने पास कर लिया' : 'Well done, you passed!';
+  static String get resultPassedAdvice => _isHi
+      ? 'अपनी गति बनाए रखें। कमजोर विषयों को दोबारा पढ़ें ताकि स्कोर और मजबूत हो।'
+      : 'Keep the pace. Revise the weak sections once more to make the score even stronger.';
+  static String get resultReservedHeadline => _isHi
+      ? 'आप रिज़र्व सीट के साथ पास हैं'
+      : 'You passed on the reserved seat';
+  static String resultReservedAdvice(int needed) => _isHi
+      ? 'सामान्य वर्ग पार करने के लिए केवल $needed और अंक चाहिए। नीचे दिए कमजोर टॉपिक्स का पुनः अभ्यास करें।'
+      : 'You need only $needed more marks for the general seat. Revise the weak topics below.';
+  static String mockPaperSubtitle(int size) => _isHi
+      ? '$size प्रश्न · $size मिनट · पूर्ण प्रामाणिक मॉक'
+      : '$size questions · $size minutes · fully verified mock';
+
   // Subject Practice Hub
-  static String subjectPracticeHubTitle(String sec) => _isHi ? '$sec अभ्यास हब' : '$sec Practice Hub';
+  static String subjectPracticeHubTitle(String sec) =>
+      screenTitle('$sec अभ्यास हब', '$sec Practice Hub');
   static String subjectPracticeHubDesc(int total) => _isHi
       ? 'बैंक में कुल $total प्रामाणिक प्रश्न उपलब्ध हैं'
       : 'Total $total authentic questions available in bank';
@@ -560,19 +701,27 @@ class AppStrings {
   static String get startPracticeBtn => _isHi ? 'हल शुरू करें ▾' : 'Start Practice ▾';
   static String topicDrillTitle(String topic) => _isHi ? '$topic ड्रिल' : '$topic Drill';
   static String topicDrillSub(int count) => _isHi ? '$count प्रश्न' : '$count Questions';
-  static String get subjectCardSetsInfo => _isHi ? '7 अभ्यास सेट्स · टॉपिक ड्रिल' : '7 Practice Sets · Topic Drills';
+  static String get subjectCardSetsInfo =>
+      _isHi ? 'अभ्यास सेट्स · टॉपिक ड्रिल' : 'Practice Sets · Topic Drills';
+
+  /// The same line with the real number of sets the bank can offer.
+  static String subjectCardSetsInfoFor(int sets) => _isHi
+      ? '$sets अभ्यास सेट्स · टॉपिक ड्रिल'
+      : '$sets Practice Sets · Topic Drills';
 
   // Premium & In-App Purchase Gate (IAP)
-  static String get premiumPassTitle => _isHi ? 'TET $currentExamYear प्रो परीक्षा पास' : 'TET $currentExamYear Pro Master Pass';
+  static String get premiumPassTitle =>
+      _isHi ? 'UTET एवं CTET $currentExamYear प्रो पास' : 'UTET & CTET $currentExamYear Pro Pass';
   static String get premiumPassSubtitle => _isHi
-      ? 'एक मॉक टेस्ट पूर्णतः निःशुल्क है। बाकी सभी ${BankFacts.paperCount}+ मॉडल प्रश्न-पुस्तिकाएं, विगत वर्ष पेपर्स और ${BankFacts.format(BankFacts.questionCount)}+ प्रश्नों को आजीवन अनलॉक करें।'
-      : 'One full mock test is completely free. Unlock all ${BankFacts.paperCount}+ exam booklets, previous year papers, and ${BankFacts.format(BankFacts.questionCount)}+ questions forever.';
+      ? 'एक मॉडल प्रश्न-पत्र पूर्णतः निःशुल्क है। बाकी सभी ${BankFacts.paperCount}+ मॉडल प्रश्न-पत्र, विगत वर्ष प्रश्न-पत्र और ${BankFacts.format(BankFacts.questionCount)}+ प्रश्न आजीवन अनलॉक करें।'
+      : 'One model test paper is completely free. Unlock all ${BankFacts.paperCount}+ model test papers, previous year solved papers, and ${BankFacts.format(BankFacts.questionCount)}+ questions forever.';
 
   static String get proPackMasterTitle => _isHi ? 'मास्टर ऑल-एक्सेस प्रो पास' : 'Master All-Access Pro Pass';
   static String get proPackMasterSub => _isHi
-      ? 'दोनों पेपर (पेपर 1 + पेपर 2), UTET और CTET, सभी ${BankFacts.paperCount}+ टेस्ट, ${BankFacts.format(BankFacts.questionCount)}+ प्रश्न व आजीवन अपडेट'
-      : 'Both Papers (Paper 1 + 2), UTET & CTET, all ${BankFacts.paperCount}+ full tests, ${BankFacts.format(BankFacts.questionCount)}+ questions & lifetime updates';
-  static String get proPackMasterPrice => _isHi ? '₹599 (80% सीमित छूट)' : '₹599 (80% Limited Off)';
+      ? 'दोनों पेपर (पेपर-1 + पेपर-2), UTET और CTET, सभी ${BankFacts.paperCount}+ टेस्ट, ${BankFacts.format(BankFacts.questionCount)}+ प्रश्न व आजीवन अपडेट'
+      : 'Both papers (Paper-1 + Paper-2), UTET & CTET, all ${BankFacts.paperCount}+ full tests, ${BankFacts.format(BankFacts.questionCount)}+ questions & lifetime updates';
+  static String get proPackMasterPrice =>
+      _isHi ? '₹599 (80% तक छूट)' : '₹599 (Up to 80% Off)';
   static String get proPackMasterTag => _isHi ? '⭐ सर्वोत्तम मूल्य · शिक्षकों की पसंद' : '⭐ Best Value · Most Popular';
 
   static String get proPackSingleTitle => _isHi ? 'एकल पेपर प्रो पास' : 'Single Paper Pro Pass';
@@ -583,9 +732,11 @@ class AppStrings {
   static String get proPackSingleTag => _isHi ? 'छात्र पैक' : 'Student Pack';
 
   static String get premiumFeature1 => _isHi
-      ? '${BankFacts.paperCount}+ सम्पूर्ण ${BankFacts.questionsPerPaper}-प्रश्नों की प्रश्न-पुस्तिकाएं'
-      : '${BankFacts.paperCount}+ Full ${BankFacts.questionsPerPaper}-Question Exam Booklets';
-  static String get premiumFeature2 => _isHi ? 'विगत ${BankFacts.pyqCount}+ वर्षों के सभी प्रामाणिक बोर्ड प्रश्न-पत्र' : '${BankFacts.pyqCount}+ Years Authentic Board Solved Papers';
+      ? '${BankFacts.paperCount}+ सम्पूर्ण ${BankFacts.questionsPerPaper}-प्रश्नों के मॉडल प्रश्न-पत्र'
+      : '${BankFacts.paperCount}+ full ${BankFacts.questionsPerPaper}-question model test papers';
+  static String get premiumFeature2 => _isHi
+      ? 'विगत वर्षों के ${BankFacts.pyqCount}+ प्रामाणिक बोर्ड प्रश्न-पत्र'
+      : '${BankFacts.pyqCount}+ authentic previous year board papers';
   static String get premiumFeature3 => _isHi ? 'विस्तृत व्याख्या सहित सम्पूर्ण हल व सटीक विश्लेषण' : 'Detailed Explanations & Performance Analytics';
   static String get premiumFeature4 => _isHi ? '100% विज्ञापन-मुक्त · बिना इंटरनेट आजीवन पूर्ण एक्सेस' : '100% Ad-Free · Complete Offline Access for Life';
 
@@ -594,7 +745,9 @@ class AppStrings {
   static String get premiumCloseBtn => _isHi ? 'बंद करें' : 'Close';
   static String get premiumFreeBadge => _isHi ? 'निःशुल्क' : 'FREE';
   static String get premiumLockedBadge => _isHi ? '🔒 प्रो पास' : '🔒 Pro Pass';
-  static String get premiumSuccessToast => _isHi ? '🎉 बधाई! सम्पूर्ण परीक्षा पास सफलतापूर्वक अनलॉक हो गया।' : '🎉 Congratulations! All-Access Pass Unlocked Successfully.';
+  static String get premiumSuccessToast => _isHi
+      ? '🎉 बधाई! ऑल-एक्सेस प्रो पास सफलतापूर्वक अनलॉक हो गया।'
+      : '🎉 Congratulations! All-Access Pro Pass unlocked successfully.';
   static String get premiumActiveStatus => _isHi ? '👑 प्रो पास सक्रिय' : '👑 Pro Pass Active';
   static String get premiumPriceBadge => _isHi ? '👑 प्रो पास उपलब्ध · ₹299 से शुरू' : '👑 Pro Pass Available · From ₹299';
   static String get premiumCancelledToast => _isHi ? 'भुगतान रद्द कर दिया गया।' : 'Payment was cancelled.';
@@ -637,20 +790,27 @@ class AppStrings {
 
   // Settings & Navigation Labels
   static String get targetExamHeading => _isHi ? 'लक्षित परीक्षा' : 'Target Examination';
-  static String get examLevelHeading => _isHi ? 'परीक्षा स्तर' : 'Exam Level';
-  static String get streamHeading => _isHi ? 'विषय वर्ग' : 'Subject Stream';
-  static String get myReportsTooltip => _isHi ? 'मेरी रिपोर्ट्स' : 'My Error Reports';
+  static String get examLevelHeading => _isHi ? 'पेपर स्तर' : 'Paper Level';
+  static String get streamHeading =>
+      _isHi ? 'विषय वर्ग (खंड IV)' : 'Subject Stream (Section IV)';
+  static String get myReportsTooltip =>
+      _isHi ? 'रिपोर्ट की गई प्रश्न' : 'Reported Questions';
   static String get langCardTitle => _isHi ? 'परीक्षा भाषा चयन' : 'Exam Language Selection';
   static String get langCardSubtitle => _isHi ? 'परीक्षा नियमानुसार अपनी भाषा I और भाषा II चुनें' : 'Select your Language I & Language II per exam pattern';
-  static String get lang1Heading => _isHi ? 'भाषा प्रथम — 30 प्रश्न' : 'Language I — 30 Questions';
-  static String get lang2Heading => _isHi ? 'भाषा द्वितीय — 30 प्रश्न' : 'Language II — 30 Questions';
+  static String get lang1Heading => _isHi
+      ? 'भाषा प्रथम — $languageSectionQuestions प्रश्न'
+      : 'Language I — $languageSectionQuestions Questions';
+  static String get lang2Heading => _isHi
+      ? 'भाषा द्वितीय — $languageSectionQuestions प्रश्न'
+      : 'Language II — $languageSectionQuestions Questions';
   static String get langHindiLabel => _isHi ? 'हिन्दी' : 'Hindi';
   static String get langEnglishLabel => _isHi ? 'अंग्रेजी' : 'English';
   static String get langSanskritLabel => _isHi ? 'संस्कृत' : 'Sanskrit';
   static String get langNotice => _isHi ? 'परीक्षा नियमानुसार भाषा I और भाषा II अलग-अलग होनी अनिवार्य हैं।' : 'Per exam guidelines, Language I and Language II must be different.';
 
   // Question Report Sheet
-  static String get reportSheetTitle => _isHi ? 'प्रश्न पर आपत्ति / सुधार रिपोर्ट' : 'Report Issue / Error';
+  static String get reportSheetTitle =>
+      _isHi ? 'प्रश्न पर आपत्ति / सुधार की रिपोर्ट' : 'Report an Issue or Correction';
   static String get reportWrongAnswer => _isHi ? 'उत्तर गलत है' : 'Wrong Answer Key';
   static String get reportIncompleteQuestion => _isHi ? 'अधूरा या अस्पष्ट प्रश्न' : 'Incomplete or Unclear Question';
   static String get reportTypo => _isHi ? 'टाइपिंग या वर्तनी की अशुद्धि' : 'Typo or Spelling Mistake';

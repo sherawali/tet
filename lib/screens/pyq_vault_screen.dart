@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 import '../design_system/app_colors.dart';
+import '../design_system/app_typography.dart';
+import '../design_system/app_radius.dart';
+import '../design_system/app_spacing.dart';
 import '../design_system/app_strings.dart';
+import '../design_system/app_snack_bar.dart';
 import '../database/db_helper.dart';
 import '../services/mock_engine.dart';
 import '../models/test_session.dart';
 import '../models/mock_config.dart';
 import '../widgets/app_badge.dart';
+import '../widgets/app_button.dart';
+import '../widgets/app_card.dart';
+import '../widgets/app_state_views.dart';
 import '../services/premium_service.dart';
 import '../services/exam_service.dart';
 import '../services/language_service.dart';
@@ -66,8 +73,9 @@ class _PyqVaultScreenState extends State<PyqVaultScreen> {
       setState(() => _generatingFormId = null);
 
       if (data.questions.isEmpty) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('इस वर्ष के प्रश्न उपलब्ध नहीं हैं')),
+        AppSnackBar.showError(
+          context,
+          title: 'इस वर्ष के प्रश्न उपलब्ध नहीं हैं',
         );
         return;
       }
@@ -98,8 +106,9 @@ class _PyqVaultScreenState extends State<PyqVaultScreen> {
     } catch (e) {
       if (!mounted) return;
       setState(() => _generatingFormId = null);
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(AppStrings.loadError(e.toString()))),
+      AppSnackBar.showError(
+        context,
+        title: AppStrings.loadError(e.toString()),
       );
     }
   }
@@ -123,52 +132,48 @@ class _PyqVaultScreenState extends State<PyqVaultScreen> {
     return Scaffold(
       backgroundColor: isDark ? AppColors.darkBg : AppColors.lightBg,
       appBar: AppBar(
-        title: Text('${AppStrings.pyqVaultTitle} (Paper $currentPaper)'),
+        title: Text(AppStrings.pyqVaultTitle),
         backgroundColor: isDark ? AppColors.darkCard : AppColors.primary,
-        foregroundColor: Colors.white,
+        foregroundColor: AppColors.darkTextPrimary,
         elevation: 0,
       ),
       body: SafeArea(
         child: _isLoading
-            ? const Center(child: CircularProgressIndicator(color: AppColors.sealGold))
+            ? _buildLoadingState(isDark)
             : ListView(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: AppSpacing.base,
+                  vertical: AppSpacing.base,
+                ),
                 children: [
                   // Vault Hero Banner
-                  Container(
-                    padding: const EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                      color: isDark ? AppColors.darkCard : AppColors.lightCard,
-                      borderRadius: BorderRadius.circular(8),
-                      border: Border.all(
-                        color: AppColors.sealGold,
-                        width: 1.5,
-                      ),
-                    ),
+                  AppCard(
+                    padding: const EdgeInsets.all(AppSpacing.base),
+                    border: BorderSide(color: AppColors.sealGold, width: 1.2),
                     child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
-                          padding: const EdgeInsets.all(12),
+                          padding: const EdgeInsets.all(AppSpacing.md),
                           decoration: BoxDecoration(
                             color: AppColors.sealGold.withValues(alpha: 0.15),
                             shape: BoxShape.circle,
                           ),
                           child: const Icon(Icons.history_edu_rounded, color: AppColors.sealGold, size: 28),
                         ),
-                        const SizedBox(width: 14),
+                        const SizedBox(width: AppSpacing.md),
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Wrap(
-                                spacing: 8,
+                                spacing: AppSpacing.sm,
+                                runSpacing: AppSpacing.xs,
                                 crossAxisAlignment: WrapCrossAlignment.center,
                                 children: [
                                   Text(
-                                    AppStrings.pyqVaultTitle,
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
+                                    AppStrings.pyqVaultSubtitle,
+                                    style: AppTypography.titleMedium(
                                       color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
                                     ),
                                   ),
@@ -178,15 +183,13 @@ class _PyqVaultScreenState extends State<PyqVaultScreen> {
                                   ),
                                 ],
                               ),
-                              const SizedBox(height: 4),
+                              const SizedBox(height: AppSpacing.xs),
                               Text(
                                 AppStrings.isHindi
                                     ? '${_forms.length} विगत वर्षों के प्रश्न-पत्र सम्पूर्ण हल सहित उपलब्ध हैं।'
                                     : '${_forms.length} Previous year question papers available with solutions.',
-                                style: TextStyle(
-                                  fontSize: 12,
+                                style: AppTypography.bodySmall(
                                   color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
-                                  height: 1.35,
                                 ),
                               ),
                             ],
@@ -198,37 +201,37 @@ class _PyqVaultScreenState extends State<PyqVaultScreen> {
 
                   // If Paper 2, show active stream toggle
                   if (isPaper2) ...[
-                    const SizedBox(height: 14),
-                    Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-                      decoration: BoxDecoration(
-                        color: isDark ? AppColors.darkCard : AppColors.lightCard,
-                        borderRadius: BorderRadius.circular(8),
-                        border: Border.all(
-                          color: AppColors.sealGold.withValues(alpha: 0.4),
-                          width: 1.0,
-                        ),
+                    const SizedBox(height: AppSpacing.md),
+                    AppCard(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: AppSpacing.md,
+                        vertical: AppSpacing.sm,
+                      ),
+                      border: BorderSide(
+                        color: AppColors.sealGold.withValues(alpha: 0.4),
+                        width: 1.2,
                       ),
                       child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           const Icon(Icons.tune_rounded, size: 20, color: AppColors.sealGold),
-                          const SizedBox(width: 10),
+                          const SizedBox(width: AppSpacing.sm),
                           Expanded(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  LanguageService.instance.isHindi ? 'विषय वर्ग (खण्ड IV)' : 'Subject Stream (Section IV)',
-                                  style: const TextStyle(fontSize: 11, color: AppColors.lightTextMuted, fontWeight: FontWeight.bold),
+                                  AppStrings.streamSwitcherLabel,
+                                  style: AppTypography.labelSmall(
+                                    color: isDark ? AppColors.darkTextMuted : AppColors.lightTextMuted,
+                                  ),
                                 ),
                                 Text(
-                                  ExamService.instance.isMathScienceStream
-                                      ? (LanguageService.instance.isHindi ? 'गणित एवं विज्ञान (60 प्रश्न)' : 'Math & Science (60 Qs)')
-                                      : (LanguageService.instance.isHindi ? 'सामाजिक अध्ययन (60 प्रश्न)' : 'Social Science (60 Qs)'),
-                                  style: TextStyle(
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.bold,
-                                    color: isDark ? Colors.white : AppColors.lightTextPrimary,
+                                  // The stream always carries the same
+                                  // wording as the rest of the app.
+                                  '${ExamService.instance.isMathScienceStream ? AppStrings.streamMathScience : AppStrings.streamSocialStudies} (${AppStrings.streamQuestions(60)})',
+                                  style: AppTypography.titleSmall(
+                                    color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
                                   ),
                                 ),
                               ],
@@ -237,7 +240,10 @@ class _PyqVaultScreenState extends State<PyqVaultScreen> {
                           TextButton(
                             style: TextButton.styleFrom(
                               foregroundColor: AppColors.sealGold,
-                              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: AppSpacing.sm,
+                                vertical: AppSpacing.xs,
+                              ),
                             ),
                             onPressed: () {
                               final newStream = ExamService.instance.isMathScienceStream
@@ -249,7 +255,7 @@ class _PyqVaultScreenState extends State<PyqVaultScreen> {
                             },
                             child: Text(
                               LanguageService.instance.isHindi ? 'स्ट्रीम बदलें ⇄' : 'Change Stream ⇄',
-                              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
+                              style: AppTypography.labelMedium(color: AppColors.sealGold),
                             ),
                           ),
                         ],
@@ -257,34 +263,14 @@ class _PyqVaultScreenState extends State<PyqVaultScreen> {
                     ),
                   ],
 
-                  const SizedBox(height: 20),
+                  const SizedBox(height: AppSpacing.lg),
 
                   // Official Real PYQ Cards
                   ValueListenableBuilder<bool>(
                     valueListenable: PremiumService.instance.isPremiumUnlocked,
                     builder: (context, isUnlocked, _) {
                       if (_forms.isEmpty) {
-                        return Container(
-                          padding: const EdgeInsets.all(24),
-                          decoration: BoxDecoration(
-                            color: isDark ? AppColors.darkCard : AppColors.lightCard,
-                            borderRadius: BorderRadius.circular(8),
-                            border: Border.all(
-                              color: isDark ? AppColors.darkBorder : AppColors.lightBorder,
-                            ),
-                          ),
-                          child: Column(
-                            children: [
-                              const Icon(Icons.history_toggle_off_rounded, size: 48, color: AppColors.sealGold),
-                              const SizedBox(height: 12),
-                              Text(
-                                AppStrings.isHindi ? 'पेपर $currentPaper के लिए कोई विगत वर्ष पेपर उपलब्ध नहीं है' : 'No previous papers available for Paper $currentPaper',
-                                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
-                                textAlign: TextAlign.center,
-                              ),
-                            ],
-                          ),
-                        );
+                        return _buildEmptyState(isDark, currentPaper);
                       }
 
                       return Column(
@@ -297,156 +283,127 @@ class _PyqVaultScreenState extends State<PyqVaultScreen> {
                           final isFree = PremiumService.instance.isPaperFree(formId: formId, index: idx);
                           final isLocked = !isFree && !isUnlocked;
 
-                          return Container(
-                            margin: const EdgeInsets.only(bottom: 12),
-                            padding: const EdgeInsets.all(16),
-                            decoration: BoxDecoration(
-                              color: isDark ? AppColors.darkCard : AppColors.lightCard,
-                              borderRadius: BorderRadius.circular(8),
-                              border: Border.all(
+                          return Padding(
+                            padding: const EdgeInsets.only(bottom: AppSpacing.md),
+                            child: AppCard(
+                              padding: const EdgeInsets.all(AppSpacing.base),
+                              border: BorderSide(
                                 color: isLocked
                                     ? (isDark ? AppColors.darkBorder : AppColors.lightBorder)
                                     : AppColors.sealGold.withValues(alpha: 0.6),
-                                width: 1.0,
+                                width: 1.2,
                               ),
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      width: 48,
-                                      height: 48,
-                                      decoration: BoxDecoration(
-                                        color: isDark ? AppColors.darkCardElevated : AppColors.lightBg,
-                                        borderRadius: BorderRadius.circular(8),
-                                        border: Border.all(
-                                          color: isFree ? AppColors.correctGreen : AppColors.sealGold,
-                                          width: 1.5,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        width: 48,
+                                        height: 48,
+                                        decoration: BoxDecoration(
+                                          color: isDark ? AppColors.darkCardElevated : AppColors.lightBg,
+                                          borderRadius: AppRadius.roundedSm,
+                                          border: Border.all(
+                                            color: isFree ? AppColors.correctGreen : AppColors.sealGold,
+                                            width: 1.5,
+                                          ),
                                         ),
-                                      ),
-                                      child: Builder(
-                                        builder: (context) {
-                                          final stampParts = AppStrings.getStampParts(yearBadge);
-                                          return Column(
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                            children: [
-                                              Text(
-                                                stampParts.top,
-                                                style: TextStyle(
-                                                  fontSize: 8,
-                                                  fontWeight: FontWeight.bold,
-                                                  color: isFree ? AppColors.correctGreen : AppColors.sealGold,
-                                                ),
-                                              ),
-                                              FittedBox(
-                                                fit: BoxFit.scaleDown,
-                                                child: Text(
-                                                  stampParts.bottom,
-                                                  style: TextStyle(
-                                                    fontSize: 14,
-                                                    fontWeight: FontWeight.w900,
+                                        child: Builder(
+                                          builder: (context) {
+                                            final stampParts = AppStrings.getStampParts(yearBadge);
+                                            return Column(
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              children: [
+                                                Text(
+                                                  stampParts.top,
+                                                  style: AppTypography.outfit(
+                                                    fontSize: 8,
+                                                    fontWeight: FontWeight.w700,
                                                     color: isFree ? AppColors.correctGreen : AppColors.sealGold,
                                                   ),
                                                 ),
-                                              ),
-                                            ],
-                                          );
-                                        },
-                                      ),
-                                    ),
-                                    const SizedBox(width: 14),
-                                    Expanded(
-                                      child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          Row(
-                                            children: [
-                                              Expanded(
-                                                child: Text(
-                                                  title,
-                                                  style: TextStyle(
-                                                    fontSize: 14.5,
-                                                    fontWeight: FontWeight.bold,
-                                                    color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
+                                                FittedBox(
+                                                  fit: BoxFit.scaleDown,
+                                                  child: Text(
+                                                    stampParts.bottom,
+                                                    style: AppTypography.outfit(
+                                                      fontSize: 14,
+                                                      fontWeight: FontWeight.w900,
+                                                      color: isFree ? AppColors.correctGreen : AppColors.sealGold,
+                                                    ),
                                                   ),
                                                 ),
-                                              ),
-                                              if (isFree)
-                                                AppBadge(
-                                                  label: AppStrings.premiumFreeBadge,
-                                                  color: AppColors.correctGreen,
-                                                  isSolid: true,
-                                                )
-                                              else if (isLocked)
-                                                AppBadge(
-                                                  label: AppStrings.premiumLockedBadge,
-                                                  color: AppColors.sealGold,
-                                                  isSolid: true,
-                                                ),
-                                            ],
-                                          ),
-                                          const SizedBox(height: 3),
-                                          Text(
-                                            AppStrings.isHindi
-                                                ? '$_paperSize प्रश्न · $_paperSize मिनट · सम्पूर्ण हल सहित'
-                                                : '$_paperSize Questions · $_paperSize Mins · Complete Solutions',
-                                            style: TextStyle(
-                                              fontSize: 11.5,
-                                              color: AppColors.lightTextMuted,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(height: 12),
-
-                                // Action Button
-                                ElevatedButton.icon(
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: isLocked
-                                        ? (isDark ? AppColors.primaryLight : AppColors.darkTextPrimary)
-                                        : (isDark ? AppColors.darkCardElevated : AppColors.primarySubtle),
-                                    foregroundColor: isLocked
-                                        ? AppColors.sealGold
-                                        : (isDark ? AppColors.sealGoldLight : AppColors.primary),
-                                    minimumSize: const Size(double.infinity, 40),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(6),
-                                      side: BorderSide(
-                                        color: isLocked
-                                            ? AppColors.sealGold.withValues(alpha: 0.5)
-                                            : (isDark ? AppColors.sealGoldLight : AppColors.primary),
-                                        width: 1.0,
-                                      ),
-                                    ),
-                                  ),
-                                  onPressed: isBusy ? null : () => _startPyqPaper(form, idx),
-                                  icon: isBusy
-                                      ? const SizedBox(
-                                          width: 16,
-                                          height: 16,
-                                          child: CircularProgressIndicator(strokeWidth: 2),
-                                        )
-                                      : Icon(
-                                          isLocked ? Icons.lock_rounded : Icons.menu_book_rounded,
-                                          size: 18,
-                                          color: isLocked ? AppColors.sealGold : null,
+                                              ],
+                                            );
+                                          },
                                         ),
-                                  label: Text(
-                                    isBusy
+                                      ),
+                                      const SizedBox(width: AppSpacing.md),
+                                      Expanded(
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Row(
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                Expanded(
+                                                  child: Text(
+                                                    title,
+                                                    style: AppTypography.titleSmall(
+                                                      color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
+                                                    ),
+                                                  ),
+                                                ),
+                                                if (isFree)
+                                                  AppBadge(
+                                                    label: AppStrings.premiumFreeBadge,
+                                                    color: AppColors.correctGreen,
+                                                    isSolid: true,
+                                                  )
+                                                else if (isLocked)
+                                                  AppBadge(
+                                                    label: AppStrings.premiumLockedBadge,
+                                                    color: AppColors.sealGold,
+                                                    isSolid: true,
+                                                  ),
+                                              ],
+                                            ),
+                                            const SizedBox(height: AppSpacing.xs),
+                                            Text(
+                                              AppStrings.isHindi
+                                                  ? '$_paperSize प्रश्न · $_paperSize मिनट · सम्पूर्ण हल सहित'
+                                                  : '$_paperSize Questions · $_paperSize Mins · Complete Solutions',
+                                              style: AppTypography.bodySmall(
+                                                color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(height: AppSpacing.md),
+
+                                  // Action Button
+                                  AppButton(
+                                    label: isBusy
                                         ? (AppStrings.isHindi ? 'पेपर खुल रहा है...' : 'Opening paper...')
                                         : (isLocked
                                             ? (AppStrings.isHindi ? '🔒 $title प्रो पास से अनलॉक करें' : '🔒 Unlock $title with Pro Pass')
                                             : (AppStrings.isHindi ? '📖 $title हल करें' : '📖 Solve $title')),
-                                    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
+                                    variant: isLocked
+                                        ? AppButtonVariant.outline
+                                        : AppButtonVariant.primary,
+                                    icon: isLocked ? Icons.lock_rounded : Icons.menu_book_rounded,
+                                    isLoading: isBusy,
+                                    width: double.infinity,
+                                    height: 44,
+                                    onPressed: isBusy ? null : () => _startPyqPaper(form, idx),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           );
                         }),
@@ -457,5 +414,21 @@ class _PyqVaultScreenState extends State<PyqVaultScreen> {
               ),
       ),
     );
+  }
+
+  /// The empty state of this screen.
+  Widget _buildEmptyState(bool isDark, int currentPaper) {
+    return AppEmptyState(
+      icon: Icons.history_toggle_off_rounded,
+      accent: AppColors.sealGold,
+      title: AppStrings.isHindi
+          ? 'पेपर $currentPaper के लिए कोई विगत वर्ष पेपर उपलब्ध नहीं है'
+          : 'No previous papers available for Paper $currentPaper',
+    );
+  }
+
+  /// The loading state of this screen.
+  Widget _buildLoadingState(bool isDark) {
+    return const AppLoadingState();
   }
 }

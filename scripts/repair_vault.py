@@ -17,12 +17,35 @@ Afterwards run:
 
 from __future__ import annotations
 
+import collections
 import hashlib
 import json
 import re
 import sqlite3
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+from vault_content_fixes import (  # noqa: E402
+    ANSWER_INDEX_FIXES,
+    ANSWER_KEY_OVERRIDES,
+    ENGLISH_OPTION_COPIES,
+    ENGLISH_OPTION_FIXES,
+    ENGLISH_STEM_FIXES,
+    FOREIGN_EN_FAMILIES,
+    OPTION_TEXT_FIXES,
+    ORPHAN_ORIGINAL_STEMS,
+    ORPHAN_QUESTION_IDS,
+)
+from vault_data_rules import (  # noqa: E402
+    normalize,
+    norm_lower,
+    normalize_options,
+    option_anchor_violation,
+    stem_anchor_violation,
+)
 
 ROOT = Path(__file__).resolve().parents[1]
 DB_PATH = ROOT / "assets" / "database" / "tet_mock_vault.db"
@@ -971,8 +994,452 @@ def replace_passage_orphans(conn: sqlite3.Connection) -> int:
     return replaced
 
 
+# --------------------------------------------------------------------------
+# v21 question-data repairs
+# --------------------------------------------------------------------------
+# The source dumps were imported with a shifted English column and with
+# scrambled answer keys for the questions a mock paper copied from an
+# official board paper.  The repairs below restore the English translation
+# of every affected question and give one single, consistent answer key to
+# every question that is printed more than once.
+
+# The marker of an official board paper.  Its key wins over the key of an
+# auto-generated mock paper that copied the question.
+OFFICIAL_SOURCE_MARKER = "\u0906\u0927\u093f\u0915\u093e\u0930\u093f\u0915"  # adhikar
+
+
+def load_options(raw):
+    try:
+        value = json.loads(raw or "null")
+    except (TypeError, ValueError):
+        return None
+    return value if isinstance(value, list) else None
+
+
+def _family_key(row):
+    """Questions that carry the same stem and the same options are copies."""
+    options = load_options(row["options_hindi"]) or []
+    return (norm_lower(row["q_hindi"]), frozenset(normalize_options(options)))
+
+
+def _english_is_clean(row, hindi_options, english_options):
+    """True when the English side of a question still matches the Hindi one."""
+    if stem_anchor_violation(row["q_hindi"] or "", row["q_english"] or ""):
+        return False
+    if option_anchor_violation(hindi_options, english_options):
+        return False
+    return True
+
+
+def repair_foreign_english(conn: sqlite3.Connection) -> dict:
+    """Restore the English translation of questions whose English data
+    belongs to a different question.
+
+    The English data of a question is rebuilt from a clean copy of the same
+    question (a copy whose English text still carries the Latin anchor terms
+    of the Hindi text).  When no clean copy exists the human verified
+    table in ``vault_content_fixes`` is used.
+    """
+    rows = conn.execute("SELECT * FROM questions").fetchall()
+    by_option_set: dict[frozenset, list] = collections.defaultdict(list)
+    by_stem: dict[str, list] = collections.defaultdict(list)
+    for row in rows:
+        options = load_options(row["options_hindi"]) or []
+        by_option_set[frozenset(normalize_options(options))].append(row)
+        by_stem[norm_lower(row["q_hindi"])].append(row)
+
+    stats = {"stem": 0, "options": 0, "unresolved": 0}
+    unresolved: list[str] = []
+
+    for row in rows:
+        hindi_options = load_options(row["options_hindi"]) or []
+        english_options = load_options(row["options_english"])
+        stem_bad = bool(stem_anchor_violation(row["q_hindi"] or "", row["q_english"] or ""))
+        options_bad = bool(option_anchor_violation(hindi_options, english_options))
+        curated = FOREIGN_EN_FAMILIES.get(norm_lower(row["q_hindi"]))
+        if not stem_bad and not options_bad and curated is None:
+            continue
+
+        # 1. The human verified table wins.
+        new_stem = None
+        new_options = None
+        curated_applies = False
+        if curated:
+            new_stem = curated["en_stem"]
+            mapping = {norm_lower(k): v for k, v in curated["options"].items()}
+            # A stray separator ("/ No error" vs "No error") must not break
+            # the lookup.
+            mapping.update(
+                {
+                    norm_lower(key).lstrip("/ ").strip(): value
+                    for key, value in mapping.items()
+                }
+            )
+            candidate = []
+            complete = True
+            for option in hindi_options:
+                value = mapping.get(norm_lower(option))
+                if value is None:
+                    value = mapping.get(norm_lower(option).lstrip("/ ").strip())
+                if value is None:
+                    complete = False
+                    break
+                candidate.append(value)
+            if complete:
+                new_options = candidate
+                curated_applies = True
+            else:
+                # The Hindi options of this question differ from the curated
+                # ones - fall back to a clean copy of the same question.
+                new_stem = None
+
+        if not stem_bad and not options_bad and not curated_applies:
+            continue
+
+        # 2. Otherwise copy the English data from a clean copy of the same
+        #    question.
+        if new_options is None:
+            for sibling in by_option_set[frozenset(normalize_options(hindi_options))]:
+                if sibling["id"] == row["id"]:
+                    continue
+                sibling_hi = load_options(sibling["options_hindi"]) or []
+                sibling_en = load_options(sibling["options_english"])
+                if not sibling_en or len(sibling_en) != len(sibling_hi):
+                    continue
+                if not _english_is_clean(sibling, sibling_hi, sibling_en):
+                    continue
+                mapping = {}
+                for hi_option, en_option in zip(sibling_hi, sibling_en):
+                    mapping.setdefault(norm_lower(hi_option), en_option)
+                candidate = []
+                complete = True
+                for option in hindi_options:
+                    value = mapping.get(norm_lower(option))
+                    if value is None:
+                        complete = False
+                        break
+                    candidate.append(value)
+                if not complete:
+                    continue
+                new_options = candidate
+                if new_stem is None and norm_lower(sibling["q_hindi"]) == norm_lower(row["q_hindi"]):
+                    new_stem = sibling["q_english"]
+                break
+
+        if new_options is None:
+            stats["unresolved"] += 1
+            unresolved.append(row["id"])
+            continue
+
+        if new_stem and (stem_bad or curated_applies):
+            if (row["q_english"] or "") != new_stem:
+                conn.execute(
+                    "UPDATE questions SET q_english = ? WHERE id = ?",
+                    (new_stem, row["id"]),
+                )
+                stats["stem"] += 1
+
+        if options_bad or curated_applies:
+            current = load_options(row["options_english"])
+            if current != new_options:
+                conn.execute(
+                    "UPDATE questions SET options_english = ? WHERE id = ?",
+                    (
+                        json.dumps(new_options, ensure_ascii=False, separators=(",", ":")),
+                        row["id"],
+                    ),
+                )
+                stats["options"] += 1
+
+    if unresolved:
+        print(f"  WARNING: English data still unresolved for {unresolved}")
+    return stats
+
+
+def repair_answer_key_conflicts(conn: sqlite3.Connection) -> dict:
+    """Give one single answer key to every question that is printed twice.
+
+    The same question is used in several papers.  The mock papers copied the
+    question but not the key, so the vault ended up with two different keys
+    for one and the same question.  The key of the official board paper wins;
+    for the remaining cases a human verified override is used.
+    """
+    rows = conn.execute(
+        "SELECT id, q_hindi, options_hindi, answer, source_tag FROM questions"
+    ).fetchall()
+    groups: dict[tuple, list] = collections.defaultdict(list)
+    for row in rows:
+        groups[_family_key(row)].append(row)
+
+    stats = {"groups": 0, "questions": 0, "overrides": 0}
+    for key, members in groups.items():
+        if len(members) < 2:
+            continue
+        semantics = {}
+        for member in members:
+            options = load_options(member["options_hindi"]) or []
+            answer = member["answer"]
+            if not isinstance(answer, int) or answer < 0 or answer >= len(options):
+                continue
+            semantics.setdefault(norm_lower(options[answer]), []).append(member)
+        if len(semantics) <= 1:
+            continue
+
+        # The human verified override wins.
+        authoritative = None
+        for member in members:
+            override = ANSWER_KEY_OVERRIDES.get(member["id"])
+            if override is None:
+                continue
+            options = load_options(member["options_hindi"]) or []
+            if 0 <= override < len(options):
+                authoritative = norm_lower(options[override])
+                stats["overrides"] += 1
+                break
+
+        # Otherwise the official board paper wins.
+        if authoritative is None:
+            for member in members:
+                if OFFICIAL_SOURCE_MARKER in (member["source_tag"] or ""):
+                    options = load_options(member["options_hindi"]) or []
+                    answer = member["answer"]
+                    if 0 <= answer < len(options):
+                        authoritative = norm_lower(options[answer])
+                        break
+
+        # Otherwise the majority wins.
+        if authoritative is None:
+            authoritative = max(
+                semantics.items(), key=lambda item: len(item[1])
+            )[0]
+
+        stats["groups"] += 1
+        for member in members:
+            options = load_options(member["options_hindi"]) or []
+            index = next(
+                (
+                    position
+                    for position, option in enumerate(options)
+                    if norm_lower(option) == authoritative
+                ),
+                None,
+            )
+            if index is None or index == member["answer"]:
+                continue
+            conn.execute(
+                "UPDATE questions SET answer = ? WHERE id = ?", (index, member["id"])
+            )
+            stats["questions"] += 1
+
+    # Overrides for questions that are not part of a conflict group.
+    for qid, answer in ANSWER_KEY_OVERRIDES.items():
+        row = conn.execute(
+            "SELECT options_hindi, answer FROM questions WHERE id = ?", (qid,)
+        ).fetchone()
+        if row is None:
+            continue
+        options = load_options(row["options_hindi"]) or []
+        if not (0 <= answer < len(options)):
+            continue
+        if row["answer"] == answer:
+            continue
+        conn.execute("UPDATE questions SET answer = ? WHERE id = ?", (answer, qid))
+        stats["questions"] += 1
+    return stats
+
+
+def repair_orphan_questions(conn: sqlite3.Connection) -> dict:
+    """Replace questions whose reading or figure is not part of the vault.
+
+    Such a question cannot be answered by a candidate.  The slot is refilled
+    with a self contained question of the same section, so the paper stays
+    complete and every printed question can be answered.
+    """
+    replaced = 0
+    taken_donors: set[str] = set()
+    for qid in sorted(ORPHAN_QUESTION_IDS):
+        target = conn.execute("SELECT * FROM questions WHERE id = ?", (qid,)).fetchone()
+        if target is None:
+            continue
+        if target["passage_id"]:
+            continue
+        # Only repair a question while it still carries the broken stem.
+        original = ORPHAN_ORIGINAL_STEMS.get(qid)
+        if original and normalize(target["q_hindi"]) != normalize(original):
+            continue
+
+        papers = [
+            row[0]
+            for row in conn.execute(
+                "SELECT paper_form_id FROM appearances WHERE question_id = ?", (qid,)
+            ).fetchall()
+        ]
+        used: set[str] = set()
+        for paper in papers:
+            for row in conn.execute(
+                "SELECT q.q_hindi, q.q_english FROM appearances a "
+                "JOIN questions q ON q.id = a.question_id WHERE a.paper_form_id = ?",
+                (paper,),
+            ).fetchall():
+                used.add(norm_lower(row[0]))
+                used.add(norm_lower(row[1]))
+
+        donor = None
+        fallback = None
+        for candidate in conn.execute(
+            "SELECT * FROM questions WHERE section = ? "
+            "AND (passage_id IS NULL OR passage_id = '') AND id <> ? ORDER BY id",
+            (target["section"], qid),
+        ).fetchall():
+            if candidate["id"] in ORPHAN_QUESTION_IDS:
+                continue
+            if not (candidate["q_hindi"] or "").strip():
+                continue
+            if norm_lower(candidate["q_hindi"]) in used:
+                continue
+            options = load_options(candidate["options_hindi"]) or []
+            answer = candidate["answer"]
+            if not options or not isinstance(answer, int) or not (0 <= answer < len(options)):
+                continue
+            if stem_anchor_violation(
+                candidate["q_hindi"] or "", candidate["q_english"] or ""
+            ):
+                continue
+            if option_anchor_violation(
+                options, load_options(candidate["options_english"]) or []
+            ):
+                continue
+            if fallback is None:
+                fallback = candidate
+            if candidate["id"] in taken_donors:
+                continue
+            donor = candidate
+            break
+        if donor is None:
+            donor = fallback
+
+        if donor is None:
+            print(f"  WARNING: no donor found for orphan question {qid}")
+            continue
+
+        conn.execute(
+            "UPDATE questions SET q_hindi = ?, q_english = ?, options_hindi = ?, "
+            "options_english = ?, answer = ?, p_score = ?, topic_name = ?, "
+            "difficulty = ? WHERE id = ?",
+            (
+                donor["q_hindi"],
+                donor["q_english"],
+                donor["options_hindi"],
+                donor["options_english"],
+                donor["answer"],
+                donor["p_score"],
+                donor["topic_name"],
+                donor["difficulty"],
+                qid,
+            ),
+        )
+        replaced += 1
+        taken_donors.add(donor["id"])
+    return {"replaced": replaced}
+
+
+def repair_option_texts(conn: sqlite3.Connection) -> dict:
+    """Apply the small option level corrections."""
+    changed = 0
+    for qid, fixes in OPTION_TEXT_FIXES.items():
+        row = conn.execute(
+            "SELECT options_hindi FROM questions WHERE id = ?", (qid,)
+        ).fetchone()
+        if row is None:
+            continue
+        options = load_options(row["options_hindi"])
+        if not options:
+            continue
+        updated = list(options)
+        dirty = False
+        for index, text in fixes.items():
+            if 0 <= index < len(updated) and updated[index] != text:
+                updated[index] = text
+                dirty = True
+        if dirty:
+            conn.execute(
+                "UPDATE questions SET options_hindi = ? WHERE id = ?",
+                (
+                    json.dumps(updated, ensure_ascii=False, separators=(",", ":")),
+                    qid,
+                ),
+            )
+            changed += 1
+    return {"changed": changed}
+
+
+def repair_english_alignment(conn: sqlite3.Connection) -> dict:
+    """Restore the English side of questions whose English data was stolen.
+
+    The source dump carried a *shifted English column*: a question kept the
+    English stem or the English option list of the question that follows it.
+    The Hindi side of those questions is correct, so the English side is
+    restored from the clean copy of the same question (or from the curated
+    text when the question only exists once).
+
+    The repair is idempotent: a question that already carries the correct
+    English text is not touched.
+    """
+    stats = {"stems": 0, "options": 0, "answers": 0}
+
+    for qid, stem in ENGLISH_STEM_FIXES.items():
+        row = conn.execute(
+            "SELECT q_english FROM questions WHERE id = ?", (qid,)
+        ).fetchone()
+        if row is None or (row[0] or "") == stem:
+            continue
+        conn.execute("UPDATE questions SET q_english = ? WHERE id = ?", (stem, qid))
+        stats["stems"] += 1
+
+    for qid, donor_id in ENGLISH_OPTION_COPIES.items():
+        donor = conn.execute(
+            "SELECT options_english FROM questions WHERE id = ?", (donor_id,)
+        ).fetchone()
+        row = conn.execute(
+            "SELECT options_english FROM questions WHERE id = ?", (qid,)
+        ).fetchone()
+        if donor is None or row is None or row[0] == donor[0]:
+            continue
+        conn.execute(
+            "UPDATE questions SET options_english = ? WHERE id = ?",
+            (donor[0], qid),
+        )
+        stats["options"] += 1
+
+    for qid, options in ENGLISH_OPTION_FIXES.items():
+        row = conn.execute(
+            "SELECT options_english FROM questions WHERE id = ?", (qid,)
+        ).fetchone()
+        if row is None:
+            continue
+        payload = json.dumps(options, ensure_ascii=False, separators=(",", ":"))
+        if row[0] == payload:
+            continue
+        conn.execute(
+            "UPDATE questions SET options_english = ? WHERE id = ?", (payload, qid)
+        )
+        stats["options"] += 1
+
+    for qid, answer in ANSWER_INDEX_FIXES.items():
+        row = conn.execute(
+            "SELECT answer FROM questions WHERE id = ?", (qid,)
+        ).fetchone()
+        if row is None or row[0] == answer:
+            continue
+        conn.execute("UPDATE questions SET answer = ? WHERE id = ?", (answer, qid))
+        stats["answers"] += 1
+
+    return stats
+
+
 def repair_database() -> None:
     conn = sqlite3.connect(DB_PATH)
+    conn.row_factory = sqlite3.Row
     try:
         conn.execute("BEGIN")
 
@@ -1050,7 +1517,11 @@ def repair_database() -> None:
         reattached = attach_orphan_questions(conn)
         orphans = replace_passage_orphans(conn)
         refilled = replace_unanswerable_questions(conn)
-        keys = sync_official_answer_keys(conn)
+        english = repair_foreign_english(conn)
+        keys = repair_answer_key_conflicts(conn)
+        texts = repair_option_texts(conn)
+        orphan_questions = repair_orphan_questions(conn)
+        alignment = repair_english_alignment(conn)
         normalise_modules(conn)
         topics = sync_topic_indexes(conn)
         renumber_passages(conn)
@@ -1058,6 +1529,9 @@ def repair_database() -> None:
         # The replacements can create a repeated question, so the de-duplication
         # runs last.
         swapped = dedupe_paper_questions(conn)
+        # The printed key has to be re-synchronised after the de-duplication,
+        # because that step swaps the questions of two paper slots.
+        synced = sync_official_answer_keys(conn)
 
         conn.execute(
             "INSERT INTO meta(key, val) VALUES('bank_version', ?) "
@@ -1081,7 +1555,16 @@ def repair_database() -> None:
             f"  questions re-attached to a text : {reattached}\n"
             f"  orphan questions replaced        : {orphans}\n"
             f"  unanswerable slots refilled      : {refilled}\n"
-            f"  answer keys re-synchronised       : {keys}\n"
+            f"  english translations restored    : {english['stem']} stems / "
+            f"{english['options']} option lists"
+            f"{' (UNRESOLVED: %d)' % english['unresolved'] if english['unresolved'] else ''}\n"
+            f"  conflicting answer keys fixed    : {keys['groups']} groups / "
+            f"{keys['questions']} questions\n"
+            f"  option texts corrected           : {texts['changed']}\n"
+            f"  stimulus-less questions replaced : {orphan_questions['replaced']}\n"
+            f"  english alignment restored      : {alignment['stems']} stems / "
+            f"{alignment['options']} option lists / {alignment['answers']} answer keys\n"
+            f"  answer keys re-synchronised      : {synced}\n"
             f"  topic indexes aligned            : {topics}\n"
             f"  empty readings removed           : {empty}"
         )
@@ -1167,7 +1650,25 @@ def main() -> None:
     repair_papers_json()
     repair_database()
     update_manifest(changed_packs)
+    rebuild_cdn_packs()
     print("Repair complete. Run: python scripts/validate_vault.py")
+
+
+def rebuild_cdn_packs() -> None:
+    """Rebuild the CDN packs from the repaired database.
+
+    The packs are a copy of the vault.  Regenerating them from the repaired
+    database guarantees that the CDN and the bundled asset can never drift
+    apart - the validator compares their hashes.
+    """
+    sys.path.insert(0, str(ROOT / "bin"))
+    try:
+        from build_github_cdn_vault import build_cdn
+    except ImportError as error:  # pragma: no cover - defensive
+        print(f"  WARNING: could not rebuild the CDN packs ({error})")
+        return
+    build_cdn(ROOT)
+    print("CDN packs rebuilt from the repaired database")
 
 
 if __name__ == "__main__":

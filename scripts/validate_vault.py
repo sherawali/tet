@@ -21,6 +21,23 @@ import sqlite3
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+from vault_content_fixes import (  # noqa: E402
+    ANSWER_INDEX_FIXES,
+    ENGLISH_OPTION_COPIES,
+    ENGLISH_OPTION_FIXES,
+    ENGLISH_STEM_FIXES,
+    FOREIGN_EN_FAMILIES,
+    ORPHAN_ORIGINAL_STEMS,
+)
+from vault_data_rules import (  # noqa: E402
+    norm_lower,
+    normalize_options,
+    option_anchor_violation,
+    stem_anchor_violation,
+)
+
 ROOT = Path(__file__).resolve().parents[1]
 DB_PATH = ROOT / "assets" / "database" / "tet_mock_vault.db"
 CDN_DIR = ROOT / "cdn"
@@ -32,6 +49,25 @@ FIGURE_PLACEHOLDER = re.compile(r"\[FIGURE NOT AVAILABLE IN SOURCE BANK[^\]]*\]"
 EMBEDDED_HEADING = re.compile(r"(?m)^\s*#{2,}\s+\S")
 GENERIC_INCOMPLETE = re.compile(
     r"(?:lorem ipsum|TODO|TBD|\[\s*\]|answer key|click here)", re.I
+)
+
+# A stem that points at a reading that has to be printed above it.
+STIMULUS_HI = re.compile(
+    r"\u0909\u092a\u0930\u094d\u092f\u0941\u0915\u094d\u0924[^\n]{0,30}?"
+    r"(?:\u0917\u0926\u094d\u092f\u093e\u0902\u0936|\u0915\u093e\u0935\u094d\u092f\u093e\u0902\u0936|"
+    r"\u092a\u0926\u094d\u092f\u093e\u0902\u0936|\u092a\u0926)"
+)
+STIMULUS_EN = re.compile(
+    r"\b(?:the|this)\s+(?:above|following|preceding|given|underlined)?\s*"
+    r"(?:passage|poem|extract|stanza)\b"
+    r"|\baccording to the (?:passage|poem|text)\b"
+    r"|\bin the (?:above|following) (?:passage|poem|extract)\b",
+    re.I,
+)
+
+# An option that is not a real answer.
+PLACEHOLDER_OPTION = re.compile(
+    r"^\s*(?:-{1,3}|—{1,3}|_|N/?A\b|\?+|\.{3,}|x{3,}|\*{1,2}|TODO|TBD)\s*$"
 )
 
 
@@ -413,6 +449,269 @@ def validate_db(report: Report) -> dict:
         f"Topic index drift: {bad_topic[:10]}",
     )
 
+    # --- v21 question data integrity -------------------------------------
+    # 7. The English translation of a question has to belong to that
+    #    question.  The Latin anchor terms of the Hindi text (the English
+    #    term in parentheses) must survive in the English text.
+    foreign_stems = []
+    foreign_options = []
+    count_mismatch = []
+    placeholder_options = []
+    missing_stimulus = []
+    curated_drift = []
+    for row in conn.execute(
+        "SELECT id, q_hindi, q_english, options_hindi, options_english, passage_id "
+        "FROM questions"
+    ).fetchall():
+        try:
+            hindi_options = json.loads(row["options_hindi"] or "null")
+        except (TypeError, ValueError):
+            hindi_options = None
+        try:
+            english_options = json.loads(row["options_english"] or "null")
+        except (TypeError, ValueError):
+            english_options = None
+        if isinstance(hindi_options, list):
+            for index, option in enumerate(hindi_options):
+                if PLACEHOLDER_OPTION.match(str(option).strip()):
+                    placeholder_options.append((row["id"], index, str(option)))
+        if not isinstance(hindi_options, list) or not isinstance(english_options, list):
+            if row["q_english"] and english_options is None:
+                count_mismatch.append(row["id"])
+            continue
+        if len(hindi_options) != len(english_options):
+            count_mismatch.append(row["id"])
+        stem_bad = stem_anchor_violation(row["q_hindi"] or "", row["q_english"] or "")
+        if stem_bad:
+            foreign_stems.append((row["id"], stem_bad))
+        option_bad = option_anchor_violation(hindi_options, english_options)
+        if option_bad:
+            foreign_options.append((row["id"], option_bad))
+        if not row["passage_id"] and (
+            STIMULUS_HI.search(row["q_hindi"] or "")
+            or STIMULUS_EN.search(row["q_english"] or "")
+        ):
+            missing_stimulus.append(row["id"])
+
+        curated = FOREIGN_EN_FAMILIES.get(norm_lower(row["q_hindi"]))
+        if curated:
+            mapping = {norm_lower(k): v for k, v in curated["options"].items()}
+            expected = []
+            complete = True
+            for option in hindi_options:
+                value = mapping.get(norm_lower(option))
+                if value is None:
+                    value = mapping.get(norm_lower(option).lstrip("/ ").strip())
+                if value is None:
+                    complete = False
+                    break
+                expected.append(value)
+            if not complete:
+                curated_drift.append((row["id"], "option set does not match the curated table"))
+            elif [str(value) for value in english_options] != expected:
+                curated_drift.append((row["id"], "english options drifted"))
+            elif (row["q_english"] or "") != curated["en_stem"]:
+                curated_drift.append((row["id"], "english stem drifted"))
+
+    report.require(
+        not foreign_stems,
+        f"Questions whose English stem belongs to another question: "
+        f"{foreign_stems[:10]}",
+    )
+    report.require(
+        not foreign_options,
+        f"Questions whose English options belong to another question: "
+        f"{foreign_options[:10]}",
+    )
+    report.require(
+        not count_mismatch,
+        f"Questions whose English option list has a different length: "
+        f"{count_mismatch[:10]}",
+    )
+    report.require(
+        not placeholder_options,
+        f"Questions with a placeholder option: {placeholder_options[:10]}",
+    )
+    report.require(
+        not missing_stimulus,
+        f"Questions that refer to a reading without one: {missing_stimulus[:10]}",
+    )
+    report.require(
+        not curated_drift,
+        f"Questions that drifted away from the verified English text: "
+        f"{curated_drift[:10]}",
+    )
+
+    # 8. One question, one key.  When the same question (same stem, same
+    #    options) is printed in several papers it must have the same answer.
+    families: dict[tuple, list] = collections.defaultdict(list)
+    for row in conn.execute(
+        "SELECT id, q_hindi, options_hindi, answer FROM questions"
+    ).fetchall():
+        try:
+            options = json.loads(row["options_hindi"] or "null")
+        except (TypeError, ValueError):
+            options = None
+        if not isinstance(options, list):
+            continue
+        families[
+            (norm_lower(row["q_hindi"]), frozenset(normalize_options(options)))
+        ].append(row)
+    key_conflicts = []
+    for key, members in families.items():
+        if len(members) < 2:
+            continue
+        answers = set()
+        for member in members:
+            options = json.loads(member["options_hindi"] or "null")
+            answer = member["answer"]
+            if not isinstance(answer, int) or not (0 <= answer < len(options)):
+                continue
+            answers.add(norm_lower(options[answer]))
+        answers.discard("")
+        if len(answers) > 1:
+            key_conflicts.append((key[0][:60], [m["id"] for m in members]))
+    report.require(
+        not key_conflicts,
+        f"Questions that are printed with different answer keys: {key_conflicts[:10]}",
+    )
+
+    # 9. The repaired questions must not carry their broken stem any more.
+    still_broken = []
+    for qid, stem in ORPHAN_ORIGINAL_STEMS.items():
+        row = conn.execute(
+            "SELECT q_hindi FROM questions WHERE id = ?", (qid,)
+        ).fetchone()
+        if row is not None and norm_lower(row[0]) == norm_lower(stem):
+            still_broken.append(qid)
+    report.require(
+        not still_broken,
+        f"Questions without a reading that were not replaced: {still_broken}",
+    )
+
+    # --- v22 english alignment --------------------------------------------
+    # 10. The curated English text must not drift again.  The import shifted
+    #     the English column of a few questions; the curated tables name the
+    #     correct English stem / option list.
+    english_drift = []
+    for qid, stem in ENGLISH_STEM_FIXES.items():
+        row = conn.execute(
+            "SELECT q_english FROM questions WHERE id = ?", (qid,)
+        ).fetchone()
+        if row is None:
+            english_drift.append((qid, "question missing"))
+        elif (row[0] or "") != stem:
+            english_drift.append((qid, f"english stem is {row[0]!r}"))
+    report.require(
+        not english_drift,
+        f"Questions whose English stem belongs to another question: "
+        f"{english_drift[:10]}",
+    )
+
+    for qid, donor_id in ENGLISH_OPTION_COPIES.items():
+        row = conn.execute(
+            "SELECT options_english FROM questions WHERE id = ?", (qid,)
+        ).fetchone()
+        donor = conn.execute(
+            "SELECT options_english FROM questions WHERE id = ?", (donor_id,)
+        ).fetchone()
+        if row is None or donor is None:
+            english_drift.append((qid, "question missing"))
+        elif row[0] != donor[0]:
+            english_drift.append((qid, "english option list belongs to another question"))
+    for qid, options in ENGLISH_OPTION_FIXES.items():
+        row = conn.execute(
+            "SELECT options_english FROM questions WHERE id = ?", (qid,)
+        ).fetchone()
+        if row is None:
+            english_drift.append((qid, "question missing"))
+            continue
+        try:
+            current = json.loads(row[0] or "null")
+        except (TypeError, ValueError):
+            current = None
+        if [str(value) for value in (current or [])] != [
+            str(value) for value in options
+        ]:
+            english_drift.append((qid, "english option list is wrong"))
+    for qid, answer in ANSWER_INDEX_FIXES.items():
+        row = conn.execute(
+            "SELECT answer FROM questions WHERE id = ?", (qid,)
+        ).fetchone()
+        if row is None:
+            english_drift.append((qid, "question missing"))
+        elif row[0] != answer:
+            english_drift.append((qid, f"answer index is {row[0]}, expected {answer}"))
+    report.require(
+        not english_drift,
+        f"Questions whose English text drifted away from the curated table: "
+        f"{english_drift[:10]}",
+    )
+
+    # 11. Two questions that print the same English stem with the same Hindi
+    #     options must print the same English options.  A different list
+    #     means that the English column was shifted by one question.
+    shifted = []
+    alignment_groups: dict[tuple, list] = collections.defaultdict(list)
+    for row in conn.execute(
+        "SELECT id, q_english, options_hindi, options_english FROM questions"
+    ):
+        try:
+            hindi_options = json.loads(row["options_hindi"] or "null")
+            english_options = json.loads(row["options_english"] or "null")
+        except (TypeError, ValueError):
+            continue
+        if not isinstance(hindi_options, list) or not isinstance(
+            english_options, list
+        ):
+            continue
+        if not row["q_english"] or len(hindi_options) != 4 or len(english_options) != 4:
+            continue
+        alignment_groups[
+            (normalized_text(row["q_english"]), tuple(normalized_text(o) for o in hindi_options))
+        ].append(row["id"])
+    for key, ids in alignment_groups.items():
+        lists = set()
+        for qid in ids:
+            row = conn.execute(
+                "SELECT options_english FROM questions WHERE id = ?", (qid,)
+            ).fetchone()
+            try:
+                lists.add(
+                    tuple(
+                        normalized_text(option)
+                        for option in json.loads(row["options_english"] or "null")
+                    )
+                )
+            except (TypeError, ValueError):
+                continue
+        if len(lists) > 1:
+            counts = collections.Counter()
+            for qid in ids:
+                row = conn.execute(
+                    "SELECT options_english FROM questions WHERE id = ?", (qid,)
+                ).fetchone()
+                try:
+                    counts[
+                        tuple(
+                            normalized_text(option)
+                            for option in json.loads(row["options_english"] or "null")
+                        )
+                    ] += 1
+                except (TypeError, ValueError):
+                    continue
+            ranked = counts.most_common()
+            if ranked[0][1] == ranked[-1][1]:
+                # Two equally common renderings of the same list: a wording
+                # variant, not a shifted column.
+                continue
+            shifted.append((key[0][:60], ranked))
+    report.require(
+        not shifted,
+        f"Questions whose English option list belongs to another question: "
+        f"{shifted[:5]}",
+    )
+
     conn.close()
     return stats
 
@@ -528,9 +827,17 @@ def validate_cdn(report: Report) -> None:
 
 
 def main() -> int:
+    global DB_PATH
+
     parser = argparse.ArgumentParser()
     parser.add_argument("--strict", action="store_true")
+    parser.add_argument(
+        "--db",
+        default=str(DB_PATH),
+        help="validate another vault (used for testing a candidate repair)",
+    )
     args = parser.parse_args()
+    DB_PATH = Path(args.db)
 
     report = Report()
     if not DB_PATH.exists():

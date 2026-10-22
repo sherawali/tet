@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../design_system/app_colors.dart';
 import '../design_system/app_radius.dart';
+import '../design_system/app_spacing.dart';
+import '../design_system/app_shadows.dart';
 import '../design_system/app_typography.dart';
 import '../models/passage.dart';
 import '../database/db_helper.dart';
@@ -78,16 +80,16 @@ class _PassageDisplayCardState extends State<PassageDisplayCard> {
         ? 'अपठित काव्यांश / कविता$qRangeSuffix'
         : 'अपठित गद्यांश$qRangeSuffix';
 
-    final cardBg = isDark ? AppColors.darkCardDeep : Colors.white;
+    final cardBg = isDark ? AppColors.darkCardDeep : AppColors.lightCard;
 
     // Compact reference bar (used for subsequent questions in booklet mode)
     if (widget.isCompactReference && !_isExpanded) {
       return Container(
-        margin: const EdgeInsets.symmetric(vertical: 6),
+        margin: const EdgeInsets.symmetric(vertical: AppSpacing.sm),
         decoration: BoxDecoration(
           color: headerBg,
           borderRadius: AppRadius.roundedBase,
-          border: Border.all(color: borderColor, width: 1.0),
+          border: Border.all(color: borderColor, width: 1.2),
         ),
         child: Material(
           color: Colors.transparent,
@@ -95,7 +97,10 @@ class _PassageDisplayCardState extends State<PassageDisplayCard> {
             borderRadius: AppRadius.roundedBase,
             onTap: () => setState(() => _isExpanded = true),
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppSpacing.md,
+                vertical: AppSpacing.sm,
+              ),
               child: Row(
                 children: [
                   Icon(
@@ -103,16 +108,14 @@ class _PassageDisplayCardState extends State<PassageDisplayCard> {
                     size: 18,
                     color: badgeColor,
                   ),
-                  const SizedBox(width: 8),
+                  const SizedBox(width: AppSpacing.sm),
                   Expanded(
                     child: Text(
                       isPoem
                           ? '📖 इस प्रश्न की कविता देखें$qRangeSuffix (टैप करें)'
                           : '📖 इस प्रश्न का गद्यांश देखें$qRangeSuffix (टैप करें)',
-                      style: TextStyle(
-                        fontSize: 13,
-                        fontWeight: FontWeight.w600,
-                        color: isDark ? Colors.white : AppColors.primaryLight,
+                      style: AppTypography.labelMedium(
+                        color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
                       ),
                     ),
                   ),
@@ -130,18 +133,12 @@ class _PassageDisplayCardState extends State<PassageDisplayCard> {
     }
 
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 8),
+      margin: const EdgeInsets.symmetric(vertical: AppSpacing.sm),
       decoration: BoxDecoration(
         color: cardBg,
         borderRadius: AppRadius.roundedBase,
         border: Border.all(color: borderColor, width: 1.2),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: isDark ? 0.25 : 0.04),
-            blurRadius: 8,
-            offset: const Offset(0, 2),
-          ),
-        ],
+        boxShadow: isDark ? AppShadows.darkCard : AppShadows.card,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -150,14 +147,21 @@ class _PassageDisplayCardState extends State<PassageDisplayCard> {
           Material(
             color: Colors.transparent,
             child: InkWell(
-              borderRadius: const BorderRadius.vertical(top: Radius.circular(10)),
+              borderRadius: const BorderRadius.vertical(
+                top: Radius.circular(AppRadius.base),
+              ),
               onTap: () => setState(() => _isExpanded = !_isExpanded),
               child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: AppSpacing.md,
+                  vertical: AppSpacing.sm,
+                ),
                 decoration: BoxDecoration(
                   color: headerBg,
                   borderRadius: _isExpanded
-                      ? const BorderRadius.vertical(top: Radius.circular(10))
+                      ? const BorderRadius.vertical(
+                          top: Radius.circular(AppRadius.base),
+                        )
                       : AppRadius.roundedBase,
                   border: _isExpanded
                       ? Border(bottom: BorderSide(color: borderColor, width: 0.8))
@@ -166,7 +170,10 @@ class _PassageDisplayCardState extends State<PassageDisplayCard> {
                 child: Row(
                   children: [
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3.5),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: AppSpacing.sm,
+                        vertical: AppSpacing.xs,
+                      ),
                       decoration: BoxDecoration(
                         color: badgeBg,
                         borderRadius: AppRadius.roundedSm,
@@ -179,30 +186,30 @@ class _PassageDisplayCardState extends State<PassageDisplayCard> {
                             size: 14,
                             color: badgeColor,
                           ),
-                          const SizedBox(width: 5),
-                          Text(
-                            titleText,
-                            style: AppTypography.labelSmall(color: badgeColor).copyWith(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 11.5,
+                          const SizedBox(width: AppSpacing.xs),
+                          Flexible(
+                            child: Text(
+                              titleText,
+                              style: AppTypography.labelSmall(color: badgeColor),
                             ),
                           ),
                         ],
                       ),
                     ),
                     if (widget.seqInPassage != null) ...[
-                      const SizedBox(width: 8),
+                      const SizedBox(width: AppSpacing.sm),
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2.5),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: AppSpacing.xs,
+                          vertical: 2,
+                        ),
                         decoration: BoxDecoration(
-                          color: isDark ? Colors.black26 : AppColors.borderStrong,
-                          borderRadius: BorderRadius.circular(4),
+                          color: isDark ? AppColors.darkCardElevated : AppColors.borderStrong,
+                          borderRadius: AppRadius.roundedSm,
                         ),
                         child: Text(
                           'प्रश्न ${widget.seqInPassage}',
-                          style: TextStyle(
-                            fontSize: 10.5,
-                            fontWeight: FontWeight.w600,
+                          style: AppTypography.labelSmall(
                             color: isDark ? AppColors.darkTextSecondary : AppColors.deskGray,
                           ),
                         ),
@@ -225,7 +232,10 @@ class _PassageDisplayCardState extends State<PassageDisplayCard> {
             // Directive Instructions
             if (widget.passage.cleanDirText.isNotEmpty) ...[
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: AppSpacing.md,
+                  vertical: AppSpacing.sm,
+                ),
                 decoration: BoxDecoration(
                   color: isDark ? AppColors.primaryLight.withValues(alpha: 0.5) : AppColors.darkTextPrimary,
                   border: Border(
@@ -237,13 +247,9 @@ class _PassageDisplayCardState extends State<PassageDisplayCard> {
                 ),
                 child: Text(
                   widget.passage.cleanDirText,
-                  style: TextStyle(
-                    fontSize: 12.5,
-                    fontStyle: FontStyle.italic,
-                    fontWeight: FontWeight.w500,
+                  style: AppTypography.caption(
                     color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
-                    height: 1.4,
-                  ),
+                  ).copyWith(fontStyle: FontStyle.italic, fontWeight: FontWeight.w500),
                 ),
               ),
             ],
@@ -251,8 +257,8 @@ class _PassageDisplayCardState extends State<PassageDisplayCard> {
             // Body
             Container(
               padding: EdgeInsets.symmetric(
-                horizontal: isPoem ? 20 : 16,
-                vertical: isPoem ? 16 : 14,
+                horizontal: isPoem ? AppSpacing.lg : AppSpacing.base,
+                vertical: isPoem ? AppSpacing.base : AppSpacing.md,
               ),
               decoration: BoxDecoration(
                 color: isPoem
@@ -262,13 +268,17 @@ class _PassageDisplayCardState extends State<PassageDisplayCard> {
               child: SelectableText(
                 widget.passage.cleanBody,
                 textAlign: isPoem ? TextAlign.center : TextAlign.justify,
-                style: TextStyle(
-                  fontSize: isPoem ? 16.0 : 15.0,
-                  height: isPoem ? 2.0 : 1.7,
-                  fontStyle: isPoem ? FontStyle.italic : FontStyle.normal,
-                  color: isDark ? AppColors.borderStrong : AppColors.primaryLight,
-                  letterSpacing: isPoem ? 0.3 : 0.1,
-                ),
+                style: isPoem
+                    ? AppTypography.questionText(
+                        color: isDark ? AppColors.borderStrong : AppColors.lightTextPrimary,
+                      ).copyWith(
+                        height: 2.0,
+                        fontStyle: FontStyle.italic,
+                        letterSpacing: 0.3,
+                      )
+                    : AppTypography.passageBody(
+                        color: isDark ? AppColors.borderStrong : AppColors.lightTextPrimary,
+                      ).copyWith(letterSpacing: 0.1),
               ),
             ),
           ],

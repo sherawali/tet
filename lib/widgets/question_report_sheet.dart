@@ -2,6 +2,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../design_system/app_colors.dart';
+import '../design_system/app_radius.dart';
+import '../design_system/app_spacing.dart';
 import '../design_system/app_snack_bar.dart';
 import '../design_system/app_typography.dart';
 import '../models/question.dart';
@@ -164,33 +166,29 @@ class _QuestionReportSheetState extends State<QuestionReportSheet> {
         builder: (context, setDlgState) {
           final isDark = Theme.of(context).brightness == Brightness.dark;
           final cardBg = isDark ? AppColors.primaryLight : AppColors.darkTextPrimary;
-          final textColor = isDark ? Colors.white : AppColors.primary;
+          final textColor = isDark ? AppColors.darkTextPrimary : AppColors.primary;
 
           return AlertDialog(
-            backgroundColor: isDark ? AppColors.primary : Colors.white,
+            backgroundColor: isDark ? AppColors.primary : AppColors.lightCard,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: AppRadius.roundedLg,
               side: const BorderSide(color: AppColors.goldBright, width: 1.2),
             ),
             title: Row(
               children: [
                 Container(
-                  padding: const EdgeInsets.all(8),
+                  padding: const EdgeInsets.all(AppSpacing.sm),
                   decoration: BoxDecoration(
                     color: AppColors.goldBright.withValues(alpha: 0.15),
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: AppRadius.roundedMd,
                   ),
                   child: const Icon(Icons.key_rounded, color: AppColors.goldBright, size: 22),
                 ),
-                const SizedBox(width: 10),
+                const SizedBox(width: AppSpacing.md),
                 Expanded(
                   child: Text(
                     'GitHub Key सेटअप',
-                    style: AppTypography.outfit(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: textColor,
-                    ),
+                    style: AppTypography.titleLarge(color: textColor),
                   ),
                 ),
               ],
@@ -202,19 +200,17 @@ class _QuestionReportSheetState extends State<QuestionReportSheet> {
                 children: [
                   Text(
                     'छात्रों द्वारा रिपोर्ट की गई समस्याएं सीधे GitHub Issues पर दर्ज होंगी। Key ऐप में XOR Base64 मानक से 100% एन्क्रिप्ट होकर सुरक्षित रहती है।',
-                    style: AppTypography.notoSansDevanagari(
-                      fontSize: 12.5,
+                    style: AppTypography.caption(
                       color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
-                      height: 1.45,
                     ),
                   ),
                   const SizedBox(height: 12),
                   Container(
                     width: double.infinity,
-                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                    padding: const EdgeInsets.symmetric(horizontal: AppSpacing.sm, vertical: AppSpacing.sm),
                     decoration: BoxDecoration(
                       color: cardBg,
-                      borderRadius: BorderRadius.circular(8),
+                      borderRadius: AppRadius.roundedSm,
                       border: Border.all(
                         color: isConfigured ? AppColors.success : AppColors.goldBright,
                         width: 1,
@@ -222,23 +218,15 @@ class _QuestionReportSheetState extends State<QuestionReportSheet> {
                     ),
                     child: Text(
                       statusMsg,
-                      style: AppTypography.notoSansDevanagari(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600,
-                        color: isConfigured ? AppColors.success : AppColors.goldBright,
-                      ),
+                      style: AppTypography.labelMedium(color: isConfigured ? AppColors.success : AppColors.goldBright),
                     ),
                   ),
-                  const SizedBox(height: 14),
+                  const SizedBox(height: AppSpacing.base),
                   Text(
                     'नया Personal Access Token पेस्ट करें:',
-                    style: AppTypography.outfit(
-                      fontSize: 12.5,
-                      fontWeight: FontWeight.w600,
-                      color: textColor,
-                    ),
+                    style: AppTypography.labelMedium(color: textColor),
                   ),
-                  const SizedBox(height: 6),
+                  const SizedBox(height: AppSpacing.sm),
                   TextField(
                     controller: tokenController,
                     obscureText: isObscured,
@@ -250,12 +238,12 @@ class _QuestionReportSheetState extends State<QuestionReportSheet> {
                       hintText: 'ghp_... या github_pat_...',
                       hintStyle: AppTypography.courierPrime(
                         fontSize: 12,
-                        color: Colors.grey,
+                        color: AppColors.lightTextMuted,
                       ),
                       filled: true,
                       fillColor: cardBg,
-                      contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                      contentPadding: const EdgeInsets.symmetric(horizontal: AppSpacing.md, vertical: AppSpacing.sm),
+                      border: OutlineInputBorder(borderRadius: AppRadius.roundedMd),
                       suffixIcon: IconButton(
                         icon: Icon(
                           isObscured ? Icons.visibility_off : Icons.visibility,
@@ -286,12 +274,12 @@ class _QuestionReportSheetState extends State<QuestionReportSheet> {
                   },
                   child: Text(
                     'हटाएं',
-                    style: AppTypography.outfit(color: Colors.redAccent, fontWeight: FontWeight.w600),
+                    style: AppTypography.outfit(color: AppColors.danger, fontWeight: FontWeight.w600),
                   ),
                 ),
               TextButton(
                 onPressed: () => Navigator.pop(dlgCtx),
-                child: Text('रद्द करें', style: AppTypography.outfit(color: Colors.grey)),
+                child: Text('रद्द करें', style: AppTypography.outfit(color: AppColors.lightTextMuted)),
               ),
               ElevatedButton(
                 onPressed: isTesting
@@ -337,17 +325,17 @@ class _QuestionReportSheetState extends State<QuestionReportSheet> {
                       },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.goldBright,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                  shape: RoundedRectangleBorder(borderRadius: AppRadius.roundedMd),
                 ),
                 child: isTesting
                     ? const SizedBox(
                         width: 16,
                         height: 16,
-                        child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white),
+                        child: CircularProgressIndicator(strokeWidth: 2, color: AppColors.darkTextPrimary),
                       )
                     : Text(
                         'एन्क्रिप्ट और सहेजें',
-                        style: AppTypography.outfit(fontWeight: FontWeight.bold, color: Colors.black87),
+                        style: AppTypography.outfit(fontWeight: FontWeight.bold, color: AppColors.lightTextPrimary),
                       ),
               ),
             ],
@@ -457,10 +445,10 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final bgSurface = isDark ? AppColors.primary : Colors.white;
+    final bgSurface = isDark ? AppColors.primary : AppColors.lightCard;
     final cardBg = isDark ? AppColors.primaryLight : AppColors.darkTextPrimary;
     final borderColor = isDark ? AppColors.lightTextSecondary : AppColors.borderStrong;
-    final textPrimary = isDark ? Colors.white : AppColors.primary;
+    final textPrimary = isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary;
     final textSecondary = isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted;
 
     final q = widget.question;
@@ -484,14 +472,14 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
         ),
         decoration: BoxDecoration(
         color: bgSurface,
-        borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(AppRadius.xl)),
         border: Border.all(
           color: AppColors.goldBright.withValues(alpha: 0.3),
           width: 1.2,
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.5),
+            color: AppColors.primaryDark.withValues(alpha: 0.5),
             blurRadius: 30,
             offset: const Offset(0, -6),
           ),
@@ -503,14 +491,14 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
           mainAxisSize: MainAxisSize.min,
           children: [
             // Drag handle pill
-            const SizedBox(height: 10),
+            const SizedBox(height: AppSpacing.md),
             Center(
               child: Container(
                 width: 42,
                 height: 4.5,
                 decoration: BoxDecoration(
                   color: isDark ? AppColors.deskGray : AppColors.lightBorder,
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: AppRadius.roundedMd,
                 ),
               ),
             ),
@@ -518,13 +506,13 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
 
             // Header Row
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 18),
+              padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg),
               child: Row(
                 children: [
                   // Illuminated glowing Flag Badge (Tap to setup/check GitHub API key)
                   InkWell(
                     onTap: () => _showApiKeySetupDialog(context),
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: AppRadius.roundedMd,
                     child: Tooltip(
                       message: 'GitHub API Key सेटअप (Admin)',
                       child: Container(
@@ -536,7 +524,7 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
                             begin: Alignment.topLeft,
                             end: Alignment.bottomRight,
                           ),
-                          borderRadius: BorderRadius.circular(12),
+                          borderRadius: AppRadius.roundedMd,
                           boxShadow: [
                             BoxShadow(
                               color: AppColors.sealGoldLight.withValues(alpha: 0.35),
@@ -545,7 +533,7 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
                             ),
                           ],
                         ),
-                        child: const Icon(Icons.flag_rounded, color: Colors.white, size: 22),
+                        child: const Icon(Icons.flag_rounded, color: AppColors.darkTextPrimary, size: 22),
                       ),
                     ),
                   ),
@@ -559,21 +547,15 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
                             Flexible(
                               child: Text(
                                 'प्रश्न में त्रुटि रिपोर्ट',
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: AppTypography.outfit(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                  color: textPrimary,
-                                ),
+                                style: AppTypography.titleMedium(color: textPrimary),
                               ),
                             ),
-                            const SizedBox(width: 6),
+                            const SizedBox(width: AppSpacing.xs),
                             Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                              padding: const EdgeInsets.symmetric(horizontal: AppSpacing.sm, vertical: AppSpacing.xs),
                               decoration: BoxDecoration(
                                 color: AppColors.sealGoldLight.withValues(alpha: 0.15),
-                                borderRadius: BorderRadius.circular(6),
+                                borderRadius: AppRadius.roundedSm,
                                 border: Border.all(
                                   color: AppColors.sealGoldLight.withValues(alpha: 0.4),
                                   width: 1,
@@ -581,32 +563,23 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
                               ),
                               child: Text(
                                 'Q${widget.questionNumber}',
-                                style: AppTypography.outfit(
-                                  fontSize: 11.5,
-                                  fontWeight: FontWeight.w800,
-                                  color: AppColors.goldBright,
-                                ),
+                                style: AppTypography.labelSmall(color: AppColors.goldBright),
                               ),
                             ),
                           ],
                         ),
-                        const SizedBox(height: 2),
+                        const SizedBox(height: AppSpacing.xs),
                         Text(
                           widget.paperTitle != null
                               ? '${widget.paperTitle} · प्रश्न संख्या ${widget.questionNumber}'
                               : 'प्रश्न संख्या ${widget.questionNumber} का विवरण दर्ज करें',
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: AppTypography.notoSansDevanagari(
-                            fontSize: 12,
-                            color: textSecondary,
-                          ),
+                          style: AppTypography.bodySmall(color: textSecondary),
                         ),
                       ],
                     ),
                   ),
                   IconButton(
-                    padding: const EdgeInsets.all(6),
+                    padding: const EdgeInsets.all(AppSpacing.xs),
                     constraints: const BoxConstraints(),
                     tooltip: 'मेरी रिपोर्ट्स देखें',
                     icon: const Icon(Icons.history_rounded, color: AppColors.goldBright, size: 21),
@@ -616,7 +589,7 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
                   ),
                   const SizedBox(width: 4),
                   IconButton(
-                    padding: const EdgeInsets.all(6),
+                    padding: const EdgeInsets.all(AppSpacing.xs),
                     constraints: const BoxConstraints(),
                     icon: Icon(Icons.close_rounded, color: textSecondary, size: 21),
                     onPressed: () => Navigator.pop(context),
@@ -624,14 +597,14 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
                 ],
               ),
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: AppSpacing.md),
             Divider(color: borderColor, height: 1),
 
             Flexible(
               child: SingleChildScrollView(
                 controller: _scrollController,
                 keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-                padding: const EdgeInsets.fromLTRB(18, 14, 18, 24),
+                padding: const EdgeInsets.fromLTRB(AppSpacing.lg, AppSpacing.md, AppSpacing.lg, AppSpacing.xl),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -639,13 +612,13 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
                     if (_hasAlreadyReported) ...[
                       InkWell(
                         onTap: () => ReportedQuestionsSheet.show(context),
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: AppRadius.roundedMd,
                         child: Container(
                           width: double.infinity,
-                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                          padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md, vertical: AppSpacing.sm),
                           decoration: BoxDecoration(
                             color: AppColors.goldBright.withValues(alpha: 0.12),
-                            borderRadius: BorderRadius.circular(10),
+                            borderRadius: AppRadius.roundedMd,
                             border: Border.all(
                               color: AppColors.goldBright.withValues(alpha: 0.35),
                               width: 1,
@@ -658,11 +631,7 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
                               Expanded(
                                 child: Text(
                                   'आप इस प्रश्न की रिपोर्ट पहले दर्ज कर चुके हैं। (पिछली रिपोर्ट देखने हेतु टैप करें)',
-                                  style: AppTypography.notoSansDevanagari(
-                                    fontSize: 12,
-                                    color: AppColors.goldBright,
-                                    fontWeight: FontWeight.w600,
-                                  ),
+                                  style: AppTypography.labelMedium(color: AppColors.goldBright),
                                 ),
                               ),
                               const Icon(Icons.arrow_forward_ios_rounded, color: AppColors.goldBright, size: 12),
@@ -676,10 +645,10 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
                     // Question preview card
                     Container(
                       width: double.infinity,
-                      padding: const EdgeInsets.all(12),
+                      padding: const EdgeInsets.all(AppSpacing.md),
                       decoration: BoxDecoration(
                         color: cardBg,
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius: AppRadius.roundedMd,
                         border: Border.all(color: borderColor, width: 1),
                       ),
                       child: Column(
@@ -688,42 +657,29 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
                           Row(
                             children: [
                               Icon(Icons.format_quote_rounded, size: 16, color: AppColors.goldBright),
-                              const SizedBox(width: 6),
+                              const SizedBox(width: AppSpacing.sm),
                               Text(
                                 'प्रश्न का संक्षिप्त अंश:',
-                                style: AppTypography.outfit(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w700,
-                                  color: textSecondary,
-                                ),
+                                style: AppTypography.labelMedium(color: textSecondary),
                               ),
                               const Spacer(),
                               Container(
-                                padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                                padding: const EdgeInsets.symmetric(horizontal: AppSpacing.sm, vertical: AppSpacing.xs),
                                 decoration: BoxDecoration(
                                   color: AppColors.success.withValues(alpha: 0.12),
-                                  borderRadius: BorderRadius.circular(4),
+                                  borderRadius: AppRadius.roundedSm,
                                 ),
                                 child: Text(
                                   'सही उत्तर: (${String.fromCharCode(65 + q.answer)})',
-                                  style: AppTypography.outfit(
-                                    fontSize: 11,
-                                    fontWeight: FontWeight.w700,
-                                    color: AppColors.success,
-                                  ),
+                                  style: AppTypography.labelSmall(color: AppColors.success),
                                 ),
                               ),
                             ],
                           ),
-                          const SizedBox(height: 6),
+                          const SizedBox(height: AppSpacing.sm),
                           Text(
                             shortPreview,
-                            style: AppTypography.notoSansDevanagari(
-                              fontSize: 13,
-                              height: 1.45,
-                              color: textPrimary,
-                              fontWeight: FontWeight.w500,
-                            ),
+                            style: AppTypography.bodyMedium(color: textPrimary),
                           ),
                         ],
                       ),
@@ -733,13 +689,9 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
                     // Section Title: Reason
                     Text(
                       'इस प्रश्न में क्या समस्या है? (समस्या चुनें)',
-                      style: AppTypography.outfit(
-                        fontSize: 13.5,
-                        fontWeight: FontWeight.w700,
-                        color: textPrimary,
-                      ),
+                      style: AppTypography.titleSmall(color: textPrimary),
                     ),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: AppSpacing.md),
 
                     // Reason Selector Cards
                     ..._reasons.map((r) {
@@ -751,22 +703,22 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
                       final isSelected = _selectedReason == id || _selectedReason == title;
 
                       return Padding(
-                        padding: const EdgeInsets.only(bottom: 8),
+                        padding: const EdgeInsets.only(bottom: AppSpacing.sm),
                         child: InkWell(
                           onTap: () {
                             HapticFeedback.selectionClick();
                             setState(() => _selectedReason = id);
                           },
-                          borderRadius: BorderRadius.circular(12),
+                          borderRadius: AppRadius.roundedMd,
                           child: AnimatedContainer(
                             duration: AppMotion.base,
                             curve: AppMotion.standard,
-                            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                            padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md, vertical: AppSpacing.sm),
                             decoration: BoxDecoration(
                               color: isSelected
                                   ? accent.withValues(alpha: 0.12)
                                   : (isDark ? AppColors.darkCard : AppColors.darkTextPrimary),
-                              borderRadius: BorderRadius.circular(12),
+                              borderRadius: AppRadius.roundedMd,
                               border: Border.all(
                                 color: isSelected ? accent : borderColor,
                                 width: isSelected ? 1.6 : 1,
@@ -793,31 +745,24 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
                                   ),
                                   child: Icon(icon, color: accent, size: 18),
                                 ),
-                                const SizedBox(width: 10),
+                                const SizedBox(width: AppSpacing.md),
                                 Expanded(
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         title,
-                                        style: AppTypography.outfit(
-                                          fontSize: 13.5,
-                                          fontWeight: isSelected ? FontWeight.w700 : FontWeight.w600,
-                                          color: isSelected ? textPrimary : textPrimary.withValues(alpha: 0.85),
-                                        ),
+                                        style: AppTypography.titleSmall(color: isSelected ? textPrimary : textPrimary.withValues(alpha: 0.85)),
                                       ),
-                                      const SizedBox(height: 2),
+                                      const SizedBox(height: AppSpacing.xs),
                                       Text(
                                         subtitle,
-                                        style: AppTypography.notoSansDevanagari(
-                                          fontSize: 11.5,
-                                          color: textSecondary,
-                                        ),
+                                        style: AppTypography.bodySmall(color: textSecondary),
                                       ),
                                     ],
                                   ),
                                 ),
-                                const SizedBox(width: 6),
+                                const SizedBox(width: AppSpacing.sm),
                                 Icon(
                                   isSelected ? Icons.check_circle_rounded : Icons.radio_button_unchecked_rounded,
                                   color: isSelected ? accent : textSecondary.withValues(alpha: 0.5),
@@ -832,16 +777,12 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
 
                     // Suggested Option (shows when wrong answer is selected)
                     if (_selectedReason == 'wrong_answer' || _selectedReason.contains('Wrong Answer') || _selectedReason.contains('उत्तर गलत')) ...[
-                      const SizedBox(height: 10),
+                      const SizedBox(height: AppSpacing.md),
                       Text(
                         LanguageService.instance.isHindi
                             ? 'आपके अनुसार सही उत्तर क्या होना चाहिए?'
                             : 'What do you believe is the correct answer?',
-                        style: AppTypography.outfit(
-                          fontSize: 13,
-                          fontWeight: FontWeight.w700,
-                          color: AppColors.goldBright,
-                        ),
+                        style: AppTypography.labelMedium(color: AppColors.goldBright),
                       ),
                       const SizedBox(height: 8),
                       Row(
@@ -849,7 +790,7 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
                           final isOptSel = _suggestedOption == opt;
                           return Expanded(
                             child: Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 4),
+                              padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xs),
                               child: InkWell(
                                 onTap: () {
                                   HapticFeedback.selectionClick();
@@ -857,15 +798,15 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
                                     _suggestedOption = isOptSel ? null : opt;
                                   });
                                 },
-                                borderRadius: BorderRadius.circular(8),
+                                borderRadius: AppRadius.roundedSm,
                                 child: Container(
-                                  padding: const EdgeInsets.symmetric(vertical: 8),
+                                  padding: const EdgeInsets.symmetric(vertical: AppSpacing.sm),
                                   alignment: Alignment.center,
                                   decoration: BoxDecoration(
                                     color: isOptSel
                                         ? AppColors.goldBright.withValues(alpha: 0.2)
                                         : cardBg,
-                                    borderRadius: BorderRadius.circular(8),
+                                    borderRadius: AppRadius.roundedSm,
                                     border: Border.all(
                                       color: isOptSel ? AppColors.goldBright : borderColor,
                                       width: isOptSel ? 1.8 : 1,
@@ -873,11 +814,7 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
                                   ),
                                   child: Text(
                                     '($opt)',
-                                    style: AppTypography.outfit(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: isOptSel ? AppColors.goldBright : textPrimary,
-                                    ),
+                                    style: AppTypography.titleSmall(color: isOptSel ? AppColors.goldBright : textPrimary),
                                   ),
                                 ),
                               ),
@@ -887,7 +824,7 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
                       ),
                     ],
 
-                    const SizedBox(height: 14),
+                    const SizedBox(height: AppSpacing.base),
 
                     // Additional Comment Input with Keyboard Dismiss Option
                     Row(
@@ -895,21 +832,17 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
                       children: [
                         Text(
                           'अतिरिक्त विवरण / टिप्पणी (वैकल्पिक)',
-                          style: AppTypography.outfit(
-                            fontSize: 13,
-                            fontWeight: FontWeight.w700,
-                            color: textPrimary,
-                          ),
+                          style: AppTypography.labelMedium(color: textPrimary),
                         ),
                         if (isKeyboardOpen)
                           InkWell(
                             onTap: () => FocusScope.of(context).unfocus(),
-                            borderRadius: BorderRadius.circular(6),
+                            borderRadius: AppRadius.roundedSm,
                             child: Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                              padding: const EdgeInsets.symmetric(horizontal: AppSpacing.sm, vertical: AppSpacing.xs),
                               decoration: BoxDecoration(
                                 color: AppColors.goldBright.withValues(alpha: 0.15),
-                                borderRadius: BorderRadius.circular(6),
+                                borderRadius: AppRadius.roundedSm,
                                 border: Border.all(
                                   color: AppColors.goldBright.withValues(alpha: 0.35),
                                   width: 1,
@@ -922,11 +855,7 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
                                   const SizedBox(width: 4),
                                   Text(
                                     'कीबोर्ड छुपाएं',
-                                    style: AppTypography.notoSansDevanagari(
-                                      fontSize: 11,
-                                      fontWeight: FontWeight.w600,
-                                      color: AppColors.goldBright,
-                                    ),
+                                    style: AppTypography.labelSmall(color: AppColors.goldBright),
                                   ),
                                 ],
                               ),
@@ -934,7 +863,7 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
                           ),
                       ],
                     ),
-                    const SizedBox(height: 6),
+                    const SizedBox(height: AppSpacing.sm),
                     TextField(
                       controller: _commentController,
                       focusNode: _commentFocusNode,
@@ -954,29 +883,23 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
                           }
                         });
                       },
-                      style: AppTypography.notoSansDevanagari(
-                        fontSize: 13.5,
-                        color: textPrimary,
-                      ),
+                      style: AppTypography.titleSmall(color: textPrimary),
                       decoration: InputDecoration(
                         hintText: 'पुस्तक संदर्भ, सही उत्तर का कारण या प्रश्न में क्या छूटा है संक्षेप में लिखें...',
-                        hintStyle: AppTypography.notoSansDevanagari(
-                          fontSize: 12.5,
-                          color: textSecondary.withValues(alpha: 0.7),
-                        ),
+                        hintStyle: AppTypography.caption(color: textSecondary.withValues(alpha: 0.7)),
                         filled: true,
                         fillColor: cardBg,
-                        contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+                        contentPadding: const EdgeInsets.symmetric(horizontal: AppSpacing.md, vertical: AppSpacing.md),
                         border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
+                          borderRadius: AppRadius.roundedMd,
                           borderSide: BorderSide(color: borderColor),
                         ),
                         focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
+                          borderRadius: AppRadius.roundedMd,
                           borderSide: const BorderSide(color: AppColors.goldBright, width: 1.5),
                         ),
                         enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
+                          borderRadius: AppRadius.roundedMd,
                           borderSide: BorderSide(color: borderColor),
                         ),
                       ),
@@ -992,19 +915,15 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
                           icon: const Icon(Icons.share_outlined, size: 16, color: AppColors.success),
                           label: Text(
                             'कॉपी',
-                            style: AppTypography.outfit(
-                              fontSize: 13,
-                              fontWeight: FontWeight.w700,
-                              color: AppColors.success,
-                            ),
+                            style: AppTypography.labelMedium(color: AppColors.success),
                           ),
                           style: OutlinedButton.styleFrom(
                             side: const BorderSide(color: AppColors.success, width: 1.2),
-                            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 13),
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                            padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md, vertical: AppSpacing.md),
+                            shape: RoundedRectangleBorder(borderRadius: AppRadius.roundedMd),
                           ),
                         ),
-                        const SizedBox(width: 10),
+                        const SizedBox(width: AppSpacing.md),
 
                         // Primary Submit Button
                         Expanded(
@@ -1016,7 +935,7 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
                                 begin: Alignment.topLeft,
                                 end: Alignment.bottomRight,
                               ),
-                              borderRadius: BorderRadius.circular(12),
+                              borderRadius: AppRadius.roundedMd,
                               boxShadow: [
                                 BoxShadow(
                                   color: AppColors.sealGoldLight.withValues(alpha: 0.35),
@@ -1029,7 +948,7 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
                               onPressed: _isSubmitting ? null : _submitReport,
                               style: ElevatedButton.styleFrom(
                                 shadowColor: Colors.transparent,
-                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                                shape: RoundedRectangleBorder(borderRadius: AppRadius.roundedMd),
                               ),
                               child: _isSubmitting
                                   ? const SizedBox(
@@ -1037,21 +956,17 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
                                       height: 20,
                                       child: CircularProgressIndicator(
                                         strokeWidth: 2.2,
-                                        valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                                        valueColor: AlwaysStoppedAnimation<Color>(AppColors.darkTextPrimary),
                                       ),
                                     )
                                   : Row(
                                       mainAxisAlignment: MainAxisAlignment.center,
                                       children: [
-                                        const Icon(Icons.send_rounded, size: 18, color: Colors.white),
-                                        const SizedBox(width: 8),
+                                        const Icon(Icons.send_rounded, size: 18, color: AppColors.darkTextPrimary),
+                                        const SizedBox(width: AppSpacing.sm),
                                         Text(
                                           'रिपोर्ट सबमिट करें',
-                                          style: AppTypography.outfit(
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.white,
-                                          ),
+                                          style: AppTypography.titleMedium(color: AppColors.darkTextPrimary),
                                         ),
                                       ],
                                     ),
@@ -1154,10 +1069,10 @@ ${opt != null && opt.toString().isNotEmpty ? '💡 सुझाया गया 
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final bgSurface = isDark ? AppColors.primary : Colors.white;
+    final bgSurface = isDark ? AppColors.primary : AppColors.lightCard;
     final cardBg = isDark ? AppColors.primaryLight : AppColors.darkTextPrimary;
     final borderColor = isDark ? AppColors.lightTextSecondary : AppColors.borderStrong;
-    final textPrimary = isDark ? Colors.white : AppColors.primary;
+    final textPrimary = isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary;
     final textSecondary = isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted;
 
     return Container(
@@ -1166,14 +1081,14 @@ ${opt != null && opt.toString().isNotEmpty ? '💡 सुझाया गया 
       ),
       decoration: BoxDecoration(
         color: bgSurface,
-        borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(AppRadius.xl)),
         border: Border.all(
           color: AppColors.goldBright.withValues(alpha: 0.3),
           width: 1.2,
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.5),
+            color: AppColors.primaryDark.withValues(alpha: 0.5),
             blurRadius: 30,
             offset: const Offset(0, -6),
           ),
@@ -1183,14 +1098,14 @@ ${opt != null && opt.toString().isNotEmpty ? '💡 सुझाया गया 
         top: false,
         child: Column(
           children: [
-            const SizedBox(height: 10),
+            const SizedBox(height: AppSpacing.md),
             Center(
               child: Container(
                 width: 42,
                 height: 4.5,
                 decoration: BoxDecoration(
                   color: isDark ? AppColors.deskGray : AppColors.lightBorder,
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: AppRadius.roundedMd,
                 ),
               ),
             ),
@@ -1198,7 +1113,7 @@ ${opt != null && opt.toString().isNotEmpty ? '💡 सुझाया गया 
 
             // Header
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 18),
+              padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg),
               child: Row(
                 children: [
                   Container(
@@ -1206,7 +1121,7 @@ ${opt != null && opt.toString().isNotEmpty ? '💡 सुझाया गया 
                     height: 38,
                     decoration: BoxDecoration(
                       color: AppColors.goldBright.withValues(alpha: 0.15),
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: AppRadius.roundedMd,
                       border: Border.all(
                         color: AppColors.goldBright.withValues(alpha: 0.4),
                         width: 1,
@@ -1224,39 +1139,26 @@ ${opt != null && opt.toString().isNotEmpty ? '💡 सुझाया गया 
                             Flexible(
                               child: Text(
                                 'मेरी रिपोर्ट की गई समस्याएं',
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: AppTypography.outfit(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                  color: textPrimary,
-                                ),
+                                style: AppTypography.titleMedium(color: textPrimary),
                               ),
                             ),
-                            const SizedBox(width: 8),
+                            const SizedBox(width: AppSpacing.sm),
                             Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
+                              padding: const EdgeInsets.symmetric(horizontal: AppSpacing.sm, vertical: AppSpacing.xs),
                               decoration: BoxDecoration(
                                 color: AppColors.success.withValues(alpha: 0.15),
-                                borderRadius: BorderRadius.circular(10),
+                                borderRadius: AppRadius.roundedMd,
                               ),
                               child: Text(
                                 '${_reports.length}',
-                                style: AppTypography.outfit(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.bold,
-                                  color: AppColors.success,
-                                ),
+                                style: AppTypography.labelMedium(color: AppColors.success),
                               ),
                             ),
                           ],
                         ),
                         Text(
                           'प्रश्नों की समीक्षा स्थिति · 7 दिनों में स्वतः निस्तारित',
-                          style: AppTypography.notoSansDevanagari(
-                            fontSize: 11.5,
-                            color: textSecondary,
-                          ),
+                          style: AppTypography.bodySmall(color: textSecondary),
                         ),
                       ],
                     ),
@@ -1268,7 +1170,7 @@ ${opt != null && opt.toString().isNotEmpty ? '💡 सुझाया गया 
                 ],
               ),
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: AppSpacing.md),
             Divider(color: borderColor, height: 1),
 
             // Body List
@@ -1283,7 +1185,7 @@ ${opt != null && opt.toString().isNotEmpty ? '💡 सुझाया गया 
                   : _reports.isEmpty
                       ? Center(
                           child: Padding(
-                            padding: const EdgeInsets.all(32),
+                            padding: const EdgeInsets.all(AppSpacing.xxl),
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               children: [
@@ -1300,30 +1202,22 @@ ${opt != null && opt.toString().isNotEmpty ? '💡 सुझाया गया 
                                 const SizedBox(height: 16),
                                 Text(
                                   'कोई रिपोर्ट दर्ज नहीं है',
-                                  style: AppTypography.outfit(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                    color: textPrimary,
-                                  ),
+                                  style: AppTypography.titleMedium(color: textPrimary),
                                 ),
-                                const SizedBox(height: 6),
+                                const SizedBox(height: AppSpacing.sm),
                                 Text(
                                   'यदि किसी प्रश्न में उत्तर या प्रश्न अधूरा लगे, तो प्रश्न कार्ड पर "🚩 रिपोर्ट" बटन दबाकर रिपोर्ट दर्ज करें।',
                                   textAlign: TextAlign.center,
-                                  style: AppTypography.notoSansDevanagari(
-                                    fontSize: 13,
-                                    color: textSecondary,
-                                    height: 1.5,
-                                  ),
+                                  style: AppTypography.bodyMedium(color: textSecondary),
                                 ),
                               ],
                             ),
                           ),
                         )
                       : ListView.separated(
-                          padding: const EdgeInsets.fromLTRB(16, 14, 16, 20),
+                          padding: const EdgeInsets.fromLTRB(AppSpacing.base, AppSpacing.md, AppSpacing.base, AppSpacing.lg),
                           itemCount: _reports.length,
-                          separatorBuilder: (context, index) => const SizedBox(height: 10),
+                          separatorBuilder: (context, index) => const SizedBox(height: AppSpacing.md),
                           itemBuilder: (ctx, idx) {
                             final r = _reports[idx];
                             final id = r['id'] as int? ?? 0;
@@ -1352,10 +1246,10 @@ ${opt != null && opt.toString().isNotEmpty ? '💡 सुझाया गया 
                                   final isVerified = status == 'verified';
 
                                   return Container(
-                                    padding: const EdgeInsets.all(12),
+                                    padding: const EdgeInsets.all(AppSpacing.md),
                                     decoration: BoxDecoration(
                                       color: cardBg,
-                                      borderRadius: BorderRadius.circular(14),
+                                      borderRadius: AppRadius.roundedBase,
                                       border: Border.all(
                                         color: isSolved
                                             ? AppColors.success.withValues(alpha: 0.4)
@@ -1371,10 +1265,10 @@ ${opt != null && opt.toString().isNotEmpty ? '💡 सुझाया गया 
                                           children: [
                                             // Question Number badge
                                             Container(
-                                              padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2.5),
+                                              padding: const EdgeInsets.symmetric(horizontal: AppSpacing.sm, vertical: AppSpacing.xs),
                                               decoration: BoxDecoration(
                                                 color: AppColors.sealGoldLight.withValues(alpha: 0.15),
-                                                borderRadius: BorderRadius.circular(6),
+                                                borderRadius: AppRadius.roundedSm,
                                                 border: Border.all(
                                                   color: AppColors.sealGoldLight.withValues(alpha: 0.4),
                                                   width: 1,
@@ -1382,26 +1276,22 @@ ${opt != null && opt.toString().isNotEmpty ? '💡 सुझाया गया 
                                               ),
                                               child: Text(
                                                 'Q$qNum',
-                                                style: AppTypography.outfit(
-                                                  fontSize: 11.5,
-                                                  fontWeight: FontWeight.bold,
-                                                  color: AppColors.goldBright,
-                                                ),
+                                                style: AppTypography.labelSmall(color: AppColors.goldBright),
                                               ),
                                             ),
-                                            const SizedBox(width: 6),
+                                            const SizedBox(width: AppSpacing.sm),
 
                                             // Status Badge (Flexible so it never overflows)
                                             Flexible(
                                               child: Container(
-                                                padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2.5),
+                                                padding: const EdgeInsets.symmetric(horizontal: AppSpacing.sm, vertical: AppSpacing.xs),
                                                 decoration: BoxDecoration(
                                                   color: isSolved
                                                       ? AppColors.success.withValues(alpha: 0.15)
                                                       : (isVerified
                                                           ? AppColors.accentBright.withValues(alpha: 0.15)
                                                           : AppColors.goldBright.withValues(alpha: 0.12)),
-                                                  borderRadius: BorderRadius.circular(6),
+                                                  borderRadius: AppRadius.roundedSm,
                                                   border: Border.all(
                                                     color: isSolved
                                                         ? AppColors.success.withValues(alpha: 0.35)
@@ -1427,7 +1317,7 @@ ${opt != null && opt.toString().isNotEmpty ? '💡 सुझाया गया 
                                                               ? AppColors.accentBright
                                                               : AppColors.goldBright),
                                                     ),
-                                                    const SizedBox(width: 3.5),
+                                                    const SizedBox(width: AppSpacing.xs),
                                                     Flexible(
                                                       child: Text(
                                                         isSolved
@@ -1437,15 +1327,11 @@ ${opt != null && opt.toString().isNotEmpty ? '💡 सुझाया गया 
                                                                 : (LanguageService.instance.isHindi ? 'समीक्षाधीन' : 'Under Review')),
                                                         maxLines: 1,
                                                         overflow: TextOverflow.ellipsis,
-                                                        style: AppTypography.outfit(
-                                                          fontSize: 10.5,
-                                                          fontWeight: FontWeight.w700,
-                                                          color: isSolved
+                                                        style: AppTypography.labelSmall(color: isSolved
                                                               ? AppColors.success
                                                               : (isVerified
                                                                   ? AppColors.accentBright
-                                                                  : AppColors.goldBright),
-                                                        ),
+                                                                  : AppColors.goldBright)),
                                                       ),
                                                     ),
                                                   ],
@@ -1456,7 +1342,7 @@ ${opt != null && opt.toString().isNotEmpty ? '💡 सुझाया गया 
 
                                             // Copy button
                                             IconButton(
-                                              padding: const EdgeInsets.all(4),
+                                              padding: const EdgeInsets.all(AppSpacing.xs),
                                               constraints: const BoxConstraints(),
                                               icon: Icon(Icons.copy_rounded, size: 16, color: textSecondary),
                                               tooltip: 'कॉपी करें',
@@ -1466,7 +1352,7 @@ ${opt != null && opt.toString().isNotEmpty ? '💡 सुझाया गया 
 
                                             // Delete button
                                             IconButton(
-                                              padding: const EdgeInsets.all(4),
+                                              padding: const EdgeInsets.all(AppSpacing.xs),
                                               constraints: const BoxConstraints(),
                                               icon: const Icon(Icons.delete_outline_rounded, size: 17, color: AppColors.danger),
                                               tooltip: 'हटाएं',
@@ -1474,7 +1360,7 @@ ${opt != null && opt.toString().isNotEmpty ? '💡 सुझाया गया 
                                             ),
                                           ],
                                         ),
-                                        const SizedBox(height: 7),
+                                        const SizedBox(height: AppSpacing.sm),
 
                                         // Paper and Code (Full width, ellipsis safe)
                                         Row(
@@ -1482,57 +1368,41 @@ ${opt != null && opt.toString().isNotEmpty ? '💡 सुझाया गया 
                                             Expanded(
                                               child: Text(
                                                 paper,
-                                                maxLines: 1,
-                                                overflow: TextOverflow.ellipsis,
-                                                style: AppTypography.notoSansDevanagari(
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w600,
-                                                  color: textPrimary,
-                                                ),
+                                                style: AppTypography.labelMedium(color: textPrimary),
                                               ),
                                             ),
-                                            const SizedBox(width: 6),
+                                            const SizedBox(width: AppSpacing.xs),
                                             Text(
                                               reportCode,
-                                              style: AppTypography.outfit(
-                                                fontSize: 11,
-                                                color: textSecondary,
-                                              ),
+                                              style: AppTypography.bodySmall(color: textSecondary),
                                             ),
                                           ],
                                         ),
-                                        const SizedBox(height: 5),
+                                        const SizedBox(height: AppSpacing.xs),
 
                                         // Reason badge + Date row
                                         Row(
                                           children: [
                                             Expanded(
                                               child: Container(
-                                                padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
+                                                padding: const EdgeInsets.symmetric(horizontal: AppSpacing.sm, vertical: AppSpacing.xs),
                                                 decoration: BoxDecoration(
                                                   color: AppColors.danger.withValues(alpha: 0.1),
-                                                  borderRadius: BorderRadius.circular(6),
+                                                  borderRadius: AppRadius.roundedSm,
                                                 ),
                                                 child: Text(
                                                   'समस्या: $reason',
                                                   maxLines: 1,
                                                   overflow: TextOverflow.ellipsis,
-                                                  style: AppTypography.notoSansDevanagari(
-                                                    fontSize: 11.5,
-                                                    fontWeight: FontWeight.w600,
-                                                    color: AppColors.danger,
-                                                  ),
+                                                  style: AppTypography.labelSmall(color: AppColors.danger),
                                                 ),
                                               ),
                                             ),
                                             if (displayDate.isNotEmpty) ...[
-                                              const SizedBox(width: 6),
+                                              const SizedBox(width: AppSpacing.sm),
                                               Text(
                                                 displayDate,
-                                                style: AppTypography.outfit(
-                                                  fontSize: 10,
-                                                  color: textSecondary.withValues(alpha: 0.7),
-                                                ),
+                                                style: AppTypography.labelSmall(color: textSecondary.withValues(alpha: 0.7)),
                                               ),
                                             ],
                                           ],
@@ -1540,16 +1410,14 @@ ${opt != null && opt.toString().isNotEmpty ? '💡 सुझाया गया 
 
                                   // Stem preview if present
                                   if (stem != null && stem.isNotEmpty) ...[
-                                    const SizedBox(height: 6),
+                                    const SizedBox(height: AppSpacing.sm),
                                     Text(
                                       stem,
                                       maxLines: 2,
                                       overflow: TextOverflow.ellipsis,
-                                      style: AppTypography.notoSansDevanagari(
-                                        fontSize: 12,
+                                      style: AppTypography.bodySmall(
                                         color: textSecondary,
-                                        height: 1.4,
-                                      ),
+                                      ).copyWith(height: 1.4),
                                     ),
                                   ],
 
@@ -1558,11 +1426,7 @@ ${opt != null && opt.toString().isNotEmpty ? '💡 सुझाया गया 
                                     const SizedBox(height: 4),
                                     Text(
                                       '💡 छात्र द्वारा सुझाया गया सही उत्तर: विकल्प ($opt)',
-                                      style: AppTypography.notoSansDevanagari(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.bold,
-                                        color: AppColors.goldBright,
-                                      ),
+                                      style: AppTypography.labelMedium(color: AppColors.goldBright),
                                     ),
                                   ],
 
@@ -1571,25 +1435,20 @@ ${opt != null && opt.toString().isNotEmpty ? '💡 सुझाया गया 
                                     const SizedBox(height: 4),
                                     Text(
                                       'टिप्पणी: $comment',
-                                      style: AppTypography.notoSansDevanagari(
-                                        fontSize: 12,
-                                        fontStyle: FontStyle.italic,
+                                      style: AppTypography.bodySmall(
                                         color: textPrimary.withValues(alpha: 0.85),
-                                      ),
+                                      ).copyWith(fontStyle: FontStyle.italic),
                                     ),
                                   ],
 
                                   // Date
                                   if (displayDate.isNotEmpty) ...[
-                                    const SizedBox(height: 6),
+                                    const SizedBox(height: AppSpacing.sm),
                                     Align(
                                       alignment: Alignment.centerRight,
                                       child: Text(
                                         displayDate,
-                                        style: AppTypography.outfit(
-                                          fontSize: 10.5,
-                                          color: textSecondary.withValues(alpha: 0.7),
-                                        ),
+                                        style: AppTypography.labelSmall(color: textSecondary.withValues(alpha: 0.7)),
                                       ),
                                     ),
                                   ],

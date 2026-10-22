@@ -2,6 +2,9 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import '../design_system/app_colors.dart';
+import '../design_system/app_radius.dart';
+import '../design_system/app_spacing.dart';
+import '../design_system/app_typography.dart';
 
 /// Vector replacements for questions whose source images were never present in
 /// the extracted bank.  The same catalogue feeds Flutter (CustomPainter) and
@@ -409,11 +412,11 @@ class _FigureCanvas extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: height,
-      margin: const EdgeInsets.symmetric(vertical: 8),
-      padding: const EdgeInsets.all(6),
+      margin: const EdgeInsets.symmetric(vertical: AppSpacing.sm),
+      padding: const EdgeInsets.all(AppSpacing.xs),
       decoration: BoxDecoration(
         color: isDark ? AppColors.primary : AppColors.darkTextPrimary,
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: AppRadius.roundedMd,
         border: Border.all(color: borderColor),
       ),
       child: CustomPaint(
@@ -861,7 +864,7 @@ class _FigurePainter extends CustomPainter {
     final painter = TextPainter(
       text: TextSpan(
         text: value,
-        style: TextStyle(
+        style: AppTypography.outfit(
           color: color ?? _ink,
           fontSize: size,
           fontWeight: FontWeight.w600,

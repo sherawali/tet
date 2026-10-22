@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import '../design_system/app_colors.dart';
 import '../design_system/app_radius.dart';
+import '../design_system/app_spacing.dart';
 import '../design_system/app_shadows.dart';
 
+/// The one card of the app.
+///
+/// Every screen builds its surfaces with this widget, so padding, corner
+/// radius, hairline border and elevation stay identical everywhere.
 class AppCard extends StatelessWidget {
   final Widget child;
   final EdgeInsetsGeometry padding;
@@ -14,7 +19,7 @@ class AppCard extends StatelessWidget {
   const AppCard({
     super.key,
     required this.child,
-    this.padding = const EdgeInsets.all(16.0),
+    this.padding = const EdgeInsets.all(AppSpacing.base),
     this.onTap,
     this.color,
     this.border,
@@ -32,7 +37,7 @@ class AppCard extends StatelessWidget {
         color: cardColor,
         borderRadius: AppRadius.roundedBase,
         border: Border.fromBorderSide(
-          border ?? BorderSide(color: borderColor, width: 1.0),
+          border ?? BorderSide(color: borderColor, width: 1.2),
         ),
         boxShadow: hasGlow
             ? AppShadows.primaryGlow

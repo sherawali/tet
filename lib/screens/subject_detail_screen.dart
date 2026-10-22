@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 import '../design_system/app_colors.dart';
+import '../design_system/app_typography.dart';
+import '../design_system/app_radius.dart';
+import '../design_system/app_spacing.dart';
 import '../design_system/app_strings.dart';
+import '../design_system/app_snack_bar.dart';
 import '../database/db_helper.dart';
 import '../services/mock_engine.dart';
 import '../models/test_session.dart';
 import '../models/mock_config.dart';
 import '../widgets/app_badge.dart';
+import '../widgets/app_button.dart';
+import '../widgets/app_card.dart';
+import '../widgets/app_state_views.dart';
 import '../services/premium_service.dart';
 import '../services/exam_service.dart';
 import '../widgets/premium_paywall_modal.dart';
@@ -34,6 +41,12 @@ class _SubjectDetailScreenState extends State<SubjectDetailScreen> {
   Map<String, int> _topicCounts = {};
   bool _isLoading = true;
   String? _busyItem;
+
+  /// The one card padding of this file.
+  static const EdgeInsets _cardPadding = EdgeInsets.symmetric(
+    horizontal: AppSpacing.base,
+    vertical: AppSpacing.md,
+  );
 
   @override
   void initState() {
@@ -108,8 +121,9 @@ class _SubjectDetailScreenState extends State<SubjectDetailScreen> {
     } catch (e) {
       if (!mounted) return;
       setState(() => _busyItem = null);
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(AppStrings.loadError(e.toString()))),
+      AppSnackBar.showError(
+        context,
+        title: AppStrings.loadError(e.toString()),
       );
     }
   }
@@ -134,8 +148,9 @@ class _SubjectDetailScreenState extends State<SubjectDetailScreen> {
       setState(() => _busyItem = null);
 
       if (data.questions.isEmpty) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('इस टॉपिक के प्रश्न उपलब्ध नहीं हैं')),
+        AppSnackBar.showError(
+          context,
+          title: 'इस टॉपिक के प्रश्न उपलब्ध नहीं हैं',
         );
         return;
       }
@@ -164,8 +179,9 @@ class _SubjectDetailScreenState extends State<SubjectDetailScreen> {
     } catch (e) {
       if (!mounted) return;
       setState(() => _busyItem = null);
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(AppStrings.loadError(e.toString()))),
+      AppSnackBar.showError(
+        context,
+        title: AppStrings.loadError(e.toString()),
       );
     }
   }
@@ -179,60 +195,58 @@ class _SubjectDetailScreenState extends State<SubjectDetailScreen> {
       appBar: AppBar(
         title: Text(
           AppStrings.subjectPracticeHubTitle(widget.sectionName),
-          overflow: TextOverflow.ellipsis,
         ),
         backgroundColor: isDark ? AppColors.darkCard : widget.sectionColor,
-        foregroundColor: Colors.white,
+        foregroundColor: AppColors.darkTextPrimary,
         elevation: 0,
       ),
       body: SafeArea(
         child: _isLoading
-            ? const Center(child: CircularProgressIndicator(color: AppColors.sealGold))
+            ? _buildLoadingState(isDark)
             : ListView(
-                padding: const EdgeInsets.fromLTRB(16, 16, 16, 40),
+                padding: const EdgeInsets.fromLTRB(
+                  AppSpacing.base,
+                  AppSpacing.base,
+                  AppSpacing.base,
+                  AppSpacing.xxl,
+                ),
                 children: [
                   // Hub Banner
-                  Container(
-                    padding: const EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                      color: isDark ? AppColors.darkCard : AppColors.lightCard,
-                      borderRadius: BorderRadius.circular(8),
-                      border: Border.all(
-                        color: widget.sectionColor.withValues(alpha: 0.6),
-                        width: 1.5,
-                      ),
+                  AppCard(
+                    padding: _cardPadding,
+                    border: BorderSide(
+                      color: widget.sectionColor.withValues(alpha: 0.6),
+                      width: 1.2,
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Container(
-                              padding: const EdgeInsets.all(10),
+                              padding: const EdgeInsets.all(AppSpacing.sm),
                               decoration: BoxDecoration(
                                 color: widget.sectionColor.withValues(alpha: 0.15),
                                 shape: BoxShape.circle,
                               ),
                               child: Icon(Icons.school_rounded, color: widget.sectionColor, size: 26),
                             ),
-                            const SizedBox(width: 12),
+                            const SizedBox(width: AppSpacing.md),
                             Expanded(
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
                                     widget.sectionName,
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
+                                    style: AppTypography.titleMedium(
                                       color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
                                     ),
                                   ),
-                                  const SizedBox(height: 2),
+                                  const SizedBox(height: AppSpacing.xs),
                                   Text(
                                     AppStrings.subjectPracticeHubDesc(_totalCount),
-                                    style: TextStyle(
-                                      fontSize: 12,
+                                    style: AppTypography.bodySmall(
                                       color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
                                     ),
                                   ),
@@ -241,61 +255,43 @@ class _SubjectDetailScreenState extends State<SubjectDetailScreen> {
                             ),
                           ],
                         ),
-                        const SizedBox(height: 14),
+                        const SizedBox(height: AppSpacing.md),
 
                         // Fresh Practice Button
                         ValueListenableBuilder<bool>(
                           valueListenable: PremiumService.instance.isPremiumUnlocked,
                           builder: (context, isUnlocked, _) {
-                            return ElevatedButton.icon(
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: isUnlocked ? widget.sectionColor : AppColors.primaryLight,
-                                foregroundColor: isUnlocked ? Colors.white : AppColors.sealGold,
-                                minimumSize: const Size(double.infinity, 42),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(6),
-                                  side: BorderSide(
-                                    color: isUnlocked ? widget.sectionColor : AppColors.sealGold,
-                                  ),
-                                ),
-                              ),
-                              onPressed: _busyItem != null ? null : () => _startSubjectPractice(999, isFresh: true),
-                              icon: _busyItem == 'set_999'
-                                  ? const SizedBox(
-                                      width: 16,
-                                      height: 16,
-                                      child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white),
-                                    )
-                                  : Icon(isUnlocked ? Icons.bolt_rounded : Icons.lock_rounded, size: 20),
-                              label: FittedBox(
-                                fit: BoxFit.scaleDown,
-                                child: Text(
-                                  _busyItem == 'set_999'
-                                      ? 'सेट बन रहा है...'
-                                      : (isUnlocked
-                                          ? '⚡ फ्रेश 30-प्रश्न सेट जनरेट करें'
-                                          : '🔒 फ्रेश 30-प्रश्न सेट (पास से अनलॉक करें)'),
-                                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
-                                ),
-                              ),
+                            return AppButton(
+                              label: _busyItem == 'set_999'
+                                  ? AppStrings.buildingSet
+                                  : (isUnlocked
+                                      ? AppStrings.freshSetLocked
+                                      : '🔒 फ्रेश 30-प्रश्न सेट (पास से अनलॉक करें)'),
+                              variant: isUnlocked
+                                  ? AppButtonVariant.primary
+                                  : AppButtonVariant.outline,
+                              icon: isUnlocked ? Icons.bolt_rounded : Icons.lock_rounded,
+                              isLoading: _busyItem == 'set_999',
+                              width: double.infinity,
+                              onPressed: _busyItem != null
+                                  ? null
+                                  : () => _startSubjectPractice(999, isFresh: true),
                             );
                           },
                         ),
                       ],
                     ),
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: AppSpacing.lg),
 
                   // Section 1: Practice Sets (SET-01 to SET-07)
                   Text(
                     'अभ्यास सेट्स (${BankFacts.subjectSetQuestions} प्रश्न · ${BankFacts.subjectSetQuestions} मिनट)',
-                    style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold,
+                    style: AppTypography.titleMedium(
                       color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
                     ),
                   ),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: AppSpacing.sm),
 
                   ValueListenableBuilder<bool>(
                     valueListenable: PremiumService.instance.isPremiumUnlocked,
@@ -309,151 +305,114 @@ class _SubjectDetailScreenState extends State<SubjectDetailScreen> {
                           final isFree = PremiumService.instance.isPaperFree(index: idx);
                           final isLocked = !isFree && !isUnlocked;
 
-                          return Container(
-                            margin: const EdgeInsets.only(bottom: 8),
-                            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
-                            decoration: BoxDecoration(
-                              color: isDark ? AppColors.darkCard : AppColors.lightCard,
-                              borderRadius: BorderRadius.circular(6),
-                              border: Border.all(
+                          return Padding(
+                            padding: const EdgeInsets.only(bottom: AppSpacing.sm),
+                            child: AppCard(
+                              padding: _cardPadding,
+                              border: BorderSide(
                                 color: isLocked
                                     ? (isDark ? AppColors.darkBorder : AppColors.lightBorder)
                                     : widget.sectionColor.withValues(alpha: 0.5),
-                                width: 1.0,
+                                width: 1.2,
                               ),
-                            ),
-                            child: Row(
-                              children: [
-                                Expanded(
-                                  child: Row(
-                                    children: [
-                                      Container(
-                                        width: 34,
-                                        height: 34,
-                                        decoration: BoxDecoration(
-                                          color: isFree
-                                              ? AppColors.correctGreen.withValues(alpha: 0.15)
-                                              : widget.sectionColor.withValues(alpha: 0.12),
-                                          borderRadius: BorderRadius.circular(6),
-                                        ),
-                                        child: Center(
-                                          child: Text(
-                                            '$setNum',
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              color: isFree ? AppColors.correctGreen : widget.sectionColor,
-                                              fontSize: 13,
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    child: Row(
+                                      children: [
+                                        Container(
+                                          width: 34,
+                                          height: 34,
+                                          decoration: BoxDecoration(
+                                            color: isFree
+                                                ? AppColors.correctGreen.withValues(alpha: 0.15)
+                                                : widget.sectionColor.withValues(alpha: 0.12),
+                                            borderRadius: AppRadius.roundedSm,
+                                          ),
+                                          child: Center(
+                                            child: Text(
+                                              '$setNum',
+                                              style: AppTypography.labelMedium(
+                                                color: isFree ? AppColors.correctGreen : widget.sectionColor,
+                                              ),
                                             ),
                                           ),
                                         ),
-                                      ),
-                                      const SizedBox(width: 10),
-                                      Expanded(
-                                        child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            Wrap(
-                                              crossAxisAlignment: WrapCrossAlignment.center,
-                                              spacing: 6,
-                                              runSpacing: 2,
-                                              children: [
-                                                Text(
-                                                  AppStrings.subjectSetTitle(setNum),
-                                                  style: TextStyle(
-                                                    fontSize: 13.5,
-                                                    fontWeight: FontWeight.bold,
-                                                    color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
+                                        const SizedBox(width: AppSpacing.sm),
+                                        Expanded(
+                                          child: Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              Wrap(
+                                                crossAxisAlignment: WrapCrossAlignment.center,
+                                                spacing: AppSpacing.xs,
+                                                runSpacing: AppSpacing.xs,
+                                                children: [
+                                                  Text(
+                                                    AppStrings.subjectSetTitle(setNum),
+                                                    style: AppTypography.titleSmall(
+                                                      color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
+                                                    ),
                                                   ),
-                                                ),
-                                                if (isFree)
-                                                  AppBadge(
-                                                    label: AppStrings.premiumFreeBadge,
-                                                    color: AppColors.correctGreen,
-                                                    isSolid: true,
-                                                  )
-                                                else if (isLocked)
-                                                  AppBadge(
-                                                    label: AppStrings.premiumLockedBadge,
-                                                    color: AppColors.sealGold,
-                                                    isSolid: true,
-                                                  ),
-                                              ],
-                                            ),
-                                            const SizedBox(height: 2),
-                                            Text(
-                                              AppStrings.subjectCardTime,
-                                              style: TextStyle(
-                                                fontSize: 11,
-                                                color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
+                                                  if (isFree)
+                                                    AppBadge(
+                                                      label: AppStrings.premiumFreeBadge,
+                                                      color: AppColors.correctGreen,
+                                                      isSolid: true,
+                                                    )
+                                                  else if (isLocked)
+                                                    AppBadge(
+                                                      label: AppStrings.premiumLockedBadge,
+                                                      color: AppColors.sealGold,
+                                                      isSolid: true,
+                                                    ),
+                                                ],
                                               ),
-                                            ),
-                                          ],
+                                              const SizedBox(height: AppSpacing.xs),
+                                              Text(
+                                                AppStrings.subjectCardTime,
+                                                style: AppTypography.bodySmall(
+                                                  color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                const SizedBox(width: 8),
-                                ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: isLocked
-                                        ? (isDark ? AppColors.primaryLight : AppColors.primarySubtle)
-                                        : widget.sectionColor,
-                                    foregroundColor: isLocked ? AppColors.sealGold : Colors.white,
-                                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-                                    minimumSize: const Size(64, 34),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(4),
-                                      side: BorderSide(
-                                        color: isLocked ? AppColors.sealGold.withValues(alpha: 0.5) : widget.sectionColor,
-                                      ),
+                                      ],
                                     ),
                                   ),
-                                  onPressed: isBusy ? null : () => _startSubjectPractice(setNum),
-                                  child: isBusy
-                                      ? const SizedBox(
-                                          width: 14,
-                                          height: 14,
-                                          child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white),
-                                        )
-                                      : (isLocked
-                                          ? const Row(
-                                              mainAxisSize: MainAxisSize.min,
-                                              children: [
-                                                Icon(Icons.lock_rounded, size: 15, color: AppColors.sealGold),
-                                                SizedBox(width: 4),
-                                                Text(
-                                                  'अनलॉक',
-                                                  style: TextStyle(fontSize: 11.5, fontWeight: FontWeight.bold, color: AppColors.sealGold),
-                                                ),
-                                              ],
-                                            )
-                                          : const Text(
-                                              'हल करें',
-                                              style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-                                            )),
-                                ),
-                              ],
+                                  const SizedBox(width: AppSpacing.sm),
+                                  AppButton(
+                                    label: isLocked ? AppStrings.unlockLabel : AppStrings.solveLabel,
+                                    variant: isLocked
+                                        ? AppButtonVariant.outline
+                                        : AppButtonVariant.primary,
+                                    icon: isLocked ? Icons.lock_rounded : null,
+                                    isLoading: isBusy,
+                                    width: isLocked ? 120 : 96,
+                                    height: 38,
+                                    onPressed: isBusy ? null : () => _startSubjectPractice(setNum),
+                                  ),
+                                ],
+                              ),
                             ),
                           );
                         }),
                       );
                     },
                   ),
-                  const SizedBox(height: 24),
+                  const SizedBox(height: AppSpacing.xl),
 
                   // Section 2: Topic-wise Focused Drills
                   if (_topicCounts.isNotEmpty) ...[
                     Text(
                       AppStrings.topicsDrillHeading,
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
+                      style: AppTypography.titleMedium(
                         color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
                       ),
                     ),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: AppSpacing.sm),
 
                     ValueListenableBuilder<bool>(
                       valueListenable: PremiumService.instance.isPremiumUnlocked,
@@ -464,73 +423,49 @@ class _SubjectDetailScreenState extends State<SubjectDetailScreen> {
                             final count = e.value;
                             final isBusy = _busyItem == 'topic_$topic';
 
-                            return Container(
-                              margin: const EdgeInsets.only(bottom: 8),
-                              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-                              decoration: BoxDecoration(
-                                color: isDark ? AppColors.darkCard : AppColors.lightCard,
-                                borderRadius: BorderRadius.circular(6),
-                                border: Border.all(
-                                  color: isDark ? AppColors.darkBorder : AppColors.lightBorder,
-                                  width: 1.0,
-                                ),
-                              ),
-                              child: Row(
-                                children: [
-                                  Expanded(
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Text(
-                                          topic,
-                                          maxLines: 2,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: TextStyle(
-                                            fontSize: 13,
-                                            fontWeight: FontWeight.bold,
-                                            color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
+                            return Padding(
+                              padding: const EdgeInsets.only(bottom: AppSpacing.sm),
+                              child: AppCard(
+                                padding: _cardPadding,
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Text(
+                                            topic,
+                                            style: AppTypography.titleSmall(
+                                              color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
+                                            ),
                                           ),
-                                        ),
-                                        const SizedBox(height: 2),
-                                        Text(
-                                          AppStrings.topicDrillSub(count),
-                                          style: TextStyle(
-                                            fontSize: 11,
-                                            color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
+                                          const SizedBox(height: AppSpacing.xs),
+                                          Text(
+                                            AppStrings.topicDrillSub(count),
+                                            style: AppTypography.bodySmall(
+                                              color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
+                                            ),
                                           ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  const SizedBox(width: 8),
-                                  OutlinedButton.icon(
-                                    style: OutlinedButton.styleFrom(
-                                      foregroundColor: isUnlocked ? widget.sectionColor : AppColors.sealGold,
-                                      side: BorderSide(
-                                        color: isUnlocked ? widget.sectionColor : AppColors.sealGold,
+                                        ],
                                       ),
-                                      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-                                      minimumSize: const Size(64, 32),
-                                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
                                     ),
-                                    onPressed: isBusy ? null : () => _startTopicDrill(topic, count),
-                                    icon: isBusy
-                                        ? const SizedBox(
-                                            width: 14,
-                                            height: 14,
-                                            child: CircularProgressIndicator(strokeWidth: 1.8),
-                                          )
-                                        : Icon(
-                                            isUnlocked ? Icons.play_arrow_rounded : Icons.lock_rounded,
-                                            size: 16,
-                                          ),
-                                    label: Text(
-                                      isBusy ? '...' : (isUnlocked ? 'ड्रिल' : 'अनलॉक'),
-                                      style: const TextStyle(fontSize: 11.5, fontWeight: FontWeight.bold),
+                                    const SizedBox(width: AppSpacing.sm),
+                                    AppButton(
+                                      label: isUnlocked ? AppStrings.drillLabel : AppStrings.unlockLabel,
+                                      variant: isUnlocked
+                                          ? AppButtonVariant.primary
+                                          : AppButtonVariant.outline,
+                                      icon: isUnlocked
+                                          ? Icons.play_arrow_rounded
+                                          : Icons.lock_rounded,
+                                      isLoading: isBusy,
+                                      width: 104,
+                                      height: 38,
+                                      onPressed: isBusy ? null : () => _startTopicDrill(topic, count),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             );
                           }).toList(),
@@ -538,10 +473,15 @@ class _SubjectDetailScreenState extends State<SubjectDetailScreen> {
                       },
                     ),
                   ],
-                  const SizedBox(height: 24),
+                  const SizedBox(height: AppSpacing.xl),
                 ],
               ),
       ),
     );
+  }
+
+  /// The loading state of this screen.
+  Widget _buildLoadingState(bool isDark) {
+    return const AppLoadingState();
   }
 }

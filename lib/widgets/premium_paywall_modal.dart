@@ -1,6 +1,10 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import '../design_system/app_colors.dart';
+import '../design_system/app_radius.dart';
+import '../design_system/app_spacing.dart';
+import '../design_system/app_shadows.dart';
+import '../design_system/app_typography.dart';
 import '../design_system/app_strings.dart';
 import '../services/premium_service.dart';
 import '../design_system/app_sheet.dart';
@@ -41,6 +45,12 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
     super.dispose();
   }
 
+  /// The one border of this file.
+  Border _cardBorder({Color? color, double width = 1.2}) => Border.all(
+        color: color ?? AppColors.borderStrong,
+        width: width,
+      );
+
   static void _showCongratulationsDialog(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
@@ -48,15 +58,15 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
       context: context,
       barrierDismissible: false,
       builder: (ctx) => AlertDialog(
-        backgroundColor: isDark ? AppColors.primary : Colors.white,
+        backgroundColor: isDark ? AppColors.primary : AppColors.lightCard,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: AppRadius.roundedXl,
           side: const BorderSide(color: AppColors.sealGold, width: 2),
         ),
         title: Column(
           children: [
             Container(
-              padding: const EdgeInsets.all(16),
+              padding: const EdgeInsets.all(AppSpacing.base),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 gradient: LinearGradient(
@@ -75,13 +85,11 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
                 size: 48,
               ),
             ),
-            const SizedBox(height: 14),
+            const SizedBox(height: AppSpacing.md),
             Text(
               AppStrings.congratulationsTitle,
               textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
+              style: AppTypography.titleLarge(
                 color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
               ),
             ),
@@ -93,30 +101,29 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
             Text(
               AppStrings.congratulationsSub,
               textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 13,
-                height: 1.45,
+              style: AppTypography.bodyMedium(
                 color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary,
               ),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: AppSpacing.base),
             Container(
-              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppSpacing.md,
+                vertical: AppSpacing.sm,
+              ),
               decoration: BoxDecoration(
                 color: isDark ? AppColors.primaryLight : AppColors.successSubtle,
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: AppRadius.roundedMd,
                 border: Border.all(color: AppColors.correctGreen.withValues(alpha: 0.4)),
               ),
               child: Row(
                 children: [
                   const Icon(Icons.check_circle_rounded, color: AppColors.correctGreen, size: 20),
-                  const SizedBox(width: 8),
+                  const SizedBox(width: AppSpacing.sm),
                   Expanded(
                     child: Text(
                       AppStrings.premiumFeature4,
-                      style: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600,
+                      style: AppTypography.bodySmall(
                         color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
                       ),
                     ),
@@ -134,12 +141,14 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppColors.sealGold,
                 foregroundColor: AppColors.primary,
-                padding: const EdgeInsets.symmetric(vertical: 12),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                elevation: 0,
+                padding: const EdgeInsets.symmetric(vertical: AppSpacing.md),
+                shape: RoundedRectangleBorder(borderRadius: AppRadius.roundedBase),
+                textStyle: AppTypography.titleSmall(color: AppColors.primary),
               ),
               child: Text(
                 AppStrings.startPreparingBtn,
-                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                textAlign: TextAlign.center,
               ),
             ),
           ),
@@ -155,26 +164,20 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
     return Container(
       decoration: BoxDecoration(
         color: isDark ? AppColors.darkCard : AppColors.lightCard,
-        borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(AppRadius.xl)),
         border: Border.all(
           color: AppColors.sealGold.withValues(alpha: 0.4),
           width: 1.5,
         ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.5),
-            blurRadius: 20,
-            offset: const Offset(0, -4),
-          ),
-        ],
+        boxShadow: AppShadows.darkCard,
       ),
       padding: EdgeInsets.only(
-        top: 14,
-        left: 18,
-        right: 18,
+        top: AppSpacing.md,
+        left: AppSpacing.lg,
+        right: AppSpacing.lg,
         bottom: MediaQuery.of(context).viewInsets.bottom +
             MediaQuery.of(context).padding.bottom +
-            18,
+            AppSpacing.lg,
       ),
       child: ConstrainedBox(
         // The sheet never grows past the screen, the rest scrolls.
@@ -195,17 +198,17 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
                     width: 42,
                     height: 5,
                     decoration: BoxDecoration(
-                      color: isDark ? Colors.white24 : Colors.black12,
-                      borderRadius: BorderRadius.circular(10),
+                      color: isDark ? AppColors.darkBorder : AppColors.borderStrong,
+                      borderRadius: AppRadius.roundedFull,
                     ),
                   ),
                 ),
-                const SizedBox(height: 14),
+                const SizedBox(height: AppSpacing.md),
 
                 // Crown Badge & Title
                 Center(
                   child: Container(
-                    padding: const EdgeInsets.all(12),
+                    padding: const EdgeInsets.all(AppSpacing.md),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       gradient: LinearGradient(
@@ -225,29 +228,24 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: AppSpacing.sm),
 
                 Text(
                   AppStrings.premiumPassTitle,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 19,
-                    fontWeight: FontWeight.bold,
+                  style: AppTypography.titleLarge(
                     color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
-                    letterSpacing: -0.3,
                   ),
                 ),
-                const SizedBox(height: 4),
+                const SizedBox(height: AppSpacing.xs),
                 Text(
                   AppStrings.premiumPassSubtitle,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 12.5,
+                  style: AppTypography.caption(
                     color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
-                    height: 1.35,
                   ),
                 ),
-                const SizedBox(height: 14),
+                const SizedBox(height: AppSpacing.md),
 
                 // Tier Selection Cards
                 if (!isUnlocked) ...[
@@ -261,7 +259,7 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
                     isPopular: true,
                     isDark: isDark,
                   ),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: AppSpacing.sm),
 
                   // Tier 2: Single Paper Pass (₹299)
                   _buildTierCard(
@@ -273,17 +271,20 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
                     isPopular: false,
                     isDark: isDark,
                   ),
-                  const SizedBox(height: 14),
+                  const SizedBox(height: AppSpacing.md),
                 ],
 
                 // Features Box
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: AppSpacing.md,
+                    vertical: AppSpacing.md,
+                  ),
                   decoration: BoxDecoration(
                     color: isDark ? AppColors.primaryLight : AppColors.darkTextPrimary,
-                    borderRadius: BorderRadius.circular(12),
-                    border: Border.all(
-                      color: isDark ? Colors.white12 : Colors.black.withValues(alpha: 0.08),
+                    borderRadius: AppRadius.roundedBase,
+                    border: _cardBorder(
+                      color: isDark ? AppColors.darkBorder : AppColors.borderStrong,
                     ),
                   ),
                   child: Column(
@@ -294,21 +295,21 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
                         AppStrings.premiumFeature1,
                         isDark: isDark,
                       ),
-                      const SizedBox(height: 8),
+                      const SizedBox(height: AppSpacing.sm),
                       _buildFeatureRow(
                         Icons.history_edu_rounded,
                         AppColors.sealGold,
                         AppStrings.premiumFeature2,
                         isDark: isDark,
                       ),
-                      const SizedBox(height: 8),
+                      const SizedBox(height: AppSpacing.sm),
                       _buildFeatureRow(
                         Icons.insights_rounded,
                         AppColors.sealGold,
                         AppStrings.premiumFeature3,
                         isDark: isDark,
                       ),
-                      const SizedBox(height: 8),
+                      const SizedBox(height: AppSpacing.sm),
                       _buildFeatureRow(
                         Icons.offline_pin_rounded,
                         AppColors.correctGreen,
@@ -319,7 +320,7 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
                     ],
                   ),
                 ),
-                const SizedBox(height: 14),
+                const SizedBox(height: AppSpacing.md),
 
                 // Action / Unlock Button
                 ValueListenableBuilder<bool>(
@@ -327,23 +328,24 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
                   builder: (context, isLoading, _) {
                     if (isUnlocked) {
                       return Container(
-                        padding: const EdgeInsets.symmetric(vertical: 14),
+                        padding: const EdgeInsets.symmetric(vertical: AppSpacing.md),
                         decoration: BoxDecoration(
                           color: AppColors.correctGreen.withValues(alpha: 0.15),
-                          borderRadius: BorderRadius.circular(12),
+                          borderRadius: AppRadius.roundedBase,
                           border: Border.all(color: AppColors.correctGreen),
                         ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             const Icon(Icons.check_circle_rounded, color: AppColors.correctGreen),
-                            const SizedBox(width: 8),
-                            Text(
-                              AppStrings.premiumActiveStatus,
-                              style: const TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold,
-                                color: AppColors.correctGreen,
+                            const SizedBox(width: AppSpacing.sm),
+                            Flexible(
+                              child: Text(
+                                AppStrings.premiumActiveStatus,
+                                textAlign: TextAlign.center,
+                                style: AppTypography.titleMedium(
+                                  color: AppColors.correctGreen,
+                                ),
                               ),
                             ),
                           ],
@@ -379,11 +381,12 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.sealGold,
                         foregroundColor: AppColors.primary,
-                        padding: const EdgeInsets.symmetric(vertical: 14),
+                        elevation: 0,
+                        padding: const EdgeInsets.symmetric(vertical: AppSpacing.md),
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
+                          borderRadius: AppRadius.roundedBase,
                         ),
-                        elevation: 3,
+                        textStyle: AppTypography.titleSmall(color: AppColors.primary),
                       ),
                       child: isLoading
                           ? const SizedBox(
@@ -396,15 +399,12 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
                             )
                           : Text(
                               AppStrings.premiumUnlockBtn,
-                              style: const TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold,
-                              ),
+                              textAlign: TextAlign.center,
                             ),
                     );
                   },
                 ),
-                const SizedBox(height: 8),
+                const SizedBox(height: AppSpacing.sm),
 
                 // Restore Purchases & Close Buttons
                 Row(
@@ -430,10 +430,7 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
                         child: Text(
                           AppStrings.premiumRestoreBtn,
                           textAlign: TextAlign.center,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            fontSize: 12,
+                          style: AppTypography.bodySmall(
                             color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary,
                           ),
                         ),
@@ -445,10 +442,7 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
                         child: Text(
                           AppStrings.premiumCloseBtn,
                           textAlign: TextAlign.center,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            fontSize: 12,
+                          style: AppTypography.bodySmall(
                             color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary,
                           ),
                         ),
@@ -478,20 +472,20 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
 
     return InkWell(
       onTap: () => setState(() => _selectedTier = tierId),
-      borderRadius: BorderRadius.circular(12),
+      borderRadius: AppRadius.roundedBase,
       child: Container(
-        padding: const EdgeInsets.all(12),
+        padding: const EdgeInsets.all(AppSpacing.md),
         decoration: BoxDecoration(
           color: isSelected
               ? (isDark
                   ? AppColors.sealGold.withValues(alpha: 0.15)
                   : AppColors.goldSoft)
               : (isDark ? AppColors.primaryLight : AppColors.darkTextPrimary),
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: AppRadius.roundedBase,
           border: Border.all(
             color: isSelected
                 ? AppColors.sealGold
-                : (isDark ? Colors.white12 : Colors.black12),
+                : (isDark ? AppColors.darkBorder : AppColors.borderStrong),
             width: isSelected ? 2 : 1,
           ),
         ),
@@ -502,10 +496,10 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
               isSelected
                   ? Icons.radio_button_checked_rounded
                   : Icons.radio_button_off_rounded,
-              color: isSelected ? AppColors.sealGold : (isDark ? Colors.white38 : Colors.black26),
+              color: isSelected ? AppColors.sealGold : (isDark ? AppColors.darkTextMuted : AppColors.lightTextMuted),
               size: 22,
             ),
-            const SizedBox(width: 10),
+            const SizedBox(width: AppSpacing.sm),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -513,25 +507,26 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
                   // The title and the tag share one wrap, so a long title
                   // never gets squeezed into a single letter per line.
                   Wrap(
-                    spacing: 8,
-                    runSpacing: 4,
+                    spacing: AppSpacing.sm,
+                    runSpacing: AppSpacing.xs,
                     crossAxisAlignment: WrapCrossAlignment.center,
                     children: [
                       Text(
                         title,
-                        style: TextStyle(
-                          fontSize: 13.5,
-                          fontWeight: FontWeight.bold,
+                        style: AppTypography.titleSmall(
                           color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
                         ),
                       ),
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: AppSpacing.xs,
+                          vertical: 2,
+                        ),
                         decoration: BoxDecoration(
                           color: isPopular
                               ? AppColors.sealGold.withValues(alpha: 0.2)
-                              : (isDark ? Colors.white12 : Colors.black.withValues(alpha: 0.05)),
-                          borderRadius: BorderRadius.circular(6),
+                              : (isDark ? AppColors.darkBorder : AppColors.borderStrong),
+                          borderRadius: AppRadius.roundedSm,
                           border: Border.all(
                             color: isPopular ? AppColors.sealGold : Colors.transparent,
                             width: 0.8,
@@ -539,9 +534,7 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
                         ),
                         child: Text(
                           badgeText,
-                          style: TextStyle(
-                            fontSize: 9.5,
-                            fontWeight: FontWeight.bold,
+                          style: AppTypography.labelSmall(
                             color: isPopular
                                 ? AppColors.sealGold
                                 : (isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary),
@@ -550,18 +543,17 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 3),
+                  const SizedBox(height: AppSpacing.xs),
                   Text(
                     subtitle,
-                    style: TextStyle(
-                      fontSize: 11,
+                    style: AppTypography.labelSmall(
                       color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
                     ),
                   ),
                 ],
               ),
             ),
-            const SizedBox(width: 8),
+            const SizedBox(width: AppSpacing.sm),
             // The price may be long, so it wraps instead of running out of
             // the card.
             ConstrainedBox(
@@ -569,10 +561,8 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
               child: Text(
                 price,
                 textAlign: TextAlign.right,
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w900,
-                  color: isSelected ? AppColors.sealGold : (isDark ? Colors.white70 : Colors.black87),
+                style: AppTypography.titleSmall(
+                  color: isSelected ? AppColors.sealGold : (isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary),
                 ),
               ),
             ),
@@ -592,15 +582,13 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
     return Row(
       children: [
         Icon(icon, color: iconColor, size: 17),
-        const SizedBox(width: 9),
+        const SizedBox(width: AppSpacing.sm),
         Expanded(
           child: Text(
             text,
-            style: TextStyle(
-              fontSize: 12,
-              fontWeight: isBold ? FontWeight.bold : FontWeight.normal,
+            style: AppTypography.bodySmall(
               color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
-            ),
+            ).copyWith(fontWeight: isBold ? FontWeight.w700 : FontWeight.w400),
           ),
         ),
       ],

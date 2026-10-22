@@ -3,10 +3,15 @@ import json
 import os
 import hashlib
 from datetime import datetime
+from pathlib import Path
 
-def build_cdn():
-    db_path = 'assets/database/tet_mock_vault.db'
-    cdn_dir = 'cdn'
+ROOT = Path(__file__).resolve().parents[1]
+
+
+def build_cdn(root=ROOT):
+    root = Path(root)
+    db_path = str(root / 'assets' / 'database' / 'tet_mock_vault.db')
+    cdn_dir = str(root / 'cdn')
     packs_dir = os.path.join(cdn_dir, 'packs')
     os.makedirs(packs_dir, exist_ok=True)
 
@@ -214,6 +219,28 @@ def build_cdn():
     manifest_path = os.path.join(cdn_dir, 'manifest.json')
     with open(manifest_path, 'w', encoding='utf-8') as mf:
         json.dump(manifest, mf, ensure_ascii=False, indent=2)
+
+    # 8b. Keep the bundled database in sync with the packs that were just
+    # written.  The app compares the stored signature with the signature of
+    # the remote manifest; a stale value would make it download the packs
+    # again on every start.
+    signature = ';'.join(
+        f"{pack.get('file', '')}_{pack.get('sha256', '')}"
+        for pack in manifest['packs']
+    )
+    conn.execute('BEGIN')
+    for key, value in (
+        ('bank_version', str(manifest['bank_version'])),
+        ('packs_signature', signature),
+        ('last_synced', datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')),
+    ):
+        conn.execute(
+            'INSERT INTO meta(key, val) VALUES(?, ?) '
+            'ON CONFLICT(key) DO UPDATE SET val = excluded.val',
+            (key, value),
+        )
+    conn.commit()
+    print(f"Bundled database signature synchronised ({len(manifest['packs'])} packs)")
 
     # 8. Flash Messages - the counts are always taken from the bank, so the
     #    banner can never claim a number that the vault does not have.

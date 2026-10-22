@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../design_system/app_colors.dart';
 import '../design_system/app_radius.dart';
+import '../design_system/app_spacing.dart';
 import '../design_system/app_typography.dart';
 import '../services/question_layout_parser.dart';
 import 'smart_math_text.dart';
@@ -480,7 +481,7 @@ class FormattedQuestionStem extends StatelessWidget {
         (isTranslation
             ? AppTypography.bodyMedium(
                 color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary,
-              ).copyWith(fontSize: 14, height: 1.45)
+              ).copyWith(height: 1.45)
             : AppTypography.questionText(
                 color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
               ));
@@ -529,11 +530,11 @@ class FormattedQuestionStem extends StatelessWidget {
           children: [
             if (intro != null) ...[
               SmartMathText(intro, style: defaultStyle),
-              const SizedBox(height: 10),
+              const SizedBox(height: AppSpacing.md),
             ],
             _buildMatchTable(pairs, defaultStyle),
             if (conclusion != null) ...[
-              const SizedBox(height: 10),
+              const SizedBox(height: AppSpacing.md),
               SmartMathText(
                 conclusion,
                 style: defaultStyle.copyWith(
@@ -558,7 +559,7 @@ class FormattedQuestionStem extends StatelessWidget {
           children: [
             if (intro != null) ...[
               SmartMathText(intro, style: defaultStyle),
-              const SizedBox(height: 10),
+              const SizedBox(height: AppSpacing.md),
             ],
 
             // Assertion Card
@@ -583,7 +584,7 @@ class FormattedQuestionStem extends StatelessWidget {
             ),
 
             if (conclusion != null) ...[
-              const SizedBox(height: 10),
+              const SizedBox(height: AppSpacing.md),
               SmartMathText(
                 conclusion,
                 style: defaultStyle.copyWith(
@@ -605,12 +606,15 @@ class FormattedQuestionStem extends StatelessWidget {
           children: [
             if (intro != null) ...[
               SmartMathText(intro, style: defaultStyle),
-              const SizedBox(height: 10),
+              const SizedBox(height: AppSpacing.md),
             ],
 
             // Statements list
             Container(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppSpacing.md,
+                vertical: AppSpacing.sm,
+              ),
               decoration: BoxDecoration(
                 color: isDark ? AppColors.darkCard : AppColors.darkTextPrimary,
                 borderRadius: AppRadius.roundedSm,
@@ -623,24 +627,29 @@ class FormattedQuestionStem extends StatelessWidget {
                 children: List.generate(stmts.length, (idx) {
                   final stmt = stmts[idx];
                   return Padding(
-                    padding: EdgeInsets.only(bottom: idx == stmts.length - 1 ? 0 : 8.0),
+                    padding: EdgeInsets.only(
+                      bottom: idx == stmts.length - 1 ? 0 : AppSpacing.sm,
+                    ),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: AppSpacing.xs,
+                            vertical: 2,
+                          ),
                           decoration: BoxDecoration(
-                            color: isDark ? Colors.white12 : AppColors.borderStrong,
-                            borderRadius: BorderRadius.circular(4),
+                            color: isDark ? AppColors.darkCardElevated : AppColors.borderStrong,
+                            borderRadius: AppRadius.roundedSm,
                           ),
                           child: Text(
                             stmt.marker,
                             style: AppTypography.labelSmall(
                               color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
-                            ).copyWith(fontWeight: FontWeight.bold, fontSize: 12),
+                            ),
                           ),
                         ),
-                        const SizedBox(width: 10),
+                        const SizedBox(width: AppSpacing.sm),
                         Expanded(
                           child: SmartMathText(
                             stmt.text,
@@ -658,7 +667,7 @@ class FormattedQuestionStem extends StatelessWidget {
             ),
 
             if (conclusion != null) ...[
-              const SizedBox(height: 10),
+              const SizedBox(height: AppSpacing.md),
               SmartMathText(
                 conclusion,
                 style: defaultStyle.copyWith(
@@ -682,7 +691,10 @@ class FormattedQuestionStem extends StatelessWidget {
   }) {
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 9),
+      padding: const EdgeInsets.symmetric(
+        horizontal: AppSpacing.md,
+        vertical: AppSpacing.sm,
+      ),
       decoration: BoxDecoration(
         color: isDark ? AppColors.darkCardElevated : AppColors.lightSurface,
         borderRadius: AppRadius.roundedSm,
@@ -692,21 +704,20 @@ class FormattedQuestionStem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2.5),
+            padding: const EdgeInsets.symmetric(
+              horizontal: AppSpacing.xs,
+              vertical: 2,
+            ),
             decoration: BoxDecoration(
               color: badgeBg,
-              borderRadius: BorderRadius.circular(4),
+              borderRadius: AppRadius.roundedSm,
             ),
             child: Text(
               label,
-              style: TextStyle(
-                color: badgeColor,
-                fontWeight: FontWeight.bold,
-                fontSize: 11.5,
-              ),
+              style: AppTypography.labelSmall(color: badgeColor),
             ),
           ),
-          const SizedBox(width: 10),
+          const SizedBox(width: AppSpacing.sm),
           Expanded(
             child: SmartMathText(
               content,
@@ -724,7 +735,7 @@ class FormattedQuestionStem extends StatelessWidget {
   Widget _buildTable(List<String> headers, List<List<String>> rows, TextStyle baseStyle) {
     final borderColor = isDark ? AppColors.lightTextSecondary : AppColors.lightBorder;
     final headerBg = isDark ? AppColors.primaryLight : AppColors.primarySubtle;
-    final rowZebraBg = isDark ? AppColors.primary : Colors.white;
+    final rowZebraBg = isDark ? AppColors.primary : AppColors.lightCard;
     final rowAltBg = isDark ? AppColors.darkCard : AppColors.darkTextPrimary;
 
     return Container(
@@ -751,7 +762,10 @@ class FormattedQuestionStem extends StatelessWidget {
               decoration: BoxDecoration(color: headerBg),
               children: headers.map((h) {
                 return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 9),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: AppSpacing.md,
+                    vertical: AppSpacing.sm,
+                  ),
                   child: SmartMathText(
                     h,
                     style: baseStyle.copyWith(
@@ -772,7 +786,10 @@ class FormattedQuestionStem extends StatelessWidget {
                 children: List.generate(headers.length, (colIdx) {
                   final text = colIdx < row.length ? row[colIdx] : '';
                   return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: AppSpacing.md,
+                      vertical: AppSpacing.sm,
+                    ),
                     child: SmartMathText(
                       text,
                       style: baseStyle.copyWith(
@@ -796,13 +813,13 @@ class FormattedQuestionStem extends StatelessWidget {
   ) {
     final borderColor = isDark ? AppColors.lightTextSecondary : AppColors.lightBorder;
     final headerBg = isDark ? AppColors.primaryLight : AppColors.primarySubtle;
-    final rowZebraBg = isDark ? AppColors.primary : Colors.white;
+    final rowZebraBg = isDark ? AppColors.primary : AppColors.lightCard;
     final rowAltBg = isDark ? AppColors.darkCard : AppColors.darkTextPrimary;
 
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
-        color: isDark ? AppColors.darkCardElevated : Colors.white,
+        color: isDark ? AppColors.darkCardElevated : AppColors.lightCard,
         borderRadius: AppRadius.roundedSm,
         border: Border.all(color: borderColor, width: 1.0),
       ),
@@ -823,27 +840,27 @@ class FormattedQuestionStem extends StatelessWidget {
             decoration: BoxDecoration(color: headerBg),
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: AppSpacing.sm,
+                  vertical: AppSpacing.sm,
+                ),
                 child: Text(
                   'स्तम्भ I / सूची I',
-                  style: baseStyle.copyWith(
-                    fontWeight: FontWeight.w800,
-                    fontSize: 12.5,
+                  style: AppTypography.caption(
                     color: isDark ? AppColors.darkTextSecondary : AppColors.deskGray,
-                    letterSpacing: 0.5,
-                  ),
+                  ).copyWith(fontWeight: FontWeight.w800, letterSpacing: 0.5),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: AppSpacing.sm,
+                  vertical: AppSpacing.sm,
+                ),
                 child: Text(
                   'स्तम्भ II / सूची II',
-                  style: baseStyle.copyWith(
-                    fontWeight: FontWeight.w800,
-                    fontSize: 12.5,
+                  style: AppTypography.caption(
                     color: isDark ? AppColors.darkTextSecondary : AppColors.deskGray,
-                    letterSpacing: 0.5,
-                  ),
+                  ).copyWith(fontWeight: FontWeight.w800, letterSpacing: 0.5),
                 ),
               ),
             ],
@@ -857,26 +874,30 @@ class FormattedQuestionStem extends StatelessWidget {
               children: [
                 // Left Item
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: AppSpacing.sm,
+                    vertical: AppSpacing.sm,
+                  ),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 1.5),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: AppSpacing.xs,
+                          vertical: 2,
+                        ),
                         decoration: BoxDecoration(
                           color: isDark ? AppColors.primaryLight : AppColors.indigoSoft,
-                          borderRadius: BorderRadius.circular(4),
+                          borderRadius: AppRadius.roundedSm,
                         ),
                         child: Text(
                           p.leftMarker,
-                          style: TextStyle(
+                          style: AppTypography.labelSmall(
                             color: isDark ? AppColors.indigoText : AppColors.indigoDeep,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 12,
                           ),
                         ),
                       ),
-                      const SizedBox(width: 8),
+                      const SizedBox(width: AppSpacing.sm),
                       Expanded(
                         child: SmartMathText(
                           p.leftText,
@@ -892,26 +913,30 @@ class FormattedQuestionStem extends StatelessWidget {
                 ),
                 // Right Item
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: AppSpacing.sm,
+                    vertical: AppSpacing.sm,
+                  ),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 1.5),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: AppSpacing.xs,
+                          vertical: 2,
+                        ),
                         decoration: BoxDecoration(
                           color: isDark ? AppColors.tealDark : AppColors.accentSoft,
-                          borderRadius: BorderRadius.circular(4),
+                          borderRadius: AppRadius.roundedSm,
                         ),
                         child: Text(
                           p.rightMarker,
-                          style: TextStyle(
+                          style: AppTypography.labelSmall(
                             color: isDark ? AppColors.accentBright : AppColors.accent,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 11.5,
                           ),
                         ),
                       ),
-                      const SizedBox(width: 8),
+                      const SizedBox(width: AppSpacing.sm),
                       Expanded(
                         child: SmartMathText(
                           p.rightText,

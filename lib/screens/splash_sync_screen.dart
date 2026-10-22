@@ -3,12 +3,15 @@ import 'package:flutter_animate/flutter_animate.dart';
 import '../design_system/app_colors.dart';
 import '../design_system/app_typography.dart';
 import '../design_system/app_radius.dart';
+import '../design_system/app_spacing.dart';
+import '../design_system/app_shadows.dart';
 import '../design_system/app_strings.dart';
 import '../services/language_service.dart';
 import '../database/db_helper.dart';
 import '../services/in_app_update_service.dart';
 import 'home_screen.dart';
 import '../design_system/app_motion.dart';
+import '../widgets/app_button.dart';
 
 class SplashSyncScreen extends StatefulWidget {
   const SplashSyncScreen({super.key});
@@ -93,7 +96,9 @@ class _SplashSyncScreenState extends State<SplashSyncScreen> {
             end: Alignment.bottomCenter,
             colors: isDark
                 ? const [AppColors.primary, AppColors.primaryDark, AppColors.primaryDark]
-                : const [AppColors.lightCard, AppColors.darkTextPrimary, AppColors.primarySubtle],
+                // The light splash stays on parchment so that the ink
+                // coloured title and subtitle always have a readable ground.
+                : const [AppColors.paperIvory, AppColors.lightCard, AppColors.primarySubtle],
           ),
         ),
         child: SafeArea(
@@ -101,29 +106,26 @@ class _SplashSyncScreenState extends State<SplashSyncScreen> {
             children: [
               // Top Right Language Toggle Button
               Positioned(
-                top: 14,
-                right: 16,
+                top: AppSpacing.md,
+                right: AppSpacing.base,
                 child: InkWell(
                   onTap: () {
                     LanguageService.instance.toggleLanguage();
                   },
-                  borderRadius: BorderRadius.circular(6),
+                  borderRadius: AppRadius.roundedSm,
                   child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: AppSpacing.sm,
+                      vertical: AppSpacing.xs,
+                    ),
                     decoration: BoxDecoration(
-                      color: isDark ? AppColors.darkCardElevated : Colors.white,
-                      borderRadius: BorderRadius.circular(6),
+                      color: isDark ? AppColors.darkCardElevated : AppColors.lightCard,
+                      borderRadius: AppRadius.roundedSm,
                       border: Border.all(
                         color: isDark ? AppColors.darkBorder : AppColors.lightBorder,
                         width: 1.2,
                       ),
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Color(0x10000000),
-                          blurRadius: 4,
-                          offset: Offset(0, 2),
-                        ),
-                      ],
+                      boxShadow: AppShadows.soft,
                     ),
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
@@ -133,12 +135,10 @@ class _SplashSyncScreenState extends State<SplashSyncScreen> {
                           size: 18,
                           color: isDark ? AppColors.sealGoldLight : AppColors.primary,
                         ),
-                        const SizedBox(width: 5),
+                        const SizedBox(width: AppSpacing.xs),
                         Text(
                           AppStrings.langToggleLabel,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 12,
+                          style: AppTypography.bodySmall(
                             color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
                           ),
                         ),
@@ -151,7 +151,10 @@ class _SplashSyncScreenState extends State<SplashSyncScreen> {
               Center(
                 child: SingleChildScrollView(
                   physics: const BouncingScrollPhysics(),
-                  padding: const EdgeInsets.symmetric(horizontal: 28.0, vertical: 24),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: AppSpacing.xxl,
+                    vertical: AppSpacing.xl,
+                  ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -189,8 +192,13 @@ class _SplashSyncScreenState extends State<SplashSyncScreen> {
                             ),
                           ),
                         ),
-                      ).animate().scale(duration: 500.ms, curve: Curves.easeOutBack),
-                      const SizedBox(height: 22),
+                      )
+                          .animate()
+                          .scale(
+                            duration: AppMotion.page,
+                            curve: Curves.easeOutBack,
+                          ),
+                      const SizedBox(height: AppSpacing.lg),
 
                       // App Title
                       Text(
@@ -198,37 +206,48 @@ class _SplashSyncScreenState extends State<SplashSyncScreen> {
                         textAlign: TextAlign.center,
                         style: AppTypography.displayLarge(
                           color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
-                        ).copyWith(fontSize: 25, letterSpacing: 0.5),
-                      ).animate().fadeIn(delay: 200.ms),
-                      const SizedBox(height: 6),
+                        ),
+                      )
+                          .animate()
+                          .fadeIn(
+                            delay: AppMotion.base,
+                            duration: AppMotion.base,
+                            curve: AppMotion.enter,
+                          ),
+                      const SizedBox(height: AppSpacing.xs),
 
                       // Subtitle
                       Text(
                         AppStrings.splashSubtitle,
                         textAlign: TextAlign.center,
-                        style: AppTypography.titleMedium(
+                        style: AppTypography.bodyMedium(
                           color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary,
-                        ).copyWith(fontSize: 13.5),
-                      ).animate().fadeIn(delay: 300.ms),
-                      const SizedBox(height: 36),
+                        ),
+                      )
+                          .animate()
+                          .fadeIn(
+                            delay: AppMotion.base,
+                            duration: AppMotion.base,
+                            curve: AppMotion.enter,
+                          ),
+                      const SizedBox(height: AppSpacing.xxl),
 
                       // Glassmorphic Progress Container
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 16),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: AppSpacing.lg,
+                          vertical: AppSpacing.base,
+                        ),
                         decoration: BoxDecoration(
-                          color: isDark ? AppColors.darkCard.withValues(alpha: 0.8) : Colors.white.withValues(alpha: 0.9),
-                          borderRadius: BorderRadius.circular(12),
+                          color: isDark
+                              ? AppColors.darkCard.withValues(alpha: 0.8)
+                              : AppColors.lightCard.withValues(alpha: 0.9),
+                          borderRadius: AppRadius.roundedBase,
                           border: Border.all(
                             color: isDark ? AppColors.darkBorder : AppColors.borderStrong,
                             width: 1.0,
                           ),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withValues(alpha: 0.04),
-                              blurRadius: 10,
-                              offset: const Offset(0, 4),
-                            ),
-                          ],
+                          boxShadow: AppShadows.soft,
                         ),
                         child: Column(
                           children: [
@@ -243,23 +262,33 @@ class _SplashSyncScreenState extends State<SplashSyncScreen> {
                                 ),
                               ),
                             ),
-                            const SizedBox(height: 12),
+                            const SizedBox(height: AppSpacing.md),
                             Text(
                               displayStatus,
                               textAlign: TextAlign.center,
-                              style: AppTypography.bodyMedium(
+                              style: AppTypography.caption(
                                 color: _isError
                                     ? AppColors.danger
                                     : (isDark ? AppColors.darkTextMuted : AppColors.lightTextMuted),
-                              ).copyWith(fontSize: 12.5),
+                              ),
                             ),
                           ],
                         ),
-                      ).animate().fadeIn(delay: 400.ms),
+                      )
+                          .animate()
+                          .fadeIn(
+                            delay: AppMotion.base,
+                            duration: AppMotion.base,
+                            curve: AppMotion.enter,
+                          ),
 
                       if (_isError) ...[
-                        const SizedBox(height: 20),
-                        ElevatedButton.icon(
+                        const SizedBox(height: AppSpacing.lg),
+                        AppButton(
+                          label: AppStrings.splashRetryBtn,
+                          variant: AppButtonVariant.primary,
+                          icon: Icons.refresh_rounded,
+                          width: double.infinity,
                           onPressed: () {
                             setState(() {
                               _isError = false;
@@ -267,30 +296,20 @@ class _SplashSyncScreenState extends State<SplashSyncScreen> {
                             });
                             _checkAndStartSync();
                           },
-                          icon: const Icon(Icons.refresh_rounded, size: 20),
-                          label: Text(
-                            AppStrings.splashRetryBtn,
-                            style: const TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: AppColors.primary,
-                            foregroundColor: Colors.white,
-                            padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 11),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: AppRadius.roundedBase,
-                            ),
-                          ),
                         ),
                       ],
 
-                      const SizedBox(height: 32),
+                      const SizedBox(height: AppSpacing.xxl),
 
                       // Authority Badge
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: AppSpacing.sm,
+                          vertical: AppSpacing.xs,
+                        ),
                         decoration: BoxDecoration(
                           color: AppColors.sealGold.withValues(alpha: 0.1),
-                          borderRadius: BorderRadius.circular(20),
+                          borderRadius: AppRadius.roundedFull,
                           border: Border.all(
                             color: AppColors.sealGold.withValues(alpha: 0.4),
                             width: 1,
@@ -300,19 +319,20 @@ class _SplashSyncScreenState extends State<SplashSyncScreen> {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             const Icon(Icons.verified_rounded, size: 14, color: AppColors.sealGold),
-                            const SizedBox(width: 5),
+                            const SizedBox(width: AppSpacing.xs),
                             Text(
                               '100% Offline Access · ${AppStrings.currentExamYear} Pattern',
-                              style: const TextStyle(
-                                fontSize: 11,
-                                fontWeight: FontWeight.bold,
-                                color: AppColors.sealGold,
-                                letterSpacing: 0.3,
-                              ),
+                              style: AppTypography.labelSmall(color: AppColors.sealGold),
                             ),
                           ],
                         ),
-                      ).animate().fadeIn(delay: 500.ms),
+                      )
+                          .animate()
+                          .fadeIn(
+                            delay: AppMotion.base,
+                            duration: AppMotion.base,
+                            curve: AppMotion.enter,
+                          ),
                     ],
                   ),
                 ),

@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import '../design_system/app_colors.dart';
 import '../design_system/app_typography.dart';
 import '../design_system/app_radius.dart';
+import '../design_system/app_spacing.dart';
 import '../design_system/app_strings.dart';
 import '../models/test_session.dart';
 import '../models/test_language_mode.dart';
 import '../models/question.dart';
 import '../widgets/app_card.dart';
 import '../widgets/app_badge.dart';
+import '../widgets/app_state_views.dart';
 import '../widgets/formatted_question_stem.dart';
 import '../widgets/smart_math_text.dart';
 import '../widgets/question_report_sheet.dart';
@@ -39,16 +41,28 @@ class _SolutionScreenState extends State<SolutionScreen> {
     _languageMode = TestLanguageMode.onlyHindi;
   }
 
+  /// The one border of this file.
+  Border _cardBorder(bool isDark, {Color? color, double width = 1.2}) =>
+      Border.all(
+        color: color ?? (isDark ? AppColors.darkBorder : AppColors.lightBorder),
+        width: width,
+      );
+
   void _showLanguageSelectorSheet() {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     AppSheet.show(
       context,
       builder: (ctx) {
         return Container(
-          padding: const EdgeInsets.fromLTRB(20, 16, 20, 16),
+          padding: const EdgeInsets.fromLTRB(
+            AppSpacing.lg,
+            AppSpacing.base,
+            AppSpacing.lg,
+            AppSpacing.base,
+          ),
           decoration: BoxDecoration(
             color: isDark ? AppColors.darkCard : AppColors.lightCard,
-            borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(AppRadius.xl)),
           ),
           child: SafeArea(
             top: false,
@@ -58,96 +72,105 @@ class _SolutionScreenState extends State<SolutionScreen> {
               children: [
                 Center(
                   child: Container(
-                    width: 40,
-                  height: 4,
-                  decoration: BoxDecoration(
-                    color: isDark ? AppColors.darkBorder : AppColors.lightBorder,
-                    borderRadius: AppRadius.roundedFull,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 16),
-              Text(
-                AppStrings.selectLangTitle,
-                style: AppTypography.titleLarge(
-                  color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
-                ),
-              ),
-              const SizedBox(height: 14),
-              ...TestLanguageMode.values.map((mode) {
-                final isSelected = _languageMode == mode;
-                return Padding(
-                  padding: const EdgeInsets.only(bottom: 10),
-                  child: InkWell(
-                    borderRadius: AppRadius.roundedSm,
-                    onTap: () {
-                      setState(() => _languageMode = mode);
-                      Navigator.pop(ctx);
-                    },
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
-                      decoration: BoxDecoration(
-                        color: isSelected
-                            ? AppColors.primary.withValues(alpha: 0.12)
-                            : (isDark ? AppColors.darkCardElevated : AppColors.lightCardElevated),
-                        borderRadius: AppRadius.roundedSm,
-                        border: Border.all(
-                          color: isSelected ? AppColors.primary : (isDark ? AppColors.darkBorder : AppColors.lightBorder),
-                          width: isSelected ? 1.5 : 1.0,
-                        ),
-                      ),
-                      child: Row(
-                        children: [
-                          Icon(
-                            isSelected ? Icons.check_circle_rounded : Icons.radio_button_unchecked_rounded,
-                            color: isSelected ? AppColors.primary : (isDark ? AppColors.darkTextMuted : AppColors.lightTextMuted),
-                            size: 20,
-                          ),
-                          const SizedBox(width: 12),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  mode.title,
-                                  style: AppTypography.titleMedium(
-                                    color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
-                                  ).copyWith(fontSize: 14.5),
-                                ),
-                                const SizedBox(height: 2),
-                                Text(
-                                  mode.description,
-                                  style: AppTypography.labelSmall(
-                                    color: isDark ? AppColors.darkTextMuted : AppColors.lightTextMuted,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                            decoration: BoxDecoration(
-                              color: isSelected ? AppColors.primary : (isDark ? AppColors.darkBorder : AppColors.lightBorder),
-                              borderRadius: AppRadius.roundedSm,
-                            ),
-                            child: Text(
-                              mode.badgeLabel,
-                              style: AppTypography.labelSmall(
-                                color: isSelected ? Colors.white : (isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+                    width: AppSpacing.xxl,
+                    height: AppSpacing.xs,
+                    decoration: BoxDecoration(
+                      color: isDark ? AppColors.darkBorder : AppColors.lightBorder,
+                      borderRadius: AppRadius.roundedFull,
                     ),
                   ),
-                );
-              }),
-            ],
+                ),
+                const SizedBox(height: AppSpacing.base),
+                Text(
+                  AppStrings.selectLangTitle,
+                  style: AppTypography.titleLarge(
+                    color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
+                  ),
+                ),
+                const SizedBox(height: AppSpacing.md),
+                ...TestLanguageMode.values.map((mode) {
+                  final isSelected = _languageMode == mode;
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: AppSpacing.sm),
+                    child: InkWell(
+                      borderRadius: AppRadius.roundedSm,
+                      onTap: () {
+                        setState(() => _languageMode = mode);
+                        Navigator.pop(ctx);
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: AppSpacing.md,
+                          vertical: AppSpacing.md,
+                        ),
+                        decoration: BoxDecoration(
+                          color: isSelected
+                              ? AppColors.primary.withValues(alpha: 0.12)
+                              : (isDark ? AppColors.darkCardElevated : AppColors.lightCardElevated),
+                          borderRadius: AppRadius.roundedSm,
+                          border: _cardBorder(
+                            isDark,
+                            color: isSelected
+                                ? AppColors.primary
+                                : (isDark ? AppColors.darkBorder : AppColors.lightBorder),
+                            width: isSelected ? 1.5 : 1.0,
+                          ),
+                        ),
+                        child: Row(
+                          children: [
+                            Icon(
+                              isSelected ? Icons.check_circle_rounded : Icons.radio_button_unchecked_rounded,
+                              color: isSelected ? AppColors.primary : (isDark ? AppColors.darkTextMuted : AppColors.lightTextMuted),
+                              size: 20,
+                            ),
+                            const SizedBox(width: AppSpacing.md),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    mode.title,
+                                    style: AppTypography.titleSmall(
+                                      color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
+                                    ),
+                                  ),
+                                  const SizedBox(height: AppSpacing.xs),
+                                  Text(
+                                    mode.description,
+                                    style: AppTypography.labelSmall(
+                                      color: isDark ? AppColors.darkTextMuted : AppColors.lightTextMuted,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: AppSpacing.sm,
+                                vertical: AppSpacing.xs,
+                              ),
+                              decoration: BoxDecoration(
+                                color: isSelected ? AppColors.primary : (isDark ? AppColors.darkBorder : AppColors.lightBorder),
+                                borderRadius: AppRadius.roundedSm,
+                              ),
+                              child: Text(
+                                mode.badgeLabel,
+                                style: AppTypography.labelSmall(
+                                  color: isSelected ? AppColors.darkTextPrimary : (isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                }),
+              ],
+            ),
           ),
-        ),
-      );
-    },
+        );
+      },
     );
   }
 
@@ -184,12 +207,16 @@ class _SolutionScreenState extends State<SolutionScreen> {
             onTap: _showLanguageSelectorSheet,
             borderRadius: AppRadius.roundedSm,
             child: Container(
-              margin: const EdgeInsets.symmetric(vertical: 10),
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+              margin: const EdgeInsets.symmetric(vertical: AppSpacing.sm),
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppSpacing.sm,
+                vertical: AppSpacing.xs,
+              ),
               decoration: BoxDecoration(
                 color: isDark ? AppColors.darkCardElevated : AppColors.lightCardElevated,
                 borderRadius: AppRadius.roundedSm,
-                border: Border.all(
+                border: _cardBorder(
+                  isDark,
                   color: AppColors.primary.withValues(alpha: 0.4),
                   width: 1,
                 ),
@@ -198,33 +225,36 @@ class _SolutionScreenState extends State<SolutionScreen> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   const Icon(Icons.language_rounded, size: 14, color: AppColors.primary),
-                  const SizedBox(width: 5),
+                  const SizedBox(width: AppSpacing.xs),
                   Text(
                     _languageMode.badgeLabel,
                     style: AppTypography.labelSmall(
                       color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
-                    ).copyWith(fontWeight: FontWeight.w600),
+                    ),
                   ),
                 ],
               ),
             ),
           ),
-          const SizedBox(width: 12),
+          const SizedBox(width: AppSpacing.md),
         ],
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(48),
           child: Container(
             height: 48,
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+            padding: const EdgeInsets.symmetric(
+              horizontal: AppSpacing.base,
+              vertical: AppSpacing.xs,
+            ),
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: [
                 _buildFilterChip('${AppStrings.solFilterAll} (${allQuestions.length})', SolutionFilter.all, isDark),
-                const SizedBox(width: 8),
+                const SizedBox(width: AppSpacing.sm),
                 _buildFilterChip(AppStrings.solFilterIncorrect, SolutionFilter.incorrect, isDark),
-                const SizedBox(width: 8),
+                const SizedBox(width: AppSpacing.sm),
                 _buildFilterChip(AppStrings.solFilterUnattempted, SolutionFilter.unattempted, isDark),
-                const SizedBox(width: 8),
+                const SizedBox(width: AppSpacing.sm),
                 _buildFilterChip(AppStrings.solFilterCorrect, SolutionFilter.correct, isDark),
               ],
             ),
@@ -233,16 +263,9 @@ class _SolutionScreenState extends State<SolutionScreen> {
       ),
       body: SafeArea(
         child: filteredIndices.isEmpty
-            ? Center(
-                child: Text(
-                  AppStrings.solNoQuestionsInCategory,
-                  style: AppTypography.titleMedium(
-                    color: isDark ? AppColors.darkTextMuted : AppColors.lightTextMuted,
-                  ),
-                ),
-              )
+            ? _buildEmptyState(isDark)
             : ListView.builder(
-                padding: const EdgeInsets.all(16),
+                padding: const EdgeInsets.all(AppSpacing.base),
                 itemCount: filteredIndices.length,
                 itemBuilder: (context, idx) {
                 final qIdx = filteredIndices[idx];
@@ -255,9 +278,8 @@ class _SolutionScreenState extends State<SolutionScreen> {
                     : null;
 
                 return Padding(
-                  padding: const EdgeInsets.only(bottom: 16.0),
+                  padding: const EdgeInsets.only(bottom: AppSpacing.base),
                   child: AppCard(
-                    padding: const EdgeInsets.all(16),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -265,8 +287,8 @@ class _SolutionScreenState extends State<SolutionScreen> {
                         Wrap(
                           alignment: WrapAlignment.spaceBetween,
                           crossAxisAlignment: WrapCrossAlignment.center,
-                          spacing: 8,
-                          runSpacing: 6,
+                          spacing: AppSpacing.sm,
+                          runSpacing: AppSpacing.xs,
                           children: [
                             Row(
                               mainAxisSize: MainAxisSize.min,
@@ -277,7 +299,7 @@ class _SolutionScreenState extends State<SolutionScreen> {
                                     color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
                                   ),
                                 ),
-                                const SizedBox(width: 8),
+                                const SizedBox(width: AppSpacing.sm),
                                 if (userAns == null)
                                   AppBadge(label: AppStrings.solBadgeUnattempted, color: AppColors.danger)
                                 else if (isCorrect)
@@ -287,7 +309,7 @@ class _SolutionScreenState extends State<SolutionScreen> {
                               ],
                             ),
                             if (q.topicName != null)
-                              AppBadge(label: q.topicName!, color: AppColors.primary),
+                              AppBadge(label: q.topicName!, color: AppColors.primary, wrap: true),
                             InkWell(
                               onTap: () => QuestionReportSheet.show(
                                 context,
@@ -296,13 +318,17 @@ class _SolutionScreenState extends State<SolutionScreen> {
                                 paperTitle: widget.session.paperTitle ?? widget.session.setCode,
                                 userAnswer: userAns,
                               ),
-                              borderRadius: BorderRadius.circular(6),
+                              borderRadius: AppRadius.roundedSm,
                               child: Container(
-                                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3.5),
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: AppSpacing.sm,
+                                  vertical: AppSpacing.xs,
+                                ),
                                 decoration: BoxDecoration(
                                   color: AppColors.sealGoldLight.withValues(alpha: isDark ? 0.22 : 0.12),
-                                  borderRadius: BorderRadius.circular(6),
-                                  border: Border.all(
+                                  borderRadius: AppRadius.roundedSm,
+                                  border: _cardBorder(
+                                    isDark,
                                     color: AppColors.sealGoldLight.withValues(alpha: 0.45),
                                     width: 1,
                                   ),
@@ -311,12 +337,10 @@ class _SolutionScreenState extends State<SolutionScreen> {
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
                                     const Icon(Icons.flag_rounded, size: 13, color: AppColors.goldBright),
-                                    const SizedBox(width: 4),
+                                    const SizedBox(width: AppSpacing.xs),
                                     Text(
                                       'रिपोर्ट',
-                                      style: TextStyle(
-                                        fontSize: 11.5,
-                                        fontWeight: FontWeight.w700,
+                                      style: AppTypography.labelSmall(
                                         color: isDark ? AppColors.goldBright : AppColors.sealGold,
                                       ),
                                     ),
@@ -326,12 +350,12 @@ class _SolutionScreenState extends State<SolutionScreen> {
                             ),
                           ],
                         ),
-                        const SizedBox(height: 8),
+                        const SizedBox(height: AppSpacing.sm),
 
                         // PYQ & Probability info
                         Wrap(
-                          spacing: 8,
-                          runSpacing: 6,
+                          spacing: AppSpacing.sm,
+                          runSpacing: AppSpacing.xs,
                           children: [
                             if (q.displayTag != null || q.isPyq)
                               AppBadge(
@@ -345,15 +369,16 @@ class _SolutionScreenState extends State<SolutionScreen> {
                             ),
                           ],
                         ),
-                        const SizedBox(height: 12),
+                        const SizedBox(height: AppSpacing.md),
 
                         // Passage (if any)
                         if (passage != null) ...[
                           Container(
-                            padding: const EdgeInsets.all(12),
+                            padding: const EdgeInsets.all(AppSpacing.md),
                             decoration: BoxDecoration(
                               color: isDark ? AppColors.darkCard : AppColors.primarySubtle,
-                              borderRadius: AppRadius.roundedSm,
+                              borderRadius: AppRadius.roundedMd,
+                              border: _cardBorder(isDark),
                             ),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -365,19 +390,24 @@ class _SolutionScreenState extends State<SolutionScreen> {
                                       size: 15,
                                       color: AppColors.primary,
                                     ),
-                                    const SizedBox(width: 6),
-                                    Text(
-                                      passage.isPoem
-                                          ? (LanguageService.instance.isHindi ? 'अपठित पद्यांश' : 'Poem')
-                                          : (LanguageService.instance.isHindi ? 'अपठित गद्यांश' : 'Comprehension Passage'),
-                                      style: AppTypography.labelSmall(color: AppColors.primary).copyWith(fontWeight: FontWeight.bold),
+                                    const SizedBox(width: AppSpacing.xs),
+                                    Expanded(
+                                      child: Text(
+                                        passage.isPoem
+                                            ? (LanguageService.instance.isHindi ? 'अपठित पद्यांश' : 'Poem')
+                                            : (LanguageService.instance.isHindi ? 'अपठित गद्यांश' : 'Comprehension Passage'),
+                                        style: AppTypography.labelSmall(color: AppColors.primary),
+                                      ),
                                     ),
                                   ],
                                 ),
-                                const SizedBox(height: 6),
+                                const SizedBox(height: AppSpacing.xs),
                                 Container(
                                   width: double.infinity,
-                                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: AppSpacing.sm,
+                                    vertical: AppSpacing.xs,
+                                  ),
                                   decoration: BoxDecoration(
                                     color: isDark ? AppColors.primaryLight : AppColors.sealGoldSubtle,
                                     border: Border(
@@ -386,19 +416,16 @@ class _SolutionScreenState extends State<SolutionScreen> {
                                         width: 2.5,
                                       ),
                                     ),
-                                    borderRadius: BorderRadius.circular(2),
+                                    borderRadius: AppRadius.roundedSm,
                                   ),
                                   child: Text(
                                     'निर्देश : ${passage.displayDir}',
-                                    style: TextStyle(
-                                      fontStyle: FontStyle.italic,
-                                      fontSize: 11.5,
-                                      fontWeight: FontWeight.w600,
+                                    style: AppTypography.labelSmall(
                                       color: isDark ? AppColors.borderStrong : AppColors.warningDark,
-                                    ),
+                                    ).copyWith(fontStyle: FontStyle.italic),
                                   ),
                                 ),
-                                const SizedBox(height: 8),
+                                const SizedBox(height: AppSpacing.sm),
                                 InkWell(
                                   onTap: () {
                                     setState(() {
@@ -421,18 +448,15 @@ class _SolutionScreenState extends State<SolutionScreen> {
                                               ? AppColors.darkTextSecondary
                                               : AppColors.lightTextSecondary,
                                         ).copyWith(
-                                          fontSize: 13,
-                                          height: passage.isPoem ? 1.5 : 1.4,
+                                          height: passage.isPoem ? 1.7 : 1.6,
                                         ),
                                       ),
-                                      const SizedBox(height: 4),
+                                      const SizedBox(height: AppSpacing.xs),
                                       Text(
                                         _expandedPassages.contains(qIdx)
                                             ? 'संपूर्ण गद्यांश छिपाएँ ▲'
                                             : 'पूरा गद्यांश पढ़ें ▼',
-                                        style: TextStyle(
-                                          fontSize: 11.5,
-                                          fontWeight: FontWeight.w700,
+                                        style: AppTypography.labelSmall(
                                           color: isDark
                                               ? AppColors.accentBright
                                               : AppColors.primary,
@@ -444,12 +468,12 @@ class _SolutionScreenState extends State<SolutionScreen> {
                               ],
                             ),
                           ),
-                          const SizedBox(height: 12),
+                          const SizedBox(height: AppSpacing.md),
                         ],
 
                         // Question Stem
                         _buildSolQuestionStem(q, isDark),
-                        const SizedBox(height: 14),
+                        const SizedBox(height: AppSpacing.md),
 
                         // 4 Options with answer highlights
                         ..._buildSolOptions(q, userAns, isCorrect, isDark),
@@ -460,6 +484,16 @@ class _SolutionScreenState extends State<SolutionScreen> {
               },
             ),
       ),
+    );
+  }
+
+  /// The empty state of this screen: an icon, the message and a quiet card
+  /// around it, so a filtered-out list never looks broken.
+  Widget _buildEmptyState(bool isDark) {
+    return AppEmptyState(
+      icon: Icons.filter_alt_off_rounded,
+      accent: isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary,
+      title: AppStrings.solNoQuestionsInCategory,
     );
   }
 
@@ -477,7 +511,7 @@ class _SolutionScreenState extends State<SolutionScreen> {
             text: engText,
             style: AppTypography.questionText(
               color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
-            ).copyWith(fontSize: 15.5),
+            ),
             isDark: isDark,
           ),
           if (QuestionFigureCatalog.hasQuestionFigure(q.id))
@@ -498,7 +532,7 @@ class _SolutionScreenState extends State<SolutionScreen> {
             text: q.qHindi,
             style: AppTypography.questionText(
               color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
-            ).copyWith(fontSize: 15.5),
+            ),
             isDark: isDark,
           ),
           if (QuestionFigureCatalog.hasQuestionFigure(q.id))
@@ -524,18 +558,19 @@ class _SolutionScreenState extends State<SolutionScreen> {
           text: q.qHindi,
           style: AppTypography.questionText(
             color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
-          ).copyWith(fontSize: 15.5),
+          ),
           isDark: isDark,
         ),
         if (showEnglish) ...[
-          const SizedBox(height: 8),
+          const SizedBox(height: AppSpacing.sm),
           Container(
             width: double.infinity,
-            padding: const EdgeInsets.all(10),
+            padding: const EdgeInsets.all(AppSpacing.sm),
             decoration: BoxDecoration(
               color: isDark ? AppColors.darkCard : AppColors.primarySubtle,
-              borderRadius: AppRadius.roundedSm,
-              border: Border.all(
+              borderRadius: AppRadius.roundedMd,
+              border: _cardBorder(
+                isDark,
                 color: AppColors.violet.withValues(alpha: 0.25),
                 width: 1.0,
               ),
@@ -544,7 +579,7 @@ class _SolutionScreenState extends State<SolutionScreen> {
               text: q.qEnglish!,
               style: AppTypography.bodyMedium(
                 color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary,
-              ).copyWith(fontSize: 13.5, fontStyle: FontStyle.italic),
+              ).copyWith(fontStyle: FontStyle.italic),
               isDark: isDark,
               isTranslation: true,
             ),
@@ -614,8 +649,11 @@ class _SolutionScreenState extends State<SolutionScreen> {
       }
 
       return Container(
-        margin: const EdgeInsets.only(bottom: 8),
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+        margin: const EdgeInsets.only(bottom: AppSpacing.sm),
+        padding: const EdgeInsets.symmetric(
+          horizontal: AppSpacing.md,
+          vertical: AppSpacing.sm,
+        ),
         decoration: BoxDecoration(
           color: optBg,
           borderRadius: AppRadius.roundedSm,
@@ -626,9 +664,9 @@ class _SolutionScreenState extends State<SolutionScreen> {
           children: [
             Text(
               '$label. ',
-              style: AppTypography.titleMedium(
+              style: AppTypography.titleSmall(
                 color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
-              ).copyWith(fontSize: 14),
+              ),
             ),
             Expanded(
               child: Column(
@@ -645,15 +683,15 @@ class _SolutionScreenState extends State<SolutionScreen> {
                       primaryText,
                       style: AppTypography.optionText(
                         color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
-                      ).copyWith(fontSize: 14),
+                      ),
                     ),
                   if (!hasOptionFigure && secondaryText != null) ...[
-                    const SizedBox(height: 3),
+                    const SizedBox(height: AppSpacing.xs),
                     SmartMathText(
                       secondaryText,
-                      style: AppTypography.labelSmall(
+                      style: AppTypography.bodySmall(
                         color: isDark ? AppColors.darkTextMuted : AppColors.lightTextMuted,
-                      ).copyWith(fontStyle: FontStyle.italic, fontSize: 12),
+                      ).copyWith(fontStyle: FontStyle.italic),
                     ),
                   ],
                 ],
@@ -676,7 +714,7 @@ class _SolutionScreenState extends State<SolutionScreen> {
       selectedColor: isDark ? AppColors.sealGold : AppColors.primary,
       labelStyle: AppTypography.labelSmall(
         color: isSelected
-            ? (isDark ? AppColors.darkBg : Colors.white)
+            ? (isDark ? AppColors.darkBg : AppColors.darkTextPrimary)
             : (isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary),
       ),
       backgroundColor: isDark ? AppColors.darkCard : AppColors.lightCard,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../design_system/app_colors.dart';
 import '../design_system/app_radius.dart';
+import '../design_system/app_spacing.dart';
 import '../design_system/app_typography.dart';
 import '../models/question.dart';
 import '../models/test_language_mode.dart';
@@ -46,11 +47,10 @@ class ExamSpecialRenderEngine extends StatelessWidget {
             isDark: isDark,
             style: AppTypography.questionText(
               color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
-              fontSize: 17.5,
             ).copyWith(fontWeight: FontWeight.w600, height: 1.6),
           ),
           if (MathDiagramWidget.hasDiagram(question.id, engText)) ...[
-            const SizedBox(height: 10),
+            const SizedBox(height: AppSpacing.sm),
             MathDiagramWidget(
               questionId: question.id,
               rawText: engText,
@@ -70,11 +70,10 @@ class ExamSpecialRenderEngine extends StatelessWidget {
             isDark: isDark,
             style: AppTypography.questionText(
               color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
-              fontSize: 17.5,
             ).copyWith(fontWeight: FontWeight.w600, height: 1.6),
           ),
           if (MathDiagramWidget.hasDiagram(question.id, question.qHindi)) ...[
-            const SizedBox(height: 10),
+            const SizedBox(height: AppSpacing.sm),
             MathDiagramWidget(
               questionId: question.id,
               rawText: question.qHindi,
@@ -98,7 +97,10 @@ class ExamSpecialRenderEngine extends StatelessWidget {
         Row(
           children: [
             Container(
-              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2.5),
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppSpacing.sm,
+                vertical: AppSpacing.xs,
+              ),
               decoration: BoxDecoration(
                 color: (isDark ? AppColors.accentBright : AppColors.primary).withValues(alpha: isDark ? 0.2 : 0.12),
                 borderRadius: AppRadius.roundedSm,
@@ -107,12 +109,12 @@ class ExamSpecialRenderEngine extends StatelessWidget {
                 'हिन्दी (Hindi)',
                 style: AppTypography.labelSmall(
                   color: isDark ? AppColors.accentBright : AppColors.primary,
-                ).copyWith(fontSize: 11, fontWeight: FontWeight.bold),
+                ),
               ),
             ),
           ],
         ),
-        const SizedBox(height: 8),
+        const SizedBox(height: AppSpacing.sm),
 
         // Hindi Stem
         FormattedQuestionStem(
@@ -120,13 +122,12 @@ class ExamSpecialRenderEngine extends StatelessWidget {
           isDark: isDark,
           style: AppTypography.questionText(
             color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
-            fontSize: 17.5,
           ).copyWith(fontWeight: FontWeight.w600, height: 1.6),
         ),
 
         // Diagram (if present)
         if (MathDiagramWidget.hasDiagram(question.id, question.qHindi)) ...[
-          const SizedBox(height: 10),
+          const SizedBox(height: AppSpacing.sm),
           MathDiagramWidget(
             questionId: question.id,
             rawText: question.qHindi,
@@ -136,16 +137,19 @@ class ExamSpecialRenderEngine extends StatelessWidget {
 
         // English Translation Callout
         if (showEnglishBox) ...[
-          const SizedBox(height: 14),
+          const SizedBox(height: AppSpacing.md),
           Container(
             width: double.infinity,
-            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+            padding: const EdgeInsets.symmetric(
+              horizontal: AppSpacing.md,
+              vertical: AppSpacing.md,
+            ),
             decoration: BoxDecoration(
               color: isDark ? AppColors.darkCard : AppColors.darkTextPrimary,
               borderRadius: AppRadius.roundedBase,
               border: Border.all(
                 color: isDark ? AppColors.darkBorder : AppColors.lightBorder,
-                width: 1.0,
+                width: 1.2,
               ),
             ),
             child: Column(
@@ -158,23 +162,23 @@ class ExamSpecialRenderEngine extends StatelessWidget {
                       size: 14,
                       color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
                     ),
-                    const SizedBox(width: 5),
+                    const SizedBox(width: AppSpacing.xs),
                     Text(
                       'English Translation',
                       style: AppTypography.labelSmall(
                         color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
-                      ).copyWith(fontWeight: FontWeight.bold, fontSize: 11),
+                      ),
                     ),
                   ],
                 ),
-                const SizedBox(height: 6),
+                const SizedBox(height: AppSpacing.xs),
                 FormattedQuestionStem(
                   text: question.qEnglish!,
                   isDark: isDark,
                   isTranslation: true,
                   style: AppTypography.bodyMedium(
                     color: isDark ? AppColors.lightBorder : AppColors.lightTextSecondary,
-                  ).copyWith(fontSize: 15.0, height: 1.5, fontStyle: FontStyle.italic),
+                  ).copyWith(fontStyle: FontStyle.italic, height: 1.5),
                 ),
               ],
             ),

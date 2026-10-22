@@ -5,6 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../design_system/app_colors.dart';
 import '../design_system/app_dialogs.dart';
+import '../design_system/app_radius.dart';
+import '../design_system/app_shadows.dart';
+import '../design_system/app_spacing.dart';
 import '../design_system/app_typography.dart';
 import '../design_system/app_strings.dart';
 import '../services/language_service.dart';
@@ -31,6 +34,39 @@ import '../widgets/premium_paywall_modal.dart';
 import '../widgets/question_report_sheet.dart';
 import '../design_system/app_motion.dart';
 import '../design_system/app_sheet.dart';
+
+/// One card look for the whole home screen.
+///
+/// Every surface of this screen shares the same radius, the same border and
+/// the same shadow, so the screen reads as one premium sheet instead of a
+/// pile of differently rounded boxes.
+class _HomeCard {
+  const _HomeCard._();
+
+  /// The one padding every card uses.
+  static const EdgeInsets padding = EdgeInsets.all(AppSpacing.base);
+
+  /// The one radius every card uses.
+  static const BorderRadius radius = AppRadius.roundedBase;
+
+  /// The one decoration every card uses.
+  static BoxDecoration card(
+    bool isDark, {
+    Color? borderColor,
+    double borderWidth = 1.0,
+  }) {
+    return BoxDecoration(
+      color: isDark ? AppColors.darkCard : AppColors.lightCard,
+      borderRadius: radius,
+      border: Border.all(
+        color: borderColor ??
+            (isDark ? AppColors.darkBorder : AppColors.lightBorder),
+        width: borderWidth,
+      ),
+      boxShadow: isDark ? AppShadows.darkCard : AppShadows.card,
+    );
+  }
+}
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -278,7 +314,7 @@ class _HomeScreenState extends State<HomeScreen> {
         return Container(
           decoration: BoxDecoration(
             color: isDark ? AppColors.darkCard : AppColors.lightCard,
-            borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(AppRadius.xl)),
             border: Border.all(
               color: isAdded
                   ? AppColors.sealGold
@@ -289,7 +325,10 @@ class _HomeScreenState extends State<HomeScreen> {
           child: SafeArea(
             top: false,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppSpacing.lg,
+                vertical: AppSpacing.lg,
+              ),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -298,10 +337,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Container(
                       width: 40,
                       height: 4,
-                      margin: const EdgeInsets.only(bottom: 16),
+                      margin: const EdgeInsets.only(bottom: AppSpacing.base),
                       decoration: BoxDecoration(
                         color: isDark ? AppColors.darkBorder : AppColors.lightBorder,
-                        borderRadius: BorderRadius.circular(2),
+                        borderRadius: BorderRadius.circular(AppRadius.full),
                       ),
                     ),
                   ),
@@ -333,7 +372,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       size: 36,
                     ),
                   ),
-                  const SizedBox(height: 14),
+                  const SizedBox(height: AppSpacing.md),
 
                   // Title
                   Text(
@@ -343,14 +382,11 @@ class _HomeScreenState extends State<HomeScreen> {
                             ? AppStrings.syncUpToDateTitle
                             : AppStrings.syncErrorTitle),
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w900,
+                    style: AppTypography.titleLarge(
                       color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
-                      letterSpacing: 0.3,
-                    ),
+                    ).copyWith(letterSpacing: 0.3),
                   ),
-                  const SizedBox(height: 8),
+                  const SizedBox(height: AppSpacing.sm),
 
                   // Subtitle
                   Text(
@@ -360,56 +396,56 @@ class _HomeScreenState extends State<HomeScreen> {
                             ? AppStrings.syncUpToDateDesc(result.totalCount)
                             : AppStrings.syncErrorDesc(result.message)),
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 13,
+                    style: AppTypography.bodyMedium(
                       color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary,
-                      height: 1.45,
-                    ),
+                    ).copyWith(height: 1.45),
                   ),
-                  const SizedBox(height: 18),
+                  const SizedBox(height: AppSpacing.base),
 
                   // Metric Chips
                   if (result.success)
                     Wrap(
-                      spacing: 8,
-                      runSpacing: 8,
+                      spacing: AppSpacing.sm,
+                      runSpacing: AppSpacing.sm,
                       alignment: WrapAlignment.center,
                       children: [
                         Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: AppSpacing.sm,
+                            vertical: AppSpacing.xs,
+                          ),
                           decoration: BoxDecoration(
                             color: AppColors.sealGold.withValues(alpha: 0.15),
-                            borderRadius: BorderRadius.circular(6),
+                            borderRadius: BorderRadius.circular(AppRadius.sm),
                             border: Border.all(color: AppColors.sealGold, width: 1),
                           ),
                           child: Text(
                             AppStrings.syncTotalQuestionsChip(result.totalCount),
-                            style: const TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.bold,
+                            style: AppTypography.labelMedium(
                               color: AppColors.sealGold,
                             ),
                           ),
                         ),
                         Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: AppSpacing.sm,
+                            vertical: AppSpacing.xs,
+                          ),
                           decoration: BoxDecoration(
                             color: AppColors.correctGreen.withValues(alpha: 0.15),
-                            borderRadius: BorderRadius.circular(6),
+                            borderRadius: BorderRadius.circular(AppRadius.sm),
                             border: Border.all(color: AppColors.correctGreen, width: 1),
                           ),
                           child: Text(
                             AppStrings.syncOfflineChip,
-                            style: const TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.bold,
+                            style: AppTypography.labelMedium(
                               color: AppColors.correctGreen,
                             ),
                           ),
                         ),
                       ],
                     ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: AppSpacing.lg),
 
                   // Action button
                   ElevatedButton.icon(
@@ -417,9 +453,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       backgroundColor: isAdded
                           ? AppColors.sealGold
                           : (isDark ? AppColors.darkCardElevated : AppColors.primary),
-                      foregroundColor: isAdded ? Colors.black : Colors.white,
+                      foregroundColor: isAdded
+                          ? AppColors.primaryDark
+                          : AppColors.darkTextPrimary,
                       minimumSize: const Size(double.infinity, 44),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                      shape: const RoundedRectangleBorder(borderRadius: AppRadius.roundedSm),
                     ),
                     onPressed: () {
                       Navigator.pop(ctx);
@@ -435,10 +473,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       isAdded
                           ? (LanguageService.instance.isHindi ? 'प्रश्न-पुस्तिका हल करना शुरू करें' : 'Start Solving Booklet')
                           : AppStrings.syncContinueBtn,
-                      style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13.5),
+                      style: AppTypography.labelMedium(),
                     ),
                   ),
-                  const SizedBox(height: 6),
+                  const SizedBox(height: AppSpacing.sm),
                 ],
               ),
             ),
@@ -489,11 +527,11 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 18,
               child: CircularProgressIndicator(strokeWidth: 2, color: AppColors.sealGold),
             ),
-            const SizedBox(width: 12),
+            const SizedBox(width: AppSpacing.md),
             Expanded(
               child: Text(
                 AppStrings.dbOptimizingToast,
-                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
+                style: AppTypography.labelMedium(),
               ),
             ),
           ],
@@ -571,13 +609,16 @@ class _HomeScreenState extends State<HomeScreen> {
         return Container(
           decoration: BoxDecoration(
             color: isDark ? AppColors.darkCard : AppColors.lightCard,
-            borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(AppRadius.xl)),
             border: Border.all(color: AppColors.sealGold, width: 1.5),
           ),
           child: SafeArea(
             top: false,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppSpacing.lg,
+                vertical: AppSpacing.lg,
+              ),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -585,10 +626,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Container(
                       width: 40,
                       height: 4,
-                      margin: const EdgeInsets.only(bottom: 16),
+                      margin: const EdgeInsets.only(bottom: AppSpacing.base),
                       decoration: BoxDecoration(
                         color: isDark ? AppColors.darkBorder : AppColors.lightBorder,
-                        borderRadius: BorderRadius.circular(2),
+                        borderRadius: BorderRadius.circular(AppRadius.full),
                       ),
                     ),
                   ),
@@ -602,83 +643,88 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     child: const Icon(Icons.bolt_rounded, size: 36, color: AppColors.sealGold),
                   ),
-                  const SizedBox(height: 14),
+                  const SizedBox(height: AppSpacing.md),
                   Text(
                     AppStrings.dbOptimizeDoneTitle,
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w900,
+                    style: AppTypography.titleLarge(
                       color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
                     ),
                   ),
-                  const SizedBox(height: 8),
+                  const SizedBox(height: AppSpacing.sm),
                   Text(
                     AppStrings.dbOptimizeDoneDesc(savedKb),
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 13,
+                    style: AppTypography.bodyMedium(
                       color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary,
-                      height: 1.45,
-                    ),
+                    ).copyWith(height: 1.45),
                   ),
-                  const SizedBox(height: 18),
+                  const SizedBox(height: AppSpacing.base),
                   Wrap(
-                    spacing: 8,
-                    runSpacing: 8,
+                    spacing: AppSpacing.sm,
+                    runSpacing: AppSpacing.sm,
                     alignment: WrapAlignment.center,
                     children: [
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: AppSpacing.sm,
+                          vertical: AppSpacing.xs,
+                        ),
                         decoration: BoxDecoration(
                           color: AppColors.sealGold.withValues(alpha: 0.15),
-                          borderRadius: BorderRadius.circular(6),
+                          borderRadius: BorderRadius.circular(AppRadius.sm),
                           border: Border.all(color: AppColors.sealGold, width: 1),
                         ),
                         child: Text(
                           AppStrings.dbTotalQuestionsChip(totalQ),
-                          style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: AppColors.sealGold),
+                          style: AppTypography.labelMedium(color: AppColors.sealGold),
                         ),
                       ),
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: AppSpacing.sm,
+                          vertical: AppSpacing.xs,
+                        ),
                         decoration: BoxDecoration(
                           color: AppColors.correctGreen.withValues(alpha: 0.15),
-                          borderRadius: BorderRadius.circular(6),
+                          borderRadius: BorderRadius.circular(AppRadius.sm),
                           border: Border.all(color: AppColors.correctGreen, width: 1),
                         ),
                         child: Text(
                           AppStrings.dbSpaceFreedChip(savedKb),
-                          style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: AppColors.correctGreen),
+                          style: AppTypography.labelMedium(color: AppColors.correctGreen),
                         ),
                       ),
                       if (orphanDeleted > 0)
                         Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: AppSpacing.sm,
+                            vertical: AppSpacing.xs,
+                          ),
                           decoration: BoxDecoration(
                             color: AppColors.primary.withValues(alpha: 0.15),
-                            borderRadius: BorderRadius.circular(6),
+                            borderRadius: BorderRadius.circular(AppRadius.sm),
                             border: Border.all(color: AppColors.primary, width: 1),
                           ),
                           child: Text(
                             AppStrings.dbOrphanDeletedChip(orphanDeleted),
-                            style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: AppColors.primary),
+                            style: AppTypography.labelMedium(color: AppColors.primary),
                           ),
                         ),
                     ],
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: AppSpacing.lg),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.sealGold,
-                      foregroundColor: Colors.black,
+                      foregroundColor: AppColors.primaryDark,
                       minimumSize: const Size(double.infinity, 44),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                      shape: const RoundedRectangleBorder(borderRadius: AppRadius.roundedSm),
                     ),
                     onPressed: () => Navigator.of(ctx).pop(),
-                    child: Text(AppStrings.syncContinueBtn, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13.5)),
+                    child: Text(AppStrings.syncContinueBtn, style: AppTypography.labelMedium()),
                   ),
-                  const SizedBox(height: 6),
+                  const SizedBox(height: AppSpacing.sm),
                 ],
               ),
             ),
@@ -722,14 +768,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   content: Row(
                     children: [
                       const Icon(Icons.info_outline_rounded, color: AppColors.sealGold, size: 20),
-                      const SizedBox(width: 10),
+                      const SizedBox(width: AppSpacing.md),
                       Expanded(
                         child: Text(
                           AppStrings.doubleBackExit,
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 13.5,
-                            fontWeight: FontWeight.bold,
+                          style: AppTypography.labelMedium(
+                            color: AppColors.darkTextPrimary,
                           ),
                         ),
                       ),
@@ -739,9 +783,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   elevation: 8,
                   duration: const Duration(seconds: 2),
                   behavior: SnackBarBehavior.floating,
-                  margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                  margin: const EdgeInsets.symmetric(
+                    horizontal: AppSpacing.xl,
+                    vertical: AppSpacing.base,
+                  ),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
+                    borderRadius: _HomeCard.radius,
                     side: const BorderSide(color: AppColors.sealGold, width: 1.2),
                   ),
                 ),
@@ -754,7 +801,7 @@ class _HomeScreenState extends State<HomeScreen> {
             backgroundColor: isDark ? AppColors.darkBg : AppColors.lightBg,
             appBar: AppBar(
               backgroundColor: isDark ? AppColors.darkCard : AppColors.primary,
-              foregroundColor: Colors.white,
+              foregroundColor: AppColors.darkTextPrimary,
               elevation: 0,
               title: Row(
                 children: [
@@ -765,45 +812,41 @@ class _HomeScreenState extends State<HomeScreen> {
                         valueListenable: ExamService.instance.currentExam,
                         builder: (context, currentExam, _) {
                           return Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: AppSpacing.sm,
+                              vertical: AppSpacing.xs,
+                            ),
                             decoration: BoxDecoration(
                               color: AppColors.sealGold.withValues(alpha: 0.25),
-                              borderRadius: BorderRadius.circular(4),
+                              borderRadius: BorderRadius.circular(AppRadius.sm),
                               border: Border.all(color: AppColors.sealGold, width: 1.2),
                             ),
                             child: Text(
                               ExamService.instance.shortNameWithPaper,
-                              style: const TextStyle(
+                              style: AppTypography.labelMedium(
                                 color: AppColors.sealGoldSubtle,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 12,
-                                letterSpacing: 0.5,
-                              ),
+                              ).copyWith(letterSpacing: 0.5),
                             ),
                           );
                         },
                       );
                     },
                   ),
-                  const SizedBox(width: 10),
+                  const SizedBox(width: AppSpacing.md),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           AppStrings.appTitle,
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
-                            letterSpacing: 0.3,
-                          ),
+                          style: AppTypography.titleSmall(
+                            color: AppColors.darkTextPrimary,
+                          ).copyWith(letterSpacing: 0.3),
                         ),
                         Text(
                           AppStrings.appSubtitle,
-                          style: TextStyle(
+                          style: AppTypography.labelSmall(
                             color: isDark ? AppColors.darkTextSecondary : AppColors.darkTextSecondary,
-                            fontSize: 11,
                           ),
                         ),
                       ],
@@ -824,21 +867,21 @@ class _HomeScreenState extends State<HomeScreen> {
                   tooltip: AppStrings.bankSyncTooltip,
                   icon: Icon(
                     Icons.sync_rounded,
-                    color: isDark ? AppColors.sealGoldLight : Colors.white,
+                    color: isDark ? AppColors.sealGoldLight : AppColors.darkTextPrimary,
                   ),
                   onPressed: _syncNow,
                 ),
-                const SizedBox(width: 8),
+                const SizedBox(width: AppSpacing.sm),
               ],
             ),
             bottomNavigationBar: BottomNavigationBar(
               currentIndex: _selectedTab,
               onTap: (idx) => setState(() => _selectedTab = idx),
-              backgroundColor: isDark ? AppColors.darkCard : Colors.white,
+              backgroundColor: isDark ? AppColors.darkCard : AppColors.lightCard,
               selectedItemColor: isDark ? AppColors.sealGoldLight : AppColors.primary,
               unselectedItemColor: isDark ? AppColors.darkTextMuted : AppColors.lightTextMuted,
-              selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
-              unselectedLabelStyle: const TextStyle(fontSize: 11),
+              selectedLabelStyle: AppTypography.labelMedium(),
+              unselectedLabelStyle: AppTypography.labelSmall(),
               type: BottomNavigationBarType.fixed,
               items: [
                 BottomNavigationBarItem(
@@ -863,24 +906,19 @@ class _HomeScreenState extends State<HomeScreen> {
               child: _isLoading
                   ? Center(
                       child: Container(
-                        padding: const EdgeInsets.all(24),
-                        margin: const EdgeInsets.symmetric(horizontal: 24),
-                        decoration: BoxDecoration(
-                          color: isDark ? AppColors.darkCard : AppColors.lightCard,
-                          borderRadius: BorderRadius.circular(8),
-                          border: Border.all(color: isDark ? AppColors.darkBorder : AppColors.lightBorder),
-                        ),
+                        padding: const EdgeInsets.all(AppSpacing.xl),
+                        margin:
+                            const EdgeInsets.symmetric(horizontal: AppSpacing.xl),
+                        decoration: _HomeCard.card(isDark),
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             const CircularProgressIndicator(color: AppColors.sealGold),
-                            const SizedBox(height: 16),
+                            const SizedBox(height: AppSpacing.base),
                             Text(
                               AppStrings.loadingGenerating,
                               textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 13.5,
-                                fontWeight: FontWeight.w600,
+                              style: AppTypography.labelMedium(
                                 color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
                               ),
                             ),
@@ -916,7 +954,10 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _buildBookletsTab(bool isDark, String yearsStr) {
     final isHi = AppStrings.isHindi;
     return ListView(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+      padding: const EdgeInsets.symmetric(
+        horizontal: AppSpacing.base,
+        vertical: AppSpacing.md,
+      ),
       children: [
         // 1. Target Exam Switcher (UTET / CTET)
         _buildExamSwitcher(isDark),
@@ -924,45 +965,41 @@ class _HomeScreenState extends State<HomeScreen> {
         // Remote Test & Question Bank Update Notification Banner
         if (_hasRemoteUpdate) ...[
           Container(
-            margin: const EdgeInsets.only(bottom: 12),
-            padding: const EdgeInsets.all(12),
+            margin: const EdgeInsets.only(bottom: AppSpacing.md),
+            padding: const EdgeInsets.all(AppSpacing.md),
             decoration: BoxDecoration(
               gradient: const LinearGradient(
                 colors: [AppColors.primary, AppColors.accent],
               ),
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: _HomeCard.radius,
               border: Border.all(color: AppColors.accentBright, width: 1.5),
-              boxShadow: [
-                BoxShadow(
-                  color: AppColors.accentBright.withValues(alpha: 0.25),
-                  blurRadius: 8,
-                  offset: const Offset(0, 2),
-                ),
-              ],
+              boxShadow: AppShadows.soft,
             ),
             child: Row(
               children: [
                 Container(
-                  padding: const EdgeInsets.all(8),
+                  padding: const EdgeInsets.all(AppSpacing.sm),
                   decoration: const BoxDecoration(
                     color: AppColors.accentBright,
                     shape: BoxShape.circle,
                   ),
                   child: const Icon(Icons.cloud_download_rounded, color: AppColors.primary, size: 20),
                 ),
-                const SizedBox(width: 10),
+                const SizedBox(width: AppSpacing.md),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         isHi ? '📢 नया प्रश्न बैंक व टेस्ट उपलब्ध है!' : '📢 New Test Bank & Mocks Available!',
-                        style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w900, fontSize: 13),
+                        style: AppTypography.labelMedium(color: AppColors.darkTextPrimary),
                       ),
-                      const SizedBox(height: 2),
+                      const SizedBox(height: AppSpacing.xs),
                       Text(
                         isHi ? 'नवीनतम प्रश्न व सुधार ऑफ़लाइन डाउनलोड करने के लिए टैप करें।' : 'Tap to sync latest questions for offline practice.',
-                        style: const TextStyle(color: AppColors.lightBorder, fontSize: 11),
+                        style: AppTypography.labelSmall(
+                          color: AppColors.darkTextSecondary,
+                        ),
                       ),
                     ],
                   ),
@@ -971,14 +1008,17 @@ class _HomeScreenState extends State<HomeScreen> {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.accentBright,
                     foregroundColor: AppColors.primary,
-                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: AppSpacing.sm,
+                      vertical: AppSpacing.xs,
+                    ),
                     minimumSize: const Size(0, 32),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
+                    shape: const RoundedRectangleBorder(borderRadius: AppRadius.roundedSm),
                   ),
                   onPressed: _syncNow,
                   child: Text(
                     isHi ? 'अपडेट' : 'Update',
-                    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 11.5),
+                    style: AppTypography.labelSmall(),
                   ),
                 ),
               ],
@@ -997,7 +1037,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
         // 2. HERO CAROUSEL: Auto-Rotating & Swipeable Board PYQ Carousel
         _buildHeroPyqCarousel(isDark),
-        const SizedBox(height: 16),
+        const SizedBox(height: AppSpacing.base),
 
         // 3. Section Heading: Complete Exam Booklets
         Row(
@@ -1007,10 +1047,10 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 18,
               decoration: BoxDecoration(
                 color: ExamService.instance.isPaper2 ? AppColors.violetBright : AppColors.sealGold,
-                borderRadius: BorderRadius.circular(2),
+                borderRadius: BorderRadius.circular(AppRadius.full),
               ),
             ),
-            const SizedBox(width: 8),
+            const SizedBox(width: AppSpacing.sm),
             Expanded(
               child: Text(
                 _mockForms.isNotEmpty
@@ -1020,20 +1060,19 @@ class _HomeScreenState extends State<HomeScreen> {
                     : (isHi
                         ? 'विगत वर्ष प्रश्न-पत्र (${_paperForms.length} सेट)'
                         : 'Previous Year Solved Papers (${_paperForms.length} Sets)'),
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
                 style: AppTypography.titleMedium(
-                  color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
-                ).copyWith(fontSize: 14.5),
+                  color:
+                      isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
+                ),
               ),
             ),
             if (ExamService.instance.isPaper2) ...[
-              const SizedBox(width: 8),
+              const SizedBox(width: AppSpacing.sm),
               _buildStreamBadge(isDark),
             ],
           ],
         ),
-        const SizedBox(height: 12),
+        const SizedBox(height: AppSpacing.md),
 
         if ((_mockForms.isNotEmpty ? _mockForms : _paperForms).isNotEmpty) ...[
           ...(_mockForms.isNotEmpty ? _mockForms : _paperForms).asMap().entries.map((entry) {
@@ -1055,7 +1094,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 : (isPyq ? AppColors.violet : AppColors.sealGold);
 
             return Padding(
-              padding: const EdgeInsets.only(bottom: 10),
+              padding: const EdgeInsets.only(bottom: AppSpacing.sm),
               child: _buildBookletTile(
                 setChar: setChar,
                 title: title,
@@ -1085,7 +1124,7 @@ class _HomeScreenState extends State<HomeScreen> {
             isFree: true,
           ),
         ],
-        const SizedBox(height: 24),
+        const SizedBox(height: AppSpacing.xl),
       ],
     );
   }
@@ -1103,11 +1142,11 @@ class _HomeScreenState extends State<HomeScreen> {
             final isP2 = currentPaper == AppPaper.paper2;
 
             return Container(
-              margin: const EdgeInsets.only(bottom: 14),
-              padding: const EdgeInsets.all(5),
+              margin: const EdgeInsets.only(bottom: AppSpacing.md),
+              padding: const EdgeInsets.all(AppSpacing.xs),
               decoration: BoxDecoration(
                 color: isDark ? AppColors.darkCard : AppColors.primarySubtle,
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: _HomeCard.radius,
                 border: Border.all(
                   color: isDark ? AppColors.darkBorder : AppColors.lightBorder,
                   width: 1.2,
@@ -1126,25 +1165,20 @@ class _HomeScreenState extends State<HomeScreen> {
                               _loadData();
                             }
                           },
-                          borderRadius: BorderRadius.circular(8),
+                          borderRadius: BorderRadius.circular(AppRadius.sm),
                           child: AnimatedContainer(
                             duration: AppMotion.base,
                             curve: AppMotion.standard,
-                            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 6),
+                            padding: const EdgeInsets.symmetric(
+                              vertical: AppSpacing.sm,
+                              horizontal: AppSpacing.sm,
+                            ),
                             decoration: BoxDecoration(
                               color: !isCtet
                                   ? (isDark ? AppColors.sealGold : AppColors.primary)
                                   : Colors.transparent,
-                              borderRadius: BorderRadius.circular(8),
-                              boxShadow: !isCtet
-                                  ? [
-                                      BoxShadow(
-                                        color: Colors.black.withValues(alpha: 0.15),
-                                        blurRadius: 4,
-                                        offset: const Offset(0, 2),
-                                      ),
-                                    ]
-                                  : null,
+                              borderRadius: BorderRadius.circular(AppRadius.sm),
+                              boxShadow: !isCtet ? AppShadows.soft : null,
                             ),
                             child: FittedBox(
                               fit: BoxFit.scaleDown,
@@ -1153,22 +1187,18 @@ class _HomeScreenState extends State<HomeScreen> {
                                 children: [
                                   Text(
                                     '🌲 UTET',
-                                    style: TextStyle(
-                                      fontSize: 13,
-                                      fontWeight: FontWeight.bold,
+                                    style: AppTypography.labelMedium(
                                       color: !isCtet
-                                          ? (isDark ? AppColors.darkBg : Colors.white)
+                                          ? (isDark ? AppColors.darkBg : AppColors.darkTextPrimary)
                                           : (isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary),
                                     ),
                                   ),
-                                  const SizedBox(width: 4),
+                                  const SizedBox(width: AppSpacing.xs),
                                   Text(
                                     AppStrings.isHindi ? '(उत्तराखण्ड)' : '(Uttarakhand)',
-                                    style: TextStyle(
-                                      fontSize: 10,
-                                      fontWeight: !isCtet ? FontWeight.w600 : FontWeight.normal,
+                                    style: AppTypography.labelSmall(
                                       color: !isCtet
-                                          ? (isDark ? AppColors.darkBg.withValues(alpha: 0.8) : Colors.white70)
+                                          ? (isDark ? AppColors.darkBg.withValues(alpha: 0.8) : AppColors.darkTextSecondary)
                                           : (isDark ? AppColors.darkTextMuted : AppColors.lightTextMuted),
                                     ),
                                   ),
@@ -1178,7 +1208,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                       ),
-                      const SizedBox(width: 6),
+                      const SizedBox(width: AppSpacing.sm),
                       Expanded(
                         child: InkWell(
                           onTap: () async {
@@ -1187,25 +1217,20 @@ class _HomeScreenState extends State<HomeScreen> {
                               _loadData();
                             }
                           },
-                          borderRadius: BorderRadius.circular(8),
+                          borderRadius: BorderRadius.circular(AppRadius.sm),
                           child: AnimatedContainer(
                             duration: AppMotion.base,
                             curve: AppMotion.standard,
-                            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 6),
+                            padding: const EdgeInsets.symmetric(
+                              vertical: AppSpacing.sm,
+                              horizontal: AppSpacing.sm,
+                            ),
                             decoration: BoxDecoration(
                               color: isCtet
                                   ? (isDark ? AppColors.sealGold : AppColors.primary)
                                   : Colors.transparent,
-                              borderRadius: BorderRadius.circular(8),
-                              boxShadow: isCtet
-                                  ? [
-                                      BoxShadow(
-                                        color: Colors.black.withValues(alpha: 0.15),
-                                        blurRadius: 4,
-                                        offset: const Offset(0, 2),
-                                      ),
-                                    ]
-                                  : null,
+                              borderRadius: BorderRadius.circular(AppRadius.sm),
+                              boxShadow: isCtet ? AppShadows.soft : null,
                             ),
                             child: FittedBox(
                               fit: BoxFit.scaleDown,
@@ -1214,22 +1239,18 @@ class _HomeScreenState extends State<HomeScreen> {
                                 children: [
                                   Text(
                                     '🏛️ CTET',
-                                    style: TextStyle(
-                                      fontSize: 13,
-                                      fontWeight: FontWeight.bold,
+                                    style: AppTypography.labelMedium(
                                       color: isCtet
-                                          ? (isDark ? AppColors.darkBg : Colors.white)
+                                          ? (isDark ? AppColors.darkBg : AppColors.darkTextPrimary)
                                           : (isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary),
                                     ),
                                   ),
-                                  const SizedBox(width: 4),
+                                  const SizedBox(width: AppSpacing.xs),
                                   Text(
                                     AppStrings.isHindi ? '(केन्द्रीय)' : '(Central)',
-                                    style: TextStyle(
-                                      fontSize: 10,
-                                      fontWeight: isCtet ? FontWeight.w600 : FontWeight.normal,
+                                    style: AppTypography.labelSmall(
                                       color: isCtet
-                                          ? (isDark ? AppColors.darkBg.withValues(alpha: 0.8) : Colors.white70)
+                                          ? (isDark ? AppColors.darkBg.withValues(alpha: 0.8) : AppColors.darkTextSecondary)
                                           : (isDark ? AppColors.darkTextMuted : AppColors.lightTextMuted),
                                     ),
                                   ),
@@ -1242,14 +1263,16 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
 
-                  const SizedBox(height: 6),
+                  const SizedBox(height: AppSpacing.sm),
 
                   // Row 2: Paper Switcher (Paper-1: Class 1-5 vs Paper-2: Class 6-8)
                   Container(
-                    padding: const EdgeInsets.all(3),
+                    padding: const EdgeInsets.all(AppSpacing.xs),
                     decoration: BoxDecoration(
-                      color: isDark ? AppColors.darkCardElevated : Colors.white,
-                      borderRadius: BorderRadius.circular(8),
+                      color: isDark
+                          ? AppColors.darkCardElevated
+                          : AppColors.lightCard,
+                      borderRadius: _HomeCard.radius,
                       border: Border.all(
                         color: isDark ? AppColors.darkBorder : AppColors.lightBorder,
                         width: 1.0,
@@ -1266,16 +1289,19 @@ class _HomeScreenState extends State<HomeScreen> {
                                 _loadData();
                               }
                             },
-                            borderRadius: BorderRadius.circular(6),
+                            borderRadius: BorderRadius.circular(AppRadius.sm),
                             child: AnimatedContainer(
                               duration: AppMotion.base,
                               curve: AppMotion.standard,
-                              padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 4),
+                              padding: const EdgeInsets.symmetric(
+                                vertical: AppSpacing.sm,
+                                horizontal: AppSpacing.xs,
+                              ),
                               decoration: BoxDecoration(
                                 color: !isP2
                                     ? (isDark ? AppColors.accent.withValues(alpha: 0.22) : AppColors.accentSoft)
                                     : Colors.transparent,
-                                borderRadius: BorderRadius.circular(6),
+                                borderRadius: BorderRadius.circular(AppRadius.sm),
                                 border: !isP2
                                     ? Border.all(color: AppColors.accent, width: 1.5)
                                     : null,
@@ -1290,12 +1316,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                       size: 13,
                                       color: !isP2 ? AppColors.accent : (isDark ? AppColors.darkTextMuted : AppColors.lightTextMuted),
                                     ),
-                                    const SizedBox(width: 4),
+                                    const SizedBox(width: AppSpacing.xs),
                                     Text(
                                       AppStrings.paper1Label,
-                                      style: TextStyle(
-                                        fontSize: 11.5,
-                                        fontWeight: !isP2 ? FontWeight.w800 : FontWeight.w600,
+                                      style: AppTypography.labelSmall(
                                         color: !isP2
                                             ? (isDark ? AppColors.accentBright : AppColors.accentDark)
                                             : (isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary),
@@ -1307,7 +1331,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ),
                         ),
-                        const SizedBox(width: 4),
+                        const SizedBox(width: AppSpacing.xs),
                         Expanded(
                           child: InkWell(
                             onTap: () async {
@@ -1317,16 +1341,19 @@ class _HomeScreenState extends State<HomeScreen> {
                                 _loadData();
                               }
                             },
-                            borderRadius: BorderRadius.circular(6),
+                            borderRadius: BorderRadius.circular(AppRadius.sm),
                             child: AnimatedContainer(
                               duration: AppMotion.base,
                               curve: AppMotion.standard,
-                              padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 4),
+                              padding: const EdgeInsets.symmetric(
+                                vertical: AppSpacing.sm,
+                                horizontal: AppSpacing.xs,
+                              ),
                               decoration: BoxDecoration(
                                 color: isP2
                                     ? (isDark ? AppColors.violetBright.withValues(alpha: 0.25) : AppColors.violetSoft)
                                     : Colors.transparent,
-                                borderRadius: BorderRadius.circular(6),
+                                borderRadius: BorderRadius.circular(AppRadius.sm),
                                 border: isP2
                                     ? Border.all(color: AppColors.violetBright, width: 1.5)
                                     : null,
@@ -1341,12 +1368,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                       size: 13,
                                       color: isP2 ? AppColors.violetBright : (isDark ? AppColors.darkTextMuted : AppColors.lightTextMuted),
                                     ),
-                                    const SizedBox(width: 4),
+                                    const SizedBox(width: AppSpacing.xs),
                                     Text(
                                       AppStrings.paper2Label,
-                                      style: TextStyle(
-                                        fontSize: 11.5,
-                                        fontWeight: isP2 ? FontWeight.w800 : FontWeight.w600,
+                                      style: AppTypography.labelSmall(
                                         color: isP2
                                             ? (isDark ? AppColors.violetLight : AppColors.violet)
                                             : (isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary),
@@ -1380,7 +1405,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SizedBox(height: 10),
+        const SizedBox(height: AppSpacing.sm),
         Row(
           children: [
             Icon(
@@ -1388,23 +1413,21 @@ class _HomeScreenState extends State<HomeScreen> {
               size: 13,
               color: isDark ? AppColors.darkTextMuted : AppColors.lightTextMuted,
             ),
-            const SizedBox(width: 5),
+            const SizedBox(width: AppSpacing.xs),
             Text(
               AppStrings.streamSwitcherLabel,
-              style: TextStyle(
-                fontSize: 11.5,
-                fontWeight: FontWeight.w600,
+              style: AppTypography.labelSmall(
                 color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary,
               ),
             ),
           ],
         ),
-        const SizedBox(height: 6),
+        const SizedBox(height: AppSpacing.sm),
         Container(
-          padding: const EdgeInsets.all(3),
+          padding: const EdgeInsets.all(AppSpacing.xs),
           decoration: BoxDecoration(
-            color: isDark ? AppColors.darkCardElevated : Colors.white,
-            borderRadius: BorderRadius.circular(8),
+            color: isDark ? AppColors.darkCardElevated : AppColors.lightCard,
+            borderRadius: _HomeCard.radius,
             border: Border.all(
               color: isDark ? AppColors.darkBorder : AppColors.lightBorder,
               width: 1.0,
@@ -1415,7 +1438,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Expanded(
                 child: _buildStreamOption(isDark, social: false),
               ),
-              const SizedBox(width: 4),
+              const SizedBox(width: AppSpacing.xs),
               Expanded(
                 child: _buildStreamOption(isDark, social: true),
               ),
@@ -1450,14 +1473,17 @@ class _HomeScreenState extends State<HomeScreen> {
           SnackBar(content: Text(AppStrings.streamChanged)),
         );
       },
-      borderRadius: BorderRadius.circular(6),
+      borderRadius: BorderRadius.circular(AppRadius.sm),
       child: AnimatedContainer(
         duration: AppMotion.base,
         curve: AppMotion.standard,
-        padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 4),
+        padding: const EdgeInsets.symmetric(
+          vertical: AppSpacing.sm,
+          horizontal: AppSpacing.xs,
+        ),
         decoration: BoxDecoration(
           color: active ? tint : Colors.transparent,
-          borderRadius: BorderRadius.circular(6),
+          borderRadius: BorderRadius.circular(AppRadius.sm),
           border: active ? Border.all(color: accent, width: 1.5) : null,
         ),
         child: FittedBox(
@@ -1474,12 +1500,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     ? accent
                     : (isDark ? AppColors.darkTextMuted : AppColors.lightTextMuted),
               ),
-              const SizedBox(width: 4),
+              const SizedBox(width: AppSpacing.xs),
               Text(
                 social ? AppStrings.streamSocialStudies : AppStrings.streamMathScience,
-                style: TextStyle(
-                  fontSize: 11.5,
-                  fontWeight: active ? FontWeight.w800 : FontWeight.w600,
+                style: AppTypography.labelSmall(
                   color: active
                       ? accentText
                       : (isDark
@@ -1496,15 +1520,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildSettingsExamCard(bool isDark) {
     return Container(
-      padding: const EdgeInsets.all(16),
-      margin: const EdgeInsets.only(bottom: 16),
-      decoration: BoxDecoration(
-        color: isDark ? AppColors.darkCard : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(8),
-        border: Border.all(
-          color: AppColors.sealGold,
-          width: 1.5,
-        ),
+      padding: _HomeCard.padding,
+      margin: const EdgeInsets.only(bottom: AppSpacing.base),
+      decoration: _HomeCard.card(
+        isDark,
+        borderColor: AppColors.sealGold,
+        borderWidth: 1.5,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1512,33 +1533,30 @@ class _HomeScreenState extends State<HomeScreen> {
           Row(
             children: [
               Container(
-                padding: const EdgeInsets.all(8),
+                padding: const EdgeInsets.all(AppSpacing.sm),
                 decoration: BoxDecoration(
                   color: AppColors.sealGold.withValues(alpha: 0.15),
                   shape: BoxShape.circle,
                 ),
                 child: const Icon(Icons.school_rounded, color: AppColors.sealGold, size: 22),
               ),
-              const SizedBox(width: 10),
+              const SizedBox(width: AppSpacing.md),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       AppStrings.targetExamHeading,
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
+                      style: AppTypography.titleSmall(
                         color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
                       ),
                     ),
-                    const SizedBox(height: 2),
+                    const SizedBox(height: AppSpacing.xs),
                     Text(
                       AppStrings.isHindi
                           ? 'मॉक टेस्ट और प्रश्न-पत्र बदलने के लिए परीक्षा चुनें'
                           : 'Select exam to switch mock papers & questions',
-                      style: TextStyle(
-                        fontSize: 12,
+                      style: AppTypography.bodySmall(
                         color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
                       ),
                     ),
@@ -1547,7 +1565,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ],
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: AppSpacing.base),
           ValueListenableBuilder<AppExam>(
             valueListenable: ExamService.instance.currentExam,
             builder: (context, currentExam, _) {
@@ -1562,14 +1580,17 @@ class _HomeScreenState extends State<HomeScreen> {
                           _loadData();
                         }
                       },
-                      borderRadius: BorderRadius.circular(6),
+                      borderRadius: BorderRadius.circular(AppRadius.sm),
                       child: Container(
-                        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
+                        padding: const EdgeInsets.symmetric(
+                          vertical: AppSpacing.md,
+                          horizontal: AppSpacing.sm,
+                        ),
                         decoration: BoxDecoration(
                           color: !isCtet
                               ? AppColors.sealGold.withValues(alpha: 0.2)
                               : (isDark ? AppColors.darkCardElevated : AppColors.lightBg),
-                          borderRadius: BorderRadius.circular(6),
+                          borderRadius: BorderRadius.circular(AppRadius.sm),
                           border: Border.all(
                             color: !isCtet ? AppColors.sealGold : (isDark ? AppColors.darkBorder : AppColors.lightBorder),
                             width: !isCtet ? 2.0 : 1.0,
@@ -1582,16 +1603,17 @@ class _HomeScreenState extends State<HomeScreen> {
                             children: [
                               Icon(
                                 !isCtet ? Icons.check_circle_rounded : Icons.circle_outlined,
-                                color: !isCtet ? AppColors.sealGold : Colors.grey,
+                                color: !isCtet
+                                    ? AppColors.sealGold
+                                    : (isDark
+                                        ? AppColors.darkTextMuted
+                                        : AppColors.lightTextMuted),
                                 size: 18,
                               ),
-                              const SizedBox(width: 8),
-                              const Text(
+                              const SizedBox(width: AppSpacing.sm),
+                              Text(
                                 '🌲 UTET I & II',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 13,
-                                ),
+                                style: AppTypography.labelMedium(),
                               ),
                             ],
                           ),
@@ -1599,7 +1621,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                   ),
-                  const SizedBox(width: 12),
+                  const SizedBox(width: AppSpacing.md),
                   Expanded(
                     child: InkWell(
                       onTap: () async {
@@ -1608,14 +1630,17 @@ class _HomeScreenState extends State<HomeScreen> {
                           _loadData();
                         }
                       },
-                      borderRadius: BorderRadius.circular(6),
+                      borderRadius: BorderRadius.circular(AppRadius.sm),
                       child: Container(
-                        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
+                        padding: const EdgeInsets.symmetric(
+                          vertical: AppSpacing.md,
+                          horizontal: AppSpacing.sm,
+                        ),
                         decoration: BoxDecoration(
                           color: isCtet
                               ? AppColors.sealGold.withValues(alpha: 0.2)
                               : (isDark ? AppColors.darkCardElevated : AppColors.lightBg),
-                          borderRadius: BorderRadius.circular(6),
+                          borderRadius: BorderRadius.circular(AppRadius.sm),
                           border: Border.all(
                             color: isCtet ? AppColors.sealGold : (isDark ? AppColors.darkBorder : AppColors.lightBorder),
                             width: isCtet ? 2.0 : 1.0,
@@ -1628,16 +1653,17 @@ class _HomeScreenState extends State<HomeScreen> {
                             children: [
                               Icon(
                                 isCtet ? Icons.check_circle_rounded : Icons.circle_outlined,
-                                color: isCtet ? AppColors.sealGold : Colors.grey,
+                                color: isCtet
+                                    ? AppColors.sealGold
+                                    : (isDark
+                                        ? AppColors.darkTextMuted
+                                        : AppColors.lightTextMuted),
                                 size: 18,
                               ),
-                              const SizedBox(width: 8),
-                              const Text(
+                              const SizedBox(width: AppSpacing.sm),
+                              Text(
                                 '🏛️ CTET',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 13,
-                                ),
+                                style: AppTypography.labelMedium(),
                               ),
                             ],
                           ),
@@ -1649,7 +1675,7 @@ class _HomeScreenState extends State<HomeScreen> {
               );
             },
           ),
-          const SizedBox(height: 14),
+          const SizedBox(height: AppSpacing.md),
 
           // Paper 1 vs Paper 2 Selection
           ValueListenableBuilder<AppPaper>(
@@ -1661,13 +1687,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   Text(
                     AppStrings.paperSelectorHeader,
-                    style: TextStyle(
-                      fontSize: 12.5,
-                      fontWeight: FontWeight.w700,
+                    style: AppTypography.labelMedium(
                       color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
                     ),
                   ),
-                  const SizedBox(height: 8),
+                  const SizedBox(height: AppSpacing.sm),
                   Row(
                     children: [
                       Expanded(
@@ -1678,14 +1702,17 @@ class _HomeScreenState extends State<HomeScreen> {
                               _loadData();
                             }
                           },
-                          borderRadius: BorderRadius.circular(6),
+                          borderRadius: BorderRadius.circular(AppRadius.sm),
                           child: Container(
-                            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
+                            padding: const EdgeInsets.symmetric(
+                              vertical: AppSpacing.sm,
+                              horizontal: AppSpacing.sm,
+                            ),
                             decoration: BoxDecoration(
                               color: !isP2
                                   ? AppColors.sealGold.withValues(alpha: 0.2)
                                   : (isDark ? AppColors.darkCardElevated : AppColors.lightBg),
-                              borderRadius: BorderRadius.circular(6),
+                              borderRadius: BorderRadius.circular(AppRadius.sm),
                               border: Border.all(
                                 color: !isP2 ? AppColors.sealGold : (isDark ? AppColors.darkBorder : AppColors.lightBorder),
                                 width: !isP2 ? 2.0 : 1.0,
@@ -1698,13 +1725,17 @@ class _HomeScreenState extends State<HomeScreen> {
                                 children: [
                                   Icon(
                                     !isP2 ? Icons.check_circle_rounded : Icons.circle_outlined,
-                                    color: !isP2 ? AppColors.sealGold : Colors.grey,
+                                    color: !isP2
+                                      ? AppColors.sealGold
+                                      : (isDark
+                                          ? AppColors.darkTextMuted
+                                          : AppColors.lightTextMuted),
                                     size: 16,
                                   ),
-                                  const SizedBox(width: 6),
+                                  const SizedBox(width: AppSpacing.sm),
                                   Text(
                                     AppStrings.paper1Tab,
-                                    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
+                                    style: AppTypography.labelMedium(),
                                   ),
                                 ],
                               ),
@@ -1712,7 +1743,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                       ),
-                      const SizedBox(width: 8),
+                      const SizedBox(width: AppSpacing.sm),
                       Expanded(
                         child: InkWell(
                           onTap: () async {
@@ -1721,14 +1752,17 @@ class _HomeScreenState extends State<HomeScreen> {
                               _loadData();
                             }
                           },
-                          borderRadius: BorderRadius.circular(6),
+                          borderRadius: BorderRadius.circular(AppRadius.sm),
                           child: Container(
-                            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
+                            padding: const EdgeInsets.symmetric(
+                              vertical: AppSpacing.sm,
+                              horizontal: AppSpacing.sm,
+                            ),
                             decoration: BoxDecoration(
                               color: isP2
                                   ? AppColors.sealGold.withValues(alpha: 0.2)
                                   : (isDark ? AppColors.darkCardElevated : AppColors.lightBg),
-                              borderRadius: BorderRadius.circular(6),
+                              borderRadius: BorderRadius.circular(AppRadius.sm),
                               border: Border.all(
                                 color: isP2 ? AppColors.sealGold : (isDark ? AppColors.darkBorder : AppColors.lightBorder),
                                 width: isP2 ? 2.0 : 1.0,
@@ -1741,13 +1775,17 @@ class _HomeScreenState extends State<HomeScreen> {
                                 children: [
                                   Icon(
                                     isP2 ? Icons.check_circle_rounded : Icons.circle_outlined,
-                                    color: isP2 ? AppColors.sealGold : Colors.grey,
+                                    color: isP2
+                                      ? AppColors.sealGold
+                                      : (isDark
+                                          ? AppColors.darkTextMuted
+                                          : AppColors.lightTextMuted),
                                     size: 16,
                                   ),
-                                  const SizedBox(width: 6),
+                                  const SizedBox(width: AppSpacing.sm),
                                   Text(
                                     AppStrings.paper2Tab,
-                                    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
+                                    style: AppTypography.labelMedium(),
                                   ),
                                 ],
                               ),
@@ -1770,23 +1808,16 @@ class _HomeScreenState extends State<HomeScreen> {
   /// without paying anything.  The card is not part of a release build.
   Widget _buildDebugProPassCard(bool isDark) {
     return Container(
-      padding: const EdgeInsets.all(16),
-      margin: const EdgeInsets.only(bottom: 16),
-      decoration: BoxDecoration(
-        color: isDark ? AppColors.darkCard : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(8),
-        border: Border.all(
-          color: isDark ? AppColors.darkBorder : AppColors.lightBorder,
-          width: 1.5,
-        ),
-      ),
+      padding: _HomeCard.padding,
+      margin: const EdgeInsets.only(bottom: AppSpacing.base),
+      decoration: _HomeCard.card(isDark, borderWidth: 1.5),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
               Container(
-                padding: const EdgeInsets.all(8),
+                padding: const EdgeInsets.all(AppSpacing.sm),
                 decoration: BoxDecoration(
                   color: AppColors.correctGreen.withValues(alpha: 0.15),
                   shape: BoxShape.circle,
@@ -1794,37 +1825,32 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: const Icon(Icons.bug_report_rounded,
                     color: AppColors.correctGreen, size: 20),
               ),
-              const SizedBox(width: 10),
+              const SizedBox(width: AppSpacing.md),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       AppStrings.debugProPassTitle,
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
-                        color:
-                            isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
+                      style: AppTypography.titleSmall(
+                        color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
                       ),
                     ),
-                    const SizedBox(height: 2),
+                    const SizedBox(height: AppSpacing.xs),
                     Text(
                       AppStrings.debugProPassDesc,
-                      style: TextStyle(
-                        fontSize: 12,
-                        height: 1.35,
+                      style: AppTypography.bodySmall(
                         color: isDark
                             ? AppColors.darkTextSecondary
                             : AppColors.lightTextMuted,
-                      ),
+                      ).copyWith(height: 1.35),
                     ),
                   ],
                 ),
               ),
             ],
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: AppSpacing.md),
           ValueListenableBuilder<bool>(
             valueListenable: PremiumService.instance.isPremiumUnlocked,
             builder: (context, isUnlocked, _) {
@@ -1852,17 +1878,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       isUnlocked
                           ? AppStrings.debugProPassPaid
                           : AppStrings.debugProPassFree,
-                      style: TextStyle(
-                        fontSize: 13.5,
-                        fontWeight: FontWeight.w600,
-                        color:
-                            isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
+                      style: AppTypography.labelMedium(
+                        color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
                       ),
                     ),
                     subtitle: Text(
                       AppStrings.debugProPassSwitchSub,
-                      style: TextStyle(
-                        fontSize: 11.5,
+                      style: AppTypography.labelSmall(
                         color: isDark
                             ? AppColors.darkTextSecondary
                             : AppColors.lightTextMuted,
@@ -1880,15 +1902,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildSettingsTestModeCard(bool isDark) {
     return Container(
-      padding: const EdgeInsets.all(16),
-      margin: const EdgeInsets.only(bottom: 16),
-      decoration: BoxDecoration(
-        color: isDark ? AppColors.darkCard : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(8),
-        border: Border.all(
-          color: AppColors.sealGold,
-          width: 1.5,
-        ),
+      padding: _HomeCard.padding,
+      margin: const EdgeInsets.only(bottom: AppSpacing.base),
+      decoration: _HomeCard.card(
+        isDark,
+        borderColor: AppColors.sealGold,
+        borderWidth: 1.5,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1896,31 +1915,28 @@ class _HomeScreenState extends State<HomeScreen> {
           Row(
             children: [
               Container(
-                padding: const EdgeInsets.all(8),
+                padding: const EdgeInsets.all(AppSpacing.sm),
                 decoration: BoxDecoration(
                   color: AppColors.sealGold.withValues(alpha: 0.15),
                   shape: BoxShape.circle,
                 ),
                 child: const Icon(Icons.devices_rounded, color: AppColors.sealGold, size: 22),
               ),
-              const SizedBox(width: 10),
+              const SizedBox(width: AppSpacing.md),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       AppStrings.testModeHeader,
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
+                      style: AppTypography.titleSmall(
                         color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
                       ),
                     ),
-                    const SizedBox(height: 2),
+                    const SizedBox(height: AppSpacing.xs),
                     Text(
                       AppStrings.testModeDesc,
-                      style: TextStyle(
-                        fontSize: 12,
+                      style: AppTypography.bodySmall(
                         color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
                       ),
                     ),
@@ -1929,7 +1945,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ],
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: AppSpacing.base),
           ValueListenableBuilder<AppTestMode>(
             valueListenable: ExamService.instance.currentTestMode,
             builder: (context, currentMode, _) {
@@ -1939,16 +1955,16 @@ class _HomeScreenState extends State<HomeScreen> {
                   // Option 1: CBT Mode (Recommended)
                   InkWell(
                     onTap: () => ExamService.instance.setTestMode(AppTestMode.cbt),
-                    borderRadius: BorderRadius.circular(8),
+                    borderRadius: BorderRadius.circular(AppRadius.sm),
                     child: AnimatedContainer(
                       duration: AppMotion.base,
                       curve: AppMotion.standard,
-                      padding: const EdgeInsets.all(12),
+                      padding: const EdgeInsets.all(AppSpacing.md),
                       decoration: BoxDecoration(
                         color: isCbt
                             ? AppColors.sealGold.withValues(alpha: 0.15)
                             : (isDark ? AppColors.darkCardElevated : AppColors.lightBg),
-                        borderRadius: BorderRadius.circular(8),
+                        borderRadius: BorderRadius.circular(AppRadius.sm),
                         border: Border.all(
                           color: isCbt ? AppColors.sealGold : (isDark ? AppColors.darkBorder : AppColors.lightBorder),
                           width: isCbt ? 2.0 : 1.0,
@@ -1958,27 +1974,28 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: [
                           Icon(
                             isCbt ? Icons.check_circle_rounded : Icons.radio_button_unchecked_rounded,
-                            color: isCbt ? AppColors.sealGold : Colors.grey,
+                            color: isCbt
+                                ? AppColors.sealGold
+                                : (isDark
+                                    ? AppColors.darkTextMuted
+                                    : AppColors.lightTextMuted),
                             size: 20,
                           ),
-                          const SizedBox(width: 10),
+                          const SizedBox(width: AppSpacing.md),
                           Expanded(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
                                   AppStrings.cbtModeTitle,
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 13.5,
+                                  style: AppTypography.labelMedium(
                                     color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
                                   ),
                                 ),
-                                const SizedBox(height: 3),
+                                const SizedBox(height: AppSpacing.xs),
                                 Text(
                                   AppStrings.cbtModeSub,
-                                  style: TextStyle(
-                                    fontSize: 11.5,
+                                  style: AppTypography.labelSmall(
                                     color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary,
                                   ),
                                 ),
@@ -1989,21 +2006,21 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: AppSpacing.sm),
 
                   // Option 2: Booklet Mode
                   InkWell(
                     onTap: () => ExamService.instance.setTestMode(AppTestMode.booklet),
-                    borderRadius: BorderRadius.circular(8),
+                    borderRadius: BorderRadius.circular(AppRadius.sm),
                     child: AnimatedContainer(
                       duration: AppMotion.base,
                       curve: AppMotion.standard,
-                      padding: const EdgeInsets.all(12),
+                      padding: const EdgeInsets.all(AppSpacing.md),
                       decoration: BoxDecoration(
                         color: !isCbt
                             ? AppColors.sealGold.withValues(alpha: 0.15)
                             : (isDark ? AppColors.darkCardElevated : AppColors.lightBg),
-                        borderRadius: BorderRadius.circular(8),
+                        borderRadius: BorderRadius.circular(AppRadius.sm),
                         border: Border.all(
                           color: !isCbt ? AppColors.sealGold : (isDark ? AppColors.darkBorder : AppColors.lightBorder),
                           width: !isCbt ? 2.0 : 1.0,
@@ -2013,27 +2030,28 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: [
                           Icon(
                             !isCbt ? Icons.check_circle_rounded : Icons.radio_button_unchecked_rounded,
-                            color: !isCbt ? AppColors.sealGold : Colors.grey,
+                            color: !isCbt
+                                ? AppColors.sealGold
+                                : (isDark
+                                    ? AppColors.darkTextMuted
+                                    : AppColors.lightTextMuted),
                             size: 20,
                           ),
-                          const SizedBox(width: 10),
+                          const SizedBox(width: AppSpacing.md),
                           Expanded(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
                                   AppStrings.bookletModeTitle,
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 13.5,
+                                  style: AppTypography.labelMedium(
                                     color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
                                   ),
                                 ),
-                                const SizedBox(height: 3),
+                                const SizedBox(height: AppSpacing.xs),
                                 Text(
                                   AppStrings.bookletModeSub,
-                                  style: TextStyle(
-                                    fontSize: 11.5,
+                                  style: AppTypography.labelSmall(
                                     color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary,
                                   ),
                                 ),
@@ -2055,15 +2073,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildSettingsTetLanguagesCard(bool isDark) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 16),
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: isDark ? AppColors.darkCard : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(8),
-        border: Border.all(
-          color: AppColors.sealGold,
-          width: 1.5,
-        ),
+      margin: const EdgeInsets.only(bottom: AppSpacing.base),
+      padding: _HomeCard.padding,
+      decoration: _HomeCard.card(
+        isDark,
+        borderColor: AppColors.sealGold,
+        borderWidth: 1.5,
       ),
       child: ValueListenableBuilder<String>(
         valueListenable: ExamService.instance.currentLang1,
@@ -2077,31 +2092,28 @@ class _HomeScreenState extends State<HomeScreen> {
                   Row(
                     children: [
                       Container(
-                        padding: const EdgeInsets.all(8),
+                        padding: const EdgeInsets.all(AppSpacing.sm),
                         decoration: BoxDecoration(
                           color: AppColors.sealGold.withValues(alpha: 0.15),
                           shape: BoxShape.circle,
                         ),
                         child: const Icon(Icons.school_rounded, color: AppColors.sealGold, size: 22),
                       ),
-                      const SizedBox(width: 10),
+                      const SizedBox(width: AppSpacing.md),
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
                               AppStrings.langCardTitle,
-                              style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold,
+                              style: AppTypography.titleSmall(
                                 color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
                               ),
                             ),
-                            const SizedBox(height: 2),
+                            const SizedBox(height: AppSpacing.xs),
                             Text(
                               AppStrings.langCardSubtitle,
-                              style: TextStyle(
-                                fontSize: 12,
+                              style: AppTypography.bodySmall(
                                 color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
                               ),
                             ),
@@ -2110,24 +2122,22 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: AppSpacing.base),
 
                   // Section 1: भाषा प्रथम
                   Row(
                     children: [
                       const Icon(Icons.looks_one_rounded, color: AppColors.sealGold, size: 18),
-                      const SizedBox(width: 6),
+                      const SizedBox(width: AppSpacing.sm),
                       Text(
                         AppStrings.lang1Heading,
-                        style: TextStyle(
-                          fontSize: 13.5,
-                          fontWeight: FontWeight.bold,
+                        style: AppTypography.labelMedium(
                           color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
                         ),
                       ),
                     ],
                   ),
-                  const SizedBox(height: 8),
+                  const SizedBox(height: AppSpacing.sm),
                   Row(
                     children: [
                       _buildLangChoiceChip(
@@ -2136,7 +2146,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         onTap: () => ExamService.instance.setLang1('hindi'),
                         isDark: isDark,
                       ),
-                      const SizedBox(width: 10),
+                      const SizedBox(width: AppSpacing.md),
                       _buildLangChoiceChip(
                         title: AppStrings.langEnglishLabel,
                         selected: lang1 == 'english',
@@ -2146,24 +2156,22 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
 
-                  const SizedBox(height: 16),
+                  const SizedBox(height: AppSpacing.base),
 
                   // Section 2: भाषा द्वितीय
                   Row(
                     children: [
                       const Icon(Icons.looks_two_rounded, color: AppColors.sealGold, size: 18),
-                      const SizedBox(width: 6),
+                      const SizedBox(width: AppSpacing.sm),
                       Text(
                         AppStrings.lang2Heading,
-                        style: TextStyle(
-                          fontSize: 13.5,
-                          fontWeight: FontWeight.bold,
+                        style: AppTypography.labelMedium(
                           color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
                         ),
                       ),
                     ],
                   ),
-                  const SizedBox(height: 8),
+                  const SizedBox(height: AppSpacing.sm),
                   Row(
                     children: [
                       _buildLangChoiceChip(
@@ -2172,14 +2180,14 @@ class _HomeScreenState extends State<HomeScreen> {
                         onTap: () => ExamService.instance.setLang2('english'),
                         isDark: isDark,
                       ),
-                      const SizedBox(width: 8),
+                      const SizedBox(width: AppSpacing.sm),
                       _buildLangChoiceChip(
                         title: AppStrings.langHindiLabel,
                         selected: lang2 == 'hindi',
                         onTap: () => ExamService.instance.setLang2('hindi'),
                         isDark: isDark,
                       ),
-                      const SizedBox(width: 8),
+                      const SizedBox(width: AppSpacing.sm),
                       _buildLangChoiceChip(
                         title: '🔒 ${AppStrings.langSanskritLabel}',
                         selected: false,
@@ -2189,14 +2197,17 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
 
-                  const SizedBox(height: 14),
+                  const SizedBox(height: AppSpacing.md),
 
                   // Info box
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: AppSpacing.md,
+                      vertical: AppSpacing.sm,
+                    ),
                     decoration: BoxDecoration(
                       color: isDark ? AppColors.primary : AppColors.primarySubtle,
-                      borderRadius: BorderRadius.circular(6),
+                      borderRadius: BorderRadius.circular(AppRadius.sm),
                       border: Border.all(
                         color: isDark ? AppColors.darkBorder : AppColors.lightBorder,
                       ),
@@ -2204,15 +2215,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Row(
                       children: [
                         const Icon(Icons.info_outline_rounded, size: 16, color: AppColors.sealGold),
-                        const SizedBox(width: 8),
+                        const SizedBox(width: AppSpacing.sm),
                         Expanded(
                           child: Text(
                             AppStrings.langNotice,
-                            style: TextStyle(
-                              fontSize: 11.5,
+                            style: AppTypography.labelSmall(
                               color: isDark ? AppColors.darkTextSecondary : AppColors.deskGray,
-                              height: 1.35,
-                            ),
+                            ).copyWith(height: 1.35),
                           ),
                         ),
                       ],
@@ -2232,21 +2241,19 @@ class _HomeScreenState extends State<HomeScreen> {
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
-        backgroundColor: isDark ? AppColors.primary : Colors.white,
+        backgroundColor: isDark ? AppColors.primary : AppColors.lightCard,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(AppRadius.lg),
           side: const BorderSide(color: AppColors.sealGold, width: 1.5),
         ),
         title: Row(
           children: [
             const Icon(Icons.lock_clock_rounded, color: AppColors.sealGold),
-            const SizedBox(width: 8),
+            const SizedBox(width: AppSpacing.sm),
             Expanded(
               child: Text(
                 AppStrings.sanskritUpcomingTitle,
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
+                style: AppTypography.titleMedium(
                   color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
                 ),
               ),
@@ -2255,11 +2262,9 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         content: Text(
           AppStrings.sanskritUpcomingDesc,
-          style: TextStyle(
-            fontSize: 13,
-            height: 1.45,
+          style: AppTypography.bodyMedium(
             color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary,
-          ),
+          ).copyWith(height: 1.45),
         ),
         actions: [
           ElevatedButton(
@@ -2267,7 +2272,7 @@ class _HomeScreenState extends State<HomeScreen> {
             style: ElevatedButton.styleFrom(
               backgroundColor: AppColors.sealGold,
               foregroundColor: AppColors.primary,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+              shape: const RoundedRectangleBorder(borderRadius: AppRadius.roundedSm),
             ),
             child: Text(AppStrings.understoodBtn),
           ),
@@ -2317,14 +2322,17 @@ class _HomeScreenState extends State<HomeScreen> {
     return Expanded(
       child: InkWell(
         onTap: onTap,
-        borderRadius: BorderRadius.circular(6),
+        borderRadius: BorderRadius.circular(AppRadius.sm),
         child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 4),
+          padding: const EdgeInsets.symmetric(
+            vertical: AppSpacing.sm,
+            horizontal: AppSpacing.xs,
+          ),
           decoration: BoxDecoration(
             color: selected
                 ? AppColors.sealGold.withValues(alpha: 0.2)
                 : (isDark ? AppColors.darkCardElevated : AppColors.lightBg),
-            borderRadius: BorderRadius.circular(6),
+            borderRadius: BorderRadius.circular(AppRadius.sm),
             border: Border.all(
               color: selected ? AppColors.sealGold : (isDark ? AppColors.darkBorder : AppColors.lightBorder),
               width: selected ? 2.0 : 1.0,
@@ -2335,17 +2343,18 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               Icon(
                 selected ? Icons.check_circle_rounded : Icons.circle_outlined,
-                color: selected ? AppColors.sealGold : Colors.grey,
+                color: selected
+                    ? AppColors.sealGold
+                    : (isDark
+                        ? AppColors.darkTextMuted
+                        : AppColors.lightTextMuted),
                 size: 15,
               ),
-              const SizedBox(width: 5),
+              const SizedBox(width: AppSpacing.xs),
               Flexible(
                 child: Text(
                   title,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    fontSize: 12,
-                    fontWeight: selected ? FontWeight.bold : FontWeight.w500,
+                  style: AppTypography.labelMedium(
                     color: selected
                         ? AppColors.sealGold
                         : (isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary),
@@ -2361,47 +2370,40 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildSubjectsTab(bool isDark) {
     return ListView(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+      padding: const EdgeInsets.symmetric(
+        horizontal: AppSpacing.base,
+        vertical: AppSpacing.md,
+      ),
       children: [
         // Subject Section Header Card
         Container(
-          padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            color: isDark ? AppColors.darkCard : AppColors.lightCard,
-            borderRadius: BorderRadius.circular(8),
-            border: Border.all(
-              color: isDark ? AppColors.darkBorder : AppColors.lightBorder,
-              width: 1.0,
-            ),
-          ),
+          padding: _HomeCard.padding,
+          decoration: _HomeCard.card(isDark),
           child: Row(
             children: [
               Container(
-                padding: const EdgeInsets.all(10),
+                padding: const EdgeInsets.all(AppSpacing.sm),
                 decoration: BoxDecoration(
                   color: AppColors.sealGold.withValues(alpha: 0.15),
                   shape: BoxShape.circle,
                 ),
                 child: const Icon(Icons.category_rounded, color: AppColors.sealGold, size: 24),
               ),
-              const SizedBox(width: 12),
+              const SizedBox(width: AppSpacing.md),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       AppStrings.subjectPracticeHeading,
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
+                      style: AppTypography.titleSmall(
                         color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
                       ),
                     ),
-                    const SizedBox(height: 3),
+                    const SizedBox(height: AppSpacing.xs),
                     Text(
                       AppStrings.subjectPracticeDesc,
-                      style: TextStyle(
-                        fontSize: 12,
+                      style: AppTypography.bodySmall(
                         color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
                       ),
                     ),
@@ -2411,10 +2413,10 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           ),
         ),
-        const SizedBox(height: 16),
+        const SizedBox(height: AppSpacing.base),
 
         _buildSubjectGrid(isDark),
-        const SizedBox(height: 24),
+        const SizedBox(height: AppSpacing.xl),
       ],
     );
   }
@@ -2431,7 +2433,10 @@ class _HomeScreenState extends State<HomeScreen> {
     }).length;
 
     return ListView(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+      padding: const EdgeInsets.symmetric(
+        horizontal: AppSpacing.base,
+        vertical: AppSpacing.md,
+      ),
       children: [
         // Heading & Summary
         Row(
@@ -2440,8 +2445,9 @@ class _HomeScreenState extends State<HomeScreen> {
             Text(
               AppStrings.historyTitle,
               style: AppTypography.titleMedium(
-                color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
-              ).copyWith(fontSize: 16),
+                color:
+                    isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
+              ),
             ),
             if (_history.isNotEmpty)
               AppBadge(
@@ -2451,60 +2457,55 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
           ],
         ),
-        const SizedBox(height: 14),
+        const SizedBox(height: AppSpacing.md),
 
         if (_history.isEmpty) ...[
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 36),
-            decoration: BoxDecoration(
-              color: isDark ? AppColors.darkCard : AppColors.lightCard,
-              borderRadius: BorderRadius.circular(8),
-              border: Border.all(
-                color: isDark ? AppColors.darkBorder : AppColors.lightBorder,
-                width: 1.0,
-              ),
+            padding: const EdgeInsets.symmetric(
+              horizontal: AppSpacing.lg,
+              vertical: AppSpacing.xxl,
             ),
+            decoration: _HomeCard.card(isDark),
             child: Column(
               children: [
                 Container(
-                  padding: const EdgeInsets.all(16),
+                  padding: const EdgeInsets.all(AppSpacing.base),
                   decoration: BoxDecoration(
                     color: AppColors.sealGold.withValues(alpha: 0.15),
                     shape: BoxShape.circle,
                   ),
                   child: const Icon(Icons.history_toggle_off_rounded, color: AppColors.sealGold, size: 36),
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: AppSpacing.base),
                 Text(
                   AppStrings.historyEmptyTitle,
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
+                  style: AppTypography.titleMedium(
                     color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
                   ),
                 ),
-                const SizedBox(height: 8),
+                const SizedBox(height: AppSpacing.sm),
                 Text(
                   AppStrings.historyEmptyDesc,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 12.5,
+                  style: AppTypography.caption(
                     color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
-                    height: 1.4,
-                  ),
+                  ).copyWith(height: 1.4),
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: AppSpacing.lg),
                 ElevatedButton.icon(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.sealGold,
-                    foregroundColor: Colors.black,
-                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
+                    foregroundColor: AppColors.primaryDark,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: AppSpacing.lg,
+                      vertical: AppSpacing.md,
+                    ),
+                    shape: const RoundedRectangleBorder(borderRadius: AppRadius.roundedSm),
                   ),
                   icon: const Icon(Icons.play_arrow_rounded, size: 20),
                   label: Text(
                     AppStrings.historyStartCta,
-                    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13.5),
+                    style: AppTypography.labelMedium(),
                   ),
                   onPressed: () {
                     final featured = _paperForms.isNotEmpty ? _paperForms.first : null;
@@ -2525,36 +2526,29 @@ class _HomeScreenState extends State<HomeScreen> {
         ] else ...[
           ..._history.map((h) => _buildHistoryCard(h, isDark)),
         ],
-        const SizedBox(height: 24),
+        const SizedBox(height: AppSpacing.xl),
       ],
     );
   }
 
   Widget _buildSettingsTab(bool isDark) {
     return ListView(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+      padding: const EdgeInsets.symmetric(
+        horizontal: AppSpacing.base,
+        vertical: AppSpacing.md,
+      ),
       children: [
         // 0. Premium All-Access Pass Status Card
         ValueListenableBuilder<bool>(
           valueListenable: PremiumService.instance.isPremiumUnlocked,
           builder: (context, isUnlocked, _) {
             return Container(
-              margin: const EdgeInsets.only(bottom: 16),
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: isDark ? AppColors.darkCard : AppColors.lightCard,
-                borderRadius: BorderRadius.circular(8),
-                border: Border.all(
-                  color: AppColors.sealGold,
-                  width: 1.8,
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    color: AppColors.sealGold.withValues(alpha: 0.15),
-                    blurRadius: 8,
-                    offset: const Offset(0, 2),
-                  ),
-                ],
+              margin: const EdgeInsets.only(bottom: AppSpacing.base),
+              padding: _HomeCard.padding,
+              decoration: _HomeCard.card(
+                isDark,
+                borderColor: AppColors.sealGold,
+                borderWidth: 1.8,
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -2562,7 +2556,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   Row(
                     children: [
                       Container(
-                        padding: const EdgeInsets.all(8),
+                        padding: const EdgeInsets.all(AppSpacing.sm),
                         decoration: BoxDecoration(
                           color: AppColors.sealGold.withValues(alpha: 0.2),
                           shape: BoxShape.circle,
@@ -2573,25 +2567,21 @@ class _HomeScreenState extends State<HomeScreen> {
                           size: 24,
                         ),
                       ),
-                      const SizedBox(width: 10),
+                      const SizedBox(width: AppSpacing.md),
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
                               AppStrings.premiumPassTitle,
-                              style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold,
+                              style: AppTypography.titleSmall(
                                 color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
                               ),
                             ),
-                            const SizedBox(height: 2),
+                            const SizedBox(height: AppSpacing.xs),
                             Text(
                               isUnlocked ? AppStrings.premiumActiveStatus : AppStrings.premiumPriceBadge,
-                              style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: isUnlocked ? FontWeight.bold : FontWeight.w600,
+                              style: AppTypography.labelMedium(
                                 color: isUnlocked ? AppColors.correctGreen : AppColors.sealGold,
                               ),
                             ),
@@ -2603,29 +2593,30 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                   if (!isUnlocked) ...[
-                    const SizedBox(height: 12),
+                    const SizedBox(height: AppSpacing.md),
                     Text(
                       AppStrings.premiumPassSubtitle,
-                      style: TextStyle(
-                        fontSize: 12,
+                      style: AppTypography.bodySmall(
                         color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
-                        height: 1.35,
-                      ),
+                      ).copyWith(height: 1.35),
                     ),
-                    const SizedBox(height: 12),
+                    const SizedBox(height: AppSpacing.md),
                     ElevatedButton.icon(
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.sealGold,
                         foregroundColor: AppColors.primary,
-                        padding: const EdgeInsets.symmetric(vertical: 11, horizontal: 16),
+                        padding: const EdgeInsets.symmetric(
+                          vertical: AppSpacing.md,
+                          horizontal: AppSpacing.base,
+                        ),
                         minimumSize: const Size(double.infinity, 42),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
+                        shape: const RoundedRectangleBorder(borderRadius: AppRadius.roundedSm),
                       ),
                       onPressed: () => PremiumPaywallModal.show(context),
                       icon: const Icon(Icons.stars_rounded, size: 20),
                       label: Text(
                         AppStrings.premiumUnlockBtn,
-                        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
+                        style: AppTypography.labelMedium(),
                       ),
                     ),
                   ],
@@ -2649,14 +2640,11 @@ class _HomeScreenState extends State<HomeScreen> {
 
         // 4. Language Switcher Card (App UI)
         Container(
-          padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            color: isDark ? AppColors.darkCard : AppColors.lightCard,
-            borderRadius: BorderRadius.circular(8),
-            border: Border.all(
-              color: AppColors.sealGold,
-              width: 1.5,
-            ),
+          padding: _HomeCard.padding,
+          decoration: _HomeCard.card(
+            isDark,
+            borderColor: AppColors.sealGold,
+            borderWidth: 1.5,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -2664,31 +2652,28 @@ class _HomeScreenState extends State<HomeScreen> {
               Row(
                 children: [
                   Container(
-                    padding: const EdgeInsets.all(8),
+                    padding: const EdgeInsets.all(AppSpacing.sm),
                     decoration: BoxDecoration(
                       color: AppColors.sealGold.withValues(alpha: 0.15),
                       shape: BoxShape.circle,
                     ),
                     child: const Icon(Icons.translate_rounded, color: AppColors.sealGold, size: 22),
                   ),
-                  const SizedBox(width: 10),
+                  const SizedBox(width: AppSpacing.md),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           AppStrings.settingsLangHeader,
-                          style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
+                          style: AppTypography.titleSmall(
                             color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
                           ),
                         ),
-                        const SizedBox(height: 2),
+                        const SizedBox(height: AppSpacing.xs),
                         Text(
                           AppStrings.settingsLangDesc,
-                          style: TextStyle(
-                            fontSize: 12,
+                          style: AppTypography.bodySmall(
                             color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
                           ),
                         ),
@@ -2697,7 +2682,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ],
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: AppSpacing.base),
 
               // Interactive Language Buttons
               ValueListenableBuilder<AppLang>(
@@ -2712,14 +2697,17 @@ class _HomeScreenState extends State<HomeScreen> {
                           onTap: () {
                             LanguageService.instance.setLanguage(AppLang.hi);
                           },
-                          borderRadius: BorderRadius.circular(6),
+                          borderRadius: BorderRadius.circular(AppRadius.sm),
                           child: Container(
-                            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
+                            padding: const EdgeInsets.symmetric(
+                              vertical: AppSpacing.md,
+                              horizontal: AppSpacing.sm,
+                            ),
                             decoration: BoxDecoration(
                               color: isHindi
                                   ? AppColors.sealGold.withValues(alpha: 0.2)
                                   : (isDark ? AppColors.darkCardElevated : AppColors.lightBg),
-                              borderRadius: BorderRadius.circular(6),
+                              borderRadius: BorderRadius.circular(AppRadius.sm),
                               border: Border.all(
                                 color: isHindi ? AppColors.sealGold : (isDark ? AppColors.darkBorder : AppColors.lightBorder),
                                 width: isHindi ? 2.0 : 1.0,
@@ -2731,13 +2719,17 @@ class _HomeScreenState extends State<HomeScreen> {
                                 if (isHindi)
                                   const Icon(Icons.check_circle_rounded, color: AppColors.sealGold, size: 18)
                                 else
-                                  const Icon(Icons.circle_outlined, color: Colors.grey, size: 18),
-                                const SizedBox(width: 8),
+                                  Icon(
+                                    Icons.circle_outlined,
+                                    color: isDark
+                                        ? AppColors.darkTextMuted
+                                        : AppColors.lightTextMuted,
+                                    size: 18,
+                                  ),
+                                const SizedBox(width: AppSpacing.sm),
                                 Text(
                                   AppStrings.langHindiLabel,
-                                  style: const TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 13.5,
+                                  style: AppTypography.labelMedium(
                                   ),
                                 ),
                               ],
@@ -2745,7 +2737,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                       ),
-                      const SizedBox(width: 12),
+                      const SizedBox(width: AppSpacing.md),
 
                       // English option
                       Expanded(
@@ -2753,14 +2745,17 @@ class _HomeScreenState extends State<HomeScreen> {
                           onTap: () {
                             LanguageService.instance.setLanguage(AppLang.en);
                           },
-                          borderRadius: BorderRadius.circular(6),
+                          borderRadius: BorderRadius.circular(AppRadius.sm),
                           child: Container(
-                            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
+                            padding: const EdgeInsets.symmetric(
+                              vertical: AppSpacing.md,
+                              horizontal: AppSpacing.sm,
+                            ),
                             decoration: BoxDecoration(
                               color: !isHindi
                                   ? AppColors.sealGold.withValues(alpha: 0.2)
                                   : (isDark ? AppColors.darkCardElevated : AppColors.lightBg),
-                              borderRadius: BorderRadius.circular(6),
+                              borderRadius: BorderRadius.circular(AppRadius.sm),
                               border: Border.all(
                                 color: !isHindi ? AppColors.sealGold : (isDark ? AppColors.darkBorder : AppColors.lightBorder),
                                 width: !isHindi ? 2.0 : 1.0,
@@ -2772,14 +2767,17 @@ class _HomeScreenState extends State<HomeScreen> {
                                 if (!isHindi)
                                   const Icon(Icons.check_circle_rounded, color: AppColors.sealGold, size: 18)
                                 else
-                                  const Icon(Icons.circle_outlined, color: Colors.grey, size: 18),
-                                const SizedBox(width: 8),
-                                const Text(
-                                  'English',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 13.5,
+                                  Icon(
+                                    Icons.circle_outlined,
+                                    color: isDark
+                                        ? AppColors.darkTextMuted
+                                        : AppColors.lightTextMuted,
+                                    size: 18,
                                   ),
+                                const SizedBox(width: AppSpacing.sm),
+                                Text(
+                                  'English',
+                                  style: AppTypography.labelMedium(),
                                 ),
                               ],
                             ),
@@ -2793,50 +2791,40 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           ),
         ),
-        const SizedBox(height: 16),
+        const SizedBox(height: AppSpacing.base),
 
         // 2. Offline Question Bank & Database Management Card
         Container(
-          padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            color: isDark ? AppColors.darkCard : AppColors.lightCard,
-            borderRadius: BorderRadius.circular(8),
-            border: Border.all(
-              color: isDark ? AppColors.darkBorder : AppColors.lightBorder,
-              width: 1.0,
-            ),
-          ),
+          padding: _HomeCard.padding,
+          decoration: _HomeCard.card(isDark),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 children: [
                   Container(
-                    padding: const EdgeInsets.all(8),
+                    padding: const EdgeInsets.all(AppSpacing.sm),
                     decoration: BoxDecoration(
                       color: AppColors.success.withValues(alpha: 0.15),
                       shape: BoxShape.circle,
                     ),
                     child: const Icon(Icons.storage_rounded, color: AppColors.success, size: 22),
                   ),
-                  const SizedBox(width: 10),
+                  const SizedBox(width: AppSpacing.md),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           AppStrings.settingsBankHeader,
-                          style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
+                          style: AppTypography.titleSmall(
                             color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
                           ),
                         ),
-                        const SizedBox(height: 2),
+                        const SizedBox(height: AppSpacing.xs),
                         Text(
                           AppStrings.bankInfo(_totalQuestions, _pyqCount, BankFacts.subjectCount),
-                          style: TextStyle(
-                            fontSize: 12,
+                          style: AppTypography.bodySmall(
                             color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
                           ),
                         ),
@@ -2845,18 +2833,21 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ],
               ),
-              const SizedBox(height: 12),
+              const SizedBox(height: AppSpacing.md),
 
               // Database Metrics Badges
               Wrap(
-                spacing: 8,
-                runSpacing: 6,
+                spacing: AppSpacing.sm,
+                runSpacing: AppSpacing.sm,
                 children: [
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: AppSpacing.sm,
+                      vertical: AppSpacing.xs,
+                    ),
                     decoration: BoxDecoration(
                       color: isDark ? AppColors.darkCardElevated : AppColors.primarySubtle,
-                      borderRadius: BorderRadius.circular(4),
+                      borderRadius: BorderRadius.circular(AppRadius.sm),
                       border: Border.all(
                         color: isDark ? AppColors.darkBorder : AppColors.lightBorder,
                         width: 1,
@@ -2866,12 +2857,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         const Icon(Icons.data_usage_rounded, size: 14, color: AppColors.sealGold),
-                        const SizedBox(width: 4),
+                        const SizedBox(width: AppSpacing.xs),
                         Text(
                           '${AppStrings.dbStorageSizeLabel}: $_dbSizeStr',
-                          style: TextStyle(
-                            fontSize: 11,
-                            fontWeight: FontWeight.bold,
+                          style: AppTypography.labelSmall(
                             color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary,
                           ),
                         ),
@@ -2879,10 +2868,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: AppSpacing.sm,
+                      vertical: AppSpacing.xs,
+                    ),
                     decoration: BoxDecoration(
                       color: isDark ? AppColors.darkCardElevated : AppColors.primarySubtle,
-                      borderRadius: BorderRadius.circular(4),
+                      borderRadius: BorderRadius.circular(AppRadius.sm),
                       border: Border.all(
                         color: isDark ? AppColors.darkBorder : AppColors.lightBorder,
                         width: 1,
@@ -2892,12 +2884,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         const Icon(Icons.history_toggle_off_rounded, size: 14, color: AppColors.correctGreen),
-                        const SizedBox(width: 4),
+                        const SizedBox(width: AppSpacing.xs),
                         Text(
                           '${AppStrings.dbLastSyncedLabel}: $_lastSyncedStr',
-                          style: TextStyle(
-                            fontSize: 11,
-                            fontWeight: FontWeight.bold,
+                          style: AppTypography.labelSmall(
                             color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary,
                           ),
                         ),
@@ -2906,22 +2896,20 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ],
               ),
-              const SizedBox(height: 12),
+              const SizedBox(height: AppSpacing.md),
 
               Text(
                 AppStrings.settingsBankDesc,
-                style: TextStyle(
-                  fontSize: 12,
+                style: AppTypography.bodySmall(
                   color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary,
-                  height: 1.35,
-                ),
+                ).copyWith(height: 1.35),
               ),
 
               // Active Sync Progress indicator
               if (_isSyncing) ...[
-                const SizedBox(height: 14),
+                const SizedBox(height: AppSpacing.md),
                 ClipRRect(
-                  borderRadius: BorderRadius.circular(4),
+                  borderRadius: BorderRadius.circular(AppRadius.full),
                   child: LinearProgressIndicator(
                     value: _syncProgress > 0 ? _syncProgress : null,
                     minHeight: 6,
@@ -2929,27 +2917,28 @@ class _HomeScreenState extends State<HomeScreen> {
                     valueColor: const AlwaysStoppedAnimation<Color>(AppColors.sealGold),
                   ),
                 ),
-                const SizedBox(height: 6),
+                const SizedBox(height: AppSpacing.sm),
                 Text(
                   _syncProgressStatus.isNotEmpty ? _syncProgressStatus : AppStrings.settingsSyncChecking,
-                  style: TextStyle(
-                    fontSize: 11.5,
-                    fontStyle: FontStyle.italic,
+                  style: AppTypography.labelSmall(
                     color: isDark ? AppColors.sealGoldLight : AppColors.primary,
-                  ),
+                  ).copyWith(fontStyle: FontStyle.italic),
                 ),
               ],
 
-              const SizedBox(height: 14),
+              const SizedBox(height: AppSpacing.md),
 
               // Action Button 1: Check & Update (Normal Sync)
               ElevatedButton.icon(
                 style: ElevatedButton.styleFrom(
                   backgroundColor: isDark ? AppColors.darkCardElevated : AppColors.primarySubtle,
                   foregroundColor: isDark ? AppColors.sealGoldLight : AppColors.primary,
-                  padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                  padding: const EdgeInsets.symmetric(
+                    vertical: AppSpacing.md,
+                    horizontal: AppSpacing.base,
+                  ),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(6),
+                    borderRadius: BorderRadius.circular(AppRadius.sm),
                     side: BorderSide(
                       color: isDark ? AppColors.sealGoldLight : AppColors.primary,
                       width: 1.2,
@@ -2961,10 +2950,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 icon: const Icon(Icons.sync_rounded, size: 20),
                 label: Text(
                   AppStrings.settingsBankSyncBtn,
-                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
+                  style: AppTypography.labelMedium(),
                 ),
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: AppSpacing.sm),
 
               // Action Buttons Row: Clean & Re-sync + Deep Optimize
               Row(
@@ -2978,9 +2967,12 @@ class _HomeScreenState extends State<HomeScreen> {
                           color: AppColors.danger.withValues(alpha: 0.6),
                           width: 1.2,
                         ),
-                        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 6),
+                        padding: const EdgeInsets.symmetric(
+                          vertical: AppSpacing.sm,
+                          horizontal: AppSpacing.sm,
+                        ),
                         minimumSize: const Size(0, 42),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
+                        shape: const RoundedRectangleBorder(borderRadius: AppRadius.roundedSm),
                       ),
                       onPressed: _isSyncing ? null : _confirmCleanAndResync,
                       icon: const Icon(Icons.delete_sweep_rounded, size: 18),
@@ -2988,13 +2980,13 @@ class _HomeScreenState extends State<HomeScreen> {
                         fit: BoxFit.scaleDown,
                         child: Text(
                           AppStrings.dbCleanResyncBtn,
-                          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
+                          style: AppTypography.labelMedium(),
                           textAlign: TextAlign.center,
                         ),
                       ),
                     ),
                   ),
-                  const SizedBox(width: 8),
+                  const SizedBox(width: AppSpacing.sm),
 
                   // Deep Optimize Button
                   Expanded(
@@ -3005,9 +2997,12 @@ class _HomeScreenState extends State<HomeScreen> {
                           color: AppColors.sealGold.withValues(alpha: 0.7),
                           width: 1.2,
                         ),
-                        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 6),
+                        padding: const EdgeInsets.symmetric(
+                          vertical: AppSpacing.sm,
+                          horizontal: AppSpacing.sm,
+                        ),
                         minimumSize: const Size(0, 42),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
+                        shape: const RoundedRectangleBorder(borderRadius: AppRadius.roundedSm),
                       ),
                       onPressed: (_isOptimizing || _isSyncing) ? null : _optimizeDatabase,
                       icon: const Icon(Icons.bolt_rounded, size: 18),
@@ -3015,7 +3010,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         fit: BoxFit.scaleDown,
                         child: Text(
                           AppStrings.dbOptimizeBtn,
-                          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
+                          style: AppTypography.labelMedium(),
                           textAlign: TextAlign.center,
                         ),
                       ),
@@ -3026,49 +3021,40 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           ),
         ),
-        const SizedBox(height: 16),
+        const SizedBox(height: AppSpacing.base),
 
         // 3. Mathematical Probability Model Details
         Container(
-          padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            color: isDark ? AppColors.darkCard : AppColors.lightCard,
-            borderRadius: BorderRadius.circular(8),
-            border: Border.all(
-              color: isDark ? AppColors.darkBorder : AppColors.lightBorder,
-              width: 1.0,
-            ),
-          ),
+          padding: _HomeCard.padding,
+          decoration: _HomeCard.card(isDark),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 children: [
                   Container(
-                    padding: const EdgeInsets.all(8),
+                    padding: const EdgeInsets.all(AppSpacing.sm),
                     decoration: BoxDecoration(
                       color: AppColors.sealGold.withValues(alpha: 0.15),
                       shape: BoxShape.circle,
                     ),
                     child: const Icon(Icons.auto_graph_rounded, color: AppColors.sealGold, size: 22),
                   ),
-                  const SizedBox(width: 10),
+                  const SizedBox(width: AppSpacing.md),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           AppStrings.settingsModelHeader,
-                          style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
+                          style: AppTypography.titleSmall(
                             color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
                           ),
                         ),
-                        const SizedBox(height: 2),
+                        const SizedBox(height: AppSpacing.xs),
                         Wrap(
-                          spacing: 6,
-                          runSpacing: 4,
+                          spacing: AppSpacing.sm,
+                          runSpacing: AppSpacing.xs,
                           children: [
                             AppBadge(label: 'Verified ${AppStrings.currentExamYear}', color: AppColors.sealGold),
                             AppBadge(
@@ -3082,63 +3068,51 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ],
               ),
-              const SizedBox(height: 12),
+              const SizedBox(height: AppSpacing.md),
               Text(
                 AppStrings.settingsModelDesc,
-                style: TextStyle(
-                  fontSize: 12,
+                style: AppTypography.bodySmall(
                   color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary,
-                  height: 1.4,
-                ),
+                ).copyWith(height: 1.4),
               ),
             ],
           ),
         ),
-        const SizedBox(height: 20),
+        const SizedBox(height: AppSpacing.lg),
 
         // 4. In-App Update (IAU) Card
         Container(
-          margin: const EdgeInsets.only(bottom: 16),
-          padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            color: isDark ? AppColors.darkCard : AppColors.lightCard,
-            borderRadius: BorderRadius.circular(8),
-            border: Border.all(
-              color: isDark ? AppColors.darkBorder : AppColors.lightBorder,
-              width: 1.0,
-            ),
-          ),
+          margin: const EdgeInsets.only(bottom: AppSpacing.base),
+          padding: _HomeCard.padding,
+          decoration: _HomeCard.card(isDark),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 children: [
                   Container(
-                    padding: const EdgeInsets.all(8),
+                    padding: const EdgeInsets.all(AppSpacing.sm),
                     decoration: BoxDecoration(
                       color: AppColors.sealGold.withValues(alpha: 0.15),
                       shape: BoxShape.circle,
                     ),
                     child: const Icon(Icons.system_update_rounded, color: AppColors.sealGold, size: 22),
                   ),
-                  const SizedBox(width: 10),
+                  const SizedBox(width: AppSpacing.md),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           AppStrings.checkUpdateBtn,
-                          style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
+                          style: AppTypography.titleSmall(
                             color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
                           ),
                         ),
-                        const SizedBox(height: 2),
+                        const SizedBox(height: AppSpacing.xs),
                         Text(
                           AppStrings.updateAvailableDesc,
-                          style: TextStyle(
-                            fontSize: 12,
+                          style: AppTypography.bodySmall(
                             color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
                           ),
                         ),
@@ -3147,7 +3121,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ],
               ),
-              const SizedBox(height: 12),
+              const SizedBox(height: AppSpacing.md),
               OutlinedButton.icon(
                 style: OutlinedButton.styleFrom(
                   foregroundColor: isDark ? AppColors.sealGoldLight : AppColors.primary,
@@ -3155,15 +3129,18 @@ class _HomeScreenState extends State<HomeScreen> {
                     color: isDark ? AppColors.sealGoldLight : AppColors.primary,
                     width: 1.2,
                   ),
-                  padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
+                  padding: const EdgeInsets.symmetric(
+                    vertical: AppSpacing.sm,
+                    horizontal: AppSpacing.base,
+                  ),
+                  shape: const RoundedRectangleBorder(borderRadius: AppRadius.roundedSm),
                   minimumSize: const Size(double.infinity, 42),
                 ),
                 onPressed: _checkAppUpdate,
                 icon: const Icon(Icons.refresh_rounded, size: 18),
                 label: Text(
                   AppStrings.checkUpdateBtn,
-                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
+                  style: AppTypography.labelMedium(),
                 ),
               ),
             ],
@@ -3174,14 +3151,12 @@ class _HomeScreenState extends State<HomeScreen> {
         Center(
           child: Text(
             AppStrings.settingsAbout,
-            style: TextStyle(
-              fontSize: 11.5,
-              fontWeight: FontWeight.w600,
+            style: AppTypography.labelSmall(
               color: isDark ? AppColors.darkTextMuted : AppColors.lightTextMuted,
             ),
           ),
         ),
-        const SizedBox(height: 20),
+        const SizedBox(height: AppSpacing.lg),
       ],
     );
   }
@@ -3194,12 +3169,10 @@ class _HomeScreenState extends State<HomeScreen> {
       mainAxisSize: MainAxisSize.min,
       children: [
         Icon(icon, size: 14, color: chipColor),
-        const SizedBox(width: 4),
+        const SizedBox(width: AppSpacing.xs),
         Text(
           label,
-          style: TextStyle(
-            fontSize: 11.5,
-            fontWeight: FontWeight.w600,
+          style: AppTypography.labelSmall(
             color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
           ),
         ),
@@ -3221,11 +3194,14 @@ class _HomeScreenState extends State<HomeScreen> {
       children: [
         // Section Header Row
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 4),
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppSpacing.xs,
+            vertical: AppSpacing.xs,
+          ),
           child: Row(
             children: [
               Container(
-                padding: const EdgeInsets.all(4),
+                padding: const EdgeInsets.all(AppSpacing.xs),
                 decoration: BoxDecoration(
                   color: (isPaper2 ? AppColors.violetBright : AppColors.sealGold).withValues(alpha: 0.15),
                   shape: BoxShape.circle,
@@ -3236,32 +3212,29 @@ class _HomeScreenState extends State<HomeScreen> {
                   color: isPaper2 ? AppColors.violetBright : AppColors.sealGold,
                 ),
               ),
-              const SizedBox(width: 6),
+              const SizedBox(width: AppSpacing.sm),
               Expanded(
                 child: Text(
                   isPaper2
                       ? (isHi ? 'विगत वर्ष प्रश्न-पत्र' : 'Previous Year Papers')
                       : (isHi ? 'विगत वर्ष एवं मॉडल प्रश्न-पत्र' : 'Previous Papers & Mocks'),
-                  maxLines: 1,
+                  maxLines: 2,
                   overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    fontSize: 13,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 0.2,
+                  style: AppTypography.labelMedium(
                     color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
-                  ),
+                  ).copyWith(letterSpacing: 0.2),
                 ),
               ),
-              const SizedBox(width: 8),
-              if (isPaper2) ...[
-                _buildStreamBadge(isDark),
-                const SizedBox(width: 8),
-              ],
+              const SizedBox(width: AppSpacing.sm),
+              if (isPaper2) _buildStreamBadge(isDark),
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: AppSpacing.sm,
+                  vertical: AppSpacing.xs,
+                ),
                 decoration: BoxDecoration(
                   color: isDark ? AppColors.darkCardElevated : AppColors.primarySubtle,
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(AppRadius.sm),
                   border: Border.all(
                     color: isDark ? AppColors.darkBorder : AppColors.lightBorder,
                     width: 1,
@@ -3269,9 +3242,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 child: Text(
                   '${_currentCarouselPage + 1}/${carouselList.length} ${isHi ? "प्रश्न-पत्र" : "Papers"}',
-                  style: TextStyle(
-                    fontSize: 11,
-                    fontWeight: FontWeight.w600,
+                  style: AppTypography.labelSmall(
                     color: isPaper2 ? AppColors.violetLight : (isDark ? AppColors.sealGoldLight : AppColors.accent),
                   ),
                 ),
@@ -3279,11 +3250,11 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           ),
         ),
-        const SizedBox(height: 6),
+        const SizedBox(height: AppSpacing.sm),
 
         // Swipeable Carousel PageView
         SizedBox(
-          height: 220,
+          height: 268,
           child: PageView.builder(
             key: ValueKey('hero_carousel_${ExamService.instance.selectedPaper}_${carouselList.length}'),
             controller: _heroCarouselController,
@@ -3302,8 +3273,11 @@ class _HomeScreenState extends State<HomeScreen> {
               final isCardFree = PremiumService.instance.isPaperFree(formId: formId, index: index);
 
               return Container(
-                margin: const EdgeInsets.symmetric(horizontal: 2),
-                padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+                margin: const EdgeInsets.symmetric(horizontal: AppSpacing.xs),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: AppSpacing.md,
+                  vertical: AppSpacing.md,
+                ),
                 decoration: BoxDecoration(
                   gradient: isDark
                       ? (isPaper2
@@ -3321,27 +3295,21 @@ class _HomeScreenState extends State<HomeScreen> {
                           ? const LinearGradient(
                               begin: Alignment.topLeft,
                               end: Alignment.bottomRight,
-                              colors: [Colors.white, AppColors.paper2VioletSoft],
+                              colors: [AppColors.lightCard, AppColors.paper2VioletSoft],
                             )
                           : const LinearGradient(
                               begin: Alignment.topLeft,
                               end: Alignment.bottomRight,
-                              colors: [Colors.white, AppColors.paper2BlueSoft],
+                              colors: [AppColors.lightCard, AppColors.paper2BlueSoft],
                             )),
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: _HomeCard.radius,
                   border: Border.all(
                     color: isPaper2
                         ? AppColors.violetBright
                         : (isDark ? AppColors.sealGold : AppColors.accent),
                     width: 1.5,
                   ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withValues(alpha: isDark ? 0.35 : 0.06),
-                      blurRadius: 8,
-                      offset: const Offset(0, 3),
-                    ),
-                  ],
+                  boxShadow: isDark ? AppShadows.darkCard : AppShadows.card,
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -3353,7 +3321,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       children: [
                         // Stamp Badge
                         Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: AppSpacing.sm,
+                            vertical: AppSpacing.xs,
+                          ),
                           decoration: BoxDecoration(
                             color: isDark ? AppColors.primaryLight : AppColors.primarySubtle,
                             border: Border.all(
@@ -3362,28 +3333,28 @@ class _HomeScreenState extends State<HomeScreen> {
                                   : (isDark ? AppColors.sealGold : AppColors.accent),
                               width: 1.4,
                             ),
-                            borderRadius: BorderRadius.circular(5),
+                            borderRadius: BorderRadius.circular(AppRadius.sm),
                           ),
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Text(
                                 stampParts.top,
-                                style: TextStyle(
+                                style: AppTypography.outfit(
                                   fontSize: 8.5,
                                   fontWeight: FontWeight.bold,
                                   letterSpacing: 0.5,
                                   color: isPaper2
                                       ? AppColors.violetLight
-                                      : (isDark ? AppColors.sealGoldLight : AppColors.accent),
+                                      : (isDark
+                                          ? AppColors.sealGoldLight
+                                          : AppColors.accent),
                                 ),
                               ),
-                              const SizedBox(width: 4),
+                              const SizedBox(width: AppSpacing.xs),
                               Text(
                                 stampParts.bottom,
-                                style: TextStyle(
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w900,
+                                style: AppTypography.labelMedium(
                                   color: isPaper2
                                       ? AppColors.violetLight
                                       : (isDark ? AppColors.sealGoldLight : AppColors.accent),
@@ -3406,7 +3377,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     color: AppColors.correctGreen,
                                     isSolid: true,
                                   ),
-                                  const SizedBox(width: 5),
+                                  const SizedBox(width: AppSpacing.xs),
                                 ],
                                 AppBadge(
                                   label: isPaper2
@@ -3415,7 +3386,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   color: isPaper2 ? AppColors.violetBright : AppColors.accent,
                                   isSolid: false,
                                 ),
-                                const SizedBox(width: 5),
+                                const SizedBox(width: AppSpacing.xs),
                                 AppBadge(
                                   label: isPyq
                                       ? (isLatest ? (isHi ? '✨ नवीन' : '✨ LATEST') : (isHi ? 'विगत वर्ष' : 'PAST PAPER'))
@@ -3430,17 +3401,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       ],
                     ),
 
-                    // Full Width Title (Two lines max, never truncates into `...`)
+                    // Full width title: it wraps, it never truncates
                     Text(
                       title,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        fontSize: 14.5,
-                        fontWeight: FontWeight.w800,
-                        height: 1.25,
+                      style: AppTypography.titleSmall(
                         color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
-                      ),
+                      ).copyWith(height: 1.25),
                     ),
 
                     // Subtitle
@@ -3448,17 +3414,16 @@ class _HomeScreenState extends State<HomeScreen> {
                       isPyq
                           ? (isHi ? '${BankFacts.questionsPerPaper} प्रामाणिक प्रश्न · सम्पूर्ण हल सहित' : '${BankFacts.questionsPerPaper} Authentic Questions · Complete Solutions')
                           : (isHi ? '${BankFacts.questionsPerPaper} सम्भावित प्रश्न · 2026 परीक्षा पैटर्न' : '${BankFacts.questionsPerPaper} Predicted Questions · 2026 Exam Pattern'),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        fontSize: 11.5,
+                      style: AppTypography.labelSmall(
                         color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
                       ),
                     ),
 
                     // Meta Chips
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    Wrap(
+                      alignment: WrapAlignment.spaceAround,
+                      spacing: AppSpacing.sm,
+                      runSpacing: AppSpacing.xs,
                       children: [
                         _buildMetaChip(Icons.quiz_outlined, isHi ? '${BankFacts.questionsPerPaper} प्रश्न' : '${BankFacts.questionsPerPaper} Questions', isDark, isPaper2),
                         _buildMetaChip(Icons.timer_outlined, isHi ? '${BankFacts.questionsPerPaper} मिनट' : '${BankFacts.questionsPerPaper} Minutes', isDark, isPaper2),
@@ -3472,10 +3437,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         backgroundColor: isPaper2
                             ? (isDark ? AppColors.violetBright : AppColors.math)
                             : (isDark ? AppColors.sealGold : AppColors.accent),
-                        foregroundColor: (isPaper2 || !isDark) ? Colors.white : AppColors.darkBg,
-                        padding: const EdgeInsets.symmetric(vertical: 8),
+                        foregroundColor: (isPaper2 || !isDark) ? AppColors.darkTextPrimary : AppColors.darkBg,
+                        padding: const EdgeInsets.symmetric(vertical: AppSpacing.sm),
                         minimumSize: const Size(double.infinity, 38),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
+                        shape: const RoundedRectangleBorder(borderRadius: AppRadius.roundedSm),
                         elevation: 1,
                       ),
                       onPressed: () {
@@ -3506,15 +3471,13 @@ class _HomeScreenState extends State<HomeScreen> {
                           Icon(
                             Icons.menu_book_rounded,
                             size: 18,
-                            color: (isPaper2 || !isDark) ? Colors.white : AppColors.darkBg,
+                            color: (isPaper2 || !isDark) ? AppColors.darkTextPrimary : AppColors.darkBg,
                           ),
-                          const SizedBox(width: 8),
+                          const SizedBox(width: AppSpacing.sm),
                           Text(
                             isHi ? 'प्रश्न-पुस्तिका हल करें' : 'Start Test Booklet',
-                            style: TextStyle(
-                              fontSize: 13,
-                              fontWeight: FontWeight.bold,
-                              color: (isPaper2 || !isDark) ? Colors.white : AppColors.darkBg,
+                            style: AppTypography.labelMedium(
+                              color: (isPaper2 || !isDark) ? AppColors.darkTextPrimary : AppColors.darkBg,
                             ),
                           ),
                         ],
@@ -3529,7 +3492,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
         // Carousel Dot Indicators
         if (carouselList.length > 1) ...[
-          const SizedBox(height: 8),
+          const SizedBox(height: AppSpacing.sm),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: List.generate(carouselList.length, (dotIdx) {
@@ -3537,7 +3500,7 @@ class _HomeScreenState extends State<HomeScreen> {
               return AnimatedContainer(
                 duration: AppMotion.slow,
                 curve: AppMotion.standard,
-                margin: const EdgeInsets.symmetric(horizontal: 3),
+                margin: const EdgeInsets.symmetric(horizontal: AppSpacing.xs),
                 width: isSelected ? 20 : 6,
                 height: 5,
                 decoration: BoxDecoration(
@@ -3545,8 +3508,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       ? (isPaper2
                           ? AppColors.violetBright
                           : (isDark ? AppColors.sealGold : AppColors.accent))
-                      : (isDark ? Colors.white24 : Colors.black12),
-                  borderRadius: BorderRadius.circular(3),
+                      : (isDark
+                          ? AppColors.darkTextMuted.withValues(alpha: 0.6)
+                          : AppColors.lightBorder),
+                  borderRadius: BorderRadius.circular(AppRadius.full),
                 ),
               );
             }),
@@ -3564,45 +3529,36 @@ class _HomeScreenState extends State<HomeScreen> {
     final featuredTitle = featuredForm != null ? AppStrings.formatPaperTitle(featuredForm) : AppStrings.heroTitle;
 
     return Container(
-      decoration: BoxDecoration(
-        color: isDark ? AppColors.darkCard : AppColors.lightCard,
-        borderRadius: BorderRadius.circular(8),
-        border: Border.all(
-          color: AppColors.sealGold,
-          width: 2.0,
-        ),
-        boxShadow: const [
-          BoxShadow(
-            color: Color(0x1F000000),
-            blurRadius: 10,
-            offset: Offset(0, 4),
-          ),
-        ],
+      decoration: _HomeCard.card(
+        isDark,
+        borderColor: AppColors.sealGold,
+        borderWidth: 2.0,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           // Top Hit-Rate Ribbon
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
+            padding: const EdgeInsets.symmetric(
+              horizontal: AppSpacing.md,
+              vertical: AppSpacing.sm,
+            ),
             decoration: const BoxDecoration(
               color: AppColors.sealGold,
               borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(6),
-                topRight: Radius.circular(6),
+                topLeft: Radius.circular(AppRadius.base),
+                topRight: Radius.circular(AppRadius.base),
               ),
             ),
             child: Row(
               children: [
-                const Icon(Icons.star_rounded, color: Colors.white, size: 20),
-                const SizedBox(width: 6),
+                const Icon(Icons.star_rounded, color: AppColors.darkTextPrimary, size: 20),
+                const SizedBox(width: AppSpacing.sm),
                 Expanded(
                   child: Text(
                     AppStrings.hitRibbon,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 11.5,
+                    style: AppTypography.labelSmall(
+                      color: AppColors.darkTextPrimary,
                     ),
                   ),
                 ),
@@ -3611,7 +3567,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
 
           Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: _HomeCard.padding,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -3621,43 +3577,45 @@ class _HomeScreenState extends State<HomeScreen> {
                     // Official Paper Stamp Box
                     Container(
                       constraints: const BoxConstraints(minWidth: 54, minHeight: 54),
-                      padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: AppSpacing.xs,
+                        vertical: AppSpacing.xs,
+                      ),
                       decoration: BoxDecoration(
                         color: isDark ? AppColors.darkCardElevated : AppColors.darkTextPrimary,
                         border: Border.all(
                           color: isDark ? AppColors.sealGoldLight : AppColors.primary,
                           width: 2,
                         ),
-                        borderRadius: BorderRadius.circular(6),
+                        borderRadius: BorderRadius.circular(AppRadius.sm),
                       ),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
                             stampParts.top,
-                            style: TextStyle(
+                            style: AppTypography.outfit(
                               fontSize: 8,
                               fontWeight: FontWeight.bold,
                               letterSpacing: 0.5,
-                              color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary,
+                              color: isDark
+                                  ? AppColors.darkTextSecondary
+                                  : AppColors.lightTextSecondary,
                             ),
                           ),
                           FittedBox(
                             fit: BoxFit.scaleDown,
                             child: Text(
                               stampParts.bottom,
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w900,
+                              style: AppTypography.titleMedium(
                                 color: isDark ? AppColors.sealGoldLight : AppColors.primary,
-                                height: 1.1,
-                              ),
+                              ).copyWith(height: 1.1),
                             ),
                           ),
                         ],
                       ),
                     ),
-                    const SizedBox(width: 14),
+                    const SizedBox(width: AppSpacing.md),
 
                     // Title & Description
                     Expanded(
@@ -3669,9 +3627,9 @@ class _HomeScreenState extends State<HomeScreen> {
                               Expanded(
                                 child: Text(
                                   featuredTitle,
-                                  style: TextStyle(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.bold,
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: AppTypography.titleSmall(
                                     color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
                                   ),
                                 ),
@@ -3683,28 +3641,29 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                             ],
                           ),
-                          const SizedBox(height: 4),
+                          const SizedBox(height: AppSpacing.xs),
                           Text(
                             AppStrings.heroDesc,
-                            style: TextStyle(
-                              fontSize: 12,
+                            style: AppTypography.bodySmall(
                               color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
-                              height: 1.3,
-                            ),
+                            ).copyWith(height: 1.3),
                           ),
                         ],
                       ),
                     ),
                   ],
                 ),
-                const SizedBox(height: 12),
+                const SizedBox(height: AppSpacing.md),
 
                 // Meta Info Box (Wrap - 100% overflow safe)
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: AppSpacing.sm,
+                    vertical: AppSpacing.sm,
+                  ),
                   decoration: BoxDecoration(
                     color: isDark ? AppColors.darkCardElevated : AppColors.lightBg,
-                    borderRadius: BorderRadius.circular(6),
+                    borderRadius: BorderRadius.circular(AppRadius.sm),
                     border: Border.all(
                       color: isDark ? AppColors.darkBorder : AppColors.lightBorder,
                       width: 1.0,
@@ -3713,8 +3672,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Wrap(
                     alignment: WrapAlignment.spaceBetween,
                     crossAxisAlignment: WrapCrossAlignment.center,
-                    spacing: 8,
-                    runSpacing: 6,
+                    spacing: AppSpacing.sm,
+                    runSpacing: AppSpacing.sm,
                     children: [
                       Row(
                         mainAxisSize: MainAxisSize.min,
@@ -3724,12 +3683,10 @@ class _HomeScreenState extends State<HomeScreen> {
                             size: 16,
                             color: isDark ? AppColors.sealGoldLight : AppColors.primary,
                           ),
-                          const SizedBox(width: 5),
+                          const SizedBox(width: AppSpacing.xs),
                           Text(
                             AppStrings.heroTotalQuestions,
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w600,
+                            style: AppTypography.labelMedium(
                               color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
                             ),
                           ),
@@ -3743,12 +3700,10 @@ class _HomeScreenState extends State<HomeScreen> {
                             size: 16,
                             color: isDark ? AppColors.sealGoldLight : AppColors.primary,
                           ),
-                          const SizedBox(width: 5),
+                          const SizedBox(width: AppSpacing.xs),
                           Text(
                             AppStrings.heroTime,
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w600,
+                            style: AppTypography.labelMedium(
                               color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
                             ),
                           ),
@@ -3762,12 +3717,10 @@ class _HomeScreenState extends State<HomeScreen> {
                             size: 16,
                             color: isDark ? AppColors.sealGoldLight : AppColors.primary,
                           ),
-                          const SizedBox(width: 5),
+                          const SizedBox(width: AppSpacing.xs),
                           Text(
                             AppStrings.heroMarks,
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w600,
+                            style: AppTypography.labelMedium(
                               color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
                             ),
                           ),
@@ -3776,16 +3729,18 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                 ),
-                const SizedBox(height: 14),
+                const SizedBox(height: AppSpacing.md),
 
                 // Action Button: Open Booklet
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: isDark ? AppColors.sealGold : AppColors.primary,
-                    foregroundColor: isDark ? AppColors.darkBg : Colors.white,
-                    padding: const EdgeInsets.symmetric(vertical: 12),
+                    foregroundColor: isDark ? AppColors.darkBg : AppColors.darkTextPrimary,
+                    padding: const EdgeInsets.symmetric(
+                      vertical: AppSpacing.md,
+                    ),
                     minimumSize: const Size(double.infinity, 44),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
+                    shape: const RoundedRectangleBorder(borderRadius: AppRadius.roundedSm),
                   ),
                   onPressed: () {
                     final randSeed = Random().nextInt(999999);
@@ -3804,15 +3759,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       Icon(
                         Icons.menu_book_rounded,
                         size: 22,
-                        color: isDark ? AppColors.darkBg : Colors.white,
+                        color: isDark ? AppColors.darkBg : AppColors.darkTextPrimary,
                       ),
-                      const SizedBox(width: 8),
+                      const SizedBox(width: AppSpacing.sm),
                       Text(
                         AppStrings.heroBtn,
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                          color: isDark ? AppColors.darkBg : Colors.white,
+                        style: AppTypography.titleSmall(
+                          color: isDark ? AppColors.darkBg : AppColors.darkTextPrimary,
                         ),
                       ),
                     ],
@@ -3863,35 +3816,31 @@ class _HomeScreenState extends State<HomeScreen> {
               setCode: setChar,
             );
           },
-          borderRadius: BorderRadius.circular(6),
+          borderRadius: _HomeCard.radius,
           child: Builder(
             builder: (context) {
               final isHi = LanguageService.instance.isHindi;
               final stampParts = AppStrings.getStampParts(setChar, isHindi: isHi);
 
               return Container(
-                padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                  color: isDark ? AppColors.darkCard : AppColors.lightCard,
-                  borderRadius: BorderRadius.circular(6),
-                  border: Border.all(
-                    color: isDark ? AppColors.darkBorder : AppColors.lightBorder,
-                    width: 1.2,
-                  ),
-                ),
+                padding: const EdgeInsets.all(AppSpacing.md),
+                decoration: _HomeCard.card(isDark, borderWidth: 1.2),
                 child: Row(
                   children: [
                     // Clean Adaptive SET Stamp (Never overflows)
                     Container(
                       constraints: const BoxConstraints(minWidth: 46, minHeight: 46),
-                      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 4),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: AppSpacing.sm,
+                        vertical: AppSpacing.xs,
+                      ),
                       decoration: BoxDecoration(
                         color: isDark ? AppColors.darkCardElevated : AppColors.darkTextPrimary,
                         border: Border.all(
                           color: isDark ? AppColors.sealGoldLight : AppColors.primary,
                           width: 1.5,
                         ),
-                        borderRadius: BorderRadius.circular(4),
+                        borderRadius: BorderRadius.circular(AppRadius.sm),
                       ),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
@@ -3899,46 +3848,45 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: [
                           Text(
                             stampParts.top,
-                            style: TextStyle(
-                              fontSize: 7.5,
-                              fontWeight: FontWeight.bold,
-                              color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary,
-                            ),
+                            style: AppTypography.outfit(
+                                fontSize: 7.5,
+                                fontWeight: FontWeight.bold,
+                                color: isDark
+                                    ? AppColors.darkTextSecondary
+                                    : AppColors.lightTextSecondary,
+                              ),
                           ),
-                          const SizedBox(height: 1),
+                          const SizedBox(height: AppSpacing.xs),
                           FittedBox(
                             fit: BoxFit.scaleDown,
                             child: Text(
                               stampParts.bottom,
-                              style: TextStyle(
-                                fontSize: 13,
-                                fontWeight: FontWeight.w900,
+                              style: AppTypography.labelMedium(
                                 color: isDark ? AppColors.sealGoldLight : AppColors.primary,
-                                height: 1.1,
-                              ),
+                              ).copyWith(height: 1.1),
                             ),
                           ),
                         ],
                       ),
                     ),
-                const SizedBox(width: 12),
+                    const SizedBox(width: AppSpacing.md),
 
-                // Content
+                    // Content
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Wrap(
                         crossAxisAlignment: WrapCrossAlignment.center,
-                        spacing: 6,
-                        runSpacing: 4,
+                        spacing: AppSpacing.sm,
+                        runSpacing: AppSpacing.xs,
                         children: [
                           Text(
                             title,
-                            style: TextStyle(
-                              fontSize: 13.5,
-                              fontWeight: FontWeight.bold,
-                              color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
+                            style: AppTypography.titleSmall(
+                              color: isDark
+                                  ? AppColors.darkTextPrimary
+                                  : AppColors.lightTextPrimary,
                             ),
                           ),
                           if (canOpen)
@@ -3951,11 +3899,10 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                         ],
                       ),
-                      const SizedBox(height: 3),
+                      const SizedBox(height: AppSpacing.xs),
                       Text(
                         subtitle,
-                        style: TextStyle(
-                          fontSize: 11.5,
+                        style: AppTypography.labelSmall(
                           color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
                         ),
                       ),
@@ -3963,7 +3910,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
 
-                const SizedBox(width: 6),
+                const SizedBox(width: AppSpacing.sm),
                 Icon(
                   canOpen ? Icons.arrow_forward_ios_rounded : Icons.lock_rounded,
                   size: canOpen ? 18 : 22,
@@ -4024,17 +3971,20 @@ class _HomeScreenState extends State<HomeScreen> {
     final social = ExamService.instance.isSocialStream;
     final color = social ? AppColors.violetBright : AppColors.accent;
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+      padding: const EdgeInsets.symmetric(
+        horizontal: AppSpacing.sm,
+        vertical: AppSpacing.xs,
+      ),
       decoration: BoxDecoration(
         color: color.withValues(alpha: isDark ? 0.25 : 0.14),
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(AppRadius.full),
         border: Border.all(color: color.withValues(alpha: 0.6), width: 1),
       ),
       child: Text(
-        social ? AppStrings.streamSocialStudies : AppStrings.streamMathScience,
-        style: TextStyle(
-          fontSize: 10.5,
-          fontWeight: FontWeight.w700,
+        social
+            ? AppStrings.streamShortSocialStudies
+            : AppStrings.streamShortMathScience,
+        style: AppTypography.labelSmall(
           color: social
               ? (isDark ? AppColors.violetLight : AppColors.violet)
               : (isDark ? AppColors.accentBright : AppColors.accentDark),
@@ -4081,7 +4031,10 @@ class _HomeScreenState extends State<HomeScreen> {
     }
     if (subjects.isEmpty) {
       return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+        padding: const EdgeInsets.symmetric(
+          horizontal: AppSpacing.base,
+          vertical: AppSpacing.xl,
+        ),
         child: Text(
           isHi
               ? 'इस बैंक में अभी कोई विषय उपलब्ध नहीं है।'
@@ -4096,10 +4049,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return LayoutBuilder(
       builder: (context, constraints) {
-        final itemWidth = (constraints.maxWidth - 10) / 2;
+        final itemWidth = (constraints.maxWidth - AppSpacing.sm) / 2;
         return Wrap(
-          spacing: 10,
-          runSpacing: 10,
+          spacing: AppSpacing.sm,
+          runSpacing: AppSpacing.sm,
           children: subjects.map((s) {
             final sec = s['sec'] as String;
             final name = AppStrings.sectionName(sec);
@@ -4120,17 +4073,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   );
                 },
-                borderRadius: BorderRadius.circular(6),
+                borderRadius: _HomeCard.radius,
                 child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 12),
-                  decoration: BoxDecoration(
-                    color: isDark ? AppColors.darkCard : AppColors.lightCard,
-                    borderRadius: BorderRadius.circular(6),
-                    border: Border.all(
-                      color: isDark ? AppColors.darkBorder : AppColors.lightBorder,
-                      width: 1.2,
-                    ),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: AppSpacing.sm,
+                    vertical: AppSpacing.md,
                   ),
+                  decoration: _HomeCard.card(isDark, borderWidth: 1.2),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -4139,9 +4088,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: [
                           Text(
                             label,
-                            style: TextStyle(
-                              fontSize: 10,
-                              fontWeight: FontWeight.bold,
+                            style: AppTypography.labelSmall(
                               color: color,
                             ),
                           ),
@@ -4152,22 +4099,17 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ],
                       ),
-                      const SizedBox(height: 6),
+                      const SizedBox(height: AppSpacing.sm),
                       Text(
                         name,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.bold,
+                        style: AppTypography.labelMedium(
                           color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
                         ),
                       ),
-                      const SizedBox(height: 2),
+                      const SizedBox(height: AppSpacing.xs),
                       Text(
                         AppStrings.subjectCardSetsInfo,
-                        style: TextStyle(
-                          fontSize: 10.5,
+                        style: AppTypography.labelSmall(
                           color: isDark ? AppColors.darkTextMuted : AppColors.lightTextMuted,
                         ),
                       ),
@@ -4218,22 +4160,18 @@ class _HomeScreenState extends State<HomeScreen> {
     final isPass = ExamRules.isGeneralPass(score, total);
 
     return Padding(
-      padding: const EdgeInsets.only(bottom: 8),
+      padding: const EdgeInsets.only(bottom: AppSpacing.sm),
       child: Material(
         color: Colors.transparent,
         child: InkWell(
-          borderRadius: BorderRadius.circular(6),
+          borderRadius: _HomeCard.radius,
           onTap: () => _openHistorySession(h),
           child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-            decoration: BoxDecoration(
-              color: isDark ? AppColors.darkCard : AppColors.lightCard,
-              borderRadius: BorderRadius.circular(6),
-              border: Border.all(
-                color: isDark ? AppColors.darkBorder : AppColors.lightBorder,
-                width: 1.0,
-              ),
+            padding: const EdgeInsets.symmetric(
+              horizontal: AppSpacing.md,
+              vertical: AppSpacing.sm,
             ),
+            decoration: _HomeCard.card(isDark),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -4247,23 +4185,19 @@ class _HomeScreenState extends State<HomeScreen> {
                         shape: BoxShape.circle,
                       ),
                     ),
-                    const SizedBox(width: 10),
+                    const SizedBox(width: AppSpacing.md),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           AppStrings.historyMockType(mode),
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 13,
+                          style: AppTypography.labelMedium(
                             color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
                           ),
                         ),
                         Text(
                           isPass ? AppStrings.historyQualified : AppStrings.historyPracticeNeeded,
-                          style: TextStyle(
-                            fontSize: 11,
-                            fontWeight: FontWeight.w600,
+                          style: AppTypography.labelSmall(
                             color: isPass ? AppColors.success : AppColors.danger,
                           ),
                         ),
@@ -4275,13 +4209,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     Text(
                       '$score / $total',
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
+                      style: AppTypography.titleSmall(
                         color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
                       ),
                     ),
-                    const SizedBox(width: 4),
+                    const SizedBox(width: AppSpacing.xs),
                     Icon(
                       Icons.chevron_right_rounded,
                       size: 18,

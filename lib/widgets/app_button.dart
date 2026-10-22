@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../design_system/app_colors.dart';
 import '../design_system/app_radius.dart';
+import '../design_system/app_spacing.dart';
 import '../design_system/app_typography.dart';
 import '../design_system/app_shadows.dart';
 import '../design_system/app_motion.dart';
@@ -14,6 +15,9 @@ class AppButton extends StatefulWidget {
   final AppButtonVariant variant;
   final bool isLoading;
   final double? width;
+
+  /// The minimum height of the button.  A long label wraps to as many lines
+  /// as it needs and the button grows with it, so a label is never cut.
   final double height;
 
   const AppButton({
@@ -46,7 +50,7 @@ class _AppButtonState extends State<AppButton> {
     switch (widget.variant) {
       case AppButtonVariant.primary:
         bg = AppColors.primary;
-        fg = Colors.white;
+        fg = AppColors.darkTextPrimary;
         shadows = AppShadows.primaryGlow;
         break;
       case AppButtonVariant.secondary:
@@ -63,11 +67,11 @@ class _AppButtonState extends State<AppButton> {
         break;
       case AppButtonVariant.danger:
         bg = AppColors.danger;
-        fg = Colors.white;
+        fg = AppColors.darkTextPrimary;
         break;
       case AppButtonVariant.success:
         bg = AppColors.success;
-        fg = Colors.white;
+        fg = AppColors.darkTextPrimary;
         break;
     }
 
@@ -76,12 +80,14 @@ class _AppButtonState extends State<AppButton> {
     return AnimatedScale(
       scale: _isPressed && isInteractive ? 0.97 : 1.0,
       duration: AppMotion.fast,
-              curve: AppMotion.standard,
+      curve: AppMotion.standard,
       child: Container(
         width: widget.width,
-        height: widget.height,
+        constraints: BoxConstraints(minHeight: widget.height),
         decoration: BoxDecoration(
-          color: isInteractive ? bg : (isDark ? Colors.white10 : Colors.black12),
+          color: isInteractive
+              ? bg
+              : (isDark ? AppColors.darkCardElevated : AppColors.borderStrong),
           borderRadius: AppRadius.roundedBase,
           border: border,
           boxShadow: isInteractive ? shadows : null,
@@ -94,36 +100,39 @@ class _AppButtonState extends State<AppButton> {
             onTapDown: (_) => setState(() => _isPressed = true),
             onTapUp: (_) => setState(() => _isPressed = false),
             onTapCancel: () => setState(() => _isPressed = false),
-            child: Center(
-              child: widget.isLoading
-                  ? const SizedBox(
-                      width: 20,
-                      height: 20,
-                      child: CircularProgressIndicator(
-                        strokeWidth: 2.2,
-                        color: Colors.white,
-                      ),
-                    )
-                  : Row(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        if (widget.icon != null) ...[
-                          Icon(widget.icon, size: 18, color: fg),
-                          const SizedBox(width: 8),
-                        ],
-                        Text(
-                          widget.label,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          textAlign: TextAlign.center,
-                          style: AppTypography.titleMedium(color: fg).copyWith(
-                            fontSize: 14.5,
-                            fontWeight: FontWeight.w600,
-                          ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppSpacing.base,
+                vertical: AppSpacing.sm,
+              ),
+              child: Center(
+                child: widget.isLoading
+                    ? const SizedBox(
+                        width: 20,
+                        height: 20,
+                        child: CircularProgressIndicator(
+                          strokeWidth: 2.2,
+                          color: AppColors.darkTextPrimary,
                         ),
-                      ],
-                    ),
+                      )
+                    : Row(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          if (widget.icon != null) ...[
+                            Icon(widget.icon, size: 18, color: fg),
+                            const SizedBox(width: AppSpacing.sm),
+                          ],
+                          Flexible(
+                            child: Text(
+                              widget.label,
+                              textAlign: TextAlign.center,
+                              style: AppTypography.titleSmall(color: fg),
+                            ),
+                          ),
+                        ],
+                      ),
+              ),
             ),
           ),
         ),

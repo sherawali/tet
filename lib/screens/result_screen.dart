@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import '../design_system/app_colors.dart';
 import '../design_system/app_typography.dart';
 import '../design_system/app_radius.dart';
+import '../design_system/app_spacing.dart';
+import '../design_system/app_shadows.dart';
 import '../design_system/app_strings.dart';
 import '../models/test_session.dart';
 import '../models/question.dart';
@@ -56,6 +58,73 @@ class _ResultScreenState extends State<ResultScreen> {
     if (!widget.fromHistory) {
       InAppReviewService.instance.checkAndPromptReview();
     }
+  }
+
+  /// The one border of this file: every card, sheet and chip uses it.
+  Border _cardBorder(bool isDark, {Color? color, double width = 1.2}) =>
+      Border.all(
+        color: color ?? (isDark ? AppColors.darkBorder : AppColors.lightBorder),
+        width: width,
+      );
+
+  /// The one shadow of this file.
+  List<BoxShadow> _cardShadow(bool isDark) =>
+      isDark ? AppShadows.darkCard : AppShadows.card;
+
+  /// The one card padding of this file.  The hero card is the only surface
+  /// that is allowed to breathe more, because it carries the score.
+  static const EdgeInsets _cardPadding = EdgeInsets.symmetric(
+    horizontal: AppSpacing.base,
+    vertical: AppSpacing.md,
+  );
+
+  /// The one heading rhythm of this file.
+  Widget _sectionHeading(
+    bool isDark, {
+    required String title,
+    String? trailing,
+  }) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Expanded(
+          child: Text(
+            title,
+            style: AppTypography.titleMedium(
+              color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
+            ),
+          ),
+        ),
+        if (trailing != null) ...[
+          const SizedBox(width: AppSpacing.sm),
+          Text(
+            trailing,
+            style: AppTypography.labelSmall(
+              color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
+            ),
+          ),
+        ],
+      ],
+    );
+  }
+
+  /// The one filled-button style of this file.
+  ButtonStyle _filledButtonStyle({
+    required Color bg,
+    required Color fg,
+  }) {
+    return ElevatedButton.styleFrom(
+      backgroundColor: bg,
+      foregroundColor: fg,
+      elevation: 0,
+      padding: const EdgeInsets.symmetric(
+        vertical: AppSpacing.md,
+        horizontal: AppSpacing.base,
+      ),
+      minimumSize: const Size(double.infinity, 48),
+      shape: RoundedRectangleBorder(borderRadius: AppRadius.roundedBase),
+      textStyle: AppTypography.titleSmall(color: fg),
+    );
   }
 
   @override
@@ -143,16 +212,22 @@ class _ResultScreenState extends State<ResultScreen> {
       appBar: AppBar(
         title: Text(AppStrings.resultsTitle),
         backgroundColor: isDark ? AppColors.darkCard : AppColors.primary,
-        foregroundColor: Colors.white,
+        foregroundColor: AppColors.darkTextPrimary,
         automaticallyImplyLeading: false,
       ),
       body: SafeArea(
         child: ListView(
-          padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 16),
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppSpacing.base,
+            vertical: AppSpacing.base,
+          ),
           children: [
             // 1. Score Hero Card
             Container(
-              padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 20),
+              padding: const EdgeInsets.symmetric(
+                vertical: AppSpacing.xl,
+                horizontal: AppSpacing.lg,
+              ),
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: isPassGeneral
@@ -171,6 +246,7 @@ class _ResultScreenState extends State<ResultScreen> {
                       .withValues(alpha: 0.5),
                   width: 1.5,
                 ),
+                boxShadow: _cardShadow(isDark),
               ),
               child: Column(
                 children: [
@@ -180,10 +256,10 @@ class _ResultScreenState extends State<ResultScreen> {
                         : (isPassReserved
                             ? AppStrings.passReserved
                             : AppStrings.needMorePractice),
-                    style: AppTypography.titleLarge(color: Colors.white).copyWith(fontSize: 17),
+                    style: AppTypography.titleLarge(color: AppColors.darkTextPrimary),
                     textAlign: TextAlign.center,
                   ),
-                  const SizedBox(height: 14),
+                  const SizedBox(height: AppSpacing.md),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.baseline,
@@ -191,19 +267,21 @@ class _ResultScreenState extends State<ResultScreen> {
                     children: [
                       Text(
                         '$score',
-                        style: AppTypography.displayLarge(color: Colors.white).copyWith(fontSize: 52),
+                        style: AppTypography.displayMedium(color: AppColors.darkTextPrimary),
                       ),
                       Text(
                         ' / $total',
-                        style: AppTypography.titleLarge(color: Colors.white70),
+                        style: AppTypography.titleLarge(
+                          color: AppColors.darkTextPrimary.withValues(alpha: 0.7),
+                        ),
                       ),
                     ],
                   ),
-                  const SizedBox(height: 12),
+                  const SizedBox(height: AppSpacing.md),
                   Wrap(
                     alignment: WrapAlignment.center,
-                    spacing: 8,
-                    runSpacing: 6,
+                    spacing: AppSpacing.sm,
+                    runSpacing: AppSpacing.xs,
                     children: [
                       AppBadge(
                         label: AppStrings.resultMarksPct(pct),
@@ -225,19 +303,20 @@ class _ResultScreenState extends State<ResultScreen> {
                 ],
               ),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: AppSpacing.base),
 
             // 2. Wrong Questions Practice Card (Re-practice Mistakes)
             if (wrongQuestions.isNotEmpty) ...[
               Container(
-                padding: const EdgeInsets.all(16),
+                padding: _cardPadding,
                 decoration: BoxDecoration(
                   color: isDark ? AppColors.primaryLight : AppColors.warningSubtle,
                   borderRadius: AppRadius.roundedBase,
-                  border: Border.all(
+                  border: _cardBorder(
+                    isDark,
                     color: isDark ? AppColors.sealGold : AppColors.goldBright,
-                    width: 1.5,
                   ),
+                  boxShadow: _cardShadow(isDark),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -245,31 +324,28 @@ class _ResultScreenState extends State<ResultScreen> {
                     Row(
                       children: [
                         Container(
-                          padding: const EdgeInsets.all(8),
+                          padding: const EdgeInsets.all(AppSpacing.sm),
                           decoration: BoxDecoration(
                             color: AppColors.sealGold.withValues(alpha: 0.2),
                             shape: BoxShape.circle,
                           ),
                           child: const Icon(Icons.replay_rounded, color: AppColors.sealGold, size: 24),
                         ),
-                        const SizedBox(width: 12),
+                        const SizedBox(width: AppSpacing.md),
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
                                 AppStrings.rePracticeTitle,
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 15,
+                                style: AppTypography.titleSmall(
                                   color: isDark ? AppColors.darkTextPrimary : AppColors.goldText,
                                 ),
                               ),
-                              const SizedBox(height: 2),
+                              const SizedBox(height: AppSpacing.xs),
                               Text(
                                 AppStrings.rePracticeSub(wrongQuestions.length),
-                                style: TextStyle(
-                                  fontSize: 12,
+                                style: AppTypography.bodySmall(
                                   color: isDark ? AppColors.darkTextSecondary : AppColors.sealGold,
                                 ),
                               ),
@@ -278,14 +354,11 @@ class _ResultScreenState extends State<ResultScreen> {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 14),
+                    const SizedBox(height: AppSpacing.md),
                     ElevatedButton.icon(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColors.sealGold,
-                        foregroundColor: Colors.black,
-                        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-                        minimumSize: const Size(double.infinity, 44),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
+                      style: _filledButtonStyle(
+                        bg: AppColors.sealGold,
+                        fg: AppColors.primaryDark,
                       ),
                       onPressed: () {
                         final practiceConfig = MockConfig(
@@ -307,27 +380,24 @@ class _ResultScreenState extends State<ResultScreen> {
                         );
                       },
                       icon: const Icon(Icons.play_arrow_rounded, size: 22),
-                      label: FittedBox(
-                        fit: BoxFit.scaleDown,
-                        child: Text(
-                          AppStrings.rePracticeBtn(wrongQuestions.length),
-                          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13.5),
-                        ),
+                      label: Text(
+                        AppStrings.rePracticeBtn(wrongQuestions.length),
+                        textAlign: TextAlign.center,
                       ),
                     ),
                   ],
                 ),
               ),
-              const SizedBox(height: 18),
+              const SizedBox(height: AppSpacing.lg),
             ],
 
-            // 2.5 Recurring Weaknesses Card (🎯 बार-बार होने वाली कमजोरियाँ)
+            // 2.5 Recurring Weaknesses Card
             if (_recurringWeakTopics.isNotEmpty || _recurringWrongQuestions.isNotEmpty) ...[
               _buildRecurringMistakesCard(isDark),
-              const SizedBox(height: 18),
+              const SizedBox(height: AppSpacing.lg),
             ],
 
-            // 3. Smart Guidance & Advice (💡 विशेषज्ञ मार्गदर्शन एवं सही सलाह)
+            // 3. Smart Guidance & Advice
             _buildGuidanceCard(
               isDark: isDark,
               score: score,
@@ -337,16 +407,11 @@ class _ResultScreenState extends State<ResultScreen> {
               wrongCount: wrongQuestions.length,
               weakTopics: weakTopics,
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: AppSpacing.lg),
 
-            // 4. Section Breakdown (विषयवार प्रदर्शन)
-            Text(
-              AppStrings.sectionBreakdownTitle,
-              style: AppTypography.titleMedium(
-                color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
-              ).copyWith(fontSize: 15),
-            ),
-            const SizedBox(height: 10),
+            // 4. Section Breakdown
+            _sectionHeading(isDark, title: AppStrings.sectionBreakdownTitle),
+            const SizedBox(height: AppSpacing.sm),
 
             ...secStats.entries.map((e) {
               final secName = AppStrings.sectionName(e.key);
@@ -357,31 +422,29 @@ class _ResultScreenState extends State<ResultScreen> {
               final secPct = secTotal > 0 ? (correct / secTotal) : 0.0;
 
               return Padding(
-                padding: const EdgeInsets.only(bottom: 10.0),
+                padding: const EdgeInsets.only(bottom: AppSpacing.sm),
                 child: AppCard(
-                  padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+                  padding: _cardPadding,
                   child: Column(
                     children: [
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Expanded(
                             child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Container(
                                   width: 10,
                                   height: 10,
+                                  margin: const EdgeInsets.only(top: AppSpacing.xs),
                                   decoration: BoxDecoration(color: secColor, shape: BoxShape.circle),
                                 ),
-                                const SizedBox(width: 8),
+                                const SizedBox(width: AppSpacing.sm),
                                 Expanded(
                                   child: Text(
                                     secName,
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 13.5,
+                                    style: AppTypography.titleSmall(
                                       color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
                                     ),
                                   ),
@@ -389,30 +452,27 @@ class _ResultScreenState extends State<ResultScreen> {
                               ],
                             ),
                           ),
-                          const SizedBox(width: 8),
+                          const SizedBox(width: AppSpacing.sm),
                           Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Text(
                                 '✓ $correct ',
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 13,
+                                style: AppTypography.labelMedium(
                                   color: AppColors.success,
                                 ),
                               ),
                               Text(
                                 '✗ $wrong ',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 13,
-                                  color: wrong > 0 ? AppColors.danger : Colors.grey,
+                                style: AppTypography.labelMedium(
+                                  color: wrong > 0
+                                      ? AppColors.danger
+                                      : (isDark ? AppColors.darkTextMuted : AppColors.lightTextMuted),
                                 ),
                               ),
                               Text(
                                 '/ $secTotal',
-                                style: TextStyle(
-                                  fontSize: 12,
+                                style: AppTypography.bodySmall(
                                   color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
                                 ),
                               ),
@@ -420,7 +480,7 @@ class _ResultScreenState extends State<ResultScreen> {
                           ),
                         ],
                       ),
-                      const SizedBox(height: 8),
+                      const SizedBox(height: AppSpacing.sm),
                       ClipRRect(
                         borderRadius: AppRadius.roundedFull,
                         child: LinearProgressIndicator(
@@ -435,28 +495,15 @@ class _ResultScreenState extends State<ResultScreen> {
                 ),
               );
             }),
-            const SizedBox(height: 20),
+            const SizedBox(height: AppSpacing.lg),
 
-            // 5. Detailed Topic Breakdown (सभी टॉपिक्स का विस्तृत विश्लेषण)
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  AppStrings.topicAnalysisTitle,
-                  style: AppTypography.titleMedium(
-                    color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
-                  ).copyWith(fontSize: 15),
-                ),
-                Text(
-                  '${sortedTopics.length} Topics',
-                  style: TextStyle(
-                    fontSize: 12,
-                    color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary,
-                  ),
-                ),
-              ],
+            // 5. Detailed Topic Breakdown
+            _sectionHeading(
+              isDark,
+              title: AppStrings.topicAnalysisTitle,
+              trailing: AppStrings.topicsCount(sortedTopics.length),
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: AppSpacing.sm),
 
             ...sortedTopics.map((e) {
               final topic = e.key;
@@ -464,114 +511,110 @@ class _ResultScreenState extends State<ResultScreen> {
               final secColor = _getSectionColor(stats.section);
               final accuracy = stats.total > 0 ? ((stats.correct / stats.total) * 100).round() : 0;
 
-              return Container(
-                margin: const EdgeInsets.only(bottom: 8),
-                padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                  color: isDark ? AppColors.darkCard : AppColors.lightCard,
-                  borderRadius: BorderRadius.circular(6),
-                  border: Border.all(
-                    color: isDark ? AppColors.darkBorder : AppColors.lightBorder,
-                    width: 1.0,
-                  ),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Expanded(
-                          child: Text(
-                            topic,
-                            style: TextStyle(
-                              fontSize: 13,
-                              fontWeight: FontWeight.bold,
-                              color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
+              return Padding(
+                padding: const EdgeInsets.only(bottom: AppSpacing.sm),
+                child: AppCard(
+                  padding: _cardPadding,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: Text(
+                              topic,
+                              style: AppTypography.titleSmall(
+                                color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
+                              ),
                             ),
                           ),
-                        ),
-                        Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                          decoration: BoxDecoration(
-                            color: secColor.withValues(alpha: 0.15),
-                            borderRadius: BorderRadius.circular(4),
-                          ),
-                          child: Text(
-                            stats.section.toUpperCase(),
-                            style: TextStyle(
-                              fontSize: 10,
-                              fontWeight: FontWeight.bold,
-                              color: secColor,
+                          const SizedBox(width: AppSpacing.sm),
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: AppSpacing.sm,
+                              vertical: AppSpacing.xs,
+                            ),
+                            decoration: BoxDecoration(
+                              color: secColor.withValues(alpha: 0.15),
+                              borderRadius: AppRadius.roundedSm,
+                            ),
+                            child: Text(
+                              stats.section.toUpperCase(),
+                              style: AppTypography.labelSmall(color: secColor),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 8),
-                    Wrap(
-                      spacing: 8,
-                      runSpacing: 6,
-                      crossAxisAlignment: WrapCrossAlignment.center,
-                      alignment: WrapAlignment.spaceBetween,
-                      children: [
-                        Wrap(
-                          spacing: 6,
-                          runSpacing: 4,
-                          children: [
-                            _buildStatChip(
-                              icon: Icons.check_circle_outline_rounded,
-                              label: '${stats.correct} ${AppStrings.correctShort}',
-                              color: AppColors.success,
-                              isDark: isDark,
-                            ),
-                            _buildStatChip(
-                              icon: Icons.highlight_off_rounded,
-                              label: '${stats.wrong} ${AppStrings.wrongShort}',
-                              color: stats.wrong > 0 ? AppColors.danger : Colors.grey,
-                              isDark: isDark,
-                            ),
-                            if (stats.unattempted > 0)
+                        ],
+                      ),
+                      const SizedBox(height: AppSpacing.sm),
+                      Wrap(
+                        spacing: AppSpacing.sm,
+                        runSpacing: AppSpacing.xs,
+                        crossAxisAlignment: WrapCrossAlignment.center,
+                        alignment: WrapAlignment.spaceBetween,
+                        children: [
+                          Wrap(
+                            spacing: AppSpacing.xs,
+                            runSpacing: AppSpacing.xs,
+                            children: [
                               _buildStatChip(
-                                icon: Icons.radio_button_unchecked_rounded,
-                                label: '${stats.unattempted} ${AppStrings.unattemptedShort}',
-                                color: Colors.blueGrey,
+                                icon: Icons.check_circle_outline_rounded,
+                                label: '${stats.correct} ${AppStrings.correctShort}',
+                                color: AppColors.success,
                                 isDark: isDark,
                               ),
-                          ],
-                        ),
-                        Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                          decoration: BoxDecoration(
-                            color: (accuracy >= 60
-                                    ? AppColors.success
-                                    : (accuracy >= 40 ? AppColors.sealGold : AppColors.danger))
-                                .withValues(alpha: 0.12),
-                            borderRadius: BorderRadius.circular(4),
+                              _buildStatChip(
+                                icon: Icons.highlight_off_rounded,
+                                label: '${stats.wrong} ${AppStrings.wrongShort}',
+                                color: stats.wrong > 0
+                                    ? AppColors.danger
+                                    : (isDark ? AppColors.darkTextMuted : AppColors.lightTextMuted),
+                                isDark: isDark,
+                              ),
+                              if (stats.unattempted > 0)
+                                _buildStatChip(
+                                  icon: Icons.radio_button_unchecked_rounded,
+                                  label: '${stats.unattempted} ${AppStrings.unattemptedShort}',
+                                  color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary,
+                                  isDark: isDark,
+                                ),
+                            ],
                           ),
-                          child: Text(
-                            '$accuracy% ${AppStrings.accuracyShort}',
-                            style: TextStyle(
-                              fontSize: 11.5,
-                              fontWeight: FontWeight.bold,
-                              color: accuracy >= 60
-                                  ? AppColors.success
-                                  : (accuracy >= 40 ? AppColors.sealGold : AppColors.danger),
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: AppSpacing.sm,
+                              vertical: AppSpacing.xs,
+                            ),
+                            decoration: BoxDecoration(
+                              color: (accuracy >= 60
+                                      ? AppColors.success
+                                      : (accuracy >= 40 ? AppColors.sealGold : AppColors.danger))
+                                  .withValues(alpha: 0.12),
+                              borderRadius: AppRadius.roundedSm,
+                            ),
+                            child: Text(
+                              '$accuracy% ${AppStrings.accuracyShort}',
+                              style: AppTypography.labelSmall(
+                                color: accuracy >= 60
+                                    ? AppColors.success
+                                    : (accuracy >= 40 ? AppColors.sealGold : AppColors.danger),
+                              ),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ],
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               );
             }),
-            const SizedBox(height: 20),
+            const SizedBox(height: AppSpacing.lg),
 
             // 6. Action Buttons
             AppButton(
               label: AppStrings.viewSolutionsBtn,
               variant: AppButtonVariant.primary,
+              width: double.infinity,
               height: 48,
               onPressed: () {
                 Navigator.of(context).push(
@@ -581,10 +624,11 @@ class _ResultScreenState extends State<ResultScreen> {
                 );
               },
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: AppSpacing.sm),
             AppButton(
               label: AppStrings.backHomeBtn,
               variant: AppButtonVariant.outline,
+              width: double.infinity,
               height: 48,
               onPressed: () {
                 Navigator.of(context).pushAndRemoveUntil(
@@ -593,7 +637,7 @@ class _ResultScreenState extends State<ResultScreen> {
                 );
               },
             ),
-            const SizedBox(height: 24),
+            const SizedBox(height: AppSpacing.xl),
           ],
         ),
       ),
@@ -614,13 +658,13 @@ class _ResultScreenState extends State<ResultScreen> {
     Color badgeColor;
 
     if (ExamRules.isGeneralPass(score, total)) {
-      headline = 'उत्कृष्ट तैयारी! आप 60% कट-ऑफ पार कर चुके हैं।';
-      adviceText = 'आपकी मजबूत पकड़ बन चुकी है। अब शीर्ष मेरिट में स्थान बनाने के लिए उन 1-2 टॉपिक्स पर काम करें जिनमें गलतियाँ हुईं।';
+      headline = AppStrings.resultPassedHeadline;
+      adviceText = AppStrings.resultPassedAdvice;
       badgeColor = AppColors.success;
     } else if (ExamRules.isReservedPass(score, total)) {
       final needed = ExamRules.generalPassMark(total) - score;
-      headline = 'सराहनीय! आप सामान्य कट-ऑफ के बहुत करीब हैं।';
-      adviceText = 'आपको सामान्य वर्ग पार करने के लिए केवल $needed और अंक चाहिए। नीचे दिए कमजोर टॉपिक्स का पुनः अभ्यास करके आसानी से 100+ अंक ला सकते हैं।';
+      headline = AppStrings.resultReservedHeadline;
+      adviceText = AppStrings.resultReservedAdvice(needed);
       badgeColor = AppColors.sealGold;
     } else {
       final needed = ExamRules.reservedPassMark(total) - score;
@@ -629,15 +673,35 @@ class _ResultScreenState extends State<ResultScreen> {
       badgeColor = AppColors.danger;
     }
 
+    // The card surface follows the verdict, so the eye reads the result
+    // before it reads a single word.
+    final Color surface;
+    final Color hairline;
+    switch (badgeColor) {
+      case AppColors.success:
+        surface = AppColors.successSubtle;
+        hairline = AppColors.successBorder;
+        break;
+      case AppColors.sealGold:
+        surface = AppColors.sealGoldSubtle;
+        hairline = AppColors.goldBright;
+        break;
+      default:
+        surface = AppColors.dangerSubtle;
+        hairline = AppColors.dangerBorder;
+        break;
+    }
+
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: _cardPadding,
       decoration: BoxDecoration(
-        color: isDark ? AppColors.darkCard : AppColors.successSubtle,
+        color: isDark ? AppColors.darkCard : surface,
         borderRadius: AppRadius.roundedBase,
-        border: Border.all(
-          color: isDark ? AppColors.darkBorder : AppColors.successBorder,
-          width: 1.2,
+        border: _cardBorder(
+          isDark,
+          color: isDark ? AppColors.darkBorder : hairline,
         ),
+        boxShadow: _cardShadow(isDark),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -645,82 +709,75 @@ class _ResultScreenState extends State<ResultScreen> {
           Row(
             children: [
               Container(
-                padding: const EdgeInsets.all(7),
+                padding: const EdgeInsets.all(AppSpacing.sm),
                 decoration: BoxDecoration(
                   color: badgeColor.withValues(alpha: 0.15),
                   shape: BoxShape.circle,
                 ),
                 child: Icon(Icons.lightbulb_rounded, color: badgeColor, size: 24),
               ),
-              const SizedBox(width: 10),
+              const SizedBox(width: AppSpacing.sm),
               Expanded(
                 child: Text(
                   AppStrings.guidanceTitle,
-                  style: TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold,
-                    color: isDark ? AppColors.darkTextPrimary : AppColors.successText,
+                  style: AppTypography.titleSmall(
+                    color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
                   ),
                 ),
               ),
             ],
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: AppSpacing.sm),
           Text(
             headline,
-            style: TextStyle(
-              fontSize: 13,
-              fontWeight: FontWeight.bold,
-              color: isDark ? AppColors.darkTextPrimary : Colors.black87,
+            style: AppTypography.labelMedium(
+              color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
             ),
           ),
-          const SizedBox(height: 4),
+          const SizedBox(height: AppSpacing.xs),
           Text(
             adviceText,
-            style: TextStyle(
-              fontSize: 12,
-              height: 1.4,
-              color: isDark ? AppColors.darkTextSecondary : AppColors.grayText,
+            style: AppTypography.bodySmall(
+              color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary,
             ),
           ),
           if (weakTopics.isNotEmpty) ...[
-            const SizedBox(height: 12),
+            const SizedBox(height: AppSpacing.md),
             Container(
-              padding: const EdgeInsets.all(10),
+              padding: const EdgeInsets.all(AppSpacing.sm),
               decoration: BoxDecoration(
-                color: isDark ? AppColors.darkCardElevated : Colors.white,
-                borderRadius: BorderRadius.circular(6),
-                border: Border.all(
-                  color: isDark ? AppColors.darkBorder : AppColors.grayBorder,
-                ),
+                color: isDark ? AppColors.darkCardElevated : AppColors.lightCard,
+                borderRadius: AppRadius.roundedBase,
+                border: _cardBorder(isDark),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     AppStrings.topWeakTopicsWarning,
-                    style: const TextStyle(fontSize: 11.5, fontWeight: FontWeight.bold, color: AppColors.danger),
+                    style: AppTypography.labelSmall(color: AppColors.danger),
                   ),
-                  const SizedBox(height: 6),
+                  const SizedBox(height: AppSpacing.xs),
                   ...weakTopics.map((w) {
                     return Padding(
-                      padding: const EdgeInsets.only(bottom: 4.0),
+                      padding: const EdgeInsets.only(bottom: AppSpacing.xs),
                       child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Icon(Icons.arrow_right_rounded, size: 24, color: AppColors.danger),
+                          const Icon(Icons.arrow_right_rounded, size: 20, color: AppColors.danger),
+                          const SizedBox(width: AppSpacing.xs),
                           Expanded(
                             child: Text(
                               '${w.key} (${w.value.section.toUpperCase()})',
-                              style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w600,
-                                color: isDark ? AppColors.darkTextPrimary : Colors.black87,
+                              style: AppTypography.labelMedium(
+                                color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
                               ),
                             ),
                           ),
+                          const SizedBox(width: AppSpacing.xs),
                           Text(
                             '${w.value.wrong} ${AppStrings.wrongShort}',
-                            style: const TextStyle(fontSize: 11, fontWeight: FontWeight.bold, color: AppColors.danger),
+                            style: AppTypography.labelSmall(color: AppColors.danger),
                           ),
                         ],
                       ),
@@ -742,23 +799,22 @@ class _ResultScreenState extends State<ResultScreen> {
     required bool isDark,
   }) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      padding: const EdgeInsets.symmetric(
+        horizontal: AppSpacing.sm,
+        vertical: AppSpacing.xs,
+      ),
       decoration: BoxDecoration(
         color: color.withValues(alpha: 0.12),
-        borderRadius: BorderRadius.circular(4),
+        borderRadius: AppRadius.roundedSm,
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
           Icon(icon, size: 16, color: color),
-          const SizedBox(width: 4),
+          const SizedBox(width: AppSpacing.xs),
           Text(
             label,
-            style: TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.bold,
-              color: color,
-            ),
+            style: AppTypography.labelSmall(color: color),
           ),
         ],
       ),
@@ -784,75 +840,72 @@ class _ResultScreenState extends State<ResultScreen> {
 
   Widget _buildRecurringMistakesCard(bool isDark) {
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: _cardPadding,
       decoration: BoxDecoration(
         color: isDark ? AppColors.indigoSurface : AppColors.dangerSubtle,
         borderRadius: AppRadius.roundedBase,
-        border: Border.all(
+        border: _cardBorder(
+          isDark,
           color: isDark ? AppColors.indigoText : AppColors.dangerBorder,
-          width: 1.4,
         ),
-        boxShadow: const [
-          BoxShadow(
-            color: Color(0x1A000000),
-            blurRadius: 8,
-            offset: Offset(0, 3),
-          ),
-        ],
+        boxShadow: _cardShadow(isDark),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                padding: const EdgeInsets.all(7),
+                padding: const EdgeInsets.all(AppSpacing.sm),
                 decoration: BoxDecoration(
                   color: (isDark ? AppColors.sealGold : AppColors.danger).withValues(alpha: 0.15),
                   shape: BoxShape.circle,
                 ),
                 child: const Icon(Icons.warning_amber_rounded, color: AppColors.danger, size: 24),
               ),
-              const SizedBox(width: 10),
+              const SizedBox(width: AppSpacing.sm),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       '🚨 ${AppStrings.recurringWeaknesses}',
-                      style: const TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                        color: AppColors.danger,
-                      ),
+                      style: AppTypography.titleSmall(color: AppColors.danger),
                     ),
-                    const SizedBox(height: 2),
+                    const SizedBox(height: AppSpacing.xs),
                     Text(
                       AppStrings.isHindi
                           ? 'सिस्टम ने आपके पिछले टेस्टों में इन कमजोरियों को बार-बार पकड़ा है:'
                           : 'System has identified these recurring weaknesses from your tests:',
-                      style: const TextStyle(fontSize: 11, color: Colors.grey),
+                      style: AppTypography.bodySmall(
+                        color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
+                      ),
                     ),
                   ],
                 ),
               ),
             ],
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: AppSpacing.md),
 
           // Topic Chips with repeat count
           Wrap(
-            spacing: 8,
-            runSpacing: 8,
+            spacing: AppSpacing.sm,
+            runSpacing: AppSpacing.sm,
             children: _recurringWeakTopics.map((t) {
               final topic = t['topic_name'] as String? ?? 'General';
               final wrongs = (t['total_wrongs'] as num?)?.toInt() ?? 1;
               return Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: AppSpacing.sm,
+                  vertical: AppSpacing.xs,
+                ),
                 decoration: BoxDecoration(
-                  color: isDark ? AppColors.darkCard : Colors.white,
-                  borderRadius: BorderRadius.circular(6),
-                  border: Border.all(
+                  color: isDark ? AppColors.darkCard : AppColors.lightCard,
+                  borderRadius: AppRadius.roundedSm,
+                  border: _cardBorder(
+                    isDark,
                     color: AppColors.danger.withValues(alpha: 0.4),
                     width: 1,
                   ),
@@ -861,33 +914,30 @@ class _ResultScreenState extends State<ResultScreen> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     const Icon(Icons.cancel_outlined, size: 14, color: AppColors.danger),
-                    const SizedBox(width: 5),
-                    ConstrainedBox(
-                      constraints: const BoxConstraints(maxWidth: 160),
+                    const SizedBox(width: AppSpacing.xs),
+                    // The topic name is never cut: it wraps inside the chip.
+                    Flexible(
                       child: Text(
                         topic,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                          fontSize: 11.5,
-                          fontWeight: FontWeight.bold,
+                        style: AppTypography.labelSmall(
                           color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
                         ),
                       ),
                     ),
-                    const SizedBox(width: 6),
+                    const SizedBox(width: AppSpacing.xs),
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 1),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: AppSpacing.sm,
+                        vertical: AppSpacing.xs,
+                      ),
                       decoration: BoxDecoration(
                         color: AppColors.danger,
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: AppRadius.roundedFull,
                       ),
                       child: Text(
                         '$wrongs बार गलत',
-                        style: const TextStyle(
-                          fontSize: 10,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                        style: AppTypography.labelSmall(
+                          color: AppColors.darkTextPrimary,
                         ),
                       ),
                     ),
@@ -896,24 +946,26 @@ class _ResultScreenState extends State<ResultScreen> {
               );
             }).toList(),
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: AppSpacing.md),
 
           // Actionable Guide Text
           Container(
-            padding: const EdgeInsets.all(10),
+            padding: const EdgeInsets.all(AppSpacing.sm),
             decoration: BoxDecoration(
-              color: isDark ? AppColors.primary : Colors.white,
-              borderRadius: BorderRadius.circular(6),
+              color: isDark ? AppColors.primary : AppColors.lightCard,
+              borderRadius: AppRadius.roundedBase,
             ),
-            child: const Row(
+            child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Icon(Icons.directions_rounded, size: 18, color: AppColors.sealGold),
-                SizedBox(width: 8),
+                const Icon(Icons.directions_rounded, size: 18, color: AppColors.sealGold),
+                const SizedBox(width: AppSpacing.sm),
                 Expanded(
                   child: Text(
                     'सही दिशा में सुधार: इन टॉपिक्स के प्रश्न रटने के बजाय पहले इनके नियम और बुनियादी सिद्धांत समझें। फिर नीचे दिए बटन से सिर्फ इन्हीं गलत हुए प्रश्नों का अभ्यास करें।',
-                    style: TextStyle(fontSize: 11.5, height: 1.35),
+                    style: AppTypography.bodySmall(
+                      color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextPrimary,
+                    ),
                   ),
                 ),
               ],
@@ -922,15 +974,13 @@ class _ResultScreenState extends State<ResultScreen> {
 
           // Re-Test Recurring Mistakes Button
           if (_recurringWrongQuestions.isNotEmpty) ...[
-            const SizedBox(height: 12),
+            const SizedBox(height: AppSpacing.md),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton.icon(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.danger,
-                  foregroundColor: Colors.white,
-                  padding: const EdgeInsets.symmetric(vertical: 11),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
+                style: _filledButtonStyle(
+                  bg: AppColors.danger,
+                  fg: AppColors.darkTextPrimary,
                 ),
                 onPressed: () {
                   final repeatConfig = MockConfig(
@@ -952,12 +1002,9 @@ class _ResultScreenState extends State<ResultScreen> {
                   );
                 },
                 icon: const Icon(Icons.replay_circle_filled_rounded, size: 20),
-                label: FittedBox(
-                  fit: BoxFit.scaleDown,
-                  child: Text(
-                    '🎯 बार-बार गलत हुए (${_recurringWrongQuestions.length}) प्रश्नों का री-टेस्ट हल करें',
-                    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
-                  ),
+                label: Text(
+                  '🎯 बार-बार गलत हुए (${_recurringWrongQuestions.length}) प्रश्नों का री-टेस्ट हल करें',
+                  textAlign: TextAlign.center,
                 ),
               ),
             ),

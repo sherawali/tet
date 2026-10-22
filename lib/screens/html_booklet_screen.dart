@@ -7,8 +7,12 @@ import '../models/test_session.dart';
 import '../models/mock_config.dart';
 import '../database/db_helper.dart';
 import '../design_system/app_colors.dart';
+import '../design_system/app_typography.dart';
+import '../design_system/app_spacing.dart';
 import '../design_system/app_dialogs.dart';
 import '../design_system/app_snack_bar.dart';
+import '../widgets/app_card.dart';
+import '../widgets/app_state_views.dart';
 import '../widgets/question_report_sheet.dart';
 import '../services/html_booklet_builder.dart';
 import 'result_screen.dart';
@@ -74,7 +78,7 @@ class _HtmlBookletScreenState extends State<HtmlBookletScreen> {
       final isDark = Theme.of(context).brightness == Brightness.dark;
       final controller = WebViewController()
         ..setJavaScriptMode(JavaScriptMode.unrestricted)
-        ..setBackgroundColor(isDark ? AppColors.primaryDark : Colors.white)
+        ..setBackgroundColor(isDark ? AppColors.primaryDark : AppColors.lightCard)
         ..setNavigationDelegate(
           NavigationDelegate(
             onPageStarted: (url) {
@@ -304,6 +308,9 @@ class _HtmlBookletScreenState extends State<HtmlBookletScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final surface = isDark ? AppColors.darkBg : AppColors.lightCard;
+
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (didPop, result) async {
@@ -315,60 +322,62 @@ class _HtmlBookletScreenState extends State<HtmlBookletScreen> {
         }
       },
       child: Scaffold(
-        backgroundColor: AppColors.primary,
+        backgroundColor: isDark ? AppColors.darkBg : AppColors.primary,
         body: SafeArea(
           top: true,
           bottom: false,
           child: Container(
-            color: Colors.white,
+            color: surface,
             child: Stack(
             children: [
               if (_controller != null)
                 WebViewWidget(controller: _controller!)
               else if (_errorMessage != null)
                 Center(
-                  child: Padding(
-                    padding: const EdgeInsets.all(24),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        const Icon(Icons.error_outline_rounded, size: 48, color: AppColors.danger),
-                        const SizedBox(height: 12),
-                        Text(
-                          _errorMessage!,
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(color: AppColors.danger, fontSize: 14),
-                        ),
-                        const SizedBox(height: 16),
-                        ElevatedButton.icon(
-                          onPressed: () {
-                            setState(() {
-                              _isLoading = true;
-                              _errorMessage = null;
-                            });
-                            _initWebView();
-                          },
-                          icon: const Icon(Icons.refresh),
-                          label: const Text('दोबारा प्रयास करें'),
-                        ),
-                      ],
-                    ),
+                  child: AppEmptyState(
+                    icon: Icons.error_outline_rounded,
+                    accent: AppColors.danger,
+                    title: _errorMessage!,
+                    actionLabel: 'दोबारा प्रयास करें',
+                    onAction: () {
+                      setState(() {
+                        _isLoading = true;
+                        _errorMessage = null;
+                      });
+                      _initWebView();
+                    },
                   ),
                 ),
               if (_isLoading)
                 Container(
-                  color: Colors.white,
+                  color: surface,
                   child: Center(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: const [
-                        CircularProgressIndicator(color: AppColors.primary),
-                        SizedBox(height: 14),
-                        Text(
-                          'प्रश्न-पुस्तिका लोड हो रही है / Loading Booklet...',
-                          style: TextStyle(fontSize: 14, color: Colors.grey, fontWeight: FontWeight.w600),
-                        ),
-                      ],
+                    child: AppCard(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: AppSpacing.xl,
+                        vertical: AppSpacing.xl,
+                      ),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          SizedBox(
+                            width: 28,
+                            height: 28,
+                            child: CircularProgressIndicator(
+                              color: isDark ? AppColors.accentBright : AppColors.primary,
+                              strokeWidth: 2.4,
+                            ),
+                          ),
+                          const SizedBox(height: AppSpacing.md),
+                          Text(
+                            'प्रश्न-पुस्तिका लोड हो रही है / Loading Booklet...',
+                            textAlign: TextAlign.center,
+                            style: AppTypography.bodySmall(
+                              color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -378,5 +387,5 @@ class _HtmlBookletScreenState extends State<HtmlBookletScreen> {
       ),
     ),
   );
-}
+  }
 }
