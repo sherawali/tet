@@ -889,3 +889,33 @@
 - **Verification:** 19 test files, all pass; `flutter analyze` clean; the phone
   (Infinix X698, offline) shows the new paywall, the OMR sheet opening and closing,
   the redesigned buttons and the clean history.
+
+### 2026-10-22 afternoon - the sync round trip, proved on the phone
+- The user asked whether everything is release-ready, whether the apps
+  database matches the GitHub structure, and whether the sync is crash-proof.
+  The answer went from "we believe" to "we proved":
+- **A real fault was found while testing.** The bank version in the builder
+  was a fixed number. A new paper only adds paper forms and appearances, the
+  question count and the pack files stay the same, so the phone compared
+  version, count and signature and said "up to date" - a new mock would
+  NEVER have reached the users. Fixed: the builder reads the version of the
+  manifest that is already there and raises it by one when the packs or
+  papers.json changed (`next_bank_version` in `bin/build_github_cdn_vault.py`).
+  A rebuild without change keeps the version.
+- **The proof on the phone:** added `utet-p1-revision-01` ("संयुक्त पुनरावृत्ति
+  सेट 01", 150 verified UTET Paper-1 questions, 30 per section, all from
+  questions without a reading - a question that sits in a reading keeps its
+  place there and cannot be repeated in another paper, that rule is now
+  documented in `bin/add_revision_paper.py`). CDN rebuilt, pushed, phone went
+  from airplane mode to data, device DB went from 2026102020/62 forms to
+  **2026102021/63 forms/150 new appearances in seconds**, `test_history`
+  untouched, `integrity_check` ok. The paper shows in the list with its
+  निःशुल्क badge, nothing broken.
+- **The validator no longer counts to fixed numbers** (9720/62/9720). It now
+  compares the database with the CDN packs and papers.json - the contract
+  that matters - and keeps a floor for sanity. papers.json lost its own
+  version key; the manifest carries the version.
+- The OMR sheet header says "OMR शीट देखें" instead of the Hinglish "व्यू".
+- Screenshots for this round: `build/_audit/v_s*.png` (not committed).
+- Release stays draft (tag v20, no AAB published). Package id and key still
+  deferred.
