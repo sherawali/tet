@@ -1,8 +1,8 @@
 {
   "schema": 2,
-  "bank_version": 2026102020,
-  "bank_version_str": "20261021_master_vault_clean_v20",
-  "generated": "2026-10-22T08:38:53Z",
+  "bank_version": 2026102021,
+  "bank_version_str": "20261022_master_vault_clean_v21",
+  "generated": "2026-10-22T08:50:31Z",
   "total": 9720,
   "papers_count": 63,
   "topics": [
@@ -2974,8 +2974,8 @@
   ],
   "papers_file": {
     "file": "papers.json",
-    "sha256": "9782051a4f1cd6328fbf421b2f5902353cbd61f75e5724f5998b62da0483c311",
-    "bytes": 857483,
+    "sha256": "dcc73e407e5b0780de5c8c337f63bb9c13703e646560daf1d8b40f5872988e8e",
+    "bytes": 857462,
     "forms_count": 63,
     "appearances_count": 9870
   },

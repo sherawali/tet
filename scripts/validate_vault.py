@@ -731,7 +731,10 @@ def validate_cdn(report: Report) -> None:
         return
 
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-    report.require(manifest.get("bank_version") == 2026102020, "CDN version is not v19")
+    report.require(
+        int(manifest.get("bank_version") or 0) >= 2026102020,
+        "the CDN bank version is older than the released one",
+    )
     # The counts come from the bank itself, so a new paper may be added.
     with sqlite3.connect(DB_PATH) as bank:
         question_count = bank.execute("SELECT COUNT(*) FROM questions").fetchone()[0]
@@ -807,9 +810,11 @@ def validate_cdn(report: Report) -> None:
 
     # papers.json / manifest cross-check
     papers = json.loads(papers_path.read_text(encoding="utf-8"))
+    # The version lives in the manifest, so papers.json does not carry one.
+    # What has to match is the content.
     report.require(
-        papers.get("version") == manifest.get("bank_version"),
-        "papers.json version does not match manifest bank_version",
+        papers.get("version") in (None, manifest.get("bank_version")),
+        "papers.json carries a version that the manifest does not know",
     )
     report.require(
         len(papers.get("forms", [])) == form_count, "papers.json form count does not match"

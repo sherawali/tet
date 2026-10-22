@@ -45,6 +45,52 @@ def remote_access_config():
     return config
 
 
+
+BASE_VERSION = 2026102020
+
+
+def next_bank_version(pack_records, papers_sha, manifest_path):
+    """The version of the manifest, raised when the content changed.
+
+    The phone only downloads a new bank when the version is higher, the
+    question count changed or the packs have a new signature.  A new paper
+    that only adds appearances does not change the question count, so the
+    version has to rise here.
+    """
+    old_version = BASE_VERSION
+    old_signature = ''
+    if os.path.exists(manifest_path):
+        try:
+            with open(manifest_path, 'r', encoding='utf-8') as handle:
+                old = json.load(handle)
+            old_version = int(old.get('bank_version') or BASE_VERSION)
+            old_signature = ';'.join(
+                f"{p.get('file', '')}_{p.get('sha256', '')}" for p in old.get('packs', [])
+            )
+            old_papers = (old.get('papers_file') or {}).get('sha256', '')
+        except Exception:
+            old_papers = ''
+    else:
+        old_papers = ''
+
+    new_signature = ';'.join(
+        f"{p.get('file', '')}_{p.get('sha256', '')}" for p in pack_records
+    )
+    changed = (new_signature != old_signature) or (papers_sha != old_papers)
+    if changed and old_version >= BASE_VERSION:
+        version = old_version + 1
+        print(f'Bank content changed -> bank version {old_version} -> {version}')
+        return version
+    print(f'Bank content unchanged, keeping bank version {old_version}')
+    return old_version
+
+
+def bank_version_str(version):
+    """The readable name of a bank version."""
+    stamp = datetime.utcnow().strftime('%Y%m%d')
+    return f'{stamp}_master_vault_clean_v{version % 100}'
+
+
 def build_cdn(root=ROOT):
     root = Path(root)
     db_path = str(root / 'assets' / 'database' / 'tet_mock_vault.db')
@@ -209,7 +255,8 @@ def build_cdn(root=ROOT):
     appearances_list = [list(r) for r in appearances_rows]
 
     papers_data = {
-        'version': 2026102020,
+        # The version lives in the manifest, not here: a version inside this
+        # file would change the file on every build.
         'forms': forms_list,
         'appearances': appearances_list
     }
@@ -222,10 +269,16 @@ def build_cdn(root=ROOT):
     print(f"Total appearances exported: {len(appearances_list)} (File size: {len(papers_json_bytes)/1024:.1f} KB)")
 
     # 7. Build Manifest with remote_config
+    # The version has to rise whenever the content changes, otherwise the
+    # phone says "up to date" and never downloads the new paper.
+    bank_version = next_bank_version(
+        pack_records, papers_sha, os.path.join(cdn_dir, 'manifest.json')
+    )
+
     manifest = {
         'schema': 2,
-        'bank_version': 2026102020,
-        'bank_version_str': '20261021_master_vault_clean_v20',
+        'bank_version': bank_version,
+        'bank_version_str': bank_version_str(bank_version),
         'generated': datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ'),
         'total': total_q,
         'papers_count': len(forms_list),
