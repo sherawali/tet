@@ -201,7 +201,11 @@ class _SolutionScreenState extends State<SolutionScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppStrings.solutionsTitle),
+        title: Text(
+          AppStrings.examPaperLabel,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        ),
         actions: [
           InkWell(
             onTap: _showLanguageSelectorSheet,

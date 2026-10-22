@@ -36,6 +36,9 @@ class _MockSeriesScreenState extends State<MockSeriesScreen> {
     return 150;
   }
   bool _isLoading = true;
+  /// true when the list holds the mock papers, false when it
+  /// falls back to the board papers of the same level.
+  bool _onlyMocks = true;
   String? _loadingFormId;
 
   @override
@@ -50,14 +53,25 @@ class _MockSeriesScreenState extends State<MockSeriesScreen> {
     // The list belongs to the exam that is selected, otherwise the UTET and
     // the CTET mocks would be mixed under one heading.
     final examName = ExamService.instance.isUtet ? 'utet' : 'ctet';
-    final forms = await _engine.db.getAvailablePaperForms(
+    var forms = await _engine.db.getAvailablePaperForms(
       exam: examName,
       paper: paper,
       isPyqOnly: false,
     );
+    // UTET Paper-2 has no mock papers, only the board papers.  Rather than
+    // showing an empty screen, every paper of the level is listed.
+    var onlyMocks = true;
+    if (forms.isEmpty) {
+      onlyMocks = false;
+      forms = await _engine.db.getAvailablePaperForms(
+        exam: examName,
+        paper: paper,
+      );
+    }
     if (!mounted) return;
     setState(() {
       _forms = forms;
+      _onlyMocks = onlyMocks;
       _isLoading = false;
     });
   }
@@ -132,7 +146,11 @@ class _MockSeriesScreenState extends State<MockSeriesScreen> {
     return Scaffold(
       backgroundColor: isDark ? AppColors.darkBg : AppColors.lightBg,
       appBar: AppBar(
-        title: Text(AppStrings.mockSeriesTitle),
+        title: Text(
+          AppStrings.examPaperLabel,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        ),
         backgroundColor: isDark ? AppColors.darkCard : AppColors.primary,
         foregroundColor: AppColors.darkTextPrimary,
         elevation: 0,
@@ -167,14 +185,16 @@ class _MockSeriesScreenState extends State<MockSeriesScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                AppStrings.verifiedTestPapersHeading,
+                                _onlyMocks
+                                    ? AppStrings.verifiedTestPapersHeading
+                                    : AppStrings.allPapersHeading,
                                 style: AppTypography.titleMedium(
                                   color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
                                 ),
                               ),
                               const SizedBox(height: AppSpacing.xs),
                               Text(
-                                AppStrings.verifiedTestPapersDesc(_forms.length, _paperSize),
+                                AppStrings.papersCountDesc(_forms.length, _paperSize),
                                 style: AppTypography.bodySmall(
                                   color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
                                 ),
@@ -304,7 +324,9 @@ class _MockSeriesScreenState extends State<MockSeriesScreen> {
                                             ),
                                             const SizedBox(height: AppSpacing.xs),
                                             Text(
-                                              AppStrings.mockPaperSubtitle(_paperSize),
+                                              _onlyMocks
+                                          ? AppStrings.mockPaperSubtitle(_paperSize)
+                                          : AppStrings.boardPaperSubtitle(_paperSize),
                                               style: AppTypography.bodySmall(
                                                 color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
                                               ),

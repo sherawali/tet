@@ -132,7 +132,7 @@ class _PyqVaultScreenState extends State<PyqVaultScreen> {
     return Scaffold(
       backgroundColor: isDark ? AppColors.darkBg : AppColors.lightBg,
       appBar: AppBar(
-        title: Text(AppStrings.pyqVaultTitle),
+        title: Text(AppStrings.examPaperLabel),
         backgroundColor: isDark ? AppColors.darkCard : AppColors.primary,
         foregroundColor: AppColors.darkTextPrimary,
         elevation: 0,

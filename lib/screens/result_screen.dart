@@ -210,7 +210,11 @@ class _ResultScreenState extends State<ResultScreen> {
     return Scaffold(
       backgroundColor: isDark ? AppColors.darkBg : AppColors.lightBg,
       appBar: AppBar(
-        title: Text(AppStrings.resultsTitle),
+        title: Text(
+          AppStrings.examPaperLabel,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        ),
         backgroundColor: isDark ? AppColors.darkCard : AppColors.primary,
         foregroundColor: AppColors.darkTextPrimary,
         automaticallyImplyLeading: false,

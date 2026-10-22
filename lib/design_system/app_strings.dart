@@ -653,6 +653,22 @@ class AppStrings {
   static String get streamShortMathScience => _isHi ? 'गणित-विज्ञान' : 'M&S';
   static String get streamShortSocialStudies => _isHi ? 'सामाजिक' : 'SST';
 
+  static String papersCountDesc(int count, int size) => _isHi
+      ? '$count प्रश्न-पत्र · हर एक में $size प्रश्न'
+      : '$count papers · $size questions each';
+
+  static String get allPapersHeading =>
+      _isHi ? '?? ???? ?? ??? ??????-????' : 'All Papers Of This Level';
+
+  static String get examPaperLabel {
+    final exam = _isCtet ? 'CTET' : 'UTET';
+    return '$exam ${paperName(currentPaperNumber)}';
+  }
+
+  static String boardPaperSubtitle(int size) => _isHi
+      ? '$size प्रश्न · $size मिनट · सत्यापित उत्तर सहित बोर्ड पेपर'
+      : '$size questions · $size minutes · board paper with verified answers';
+
   // ---- bilingual wording for the buttons and cards ------------------------
   static String get verifiedTestPapersHeading =>
       _isHi ? 'प्रामाणिक बने-बनाए टेस्ट पेपर्स' : 'Verified Ready-Made Test Papers';
