@@ -944,4 +944,3 @@ class AppStrings {
 }
 
 
-// NOTE: edited in the Pro-pass round of 2026-10-22 (no lifetime wording, tighter paper gate).
