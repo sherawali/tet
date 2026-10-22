@@ -919,3 +919,34 @@
 - Screenshots for this round: `build/_audit/v_s*.png` (not committed).
 - Release stays draft (tag v20, no AAB published). Package id and key still
   deferred.
+
+### 2026-10-22 evening - the name is final, the debug switch works, the gates match the badges
+- The name is final: **TET Rank**. The package id is now `com.tetrank.pro`
+  (the debug build stays `com.tetrank.pro.debug` so both can sit on the
+  phone). The launcher label is "TET Rank". The Kotlin namespace stays
+  `com.sherawali.tet` - the namespace is private, only the applicationId
+  appears on the Play Store.
+- **The debug free/paid switch was wedged.** It restored the saved
+  entitlement when it was turned off, so on a phone that had unlocked the
+  papers once the switch never went OFF. `setDebugPremiumOverride` now
+  shows the paid app on ON (full access preview) and the free app on OFF;
+  the real entitlement stays untouched in the database and returns on the
+  next start. Proved on the phone: ON = every paper, OFF = locks come back.
+- **The open-time gates now follow the badges.** The mock list and the PYQ
+  vault opened a paper at position one even if the remote config marked it
+  paid (`index > 0` was the whole gate). Both now call the same
+  `isPaperFree(formId:, index:)` that draws the FREE badge, so badge and
+  gate can never disagree. The paywall opens instead.
+- **No lifetime wording any more:** the paywall subtitle said
+  "आजीवन / forever". All three legacy strings now say 12 months / for a
+  full year.
+- Free at the moment (drives from `bin/remote_access.json`): the five
+  flagship papers (UTET P1, UTET P2, CTET P1 PYQ, CTET P2 Math-Science,
+  CTET P2 SST) plus the first paper of each list as the free sample.
+- Verified on the phone: fresh install of `com.tetrank.pro.debug` syncs
+  the CDN bank (63 papers), free view locks paid papers, the paywall opens
+  with the ₹2499 anchor and the "₹208 माह" note, no lifetime claim.
+- Careful with Windows PowerShell again: `Get-Content` misreads UTF-8
+  files as ANSI, so a read-modify-write destroyed the Hindi of four files.
+  Found on the phone within minutes (mojibake), reverted in one commit.
+  Only byte-safe tools (python) may touch files with Hindi.
