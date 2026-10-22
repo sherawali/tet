@@ -94,6 +94,13 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
             ),
           ],
         ),
+        const SizedBox(height: AppSpacing.xs),
+        Text(
+          AppStrings.proPackSelectorHint,
+          style: AppTypography.labelSmall(
+            color: isDark ? AppColors.darkTextMuted : AppColors.lightTextMuted,
+          ),
+        ),
       ],
     );
   }
@@ -487,7 +494,8 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
                   _buildTierCard(
                     tierId: PremiumService.masterProductId,
                     title: AppStrings.proPackFullTitle,
-                    subtitle: AppStrings.proPackFullSub,
+                    subtitle: AppStrings.proPackFullSubNew,
+                    bulletLines: AppStrings.proPackFullBullets,
                     price: _premiumService.priceOf(PremiumService.masterProductId),
                     badgeText: AppStrings.proPackMostPopular,
                     isPopular: true,
@@ -500,8 +508,15 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
                   // Tier 2: One Exam Pro Pass (UTET or CTET)
                   _buildTierCard(
                     tierId: _examProductId,
-                    title: AppStrings.proPackExamTitle,
-                    subtitle: AppStrings.proPackExamSub,
+                    title: _selectedExam == 'ctet'
+                        ? AppStrings.proPackCtetTitle
+                        : AppStrings.proPackUtetTitle,
+                    subtitle: _selectedExam == 'ctet'
+                        ? AppStrings.proPackCtetSub
+                        : AppStrings.proPackUtetSub,
+                    bulletLines: _selectedExam == 'ctet'
+                        ? AppStrings.proPackCtetBullets
+                        : AppStrings.proPackUtetBullets,
                     price: _premiumService.priceOf(_examProductId),
                     badgeText: AppStrings.proPackValidYear,
                     isPopular: false,
@@ -513,7 +528,8 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
                   _buildTierCard(
                     tierId: PremiumService.singlePaperProductId,
                     title: AppStrings.proPackSingleTitleNew,
-                    subtitle: AppStrings.proPackSingleSubNew,
+                    subtitle: AppStrings.proPackSingleSub,
+                    bulletLines: AppStrings.proPackSingleBullets,
                     price:
                         _premiumService.priceOf(PremiumService.singlePaperProductId),
                     badgeText: AppStrings.proPackValidDays,
@@ -764,6 +780,7 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
     required String badgeText,
     required bool isPopular,
     required bool isDark,
+    List<String> bulletLines = const [],
     String? anchorText,
     String? noteText,
   }) {
@@ -849,6 +866,45 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
                       color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
                     ),
                   ),
+                  // "Kya milega": the plain list of what this tier unlocks.
+                  if (bulletLines.isNotEmpty) ...[
+                    const SizedBox(height: AppSpacing.xs),
+                    ...bulletLines.map(
+                      (line) => Padding(
+                        padding: const EdgeInsets.only(top: 2),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(top: 2),
+                              child: Icon(
+                                Icons.check_rounded,
+                                size: 13,
+                                color: isPopular
+                                    ? AppColors.sealGold
+                                    : (isDark
+                                        ? AppColors.darkTextSecondary
+                                        : AppColors.lightTextSecondary),
+                              ),
+                            ),
+                            const SizedBox(width: AppSpacing.xs),
+                            Expanded(
+                              child: Text(
+                                line,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: AppTypography.labelSmall(
+                                  color: isDark
+                                      ? AppColors.darkTextSecondary
+                                      : AppColors.lightTextSecondary,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
                 ],
               ),
             ),

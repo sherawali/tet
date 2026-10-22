@@ -16,8 +16,11 @@ class GitHubReportService {
   /// Pre-configured encrypted token string (Base64 XOR).
   /// To generate: run `python bin/encrypt_api_key.py <your_token>`
   /// or call `GitHubReportService.encryptToken('<your_token>')`.
-  static const String _bundledEncryptedToken =
-      'MywgNzgjDCQkJgBncBcfFRZmY3sGHAFzBTgxHCIwOBsnHhYXDAQyNzY7NhE1S1UGeRc6Mg0/cQAdfDgyCAk6Iyw4NgIpNyUbPFFcAEYdBh11CxUAYycXEHkGYwAy';
+  // No bundled account token.  A bundled token sits inside the APK and in this
+// public repository, where anybody can decode it, so the owner pastes a
+// personal token into the report sheet instead (it is stored encrypted on
+// this device only).  Until then a report is saved locally.
+  static const String _bundledEncryptedToken = '';
 
   // Backward compatibility placeholder
   static final List<int> _defaultEncryptedBytes = [];

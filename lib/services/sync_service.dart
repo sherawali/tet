@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import '../database/db_helper.dart';
 import '../models/question.dart';
 import '../models/passage.dart';
+import '../design_system/app_strings.dart';
 import 'premium_service.dart';
 import 'github_report_service.dart';
 
@@ -29,6 +30,8 @@ class SyncResult {
 }
 
 class SyncService {
+  /// One user-facing wording in both languages of the app, like AppStrings.
+  static String _s(String hi, String en) => AppStrings.isHindi ? hi : en;
   /// Broadcast notifier so UI (HomeScreen etc.) can instantly reload when background/foreground sync completes
   static final ValueNotifier<DateTime?> onDatabaseUpdated = ValueNotifier(null);
 
@@ -134,12 +137,13 @@ class SyncService {
   }) async {
     if (!enableRemoteSync) {
       final int count = await db.getQuestionCount();
-      onProgress?.call(1.0, 'ऑफलाइन डेटाबेस सक्रिय है ($count प्रश्न)');
+      final offlineMsg = _s('ऑफलाइन डेटाबेस सक्रिय है ($count प्रश्न)', 'Offline database active ($count questions)');
+      onProgress?.call(1.0, offlineMsg);
       return SyncResult(
         success: true,
         previousCount: count,
         totalCount: count,
-        message: 'ऑफलाइन डेटाबेस सक्रिय है ($count प्रश्न) / 100% Offline Active',
+        message: offlineMsg,
       );
     }
     try {
@@ -148,16 +152,16 @@ class SyncService {
       final localVersionDigits = (localVersionStr ?? '').replaceAll(RegExp(r'\D'), '');
       final localVersion = int.tryParse(localVersionDigits) ?? 0;
 
-      onProgress?.call(0.05, 'बैंक घोषणा पत्र (manifest.json) जाँचा जा रहा है...');
+      onProgress?.call(0.05, _s('बैंक घोषणा पत्र (manifest.json) जाँचा जा रहा है...', 'Checking the bank manifest (manifest.json)...'));
 
       final resolved = await _resolveManifest(forceBypassCache: force || bypassCache);
       if (resolved == null) {
-        onProgress?.call(0.0, 'डाउनलोड विफल: GitHub/CDN सर्वर से संपर्क नहीं हो सका');
+        onProgress?.call(0.0, _s('डाउनलोड विफल: GitHub/CDN सर्वर से संपर्क नहीं हो सका', 'Download failed: could not reach the GitHub/CDN server'));
         return SyncResult(
           success: false,
           previousCount: previousCount,
           totalCount: previousCount,
-          message: 'GitHub/CDN सर्वर से संपर्क नहीं हो सका। कृपया इंटरनेट जांचें।',
+          message: _s('GitHub/CDN सर्वर से संपर्क नहीं हो सका। कृपया इंटरनेट जांचें।', 'Could not reach the GitHub/CDN server. Please check your internet.'),
         );
       }
 
@@ -175,14 +179,14 @@ class SyncService {
       // (Without this guard, a v16 manifest silently reverted every local
       // database repair on the next online launch.)
       if (!force && !bypassCache && bankVersion > 0 && localVersion > 0 && bankVersion < localVersion) {
-        onProgress?.call(1.0, 'स्थानीय प्रश्न बैंक नवीनतम है (डाउनग्रेड रोका गया)');
+        onProgress?.call(1.0, _s('स्थानीय प्रश्न बैंक नवीनतम है (डाउनग्रेड रोका गया)', 'Local question bank is newer (downgrade blocked)'));
         return SyncResult(
           success: true,
           isUpToDate: true,
           previousCount: previousCount,
           newQuestionsAdded: 0,
           totalCount: previousCount,
-          message: 'आपका स्थानीय प्रश्न बैंक सर्वर से नवीनतम है।',
+          message: _s('आपका स्थानीय प्रश्न बैंक सर्वर से नवीनतम है।', 'Your local question bank is already the latest on the server.'),
         );
       }
 
@@ -192,18 +196,18 @@ class SyncService {
       // `bypassCache` forces a full refresh.
       final bool signatureMatches = localSig != null && localSig == remoteSig;
       if (!bypassCache && previousCount > 0 && bankVersion <= localVersion && totalQuestions == previousCount && signatureMatches) {
-        onProgress?.call(1.0, 'प्रश्न बैंक पहले से ही पूरी तरह अद्यतन (Up-to-Date) है!');
+        onProgress?.call(1.0, _s('प्रश्न बैंक पहले से ही पूरी तरह अद्यतन (Up-to-Date) है!', 'The question bank is already fully up to date!'));
         return SyncResult(
           success: true,
           isUpToDate: true,
           previousCount: previousCount,
           newQuestionsAdded: 0,
           totalCount: previousCount,
-          message: 'आपका प्रश्न बैंक पहले से ही नवीनतम है।',
+          message: _s('आपका प्रश्न बैंक पहले से ही नवीनतम है।', 'Your question bank is already the latest.'),
         );
       }
 
-      onProgress?.call(0.10, '$totalQuestions प्रश्नों के ${packs.length} पैक डाउनलोड किए जा रहे हैं...');
+      onProgress?.call(0.10, _s('$totalQuestions प्रश्नों के ${packs.length} पैक डाउनलोड किए जा रहे हैं...', 'Downloading ${packs.length} packs of $totalQuestions questions...'));
 
       final List<Passage> allPassages = [];
       final List<Question> allQuestions = [];
@@ -232,12 +236,12 @@ class SyncService {
         }
 
         if (packRes == null || packRes.statusCode != 200) {
-          onProgress?.call(0.0, 'डाउनलोड विफल: पैक $packFile लोड नहीं हो सका। पुराना बैंक सुरक्षित है।');
+          onProgress?.call(0.0, _s('डाउनलोड विफल: पैक $packFile लोड नहीं हो सका। पुराना बैंक सुरक्षित है।', 'Download failed: pack $packFile could not load. The old bank is safe.'));
           return SyncResult(
             success: false,
             previousCount: previousCount,
             totalCount: previousCount,
-            message: 'पैक $packFile लोड नहीं हो सका। पुराना बैंक सुरक्षित है।',
+            message: _s('पैक $packFile लोड नहीं हो सका। पुराना बैंक सुरक्षित है।', 'Pack $packFile could not load. The old bank is safe.'),
           );
         }
 
@@ -261,7 +265,7 @@ class SyncService {
 
         processedPacks++;
         final progress = 0.10 + (0.75 * (processedPacks / packs.length));
-        onProgress?.call(progress, 'पैक $processedPacks/${packs.length} प्राप्त हुआ...');
+        onProgress?.call(progress, _s('पैक $processedPacks/${packs.length} प्राप्त हुआ...', 'Pack $processedPacks/${packs.length} received...'));
       }
 
       // Step 2.5: Download papers.json if available to sync new mock papers & appearances
@@ -293,7 +297,7 @@ class SyncService {
 
       // Step 3: All packs and papers successfully downloaded in memory!
       // Now perform safe atomic replacement in SQLite (zero data corruption guarantee)
-      onProgress?.call(0.90, 'डेटाबेस को सुरक्षित रूप से अद्यतन (Atomic Sync) किया जा रहा है...');
+      onProgress?.call(0.90, _s('डेटाबेस को सुरक्षित रूप से अद्यतन (Atomic Sync) किया जा रहा है...', 'Applying the update to the database safely (atomic sync)...'));
       await db.atomicUpdateBank(
         questions: allQuestions,
         passages: allPassages,
@@ -314,7 +318,7 @@ class SyncService {
       final diff = finalCount - previousCount;
       final added = diff > 0 ? diff : 0;
 
-      onProgress?.call(1.0, added > 0 ? 'शानदार! $added नए प्रश्न जुड़े! कुल प्रश्न: $finalCount' : 'प्रश्न बैंक अद्यतन हुआ! कुल: $finalCount');
+      onProgress?.call(1.0, added > 0 ? _s('शानदार! $added नए प्रश्न जुड़े! कुल प्रश्न: $finalCount', 'Great! $added new questions added! Total: $finalCount') : _s('प्रश्न बैंक अद्यतन हुआ! कुल: $finalCount', 'The question bank was updated! Total: $finalCount'));
       return SyncResult(
         success: true,
         isUpToDate: added == 0,
@@ -322,14 +326,14 @@ class SyncService {
         newQuestionsAdded: added,
         totalCount: finalCount,
         message: added > 0
-            ? 'शानदार! $added नए प्रश्न सफलतापूर्वक जुड़ गए हैं!'
-            : 'प्रश्न बैंक पूरी तरह अद्यतन व सुरक्षित है!',
+            ? _s('शानदार! $added नए प्रश्न सफलतापूर्वक जुड़ गए हैं!', 'Great! $added new questions were added successfully!')
+            : _s('प्रश्न बैंक पूरी तरह अद्यतन व सुरक्षित है!', 'The question bank is fully updated and safe!'),
       );
     } catch (e) {
-      onProgress?.call(0.0, 'सिंक त्रुटि: $e');
+      onProgress?.call(0.0, _s('सिंक त्रुटि: $e', 'Sync error: $e'));
       return SyncResult(
         success: false,
-        message: 'सिंक के दौरान त्रुटि: $e',
+        message: _s('सिंक के दौरान त्रुटि: $e', 'An error occurred while syncing: $e'),
       );
     }
   }
@@ -340,12 +344,12 @@ class SyncService {
     if (!enableRemoteSync) {
       await db.ensureBundledAssetLoaded();
       final int count = await db.getQuestionCount();
-      onProgress?.call(1.0, 'ऑफलाइन डेटाबेस सफलतापूर्वक लोड हुआ ($count प्रश्न)');
+      onProgress?.call(1.0, _s('ऑफलाइन डेटाबेस सफलतापूर्वक लोड हुआ ($count प्रश्न)', 'The offline database loaded successfully ($count questions)'));
       return SyncResult(
         success: true,
         previousCount: count,
         totalCount: count,
-        message: 'ऑफलाइन मास्टर डेटाबेस सक्रिय है ($count प्रश्न)',
+        message: _s('ऑफलाइन मास्टर डेटाबेस सक्रिय है ($count प्रश्न)', 'The offline master database is active ($count questions)'),
       );
     }
     return await syncQuestionBank(

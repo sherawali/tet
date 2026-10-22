@@ -950,3 +950,30 @@
   files as ANSI, so a read-modify-write destroyed the Hindi of four files.
   Found on the phone within minutes (mojibake), reverted in one commit.
   Only byte-safe tools (python) may touch files with Hindi.
+
+
+### 2026-10-22 night - the paywall says what a pack unlocks, the settings actions are audited, the token is out
+- **Paywall packs are now explicit.** Every tier card lists what it opens,
+  with real counts fixed in `BankFacts` (UTET: 29 forms = 21 mocks + 8 PYQ,
+  4,616 questions; CTET: 34 forms = 26 mocks + 8 PYQ, 5,100 questions;
+  vault 9,720). The exam selector hint says it only changes the R1,499
+  pass; the full pass always covers both exams, paper 1 and 2. Proved on
+  the phone: UTET selected shows the UTET card, CTET shows 26 mocks +
+  5,100 questions, full shows both exams.
+- **Settings audit:** no clear-DB button exists (dead code only); the
+  re-download flow wipes only the bank (history, mistakes, reports and the
+  premium meta survive `atomicUpdateBank`) and asks first; Optimize really
+  runs REINDEX / checkpoint / VACUUM and shows the bytes saved; sync forces
+  the CDN. Fixed ~20 Hindi-only progress strings in `sync_service.dart`
+  (now bilingual via a `_s(hi, en)` helper) and gave the re-download
+  button a busy state.
+- **The bundled GitHub PAT is gone.** `github_report_service.dart` carries
+  no embedded token any more - an obfuscated token inside the APK is
+  extractable in minutes. The owner pastes a personal token into the
+  report sheet (stored encrypted, device-local); until then reports save
+  locally. `android/key.properties` and `upload-keystore.jks` are NOT in
+  git (checked with `git ls-files`; ignored via android/.gitignore).
+- **Old token must be revoked by the owner on GitHub** (it lived in git
+  history). Reminded.
+- Tests: 11 files serial on Windows, all pass; full `flutter analyze`
+  clean.

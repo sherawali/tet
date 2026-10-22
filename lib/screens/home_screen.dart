@@ -2879,15 +2879,17 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         const SizedBox(height: AppSpacing.sm),
 
-        // Re-download the bank & optimise the database
+        // Re-download the bank (the confirm dialog explains that the academy
+        // record of the user is kept safe)
         Row(
           children: [
             Expanded(
               child: _settingsActionButton(
                 isDark: isDark,
                 icon: Icons.delete_sweep_rounded,
-                label: _resyncActionLabel,
+                label: _isSyncing ? _syncingLabel : _resyncActionLabel,
                 onPressed: _isSyncing ? null : _confirmCleanAndResync,
+                isBusy: _isSyncing,
                 isDanger: true,
               ),
             ),

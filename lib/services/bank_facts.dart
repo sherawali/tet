@@ -18,6 +18,19 @@ class BankFacts {
   /// Questions in one subject-wise mini booklet (topic drill).
   static const int subjectSetQuestions = 30;
 
+  /// Paper forms of the bundled vault, per exam (counts computed by a build
+  /// time check of assets/database/tet_mock_vault.db, the paywall shows them).
+  static const int utetPaperFormCount = 29;
+  static const int ctetPaperFormCount = 34;
+  static const int utetMockCount = 21;
+  static const int ctetMockCount = 26;
+  static const int utetPyqCount = 8;
+  static const int ctetPyqCount = 8;
+  static const int utetQuestionCount = 4616;
+  static const int ctetQuestionCount = 5100;
+  /// Every question of the vault, both exams together.
+  static const int vaultQuestionCount = 9720;
+
   /// A safe, never empty representation of a count for the UI.
   static String format(int value) {
     if (value <= 0) return '0';

@@ -748,6 +748,73 @@ class AppStrings {
       : 'Renews at ₹$price';
   static String get proPackUnlockedBadge => _isHi ? 'प्रो पास सक्रिय' : 'Pro Pass Active';
 
+  // ---- what each tier unlocks (numbers fixed in BankFacts) ----------------
+  static String get proPackUtetTitle =>
+      _isHi ? 'UTET प्रो पास' : 'UTET Pro Pass';
+  static String get proPackCtetTitle =>
+      _isHi ? 'CTET प्रो पास' : 'CTET Pro Pass';
+  static String get proPackSingleSub => _isHi
+      ? 'चुना हुआ एक पेपर · उसके सभी 1 मॉक + हल + विश्लेषण · 60 दिन'
+      : 'One chosen paper · its full 1 mock + solutions + analysis · 60 days';
+  static String get proPackUtetSub => _isHi
+      ? 'UTET Paper-1 + Paper-2 · 21 मॉक + 8 PYQ पेपर + 4,616 प्रश्न · 12 महीने'
+      : 'UTET Paper-1 + Paper-2 · 21 mocks + 8 PYQ papers + 4,616 questions · 12 months';
+  static String get proPackCtetSub => _isHi
+      ? 'CTET Paper-1 + Paper-2 · 26 मॉक + 8 PYQ पेपर + 5,100 प्रश्न · 12 महीने'
+      : 'CTET Paper-1 + Paper-2 · 26 mocks + 8 PYQ papers + 5,100 questions · 12 months';
+  static String get proPackFullSubNew => _isHi
+      ? 'UTET Paper-1 & 2 + CTET Paper-1 & 2 · सभी 47 मॉक + 16 PYQ + 9,720 प्रश्न · 12 महीने'
+      : 'UTET Paper-1 & 2 + CTET Paper-1 & 2 · all 47 mocks + 16 PYQ + 9,720 questions · 12 months';
+  static List<String> get proPackSingleBullets => _isHi
+      ? const [
+          'सिर्फ वही एक पेपर जिससे आप आए हैं',
+          'उसकी पूरी हल सहित मॉक + विश्लेषण',
+          'केवल 60 दिन के लिए',
+        ]
+      : const [
+          'Exactly the one paper you came from',
+          'Its full mock with solutions + analysis',
+          'For 60 days only',
+        ];
+  static List<String> get proPackUtetBullets => _isHi
+      ? const [
+          'UTET पेपर-1 और पेपर-2 दोनों',
+          '21 मॉक पेपर + 8 विगत प्रश्नपत्र',
+          '4,616 प्रश्न · हल एवं विश्लेषण',
+        ]
+      : const [
+          'Both UTET Paper-1 and Paper-2',
+          '21 mock papers + 8 PYQ papers',
+          '4,616 questions · solutions and analysis',
+        ];
+  static List<String> get proPackCtetBullets => _isHi
+      ? const [
+          'CTET पेपर-1 और पेपर-2 दोनों',
+          '26 मॉक पेपर + 8 विगत प्रश्नपत्र',
+          '5,100 प्रश्न · हल एवं विश्लेषण',
+        ]
+      : const [
+          'Both CTET Paper-1 and Paper-2',
+          '26 mock papers + 8 PYQ papers',
+          '5,100 questions · solutions and analysis',
+        ];
+  static List<String> get proPackFullBullets => _isHi
+      ? const [
+          'UTET + CTET, दोनों के पेपर-1 और पेपर-2',
+          'सभी 47 मॉक + 16 PYQ पेपर',
+          '9,720 प्रश्न · हल एवं विश्लेषण',
+          '12 महीने का पूरा एक्सेस',
+        ]
+      : const [
+          'UTET + CTET, Paper-1 and Paper-2 of both',
+          'All 47 mock + 16 PYQ papers',
+          '9,720 questions · solutions and analysis',
+          'Full access for 12 months',
+        ];
+  static String get proPackSelectorHint => _isHi
+      ? 'यह चुनाव सिर्फ ₹1,499 वाला पास बदलता है · फुल एक्सेस में हमेशा दोनों परीक्षाएँ'
+      : 'This only switches the ₹1,499 pass · the Full Access Pass always has both exams';
+
   // ---- bilingual wording for the buttons and cards ------------------------
   static String get verifiedTestPapersHeading =>
       _isHi ? 'प्रामाणिक बने-बनाए टेस्ट पेपर्स' : 'Verified Ready-Made Test Papers';
@@ -819,8 +886,8 @@ class AppStrings {
       _isHi ? '₹599 (80% तक छूट)' : '₹599 (Up to 80% Off)';
   static String get proPackMasterTag => _isHi ? '⭐ सर्वोत्तम मूल्य · शिक्षकों की पसंद' : '⭐ Best Value · Most Popular';
 
-  static String get proPackSingleTitle => _isHi ? 'एकल पेपर प्रो पास' : 'Single Paper Pro Pass';
-  static String get proPackSingleSub => _isHi
+  static String get proPackSingleTitleLegacy => _isHi ? 'एकल पेपर प्रो पास' : 'Single Paper Pro Pass';
+  static String get proPackSingleSubLegacy => _isHi
       ? 'चयनित पेपर के सभी ${BankFacts.paperCount}+ टेस्ट, सम्पूर्ण समाधान एवं विस्तृत विश्लेषण'
       : 'All ${BankFacts.paperCount}+ full tests, complete solutions & analytics for selected paper';
   static String get proPackSinglePrice => _isHi ? '₹399' : '₹399';
