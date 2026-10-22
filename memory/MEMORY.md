@@ -1007,3 +1007,17 @@
   while the pass runs; the owner buys the second pass on Play if ever
   needed. The bundled token is already gone (previous round).
 - Tests pass (4 files serial), full analyze clean.
+
+
+### 2026-10-22 night II - the expiry stretch was still alive; the test caught it
+- The first monotonic-expiry fix was not enough. The test
+  `test/premium_expiry_test.dart` (new, runs sqlite on the host through
+  squflite_ffi) proved it: a re-delivery stored "now + term" again, because
+  the clock advanced 0.4 s and "after" was still true - the pass aged
+  never, 0.4 s at a time. The rule is now a day-tolerance: only an expiry
+  at least 24 h beyond the stored one (a real renewal) moves the date.
+  The test passes; it failed against the weaker fix first, so the bug and
+  the cure are both proven.
+- `PremiumService._iap` is lazy now, so a desktop test runner without the
+  store plugin stays alive while the entitlement storage is exercised.
+- Full analyze clean, debug APK rebuilt and installed on the phone.

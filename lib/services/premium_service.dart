@@ -106,7 +106,11 @@ class PremiumService {
   int remoteFreeMockCount = 1;
   bool remoteAllMocksFree = false;
 
-  final InAppPurchase _iap = InAppPurchase.instance;
+  // Lazy: touching InAppPurchase.instance registers the platform plugin,
+  // so the getter keeps a desktop test runner without the store alive.
+  // A real session always ends up touching it once, in init().
+  InAppPurchase? _iapInstance;
+  InAppPurchase get _iap => _iapInstance ??= InAppPurchase.instance;
   StreamSubscription<List<PurchaseDetails>>? _subscription;
   Map<String, ProductDetails> productsMap = {};
   Timer? _purchaseTimeoutTimer;
@@ -494,10 +498,16 @@ class PremiumService {
         Duration(days: PassPlan.daysOf(productId)),
       );
       _activeProductId = productId;
-      // A pass never shortens and never stretches: the store re-delivers an
-      // owned purchase on every start, and only a later expiry (a real
-      // renewal) may push the date forward.
-      if (_activeExpiry == null || newExpiry.isAfter(_activeExpiry!)) {
+      // A pass never stretches: the store re-delivers an owned purchase on
+      // every start, and "now + term" is then always a tiny bit later than
+      // the stored expiry, because the clock advanced.  Only an expiry at
+      // least a day beyond the stored one (a real renewal, +a term) may
+      // move the date.
+      final isRealRenewal = _activeExpiry == null ||
+          newExpiry.isAfter(
+            _activeExpiry!.add(const Duration(days: 1)),
+          );
+      if (isRealRenewal) {
         _activeExpiry = newExpiry;
         try {
           await DbHelper.instance.setMeta(productMetaKey, productId);
