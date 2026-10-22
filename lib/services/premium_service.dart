@@ -193,7 +193,7 @@ class PremiumService {
     } else if (passValid && tier != 'single') {
       // Without a paper id (the sets and drills) the app already scopes by
       // exam, so an exam or a full pass opens; a single paper pass does
-      // not - ₹399 buys one direction, not the drills.
+      // not - ₹999 buys one direction, not the drills.
       return true;
     }
 

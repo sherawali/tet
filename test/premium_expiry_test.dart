@@ -83,18 +83,19 @@ void main() {
   test('the pass survives a restart, an update and runs out honestly', () async {
     final service = PremiumService.instance;
 
-    // Buy: the expiry lands 60 days ahead and the scope is stored.
+    // Buy: the expiry lands a year ahead and the scope is stored.
+    // (The one-direction choice runs for the same 365 days as every pack.)
     await service.unlockAllAccessLocally(
       productId: PassPlan.singlePaperProductId,
       singlePaperScope: 'utet-p1',
     );
-    expect(service.activePassDaysLeft, inInclusiveRange(59, 60));
+    expect(service.activePassDaysLeft, inInclusiveRange(364, 365));
 
     // Replay of a fresh start (restart / update / reinstall).
     await service.reloadFromDatabase();
     expect(service.isPaperFree(formId: 'utet-p1-mock-05'), isTrue);
     expect(service.isPaperFree(formId: 'ctet-p2-ms-mock-05', index: 5), isFalse);
-    expect(service.activePassDaysLeft, inInclusiveRange(59, 60));
+    expect(service.activePassDaysLeft, inInclusiveRange(364, 365));
 
     // The store re-delivers the same single purchase: nothing moves.
     final expiryBefore = await DbHelper.instance.getMeta(_expiryKey);

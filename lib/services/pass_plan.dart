@@ -10,10 +10,16 @@
 ///
 /// | tier          | price  | what it opens                    |
 /// |---------------|--------|----------------------------------|
-/// | single paper  | ₹399   | one paper, 60 days               |
-/// | utet pass     | ₹1,499 | every UTET paper, 365 days       |
-/// | ctet pass     | ₹1,499 | every CTET paper, 365 days       |
+/// | one exam      | ₹1,499 | every paper of one exam, 365 days|
 /// | full access   | ₹2,499 | everything, 365 days             |
+///
+/// The paywall shows two packs.  The old `tet_single_paper_399` product is
+/// not a visible pack any more: inside the "one exam" pack the chips
+/// "Paper-1 / Paper-2" reuse it as "one direction of the chosen exam for
+/// ₹999" and the "Dono" chip buys the exam pass of ₹1,499.  Everything
+/// runs for one year - the product id keeps its old name because Play
+/// Console ids cannot be renamed, its meaning and its price are decided by
+/// the app and the store, not by the id.
 class PassPlan {
   const PassPlan._();
 
@@ -45,7 +51,7 @@ class PassPlan {
     fullAccessProductId: 2499,
     utetProductId: 1499,
     ctetProductId: 1499,
-    singlePaperProductId: 399,
+    singlePaperProductId: 999,
     legacyMasterProductId: 599,
     legacySingleProductId: 299,
     legacyFallbackProductId: 99,
@@ -56,7 +62,7 @@ class PassPlan {
     fullAccessProductId: 365,
     utetProductId: 365,
     ctetProductId: 365,
-    singlePaperProductId: 60,
+    singlePaperProductId: 365,
     legacyMasterProductId: 365,
     legacySingleProductId: 60,
     legacyFallbackProductId: 365,
@@ -119,7 +125,7 @@ class PassPlan {
   ///
   /// The scope is either a full form id (`utet-p1-fullmock`, opens exactly
   /// that paper) or a direction (`utet-p1`, opens every paper of that
-  /// paper of that exam - the ₹399 pass the paywall sells today).
+  /// direction of that exam - the ₹999 choice inside the one-exam pack).
   static bool singleScopeMatches(String? scope, String formId) {
     if (scope == null || scope.isEmpty) return false;
     if (scope == formId) return true;

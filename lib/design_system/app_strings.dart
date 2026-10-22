@@ -710,7 +710,6 @@ class AppStrings {
   static String get proPackMostPopular => _isHi ? 'सबसे लोकप्रिय' : 'Most Popular';
   static String get proPackPerMonth => _isHi ? 'सिर्फ ₹208 प्रति माह' : 'Just ₹208 a month';
   static String get proPackValidYear => _isHi ? '365 दिन' : '365 days';
-  static String get proPackValidDays => _isHi ? '60 दिन' : '60 days';
   static String get proPackAnchorValue => _isHi ? '₹4,999 की कीमत' : 'Worth ₹4,999';
   static String get proPackGuarantee => _isHi
       ? '7 दिन में बिना सवाल कुछ भी नहीं पसंद आया तो पूरा पैसा वापस'
@@ -731,12 +730,6 @@ class AppStrings {
   static String get proPackExamSub => _isHi
       ? 'चुने हुए परीक्षा के सभी मॉडल एवं बोर्ड पेपर, सम्पूर्ण हल एवं विश्लेषण, 12 महीने'
       : 'Every mock and board paper of the chosen exam, full solutions and analysis, 12 months';
-  static String get proPackSingleTitleNew => _isHi
-      ? 'सिंगल पेपर प्रो पैस'
-      : 'Single Paper Pro Pass';
-  static String get proPackSingleSubNew => _isHi
-      ? 'चयनित पेपर के सभी प्रश्न, सम्पूर्ण हल एवं विश्लेषण, 60 दिन'
-      : 'All the questions of the chosen paper, full solutions and analysis, 60 days';
   static String get proPackFallbackNote => _isHi
       ? 'दुकान से जुड़ नहीं पाए, दिखाया गया सामान्य मूल्य है'
       : 'The store could not be reached, the usual price is shown';
@@ -753,17 +746,18 @@ class AppStrings {
       _isHi ? 'UTET प्रो पास' : 'UTET Pro Pass';
   static String get proPackCtetTitle =>
       _isHi ? 'CTET प्रो पास' : 'CTET Pro Pass';
-  static String get proPackSingleSub => _isHi
-      ? 'चुनी हुई दिशा (पेपर-1 या पेपर-2) के सभी पेपर · हल + विश्लेषण · 60 दिन'
-      : 'One chosen direction (Paper-1 or Paper-2) with every of its papers · solutions + analysis · 60 days';
-  static String proPackSingleSubFor(String exam, int forms) => _isHi
-      ? '${exam.toUpperCase()} ${_isHi ? 'के सभी $forms पेपर · हल + विश्लेषण · 60 दिन' : ''}'
-      : '${exam.toUpperCase()} · all $forms papers · solutions + analysis · 60 days';
+  // The "one exam" pack: the exam and the paper live on the chips.  A paper
+  // chip buys one direction of the exam (₹999), the Dono chip buys both
+  // papers of the exam (₹1,499).  Every choice runs for 365 days.
   static String get proPackWhichPaper => _isHi
-      ? 'कौन-सा पेपर? (₹399 वाला पास इसी का होगा)'
-      : 'Which paper? (the ₹399 pass covers this one)';
+      ? 'कौन-सा पेपर? · एक पेपर ₹999 · दोनों ₹1,499'
+      : 'Which paper? · one paper ₹999 · both ₹1,499';
   static String get proPackPaper1Label => _isHi ? 'पेपर-1' : 'Paper-1';
   static String get proPackPaper2Label => _isHi ? 'पेपर-2' : 'Paper-2';
+  static String get proPackDonoLabel => _isHi ? 'दोनों ₹1,499' : 'Both ₹1,499';
+  static String proPackEkOneSub(String examLabel, String paperLabel, int forms) => _isHi
+      ? '$examLabel $paperLabel · सभी $forms पेपर · हल + विश्लेषण · 365 दिन'
+      : '$examLabel $paperLabel · all $forms papers · solutions + analysis · 365 days';
   static String get proPackUtetSub => _isHi
       ? 'UTET Paper-1 + Paper-2 · 21 मॉक + 8 PYQ पेपर + 4,616 प्रश्न · 12 महीने'
       : 'UTET Paper-1 + Paper-2 · 21 mocks + 8 PYQ papers + 4,616 questions · 12 months';
@@ -773,7 +767,7 @@ class AppStrings {
   static String get proPackFullSubNew => _isHi
       ? 'UTET Paper-1 & 2 + CTET Paper-1 & 2 · सभी 47 मॉक + 16 PYQ + 9,720 प्रश्न · 12 महीने'
       : 'UTET Paper-1 & 2 + CTET Paper-1 & 2 · all 47 mocks + 16 PYQ + 9,720 questions · 12 months';
-  static List<String> proPackSingleBulletsFor({
+  static List<String> proPackEkOneBullets({
     required String examLabel,
     required String paperLabel,
     required int forms,
@@ -782,12 +776,12 @@ class AppStrings {
       ? <String>[
           '$examLabel $paperLabel के सभी $forms पेपर',
           '${BankFacts.format(questions)} प्रश्न · हल एवं विश्लेषण',
-          'केवल 60 दिन के लिए',
+          'पूरे 365 दिन का एक्सेस',
         ]
       : <String>[
           'Every one of the $forms papers of $examLabel $paperLabel',
           '${BankFacts.format(questions)} questions · solutions and analysis',
-          'For 60 days only',
+          'Full access for 365 days',
         ];
   static List<String> get proPackUtetBullets => _isHi
       ? const [
@@ -825,8 +819,8 @@ class AppStrings {
           'Full access for 12 months',
         ];
   static String get proPackSelectorHint => _isHi
-      ? 'यह चुनाव सिर्फ ₹1,499 वाला पास बदलता है · फुल एक्सेस में हमेशा दोनों परीक्षाएँ'
-      : 'This only switches the ₹1,499 pass · the Full Access Pass always has both exams';
+      ? 'परीक्षा और पेपर के चिप दोनों पैक बदलते हैं · फुल एक्सेस में हमेशा दोनों परीक्षाएँ'
+      : 'The exam and paper chips switch the one-exam pack · the Full Access Pass always has both exams';
 
   // ---- bilingual wording for the buttons and cards ------------------------
   static String get verifiedTestPapersHeading =>
@@ -899,13 +893,6 @@ class AppStrings {
       _isHi ? '₹599 (80% तक छूट)' : '₹599 (Up to 80% Off)';
   static String get proPackMasterTag => _isHi ? '⭐ सर्वोत्तम मूल्य · शिक्षकों की पसंद' : '⭐ Best Value · Most Popular';
 
-  static String get proPackSingleTitleLegacy => _isHi ? 'एकल पेपर प्रो पास' : 'Single Paper Pro Pass';
-  static String get proPackSingleSubLegacy => _isHi
-      ? 'चयनित पेपर के सभी ${BankFacts.paperCount}+ टेस्ट, सम्पूर्ण समाधान एवं विस्तृत विश्लेषण'
-      : 'All ${BankFacts.paperCount}+ full tests, complete solutions & analytics for selected paper';
-  static String get proPackSinglePrice => _isHi ? '₹399' : '₹399';
-  static String get proPackSingleTag => _isHi ? 'छात्र पैक' : 'Student Pack';
-
   static String get premiumFeature1 => _isHi
       ? '${BankFacts.paperCount}+ सम्पूर्ण ${BankFacts.questionsPerPaper}-प्रश्नों के मॉडल प्रश्न-पत्र'
       : '${BankFacts.paperCount}+ full ${BankFacts.questionsPerPaper}-question model test papers';
@@ -924,7 +911,7 @@ class AppStrings {
       ? '🎉 बधाई! ऑल-एक्सेस प्रो पास सफलतापूर्वक अनलॉक हो गया।'
       : '🎉 Congratulations! All-Access Pro Pass unlocked successfully.';
   static String get premiumActiveStatus => _isHi ? '👑 प्रो पास सक्रिय' : '👑 Pro Pass Active';
-  static String get premiumPriceBadge => _isHi ? '👑 प्रो पास उपलब्ध · ₹399 से शुरू' : '👑 Pro Pass Available · From ₹399';
+  static String get premiumPriceBadge => _isHi ? '👑 प्रो पास उपलब्ध · ₹999 से शुरू' : '👑 Pro Pass Available · From ₹999';
   static String get premiumCancelledToast => _isHi ? 'भुगतान रद्द कर दिया गया।' : 'Payment was cancelled.';
   static String get premiumErrorToast => _isHi ? 'भुगतान पूरा नहीं हो सका। कृपया पुनः प्रयास करें।' : 'Payment could not be completed. Please try again.';
   static String get premiumPendingToast => _isHi ? 'भुगतान प्रक्रिया में है। पुष्टि होते ही पास सक्रिय हो जाएगा।' : 'Payment is pending. Your pass will be activated upon confirmation.';

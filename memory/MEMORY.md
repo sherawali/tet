@@ -1054,3 +1054,30 @@
   real renewals only).
 - Proven on the phone: the single card lists the direction, P2 changes the
   numbers live. 7 test files pass, analyze clean, APK installed.
+
+### 2026-10-22 night IV - the paywall now sells exactly two packs
+- The user removed the single paper system ("ye single wala system hata do
+  confuse kar rha"): the paywall has two cards only.
+- **Full Access Pro Pass R2,499 / 365 din** - both exams, both papers,
+  everything (unchanged).
+- **Ek Pariksha Pro Pass / 365 din** - one card with an exam selector
+  (UTET / CTET) and paper chips *inside* the card: Paper-1 or Paper-2 buy
+  one direction of the chosen exam for **R999 / 365 din** (the old
+  `tet_single_paper_399` product repriced in code: days 60 to 365, fallback
+  399 to 999 - the id keeps its name, Play ids cannot be renamed), the
+  "dono R1,499" chip buys `tet_utet_pass_1y` / `tet_ctet_pass_1y` (both
+  papers). The card title, subtitle, bullets and price follow the chips
+  live (UTET P1 22 papers / 3,146 q, UTET P2 7 / 1,470, CTET P1 18 / 2,700,
+  CTET P2 16 / 2,400, dono UTET 29 / 4,616, CTET 34 / 5,100).
+- Removed the third card and every legacy single string
+  (proPackSingleTitleNew/SubNew/Sub/SubFor/BulletsFor, ValidDays 60-din
+  badge, the legacy single getters). The settings badge now says "R999 se
+  shuru". One-direction entitlement logic is unchanged (still scoped to
+  the direction, drills stay out) - only the term grew to 365 days, and
+  `premium_expiry_test` now asserts 364-365.
+- docs/PLAY_STORE_PASS_SETUP.md updated: create `tet_single_paper_399` at
+  **R999 / 12 months**, named "Ek Pariksha - one paper (R999)".
+- Phone-proven after a fresh build + fresh install: two cards, chips
+  switch the second card price R1,499 to R999 and the numbers switch to
+  "UTET Paper-1 ke sabhi 22 paper / 3,146 prashn / 365 din" live. 6 test
+  files pass, analyze clean.

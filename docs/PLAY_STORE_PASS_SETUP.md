@@ -11,7 +11,14 @@ after the next sync - no new app release needed.
 | `tet_all_access_1y` | Full Access Pro Pass (UTET + CTET) | ₹2,499 | Subscription | 12 months, ₹2,499/yr |
 | `tet_utet_pass_1y` | UTET Pro Pass (Paper-1 + Paper-2) | ₹1,499 | Subscription | 12 months, ₹1,499/yr |
 | `tet_ctet_pass_1y` | CTET Pro Pass (Paper-1 + Paper-2) | ₹1,499 | Subscription | 12 months, ₹1,499/yr |
-| `tet_single_paper_399` | Single Paper Pro Pass | ₹399 | Subscription | 60 days, ₹399 |
+| `tet_single_paper_399` | Ek Pariksha - one paper (₹999) | ₹999 | Subscription | 12 months, ₹999/yr |
+
+**The paywall shows two packs.** Full Access is the first card. The second
+card ("Ek Pariksha Pro Pass") uses the exam selector and the paper chips:
+Paper-1 or Paper-2 buys `tet_single_paper_399` (₹999/yr, one direction of
+the chosen exam - the id keeps its old name because Play Console ids cannot
+be renamed), the "Dono" chip buys `tet_utet_pass_1y` or `tet_ctet_pass_1y`
+(₹1,499/yr, both papers). Every choice runs for 365 days.
 
 **No lifetime product.** A 365 day pass can be re-priced every season, a
 lifetime pass locks the price forever.
