@@ -118,12 +118,18 @@ def validate_db(report: Report) -> dict:
         forms=form_count,
         appearances=appearance_count,
     )
-    report.require(question_count == 9720, f"Unexpected question count: {question_count}")
+    report.require(
+        question_count >= 9720, f"Unexpected question count: {question_count}"
+    )
     report.require(
         passage_count >= 150, f"Unexpected passage count: {passage_count}"
     )
-    report.require(form_count == 62, f"Unexpected paper form count: {form_count}")
-    report.require(appearance_count == 9720, f"Unexpected appearance count: {appearance_count}")
+    report.require(
+        form_count >= 62, f"Unexpected paper form count: {form_count}"
+    )
+    report.require(
+        appearance_count >= 9720, f"Unexpected appearance count: {appearance_count}"
+    )
 
     duplicate_questions = conn.execute(
         "SELECT id, COUNT(*) AS n FROM questions GROUP BY id HAVING n > 1"
@@ -726,7 +732,15 @@ def validate_cdn(report: Report) -> None:
 
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     report.require(manifest.get("bank_version") == 2026102020, "CDN version is not v19")
-    report.require(manifest.get("total") == 9720, "CDN question total is not 9720")
+    # The counts come from the bank itself, so a new paper may be added.
+    with sqlite3.connect(DB_PATH) as bank:
+        question_count = bank.execute("SELECT COUNT(*) FROM questions").fetchone()[0]
+        form_count = bank.execute("SELECT COUNT(*) FROM paper_forms").fetchone()[0]
+        appearance_count = bank.execute("SELECT COUNT(*) FROM appearances").fetchone()[0]
+    report.require(
+        manifest.get("total") == question_count,
+        f"CDN question total {manifest.get('total')} is not {question_count}",
+    )
 
     pack_questions: dict[str, dict] = {}
     pack_passages: dict[str, dict] = {}
@@ -754,8 +768,12 @@ def validate_cdn(report: Report) -> None:
         for passage in data.get("p", []):
             pack_passages[passage["id"]] = passage
 
-    report.require(pack_q_count == 9720, f"CDN packs contain {pack_q_count} questions")
-    report.require(len(pack_questions) == 9720, f"CDN unique questions: {len(pack_questions)}")
+    report.require(
+        pack_q_count == question_count, f"CDN packs contain {pack_q_count} questions"
+    )
+    report.require(
+        len(pack_questions) == question_count, f"CDN unique questions: {len(pack_questions)}"
+    )
 
     for qid in (
         "c831e600eb0b79b8",
@@ -793,8 +811,13 @@ def validate_cdn(report: Report) -> None:
         papers.get("version") == manifest.get("bank_version"),
         "papers.json version does not match manifest bank_version",
     )
-    report.require(len(papers.get("forms", [])) == 62, "papers.json form count is not 62")
-    report.require(len(papers.get("appearances", [])) == 9720, "papers.json appearance count is not 9720")
+    report.require(
+        len(papers.get("forms", [])) == form_count, "papers.json form count does not match"
+    )
+    report.require(
+        len(papers.get("appearances", [])) == appearance_count,
+        "papers.json appearance count does not match",
+    )
     for form in papers.get("forms", []):
         report.require(
             form.get("total_questions") == 150,

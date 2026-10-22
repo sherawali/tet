@@ -2,9 +2,9 @@
   "schema": 2,
   "bank_version": 2026102020,
   "bank_version_str": "20261021_master_vault_clean_v20",
-  "generated": "2026-10-22T06:13:02Z",
+  "generated": "2026-10-22T08:38:53Z",
   "total": 9720,
-  "papers_count": 62,
+  "papers_count": 63,
   "topics": [
     "5E approach in SST",
     "5E model",
@@ -2974,10 +2974,10 @@
   ],
   "papers_file": {
     "file": "papers.json",
-    "sha256": "807d5dcd7d21549774436bd3e9e27e560fc91487e7758f081a129f2fe5f5ff97",
-    "bytes": 844747,
-    "forms_count": 62,
-    "appearances_count": 9720
+    "sha256": "9782051a4f1cd6328fbf421b2f5902353cbd61f75e5724f5998b62da0483c311",
+    "bytes": 857483,
+    "forms_count": 63,
+    "appearances_count": 9870
   },
   "remote_config": {
     "free_mock_count": 1,
