@@ -202,10 +202,16 @@ class AppStrings {
       : 'Total Tests: $count · Qualified: $pass';
   static String get historyEmptyTitle => _isHi ? 'कोई पिछला टेस्ट रिकॉर्ड नहीं मिला' : 'No Test History Found';
   static String get historyEmptyDesc => _isHi
-      ? 'आपने अभी तक कोई टेस्ट नहीं दिया है। $examPaperStreamLabel $currentExamYear मॉडल प्रश्न-पत्र से अभ्यास की शुरुआत करें।'
-      : 'You have not attempted any test yet. Begin with the $examPaperStreamLabel $currentExamYear model test paper.';
+      ? 'आपने अभी तक कोई टेस्ट नहीं दिया है। प्रश्न-पुस्तिकाओं की सूची से अपना मॉक चुनें।'
+      : 'You have not attempted any test yet. Pick a mock from the booklet list.';
   static String get historyStartCta =>
-      _isHi ? '📖 मॉडल प्रश्न-पत्र हल करें' : '📖 Solve Model Test Paper';
+      _isHi ? 'प्रश्न-पुस्तिका चुनें' : 'Choose a question booklet';
+  static String get historyDetailMissing => _isHi
+      ? 'इस पुराने परिणाम का विस्तृत विवरण उपलब्ध नहीं है।'
+      : 'The details of this older result are not available.';
+  static String get historyOpenError => _isHi
+      ? 'परिणाम खोलने में त्रुटि हुई।'
+      : 'Could not open the result.';
   static String historyMockType(String mode) => _isHi ? 'मॉक टेस्ट ($mode)' : 'Mock Test ($mode)';
   static String get historyQualified => _isHi ? 'उत्तीर्ण' : 'Qualified';
   static String get historyPracticeNeeded => _isHi ? 'अभ्यास आवश्यक' : 'Needs Practice';
@@ -780,14 +786,14 @@ class AppStrings {
       ? '$examLabel $paperLabel · सभी $forms पेपर · हल + विश्लेषण · 365 दिन'
       : '$examLabel $paperLabel · all $forms papers · solutions + analysis · 365 days';
   static String get proPackUtetSub => _isHi
-      ? 'UTET पेपर-1 + पेपर-2 · 21 मॉक + 8 PYQ प्रश्न-पत्र + 4,616 प्रश्न · 12 महीने'
-      : 'UTET Paper-1 + Paper-2 · 21 mocks + 8 PYQ papers + 4,616 questions · 12 months';
+      ? 'UTET पेपर-1 + पेपर-2 · ${BankFacts.utetMockCount} मॉक + ${BankFacts.utetPyqCount} PYQ प्रश्न-पत्र + ${BankFacts.format(BankFacts.utetQuestionCount)} प्रश्न · 12 महीने'
+      : 'UTET Paper-1 + Paper-2 · ${BankFacts.utetMockCount} mocks + ${BankFacts.utetPyqCount} PYQ papers + ${BankFacts.format(BankFacts.utetQuestionCount)} questions · 12 months';
   static String get proPackCtetSub => _isHi
-      ? 'CTET पेपर-1 + पेपर-2 · 26 मॉक + 8 PYQ प्रश्न-पत्र + 5,100 प्रश्न · 12 महीने'
-      : 'CTET Paper-1 + Paper-2 · 26 mocks + 8 PYQ papers + 5,100 questions · 12 months';
+      ? 'CTET पेपर-1 + पेपर-2 · ${BankFacts.ctetMockCount} मॉक + ${BankFacts.ctetPyqCount} PYQ प्रश्न-पत्र + ${BankFacts.format(BankFacts.ctetQuestionCount)} प्रश्न · 12 महीने'
+      : 'CTET Paper-1 + Paper-2 · ${BankFacts.ctetMockCount} mocks + ${BankFacts.ctetPyqCount} PYQ papers + ${BankFacts.format(BankFacts.ctetQuestionCount)} questions · 12 months';
   static String get proPackFullSubNew => _isHi
-      ? 'UTET + CTET पेपर-1 और 2 · सभी 47 मॉक + 16 PYQ प्रश्न-पत्र + 9,720 प्रश्न · 12 महीने'
-      : 'UTET Paper-1 & 2 + CTET Paper-1 & 2 · all 47 mocks + 16 PYQ papers + 9,720 questions · 12 months';
+      ? 'UTET + CTET पेपर-1 और 2 · सभी ${BankFacts.utetMockCount + BankFacts.ctetMockCount} मॉक + ${BankFacts.utetPyqCount + BankFacts.ctetPyqCount} PYQ प्रश्न-पत्र + ${BankFacts.format(BankFacts.vaultQuestionCount)} प्रश्न · 12 महीने'
+      : 'UTET Paper-1 & 2 + CTET Paper-1 & 2 · all ${BankFacts.utetMockCount + BankFacts.ctetMockCount} mocks + ${BankFacts.utetPyqCount + BankFacts.ctetPyqCount} PYQ papers + ${BankFacts.format(BankFacts.vaultQuestionCount)} questions · 12 months';
   static List<String> proPackEkOneBullets({
     required String examLabel,
     required String paperLabel,
@@ -827,16 +833,16 @@ class AppStrings {
           '5,100 questions · solutions and analysis',
         ];
   static List<String> get proPackFullBullets => _isHi
-      ? const [
+      ? [
           'UTET + CTET, दोनों के पेपर-1 और पेपर-2',
-          'सभी 47 मॉक + 16 PYQ प्रश्न-पत्र',
-          '9,720 प्रश्न · हल एवं विश्लेषण',
+          'सभी ${BankFacts.utetMockCount + BankFacts.ctetMockCount} मॉक + ${BankFacts.utetPyqCount + BankFacts.ctetPyqCount} PYQ प्रश्न-पत्र',
+          '${BankFacts.format(BankFacts.vaultQuestionCount)} प्रश्न · हल एवं विश्लेषण',
           '12 महीने तक सब खुला',
         ]
-      : const [
+      : [
           'UTET + CTET, Paper-1 and Paper-2 of both',
-          'All 47 mock + 16 PYQ papers',
-          '9,720 questions · solutions and analysis',
+          'All ${BankFacts.utetMockCount + BankFacts.ctetMockCount} mock + ${BankFacts.utetPyqCount + BankFacts.ctetPyqCount} PYQ papers',
+          '${BankFacts.format(BankFacts.vaultQuestionCount)} questions · solutions and analysis',
           'Full access for 12 months',
         ];
   static String get proPackSelectorHint => _isHi
@@ -858,7 +864,6 @@ class AppStrings {
   static String get buildingSet => _isHi ? 'सेट बन रहा है...' : 'Building the set...';
   static String get unlockLabel => _isHi ? 'अनलॉक' : 'Unlock';
   static String get solveLabel => _isHi ? 'हल करें' : 'Solve';
-  static String get drillLabel => _isHi ? 'ड्रिल' : 'Drill';
   static String get changeStreamLabel =>
       _isHi ? 'विषय वर्ग बदलें ⇄' : 'Change stream ⇄';
   static String topicsCount(int count) =>
@@ -879,25 +884,25 @@ class AppStrings {
       : '$size questions · $size minutes · fully verified mock';
 
   // Subject Practice Hub
+  /// The screen title keeps only the section name, because the app bar
+  /// truncates a full "exam · paper · section" title that the hub banner
+  /// below already states in full.
   static String subjectPracticeHubTitle(String sec) =>
-      screenTitle('$sec अभ्यास हब', '$sec Practice Hub');
+      _isHi ? '$sec अभ्यास' : '$sec Practice';
   static String subjectPracticeHubDesc(int total) => _isHi
       ? 'बैंक में कुल $total प्रामाणिक प्रश्न उपलब्ध हैं'
       : 'Total $total authentic questions available in bank';
   static String subjectSetTitle(int num) => _isHi
       ? 'सेट-$num : ${BankFacts.subjectSetQuestions} प्रश्न अभ्यास'
       : 'Set-$num : ${BankFacts.subjectSetQuestions} Questions Practice';
-  static String get topicsDrillHeading => _isHi ? 'विषय-वार गहन अभ्यास' : 'Topic-wise Focused Drills';
   static String get startPracticeBtn => _isHi ? 'हल शुरू करें ▾' : 'Start Practice ▾';
-  static String topicDrillTitle(String topic) => _isHi ? '$topic ड्रिल' : '$topic Drill';
-  static String topicDrillSub(int count) => _isHi ? '$count प्रश्न' : '$count Questions';
   static String get subjectCardSetsInfo =>
-      _isHi ? 'अभ्यास सेट · विषय ड्रिल' : 'Practice Sets · Topic Drills';
+      _isHi ? 'अभ्यास सेट' : 'Practice Sets';
 
   /// The same line with the real number of sets the bank can offer.
   static String subjectCardSetsInfoFor(int sets) => _isHi
-      ? '$sets अभ्यास सेट · विषय ड्रिल'
-      : '$sets Practice Sets · Topic Drills';
+      ? '$sets अभ्यास सेट'
+      : '$sets Practice Sets';
 
   // Premium & In-App Purchase Gate (IAP)
   static String get premiumPassTitle =>

@@ -2669,23 +2669,14 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     shape: const RoundedRectangleBorder(borderRadius: AppRadius.roundedSm),
                   ),
-                  icon: const Icon(Icons.play_arrow_rounded, size: 20),
+                  icon: const Icon(Icons.menu_book_rounded, size: 20),
                   label: Text(
                     AppStrings.historyStartCta,
                     style: AppTypography.labelMedium(),
                   ),
-                  onPressed: () {
-                    final featured = _paperForms.isNotEmpty ? _paperForms.first : null;
-                    _startMockTest(
-                      MockConfig(
-                        mode: MockMode.predicted,
-                        seed: DateTime.now().millisecondsSinceEpoch,
-                      ),
-                      formId: featured?['id'] as String?,
-                      paperTitle: featured?['title']?.toString(),
-                      setCode: featured?['set_code']?.toString(),
-                    );
-                  },
+                  // The choice of a mock belongs on the home page: the user
+                  // walks the booklet list and picks a paper himself.
+                  onPressed: _goToBookletsTab,
                 ),
               ],
             ),
@@ -3338,6 +3329,16 @@ class _HomeScreenState extends State<HomeScreen> {
                                   color: isPyq ? (isLatest ? AppColors.correctGreen : AppColors.violet) : AppColors.sealGold,
                                   isSolid: true,
                                 ),
+                                // A locked slide must say so right on the badge
+                                // row, exactly like the list rows do.
+                                if (!isCardFree) ...[
+                                  const SizedBox(width: AppSpacing.xs),
+                                  AppBadge(
+                                    label: AppStrings.premiumLockedBadge,
+                                    color: AppColors.sealGold,
+                                    isSolid: true,
+                                  ),
+                                ],
                               ],
                             ),
                           ),
@@ -4080,9 +4081,7 @@ class _HomeScreenState extends State<HomeScreen> {
     if (raw == null || raw.isEmpty || raw == '{}') {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('इस पुराने परिणाम का विस्तृत विवरण उपलब्ध नहीं है।'),
-        ),
+        SnackBar(content: Text(AppStrings.historyDetailMissing)),
       );
       return;
     }
@@ -4099,9 +4098,15 @@ class _HomeScreenState extends State<HomeScreen> {
       debugPrint('Unable to reopen history session: $error');
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('परिणाम खोलने में त्रुटि हुई।')),
+        SnackBar(content: Text(AppStrings.historyOpenError)),
       );
     }
+  }
+
+  /// Jump back to the booklet list so the user picks the next mock himself
+  /// (a history row never launches a paper directly).
+  void _goToBookletsTab() {
+    setState(() => _selectedTab = 0);
   }
 
   Widget _buildHistoryCard(Map<String, dynamic> h, bool isDark) {
@@ -4109,73 +4114,10 @@ class _HomeScreenState extends State<HomeScreen> {
       entry: h,
       isDark: isDark,
       onOpen: () => _openHistorySession(h),
-      onPracticeAgain: () => _practiceHistoryAgain(
-        h,
-        (h['total'] as num?)?.toInt() ?? BankFacts.questionsPerPaper,
-      ),
+      onPickMock: _goToBookletsTab,
     );
   }
 
-  /// Starts a new test of the same kind as the one of the history row.
-  Future<void> _practiceHistoryAgain(Map<String, dynamic> h, int total) async {
-    final modeName = h['mode'] as String? ?? 'predicted';
-    final mode = MockMode.values.firstWhere(
-      (m) => m.name == modeName,
-      orElse: () => MockMode.predicted,
-    );
-    final sectionFilter = h['section_filter'] as String?;
-    final questions = total > 0 ? total : BankFacts.questionsPerPaper;
-
-    setState(() => _isLoading = true);
-    try {
-      final mockData = await _engine.generateMock(
-        MockConfig(
-          mode: mode,
-          exam: ExamService.instance.examCode,
-          sectionFilter: sectionFilter,
-          totalQuestions: questions,
-          timeLimitMinutes: questions,
-          seed: DateTime.now().millisecondsSinceEpoch,
-        ),
-      );
-      if (!mounted) return;
-      setState(() => _isLoading = false);
-
-      if (mockData.questions.isEmpty) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('इस पेपर के प्रश्न लोड नहीं हो सके')),
-        );
-        return;
-      }
-
-      final session = TestSession(
-        id: 'test_${DateTime.now().millisecondsSinceEpoch}',
-        config: MockConfig(
-          mode: mode,
-          exam: ExamService.instance.examCode,
-          sectionFilter: sectionFilter,
-          totalQuestions: questions,
-          timeLimitMinutes: questions,
-          seed: DateTime.now().millisecondsSinceEpoch,
-        ),
-        questions: mockData.questions,
-        passages: mockData.passages,
-        paperTitle: _historyPaperTitle(h),
-      );
-
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (context) => ExamService.instance.buildExamScreen(session: session),
-        ),
-      ).then((_) => _loadData());
-    } catch (e) {
-      if (!mounted) return;
-      setState(() => _isLoading = false);
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(AppStrings.loadError(e.toString()))),
-      );
-    }
-  }
 }
 
 
@@ -4189,7 +4131,7 @@ class HistoryCard extends StatelessWidget {
     required this.entry,
     required this.isDark,
     required this.onOpen,
-    required this.onPracticeAgain,
+    required this.onPickMock,
   });
 
   /// The row of the test history.
@@ -4200,8 +4142,8 @@ class HistoryCard extends StatelessWidget {
   /// Opens the stored result of the test.
   final VoidCallback onOpen;
 
-  /// Starts the same kind of test once more.
-  final VoidCallback onPracticeAgain;
+  /// Goes to the booklet list so the user picks the next mock himself.
+  final VoidCallback onPickMock;
 
   @override
   Widget build(BuildContext context) {
@@ -4323,9 +4265,9 @@ class HistoryCard extends StatelessWidget {
                     Expanded(
                       child: _historyActionButton(
                         isDark: isDark,
-                        icon: Icons.replay_rounded,
-                        label: isHi ? 'फिर से अभ्यास' : 'Practice again',
-                        onPressed: onPracticeAgain,
+                        icon: Icons.menu_book_rounded,
+                        label: isHi ? 'मॉक चुनें' : 'Choose a mock',
+                        onPressed: onPickMock,
                         isMuted: true,
                       ),
                     ),

@@ -38,7 +38,6 @@ class _SubjectDetailScreenState extends State<SubjectDetailScreen> {
   final DbHelper _db = DbHelper.instance;
   final MockEngine _engine = MockEngine();
   int _totalCount = 0;
-  Map<String, int> _topicCounts = {};
   bool _isLoading = true;
   String? _busyItem;
 
@@ -57,11 +56,9 @@ class _SubjectDetailScreenState extends State<SubjectDetailScreen> {
   Future<void> _loadSectionData() async {
     setState(() => _isLoading = true);
     final secCounts = await _db.getSectionCounts(ExamService.instance.examCode);
-    final topics = await _db.getTopicCountsForSection(widget.section, ExamService.instance.examCode);
     if (!mounted) return;
     setState(() {
       _totalCount = secCounts[widget.section] ?? 0;
-      _topicCounts = topics;
       _isLoading = false;
     });
   }
@@ -110,65 +107,6 @@ class _SubjectDetailScreenState extends State<SubjectDetailScreen> {
 
       final session = TestSession(
         id: '${widget.section}_set_${setNumber}_${DateTime.now().millisecondsSinceEpoch}',
-        config: config,
-        questions: data.questions,
-        passages: data.passages,
-      );
-
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (context) => ExamService.instance.buildExamScreen(session: session),
-        ),
-      );
-    } catch (e) {
-      if (!mounted) return;
-      setState(() => _busyItem = null);
-      AppSnackBar.showError(
-        context,
-        title: AppStrings.loadError(e.toString()),
-      );
-    }
-  }
-
-  Future<void> _startTopicDrill(String topicName, int count) async {
-    // Topic drills are not part of a single paper pass either.
-    final isPremium = PremiumService.instance.hasUnlockedAccess;
-    if (!isPremium) {
-      PremiumPaywallModal.show(context);
-      return;
-    }
-
-    final busyKey = 'topic_$topicName';
-    setState(() => _busyItem = busyKey);
-    try {
-      final data = await _engine.generateTopicDrill(
-        section: widget.section,
-        topicName: topicName,
-        exam: ExamService.instance.examCode,
-      );
-
-      if (!mounted) return;
-      setState(() => _busyItem = null);
-
-      if (data.questions.isEmpty) {
-        AppSnackBar.showError(
-          context,
-          title: 'इस टॉपिक के प्रश्न उपलब्ध नहीं हैं',
-        );
-        return;
-      }
-
-      final config = MockConfig(
-        mode: MockMode.mixed,
-        sectionFilter: widget.section,
-        seed: DateTime.now().millisecondsSinceEpoch,
-        totalQuestions: data.questions.length,
-        timeLimitMinutes: (data.questions.length * 1.5).ceil().clamp(10, 60),
-        exam: ExamService.instance.examCode,
-      );
-
-      final session = TestSession(
-        id: 'drill_${widget.section}_${DateTime.now().millisecondsSinceEpoch}',
         config: config,
         questions: data.questions,
         passages: data.passages,
@@ -268,8 +206,8 @@ class _SubjectDetailScreenState extends State<SubjectDetailScreen> {
                               label: _busyItem == 'set_999'
                                   ? AppStrings.buildingSet
                                   : (isUnlocked
-                                      ? AppStrings.freshSetLocked
-                                      : '🔒 फ्रेश 30-प्रश्न सेट (पास से अनलॉक करें)'),
+                                      ? AppStrings.freshSetButton
+                                      : AppStrings.freshSetLocked),
                               variant: isUnlocked
                                   ? AppButtonVariant.primary
                                   : AppButtonVariant.outline,
@@ -405,77 +343,6 @@ class _SubjectDetailScreenState extends State<SubjectDetailScreen> {
                       );
                     },
                   ),
-                  const SizedBox(height: AppSpacing.xl),
-
-                  // Section 2: Topic-wise Focused Drills
-                  if (_topicCounts.isNotEmpty) ...[
-                    Text(
-                      AppStrings.topicsDrillHeading,
-                      style: AppTypography.titleMedium(
-                        color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
-                      ),
-                    ),
-                    const SizedBox(height: AppSpacing.sm),
-
-                    ValueListenableBuilder<bool>(
-                      valueListenable: PremiumService.instance.isPremiumUnlocked,
-                      builder: (context, isUnlocked, _) {
-                        return Column(
-                          children: _topicCounts.entries.map((e) {
-                            final topic = e.key;
-                            final count = e.value;
-                            final isBusy = _busyItem == 'topic_$topic';
-
-                            return Padding(
-                              padding: const EdgeInsets.only(bottom: AppSpacing.sm),
-                              child: AppCard(
-                                padding: _cardPadding,
-                                child: Row(
-                                  children: [
-                                    Expanded(
-                                      child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          Text(
-                                            topic,
-                                            style: AppTypography.titleSmall(
-                                              color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
-                                            ),
-                                          ),
-                                          const SizedBox(height: AppSpacing.xs),
-                                          Text(
-                                            AppStrings.topicDrillSub(count),
-                                            style: AppTypography.bodySmall(
-                                              color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    const SizedBox(width: AppSpacing.sm),
-                                    AppButton(
-                                      label: isUnlocked ? AppStrings.drillLabel : AppStrings.unlockLabel,
-                                      variant: isUnlocked
-                                          ? AppButtonVariant.primary
-                                          : AppButtonVariant.outline,
-                                      icon: isUnlocked
-                                          ? Icons.play_arrow_rounded
-                                          : Icons.lock_rounded,
-                                      isLoading: isBusy,
-                                      width: 104,
-                                      height: 38,
-                                      onPressed: isBusy ? null : () => _startTopicDrill(topic, count),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            );
-                          }).toList(),
-                        );
-                      },
-                    ),
-                  ],
                   const SizedBox(height: AppSpacing.xl),
                 ],
               ),
