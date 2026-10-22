@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import '../design_system/app_colors.dart';
 import '../design_system/app_typography.dart';
 import '../design_system/app_radius.dart';
@@ -81,7 +81,7 @@ class _PyqVaultScreenState extends State<PyqVaultScreen> {
       if (data.questions.isEmpty) {
         AppSnackBar.showError(
           context,
-          title: 'à¤‡à¤¸ à¤µà¤°à¥à¤· à¤•à¥‡ à¤ªà¥à¤°à¤¶à¥à¤¨ à¤‰à¤ªà¤²à¤¬à¥à¤§ à¤¨à¤¹à¥€à¤‚ à¤¹à¥ˆà¤‚',
+          title: 'इस वर्ष के प्रश्न उपलब्ध नहीं हैं',
         );
         return;
       }
@@ -126,7 +126,7 @@ class _PyqVaultScreenState extends State<PyqVaultScreen> {
     final examDate = form['exam_date']?.toString() ?? '';
     final m = RegExp(r'(20\d\d)').firstMatch('$title $examDate');
     if (m != null) return m.group(1)!;
-    return AppStrings.isHindi ? 'à¤µà¤¿à¤—à¤¤ à¤µà¤°à¥à¤·' : 'PYQ';
+    return AppStrings.isHindi ? 'विगत वर्ष' : 'PYQ';
   }
 
   @override
@@ -184,7 +184,7 @@ class _PyqVaultScreenState extends State<PyqVaultScreen> {
                                     ),
                                   ),
                                   AppBadge(
-                                    label: AppStrings.isHindi ? 'à¤µà¤¿à¤—à¤¤ à¤µà¤°à¥à¤· à¤ªà¥à¤°à¤¶à¥à¤¨-à¤ªà¤¤à¥à¤°' : 'Past Year Papers',
+                                    label: AppStrings.isHindi ? 'विगत वर्ष प्रश्न-पत्र' : 'Past Year Papers',
                                     color: AppColors.success,
                                   ),
                                 ],
@@ -192,7 +192,7 @@ class _PyqVaultScreenState extends State<PyqVaultScreen> {
                               const SizedBox(height: AppSpacing.xs),
                               Text(
                                 AppStrings.isHindi
-                                    ? '${_forms.length} à¤µà¤¿à¤—à¤¤ à¤µà¤°à¥à¤·à¥‹à¤‚ à¤•à¥‡ à¤ªà¥à¤°à¤¶à¥à¤¨-à¤ªà¤¤à¥à¤° à¤¸à¤®à¥à¤ªà¥‚à¤°à¥à¤£ à¤¹à¤² à¤¸à¤¹à¤¿à¤¤ à¤‰à¤ªà¤²à¤¬à¥à¤§ à¤¹à¥ˆà¤‚à¥¤'
+                                    ? '${_forms.length} विगत वर्षों के प्रश्न-पत्र सम्पूर्ण हल सहित उपलब्ध हैं।'
                                     : '${_forms.length} Previous year question papers available with solutions.',
                                 style: AppTypography.bodySmall(
                                   color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
@@ -260,7 +260,7 @@ class _PyqVaultScreenState extends State<PyqVaultScreen> {
                               });
                             },
                             child: Text(
-                              LanguageService.instance.isHindi ? 'à¤¸à¥à¤Ÿà¥à¤°à¥€à¤® à¤¬à¤¦à¤²à¥‡à¤‚ â‡„' : 'Change Stream â‡„',
+                              LanguageService.instance.isHindi ? 'स्ट्रीम बदलें ⇄' : 'Change Stream ⇄',
                               style: AppTypography.labelMedium(color: AppColors.sealGold),
                             ),
                           ),
@@ -379,8 +379,8 @@ class _PyqVaultScreenState extends State<PyqVaultScreen> {
                                             const SizedBox(height: AppSpacing.xs),
                                             Text(
                                               AppStrings.isHindi
-                                                  ? '$_paperSize à¤ªà¥à¤°à¤¶à¥à¤¨ Â· $_paperSize à¤®à¤¿à¤¨à¤Ÿ Â· à¤¸à¤®à¥à¤ªà¥‚à¤°à¥à¤£ à¤¹à¤² à¤¸à¤¹à¤¿à¤¤'
-                                                  : '$_paperSize Questions Â· $_paperSize Mins Â· Complete Solutions',
+                                                  ? '$_paperSize प्रश्न · $_paperSize मिनट · सम्पूर्ण हल सहित'
+                                                  : '$_paperSize Questions · $_paperSize Mins · Complete Solutions',
                                               style: AppTypography.bodySmall(
                                                 color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
                                               ),
@@ -395,10 +395,10 @@ class _PyqVaultScreenState extends State<PyqVaultScreen> {
                                   // Action Button
                                   AppButton(
                                     label: isBusy
-                                        ? (AppStrings.isHindi ? 'à¤ªà¥‡à¤ªà¤° à¤–à¥à¤² à¤°à¤¹à¤¾ à¤¹à¥ˆ...' : 'Opening paper...')
+                                        ? (AppStrings.isHindi ? 'पेपर खुल रहा है...' : 'Opening paper...')
                                         : (isLocked
-                                            ? (AppStrings.isHindi ? 'ðŸ”’ $title à¤ªà¥à¤°à¥‹ à¤ªà¤¾à¤¸ à¤¸à¥‡ à¤…à¤¨à¤²à¥‰à¤• à¤•à¤°à¥‡à¤‚' : 'ðŸ”’ Unlock $title with Pro Pass')
-                                            : (AppStrings.isHindi ? 'ðŸ“– $title à¤¹à¤² à¤•à¤°à¥‡à¤‚' : 'ðŸ“– Solve $title')),
+                                            ? (AppStrings.isHindi ? '🔒 $title प्रो पास से अनलॉक करें' : '🔒 Unlock $title with Pro Pass')
+                                            : (AppStrings.isHindi ? '📖 $title हल करें' : '📖 Solve $title')),
                                     variant: isLocked
                                         ? AppButtonVariant.outline
                                         : AppButtonVariant.primary,
@@ -428,7 +428,7 @@ class _PyqVaultScreenState extends State<PyqVaultScreen> {
       icon: Icons.history_toggle_off_rounded,
       accent: AppColors.sealGold,
       title: AppStrings.isHindi
-          ? 'à¤ªà¥‡à¤ªà¤° $currentPaper à¤•à¥‡ à¤²à¤¿à¤ à¤•à¥‹à¤ˆ à¤µà¤¿à¤—à¤¤ à¤µà¤°à¥à¤· à¤ªà¥‡à¤ªà¤° à¤‰à¤ªà¤²à¤¬à¥à¤§ à¤¨à¤¹à¥€à¤‚ à¤¹à¥ˆ'
+          ? 'पेपर $currentPaper के लिए कोई विगत वर्ष पेपर उपलब्ध नहीं है'
           : 'No previous papers available for Paper $currentPaper',
     );
   }
@@ -439,3 +439,4 @@ class _PyqVaultScreenState extends State<PyqVaultScreen> {
   }
 }
 
+// NOTE: edited in the Pro-pass round of 2026-10-22 (no lifetime wording, tighter paper gate).

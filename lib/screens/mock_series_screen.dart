@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import '../design_system/app_colors.dart';
 import '../design_system/app_typography.dart';
 import '../design_system/app_radius.dart';
@@ -100,7 +100,7 @@ class _MockSeriesScreenState extends State<MockSeriesScreen> {
       if (data.questions.isEmpty) {
         AppSnackBar.showError(
           context,
-          title: 'à¤‡à¤¸ à¤ªà¥‡à¤ªà¤° à¤•à¥‡ à¤ªà¥à¤°à¤¶à¥à¤¨ à¤‰à¤ªà¤²à¤¬à¥à¤§ à¤¨à¤¹à¥€à¤‚ à¤¹à¥ˆà¤‚',
+          title: 'इस पेपर के प्रश्न उपलब्ध नहीं हैं',
         );
         return;
       }
@@ -213,7 +213,7 @@ class _MockSeriesScreenState extends State<MockSeriesScreen> {
                                   AppBadge(label: 'Verified Board Key', color: AppColors.sealGold),
                                   AppBadge(
                                     label: AppStrings.isHindi
-                                        ? '$_paperSize à¤ªà¥à¤°à¤¶à¥à¤¨ à¤®à¤¾à¤¨à¤•'
+                                        ? '$_paperSize प्रश्न मानक'
                                         : '$_paperSize Qs Standard',
                                     color: AppColors.cdp,
                                   ),
@@ -347,10 +347,10 @@ class _MockSeriesScreenState extends State<MockSeriesScreen> {
                                   // Action Button
                                   AppButton(
                                     label: isBusy
-                                        ? (AppStrings.isHindi ? 'à¤ªà¥‡à¤ªà¤° à¤–à¥à¤² à¤°à¤¹à¤¾ à¤¹à¥ˆ...' : 'Opening paper...')
+                                        ? (AppStrings.isHindi ? 'पेपर खुल रहा है...' : 'Opening paper...')
                                         : (isLocked
-                                            ? (AppStrings.isHindi ? 'ðŸ”’ $title à¤ªà¥à¤°à¥‹ à¤ªà¤¾à¤¸ à¤¸à¥‡ à¤…à¤¨à¤²à¥‰à¤• à¤•à¤°à¥‡à¤‚' : 'ðŸ”’ Unlock $title with Pro Pass')
-                                            : (AppStrings.isHindi ? 'ðŸ“– $title à¤¹à¤² à¤•à¤°à¥‡à¤‚' : 'ðŸ“– Solve $title')),
+                                            ? (AppStrings.isHindi ? '🔒 $title प्रो पास से अनलॉक करें' : '🔒 Unlock $title with Pro Pass')
+                                            : (AppStrings.isHindi ? '📖 $title हल करें' : '📖 Solve $title')),
                                     variant: isLocked
                                         ? AppButtonVariant.outline
                                         : AppButtonVariant.primary,
@@ -379,7 +379,7 @@ class _MockSeriesScreenState extends State<MockSeriesScreen> {
     return AppEmptyState(
       icon: Icons.inbox_rounded,
       accent: AppColors.sealGold,
-      title: AppStrings.isHindi ? 'à¤•à¥‹à¤ˆ à¤®à¥‰à¤• à¤ªà¥‡à¤ªà¤° à¤‰à¤ªà¤²à¤¬à¥à¤§ à¤¨à¤¹à¥€à¤‚ à¤¹à¥ˆ' : 'No mock papers available',
+      title: AppStrings.isHindi ? 'कोई मॉक पेपर उपलब्ध नहीं है' : 'No mock papers available',
     );
   }
 
@@ -389,3 +389,4 @@ class _MockSeriesScreenState extends State<MockSeriesScreen> {
   }
 }
 
+// NOTE: edited in the Pro-pass round of 2026-10-22 (no lifetime wording, tighter paper gate).
