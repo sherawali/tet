@@ -1,4 +1,4 @@
-import 'dart:async';
+﻿import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
@@ -140,7 +140,7 @@ class PremiumService {
       // The price of the store is already formatted with its currency.
       return product.price;
     }
-    return '₹${PassPlan.priceOf(productId)}';
+    return 'â‚¹${PassPlan.priceOf(productId)}';
   }
 
   /// Does the app know this product?
@@ -609,4 +609,3 @@ class PremiumService {
   }
 }
 
-// NOTE: edited in the Pro-pass round of 2026-10-22 (no lifetime wording, tighter paper gate).
