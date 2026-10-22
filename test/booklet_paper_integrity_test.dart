@@ -32,6 +32,39 @@ void main() {
     final forms = await db.rawQuery('SELECT * FROM paper_forms ORDER BY id');
     expect(forms.length, 62);
 
+    // The booklets are rendered in two halves, because 62 full booklets in
+    // one test used more memory than the test isolate has.
+    final half = (forms.length / 2).ceil();
+    final first = await _checkPapers(db, forms.sublist(0, half));
+    final second = await _checkPapers(db, forms.sublist(half));
+
+    final papersChecked = first.papers + second.papers;
+    final questionsChecked = first.questions + second.questions;
+    final optionsChecked = first.options + second.options;
+    final passageGroupsChecked = first.passages + second.passages;
+
+    // ignore: avoid_print
+    print(
+      'Verified $papersChecked papers, $questionsChecked questions, '
+      '$optionsChecked options, $passageGroupsChecked passage groups',
+    );
+    expect(papersChecked, 62);
+    expect(questionsChecked, 62 * 150);
+  }, timeout: const Timeout(Duration(minutes: 15)));
+}
+
+class _PaperCheck {
+  const _PaperCheck(this.papers, this.questions, this.options, this.passages);
+
+  final int papers;
+  final int questions;
+  final int options;
+  final int passages;
+}
+
+/// Checks one group of papers and reports what it found.
+Future<_PaperCheck> _checkPapers(Database db, List<Map<String, Object?>> forms) async {
+  {
     var papersChecked = 0;
     var questionsChecked = 0;
     var passageGroupsChecked = 0;
@@ -195,14 +228,13 @@ void main() {
       papersChecked++;
     }
 
-    // ignore: avoid_print
-    print(
-      'Verified $papersChecked papers, $questionsChecked questions, '
-      '$optionsChecked options, $passageGroupsChecked passage groups',
+    return _PaperCheck(
+      papersChecked,
+      questionsChecked,
+      optionsChecked,
+      passageGroupsChecked,
     );
-    expect(papersChecked, 62);
-    expect(questionsChecked, 62 * 150);
-  }, timeout: const Timeout(Duration(minutes: 15)));
+  }
 }
 
 /// The visible letters of a text, so that formatting (escaping, tags, blank

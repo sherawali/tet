@@ -832,3 +832,32 @@
   360 dp phone, light and dark).  91 tests pass, analyze clean.
 - **Release:** still a draft, nothing published.  The signing key, the package id
   `com.sherawali.tet` and the R8 release build are ready.
+
+### 2026-10-22: Pass plan (365 days, no lifetime) and the remote access file
+- **The plan the owner approved:**
+  - Single Paper Pro Pass - ₹399, 60 days
+  - UTET Pro Pass (Paper-1 + Paper-2) - ₹1,499, 365 days
+  - CTET Pro Pass (Paper-1 + Paper-2) - ₹1,499, 365 days
+  - **Full Access Pro Pass (UTET + CTET) - ₹2,499, 365 days** - the featured one
+  - **No lifetime pass.**  A 365 day pass can be re-priced every season.
+- **Why the full access pass is the one that matters:** Google keeps 15 % of a
+  subscription, so ₹2,499 leaves ₹2,124 and ₹1,499 leaves ₹1,274.  To average
+  ₹1,500 net per user only 27 % have to take the full pass.  The paywall shows
+  the full pass in the middle with "₹208 a month" and a struck through
+  ₹4,999 anchor, and the exam pass is the smaller choice.
+- **The price now comes from the Play Store** (the app reads it from the store),
+  so a price can be changed in the Play Console without a new app release.
+  The old hard coded prices (₹599 / ₹299) are gone.
+- **`lib/services/pass_plan.dart`** holds the product ids, the fallback prices,
+  the length of each pass and which papers a pass opens (a single paper pass
+  opens one paper, an exam pass opens every paper of that exam, the full access
+  pass opens everything).
+- **`bin/remote_access.json`** replaces the free / paid lists that were hard
+  coded in the CDN builder.  A new mock paper reaches the app with
+  `python bin/build_github_cdn_vault.py` + `git push`; putting its id into
+  `free_form_ids` or `paid_form_ids` decides whether it is free - **no app
+  release needed**.
+- **`docs/PLAY_STORE_PASS_SETUP.md`** tells the owner exactly which products to
+  create in the Play Console.
+- **`memory/RELEASE_REPORT_v20.md`** is the full release report: what the
+  candidate gets, what is on the screen, what is ready and what is still open.

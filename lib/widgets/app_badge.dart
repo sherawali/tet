@@ -39,7 +39,9 @@ class AppBadge extends StatelessWidget {
 
     return ConstrainedBox(
       constraints: BoxConstraints(
-        maxWidth: wrap ? _wrapMaxWidth : double.infinity,
+        // A badge that may not grow past this width, so that the label can
+        // really be cut instead of pushing the row out of the screen.
+        maxWidth: wrap ? _wrapMaxWidth : 200,
       ),
       child: Container(
         padding: const EdgeInsets.symmetric(
@@ -72,13 +74,15 @@ class AppBadge extends StatelessWidget {
                 ),
               )
             else
-              Text(
-                label,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                textAlign: TextAlign.center,
-                style: AppTypography.labelSmall(
-                  color: isSolid ? AppColors.darkTextPrimary : effectiveColor,
+              Flexible(
+                child: Text(
+                  label,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  textAlign: TextAlign.center,
+                  style: AppTypography.labelSmall(
+                    color: isSolid ? AppColors.darkTextPrimary : effectiveColor,
+                  ),
                 ),
               ),
           ],

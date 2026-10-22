@@ -16,6 +16,7 @@ import '../widgets/app_card.dart';
 import '../widgets/app_state_views.dart';
 import '../widgets/question_report_sheet.dart';
 import '../services/html_booklet_builder.dart';
+import '../services/language_service.dart';
 import 'result_screen.dart';
 
 /// Standalone Real-Time HTML Question Booklet Screen
@@ -54,10 +55,16 @@ class _HtmlBookletScreenState extends State<HtmlBookletScreen> {
     if (_htmlContent != null) return;
 
     // The booklet is built once, with the theme the app is currently using,
-    // so the booklet and the Flutter UI always look the same.
+    // so the booklet and the Flutter UI always look the same.  It also
+    // starts in the language of the app, so the labels of the bar and the
+    // questions never mix two languages.
     try {
       final isDark = Theme.of(context).brightness == Brightness.dark;
-      _htmlContent = HtmlBookletBuilder.buildHtml(widget.session, isDark: isDark);
+      _htmlContent = HtmlBookletBuilder.buildHtml(
+        widget.session,
+        isDark: isDark,
+        initialLang: LanguageService.instance.isHindi ? 'hi' : 'en',
+      );
       _initWebView();
     } catch (e) {
       setState(() {

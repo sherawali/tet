@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:http/http.dart' as http;
 import '../design_system/app_colors.dart';
 import '../design_system/app_dialogs.dart';
 import '../design_system/app_radius.dart';
@@ -101,6 +102,7 @@ class _HomeScreenState extends State<HomeScreen> {
   String _lastSyncedStr = 'अभी नहीं';
   bool _isSyncing = false;
   bool _isOptimizing = false;
+  bool _isCheckingUpdate = false;
   double _syncProgress = 0.0;
   String _syncProgressStatus = '';
   bool _hasRemoteUpdate = false;
@@ -864,12 +866,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   onPressed: () => ReportedQuestionsSheet.show(context),
                 ),
                 IconButton(
-                  tooltip: AppStrings.bankSyncTooltip,
+                  tooltip: _syncActionLabel,
                   icon: Icon(
                     Icons.sync_rounded,
                     color: isDark ? AppColors.sealGoldLight : AppColors.darkTextPrimary,
                   ),
-                  onPressed: _syncNow,
+                  onPressed: _isSyncing ? null : _syncNow,
                 ),
                 const SizedBox(width: AppSpacing.sm),
               ],
@@ -1015,10 +1017,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     minimumSize: const Size(0, 32),
                     shape: const RoundedRectangleBorder(borderRadius: AppRadius.roundedSm),
                   ),
-                  onPressed: _syncNow,
-                  child: Text(
-                    isHi ? 'अपडेट' : 'Update',
-                    style: AppTypography.labelSmall(),
+                  onPressed: _isSyncing ? null : _syncNow,
+                  child: FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Text(
+                      _isSyncing ? _syncingLabel : _syncActionLabel,
+                      style: AppTypography.labelSmall(),
+                    ),
                   ),
                 ),
               ],
@@ -1079,7 +1084,7 @@ class _HomeScreenState extends State<HomeScreen> {
             final idx = entry.key;
             final f = entry.value;
             final formId = f['id'] as String;
-            final title = AppStrings.formatPaperTitle(f, isHindi: isHi);
+            final title = _paperTitle(f, isHi: isHi);
             final rawSet = f['set_code']?.toString() ?? 'SET ${(idx + 1).toString().padLeft(2, "0")}';
             final setChar = AppStrings.formatSetBadge(rawSet, isHindi: isHi);
             final isFree = PremiumService.instance.isPaperFree(formId: formId, index: idx);
@@ -1130,6 +1135,36 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
 
+
+  /// The title of a paper.
+  ///
+  /// A paper-2 title always names the stream the paper belongs to, so a
+  /// Social Studies paper is never mistaken for a Mathematics & Science paper
+  /// and the other way round.
+  String _paperTitle(Map<String, dynamic> form, {required bool isHi}) {
+    final title = AppStrings.formatPaperTitle(form, isHindi: isHi);
+    final paper = form['paper'] is int
+        ? form['paper'] as int
+        : (form['id']?.toString().contains('p2') == true ? 2 : 1);
+    if (paper != 2) return title;
+
+    final social = ExamService.instance.isSocialStream;
+    final tag = social
+        ? (isHi ? '(सामाजिक अध्ययन)' : '(Social Studies)')
+        : (isHi ? '(गणित एवं विज्ञान)' : '(Mathematics & Science)');
+    // A title that already names a stream is left alone, so the stream is
+    // never written twice.
+    final markers = ['Social Studies', 'सामाजिक अध्ययन', 'Mathematics & Science', 'गणित एवं विज्ञान'];
+    for (final marker in markers) {
+      if (title.contains(marker)) return title;
+    }
+
+    const separator = ' · ';
+    final index = title.indexOf(separator);
+    if (index < 0) return '$title$separator$tag';
+    return '${title.substring(0, index + separator.length)}'
+        '$tag$separator${title.substring(index + separator.length)}';
+  }
 
   Widget _buildExamSwitcher(bool isDark) {
     return ValueListenableBuilder<AppPaper>(
@@ -1519,53 +1554,14 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _buildSettingsExamCard(bool isDark) {
-    return Container(
-      padding: _HomeCard.padding,
-      margin: const EdgeInsets.only(bottom: AppSpacing.base),
-      decoration: _HomeCard.card(
-        isDark,
-        borderColor: AppColors.sealGold,
-        borderWidth: 1.5,
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Container(
-                padding: const EdgeInsets.all(AppSpacing.sm),
-                decoration: BoxDecoration(
-                  color: AppColors.sealGold.withValues(alpha: 0.15),
-                  shape: BoxShape.circle,
-                ),
-                child: const Icon(Icons.school_rounded, color: AppColors.sealGold, size: 22),
-              ),
-              const SizedBox(width: AppSpacing.md),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      AppStrings.targetExamHeading,
-                      style: AppTypography.titleSmall(
-                        color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
-                      ),
-                    ),
-                    const SizedBox(height: AppSpacing.xs),
-                    Text(
-                      AppStrings.isHindi
-                          ? 'मॉक टेस्ट और प्रश्न-पत्र बदलने के लिए परीक्षा चुनें'
-                          : 'Select exam to switch mock papers & questions',
-                      style: AppTypography.bodySmall(
-                        color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: AppSpacing.base),
+    return _settingsCard(
+      isDark: isDark,
+      icon: Icons.school_rounded,
+      title: AppStrings.targetExamHeading,
+      subtitle: AppStrings.isHindi
+          ? 'मॉक टेस्ट और प्रश्न-पत्र बदलने के लिए परीक्षा चुनें'
+          : 'Select exam to switch mock papers & questions',
+      children: [
           ValueListenableBuilder<AppExam>(
             valueListenable: ExamService.instance.currentExam,
             builder: (context, currentExam, _) {
@@ -1799,58 +1795,20 @@ class _HomeScreenState extends State<HomeScreen> {
               );
             },
           ),
-        ],
-      ),
+      ],
     );
   }
 
   /// Debug only: lets the tester look at the paid app and the free app
   /// without paying anything.  The card is not part of a release build.
   Widget _buildDebugProPassCard(bool isDark) {
-    return Container(
-      padding: _HomeCard.padding,
-      margin: const EdgeInsets.only(bottom: AppSpacing.base),
-      decoration: _HomeCard.card(isDark, borderWidth: 1.5),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Container(
-                padding: const EdgeInsets.all(AppSpacing.sm),
-                decoration: BoxDecoration(
-                  color: AppColors.correctGreen.withValues(alpha: 0.15),
-                  shape: BoxShape.circle,
-                ),
-                child: const Icon(Icons.bug_report_rounded,
-                    color: AppColors.correctGreen, size: 20),
-              ),
-              const SizedBox(width: AppSpacing.md),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      AppStrings.debugProPassTitle,
-                      style: AppTypography.titleSmall(
-                        color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
-                      ),
-                    ),
-                    const SizedBox(height: AppSpacing.xs),
-                    Text(
-                      AppStrings.debugProPassDesc,
-                      style: AppTypography.bodySmall(
-                        color: isDark
-                            ? AppColors.darkTextSecondary
-                            : AppColors.lightTextMuted,
-                      ).copyWith(height: 1.35),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: AppSpacing.md),
+    return _settingsCard(
+      isDark: isDark,
+      icon: Icons.bug_report_rounded,
+      iconColor: AppColors.correctGreen,
+      title: AppStrings.debugProPassTitle,
+      subtitle: AppStrings.debugProPassDesc,
+      children: [
           ValueListenableBuilder<bool>(
             valueListenable: PremiumService.instance.isPremiumUnlocked,
             builder: (context, isUnlocked, _) {
@@ -1895,57 +1853,17 @@ class _HomeScreenState extends State<HomeScreen> {
               );
             },
           ),
-        ],
-      ),
+      ],
     );
   }
 
   Widget _buildSettingsTestModeCard(bool isDark) {
-    return Container(
-      padding: _HomeCard.padding,
-      margin: const EdgeInsets.only(bottom: AppSpacing.base),
-      decoration: _HomeCard.card(
-        isDark,
-        borderColor: AppColors.sealGold,
-        borderWidth: 1.5,
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Container(
-                padding: const EdgeInsets.all(AppSpacing.sm),
-                decoration: BoxDecoration(
-                  color: AppColors.sealGold.withValues(alpha: 0.15),
-                  shape: BoxShape.circle,
-                ),
-                child: const Icon(Icons.devices_rounded, color: AppColors.sealGold, size: 22),
-              ),
-              const SizedBox(width: AppSpacing.md),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      AppStrings.testModeHeader,
-                      style: AppTypography.titleSmall(
-                        color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
-                      ),
-                    ),
-                    const SizedBox(height: AppSpacing.xs),
-                    Text(
-                      AppStrings.testModeDesc,
-                      style: AppTypography.bodySmall(
-                        color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: AppSpacing.base),
+    return _settingsCard(
+      isDark: isDark,
+      icon: Icons.devices_rounded,
+      title: AppStrings.testModeHeader,
+      subtitle: AppStrings.testModeDesc,
+      children: [
           ValueListenableBuilder<AppTestMode>(
             valueListenable: ExamService.instance.currentTestMode,
             builder: (context, currentMode, _) {
@@ -2066,21 +1984,18 @@ class _HomeScreenState extends State<HomeScreen> {
               );
             },
           ),
-        ],
-      ),
+      ],
     );
   }
 
   Widget _buildSettingsTetLanguagesCard(bool isDark) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: AppSpacing.base),
-      padding: _HomeCard.padding,
-      decoration: _HomeCard.card(
-        isDark,
-        borderColor: AppColors.sealGold,
-        borderWidth: 1.5,
-      ),
-      child: ValueListenableBuilder<String>(
+    return _settingsCard(
+      isDark: isDark,
+      icon: Icons.school_rounded,
+      title: AppStrings.langCardTitle,
+      subtitle: AppStrings.langCardSubtitle,
+      children: [
+          ValueListenableBuilder<String>(
         valueListenable: ExamService.instance.currentLang1,
         builder: (context, lang1, _) {
           return ValueListenableBuilder<String>(
@@ -2089,41 +2004,6 @@ class _HomeScreenState extends State<HomeScreen> {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.all(AppSpacing.sm),
-                        decoration: BoxDecoration(
-                          color: AppColors.sealGold.withValues(alpha: 0.15),
-                          shape: BoxShape.circle,
-                        ),
-                        child: const Icon(Icons.school_rounded, color: AppColors.sealGold, size: 22),
-                      ),
-                      const SizedBox(width: AppSpacing.md),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              AppStrings.langCardTitle,
-                              style: AppTypography.titleSmall(
-                                color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
-                              ),
-                            ),
-                            const SizedBox(height: AppSpacing.xs),
-                            Text(
-                              AppStrings.langCardSubtitle,
-                              style: AppTypography.bodySmall(
-                                color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: AppSpacing.base),
-
                   // Section 1: भाषा प्रथम
                   Row(
                     children: [
@@ -2233,6 +2113,7 @@ class _HomeScreenState extends State<HomeScreen> {
           );
         },
       ),
+    ],
     );
   }
 
@@ -2281,7 +2162,218 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  // -----------------------------------------------------------------------
+  // The settings tab
+  //
+  // Every card of the tab has the same padding, the same radius, the same
+  // border and the same shadow, and every action has one wording that is
+  // used for the title of its card and for its button.
+  // -----------------------------------------------------------------------
+
+  /// The wording of an action of the settings tab.
+  String get _syncActionLabel =>
+      AppStrings.isHindi ? 'प्रश्न बैंक सिंक करें' : 'Sync the question bank';
+  String get _optimizeActionLabel =>
+      AppStrings.isHindi ? 'डेटाबेस ऑप्टिमाइज़ करें' : 'Optimise the database';
+  String get _updateActionLabel =>
+      AppStrings.isHindi ? 'अपडेट की जाँच करें' : 'Check for update';
+  String get _resyncActionLabel =>
+      AppStrings.isHindi ? 'बैंक फिर से डाउनलोड करें' : 'Re-download the bank';
+
+  /// The wording of an action while it is working.
+  String get _syncingLabel =>
+      AppStrings.isHindi ? 'सिंक हो रहा है…' : 'Syncing…';
+  String get _optimizingLabel =>
+      AppStrings.isHindi ? 'ऑप्टिमाइज़ हो रहा है…' : 'Optimising…';
+  String get _checkingUpdateLabel =>
+      AppStrings.isHindi ? 'जाँच हो रही है…' : 'Checking…';
+
+  /// The message of an action that needs a connection.
+  String get _offlineMessage => AppStrings.isHindi
+      ? 'आपका डिवाइस ऑफलाइन है। इंटरनेट जोड़कर फिर कोशिश करें।'
+      : 'Your device is offline. Connect to the internet and try again.';
+
+  String get _updateFailedMessage => AppStrings.isHindi
+      ? 'अपडेट की जाँच नहीं हो सकी। कृपया फिर कोशिश करें।'
+      : 'The update could not be checked. Please try again.';
+
+  /// The note about the day the active pass runs out.
+  String _passExpiryNote() {
+    final service = PremiumService.instance;
+    final expiry = service.activeExpiry;
+    if (expiry == null) return '';
+    final days = expiry.difference(DateTime.now()).inDays;
+    if (days <= 0) return '';
+    final product = service.activeProductId;
+    final renews = product == null
+        ? ''
+        : ' · ${AppStrings.proPackRenewsAt(service.priceOf(product))}';
+    return '${AppStrings.proPackExpirySoon(days)}$renews';
+  }
+
+  /// The one card of the settings tab.
+  Widget _settingsCard({
+    required bool isDark,
+    required IconData icon,
+    required String title,
+    required String subtitle,
+    required List<Widget> children,
+    Color? iconColor,
+  }) {
+    final accent = iconColor ?? AppColors.sealGold;
+    return Container(
+      margin: const EdgeInsets.only(bottom: AppSpacing.base),
+      padding: _HomeCard.padding,
+      decoration: _HomeCard.card(isDark),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                padding: const EdgeInsets.all(AppSpacing.sm),
+                decoration: BoxDecoration(
+                  color: accent.withValues(alpha: 0.15),
+                  shape: BoxShape.circle,
+                ),
+                child: Icon(icon, color: accent, size: 22),
+              ),
+              const SizedBox(width: AppSpacing.md),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      style: AppTypography.titleSmall(
+                        color: isDark
+                            ? AppColors.darkTextPrimary
+                            : AppColors.lightTextPrimary,
+                      ),
+                    ),
+                    const SizedBox(height: AppSpacing.xs),
+                    Text(
+                      subtitle,
+                      style: AppTypography.bodySmall(
+                        color: isDark
+                            ? AppColors.darkTextSecondary
+                            : AppColors.lightTextMuted,
+                      ).copyWith(height: 1.35),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: AppSpacing.base),
+          ...children,
+        ],
+      ),
+    );
+  }
+
+  /// One action button of the settings tab.
+  ///
+  /// The label always fits (it is shortened with an ellipsis when the button
+  /// is narrow) and the button shows a spinner while it works.
+  Widget _settingsActionButton({
+    required bool isDark,
+    required IconData icon,
+    required String label,
+    required VoidCallback? onPressed,
+    bool isBusy = false,
+    bool isDanger = false,
+  }) {
+    final foreground = isDanger
+        ? AppColors.danger
+        : (isDark ? AppColors.sealGoldLight : AppColors.primary);
+
+    return OutlinedButton(
+      onPressed: onPressed,
+      style: OutlinedButton.styleFrom(
+        foregroundColor: foreground,
+        disabledForegroundColor: isDark
+            ? AppColors.darkTextMuted
+            : AppColors.lightTextMuted,
+        side: BorderSide(
+          color: isDanger
+              ? AppColors.danger.withValues(alpha: 0.6)
+              : foreground.withValues(alpha: 0.7),
+          width: 1.2,
+        ),
+        padding: const EdgeInsets.symmetric(
+          vertical: AppSpacing.sm,
+          horizontal: AppSpacing.sm,
+        ),
+        minimumSize: const Size(0, 44),
+        shape: const RoundedRectangleBorder(borderRadius: AppRadius.roundedSm),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          if (isBusy)
+            SizedBox(
+              width: 16,
+              height: 16,
+              child: CircularProgressIndicator(
+                strokeWidth: 2,
+                valueColor: AlwaysStoppedAnimation<Color>(foreground),
+              ),
+            )
+          else
+            Icon(icon, size: 18, color: foreground),
+          const SizedBox(width: AppSpacing.sm),
+          Flexible(
+            child: Text(
+              label,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              textAlign: TextAlign.center,
+              style: AppTypography.labelMedium(color: foreground),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  /// A quick probe that tells whether the device can reach the internet.
+  ///
+  /// The update check must not pretend to work while the device is offline,
+  /// so the button asks the network before it starts.
+  Future<bool> _isDeviceOnline() async {
+    const probes = <String>[
+      'https://www.gstatic.com/generate_204',
+      'https://play.googleapis.com',
+    ];
+    for (final probe in probes) {
+      try {
+        final response = await http
+            .head(Uri.parse(probe))
+            .timeout(const Duration(seconds: 6));
+        if (response.statusCode < 500) return true;
+      } catch (_) {
+        // Try the next probe.
+      }
+    }
+    return false;
+  }
+
   Future<void> _checkAppUpdate() async {
+    if (_isCheckingUpdate) return;
+    setState(() => _isCheckingUpdate = true);
+
+    final online = await _isDeviceOnline();
+    if (!mounted) return;
+    if (!online) {
+      setState(() => _isCheckingUpdate = false);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(_offlineMessage)),
+      );
+      return;
+    }
+
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(content: Text(AppStrings.checkingUpdate)),
     );
@@ -2307,10 +2399,11 @@ class _HomeScreenState extends State<HomeScreen> {
     } catch (_) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(AppStrings.appUpToDate)),
+          SnackBar(content: Text(_updateFailedMessage)),
         );
       }
     }
+    if (mounted) setState(() => _isCheckingUpdate = false);
   }
 
   Widget _buildLangChoiceChip({
@@ -2410,6 +2503,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
               ),
+              // Paper 2 has two streams, so the active one is named here.
+              if (ExamService.instance.isPaper2) ...[
+                const SizedBox(width: AppSpacing.sm),
+                _buildStreamBadge(isDark),
+              ],
             ],
           ),
         ),
@@ -2440,20 +2538,28 @@ class _HomeScreenState extends State<HomeScreen> {
       children: [
         // Heading & Summary
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              AppStrings.historyTitle,
-              style: AppTypography.titleMedium(
-                color:
-                    isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
+            Expanded(
+              child: Text(
+                AppStrings.historyTitle,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: AppTypography.titleMedium(
+                  color: isDark
+                      ? AppColors.darkTextPrimary
+                      : AppColors.lightTextPrimary,
+                ),
               ),
             ),
+            const SizedBox(width: AppSpacing.sm),
             if (_history.isNotEmpty)
-              AppBadge(
-                label: AppStrings.historySummary(_history.length, passCount),
-                color: AppColors.sealGold,
-                isSolid: true,
+              Flexible(
+                child: AppBadge(
+                  label: AppStrings.historySummary(_history.length, passCount),
+                  color: AppColors.sealGold,
+                  isSolid: true,
+                  wrap: true,
+                ),
               ),
           ],
         ),
@@ -2538,70 +2644,45 @@ class _HomeScreenState extends State<HomeScreen> {
         vertical: AppSpacing.md,
       ),
       children: [
-        // 0. Premium All-Access Pass Status Card
+        // 0. Pro Pass status
         ValueListenableBuilder<bool>(
           valueListenable: PremiumService.instance.isPremiumUnlocked,
           builder: (context, isUnlocked, _) {
-            return Container(
-              margin: const EdgeInsets.only(bottom: AppSpacing.base),
-              padding: _HomeCard.padding,
-              decoration: _HomeCard.card(
-                isDark,
-                borderColor: AppColors.sealGold,
-                borderWidth: 1.8,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.all(AppSpacing.sm),
-                        decoration: BoxDecoration(
-                          color: AppColors.sealGold.withValues(alpha: 0.2),
-                          shape: BoxShape.circle,
-                        ),
-                        child: Icon(
-                          isUnlocked ? Icons.workspace_premium_rounded : Icons.lock_outline_rounded,
-                          color: AppColors.sealGold,
-                          size: 24,
-                        ),
-                      ),
-                      const SizedBox(width: AppSpacing.md),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              AppStrings.premiumPassTitle,
-                              style: AppTypography.titleSmall(
-                                color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
-                              ),
-                            ),
-                            const SizedBox(height: AppSpacing.xs),
-                            Text(
-                              isUnlocked ? AppStrings.premiumActiveStatus : AppStrings.premiumPriceBadge,
-                              style: AppTypography.labelMedium(
-                                color: isUnlocked ? AppColors.correctGreen : AppColors.sealGold,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      if (isUnlocked)
-                        const Icon(Icons.check_circle_rounded, color: AppColors.correctGreen, size: 24),
-                    ],
-                  ),
-                  if (!isUnlocked) ...[
-                    const SizedBox(height: AppSpacing.md),
+            return _settingsCard(
+              isDark: isDark,
+              icon: isUnlocked
+                  ? Icons.workspace_premium_rounded
+                  : Icons.lock_outline_rounded,
+              title: AppStrings.premiumPassTitle,
+              subtitle: isUnlocked
+                  ? AppStrings.premiumActiveStatus
+                  : AppStrings.premiumPriceBadge,
+              children: [
+                if (isUnlocked) ...[
+                  if (_passExpiryNote().isNotEmpty) ...[
+                    const SizedBox(height: AppSpacing.sm),
                     Text(
-                      AppStrings.premiumPassSubtitle,
-                      style: AppTypography.bodySmall(
-                        color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
+                      _passExpiryNote(),
+                      style: AppTypography.labelSmall(
+                        color: isDark
+                            ? AppColors.sealGoldLight
+                            : AppColors.sealGold,
                       ).copyWith(height: 1.35),
                     ),
-                    const SizedBox(height: AppSpacing.md),
-                    ElevatedButton.icon(
+                  ],
+                ] else ...[
+                  Text(
+                    AppStrings.premiumPassSubtitle,
+                    style: AppTypography.bodySmall(
+                      color: isDark
+                          ? AppColors.darkTextSecondary
+                          : AppColors.lightTextMuted,
+                    ).copyWith(height: 1.35),
+                  ),
+                  const SizedBox(height: AppSpacing.md),
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton.icon(
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.sealGold,
                         foregroundColor: AppColors.primary,
@@ -2609,8 +2690,10 @@ class _HomeScreenState extends State<HomeScreen> {
                           vertical: AppSpacing.md,
                           horizontal: AppSpacing.base,
                         ),
-                        minimumSize: const Size(double.infinity, 42),
-                        shape: const RoundedRectangleBorder(borderRadius: AppRadius.roundedSm),
+                        minimumSize: const Size(0, 44),
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: AppRadius.roundedSm,
+                        ),
                       ),
                       onPressed: () => PremiumPaywallModal.show(context),
                       icon: const Icon(Icons.stars_rounded, size: 20),
@@ -2619,535 +2702,90 @@ class _HomeScreenState extends State<HomeScreen> {
                         style: AppTypography.labelMedium(),
                       ),
                     ),
-                  ],
+                  ),
                 ],
-              ),
+              ],
             );
           },
         ),
 
-        // 1. Target Exam Switcher Card
+        // 1. Target exam, paper level and the paper-2 stream
         _buildSettingsExamCard(isDark),
 
         // 1b. Debug only: switch between the free and the paid experience
         if (kDebugMode) _buildDebugProPassCard(isDark),
 
-        // 2. Default Test Mode Card (CBT vs Booklet)
+        // 2. Default test mode (CBT vs booklet)
         _buildSettingsTestModeCard(isDark),
 
-        // 3. TET Exam Language 1 & Language 2 Selector
+        // 3. The languages of the exam paper
         _buildSettingsTetLanguagesCard(isDark),
 
-        // 4. Language Switcher Card (App UI)
-        Container(
-          padding: _HomeCard.padding,
-          decoration: _HomeCard.card(
-            isDark,
-            borderColor: AppColors.sealGold,
-            borderWidth: 1.5,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(AppSpacing.sm),
-                    decoration: BoxDecoration(
-                      color: AppColors.sealGold.withValues(alpha: 0.15),
-                      shape: BoxShape.circle,
-                    ),
-                    child: const Icon(Icons.translate_rounded, color: AppColors.sealGold, size: 22),
-                  ),
-                  const SizedBox(width: AppSpacing.md),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          AppStrings.settingsLangHeader,
-                          style: AppTypography.titleSmall(
-                            color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
-                          ),
-                        ),
-                        const SizedBox(height: AppSpacing.xs),
-                        Text(
-                          AppStrings.settingsLangDesc,
-                          style: AppTypography.bodySmall(
-                            color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: AppSpacing.base),
-
-              // Interactive Language Buttons
-              ValueListenableBuilder<AppLang>(
-                valueListenable: LanguageService.instance.currentLanguage,
-                builder: (context, currentLang, _) {
-                  final isHindi = currentLang == AppLang.hi;
-                  return Row(
-                    children: [
-                      // Hindi option
-                      Expanded(
-                        child: InkWell(
-                          onTap: () {
-                            LanguageService.instance.setLanguage(AppLang.hi);
-                          },
-                          borderRadius: BorderRadius.circular(AppRadius.sm),
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(
-                              vertical: AppSpacing.md,
-                              horizontal: AppSpacing.sm,
-                            ),
-                            decoration: BoxDecoration(
-                              color: isHindi
-                                  ? AppColors.sealGold.withValues(alpha: 0.2)
-                                  : (isDark ? AppColors.darkCardElevated : AppColors.lightBg),
-                              borderRadius: BorderRadius.circular(AppRadius.sm),
-                              border: Border.all(
-                                color: isHindi ? AppColors.sealGold : (isDark ? AppColors.darkBorder : AppColors.lightBorder),
-                                width: isHindi ? 2.0 : 1.0,
-                              ),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                if (isHindi)
-                                  const Icon(Icons.check_circle_rounded, color: AppColors.sealGold, size: 18)
-                                else
-                                  Icon(
-                                    Icons.circle_outlined,
-                                    color: isDark
-                                        ? AppColors.darkTextMuted
-                                        : AppColors.lightTextMuted,
-                                    size: 18,
-                                  ),
-                                const SizedBox(width: AppSpacing.sm),
-                                Text(
-                                  AppStrings.langHindiLabel,
-                                  style: AppTypography.labelMedium(
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(width: AppSpacing.md),
-
-                      // English option
-                      Expanded(
-                        child: InkWell(
-                          onTap: () {
-                            LanguageService.instance.setLanguage(AppLang.en);
-                          },
-                          borderRadius: BorderRadius.circular(AppRadius.sm),
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(
-                              vertical: AppSpacing.md,
-                              horizontal: AppSpacing.sm,
-                            ),
-                            decoration: BoxDecoration(
-                              color: !isHindi
-                                  ? AppColors.sealGold.withValues(alpha: 0.2)
-                                  : (isDark ? AppColors.darkCardElevated : AppColors.lightBg),
-                              borderRadius: BorderRadius.circular(AppRadius.sm),
-                              border: Border.all(
-                                color: !isHindi ? AppColors.sealGold : (isDark ? AppColors.darkBorder : AppColors.lightBorder),
-                                width: !isHindi ? 2.0 : 1.0,
-                              ),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                if (!isHindi)
-                                  const Icon(Icons.check_circle_rounded, color: AppColors.sealGold, size: 18)
-                                else
-                                  Icon(
-                                    Icons.circle_outlined,
-                                    color: isDark
-                                        ? AppColors.darkTextMuted
-                                        : AppColors.lightTextMuted,
-                                    size: 18,
-                                  ),
-                                const SizedBox(width: AppSpacing.sm),
-                                Text(
-                                  'English',
-                                  style: AppTypography.labelMedium(),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  );
-                },
-              ),
-            ],
-          ),
-        ),
-        const SizedBox(height: AppSpacing.base),
-
-        // 2. Offline Question Bank & Database Management Card
-        Container(
-          padding: _HomeCard.padding,
-          decoration: _HomeCard.card(isDark),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(AppSpacing.sm),
-                    decoration: BoxDecoration(
-                      color: AppColors.success.withValues(alpha: 0.15),
-                      shape: BoxShape.circle,
-                    ),
-                    child: const Icon(Icons.storage_rounded, color: AppColors.success, size: 22),
-                  ),
-                  const SizedBox(width: AppSpacing.md),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          AppStrings.settingsBankHeader,
-                          style: AppTypography.titleSmall(
-                            color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
-                          ),
-                        ),
-                        const SizedBox(height: AppSpacing.xs),
-                        Text(
-                          AppStrings.bankInfo(_totalQuestions, _pyqCount, BankFacts.subjectCount),
-                          style: AppTypography.bodySmall(
-                            color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: AppSpacing.md),
-
-              // Database Metrics Badges
-              Wrap(
-                spacing: AppSpacing.sm,
-                runSpacing: AppSpacing.sm,
-                children: [
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: AppSpacing.sm,
-                      vertical: AppSpacing.xs,
-                    ),
-                    decoration: BoxDecoration(
-                      color: isDark ? AppColors.darkCardElevated : AppColors.primarySubtle,
-                      borderRadius: BorderRadius.circular(AppRadius.sm),
-                      border: Border.all(
-                        color: isDark ? AppColors.darkBorder : AppColors.lightBorder,
-                        width: 1,
+        // 4. The language of the app
+        _settingsCard(
+          isDark: isDark,
+          icon: Icons.translate_rounded,
+          title: AppStrings.settingsLangHeader,
+          subtitle: AppStrings.settingsLangDesc,
+          children: [
+            ValueListenableBuilder<AppLang>(
+              valueListenable: LanguageService.instance.currentLanguage,
+              builder: (context, currentLang, _) {
+                final isHindi = currentLang == AppLang.hi;
+                return Row(
+                  children: [
+                    Expanded(
+                      child: _languageOption(
+                        isDark,
+                        isSelected: isHindi,
+                        label: AppStrings.langHindiLabel,
+                        onTap: () =>
+                            LanguageService.instance.setLanguage(AppLang.hi),
                       ),
                     ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        const Icon(Icons.data_usage_rounded, size: 14, color: AppColors.sealGold),
-                        const SizedBox(width: AppSpacing.xs),
-                        Text(
-                          '${AppStrings.dbStorageSizeLabel}: $_dbSizeStr',
-                          style: AppTypography.labelSmall(
-                            color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: AppSpacing.sm,
-                      vertical: AppSpacing.xs,
-                    ),
-                    decoration: BoxDecoration(
-                      color: isDark ? AppColors.darkCardElevated : AppColors.primarySubtle,
-                      borderRadius: BorderRadius.circular(AppRadius.sm),
-                      border: Border.all(
-                        color: isDark ? AppColors.darkBorder : AppColors.lightBorder,
-                        width: 1,
+                    const SizedBox(width: AppSpacing.md),
+                    Expanded(
+                      child: _languageOption(
+                        isDark,
+                        isSelected: !isHindi,
+                        label: AppStrings.langEnglishLabel,
+                        onTap: () =>
+                            LanguageService.instance.setLanguage(AppLang.en),
                       ),
                     ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        const Icon(Icons.history_toggle_off_rounded, size: 14, color: AppColors.correctGreen),
-                        const SizedBox(width: AppSpacing.xs),
-                        Text(
-                          '${AppStrings.dbLastSyncedLabel}: $_lastSyncedStr',
-                          style: AppTypography.labelSmall(
-                            color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: AppSpacing.md),
-
-              Text(
-                AppStrings.settingsBankDesc,
-                style: AppTypography.bodySmall(
-                  color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary,
-                ).copyWith(height: 1.35),
-              ),
-
-              // Active Sync Progress indicator
-              if (_isSyncing) ...[
-                const SizedBox(height: AppSpacing.md),
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(AppRadius.full),
-                  child: LinearProgressIndicator(
-                    value: _syncProgress > 0 ? _syncProgress : null,
-                    minHeight: 6,
-                    backgroundColor: isDark ? AppColors.darkBorder : AppColors.lightBorder,
-                    valueColor: const AlwaysStoppedAnimation<Color>(AppColors.sealGold),
-                  ),
-                ),
-                const SizedBox(height: AppSpacing.sm),
-                Text(
-                  _syncProgressStatus.isNotEmpty ? _syncProgressStatus : AppStrings.settingsSyncChecking,
-                  style: AppTypography.labelSmall(
-                    color: isDark ? AppColors.sealGoldLight : AppColors.primary,
-                  ).copyWith(fontStyle: FontStyle.italic),
-                ),
-              ],
-
-              const SizedBox(height: AppSpacing.md),
-
-              // Action Button 1: Check & Update (Normal Sync)
-              ElevatedButton.icon(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: isDark ? AppColors.darkCardElevated : AppColors.primarySubtle,
-                  foregroundColor: isDark ? AppColors.sealGoldLight : AppColors.primary,
-                  padding: const EdgeInsets.symmetric(
-                    vertical: AppSpacing.md,
-                    horizontal: AppSpacing.base,
-                  ),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(AppRadius.sm),
-                    side: BorderSide(
-                      color: isDark ? AppColors.sealGoldLight : AppColors.primary,
-                      width: 1.2,
-                    ),
-                  ),
-                  minimumSize: const Size(double.infinity, 44),
-                ),
-                onPressed: _isSyncing ? null : _syncNow,
-                icon: const Icon(Icons.sync_rounded, size: 20),
-                label: Text(
-                  AppStrings.settingsBankSyncBtn,
-                  style: AppTypography.labelMedium(),
-                ),
-              ),
-              const SizedBox(height: AppSpacing.sm),
-
-              // Action Buttons Row: Clean & Re-sync + Deep Optimize
-              Row(
-                children: [
-                  // Clean & Re-sync Button
-                  Expanded(
-                    child: OutlinedButton.icon(
-                      style: OutlinedButton.styleFrom(
-                        foregroundColor: AppColors.danger,
-                        side: BorderSide(
-                          color: AppColors.danger.withValues(alpha: 0.6),
-                          width: 1.2,
-                        ),
-                        padding: const EdgeInsets.symmetric(
-                          vertical: AppSpacing.sm,
-                          horizontal: AppSpacing.sm,
-                        ),
-                        minimumSize: const Size(0, 42),
-                        shape: const RoundedRectangleBorder(borderRadius: AppRadius.roundedSm),
-                      ),
-                      onPressed: _isSyncing ? null : _confirmCleanAndResync,
-                      icon: const Icon(Icons.delete_sweep_rounded, size: 18),
-                      label: FittedBox(
-                        fit: BoxFit.scaleDown,
-                        child: Text(
-                          AppStrings.dbCleanResyncBtn,
-                          style: AppTypography.labelMedium(),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: AppSpacing.sm),
-
-                  // Deep Optimize Button
-                  Expanded(
-                    child: OutlinedButton.icon(
-                      style: OutlinedButton.styleFrom(
-                        foregroundColor: isDark ? AppColors.sealGoldLight : AppColors.sealGold,
-                        side: BorderSide(
-                          color: AppColors.sealGold.withValues(alpha: 0.7),
-                          width: 1.2,
-                        ),
-                        padding: const EdgeInsets.symmetric(
-                          vertical: AppSpacing.sm,
-                          horizontal: AppSpacing.sm,
-                        ),
-                        minimumSize: const Size(0, 42),
-                        shape: const RoundedRectangleBorder(borderRadius: AppRadius.roundedSm),
-                      ),
-                      onPressed: (_isOptimizing || _isSyncing) ? null : _optimizeDatabase,
-                      icon: const Icon(Icons.bolt_rounded, size: 18),
-                      label: FittedBox(
-                        fit: BoxFit.scaleDown,
-                        child: Text(
-                          AppStrings.dbOptimizeBtn,
-                          style: AppTypography.labelMedium(),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-        const SizedBox(height: AppSpacing.base),
-
-        // 3. Mathematical Probability Model Details
-        Container(
-          padding: _HomeCard.padding,
-          decoration: _HomeCard.card(isDark),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(AppSpacing.sm),
-                    decoration: BoxDecoration(
-                      color: AppColors.sealGold.withValues(alpha: 0.15),
-                      shape: BoxShape.circle,
-                    ),
-                    child: const Icon(Icons.auto_graph_rounded, color: AppColors.sealGold, size: 22),
-                  ),
-                  const SizedBox(width: AppSpacing.md),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          AppStrings.settingsModelHeader,
-                          style: AppTypography.titleSmall(
-                            color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
-                          ),
-                        ),
-                        const SizedBox(height: AppSpacing.xs),
-                        Wrap(
-                          spacing: AppSpacing.sm,
-                          runSpacing: AppSpacing.xs,
-                          children: [
-                            AppBadge(label: 'Verified ${AppStrings.currentExamYear}', color: AppColors.sealGold),
-                            AppBadge(
-                              label: AppStrings.isHindi ? 'मानक ब्लूप्रिंट' : 'Exam Blueprint',
-                              color: AppColors.cdp,
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: AppSpacing.md),
-              Text(
-                AppStrings.settingsModelDesc,
-                style: AppTypography.bodySmall(
-                  color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary,
-                ).copyWith(height: 1.4),
-              ),
-            ],
-          ),
-        ),
-        const SizedBox(height: AppSpacing.lg),
-
-        // 4. In-App Update (IAU) Card
-        Container(
-          margin: const EdgeInsets.only(bottom: AppSpacing.base),
-          padding: _HomeCard.padding,
-          decoration: _HomeCard.card(isDark),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(AppSpacing.sm),
-                    decoration: BoxDecoration(
-                      color: AppColors.sealGold.withValues(alpha: 0.15),
-                      shape: BoxShape.circle,
-                    ),
-                    child: const Icon(Icons.system_update_rounded, color: AppColors.sealGold, size: 22),
-                  ),
-                  const SizedBox(width: AppSpacing.md),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          AppStrings.checkUpdateBtn,
-                          style: AppTypography.titleSmall(
-                            color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
-                          ),
-                        ),
-                        const SizedBox(height: AppSpacing.xs),
-                        Text(
-                          AppStrings.updateAvailableDesc,
-                          style: AppTypography.bodySmall(
-                            color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: AppSpacing.md),
-              OutlinedButton.icon(
-                style: OutlinedButton.styleFrom(
-                  foregroundColor: isDark ? AppColors.sealGoldLight : AppColors.primary,
-                  side: BorderSide(
-                    color: isDark ? AppColors.sealGoldLight : AppColors.primary,
-                    width: 1.2,
-                  ),
-                  padding: const EdgeInsets.symmetric(
-                    vertical: AppSpacing.sm,
-                    horizontal: AppSpacing.base,
-                  ),
-                  shape: const RoundedRectangleBorder(borderRadius: AppRadius.roundedSm),
-                  minimumSize: const Size(double.infinity, 42),
-                ),
-                onPressed: _checkAppUpdate,
-                icon: const Icon(Icons.refresh_rounded, size: 18),
-                label: Text(
-                  AppStrings.checkUpdateBtn,
-                  style: AppTypography.labelMedium(),
-                ),
-              ),
-            ],
-          ),
+                  ],
+                );
+              },
+            ),
+          ],
         ),
 
-        // 5. App Info Footer
+        // 5. The offline question bank and the database of the app
+        _buildSettingsBankCard(isDark),
+
+        // 6. The analysis model of the exam
+        _buildSettingsModelCard(isDark),
+
+        // 7. The update of the app
+        _settingsCard(
+          isDark: isDark,
+          icon: Icons.system_update_rounded,
+          title: _updateActionLabel,
+          subtitle: AppStrings.updateAvailableDesc,
+          children: [
+            _settingsActionButton(
+              isDark: isDark,
+              icon: Icons.refresh_rounded,
+              label: _isCheckingUpdate
+                  ? _checkingUpdateLabel
+                  : _updateActionLabel,
+              onPressed: _isCheckingUpdate ? null : _checkAppUpdate,
+              isBusy: _isCheckingUpdate,
+            ),
+          ],
+        ),
+
+        // 8. App info footer
         Center(
           child: Text(
             AppStrings.settingsAbout,
@@ -3160,6 +2798,247 @@ class _HomeScreenState extends State<HomeScreen> {
       ],
     );
   }
+
+  /// The offline question bank and the database of the app.
+  Widget _buildSettingsBankCard(bool isDark) {
+    return _settingsCard(
+      isDark: isDark,
+      icon: Icons.storage_rounded,
+      iconColor: AppColors.success,
+      title: AppStrings.settingsBankHeader,
+      subtitle: AppStrings.bankInfo(
+        _totalQuestions,
+        _pyqCount,
+        BankFacts.subjectCount,
+      ),
+      children: [
+        // The size of the database and the time of the last sync
+        Wrap(
+          spacing: AppSpacing.sm,
+          runSpacing: AppSpacing.sm,
+          children: [
+            _settingsMetricChip(
+              isDark: isDark,
+              icon: Icons.data_usage_rounded,
+              iconColor: AppColors.sealGold,
+              label: '${AppStrings.dbStorageSizeLabel}: $_dbSizeStr',
+            ),
+            _settingsMetricChip(
+              isDark: isDark,
+              icon: Icons.history_toggle_off_rounded,
+              iconColor: AppColors.correctGreen,
+              label: '${AppStrings.dbLastSyncedLabel}: $_lastSyncedStr',
+            ),
+          ],
+        ),
+        const SizedBox(height: AppSpacing.md),
+
+        Text(
+          AppStrings.settingsBankDesc,
+          style: AppTypography.bodySmall(
+            color: isDark
+                ? AppColors.darkTextSecondary
+                : AppColors.lightTextMuted,
+          ).copyWith(height: 1.35),
+        ),
+
+        // The progress of a running sync
+        if (_isSyncing) ...[
+          const SizedBox(height: AppSpacing.md),
+          ClipRRect(
+            borderRadius: AppRadius.roundedFull,
+            child: LinearProgressIndicator(
+              value: _syncProgress > 0 ? _syncProgress : null,
+              minHeight: 6,
+              backgroundColor:
+                  isDark ? AppColors.darkBorder : AppColors.lightBorder,
+              valueColor:
+                  const AlwaysStoppedAnimation<Color>(AppColors.sealGold),
+            ),
+          ),
+          const SizedBox(height: AppSpacing.sm),
+          Text(
+            _syncProgressStatus.isNotEmpty
+                ? _syncProgressStatus
+                : AppStrings.settingsSyncChecking,
+            style: AppTypography.labelSmall(
+              color: isDark ? AppColors.sealGoldLight : AppColors.primary,
+            ).copyWith(fontStyle: FontStyle.italic),
+          ),
+        ],
+
+        const SizedBox(height: AppSpacing.md),
+
+        // Sync the question bank
+        _settingsActionButton(
+          isDark: isDark,
+          icon: Icons.sync_rounded,
+          label: _isSyncing ? _syncingLabel : _syncActionLabel,
+          onPressed: _isSyncing ? null : _syncNow,
+          isBusy: _isSyncing,
+        ),
+        const SizedBox(height: AppSpacing.sm),
+
+        // Re-download the bank & optimise the database
+        Row(
+          children: [
+            Expanded(
+              child: _settingsActionButton(
+                isDark: isDark,
+                icon: Icons.delete_sweep_rounded,
+                label: _resyncActionLabel,
+                onPressed: _isSyncing ? null : _confirmCleanAndResync,
+                isDanger: true,
+              ),
+            ),
+            const SizedBox(width: AppSpacing.sm),
+            Expanded(
+              child: _settingsActionButton(
+                isDark: isDark,
+                icon: Icons.bolt_rounded,
+                label: _isOptimizing ? _optimizingLabel : _optimizeActionLabel,
+                onPressed:
+                    (_isOptimizing || _isSyncing) ? null : _optimizeDatabase,
+                isBusy: _isOptimizing,
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  /// The analysis model that prepares the questions of the exam.
+  Widget _buildSettingsModelCard(bool isDark) {
+    return _settingsCard(
+      isDark: isDark,
+      icon: Icons.auto_graph_rounded,
+      title: AppStrings.settingsModelHeader,
+      subtitle: AppStrings.settingsModelDesc,
+      children: [
+        Wrap(
+          spacing: AppSpacing.sm,
+          runSpacing: AppSpacing.xs,
+          children: [
+            AppBadge(
+              label: 'Verified ${AppStrings.currentExamYear}',
+              color: AppColors.sealGold,
+            ),
+            AppBadge(
+              label: AppStrings.isHindi ? 'मानक ब्लूप्रिंट' : 'Exam Blueprint',
+              color: AppColors.cdp,
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  /// One language of the app.
+  Widget _languageOption(
+    bool isDark, {
+    required bool isSelected,
+    required String label,
+    required VoidCallback onTap,
+  }) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: AppRadius.roundedSm,
+      child: Container(
+        padding: const EdgeInsets.symmetric(
+          vertical: AppSpacing.md,
+          horizontal: AppSpacing.sm,
+        ),
+        decoration: BoxDecoration(
+          color: isSelected
+              ? AppColors.sealGold.withValues(alpha: 0.2)
+              : (isDark ? AppColors.darkCardElevated : AppColors.lightBg),
+          borderRadius: AppRadius.roundedSm,
+          border: Border.all(
+            color: isSelected
+                ? AppColors.sealGold
+                : (isDark ? AppColors.darkBorder : AppColors.lightBorder),
+            width: isSelected ? 2.0 : 1.0,
+          ),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              isSelected
+                  ? Icons.check_circle_rounded
+                  : Icons.circle_outlined,
+              color: isSelected
+                  ? AppColors.sealGold
+                  : (isDark
+                      ? AppColors.darkTextMuted
+                      : AppColors.lightTextMuted),
+              size: 18,
+            ),
+            const SizedBox(width: AppSpacing.sm),
+            Flexible(
+              child: Text(
+                label,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: AppTypography.labelMedium(
+                  color: isSelected
+                      ? AppColors.sealGold
+                      : (isDark
+                          ? AppColors.darkTextPrimary
+                          : AppColors.lightTextPrimary),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  /// One measurement of the database (the size, the time of the last sync).
+  Widget _settingsMetricChip({
+    required bool isDark,
+    required IconData icon,
+    required Color iconColor,
+    required String label,
+  }) {
+    return Container(
+      constraints: const BoxConstraints(maxWidth: 240),
+      padding: const EdgeInsets.symmetric(
+        horizontal: AppSpacing.sm,
+        vertical: AppSpacing.xs,
+      ),
+      decoration: BoxDecoration(
+        color: isDark ? AppColors.darkCardElevated : AppColors.primarySubtle,
+        borderRadius: AppRadius.roundedFull,
+        border: Border.all(
+          color: isDark ? AppColors.darkBorder : AppColors.lightBorder,
+          width: 1,
+        ),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(icon, size: 14, color: iconColor),
+          const SizedBox(width: AppSpacing.xs),
+          Flexible(
+            child: Text(
+              label,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: AppTypography.labelSmall(
+                color: isDark
+                    ? AppColors.darkTextSecondary
+                    : AppColors.lightTextSecondary,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
 
   Widget _buildMetaChip(IconData icon, String label, bool isDark, [bool isPaper2 = false]) {
     final chipColor = isPaper2
@@ -3265,7 +3144,7 @@ class _HomeScreenState extends State<HomeScreen> {
             itemBuilder: (context, index) {
               final form = carouselList[index];
               final formId = form['id'] as String;
-              final title = AppStrings.formatPaperTitle(form, isHindi: isHi);
+              final title = _paperTitle(form, isHi: isHi);
               final rawSet = form['set_code']?.toString() ?? 'SET';
               final stampParts = AppStrings.getStampParts(rawSet, isHindi: isHi);
               final isPyq = rawSet.contains('20') || rawSet == 'PYQ' || (form['is_pyq'] == 1);
@@ -3526,7 +3405,7 @@ class _HomeScreenState extends State<HomeScreen> {
     final featuredFormId = featuredForm?['id'] as String?;
     final rawBadge = featuredForm?['set_code']?.toString() ?? 'M-01';
     final stampParts = AppStrings.getStampParts(rawBadge, isHindi: AppStrings.isHindi);
-    final featuredTitle = featuredForm != null ? AppStrings.formatPaperTitle(featuredForm) : AppStrings.heroTitle;
+    final featuredTitle = featuredForm != null ? _paperTitle(featuredForm, isHi: AppStrings.isHindi) : AppStrings.heroTitle;
 
     return Container(
       decoration: _HomeCard.card(
@@ -3686,6 +3565,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           const SizedBox(width: AppSpacing.xs),
                           Text(
                             AppStrings.heroTotalQuestions,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
                             style: AppTypography.labelMedium(
                               color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
                             ),
@@ -3703,6 +3584,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           const SizedBox(width: AppSpacing.xs),
                           Text(
                             AppStrings.heroTime,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
                             style: AppTypography.labelMedium(
                               color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
                             ),
@@ -3720,6 +3603,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           const SizedBox(width: AppSpacing.xs),
                           Text(
                             AppStrings.heroMarks,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
                             style: AppTypography.labelMedium(
                               color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
                             ),
@@ -4154,10 +4039,115 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _buildHistoryCard(Map<String, dynamic> h, bool isDark) {
-    final score = (h['score'] as num?)?.toInt() ?? 0;
-    final total = (h['total'] as num?)?.toInt() ?? BankFacts.questionsPerPaper;
-    final mode = h['mode'] as String? ?? 'predicted';
+    return HistoryCard(
+      entry: h,
+      isDark: isDark,
+      onOpen: () => _openHistorySession(h),
+      onPracticeAgain: () => _practiceHistoryAgain(
+        h,
+        (h['total'] as num?)?.toInt() ?? BankFacts.questionsPerPaper,
+      ),
+    );
+  }
+
+  /// Starts a new test of the same kind as the one of the history row.
+  Future<void> _practiceHistoryAgain(Map<String, dynamic> h, int total) async {
+    final modeName = h['mode'] as String? ?? 'predicted';
+    final mode = MockMode.values.firstWhere(
+      (m) => m.name == modeName,
+      orElse: () => MockMode.predicted,
+    );
+    final sectionFilter = h['section_filter'] as String?;
+    final questions = total > 0 ? total : BankFacts.questionsPerPaper;
+
+    setState(() => _isLoading = true);
+    try {
+      final mockData = await _engine.generateMock(
+        MockConfig(
+          mode: mode,
+          exam: ExamService.instance.examCode,
+          sectionFilter: sectionFilter,
+          totalQuestions: questions,
+          timeLimitMinutes: questions,
+          seed: DateTime.now().millisecondsSinceEpoch,
+        ),
+      );
+      if (!mounted) return;
+      setState(() => _isLoading = false);
+
+      if (mockData.questions.isEmpty) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('इस पेपर के प्रश्न लोड नहीं हो सके')),
+        );
+        return;
+      }
+
+      final session = TestSession(
+        id: 'test_${DateTime.now().millisecondsSinceEpoch}',
+        config: MockConfig(
+          mode: mode,
+          exam: ExamService.instance.examCode,
+          sectionFilter: sectionFilter,
+          totalQuestions: questions,
+          timeLimitMinutes: questions,
+          seed: DateTime.now().millisecondsSinceEpoch,
+        ),
+        questions: mockData.questions,
+        passages: mockData.passages,
+        paperTitle: _historyPaperTitle(h),
+      );
+
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => ExamService.instance.buildExamScreen(session: session),
+        ),
+      ).then((_) => _loadData());
+    } catch (e) {
+      if (!mounted) return;
+      setState(() => _isLoading = false);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(AppStrings.loadError(e.toString()))),
+      );
+    }
+  }
+}
+
+
+/// The card of one finished test in the history tab.
+///
+/// Every part of the row has a proper constraint, so the name of the paper,
+/// the score, the chips and the actions always fit on a narrow phone.
+class HistoryCard extends StatelessWidget {
+  const HistoryCard({
+    super.key,
+    required this.entry,
+    required this.isDark,
+    required this.onOpen,
+    required this.onPracticeAgain,
+  });
+
+  /// The row of the test history.
+  final Map<String, dynamic> entry;
+
+  final bool isDark;
+
+  /// Opens the stored result of the test.
+  final VoidCallback onOpen;
+
+  /// Starts the same kind of test once more.
+  final VoidCallback onPracticeAgain;
+
+  @override
+  Widget build(BuildContext context) {
+    final score = (entry['score'] as num?)?.toInt() ?? 0;
+    final total = (entry['total'] as num?)?.toInt() ?? BankFacts.questionsPerPaper;
+    final mode = entry['mode'] as String? ?? 'predicted';
     final isPass = ExamRules.isGeneralPass(score, total);
+    final isHi = AppStrings.isHindi;
+    final title = _historyPaperTitle(entry);
+    final minutes = ((entry['time_spent_seconds'] as num?)?.toInt() ?? 0) ~/ 60;
+    final timeLabel = isHi ? '$minutes मिनट' : '$minutes min';
+    final scoreColor = isPass ? AppColors.success : AppColors.danger;
 
     return Padding(
       padding: const EdgeInsets.only(bottom: AppSpacing.sm),
@@ -4165,59 +4155,113 @@ class _HomeScreenState extends State<HomeScreen> {
         color: Colors.transparent,
         child: InkWell(
           borderRadius: _HomeCard.radius,
-          onTap: () => _openHistorySession(h),
+          onTap: onOpen,
           child: Container(
-            padding: const EdgeInsets.symmetric(
-              horizontal: AppSpacing.md,
-              vertical: AppSpacing.sm,
-            ),
+            padding: const EdgeInsets.all(AppSpacing.md),
             decoration: _HomeCard.card(isDark),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                // 1. The name of the paper and the score
                 Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
                       width: 10,
                       height: 10,
+                      margin: const EdgeInsets.only(top: 5),
                       decoration: BoxDecoration(
-                        color: isPass ? AppColors.success : AppColors.danger,
+                        color: scoreColor,
                         shape: BoxShape.circle,
                       ),
                     ),
-                    const SizedBox(width: AppSpacing.md),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          AppStrings.historyMockType(mode),
-                          style: AppTypography.labelMedium(
-                            color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
-                          ),
+                    const SizedBox(width: AppSpacing.sm),
+                    Expanded(
+                      child: Text(
+                        title,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: AppTypography.titleSmall(
+                          color: isDark
+                              ? AppColors.darkTextPrimary
+                              : AppColors.lightTextPrimary,
+                        ).copyWith(height: 1.3),
+                      ),
+                    ),
+                    const SizedBox(width: AppSpacing.sm),
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: AppSpacing.sm,
+                        vertical: AppSpacing.xs,
+                      ),
+                      decoration: BoxDecoration(
+                        color: scoreColor.withValues(alpha: 0.12),
+                        borderRadius: AppRadius.roundedFull,
+                        border: Border.all(
+                          color: scoreColor.withValues(alpha: 0.45),
+                          width: 1,
                         ),
-                        Text(
-                          isPass ? AppStrings.historyQualified : AppStrings.historyPracticeNeeded,
-                          style: AppTypography.labelSmall(
-                            color: isPass ? AppColors.success : AppColors.danger,
-                          ),
-                        ),
-                      ],
+                      ),
+                      child: Text(
+                        '$score / $total',
+                        style: AppTypography.labelMedium(color: scoreColor),
+                      ),
                     ),
                   ],
                 ),
+                const SizedBox(height: AppSpacing.sm),
+
+                // 2. The chips of the test
+                Wrap(
+                  spacing: AppSpacing.sm,
+                  runSpacing: AppSpacing.xs,
+                  children: [
+                    _historyChip(
+                      isDark: isDark,
+                      icon: Icons.assessment_rounded,
+                      iconColor: AppColors.sealGold,
+                      label: AppStrings.historyMockType(mode),
+                    ),
+                    _historyChip(
+                      isDark: isDark,
+                      icon: isPass
+                          ? Icons.verified_rounded
+                          : Icons.trending_up_rounded,
+                      iconColor: scoreColor,
+                      label: isPass
+                          ? AppStrings.historyQualified
+                          : AppStrings.historyPracticeNeeded,
+                    ),
+                    _historyChip(
+                      isDark: isDark,
+                      icon: Icons.schedule_rounded,
+                      iconColor: AppColors.accent,
+                      label: timeLabel,
+                    ),
+                  ],
+                ),
+                const SizedBox(height: AppSpacing.md),
+
+                // 3. The actions of the test
                 Row(
                   children: [
-                    Text(
-                      '$score / $total',
-                      style: AppTypography.titleSmall(
-                        color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
+                    Expanded(
+                      child: _historyActionButton(
+                        isDark: isDark,
+                        icon: Icons.bar_chart_rounded,
+                        label: isHi ? 'परिणाम देखें' : 'View result',
+                        onPressed: onOpen,
                       ),
                     ),
-                    const SizedBox(width: AppSpacing.xs),
-                    Icon(
-                      Icons.chevron_right_rounded,
-                      size: 18,
-                      color: isDark ? AppColors.darkTextMuted : AppColors.lightTextMuted,
+                    const SizedBox(width: AppSpacing.sm),
+                    Expanded(
+                      child: _historyActionButton(
+                        isDark: isDark,
+                        icon: Icons.replay_rounded,
+                        label: isHi ? 'फिर से अभ्यास' : 'Practice again',
+                        onPressed: onPracticeAgain,
+                        isMuted: true,
+                      ),
                     ),
                   ],
                 ),
@@ -4228,4 +4272,121 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+
+  /// One action button of a history card.
+  Widget _historyActionButton({
+    required bool isDark,
+    required IconData icon,
+    required String label,
+    required VoidCallback onPressed,
+    bool isMuted = false,
+  }) {
+    final color = isMuted
+        ? (isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary)
+        : (isDark ? AppColors.sealGoldLight : AppColors.primary);
+    return OutlinedButton(
+      onPressed: onPressed,
+      style: OutlinedButton.styleFrom(
+        foregroundColor: color,
+        side: BorderSide(
+          color: isMuted
+              ? (isDark ? AppColors.darkBorder : AppColors.lightBorder)
+              : color.withValues(alpha: 0.7),
+          width: 1.2,
+        ),
+        padding: const EdgeInsets.symmetric(
+          vertical: AppSpacing.sm,
+          horizontal: AppSpacing.xs,
+        ),
+        minimumSize: const Size(0, 42),
+        shape: const RoundedRectangleBorder(
+          borderRadius: AppRadius.roundedSm,
+        ),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(icon, size: 18, color: color),
+          const SizedBox(width: AppSpacing.xs),
+          Flexible(
+            child: Text(
+              label,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              textAlign: TextAlign.center,
+              style: AppTypography.labelMedium(color: color),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// One chip of a history card.
+Widget _historyChip({
+  required bool isDark,
+  required IconData icon,
+  required Color iconColor,
+  required String label,
+}) {
+  return Container(
+    constraints: const BoxConstraints(maxWidth: 230),
+    padding: const EdgeInsets.symmetric(
+      horizontal: AppSpacing.sm,
+      vertical: AppSpacing.xs,
+    ),
+    decoration: BoxDecoration(
+      color: isDark ? AppColors.darkCardElevated : AppColors.primarySubtle,
+      borderRadius: AppRadius.roundedFull,
+      border: Border.all(
+        color: iconColor.withValues(alpha: 0.35),
+        width: 1,
+      ),
+    ),
+    child: Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Icon(icon, size: 13, color: iconColor),
+        const SizedBox(width: AppSpacing.xs),
+        Flexible(
+          child: Text(
+            label,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: AppTypography.labelSmall(
+              color: isDark
+                  ? AppColors.darkTextSecondary
+                  : AppColors.lightTextSecondary,
+            ),
+          ),
+        ),
+      ],
+    ),
+  );
+}
+
+/// The name of the paper of a history row.
+///
+/// The name is stored inside the session of the test, so it is read from
+/// there.  An old row without a session falls back to the type of the test.
+String _historyPaperTitle(Map<String, dynamic> h) {
+  final raw = h['session_json']?.toString() ?? '';
+  if (raw.isNotEmpty && raw != '{}') {
+    // The session holds every question of the test, so only the name is
+    // picked out of it - decoding the whole session would be far too slow.
+    final match = RegExp(
+      r'"paperTitle"\s*:\s*"((?:[^"\\]|\\.)*)"',
+    ).firstMatch(raw);
+    if (match != null) {
+      final title = match.group(1)!
+          .replaceAll(r'\"', '"')
+          .replaceAll(r'\\', r'\')
+          .replaceAll(r'\n', ' ')
+          .replaceAll(r'\t', ' ')
+          .trim();
+      if (title.isNotEmpty) return title;
+    }
+  }
+  return AppStrings.historyMockType(h['mode'] as String? ?? 'predicted');
 }

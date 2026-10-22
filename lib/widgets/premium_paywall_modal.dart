@@ -26,16 +26,20 @@ class PremiumPaywallModal extends StatefulWidget {
 class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
   final PremiumService _premiumService = PremiumService.instance;
   String _selectedTier = PremiumService.masterProductId;
+  String _selectedExam = 'utet';
   StreamSubscription<bool>? _successSubscription;
+  bool _celebrationShown = false;
+
+  /// The product of the "one exam" pass.
+  String get _examProductId => _selectedExam == 'ctet'
+      ? PremiumService.ctetProductId
+      : PremiumService.utetProductId;
 
   @override
   void initState() {
     super.initState();
     _successSubscription = _premiumService.onPurchaseSuccess.listen((_) {
-      if (mounted) {
-        Navigator.of(context).pop(); // Dismiss paywall modal
-        _showCongratulationsDialog(context);
-      }
+      _celebrate();
     });
   }
 
@@ -45,16 +49,233 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
     super.dispose();
   }
 
+  /// The chooser of the exam of the "one exam" pass.
+  Widget _buildExamSelector(bool isDark) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          AppStrings.proPackWhichExam,
+          style: AppTypography.labelMedium(
+            color: isDark
+                ? AppColors.darkTextSecondary
+                : AppColors.lightTextSecondary,
+          ),
+        ),
+        const SizedBox(height: AppSpacing.sm),
+        Row(
+          children: [
+            Expanded(
+              child: _buildExamOption(
+                isDark,
+                label: AppStrings.proPackOnlyUtet,
+                selected: _selectedExam == 'utet',
+                onTap: () => setState(() {
+                  _selectedExam = 'utet';
+                  if (_selectedTier == PremiumService.ctetProductId) {
+                    _selectedTier = PremiumService.utetProductId;
+                  }
+                }),
+              ),
+            ),
+            const SizedBox(width: AppSpacing.sm),
+            Expanded(
+              child: _buildExamOption(
+                isDark,
+                label: AppStrings.proPackOnlyCtet,
+                selected: _selectedExam == 'ctet',
+                onTap: () => setState(() {
+                  _selectedExam = 'ctet';
+                  if (_selectedTier == PremiumService.utetProductId) {
+                    _selectedTier = PremiumService.ctetProductId;
+                  }
+                }),
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  /// One exam of the "one exam" pass.
+  Widget _buildExamOption(
+    bool isDark, {
+    required String label,
+    required bool selected,
+    required VoidCallback onTap,
+  }) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: AppRadius.roundedSm,
+      child: Container(
+        padding: const EdgeInsets.symmetric(
+          vertical: AppSpacing.sm,
+          horizontal: AppSpacing.xs,
+        ),
+        decoration: BoxDecoration(
+          color: selected
+              ? AppColors.sealGold.withValues(alpha: 0.18)
+              : (isDark ? AppColors.darkCardElevated : AppColors.lightBg),
+          borderRadius: AppRadius.roundedSm,
+          border: Border.all(
+            color: selected
+                ? AppColors.sealGold
+                : (isDark ? AppColors.darkBorder : AppColors.lightBorder),
+            width: selected ? 1.6 : 1.0,
+          ),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              selected
+                  ? Icons.check_circle_rounded
+                  : Icons.radio_button_unchecked_rounded,
+              size: 15,
+              color: selected
+                  ? AppColors.sealGold
+                  : (isDark
+                      ? AppColors.darkTextMuted
+                      : AppColors.lightTextMuted),
+            ),
+            const SizedBox(width: AppSpacing.xs),
+            Flexible(
+              child: Text(
+                label,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.center,
+                style: AppTypography.labelMedium(
+                  color: selected
+                      ? AppColors.sealGold
+                      : (isDark
+                          ? AppColors.darkTextSecondary
+                          : AppColors.lightTextSecondary),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  /// Shows the congratulations dialog once and closes the sheet afterwards.
+  ///
+  /// The dialog is opened before the sheet is closed, so the context is
+  /// never used after the widget was popped.
+  Future<void> _celebrate() async {
+    if (!mounted || _celebrationShown) return;
+    _celebrationShown = true;
+    await _showCongratulationsDialog(context);
+    if (!mounted) return;
+    Navigator.of(context).pop();
+  }
+
+  /// The message of a failed purchase.
+  ///
+  /// Every failure of the store has its own wording, so the candidate always
+  /// knows what happened.
+  String _messageFor(PremiumPurchaseResult result) {
+    switch (result) {
+      case PremiumPurchaseResult.unlocked:
+        return AppStrings.premiumSuccessToast;
+      case PremiumPurchaseResult.cancelled:
+        return AppStrings.premiumCancelledToast;
+      case PremiumPurchaseResult.pending:
+        return AppStrings.premiumPendingToast;
+      case PremiumPurchaseResult.storeUnavailable:
+        return _storeUnavailableMessage;
+      case PremiumPurchaseResult.offline:
+        return _offlineMessage;
+      case PremiumPurchaseResult.failed:
+        return AppStrings.premiumErrorToast;
+    }
+  }
+
+  /// The Google Play Store is not installed on this device.
+  String get _storeUnavailableTitle =>
+      AppStrings.isHindi ? 'Google Play उपलब्ध नहीं है' : 'Google Play is not available';
+
+  String get _storeUnavailableMessage => AppStrings.isHindi
+      ? 'इस डिवाइस पर Google Play स्टोर नहीं है, इसलिए प्रो पास यहाँ से खरीदा नहीं जा सकता। कृपया Google Play वाले डिवाइस पर इंस्टॉल करके फिर कोशिश करें।'
+      : 'This device has no Google Play Store, so the Pro Pass cannot be bought here. Install the app on a device with Google Play and try again.';
+
+  /// The store is there, but it cannot be reached.
+  String get _offlineTitle =>
+      AppStrings.isHindi ? 'इंटरनेट कनेक्शन नहीं है' : 'No internet connection';
+
+  String get _offlineMessage => AppStrings.isHindi
+      ? 'Google Play तक पहुँचना संभव नहीं है। कृपया इंटरनेट चालू करके फिर कोशिश करें।'
+      : 'Google Play cannot be reached right now. Please turn the internet on and try again.';
+
+  /// The banner that explains why the pass cannot be bought right now.
+  Widget? _buildStoreBanner(bool isDark) {
+    final status = _premiumService.storeStatus.value;
+    if (status == PremiumStoreStatus.available ||
+        status == PremiumStoreStatus.unknown) {
+      return null;
+    }
+    final isNoStore = status == PremiumStoreStatus.noStore;
+    final title = isNoStore ? _storeUnavailableTitle : _offlineTitle;
+    final message = isNoStore ? _storeUnavailableMessage : _offlineMessage;
+    final color = isNoStore ? AppColors.warning : AppColors.danger;
+
+    return Container(
+      margin: const EdgeInsets.only(bottom: AppSpacing.md),
+      padding: const EdgeInsets.all(AppSpacing.md),
+      decoration: BoxDecoration(
+        color: color.withValues(alpha: 0.12),
+        borderRadius: AppRadius.roundedBase,
+        border: Border.all(color: color.withValues(alpha: 0.5), width: 1.2),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Icon(
+            isNoStore
+                ? Icons.storefront_outlined
+                : Icons.wifi_off_rounded,
+            color: color,
+            size: 20,
+          ),
+          const SizedBox(width: AppSpacing.sm),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: AppTypography.titleSmall(color: color),
+                ),
+                const SizedBox(height: AppSpacing.xs),
+                Text(
+                  message,
+                  style: AppTypography.bodySmall(
+                    color: isDark
+                        ? AppColors.darkTextSecondary
+                        : AppColors.lightTextSecondary,
+                  ).copyWith(height: 1.35),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   /// The one border of this file.
   Border _cardBorder({Color? color, double width = 1.2}) => Border.all(
         color: color ?? AppColors.borderStrong,
         width: width,
       );
 
-  static void _showCongratulationsDialog(BuildContext context) {
+  static Future<void> _showCongratulationsDialog(BuildContext context) async {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
-    showDialog(
+    await showDialog(
       context: context,
       barrierDismissible: false,
       builder: (ctx) => AlertDialog(
@@ -247,30 +468,98 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
                 ),
                 const SizedBox(height: AppSpacing.md),
 
+                // The reason why the pass cannot be bought right now.
+                ValueListenableBuilder<PremiumStoreStatus>(
+                  valueListenable: _premiumService.storeStatus,
+                  builder: (context, status, _) {
+                    final banner = _buildStoreBanner(isDark);
+                    return banner ?? const SizedBox.shrink();
+                  },
+                ),
+
                 // Tier Selection Cards
                 if (!isUnlocked) ...[
-                  // Tier 1: Master All-Access Pass (Best Value - ₹599)
+                  // The exam of the "one exam" pass
+                  _buildExamSelector(isDark),
+                  const SizedBox(height: AppSpacing.sm),
+
+                  // Tier 1: Full Access Pro Pass (every exam, every paper)
                   _buildTierCard(
                     tierId: PremiumService.masterProductId,
-                    title: AppStrings.proPackMasterTitle,
-                    subtitle: AppStrings.proPackMasterSub,
-                    price: AppStrings.proPackMasterPrice,
-                    badgeText: AppStrings.proPackMasterTag,
+                    title: AppStrings.proPackFullTitle,
+                    subtitle: AppStrings.proPackFullSub,
+                    price: _premiumService.priceOf(PremiumService.masterProductId),
+                    badgeText: AppStrings.proPackMostPopular,
                     isPopular: true,
+                    isDark: isDark,
+                    anchorText: AppStrings.proPackAnchorValue,
+                    noteText: AppStrings.proPackPerMonth,
+                  ),
+                  const SizedBox(height: AppSpacing.sm),
+
+                  // Tier 2: One Exam Pro Pass (UTET or CTET)
+                  _buildTierCard(
+                    tierId: _examProductId,
+                    title: AppStrings.proPackExamTitle,
+                    subtitle: AppStrings.proPackExamSub,
+                    price: _premiumService.priceOf(_examProductId),
+                    badgeText: AppStrings.proPackValidYear,
+                    isPopular: false,
                     isDark: isDark,
                   ),
                   const SizedBox(height: AppSpacing.sm),
 
-                  // Tier 2: Single Paper Pass (₹299)
+                  // Tier 3: Single Paper Pro Pass
                   _buildTierCard(
                     tierId: PremiumService.singlePaperProductId,
-                    title: AppStrings.proPackSingleTitle,
-                    subtitle: AppStrings.proPackSingleSub,
-                    price: AppStrings.proPackSinglePrice,
-                    badgeText: AppStrings.proPackSingleTag,
+                    title: AppStrings.proPackSingleTitleNew,
+                    subtitle: AppStrings.proPackSingleSubNew,
+                    price:
+                        _premiumService.priceOf(PremiumService.singlePaperProductId),
+                    badgeText: AppStrings.proPackValidDays,
                     isPopular: false,
                     isDark: isDark,
                   ),
+                  const SizedBox(height: AppSpacing.sm),
+
+                  // The promise of the pass
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Icon(
+                        Icons.verified_user_rounded,
+                        size: 16,
+                        color: AppColors.correctGreen,
+                      ),
+                      const SizedBox(width: AppSpacing.xs),
+                      Flexible(
+                        child: Text(
+                          AppStrings.proPackGuarantee,
+                          textAlign: TextAlign.center,
+                          style: AppTypography.labelSmall(
+                            color: isDark
+                                ? AppColors.darkTextSecondary
+                                : AppColors.lightTextMuted,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  // The prices are the usual ones while the store is away.
+                  if (_premiumService.storeStatus.value !=
+                      PremiumStoreStatus.available) ...[
+                    const SizedBox(height: AppSpacing.sm),
+                    Text(
+                      AppStrings.proPackFallbackNote,
+                      textAlign: TextAlign.center,
+                      style: AppTypography.labelSmall(
+                        color: isDark
+                            ? AppColors.darkTextMuted
+                            : AppColors.lightTextMuted,
+                      ),
+                    ),
+                  ],
                   const SizedBox(height: AppSpacing.md),
                 ],
 
@@ -326,129 +615,137 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
                 ValueListenableBuilder<bool>(
                   valueListenable: _premiumService.isLoading,
                   builder: (context, isLoading, _) {
-                    if (isUnlocked) {
-                      return Container(
-                        padding: const EdgeInsets.symmetric(vertical: AppSpacing.md),
-                        decoration: BoxDecoration(
-                          color: AppColors.correctGreen.withValues(alpha: 0.15),
-                          borderRadius: AppRadius.roundedBase,
-                          border: Border.all(color: AppColors.correctGreen),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                    return Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        if (isUnlocked)
+                          Container(
+                            padding: const EdgeInsets.symmetric(vertical: AppSpacing.md),
+                            decoration: BoxDecoration(
+                              color: AppColors.correctGreen.withValues(alpha: 0.15),
+                              borderRadius: AppRadius.roundedBase,
+                              border: Border.all(color: AppColors.correctGreen),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const Icon(Icons.check_circle_rounded, color: AppColors.correctGreen),
+                                const SizedBox(width: AppSpacing.sm),
+                                Flexible(
+                                  child: Text(
+                                    AppStrings.premiumActiveStatus,
+                                    textAlign: TextAlign.center,
+                                    style: AppTypography.titleMedium(
+                                      color: AppColors.correctGreen,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          )
+                        else
+                          ElevatedButton(
+                            onPressed: isLoading
+                                ? null
+                                : () async {
+                                    final result = await _premiumService
+                                        .buyProduct(_selectedTier);
+                                    if (!context.mounted) return;
+
+                                    if (result == PremiumPurchaseResult.unlocked) {
+                                      _celebrate();
+                                      return;
+                                    }
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(content: Text(_messageFor(result))),
+                                    );
+                                  },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: AppColors.sealGold,
+                              foregroundColor: AppColors.primary,
+                              elevation: 0,
+                              padding: const EdgeInsets.symmetric(vertical: AppSpacing.md),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: AppRadius.roundedBase,
+                              ),
+                              textStyle: AppTypography.titleSmall(color: AppColors.primary),
+                            ),
+                            child: isLoading
+                                ? const SizedBox(
+                                    height: 20,
+                                    width: 20,
+                                    child: CircularProgressIndicator(
+                                      strokeWidth: 2,
+                                      valueColor: AlwaysStoppedAnimation<Color>(AppColors.primary),
+                                    ),
+                                  )
+                                : Text(
+                                    AppStrings.premiumUnlockBtn,
+                                    textAlign: TextAlign.center,
+                                  ),
+                          ),
+                        const SizedBox(height: AppSpacing.sm),
+
+                        // Restore Purchases & Close Buttons
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const Icon(Icons.check_circle_rounded, color: AppColors.correctGreen),
-                            const SizedBox(width: AppSpacing.sm),
                             Flexible(
-                              child: Text(
-                                AppStrings.premiumActiveStatus,
-                                textAlign: TextAlign.center,
-                                style: AppTypography.titleMedium(
-                                  color: AppColors.correctGreen,
+                              child: TextButton(
+                                onPressed: isLoading
+                                    ? null
+                                    : () async {
+                                        final result = await _premiumService
+                                            .restorePurchases();
+                                        if (!context.mounted) return;
+
+                                        if (result ==
+                                            PremiumPurchaseResult.unlocked) {
+                                          _celebrate();
+                                          return;
+                                        }
+                                        final message = result ==
+                                                PremiumPurchaseResult
+                                                    .storeUnavailable
+                                            ? _storeUnavailableMessage
+                                            : (result ==
+                                                    PremiumPurchaseResult.offline
+                                                ? _offlineMessage
+                                                : AppStrings
+                                                    .premiumNoPurchasesFound);
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          SnackBar(
+                                            content: Text(message),
+                                          ),
+                                        );
+                                      },
+                                child: Text(
+                                  AppStrings.premiumRestoreBtn,
+                                  textAlign: TextAlign.center,
+                                  style: AppTypography.bodySmall(
+                                    color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Flexible(
+                              child: TextButton(
+                                onPressed: () => Navigator.of(context).pop(),
+                                child: Text(
+                                  AppStrings.premiumCloseBtn,
+                                  textAlign: TextAlign.center,
+                                  style: AppTypography.bodySmall(
+                                    color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary,
+                                  ),
                                 ),
                               ),
                             ),
                           ],
                         ),
-                      );
-                    }
-
-                    return ElevatedButton(
-                      onPressed: isLoading
-                          ? null
-                          : () async {
-                              final success = await _premiumService.buyProduct(_selectedTier);
-                              if (!context.mounted) return;
-
-                              if (_premiumService.purchaseError.value != null) {
-                                final err = _premiumService.purchaseError.value!;
-                                String displayMsg;
-                                if (err == 'canceled') {
-                                  displayMsg = AppStrings.premiumCancelledToast;
-                                } else if (err == 'pending') {
-                                  displayMsg = AppStrings.premiumPendingToast;
-                                } else {
-                                  displayMsg = AppStrings.premiumErrorToast;
-                                }
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(content: Text(displayMsg)),
-                                );
-                              } else if (success) {
-                                Navigator.of(context).pop();
-                                _showCongratulationsDialog(context);
-                              }
-                            },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColors.sealGold,
-                        foregroundColor: AppColors.primary,
-                        elevation: 0,
-                        padding: const EdgeInsets.symmetric(vertical: AppSpacing.md),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: AppRadius.roundedBase,
-                        ),
-                        textStyle: AppTypography.titleSmall(color: AppColors.primary),
-                      ),
-                      child: isLoading
-                          ? const SizedBox(
-                              height: 20,
-                              width: 20,
-                              child: CircularProgressIndicator(
-                                strokeWidth: 2,
-                                valueColor: AlwaysStoppedAnimation<Color>(AppColors.primary),
-                              ),
-                            )
-                          : Text(
-                              AppStrings.premiumUnlockBtn,
-                              textAlign: TextAlign.center,
-                            ),
+                      ],
                     );
                   },
-                ),
-                const SizedBox(height: AppSpacing.sm),
-
-                // Restore Purchases & Close Buttons
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Flexible(
-                      child: TextButton(
-                        onPressed: () async {
-                          final restored = await _premiumService.restorePurchases();
-                          if (context.mounted) {
-                            if (restored) {
-                              Navigator.of(context).pop();
-                              _showCongratulationsDialog(context);
-                            } else {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text(AppStrings.premiumNoPurchasesFound),
-                                ),
-                              );
-                            }
-                          }
-                        },
-                        child: Text(
-                          AppStrings.premiumRestoreBtn,
-                          textAlign: TextAlign.center,
-                          style: AppTypography.bodySmall(
-                            color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary,
-                          ),
-                        ),
-                      ),
-                    ),
-                    Flexible(
-                      child: TextButton(
-                        onPressed: () => Navigator.of(context).pop(),
-                        child: Text(
-                          AppStrings.premiumCloseBtn,
-                          textAlign: TextAlign.center,
-                          style: AppTypography.bodySmall(
-                            color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
                 ),
               ],
             ),
@@ -467,6 +764,8 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
     required String badgeText,
     required bool isPopular,
     required bool isDark,
+    String? anchorText,
+    String? noteText,
   }) {
     final isSelected = _selectedTier == tierId;
 
@@ -557,13 +856,47 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
             // The price may be long, so it wraps instead of running out of
             // the card.
             ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 108),
-              child: Text(
-                price,
-                textAlign: TextAlign.right,
-                style: AppTypography.titleSmall(
-                  color: isSelected ? AppColors.sealGold : (isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary),
-                ),
+              constraints: const BoxConstraints(maxWidth: 112),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  if (anchorText != null)
+                    Text(
+                      anchorText,
+                      textAlign: TextAlign.right,
+                      style: AppTypography.labelSmall(
+                        color: isDark
+                            ? AppColors.darkTextMuted
+                            : AppColors.lightTextMuted,
+                      ).copyWith(
+                        decoration: TextDecoration.lineThrough,
+                        decorationColor: AppColors.danger,
+                      ),
+                    ),
+                  Text(
+                    price,
+                    textAlign: TextAlign.right,
+                    style: AppTypography.titleSmall(
+                      color: isSelected ? AppColors.sealGold : (isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary),
+                    ),
+                  ),
+                  if (noteText != null)
+                    Padding(
+                      padding: const EdgeInsets.only(top: 2),
+                      child: Text(
+                        noteText,
+                        textAlign: TextAlign.right,
+                        style: AppTypography.labelSmall(
+                          color: isSelected
+                              ? AppColors.sealGoldLight
+                              : (isDark
+                                  ? AppColors.darkTextMuted
+                                  : AppColors.lightTextMuted),
+                        ),
+                      ),
+                    ),
+                ],
               ),
             ),
           ],

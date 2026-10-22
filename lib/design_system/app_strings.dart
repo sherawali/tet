@@ -706,6 +706,48 @@ class AppStrings {
   static String questionNumberLabel(int number) =>
       _isHi ? 'प्रश्न $number' : 'Question $number';
 
+  // ---- the pass plan (prices come from the store, these are the fallback)
+  static String get proPackMostPopular => _isHi ? 'सबसे लोकप्रिय' : 'Most Popular';
+  static String get proPackPerMonth => _isHi ? 'सिर्फ ₹208 प्रति माह' : 'Just ₹208 a month';
+  static String get proPackValidYear => _isHi ? '365 दिन' : '365 days';
+  static String get proPackValidDays => _isHi ? '60 दिन' : '60 days';
+  static String get proPackAnchorValue => _isHi ? '₹4,999 की कीमत' : 'Worth ₹4,999';
+  static String get proPackGuarantee => _isHi
+      ? '7 दिन में बिना सवाल कुछ भी नहीं पसंद आया तो पूरा पैसा वापस'
+      : 'Full refund within 7 days, no questions asked';
+  static String get proPackWhichExam => _isHi ? 'आप कौन-सा परीक्षा दे रहे हैं?' : 'Which exam are you preparing for?';
+  static String get proPackBothExams => _isHi ? 'UTET + CTET (दोनों)' : 'UTET + CTET (both)';
+  static String get proPackOnlyUtet => _isHi ? 'सिर्फ UTET' : 'UTET only';
+  static String get proPackOnlyCtet => _isHi ? 'सिर्फ CTET' : 'CTET only';
+  static String get proPackFullTitle => _isHi
+      ? 'फुल एक्सेस प्रो पास'
+      : 'Full Access Pro Pass';
+  static String get proPackFullSub => _isHi
+      ? 'UTET + CTET, पेपर-1 और पेपर-2, सभी मॉडल एवं बोर्ड पेपर, लाइव बैंक अपडेट, 12 महीने'
+      : 'UTET + CTET, Paper-1 and Paper-2, every mock and board paper, live bank updates, 12 months';
+  static String get proPackExamTitle => _isHi
+      ? 'एक परीक्षा प्रो पास'
+      : 'One Exam Pro Pass';
+  static String get proPackExamSub => _isHi
+      ? 'चुने हुए परीक्षा के सभी मॉडल एवं बोर्ड पेपर, सम्पूर्ण हल एवं विश्लेषण, 12 महीने'
+      : 'Every mock and board paper of the chosen exam, full solutions and analysis, 12 months';
+  static String get proPackSingleTitleNew => _isHi
+      ? 'सिंगल पेपर प्रो पैस'
+      : 'Single Paper Pro Pass';
+  static String get proPackSingleSubNew => _isHi
+      ? 'चयनित पेपर के सभी प्रश्न, सम्पूर्ण हल एवं विश्लेषण, 60 दिन'
+      : 'All the questions of the chosen paper, full solutions and analysis, 60 days';
+  static String get proPackFallbackNote => _isHi
+      ? 'दुकान से जुड़ नहीं पाए, दिखाया गया सामान्य मूल्य है'
+      : 'The store could not be reached, the usual price is shown';
+  static String proPackExpirySoon(int days) => _isHi
+      ? 'आपका प्रो पास $days दिन में समाप्त हो रहा है - अभी नवीनीकरण करें'
+      : 'Your Pro Pass ends in $days days - renew now';
+  static String proPackRenewsAt(String price) => _isHi
+      ? 'नवीनीकरण ₹$price पर'
+      : 'Renews at ₹$price';
+  static String get proPackUnlockedBadge => _isHi ? 'प्रो पास सक्रिय' : 'Pro Pass Active';
+
   // ---- bilingual wording for the buttons and cards ------------------------
   static String get verifiedTestPapersHeading =>
       _isHi ? 'प्रामाणिक बने-बनाए टेस्ट पेपर्स' : 'Verified Ready-Made Test Papers';
@@ -781,7 +823,7 @@ class AppStrings {
   static String get proPackSingleSub => _isHi
       ? 'चयनित पेपर के सभी ${BankFacts.paperCount}+ टेस्ट, सम्पूर्ण समाधान एवं विस्तृत विश्लेषण'
       : 'All ${BankFacts.paperCount}+ full tests, complete solutions & analytics for selected paper';
-  static String get proPackSinglePrice => _isHi ? '₹299' : '₹299';
+  static String get proPackSinglePrice => _isHi ? '₹399' : '₹399';
   static String get proPackSingleTag => _isHi ? 'छात्र पैक' : 'Student Pack';
 
   static String get premiumFeature1 => _isHi
@@ -802,7 +844,7 @@ class AppStrings {
       ? '🎉 बधाई! ऑल-एक्सेस प्रो पास सफलतापूर्वक अनलॉक हो गया।'
       : '🎉 Congratulations! All-Access Pro Pass unlocked successfully.';
   static String get premiumActiveStatus => _isHi ? '👑 प्रो पास सक्रिय' : '👑 Pro Pass Active';
-  static String get premiumPriceBadge => _isHi ? '👑 प्रो पास उपलब्ध · ₹299 से शुरू' : '👑 Pro Pass Available · From ₹299';
+  static String get premiumPriceBadge => _isHi ? '👑 प्रो पास उपलब्ध · ₹399 से शुरू' : '👑 Pro Pass Available · From ₹399';
   static String get premiumCancelledToast => _isHi ? 'भुगतान रद्द कर दिया गया।' : 'Payment was cancelled.';
   static String get premiumErrorToast => _isHi ? 'भुगतान पूरा नहीं हो सका। कृपया पुनः प्रयास करें।' : 'Payment could not be completed. Please try again.';
   static String get premiumPendingToast => _isHi ? 'भुगतान प्रक्रिया में है। पुष्टि होते ही पास सक्रिय हो जाएगा।' : 'Payment is pending. Your pass will be activated upon confirmation.';

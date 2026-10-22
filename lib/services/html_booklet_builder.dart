@@ -882,7 +882,16 @@ class HtmlBookletBuilder {
   /// [isDark] mirrors the theme of the app so the booklet always uses the
   /// same colours as the Flutter UI.  When it is null the booklet follows
   /// the system setting of the device.
-  static String buildHtml(TestSession session, {bool? isDark}) {
+  ///
+  /// [initialLang] is the language the booklet starts in ('hi' or 'en').  It
+  /// is only used when the candidate has not chosen a language inside the
+  /// booklet yet, so the booklet and the rest of the app always speak the
+  /// same language.
+  static String buildHtml(
+    TestSession session, {
+    bool? isDark,
+    String initialLang = 'hi',
+  }) {
     final questions = session.questions;
     final passages = session.passages;
     final totalQs = questions.length;
@@ -1063,27 +1072,58 @@ class HtmlBookletBuilder {
         <div class="cbt-center">
           <div class="cbt-pill count-pill" title="हल किए गए प्रश्न">
             <span class="pill-dot ok-dot"></span>
-            <span><span class="count-label">हल:&nbsp;</span><b id="stat-answered">${session.selectedAnswers.length}</b>/<span id="stat-total">$totalQs</span></span>
+            <span><span class="count-label t-hi">हल:&nbsp;</span><span class="count-label t-en">Answered:&nbsp;</span><b id="stat-answered">${session.selectedAnswers.length}</b>/<span id="stat-total">$totalQs</span></span>
           </div>
           <div class="cbt-pill rev-pill hide-on-mobile" title="समीक्षा हेतु प्रश्न">
             <span class="pill-dot rev-dot"></span>
-            <span>समीक्षा:&nbsp;<b id="stat-review">${session.markedForReview.length}</b></span>
+            <span class="t-hi">समीक्षा:&nbsp;</span><span class="t-en">Review:&nbsp;</span><b id="stat-review">${session.markedForReview.length}</b></span>
           </div>
         </div>
 
-        <!-- Right: Action Buttons -->
+        <!-- Right: Action Buttons - every button has its own icon, its own
+             bilingual tooltip and an active state while its sheet is open. -->
         <div class="cbt-right" id="cbt-actions">
-          <button class="cbt-btn cbt-btn-omr" onclick="openOMR()" title="OMR शीट">
-            <span>📝</span><span class="btn-text">OMR</span>
+          <button class="cbt-btn cbt-btn-omr" id="btn-omr" type="button" onclick="toggleOMR()"
+                  aria-expanded="false" aria-controls="omr-modal"
+                  title="OMR शीट / OMR Answer Sheet" aria-label="OMR शीट / OMR Answer Sheet">
+            <svg class="cbt-ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <rect x="4.5" y="2.5" width="15" height="19" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.7"></rect>
+              <circle cx="9" cy="8" r="1.6" fill="currentColor"></circle>
+              <circle cx="15" cy="8" r="1.6" fill="currentColor"></circle>
+              <circle cx="9" cy="13" r="1.6" fill="currentColor"></circle>
+              <circle cx="15" cy="13" r="1.6" fill="currentColor"></circle>
+              <line x1="7.5" y1="17.6" x2="16.5" y2="17.6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></line>
+            </svg>
+            <span class="btn-text">OMR</span>
           </button>
-          <button class="cbt-btn cbt-btn-palette" onclick="togglePalette()" title="प्रश्न पैलेट">
-            <span>📑</span><span class="btn-text">पैलेट</span>
+          <button class="cbt-btn cbt-btn-palette" id="btn-palette" type="button" onclick="togglePalette()"
+                  aria-expanded="false" aria-controls="palette-drawer"
+                  title="प्रश्न पैलेट / Question Palette" aria-label="प्रश्न पैलेट / Question Palette">
+            <svg class="cbt-ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <rect x="3.5" y="3.5" width="7" height="7" rx="1.6" fill="currentColor"></rect>
+              <rect x="13.5" y="3.5" width="7" height="7" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.8"></rect>
+              <rect x="3.5" y="13.5" width="7" height="7" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.8"></rect>
+              <rect x="13.5" y="13.5" width="7" height="7" rx="1.6" fill="currentColor"></rect>
+            </svg>
+            <span class="btn-text t-hi">पैलेट</span><span class="btn-text t-en">Palette</span>
           </button>
-          <button class="cbt-btn cbt-btn-primary" onclick="submitTest(false)" title="परीक्षा समाप्त करें">
-            <span>🏁</span><span class="btn-text">समाप्त</span>
+          <button class="cbt-btn cbt-btn-primary" id="btn-submit" type="button" onclick="submitTest(false)"
+                  title="परीक्षा समाप्त करें / Submit Exam" aria-label="परीक्षा समाप्त करें / Submit Exam">
+            <svg class="cbt-ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M5.5 21V3.6h11.2l-1.7 3.4 1.7 3.4H5.5" fill="none" stroke="currentColor"
+                    stroke-width="1.9" stroke-linejoin="round" stroke-linecap="round"></path>
+            </svg>
+            <span class="btn-text t-hi">समाप्त</span><span class="btn-text t-en">Submit</span>
           </button>
-          <button class="cbt-btn cbt-btn-exit" onclick="requestExitTest()" title="परीक्षा से बाहर निकलें">
-            <span>✕</span>
+          <button class="cbt-btn cbt-btn-exit" id="btn-exit" type="button" onclick="requestExitTest()"
+                  title="परीक्षा से बाहर निकलें / Exit Exam" aria-label="परीक्षा से बाहर निकलें / Exit Exam">
+            <svg class="cbt-ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M13.5 4.2h4.1a2 2 0 0 1 2 2v11.6a2 2 0 0 1-2 2h-4.1" fill="none" stroke="currentColor"
+                    stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"></path>
+              <path d="M10.4 8.2 6.6 12l3.8 3.8" fill="none" stroke="currentColor"
+                    stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"></path>
+              <path d="M6.8 12h8.6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"></path>
+            </svg>
           </button>
         </div>
       </div>
@@ -1101,8 +1141,12 @@ class HtmlBookletBuilder {
     <!-- Slide-down Question Palette Drawer (0px space when closed) -->
     <div class="palette-drawer" id="palette-drawer">
       <div class="palette-drawer-header">
-        <b>📑 प्रश्न पैलेट (1-$totalQs) — सीधे प्रश्न पर जाएं:</b>
-        <button class="palette-close-btn" onclick="closePalette()">✕ बंद करें</button>
+        <b><span class="t-hi">📑 प्रश्न पैलेट (1-$totalQs) — सीधे प्रश्न पर जाएं:</span><span class="t-en">📑 Question Palette (1-$totalQs) — jump to a question:</span></b>
+        <button class="palette-close-btn" onclick="closePalette()"
+                title="पैलेट बंद करें / Close Palette" aria-label="पैलेट बंद करें / Close Palette">
+          <span aria-hidden="true">✕</span>
+          <span class="t-hi">बंद करें</span><span class="t-en">Close</span>
+        </button>
       </div>
       <div class="palette-grid">
     ''');
@@ -1112,10 +1156,10 @@ class HtmlBookletBuilder {
     h.writeln('''
       </div>
       <div class="palette-legend">
-        <span><i style="background:#fff;border:1.5px solid #cbd5e1"></i>अनुत्तरित</span>
-        <span><i style="background:var(--success)"></i>हल किया गया</span>
-        <span><i style="background:var(--review)"></i>समीक्षा के लिए चिह्नित</span>
-        <span><i style="background:linear-gradient(135deg,var(--success) 50%,var(--review) 50%)"></i>हल + समीक्षा</span>
+        <span><i style="background:#fff;border:1.5px solid #cbd5e1"></i><span class="t-hi">अनुत्तरित</span><span class="t-en">Not answered</span></span>
+        <span><i style="background:var(--success)"></i><span class="t-hi">हल किया गया</span><span class="t-en">Answered</span></span>
+        <span><i style="background:var(--review)"></i><span class="t-hi">समीक्षा के लिए चिह्नित</span><span class="t-en">Marked for review</span></span>
+        <span><i style="background:linear-gradient(135deg,var(--success) 50%,var(--review) 50%)"></i><span class="t-hi">हल + समीक्षा</span><span class="t-en">Answered + review</span></span>
       </div>
     </div>
     ''');
@@ -1160,8 +1204,9 @@ class HtmlBookletBuilder {
       </div>
 
       <div class="cover-time-marks">
-        <span>समय : $timeLimitText${session.config.timeLimitMinutes >= 60 ? ' (${session.config.timeLimitMinutes} मिनट)' : ''}</span>
-        <span>पूर्णांक : $totalQs अंक ($totalQs प्रश्न)</span>
+        <span class="t-hi">समय : $timeLimitText${session.config.timeLimitMinutes >= 60 ? ' (${session.config.timeLimitMinutes} मिनट)' : ''}</span>
+        <span class="t-en">Time : $timeLimitText${session.config.timeLimitMinutes >= 60 ? ' (${session.config.timeLimitMinutes} min)' : ''}</span>
+        <span class="t-hi">पूर्णांक : $totalQs अंक ($totalQs प्रश्न)</span><span class="t-en">Marks : $totalQs ($totalQs questions)</span>
       </div>
 
       <div class="cover-instructions">
@@ -1182,7 +1227,7 @@ class HtmlBookletBuilder {
 
       <div class="start-test-action">
         <button class="start-btn" onclick="document.getElementById('qitem-1').scrollIntoView({behavior:'smooth'});">
-          🚀 परीक्षा प्रारंभ करें
+          <span class="t-hi">🚀 परीक्षा प्रारंभ करें</span><span class="t-en">🚀 Start the test</span>
         </button>
       </div>
     </section>
@@ -1265,13 +1310,15 @@ class HtmlBookletBuilder {
 
       // Premium header chips: every question shows its marks and difficulty.
       final diffLabel = q.difficulty == 1
-          ? ('आसान', 'easy')
-          : (q.difficulty == 3 ? ('कठिन', 'hard') : ('मध्यम', 'med'));
+          ? ('आसान', 'easy', 'Easy')
+          : (q.difficulty == 3 ? ('कठिन', 'hard', 'Hard') : ('मध्यम', 'med', 'Medium'));
       final headerMeta =
           '<div class="q-head-meta">'
           '<span class="q-chip q-marks"><span class="t-hi">1 अंक</span>'
           '<span class="t-en">1 Mark</span></span>'
-          '<span class="q-chip q-diff q-diff-${diffLabel.$2}">${diffLabel.$1}</span>'
+          '<span class="q-chip q-diff q-diff-${diffLabel.$2}">'
+          '<span class="t-hi">${diffLabel.$1}</span>'
+          '<span class="t-en">${diffLabel.$3}</span></span>'
           '</div>';
 
       h.writeln('<div class="question-item" id="qitem-$qNum" data-qnum="$qNum">');
@@ -1435,11 +1482,15 @@ class HtmlBookletBuilder {
 
     // OMR Sheet Modal
     h.writeln('''
-    <div id="omr-modal">
+    <div id="omr-modal" role="dialog" aria-modal="true" aria-label="OMR शीट / OMR Answer Sheet"
+         onclick="if (event.target === this) { closeOMR(); }">
       <div class="omr-sheet-card">
         <div class="omr-head">
-          <span style="font-weight:700">📝 वास्तविक OMR शीट व्यू (1-$totalQs प्रश्न)</span>
-          <button class="p-modal-close" onclick="closeOMR()">✕</button>
+          <span style="font-weight:700"><span class="t-hi">📝 वास्तविक OMR शीट व्यू (1-$totalQs प्रश्न)</span><span class="t-en">📝 Real OMR Sheet View (1-$totalQs Questions)</span></span>
+          <button class="omr-close-btn" onclick="closeOMR()"
+                  title="OMR शीट बंद करें / Close OMR Sheet" aria-label="OMR शीट बंद करें / Close OMR Sheet">
+            <span aria-hidden="true">✕</span>
+          </button>
         </div>
         <div class="omr-body">
     ''');
@@ -1564,6 +1615,7 @@ class HtmlBookletBuilder {
         .replaceAll('__GENERAL_PASS__', generalPassMark.toString())
         .replaceAll('__RESERVED_PASS__', reservedPassMark.toString())
         .replaceAll('__PAPER_ID__', session.id)
+        .replaceAll('__INITIAL_LANG__', initialLang == 'en' ? 'en' : 'hi')
         .replaceAll('__PASSAGES__', jsonEncode(passagesDict));
 
     h.writeln('<script>$js</script>');
@@ -1738,6 +1790,37 @@ body {
   box-sizing: border-box;
 }
 
+/* Every button of the bar carries its own icon, so the four actions can
+   never be mistaken for one another. */
+.cbt-btn .cbt-ico {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+  display: block;
+  pointer-events: none;
+}
+
+.cbt-btn:focus-visible {
+  outline: 2px solid #93c5fd;
+  outline-offset: 2px;
+}
+
+.cbt-btn:active { transform: translateY(1px); }
+
+/* The button of an open sheet is pressed, so the candidate always sees
+   which of the two sheets is on the screen. */
+.cbt-btn.is-active {
+  background: #2563eb;
+  border-color: #93c5fd;
+  color: #ffffff;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.45);
+}
+.cbt-btn-primary.is-active {
+  background: #15803d;
+  border-color: #86efac;
+  box-shadow: 0 0 0 2px rgba(22, 163, 74, 0.45);
+}
+
 .cbt-btn-omr, .cbt-btn-palette {
   background: #1e293b;
   color: #f8fafc;
@@ -1769,10 +1852,12 @@ body {
 
 .palette-drawer {
   position: fixed;
-  top: 45px;
+  /* The drawer hangs directly below the sticky bar, otherwise its header
+     (and with it the close button) would hide behind the bar. */
+  top: var(--cbt-bar-h, 45px);
   left: 0;
   right: 0;
-  z-index: 999;
+  z-index: 9999;
   background: #ffffff;
   border-bottom: none;
   box-shadow: none;
@@ -1800,13 +1885,22 @@ body {
   border-bottom: 1px solid #e2e8f0;
 }
 .palette-close-btn {
-  background: transparent;
-  border: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(220, 38, 38, 0.1);
+  border: 1.5px solid rgba(220, 38, 38, 0.45);
   color: #dc2626;
+  border-radius: 8px;
+  padding: 4px 10px;
   font-weight: 700;
   cursor: pointer;
   font-size: 12px;
+  font-family: inherit;
+  line-height: 1.2;
 }
+.palette-close-btn:hover { background: #dc2626; color: #fff; }
+.palette-close-btn:focus-visible { outline: 2px solid #2563eb; outline-offset: 2px; }
 .palette-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(36px, 1fr));
@@ -2313,7 +2407,8 @@ body.lang-mode-en .bilingual-mobile-stack .opt-secondary {
 #passage-modal {
   display: none;
   position: fixed;
-  top: 60px;
+  /* Below the sticky bar, never behind it. */
+  top: calc(var(--cbt-bar-h, 45px) + 8px);
   right: 20px;
   width: 440px;
   max-width: 90vw;
@@ -2322,7 +2417,7 @@ body.lang-mode-en .bilingual-mobile-stack .opt-secondary {
   border: 2px solid #334155;
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-  z-index: 99;
+  z-index: 10040;
   flex-direction: column;
   overflow: hidden;
 }
@@ -2345,7 +2440,7 @@ body.lang-mode-en .bilingual-mobile-stack .opt-secondary {
   position: fixed;
   inset: 0;
   background: rgba(15,23,42,0.82);
-  z-index: 125;
+  z-index: 10060;
   align-items: center;
   justify-content: center;
   padding: 16px;
@@ -2375,9 +2470,14 @@ body.lang-mode-en .bilingual-mobile-stack .opt-secondary {
 #omr-modal {
   display: none;
   position: fixed;
-  inset: 0;
+  /* The sheet hangs below the sticky bar, so the bar - and with it the OMR
+     button - stays visible and can be tapped again to close the sheet. */
+  top: var(--cbt-bar-h, 45px);
+  left: 0;
+  right: 0;
+  bottom: 0;
   background: rgba(15,23,42,0.8);
-  z-index: 110;
+  z-index: 9999;
   align-items: center;
   justify-content: center;
   padding: 16px;
@@ -2387,7 +2487,7 @@ body.lang-mode-en .bilingual-mobile-stack .opt-secondary {
   background: #fff;
   width: 860px;
   max-width: 100%;
-  max-height: 90vh;
+  max-height: 100%;
   border-radius: 14px;
   display: flex;
   flex-direction: column;
@@ -2401,7 +2501,28 @@ body.lang-mode-en .bilingual-mobile-stack .opt-secondary {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 10px;
 }
+.omr-head > span { flex: 1 1 auto; min-width: 0; font-size: 14px; }
+/* The sheet always has a visible close button in its header. */
+.omr-close-btn {
+  flex: 0 0 auto;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1.5px solid rgba(255,255,255,0.35);
+  background: rgba(255,255,255,0.12);
+  color: #f8fafc;
+  font-size: 15px;
+  line-height: 1;
+  font-weight: 900;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.omr-close-btn:hover { background: #dc2626; border-color: #fca5a5; color: #fff; }
+.omr-close-btn:focus-visible { outline: 2px solid #93c5fd; outline-offset: 2px; }
 .omr-body {
   padding: 16px 20px;
   overflow-y: auto;
@@ -2440,7 +2561,7 @@ body.lang-mode-en .bilingual-mobile-stack .opt-secondary {
   position: fixed;
   inset: 0;
   background: rgba(15, 23, 42, 0.94);
-  z-index: 120;
+  z-index: 10080;
   overflow-y: auto;
   padding: 24px 12px;
 }
@@ -2543,7 +2664,7 @@ body.lang-mode-en .bilingual-mobile-stack .opt-secondary {
   background: rgba(15, 23, 42, 0.88);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  z-index: 150;
+  z-index: 10070;
   align-items: center;
   justify-content: center;
   padding: 16px;
@@ -2699,6 +2820,19 @@ body.lang-mode-en .bilingual-mobile-stack .opt-secondary {
   .option-row { padding: 10px 8px; font-size: 14px; }
   .q-stem { font-size: 15.5px; }
   .match-table { font-size: 12px; }
+}
+
+/* The bar of the booklet stays on one line on every phone.  As soon as the
+   screen gets narrow the buttons show their icon only - the icon, the
+   tooltip and the accessible name carry the meaning. */
+@media (max-width: 540px) {
+  .cbt-main-row { flex-wrap: nowrap; gap: 4px; }
+  .cbt-btn .btn-text { display: none !important; }
+  .cbt-btn { width: 34px; padding: 0; gap: 0; justify-content: center; }
+  .cbt-btn-exit { width: 34px; }
+  .cbt-btn .cbt-ico { width: 19px; height: 19px; }
+  .cbt-left, .cbt-right { flex-shrink: 0; }
+  .cbt-center { min-width: 0; overflow: hidden; }
 }
 
 /* KaTeX and general overflow protection (prevents horizontal shifting) */
@@ -2936,6 +3070,9 @@ DARK_ROOT .q-rev-btn { color: #cbd5e1; border-color: #334155; }
 DARK_ROOT .q-peek-btn { background: #0c4a6e; border-color: #0369a1; color: #bae6fd; }
 DARK_ROOT .q-report-btn { color: #fdba74; border-color: #7c2d12; }
 DARK_ROOT .palette-grid a { background: #111c33; color: #cbd5e1; border-color: #334155; }
+DARK_ROOT .palette-drawer { background: #0f172a; }
+DARK_ROOT .palette-drawer-header { background: #1e293b; border-bottom-color: #334155; color: #e2e8f0; }
+DARK_ROOT .palette-legend { background: #111c33; border-top-color: #334155; color: #94a3b8; }
 DARK_ROOT .result-mark.ok { background: #14532d; color: #bbf7d0; }
 DARK_ROOT .result-mark.wrong { background: #450a0a; color: #fecaca; }
 DARK_ROOT .result-mark.skipped { background: #1e293b; color: #cbd5e1; }
@@ -2974,6 +3111,7 @@ DARK_ROOT .omr-row { border-bottom-color: #1e293b; color: #cbd5e1; }
 DARK_ROOT .omr-bubble { border-color: #64748b; color: #cbd5e1; }
 DARK_ROOT .omr-bubble:hover { background: #1e293b; }
 DARK_ROOT .omr-bubble.filled { background: #2563eb; color: #fff; border-color: #2563eb; }
+DARK_ROOT .omr-close-btn { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.35); color: #f8fafc; }
 
 /* --- modals and report sheet ---------------------------------------- */
 DARK_ROOT .confirm-card { background: #0f172a; border: 1px solid #334155; }
@@ -2994,6 +3132,7 @@ DARK_ROOT .rep-radio-label { background: #111c33; border-color: #334155; color: 
   const GENERAL_PASS = __GENERAL_PASS__;
   const RESERVED_PASS = __RESERVED_PASS__;
   const PAPER_ID = '__PAPER_ID__';
+  const INITIAL_LANG = '__INITIAL_LANG__';
   const PASSAGES = __PASSAGES__;
 
   let responses = {};
@@ -3135,11 +3274,21 @@ DARK_ROOT .rep-radio-label { background: #111c33; border-color: #334155; color: 
 
   window.togglePalette = function() {
     const d = document.getElementById('palette-drawer');
-    if (d) d.classList.toggle('open');
+    if (!d) return;
+    const willOpen = !d.classList.contains('open');
+    if (willOpen) {
+      // Only one sheet at a time.
+      closeOMR();
+      syncBarHeight();
+    }
+    d.classList.toggle('open', willOpen);
+    setTopBarState('palette', willOpen);
   };
   window.closePalette = function() {
     const d = document.getElementById('palette-drawer');
-    if (d) d.classList.remove('open');
+    if (!d) return;
+    d.classList.remove('open');
+    setTopBarState('palette', false);
   };
   window.jumpToQuestion = function(qNum) {
     const el = document.getElementById('qitem-' + qNum);
@@ -3155,13 +3304,47 @@ DARK_ROOT .rep-radio-label { background: #111c33; border-color: #334155; color: 
     notifyFlutter('refreshTest', {});
   };
 
+  // The button of the bar is pressed while its sheet is open, so the
+  // candidate always sees which sheet is on the screen.
+  function setTopBarState(which, isOpen) {
+    const btn = document.getElementById(which === 'omr' ? 'btn-omr' : 'btn-palette');
+    if (!btn) return;
+    btn.classList.toggle('is-active', !!isOpen);
+    btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  }
+
+  // The height of the sticky bar, so the palette drawer can hang directly
+  // below it instead of hiding its close button behind the bar.
+  function syncBarHeight() {
+    const bar = document.querySelector('.cbt-bar');
+    if (!bar) return;
+    const h = Math.round(bar.getBoundingClientRect().height);
+    if (h > 0) {
+      document.documentElement.style.setProperty('--cbt-bar-h', h + 'px');
+    }
+  }
+  window.syncBarHeight = syncBarHeight;
+
   window.openOMR = function() {
     const m = document.getElementById('omr-modal');
-    if (m) m.classList.add('open');
+    if (!m) return;
+    // Only one sheet at a time.
+    closePalette();
+    m.classList.add('open');
+    setTopBarState('omr', true);
   };
   window.closeOMR = function() {
     const m = document.getElementById('omr-modal');
-    if (m) m.classList.remove('open');
+    if (!m) return;
+    m.classList.remove('open');
+    setTopBarState('omr', false);
+  };
+  // The OMR button is a real toggle: a second tap closes the sheet again.
+  window.toggleOMR = function() {
+    const m = document.getElementById('omr-modal');
+    if (!m) return;
+    if (m.classList.contains('open')) closeOMR();
+    else openOMR();
   };
 
   window.showPassageModal = function(passageId) {
@@ -3528,13 +3711,16 @@ DARK_ROOT .rep-radio-label { background: #111c33; border-color: #334155; color: 
   window.setLangFilter = function(mode) {
     document.body.classList.remove('lang-mode-both', 'lang-mode-hi', 'lang-mode-en');
     document.body.classList.add('lang-mode-' + mode);
-    
+
     document.querySelectorAll('.lang-pill-btn').forEach(function(btn) {
       btn.classList.remove('active');
     });
     var target = document.getElementById('btn-lang-' + mode);
     if (target) target.classList.add('active');
-    
+
+    // The language of the bar can change its height.
+    if (typeof syncBarHeight === 'function') syncBarHeight();
+
     try {
       localStorage.setItem('booklet_lang_filter', mode);
     } catch(e){}
@@ -3546,11 +3732,15 @@ DARK_ROOT .rep-radio-label { background: #111c33; border-color: #334155; color: 
     if (tv) tv.textContent = formatTime(timeRemaining);
     updateStats();
     try {
-      var savedLang = localStorage.getItem('booklet_lang_filter') || 'hi';
+      var savedLang = localStorage.getItem('booklet_lang_filter') || INITIAL_LANG;
       setLangFilter(savedLang);
     } catch(e) {
-      setLangFilter('hi');
+      setLangFilter(INITIAL_LANG);
     }
+    // The palette drawer hangs below the bar, so the bar height is needed.
+    syncBarHeight();
+    window.addEventListener('resize', syncBarHeight);
+    window.addEventListener('orientationchange', syncBarHeight);
     // The exam clock starts when the booklet opens.  It is driven by an
     // absolute deadline so backgrounding the WebView cannot add time.
     startTimer();
@@ -3590,7 +3780,7 @@ DARK_ROOT .rep-radio-label { background: #111c33; border-color: #334155; color: 
       togglePalette();
       e.preventDefault();
     } else if (key === 'Enter') {
-      openOMR();
+      toggleOMR();
       e.preventDefault();
     }
   });

@@ -8,6 +8,43 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 
 
+
+DEFAULT_REMOTE_ACCESS = {
+    'free_mock_count': 1,
+    'free_form_ids': [
+        'utet-p1-fullmock',
+        'utet-p2-set-b',
+        'ctet-p1-2026-pyq',
+        'ctet-p2-ms-mock-01',
+        'ctet-p2-sst-mock-01',
+    ],
+    'paid_form_ids': [],
+    'all_mocks_free': False,
+}
+
+
+def remote_access_config():
+    """The free / paid lists live in `bin/remote_access.json`.
+
+    The app reads them from the manifest, so a paper can be switched between
+    free and paid without a new app release.
+    """
+    config = dict(DEFAULT_REMOTE_ACCESS)
+    path = os.path.join(
+        os.path.dirname(os.path.abspath(__file__)), 'remote_access.json'
+    )
+    try:
+        with open(path, 'r', encoding='utf-8') as handle:
+            stored = json.load(handle)
+        for key in DEFAULT_REMOTE_ACCESS:
+            if key in stored:
+                config[key] = stored[key]
+        print('Remote access config read from bin/remote_access.json')
+    except Exception as error:  # the file is optional
+        print(f'Remote access config not usable ({error}), using the defaults')
+    return config
+
+
 def build_cdn(root=ROOT):
     root = Path(root)
     db_path = str(root / 'assets' / 'database' / 'tet_mock_vault.db')
@@ -202,18 +239,7 @@ def build_cdn(root=ROOT):
             'forms_count': len(forms_list),
             'appearances_count': len(appearances_list)
         },
-        'remote_config': {
-            'free_mock_count': 1,
-            'free_form_ids': [
-                'utet-p1-fullmock',
-                'utet-p2-set-b',
-                'ctet-p1-2026-pyq',
-                'ctet-p2-ms-mock-01',
-                'ctet-p2-sst-mock-01'
-            ],
-            'paid_form_ids': [],
-            'all_mocks_free': False
-        }
+        'remote_config': remote_access_config()
     }
 
     manifest_path = os.path.join(cdn_dir, 'manifest.json')
