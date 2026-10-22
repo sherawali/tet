@@ -1081,3 +1081,13 @@
   switch the second card price R1,499 to R999 and the numbers switch to
   "UTET Paper-1 ke sabhi 22 paper / 3,146 prashn / 365 din" live. 6 test
   files pass, analyze clean.
+
+### 2026-10-22 night V - final checkup round
+- Full test sweep (all 20 files, serial): 19 green, one stale file -
+  booklet_paper_integrity_test still hard-coded 62 papers while the vault
+  has grown to 63 (bank_version 2026102021). Made the tripwire count-free
+  (greaterThan(55), papers==forms.length, questions==150 per paper) so a
+  bank that grows does not break a test that only guards rendering
+  integrity. Now proves 63 papers / 9,450 questions / 27,843 options /
+  193 passage groups render.
+- flutter analyze clean, git clean, everything pushed.

@@ -8,7 +8,7 @@ import 'package:tet_app/models/question.dart';
 import 'package:tet_app/models/test_session.dart';
 import 'package:tet_app/services/html_booklet_builder.dart';
 
-/// Proves, for every one of the 62 papers, that
+/// Proves, for every paper in the vault, that
 ///  1. all 150 questions are rendered,
 ///  2. a passage is printed together with its own questions and nowhere else,
 ///  3. no passage text can leak into an option.
@@ -30,10 +30,12 @@ void main() {
 
   test('every paper renders all of its questions with its passages', () async {
     final forms = await db.rawQuery('SELECT * FROM paper_forms ORDER BY id');
-    expect(forms.length, 62);
+    // A tripwire against a broken bank, not a fixed number: the vault
+    // has grown before (62 → 63) and may grow again.
+    expect(forms.length, greaterThan(55));
 
-    // The booklets are rendered in two halves, because 62 full booklets in
-    // one test used more memory than the test isolate has.
+    // The booklets are rendered in two halves, because a full run of all
+    // booklets in one test used more memory than the test isolate has.
     final half = (forms.length / 2).ceil();
     final first = await _checkPapers(db, forms.sublist(0, half));
     final second = await _checkPapers(db, forms.sublist(half));
@@ -48,8 +50,9 @@ void main() {
       'Verified $papersChecked papers, $questionsChecked questions, '
       '$optionsChecked options, $passageGroupsChecked passage groups',
     );
-    expect(papersChecked, 62);
-    expect(questionsChecked, 62 * 150);
+    // 150 questions per paper, the app-wide rule (BankFacts.questionsPerPaper).
+    expect(papersChecked, forms.length);
+    expect(questionsChecked, forms.length * 150);
   }, timeout: const Timeout(Duration(minutes: 15)));
 }
 
