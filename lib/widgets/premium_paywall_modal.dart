@@ -377,7 +377,7 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
 
   /// The store is there, but it cannot be reached.
   String get _offlineTitle =>
-      AppStrings.isHindi ? 'इंटरनेट कनेक्शन नहीं है' : 'No internet connection';
+      AppStrings.isHindi ? 'इंटरनेट नहीं चल रहा' : 'No internet connection';
 
   String get _offlineMessage => AppStrings.isHindi
       ? 'Google Play तक पहुँचना संभव नहीं है। कृपया इंटरनेट चालू करके फिर कोशिश करें।'

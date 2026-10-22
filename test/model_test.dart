@@ -218,7 +218,9 @@ void main() {
       expect(TestLanguageMode.bilingual.badgeLabel, 'HI + EN');
 
       expect(TestLanguageMode.onlyHindi.title.contains('हिन्दी'), true);
-      expect(TestLanguageMode.onlyEnglish.title.contains('English'), true);
+      // The Hindi UI names even the English mode in Devanagari, so the list
+      // never mixes scripts.
+      expect(TestLanguageMode.onlyEnglish.title.contains('अंग्रेज़ी'), true);
       expect(TestLanguageMode.bilingual.title.contains('द्विभाषी'), true);
     });
 

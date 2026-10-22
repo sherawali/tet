@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
 import '../database/db_helper.dart';
+import '../design_system/app_motion.dart';
 import 'pass_plan.dart';
 
 /// The outcome of a purchase or of a restore.
@@ -680,7 +681,7 @@ class PremiumService {
     purchaseError.value = null;
     // A moment of the same working state the Play sheet gives, so the
     // tester sees the loader of the real flow too.
-    await Future<void>.delayed(const Duration(milliseconds: 700));
+    await Future<void>.delayed(AppMotion.mockBuyLoader);
     await unlockAllAccessLocally(
       productId: productId,
       singlePaperScope: singlePaperScope,

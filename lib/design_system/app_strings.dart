@@ -46,23 +46,24 @@ class AppStrings {
   static const int languageSectionQuestions = 30;
 
   // Debug only (never shipped in a release build)
-  static String get debugProPassTitle => _isHi ? 'Pro Pass (Debug)' : 'Pro Pass (Debug)';
+  static String get debugProPassTitle =>
+      _isHi ? 'Pro Pass (डिबग)' : 'Pro Pass (Debug)';
   static String get debugProPassDesc => _isHi
-      ? 'बिना पैमेंट के paid और free दोनों रूप देखें। Debug build में ही दिखता है।'
+      ? 'बिना भुगतान के "सब खुला" और "मुफ़्त" दोनों रूप देखें। डिबग बिल्ड में ही।'
       : 'See the paid and the free experience without paying. Shown in debug builds only.';
   static String get debugProPassPaid => _isHi
-      ? 'सभी पेपर खुले हैं (paid view)'
+      ? 'सभी पेपर खुले (सब खुला रूप)'
       : 'All papers are open (paid view)';
   static String get debugProPassSwitchSub => _isHi
-      ? 'स्विच ON = paid view, OFF = free view'
+      ? 'चालू = सब खुला · बंद = मुफ़्त रूप'
       : 'Switch ON = paid view, OFF = free view';
   static String get debugProPassFree => _isHi
-      ? 'सिर्फ मुफ़्त पेपर (free view)'
+      ? 'सिर्फ मुफ़्त पेपर (मुफ़्त रूप)'
       : 'Only the free paper (free view)';
 
   /// The mock buy of a debug build (never in a release).
   static String get debugBuyNote => _isHi
-      ? '🧪 डिबग बिल्ड: पैक चुनकर Buy दबाओ — Play की खरीद नहीं होगी, पर अनलॉक असली रास्ते से लगेगा (वही दिन, वही दायरा)।'
+      ? '🧪 डिबग बिल्ड: पैक चुनकर खरीदें दबाओ — Play की खरीद नहीं होगी, पर अनलॉक असली रास्ते से लगेगा (उतने ही दिन, वही दायरा)।'
       : '🧪 Debug build: pick a pack and press Buy - no Play billing, but the real unlock path runs (same days, same scope).';
   static String get debugResetPass => _isHi
       ? '🧪 पास रीसेट करो (दूसरा पैक आज़माओ)'
@@ -78,6 +79,8 @@ class AppStrings {
           ? '$currentExamYear डिजिटल प्रश्न-पुस्तिका पोर्टल'
           : '$currentExamYear Digital Booklet Portal');
   static String get bankSyncTooltip => _isHi ? 'बैंक अपडेट करें' : 'Update Bank Online';
+  /// 'today' of the last-sync stamp in the active language.
+  static String get lastSyncToday => _isHi ? 'आज' : 'Today';
   static String get langToggleLabel => _isHi ? 'ENG' : 'हिन्दी';
 
   // Bank Strip
@@ -210,7 +213,7 @@ class AppStrings {
   // Settings Screen
   static String get settingsTitle =>
       screenTitle('ऐप सेटिंग्स एवं भाषा', 'App Settings & Language');
-  static String get settingsLangHeader => _isHi ? 'भाषा चयन / App Language' : 'App Language / भाषा चयन';
+  static String get settingsLangHeader => _isHi ? 'ऐप की भाषा' : 'App Language';
   static String get settingsLangDesc => _isHi
       ? 'पूरी ऐप की भाषा एक क्लिक में हिन्दी या अंग्रेजी में बदलें'
       : 'Switch the entire app interface between Hindi and English';
@@ -242,7 +245,8 @@ class AppStrings {
   static String get settingsModelDesc => _isHi
       ? 'विगत वर्षों के सभी प्रश्न-पत्रों और मुख्य कोर टॉपिक्स का गहन विश्लेषण एवं सटीक ब्लूप्रिंट।'
       : 'In-depth analytical assessment of all past year papers and high-yield core topics.';
-  static String get settingsAbout => _isHi ? 'TET Mock Master v1.0 · 100% ऑफलाइन' : 'TET Mock Master v1.0 · 100% Offline';
+  static String get settingsAbout =>
+      _isHi ? 'TET Rank v1.0 · 100% ऑफलाइन' : 'TET Rank v1.0 · 100% Offline';
 
   // Sync Feedback Bilingual Strings
   static String syncSuccessAddedTitle(int count) => _isHi
@@ -294,7 +298,7 @@ class AppStrings {
       ? 'कुल $total में से $answered हल किए, $remaining शेष'
       : 'Answered $answered of $total, $remaining remaining';
   static String get continueTestBtn => _isHi ? 'हल करना जारी रखें' : 'Continue Test';
-  static String get submitViewResultBtn => _isHi ? 'सबमिट करें और परिणाम देखें' : 'Submit & View Result';
+  static String get submitViewResultBtn => _isHi ? 'जमा करके परिणाम देखें' : 'Submit & View Result';
   static String get discardDirectExitBtn => _isHi ? 'बिना परिणाम के सीधे बाहर जाएं / रद्द करें' : 'Discard & Exit Without Result';
 
   static String get bookletAnswered => _isHi ? 'हल किए: ' : 'Answered: ';
@@ -321,8 +325,8 @@ class AppStrings {
       ? '🔁 गलत प्रश्न दोबारा हल करें ($count प्रश्न)'
       : '🔁 Re-solve Incorrect Questions ($count Qs)';
   static String get guidanceTitle => _isHi ? 'विशेषज्ञ मार्गदर्शन एवं सही सलाह' : 'Expert Guidance & Recommendations';
-  static String get sectionBreakdownTitle => _isHi ? 'विषयवार प्रदर्शन' : 'Section-wise Performance Breakdown';
-  static String get topicAnalysisTitle => _isHi ? 'टॉपिक-वार विश्लेषण' : 'Topic-wise Analysis';
+  static String get sectionBreakdownTitle => _isHi ? 'खण्ड-वार प्रदर्शन' : 'Section-wise Performance Breakdown';
+  static String get topicAnalysisTitle => _isHi ? 'विषय-वार विश्लेषण' : 'Topic-wise Analysis';
   static String get viewSolutionsBtn => _isHi ? '📖 विस्तृत उत्तर कुंजी एवं हल' : '📖 Detailed Answer Key & Solutions';
   static String get backHomeBtn => _isHi ? 'मुख्य पृष्ठ पर वापस जाएं' : 'Return to Home Screen';
 
@@ -351,7 +355,7 @@ class AppStrings {
   static String get wrongShort => _isHi ? 'गलत' : 'Wrong';
   static String get unattemptedShort => _isHi ? 'शेष' : 'Skipped';
   static String get accuracyShort => _isHi ? 'सटीकता' : 'Accuracy';
-  static String get topWeakTopicsWarning => _isHi ? '⚠️ इन मुख्य टॉपिक्स पर तुरंत ध्यान दें:' : '⚠️ Focus on these key weak topics:';
+  static String get topWeakTopicsWarning => _isHi ? '⚠️ इन मुख्य विषयों पर तुरंत ध्यान दें:' : '⚠️ Focus on these key weak topics:';
   static String get generalQuestionFallback => _isHi ? 'सामान्य प्रश्न' : 'General Question';
 
   static bool get isPaper2 => ExamService.instance.isPaper2;
@@ -538,6 +542,8 @@ class AppStrings {
           .replaceAll(RegExp(r'Paper[- ]*II\b', caseSensitive: false), 'पेपर-2')
           .replaceAll(RegExp(r'Paper[- ]*1\b', caseSensitive: false), 'पेपर-1')
           .replaceAll(RegExp(r'Paper[- ]*2\b', caseSensitive: false), 'पेपर-2')
+          .replaceAll('Combined Revision Set', 'संयुक्त पुनरावृत्ति सेट')
+          .replaceAll('Combined Revision', 'संयुक्त पुनरावृत्ति')
           .replaceAll(RegExp(r'Model Paper\b', caseSensitive: false), 'मॉडल प्रश्न-पत्र')
           .replaceAll(RegExp(r'Model Booklet\b', caseSensitive: false), 'मॉडल प्रश्न-पत्र')
           .replaceAll('मॉडल पेपर', 'मॉडल प्रश्न-पत्र')
@@ -558,6 +564,8 @@ class AppStrings {
           .replaceAll('मॉडल प्रश्न-पुस्तिका', 'Model Test Paper')
           .replaceAll('मॉडल पेपर', 'Model Test Paper')
           .replaceAll('मॉडल पेपर', 'Model Test Paper')
+          .replaceAll('संयुक्त पुनरावृत्ति सेट', 'Combined Revision Set')
+          .replaceAll('संयुक्त पुनरावृत्ति', 'Combined Revision')
           .replaceAll('गणित एवं विज्ञान', 'Mathematics & Science')
           .replaceAll('सामाजिक अध्ययन', 'Social Studies')
           .replaceAll('पेपर-1', 'Paper-1')
@@ -688,17 +696,17 @@ class AppStrings {
   static String get reportLabel => _isHi ? 'रिपोर्ट' : 'Report';
   static String get answeredCountLabel => _isHi ? 'हल: ' : 'Answered: ';
   static String get reviewCountLabel => _isHi ? 'समीक्षा: ' : 'Review: ';
-  static String get sectionLabel => _isHi ? 'सेक्शन: ' : 'Section: ';
+  static String get sectionLabel => _isHi ? 'खंड: ' : 'Section: ';
   static String get emptyPaperTitle => _isHi
       ? 'इस प्रश्न-पत्र में कोई प्रश्न नहीं मिला। कृपया दूसरा प्रश्न-पत्र चुनें।'
       : 'No questions were found in this paper. Please choose another paper.';
   static String get wrongTimesLabel => _isHi ? 'बार गलत' : 'wrong times';
   static String get directionLabel => _isHi ? 'निर्देश : ' : 'Direction: ';
   static String practiceSetsHeading(int count) => _isHi
-      ? 'अभ्यास सेट्स ($count प्रश्न · $count मिनट)'
+      ? 'अभ्यास सेट ($count प्रश्न · $count मिनट)'
       : 'Practice Sets ($count questions · $count minutes)';
   static String get rightDirectionAdvice => _isHi
-      ? 'सही दिशा में सुधार: इन टॉपिक्स के प्रश्न रटने के बजाय पहले इनके नियम और बुनियादी सिद्धांत समझें। फिर नीचे दिए बटन से सिर्फ़ इन्हीं गलत हुए प्रश्नों का अभ्यास करें।'
+      ? 'सही दिशा: इन विषयों के प्रश्न रटने के बजाय पहले इनके नियम और बुनियादी सिद्धांत समझें। फिर नीचे दिए बटन से सिर्फ़ इन्हीं गलत हुए प्रश्नों का अभ्यास करें।'
       : 'The right way to improve: understand the rules and the basics of these topics instead of memorising them. Then use the button below to practise only the questions you got wrong.';
   static String retestWrongQuestions(int count) => _isHi
       ? '🎯 बार-बार गलत हुए ($count) प्रश्नों का री-टेस्ट हल करें'
@@ -709,7 +717,7 @@ class AppStrings {
       : 'You have answered $answered of $total questions. If you leave now, this test session will end.';
   static String get zoomLabel => _isHi ? 'ज़ूम करें' : 'Zoom';
   static String get pinchToZoomHint => _isHi
-      ? 'पिंच करके बड़ा/छोटा करें (Pinch to Zoom & Pan)'
+      ? 'पिंच करके बड़ा-छोटा करें'
       : 'Pinch to zoom and pan';
   static String questionNumberLabel(int number) =>
       _isHi ? 'प्रश्न $number' : 'Question $number';
@@ -722,12 +730,12 @@ class AppStrings {
   static String get proPackGuarantee => _isHi
       ? '7 दिन में बिना सवाल कुछ भी नहीं पसंद आया तो पूरा पैसा वापस'
       : 'Full refund within 7 days, no questions asked';
-  static String get proPackWhichExam => _isHi ? 'आप कौन-सा परीक्षा दे रहे हैं?' : 'Which exam are you preparing for?';
+  static String get proPackWhichExam => _isHi ? 'आप किस परीक्षा की तैयारी कर रहे हैं?' : 'Which exam are you preparing for?';
   static String get proPackBothExams => _isHi ? 'UTET + CTET (दोनों)' : 'UTET + CTET (both)';
   static String get proPackOnlyUtet => _isHi ? 'सिर्फ UTET' : 'UTET only';
   static String get proPackOnlyCtet => _isHi ? 'सिर्फ CTET' : 'CTET only';
   static String get proPackFullTitle => _isHi
-      ? 'फुल एक्सेस प्रो पास'
+      ? 'सब खुला प्रो पास'
       : 'Full Access Pro Pass';
   static String get proPackFullSub => _isHi
       ? 'UTET + CTET, पेपर-1 और पेपर-2, सभी मॉडल एवं बोर्ड पेपर, लाइव बैंक अपडेट, 12 महीने'
@@ -741,9 +749,14 @@ class AppStrings {
   static String get proPackFallbackNote => _isHi
       ? 'दुकान से जुड़ नहीं पाए, दिखाया गया सामान्य मूल्य है'
       : 'The store could not be reached, the usual price is shown';
+  /// Note while the pass is comfortably far from its end: no push.
+  static String proPackExpiryCalm(int days) => _isHi
+      ? 'आपका प्रो पास $days दिन बाकी है'
+      : 'Your Pro Pass has $days days left';
+  /// Note once the pass is close to its end (the renewal gentle push).
   static String proPackExpirySoon(int days) => _isHi
-      ? 'आपका प्रो पास $days दिन में समाप्त हो रहा है - अभी नवीनीकरण करें'
-      : 'Your Pro Pass ends in $days days - renew now';
+      ? 'आपका प्रो पास $days दिन बाकी है - ठीक समय पर नवीनीकरण कर लें'
+      : 'Your Pro Pass ends in $days days - renew in time';
   static String proPackRenewsAt(String price) => _isHi
       ? 'नवीनीकरण ₹$price पर'
       : 'Renews at ₹$price';
@@ -758,8 +771,8 @@ class AppStrings {
   // chip buys one direction of the exam (₹999), the Dono chip buys both
   // papers of the exam (₹1,499).  Every choice runs for 365 days.
   static String get proPackWhichPaper => _isHi
-      ? 'कौन-सा पेपर? · एक पेपर ₹999 · दोनों ₹1,499'
-      : 'Which paper? · one paper ₹999 · both ₹1,499';
+      ? 'कौन-सा पेपर चुनें?'
+      : 'Which paper?';
   static String get proPackPaper1Label => _isHi ? 'पेपर-1' : 'Paper-1';
   static String get proPackPaper2Label => _isHi ? 'पेपर-2' : 'Paper-2';
   static String get proPackDonoLabel => _isHi ? 'दोनों ₹1,499' : 'Both ₹1,499';
@@ -767,14 +780,14 @@ class AppStrings {
       ? '$examLabel $paperLabel · सभी $forms पेपर · हल + विश्लेषण · 365 दिन'
       : '$examLabel $paperLabel · all $forms papers · solutions + analysis · 365 days';
   static String get proPackUtetSub => _isHi
-      ? 'UTET Paper-1 + Paper-2 · 21 मॉक + 8 PYQ पेपर + 4,616 प्रश्न · 12 महीने'
+      ? 'UTET पेपर-1 + पेपर-2 · 21 मॉक + 8 PYQ प्रश्न-पत्र + 4,616 प्रश्न · 12 महीने'
       : 'UTET Paper-1 + Paper-2 · 21 mocks + 8 PYQ papers + 4,616 questions · 12 months';
   static String get proPackCtetSub => _isHi
-      ? 'CTET Paper-1 + Paper-2 · 26 मॉक + 8 PYQ पेपर + 5,100 प्रश्न · 12 महीने'
+      ? 'CTET पेपर-1 + पेपर-2 · 26 मॉक + 8 PYQ प्रश्न-पत्र + 5,100 प्रश्न · 12 महीने'
       : 'CTET Paper-1 + Paper-2 · 26 mocks + 8 PYQ papers + 5,100 questions · 12 months';
   static String get proPackFullSubNew => _isHi
-      ? 'UTET Paper-1 & 2 + CTET Paper-1 & 2 · सभी 47 मॉक + 16 PYQ + 9,720 प्रश्न · 12 महीने'
-      : 'UTET Paper-1 & 2 + CTET Paper-1 & 2 · all 47 mocks + 16 PYQ + 9,720 questions · 12 months';
+      ? 'UTET + CTET पेपर-1 और 2 · सभी 47 मॉक + 16 PYQ प्रश्न-पत्र + 9,720 प्रश्न · 12 महीने'
+      : 'UTET Paper-1 & 2 + CTET Paper-1 & 2 · all 47 mocks + 16 PYQ papers + 9,720 questions · 12 months';
   static List<String> proPackEkOneBullets({
     required String examLabel,
     required String paperLabel,
@@ -782,9 +795,9 @@ class AppStrings {
     required int questions,
   }) => _isHi
       ? <String>[
-          '$examLabel $paperLabel के सभी $forms पेपर',
+          '$examLabel $paperLabel के सभी $forms प्रश्न-पत्र',
           '${BankFacts.format(questions)} प्रश्न · हल एवं विश्लेषण',
-          'पूरे 365 दिन का एक्सेस',
+          'पूरे 365 दिन तक सब खुला',
         ]
       : <String>[
           'Every one of the $forms papers of $examLabel $paperLabel',
@@ -816,9 +829,9 @@ class AppStrings {
   static List<String> get proPackFullBullets => _isHi
       ? const [
           'UTET + CTET, दोनों के पेपर-1 और पेपर-2',
-          'सभी 47 मॉक + 16 PYQ पेपर',
+          'सभी 47 मॉक + 16 PYQ प्रश्न-पत्र',
           '9,720 प्रश्न · हल एवं विश्लेषण',
-          '12 महीने का पूरा एक्सेस',
+          '12 महीने तक सब खुला',
         ]
       : const [
           'UTET + CTET, Paper-1 and Paper-2 of both',
@@ -827,12 +840,12 @@ class AppStrings {
           'Full access for 12 months',
         ];
   static String get proPackSelectorHint => _isHi
-      ? 'परीक्षा और पेपर के चिप दोनों पैक बदलते हैं · फुल एक्सेस में हमेशा दोनों परीक्षाएँ'
+      ? 'परीक्षा-चिप से पैक बदलें · "सब खुला" पैक में हमेशा दोनों परीक्षाएँ'
       : 'The exam and paper chips switch the one-exam pack · the Full Access Pass always has both exams';
 
   // ---- bilingual wording for the buttons and cards ------------------------
   static String get verifiedTestPapersHeading =>
-      _isHi ? 'प्रामाणिक बने-बनाए टेस्ट पेपर्स' : 'Verified Ready-Made Test Papers';
+      _isHi ? 'प्रामाणिक तैयार मॉक प्रश्न-पुस्तिकाएँ' : 'Verified Ready-Made Test Papers';
   static String verifiedTestPapersDesc(int count, int size) => _isHi
       ? '$count सम्पूर्ण $size-प्रश्नों वाले मॉडल पेपर्स उपलब्ध हैं।'
       : '$count complete mock papers with $size questions each.';
@@ -847,7 +860,7 @@ class AppStrings {
   static String get solveLabel => _isHi ? 'हल करें' : 'Solve';
   static String get drillLabel => _isHi ? 'ड्रिल' : 'Drill';
   static String get changeStreamLabel =>
-      _isHi ? 'स्ट्रीम बदलें ⇄' : 'Change stream ⇄';
+      _isHi ? 'विषय वर्ग बदलें ⇄' : 'Change stream ⇄';
   static String topicsCount(int count) =>
       _isHi ? '$count विषय' : '$count topics';
   static String get resultPassedHeadline =>
@@ -874,16 +887,16 @@ class AppStrings {
   static String subjectSetTitle(int num) => _isHi
       ? 'सेट-$num : ${BankFacts.subjectSetQuestions} प्रश्न अभ्यास'
       : 'Set-$num : ${BankFacts.subjectSetQuestions} Questions Practice';
-  static String get topicsDrillHeading => _isHi ? 'टॉपिक-वार गहन अभ्यास' : 'Topic-wise Focused Drills';
+  static String get topicsDrillHeading => _isHi ? 'विषय-वार गहन अभ्यास' : 'Topic-wise Focused Drills';
   static String get startPracticeBtn => _isHi ? 'हल शुरू करें ▾' : 'Start Practice ▾';
   static String topicDrillTitle(String topic) => _isHi ? '$topic ड्रिल' : '$topic Drill';
   static String topicDrillSub(int count) => _isHi ? '$count प्रश्न' : '$count Questions';
   static String get subjectCardSetsInfo =>
-      _isHi ? 'अभ्यास सेट्स · टॉपिक ड्रिल' : 'Practice Sets · Topic Drills';
+      _isHi ? 'अभ्यास सेट · विषय ड्रिल' : 'Practice Sets · Topic Drills';
 
   /// The same line with the real number of sets the bank can offer.
   static String subjectCardSetsInfoFor(int sets) => _isHi
-      ? '$sets अभ्यास सेट्स · टॉपिक ड्रिल'
+      ? '$sets अभ्यास सेट · विषय ड्रिल'
       : '$sets Practice Sets · Topic Drills';
 
   // Premium & In-App Purchase Gate (IAP)
@@ -893,14 +906,6 @@ class AppStrings {
       ? 'एक मॉडल प्रश्न-पत्र पूर्णतः निःशुल्क है। बाकी सभी ${BankFacts.paperCount}+ मॉडल प्रश्न-पत्र, विगत वर्ष प्रश्न-पत्र और ${BankFacts.format(BankFacts.questionCount)}+ प्रश्न 12 महीने के लिए अनलॉक करें।'
       : 'One model test paper is completely free. Unlock all ${BankFacts.paperCount}+ model test papers, previous year solved papers, and ${BankFacts.format(BankFacts.questionCount)}+ questions for a full year.';
 
-  static String get proPackMasterTitle => _isHi ? 'मास्टर ऑल-एक्सेस प्रो पास' : 'Master All-Access Pro Pass';
-  static String get proPackMasterSub => _isHi
-      ? 'दोनों पेपर (पेपर-1 + पेपर-2), UTET और CTET, सभी ${BankFacts.paperCount}+ टेस्ट, ${BankFacts.format(BankFacts.questionCount)}+ प्रश्न व 12 महीने के अपडेट'
-      : 'Both papers (Paper-1 + Paper-2), UTET & CTET, all ${BankFacts.paperCount}+ full tests, ${BankFacts.format(BankFacts.questionCount)}+ questions & 12 months of updates';
-  static String get proPackMasterPrice =>
-      _isHi ? '₹599 (80% तक छूट)' : '₹599 (Up to 80% Off)';
-  static String get proPackMasterTag => _isHi ? '⭐ सर्वोत्तम मूल्य · शिक्षकों की पसंद' : '⭐ Best Value · Most Popular';
-
   static String get premiumFeature1 => _isHi
       ? '${BankFacts.paperCount}+ सम्पूर्ण ${BankFacts.questionsPerPaper}-प्रश्नों के मॉडल प्रश्न-पत्र'
       : '${BankFacts.paperCount}+ full ${BankFacts.questionsPerPaper}-question model test papers';
@@ -908,7 +913,7 @@ class AppStrings {
       ? 'विगत वर्षों के ${BankFacts.pyqCount}+ प्रामाणिक बोर्ड प्रश्न-पत्र'
       : '${BankFacts.pyqCount}+ authentic previous year board papers';
   static String get premiumFeature3 => _isHi ? 'विस्तृत व्याख्या सहित सम्पूर्ण हल व सटीक विश्लेषण' : 'Detailed Explanations & Performance Analytics';
-  static String get premiumFeature4 => _isHi ? '100% विज्ञापन-मुक्त · बिना इंटरनेट पूर्ण एक्सेस' : '100% Ad-Free · Complete Offline Access';
+  static String get premiumFeature4 => _isHi ? '100% विज्ञापन-मुक्त · बिना इंटरनेट भी सब अभ्यास' : '100% Ad-Free · Complete Offline Access';
 
   static String get premiumUnlockBtn => _isHi ? '👑 प्रो पास अनलॉक करें' : '👑 Unlock Pro Pass';
   static String get premiumRestoreBtn => _isHi ? 'खरीद पुनर्स्थापित करें' : 'Restore Purchases';
@@ -916,8 +921,8 @@ class AppStrings {
   static String get premiumFreeBadge => _isHi ? 'निःशुल्क' : 'FREE';
   static String get premiumLockedBadge => _isHi ? '🔒 प्रो पास' : '🔒 Pro Pass';
   static String get premiumSuccessToast => _isHi
-      ? '🎉 बधाई! ऑल-एक्सेस प्रो पास सफलतापूर्वक अनलॉक हो गया।'
-      : '🎉 Congratulations! All-Access Pro Pass unlocked successfully.';
+      ? '🎉 बधाई! प्रो पास सफलतापूर्वक अनलॉक हो गया।'
+      : '🎉 Congratulations! Pro Pass unlocked successfully.';
   static String get premiumActiveStatus => _isHi ? '👑 प्रो पास सक्रिय' : '👑 Pro Pass Active';
   static String get premiumPriceBadge => _isHi ? '👑 प्रो पास उपलब्ध · ₹999 से शुरू' : '👑 Pro Pass Available · From ₹999';
   static String get premiumCancelledToast => _isHi ? 'भुगतान रद्द कर दिया गया।' : 'Payment was cancelled.';
@@ -928,7 +933,7 @@ class AppStrings {
   // Congratulations Dialog
   static String get congratulationsTitle => _isHi ? 'बधाई हो! प्रो पास सक्रिय हो गया' : 'Congratulations! Pro Pass Activated';
   static String get congratulationsSub => _isHi
-      ? 'आपकी प्रो सदस्यता सफलतापूर्वक सक्रिय कर दी गई है। अब आप सभी ${BankFacts.paperCount}+ प्रश्न-पुस्तिकाओं और विगत वर्ष पेपर्स को बिना किसी रोक-टोक के हल कर सकते हैं।'
+      ? 'आपका प्रो पास सक्रिय हो गया है। अब आप सभी प्रश्न-पुस्तिकाएँ और विगत वर्ष के प्रश्न-पत्र बिना किसी रोक-टोक के हल कर सकते हैं।'
       : 'Your Pro membership is now active. You have full unlimited access to all ${BankFacts.paperCount}+ exam booklets and previous year papers.';
   static String get startPreparingBtn => _isHi ? 'तैयारी शुरू करें' : 'Start Preparing';
 

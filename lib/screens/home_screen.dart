@@ -99,7 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   // Offline Database & Sync Status
   String _dbSizeStr = '3.5 MB';
-  String _lastSyncedStr = 'अभी नहीं';
+  String? _lastSyncedRaw;
   bool _isSyncing = false;
   bool _isOptimizing = false;
   bool _isCheckingUpdate = false;
@@ -230,23 +230,11 @@ class _HomeScreenState extends State<HomeScreen> {
       ExamService.instance.selectedPaper,
     );
 
-    // Database physical size & sync timestamp
+    // Database physical size & sync timestamp.  The stamp text itself is
+    // formatted when it is drawn, so it follows the active language instead
+    // of the language that was set while the app started.
     final sizeBytes = await _db.getDatabaseSizeBytes();
     final lastSynced = await _db.getMeta('last_synced');
-    String sizeFormatted = '${(sizeBytes / (1024 * 1024)).toStringAsFixed(1)} MB';
-    String syncedFormatted = AppStrings.dbNeverSynced;
-    if (lastSynced != null) {
-      try {
-        final dt = DateTime.parse(lastSynced).toLocal();
-        final now = DateTime.now();
-        final isToday = dt.year == now.year && dt.month == now.month && dt.day == now.day;
-        final hour = dt.hour.toString().padLeft(2, '0');
-        final min = dt.minute.toString().padLeft(2, '0');
-        syncedFormatted = isToday ? 'आज $hour:$min' : '${dt.day}/${dt.month}/${dt.year} $hour:$min';
-      } catch (_) {
-        syncedFormatted = lastSynced;
-      }
-    }
 
     await BankFacts.refresh(_db);
     final examName = ExamService.instance.isUtet ? 'utet' : 'ctet';
@@ -273,8 +261,8 @@ class _HomeScreenState extends State<HomeScreen> {
         _paperForms = forms;
         _pyqForms = pyqs;
         _mockForms = mocks;
-        _dbSizeStr = sizeFormatted;
-        _lastSyncedStr = syncedFormatted;
+        _dbSizeStr = '${(sizeBytes / (1024 * 1024)).toStringAsFixed(1)} MB';
+        _lastSyncedRaw = lastSynced;
       });
       _startCarouselAutoPlay();
     }
@@ -2221,11 +2209,11 @@ class _HomeScreenState extends State<HomeScreen> {
   String get _syncActionLabel =>
       AppStrings.isHindi ? 'प्रश्न बैंक सिंक करें' : 'Sync the question bank';
   String get _optimizeActionLabel =>
-      AppStrings.isHindi ? 'डेटाबेस ऑप्टिमाइज़ करें' : 'Optimise the database';
+      AppStrings.isHindi ? 'डेटाबेस ऑप्टिमाइज़' : 'Optimise database';
   String get _updateActionLabel =>
       AppStrings.isHindi ? 'अपडेट की जाँच करें' : 'Check for update';
   String get _resyncActionLabel =>
-      AppStrings.isHindi ? 'बैंक फिर से डाउनलोड करें' : 'Re-download the bank';
+      AppStrings.isHindi ? 'बैंक फिर डाउनलोड' : 'Re-download bank';
 
   /// The wording of an action while it is working.
   String get _syncingLabel =>
@@ -2244,7 +2232,30 @@ class _HomeScreenState extends State<HomeScreen> {
       ? 'अपडेट की जाँच नहीं हो सकी। कृपया फिर कोशिश करें।'
       : 'The update could not be checked. Please try again.';
 
-  /// The note about the day the active pass runs out.
+  /// The last-sync stamp, formatted when it is drawn so it follows the
+  /// active language (a stamp frozen at app start showed "आज" inside the
+  /// English UI and "Today" inside the Hindi one).
+  String _syncStampText() {
+    final raw = _lastSyncedRaw;
+    if (raw == null) return AppStrings.dbNeverSynced;
+    try {
+      final dt = DateTime.parse(raw).toLocal();
+      final now = DateTime.now();
+      final isToday =
+          dt.year == now.year && dt.month == now.month && dt.day == now.day;
+      final hour = dt.hour.toString().padLeft(2, '0');
+      final min = dt.minute.toString().padLeft(2, '0');
+      return isToday
+          ? '${AppStrings.lastSyncToday} $hour:$min'
+          : '${dt.day}/${dt.month}/${dt.year} $hour:$min';
+    } catch (_) {
+      return raw;
+    }
+  }
+
+  /// The note about the day the active pass runs out. Far from the expiry
+  /// it only states the remaining days without the renew push, because a
+  /// "renew now" right after the purchase reads like pressure.
   String _passExpiryNote() {
     final service = PremiumService.instance;
     if (service.activeExpiry == null) return '';
@@ -2252,10 +2263,13 @@ class _HomeScreenState extends State<HomeScreen> {
     final days = service.activePassDaysLeft;
     if (days == null || days <= 0) return '';
     final product = service.activeProductId;
-    final renews = product == null
-        ? ''
-        : ' · ${AppStrings.proPackRenewsAt(service.priceOf(product))}';
-    return '${AppStrings.proPackExpirySoon(days)}$renews';
+    final last30 = days <= 30;
+    final renews = last30 && product != null
+        ? ' · ${AppStrings.proPackRenewsAt(service.priceOf(product))}'
+        : '';
+    return last30
+        ? '${AppStrings.proPackExpirySoon(days)}$renews'
+        : AppStrings.proPackExpiryCalm(days);
   }
 
   /// The one card of the settings tab.
@@ -2874,7 +2888,7 @@ class _HomeScreenState extends State<HomeScreen> {
               isDark: isDark,
               icon: Icons.history_toggle_off_rounded,
               iconColor: AppColors.correctGreen,
-              label: '${AppStrings.dbLastSyncedLabel}: $_lastSyncedStr',
+              label: '${AppStrings.dbLastSyncedLabel}: ${_syncStampText()}',
             ),
           ],
         ),
@@ -2970,7 +2984,9 @@ class _HomeScreenState extends State<HomeScreen> {
           runSpacing: AppSpacing.xs,
           children: [
             AppBadge(
-              label: 'Verified ${AppStrings.currentExamYear}',
+              label: AppStrings.isHindi
+                  ? 'प्रमाणित ${AppStrings.currentExamYear}'
+                  : 'Verified ${AppStrings.currentExamYear}',
               color: AppColors.sealGold,
             ),
             AppBadge(

@@ -106,7 +106,7 @@ class ExamSpecialRenderEngine extends StatelessWidget {
                 borderRadius: AppRadius.roundedSm,
               ),
               child: Text(
-                'हिन्दी (Hindi)',
+                'हिन्दी',
                 style: AppTypography.labelSmall(
                   color: isDark ? AppColors.accentBright : AppColors.primary,
                 ),

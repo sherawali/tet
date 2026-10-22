@@ -1,17 +1,33 @@
 import 'package:flutter/material.dart';
 
+import 'app_strings.dart';
+
 /// App typography system with bilingual Hindi (Noto Sans Devanagari) + English
 /// (Outfit/Inter) support.
 ///
 /// The three faces are bundled with the app (see `pubspec.yaml`), so the exam
 /// looks exactly the same with or without an internet connection.  They are
 /// variable fonts, therefore the weight is selected through the "wght" axis.
+///
+/// The chrome styles (titles, labels, bodies of buttons and cards) pick the
+/// primary family by the app language: Hindi UI text is set in Noto Sans
+/// Devanagari directly, never through a fallback, because FontVariation only
+/// reaches the primary family and a Hindi heading whose weight silently drops
+/// to 400 looks flat instead of premium.  An explicit FontWeight is also set
+/// on every style so the weight holds even on faces without a variable axis.
 class AppTypography {
   const AppTypography._();
 
   static const String _latin = 'Outfit';
   static const String _devanagari = 'Noto Sans Devanagari';
   static const String _ui = 'Inter';
+
+  /// Hindi has its own word marks and matra ligatures, letter spacing breaks
+  /// their joining, so it is only applied on Latin text.
+  static bool get _isHi => AppStrings.isHindi;
+
+  /// The primary family for the chrome text of the current language.
+  static String get _chrome => _isHi ? _devanagari : _latin;
 
   /// If a bundled face ever fails to load, the system font takes over so the
   /// text can never become invisible.
@@ -26,66 +42,79 @@ class AppTypography {
   static List<FontVariation> _w(double weight) =>
       <FontVariation>[FontVariation('wght', weight)];
 
-  // English / Numerics style (Outfit)
+  // English / Numerics style (Outfit · Devanagari in the Hindi mode)
   static TextStyle displayLarge({Color? color}) => TextStyle(
-        fontFamily: _latin,
+        fontFamily: _chrome,
         fontFamilyFallback: _fallback,
         fontVariations: _w(700),
+        fontWeight: FontWeight.w700,
         fontSize: 28,
-        letterSpacing: -0.5,
+        letterSpacing: _isHi ? 0 : -0.5,
+        height: _isHi ? 1.3 : 1.2,
         color: color,
       );
 
   static TextStyle titleLarge({Color? color}) => TextStyle(
-        fontFamily: _latin,
+        fontFamily: _chrome,
         fontFamilyFallback: _fallback,
         fontVariations: _w(700),
+        fontWeight: FontWeight.w700,
         fontSize: 20,
-        letterSpacing: -0.2,
+        letterSpacing: _isHi ? 0 : -0.2,
+        height: _isHi ? 1.35 : 1.25,
         color: color,
       );
 
   static TextStyle titleMedium({Color? color}) => TextStyle(
-        fontFamily: _latin,
+        fontFamily: _chrome,
         fontFamilyFallback: _fallback,
         fontVariations: _w(600),
+        fontWeight: FontWeight.w600,
         fontSize: 16,
+        height: _isHi ? 1.4 : 1.3,
         color: color,
       );
 
   /// A card or a list entry that carries a slightly smaller heading.
   static TextStyle titleSmall({Color? color}) => TextStyle(
-        fontFamily: _latin,
+        fontFamily: _chrome,
         fontFamilyFallback: _fallback,
         fontVariations: _w(600),
+        fontWeight: FontWeight.w600,
         fontSize: 14,
+        height: _isHi ? 1.4 : 1.3,
         color: color,
       );
 
   /// The big number of a result card.
   static TextStyle displayMedium({Color? color}) => TextStyle(
-        fontFamily: _latin,
+        fontFamily: _chrome,
         fontFamilyFallback: _fallback,
         fontVariations: _w(700),
+        fontWeight: FontWeight.w700,
         fontSize: 44,
-        letterSpacing: -1,
+        letterSpacing: _isHi ? 0 : -1,
+        height: 1.1,
         color: color,
       );
 
   /// A label that belongs to a chip or a small caption.
   static TextStyle labelMedium({Color? color}) => TextStyle(
-        fontFamily: _ui,
+        fontFamily: _isHi ? _devanagari : _ui,
         fontFamilyFallback: _fallback,
         fontVariations: _w(600),
+        fontWeight: FontWeight.w600,
         fontSize: 13,
+        height: _isHi ? 1.4 : 1.3,
         color: color,
       );
 
   /// The smallest readable body text (help lines under a title).
   static TextStyle bodySmall({Color? color}) => TextStyle(
-        fontFamily: _ui,
+        fontFamily: _isHi ? _devanagari : _ui,
         fontFamilyFallback: _fallback,
         fontVariations: _w(400),
+        fontWeight: FontWeight.w400,
         fontSize: 12,
         height: 1.45,
         color: color,
@@ -96,6 +125,7 @@ class AppTypography {
         fontFamily: _devanagari,
         fontFamilyFallback: _fallback,
         fontVariations: _w(400),
+        fontWeight: FontWeight.w400,
         fontSize: 12.5,
         height: 1.45,
         color: color,
@@ -133,20 +163,22 @@ class AppTypography {
       );
 
   static TextStyle bodyMedium({Color? color}) => TextStyle(
-        fontFamily: _ui,
+        fontFamily: _isHi ? _devanagari : _ui,
         fontFamilyFallback: _fallback,
         fontVariations: _w(400),
+        fontWeight: FontWeight.w400,
         fontSize: 14,
         height: 1.5,
         color: color,
       );
 
   static TextStyle labelSmall({Color? color}) => TextStyle(
-        fontFamily: _ui,
+        fontFamily: _isHi ? _devanagari : _ui,
         fontFamilyFallback: _fallback,
         fontVariations: _w(600),
+        fontWeight: FontWeight.w600,
         fontSize: 11.5,
-        letterSpacing: 0.5,
+        letterSpacing: _isHi ? 0 : 0.5,
         color: color,
       );
 

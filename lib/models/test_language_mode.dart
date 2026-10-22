@@ -20,11 +20,11 @@ extension TestLanguageModeExt on TestLanguageMode {
   String get title {
     switch (this) {
       case TestLanguageMode.onlyHindi:
-        return 'केवल हिन्दी (Only Hindi)';
+        return 'केवल हिन्दी';
       case TestLanguageMode.bilingual:
-        return 'हिन्दी + English (द्विभाषी)';
+        return 'हिन्दी + अंग्रेज़ी (द्विभाषी)';
       case TestLanguageMode.onlyEnglish:
-        return 'Only English (केवल अंग्रेजी)';
+        return 'केवल अंग्रेज़ी';
     }
   }
 
@@ -33,9 +33,9 @@ extension TestLanguageModeExt on TestLanguageMode {
       case TestLanguageMode.onlyHindi:
         return 'प्रश्न एवं सभी विकल्प केवल हिन्दी में देखें';
       case TestLanguageMode.bilingual:
-        return 'पहले हिन्दी, फिर नीचे स्पष्ट अलग English अनुवाद';
+        return 'पहले हिन्दी, फिर नीचे साफ़ अंग्रेज़ी अनुवाद';
       case TestLanguageMode.onlyEnglish:
-        return 'प्रश्न एवं विकल्प अंग्रेजी भाषा में देखें';
+        return 'प्रश्न एवं विकल्प अंग्रेज़ी भाषा में देखें';
     }
   }
 }

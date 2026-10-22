@@ -155,8 +155,8 @@ class _QuestionReportSheetState extends State<QuestionReportSheet> {
     bool isObscured = true;
     bool isTesting = false;
     String statusMsg = isConfigured
-        ? '✅ GitHub API Key सक्रिय है (एन्क्रिप्टेड सुरक्षित)'
-        : '⚠️ कोई Key सक्रिय नहीं है (रिपोर्ट्स ऑफलाइन SQLite में सुरक्षित रहेंगी)';
+        ? '✅ GitHub कुंजी सक्रिय है (एन्क्रिप्टेड सुरक्षित)'
+        : '⚠️ कोई कुंजी सक्रिय नहीं — रिपोर्ट ऑफ़लाइन सुरक्षित रहेंगी';
 
     if (!context.mounted) return;
 
@@ -187,7 +187,7 @@ class _QuestionReportSheetState extends State<QuestionReportSheet> {
                 const SizedBox(width: AppSpacing.md),
                 Expanded(
                   child: Text(
-                    'GitHub Key सेटअप',
+                    'GitHub कुंजी सेटअप',
                     style: AppTypography.titleLarge(color: textColor),
                   ),
                 ),
@@ -199,7 +199,7 @@ class _QuestionReportSheetState extends State<QuestionReportSheet> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'छात्रों द्वारा रिपोर्ट की गई समस्याएं सीधे GitHub Issues पर दर्ज होंगी। Key ऐप में XOR Base64 मानक से 100% एन्क्रिप्ट होकर सुरक्षित रहती है।',
+                    'छात्रों द्वारा रिपोर्ट की गई समस्याएं सीधे GitHub Issues पर दर्ज होंगी। कुंजी (Key) ऐप में XOR Base64 मानक से 100% एन्क्रिप्ट होकर सुरक्षित रहती है।',
                     style: AppTypography.caption(
                       color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
                     ),
@@ -223,7 +223,7 @@ class _QuestionReportSheetState extends State<QuestionReportSheet> {
                   ),
                   const SizedBox(height: AppSpacing.base),
                   Text(
-                    'नया Personal Access Token पेस्ट करें:',
+                    'नया सुरक्षा टोकन (Personal Access Token) पेस्ट करें:',
                     style: AppTypography.labelMedium(color: textColor),
                   ),
                   const SizedBox(height: AppSpacing.sm),
@@ -262,7 +262,7 @@ class _QuestionReportSheetState extends State<QuestionReportSheet> {
                   onPressed: () async {
                     await GitHubReportService.instance.clearCustomToken();
                     setDlgState(() {
-                      statusMsg = 'टोकन हटा दिया गया (Offline Mode)';
+                      statusMsg = 'टोकन हटा दिया गया (अब ऑफ़लाइन)';
                     });
                     if (context.mounted) {
                       AppSnackBar.showSuccess(
@@ -318,8 +318,8 @@ class _QuestionReportSheetState extends State<QuestionReportSheet> {
                           Navigator.pop(dlgCtx);
                           AppSnackBar.showSuccess(
                             context,
-                            title: 'GitHub Key सुरक्षित रूप से सक्रिय!',
-                            message: 'Key एन्क्रिप्ट हो गई है। $synced पेंडिंग रिपोर्ट्स सिंक की गईं।',
+                            title: 'GitHub कुंजी सक्रिय हो गई!',
+                            message: 'कुंजी एन्क्रिप्ट हो गई। $synced बाकी रिपोर्ट सिंक हो गईं।',
                           );
                         }
                       },
@@ -514,7 +514,7 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
                     onTap: () => _showApiKeySetupDialog(context),
                     borderRadius: AppRadius.roundedMd,
                     child: Tooltip(
-                      message: 'GitHub API Key सेटअप (Admin)',
+                      message: 'GitHub कुंजी सेटअप',
                       child: Container(
                         width: 42,
                         height: 42,

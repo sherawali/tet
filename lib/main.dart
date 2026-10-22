@@ -65,11 +65,26 @@ class TetApp extends StatelessWidget {
       valueListenable: LanguageService.instance.currentLanguage,
       builder: (context, lang, _) {
         return MaterialApp(
-          title: 'TET Mock Master — UTET & CTET',
+          title: 'TET Rank — UTET & CTET',
           debugShowCheckedModeBanner: false,
           theme: AppTheme.lightTheme,
           darkTheme: AppTheme.darkTheme,
           themeMode: ThemeMode.system,
+          // A phone whose system font size is set larger must not tear the
+          // layout apart: the reading sizes stay under the tester's control,
+          // the chrome scales only a little.
+          builder: (context, child) {
+            final media = MediaQuery.of(context);
+            final rawScale = media.textScaler.scale(1.0);
+            final clampedScale = rawScale.clamp(1.0, 1.25).toDouble();
+            final scaler = clampedScale == rawScale
+                ? media.textScaler
+                : TextScaler.linear(clampedScale);
+            return MediaQuery(
+              data: media.copyWith(textScaler: scaler),
+              child: child!,
+            );
+          },
           home: const SplashSyncScreen(),
         );
       },

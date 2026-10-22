@@ -377,7 +377,9 @@ class _HtmlBookletScreenState extends State<HtmlBookletScreen> {
                           ),
                           const SizedBox(height: AppSpacing.md),
                           Text(
-                            'प्रश्न-पुस्तिका लोड हो रही है / Loading Booklet...',
+                            AppStrings.isHindi
+                                ? 'प्रश्न-पुस्तिका लोड हो रही है…'
+                                : 'Loading booklet…',
                             textAlign: TextAlign.center,
                             style: AppTypography.bodySmall(
                               color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary,

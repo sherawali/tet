@@ -11,15 +11,15 @@ extension MockModeDetails on MockMode {
   String get titleHindi {
     switch (this) {
       case MockMode.predicted:
-        return '🎯 अनुमानित पेपर (Predicted)';
+        return '🎯 अनुमानित प्रश्न-पत्र';
       case MockMode.repeat:
-        return '🔁 बार-बार आने वाले (Repeats)';
+        return '🔁 बार-बार आने वाले प्रश्न';
       case MockMode.pyq:
-        return '📜 केवल PYQ (Past Papers)';
+        return '📜 केवल PYQ';
       case MockMode.fresh:
-        return '✨ फ्रेश अभ्यास (Fresh Concepts)';
+        return '✨ ताज़े विषय अभ्यास';
       case MockMode.mixed:
-        return '⚖️ मिश्रित पेपर (Balanced)';
+        return '⚖️ मिश्रित प्रश्न-पत्र';
     }
   }
 

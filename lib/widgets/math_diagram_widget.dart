@@ -210,7 +210,9 @@ class MathDiagramWidget extends StatelessWidget {
                     borderRadius: AppRadius.roundedSm,
                   ),
                   child: Text(
-                    '📐 रेखागणित चित्र (Geometry Fig.)',
+                    AppStrings.isHindi
+                        ? '📐 रेखागणित चित्र'
+                        : '📐 Geometry figure',
                     style: AppTypography.labelSmall(
                       color: AppColors.violet,
                     ),

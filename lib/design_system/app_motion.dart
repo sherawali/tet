@@ -16,6 +16,10 @@ class AppMotion {
   /// Carousels and larger movement.
   static const Duration slow = Duration(milliseconds: 300);
 
+  /// The short working pause of the debug mock buy, so the tester sees the
+  /// loader the real Google Play sheet would show.
+  static const Duration mockBuyLoader = Duration(milliseconds: 700);
+
   /// Screen transitions and fades.
   static const Duration page = Duration(milliseconds: 400);
 

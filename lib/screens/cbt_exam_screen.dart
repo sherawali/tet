@@ -1349,8 +1349,8 @@ class _CbtExamScreenState extends State<CbtExamScreen>
             Expanded(
               child: AppButton(
                 label: _currentIndex == widget.session.questions.length - 1
-                    ? (_languageMode == TestLanguageMode.onlyEnglish ? 'Submit' : 'सबमिट करें')
-                    : (_languageMode == TestLanguageMode.onlyEnglish ? 'Save & Next' : 'सेव एवं आगे'),
+                    ? (_languageMode == TestLanguageMode.onlyEnglish ? 'Submit' : 'जमा करें')
+                    : (_languageMode == TestLanguageMode.onlyEnglish ? 'Save & Next' : 'सेव करके आगे'),
                 variant: AppButtonVariant.primary,
                 width: double.infinity,
                 height: 44,

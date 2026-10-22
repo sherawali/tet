@@ -260,7 +260,7 @@ class _PyqVaultScreenState extends State<PyqVaultScreen> {
                               });
                             },
                             child: Text(
-                              LanguageService.instance.isHindi ? 'स्ट्रीम बदलें ⇄' : 'Change Stream ⇄',
+                              LanguageService.instance.isHindi ? 'विषय वर्ग बदलें ⇄' : 'Change Stream ⇄',
                               style: AppTypography.labelMedium(color: AppColors.sealGold),
                             ),
                           ),
