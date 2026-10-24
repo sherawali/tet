@@ -1130,6 +1130,39 @@
   RegExp hoisting. `build/_audit/figure_hard.py` still not run.
 - Evidence: build/_audit/e1..e9 (not committed). reminds user to revoke the
   leaked GitHub PAT.
+
+### 2026-10-24 II - paywall las hear: only two packs, one paper free
+- The user saw on the phone "ek pack buy karne par sab unlock ho raha" -
+  the cause was the **Pro Pass (Debug) switch left ON** ("All papers are
+  open / paid view"). It is kDebugMode-gated and never ships in release;
+  turned OFF on the device and the locks returned at once ("Pro Pass
+  Available · From R1,499" + only the free papers). Production gate logic
+  is tight (isPaperFree scoping, PassPlan.unlocksPaper) - verified again.
+- **The user's decision (option A confirmed): only two packs now.**
+  - **Full Access Pro Pass R2,499 / 365 din** (`tet_all_access_1y`) -
+    unchanged, both exams both papers.
+  - **Ek Pariksha Pro Pass R1,499 / 365 din**
+    (`tet_utet_pass_1y` / `tet_ctet_pass_1y` by exam chip) - now always
+    carries BOTH papers: the second paper is a free gift. The paper chips
+    (P1 R999 / P2 R999 / Dono) are gone from the paywall, so a buyer can
+    never buy half an exam.
+  - `tet_single_paper_399` is retired from sale (do NOT create it in Play
+    Console) but stays a known product so an earlier buyer's restored
+    purchase still opens exactly what was bought; scope/wrap tests untouched.
+- Code: premium_paywall_modal (chips removed, gift note
+  `_buildExamGiftNote` with the seal-gold box), AppStrings
+  (proPackExamGift, proPackWhichPaper/EkOneSub/EkOneBullets/Paper1-2/Dono
+  labels removed, premiumPriceBadge R999 -> R1,499, selector hint English
+  fixed), pass_plan comments, bank_facts comment, docs
+  PLAY_STORE_PASS_SETUP rewritten (3 products, don't create the 999; the
+  prepaid 1-year recommendation stays).
+- Device proof g10..g20: g14 = the debug switch was the leak; g16 = off &
+  "From R1,499"; g18 = new paywall with exam question + both cards; g19 =
+  One Exam card with the gift note "Both papers together · the second
+  paper is a free gift"; g20 = CTET chip live-switch (26 mocks + 5,100 q).
+  analyze clean, the touched tests all green (premium_expiry,
+  premium_paywall, design guard, typography, screen layout, bank facts,
+  model). Committed **9a35c7a**, pushed.
   switch the second card price R1,499 to R999 and the numbers switch to
   "UTET Paper-1 ke sabhi 22 paper / 3,146 prashn / 365 din" live. 6 test
   files pass, analyze clean.
