@@ -243,7 +243,12 @@ class _SubjectDetailScreenState extends State<SubjectDetailScreen> {
                         children: List.generate(availableSets, (idx) {
                           final setNum = idx + 1;
                           final isBusy = _busyItem == 'set_$setNum';
-                          final isFree = PremiumService.instance.isPaperFree(index: idx);
+                          final isFree = PremiumService.instance.isPaperFree(
+                            index: idx,
+                            // A one-exam pass must not open the other
+                            // exam's sets; the name keeps the gate honest.
+                            exam: ExamService.instance.examCode,
+                          );
                           final isLocked = !isFree && !isUnlocked;
 
                           return Padding(

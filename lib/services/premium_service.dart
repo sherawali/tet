@@ -166,7 +166,7 @@ class PremiumService {
   /// The pass of the candidate decides: a UTET pass opens the UTET papers
   /// only, a CTET pass the CTET papers only and the full access pass
   /// everything.  A pass that has run out opens nothing.
-  bool isPaperFree({String? formId, int index = 0}) {
+  bool isPaperFree({String? formId, int index = 0, String? exam}) {
     if (remoteAllMocksFree) return true;
 
     final passValid = isPremiumUnlocked.value && _passIsValid;
@@ -192,10 +192,14 @@ class PremiumService {
       // own exam (the id prefix tells), a single paper pass never.
       if (passValid && tier == 'full') return true;
     } else if (passValid && tier != 'single') {
-      // Without a paper id (the sets and drills) the app already scopes by
-      // exam, so an exam or a full pass opens; a single paper pass does
-      // not - ₹999 buys one direction, not the drills.
-      return true;
+      // Without a paper id (the sets and drills) the caller names the exam
+      // the content belongs to, so an exam pass opens only its own exam's
+      // sets - ₹999 buys one direction, an exam pass one exam, never the
+      // other exam's content.
+      final passExam = PassPlan.examOf(_activeProductId ?? '');
+      if (tier == 'full' || exam == null) return true;
+      final base = exam.toLowerCase();
+      return passExam == (base.startsWith('utet') ? 'utet' : 'ctet');
     }
 
     return index == 0;
@@ -394,7 +398,9 @@ class PremiumService {
       return mockBuyForDebug(productId, singlePaperScope: singlePaperScope);
     }
 
-    if (isPremiumUnlocked.value) return PremiumPurchaseResult.unlocked;
+    if (isPremiumUnlocked.value && _passIsValid) {
+      return PremiumPurchaseResult.unlocked;
+    }
 
     isLoading.value = true;
     purchaseError.value = null;
@@ -461,7 +467,9 @@ class PremiumService {
 
   /// Looks for a purchase of this app and activates it when it is owned.
   Future<PremiumPurchaseResult> restorePurchases() async {
-    if (isPremiumUnlocked.value) return PremiumPurchaseResult.unlocked;
+    if (isPremiumUnlocked.value && _passIsValid) {
+      return PremiumPurchaseResult.unlocked;
+    }
 
     isLoading.value = true;
     purchaseError.value = null;
@@ -512,6 +520,12 @@ class PremiumService {
       request.complete(result);
     }
     if (request != null && result != PremiumPurchaseResult.unlocked) {
+      // A failed (not pending) round trip drops the scope it was holding,
+      // otherwise an aborted single-paper intent could leak into a later
+      // restore of an older purchase.
+      if (result != PremiumPurchaseResult.pending) {
+        _pendingSingleScope = null;
+      }
       purchaseError.value = _errorCodeFor(result);
     }
   }

@@ -175,12 +175,20 @@ class AppSnackBar {
                               title,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
-                              style: AppTypography.outfit(
-                                fontSize: 14.5,
-                                fontWeight: FontWeight.w700,
-                                color: Colors.white,
-                                letterSpacing: 0.1,
-                              ),
+                              // Hindi titles must never be letter-spaced.
+                              style: title.codeUnits
+                                      .every((c) => c < 0x0900)
+                                  ? AppTypography.outfit(
+                                      fontSize: 14.5,
+                                      fontWeight: FontWeight.w700,
+                                      color: Colors.white,
+                                      letterSpacing: 0.1,
+                                    )
+                                  : AppTypography.notoSansDevanagari(
+                                      fontSize: 14.5,
+                                      fontWeight: FontWeight.w700,
+                                      color: Colors.white,
+                                    ),
                             ),
                             if (message != null && message.trim().isNotEmpty) ...[
                               const SizedBox(height: 3),

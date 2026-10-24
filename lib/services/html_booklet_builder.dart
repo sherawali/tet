@@ -2022,7 +2022,7 @@ body {
   box-sizing: border-box;
   width: 100%;
 }
-.section-banner h2 { margin: 0; font-size: 16.5px; font-weight: 700; letter-spacing: 0.5px; }
+.section-banner h2 { margin: 0; font-size: 16.5px; font-weight: 700; }
 .section-banner small { display: block; font-size: 12px; color: #cbd5e1; margin-top: 2px; font-family: var(--font-eng); }
 
 .stimulus-wrapper { margin: 18px 0 20px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.04); box-sizing: border-box; width: 100%; }

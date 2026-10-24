@@ -100,7 +100,9 @@ class _MockSeriesScreenState extends State<MockSeriesScreen> {
       if (data.questions.isEmpty) {
         AppSnackBar.showError(
           context,
-          title: 'इस पेपर के प्रश्न उपलब्ध नहीं हैं',
+          title: AppStrings.isHindi
+              ? 'इस पेपर के प्रश्न उपलब्ध नहीं हैं'
+              : 'No questions available for this paper',
         );
         return;
       }

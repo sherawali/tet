@@ -212,6 +212,20 @@ class AppStrings {
   static String get historyOpenError => _isHi
       ? 'परिणाम खोलने में त्रुटि हुई।'
       : 'Could not open the result.';
+  // ---- booklet loading / exit -------------------------------------------
+  static String get paperBuildError => _isHi
+      ? 'बुकलेट तैयार करने में त्रुटि'
+      : 'Error building the booklet';
+  static String get paperLoadError => _isHi
+      ? 'बुकलेट लोड करने में समस्या'
+      : 'Problem loading the booklet';
+  static String get paperExitTitle => _isHi
+      ? 'परीक्षा से बाहर निकलें?'
+      : 'Leave the exam?';
+  static String get paperExitConfirm => _isHi ? '✕ बाहर निकलें' : '✕ Leave';
+  static String get paperExitCancel => _isHi
+      ? '▶ हल करना जारी रखें'
+      : '▶ Keep solving';
   static String historyMockType(String mode) => _isHi ? 'मॉक टेस्ट ($mode)' : 'Mock Test ($mode)';
   static String get historyQualified => _isHi ? 'उत्तीर्ण' : 'Qualified';
   static String get historyPracticeNeeded => _isHi ? 'अभ्यास आवश्यक' : 'Needs Practice';

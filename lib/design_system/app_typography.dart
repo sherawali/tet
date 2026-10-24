@@ -139,7 +139,7 @@ class AppTypography {
         fontVariations: _w(500),
         fontSize: fontSize,
         height: 1.6,
-        letterSpacing: 0.1,
+        // Devanagari matras break with any letter spacing.
         color: color,
       );
 

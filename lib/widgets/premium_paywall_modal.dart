@@ -76,6 +76,10 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
   @override
   void initState() {
     super.initState();
+    // The pass can run out while the app stays open (mid-session expiry).
+    // Re-reading the stored entitlement at _open decides honestly whether
+    // the buy cards show, so an expired pass never blocks a re-buy.
+    unawaited(_premiumService.reloadFromDatabase());
     _successSubscription = _premiumService.onPurchaseSuccess.listen((_) {
       _celebrate();
     });

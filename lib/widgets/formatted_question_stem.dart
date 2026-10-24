@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../design_system/app_colors.dart';
 import '../design_system/app_radius.dart';
 import '../design_system/app_spacing.dart';
+import '../design_system/app_strings.dart';
 import '../design_system/app_typography.dart';
 import '../services/question_layout_parser.dart';
 import 'smart_math_text.dart';
@@ -845,10 +846,10 @@ class FormattedQuestionStem extends StatelessWidget {
                   vertical: AppSpacing.sm,
                 ),
                 child: Text(
-                  'स्तम्भ I / सूची I',
+                  AppStrings.isHindi ? 'स्तम्भ I' : 'Column I / List I',
                   style: AppTypography.caption(
                     color: isDark ? AppColors.darkTextSecondary : AppColors.deskGray,
-                  ).copyWith(fontWeight: FontWeight.w800, letterSpacing: 0.5),
+                  ).copyWith(fontWeight: FontWeight.w800),
                 ),
               ),
               Padding(
@@ -857,10 +858,10 @@ class FormattedQuestionStem extends StatelessWidget {
                   vertical: AppSpacing.sm,
                 ),
                 child: Text(
-                  'स्तम्भ II / सूची II',
+                  AppStrings.isHindi ? 'स्तम्भ II' : 'Column II / List II',
                   style: AppTypography.caption(
                     color: isDark ? AppColors.darkTextSecondary : AppColors.deskGray,
-                  ).copyWith(fontWeight: FontWeight.w800, letterSpacing: 0.5),
+                  ).copyWith(fontWeight: FontWeight.w800),
                 ),
               ),
             ],

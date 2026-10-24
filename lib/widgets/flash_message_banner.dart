@@ -343,9 +343,10 @@ class _FlashMessageBannerState extends State<FlashMessageBanner> {
                                         Text(
                                           title,
                                           maxLines: 2,
+                                          overflow: TextOverflow.ellipsis,
                                           style: AppTypography.titleSmall(
                                             color: AppColors.darkTextPrimary,
-                                          ).copyWith(height: 1.25, letterSpacing: 0.2),
+                                          ).copyWith(height: 1.25),
                                         ),
                                         const SizedBox(height: AppSpacing.xs),
                                         Text(
@@ -432,15 +433,24 @@ class _FlashMessageBannerState extends State<FlashMessageBanner> {
                           curve: Curves.easeInOutCubic,
                         );
                       },
-                      child: AnimatedContainer(
-                        duration: AppMotion.slow,
-                        curve: AppMotion.standard,
-                        margin: const EdgeInsets.symmetric(horizontal: AppSpacing.xs),
-                        width: isActive ? 18 : 6,
-                        height: 5,
-                        decoration: BoxDecoration(
-                          color: isActive ? AppColors.sealGold : AppColors.deskGray,
-                          borderRadius: AppRadius.roundedFull,
+                      // The dot itself is 6px; the tappable area must still
+                      // meet the minimum touch size.
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: AppSpacing.xs,
+                          vertical: AppSpacing.sm,
+                        ),
+                        child: AnimatedContainer(
+                          duration: AppMotion.slow,
+                          curve: AppMotion.standard,
+                          width: isActive ? 18 : 6,
+                          height: 5,
+                          decoration: BoxDecoration(
+                            color: isActive
+                                ? AppColors.sealGold
+                                : AppColors.deskGray,
+                            borderRadius: AppRadius.roundedFull,
+                          ),
                         ),
                       ),
                     );

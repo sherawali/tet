@@ -182,6 +182,7 @@ class _CbtExamScreenState extends State<CbtExamScreen>
   }
 
   void _selectOption(int optionIndex) {
+    HapticFeedback.selectionClick();
     setState(() {
       widget.session.selectedAnswers[_currentIndex] = optionIndex;
     });
@@ -213,6 +214,7 @@ class _CbtExamScreenState extends State<CbtExamScreen>
 
   Future<void> _submitTest({bool autoSubmit = false}) async {
     if (_submitting) return;
+    if (!autoSubmit) HapticFeedback.mediumImpact();
     _timer?.cancel();
     _syncTimer(submitWhenExpired: false);
     _submitting = true;
@@ -341,9 +343,21 @@ class _CbtExamScreenState extends State<CbtExamScreen>
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      _buildSummaryItem('हल किए गए', '$answered', AppColors.success),
-                      _buildSummaryItem('समीक्षा हेतु', '$marked', AppColors.warning),
-                      _buildSummaryItem('शेष (अनुत्तरित)', '$notAnswered', AppColors.danger),
+                      _buildSummaryItem(
+                        AppStrings.isHindi ? 'हल किए गए' : 'Answered',
+                        '$answered',
+                        AppColors.success,
+                      ),
+                      _buildSummaryItem(
+                        AppStrings.isHindi ? 'समीक्षा हेतु' : 'Marked',
+                        '$marked',
+                        AppColors.warning,
+                      ),
+                      _buildSummaryItem(
+                        AppStrings.isHindi ? 'शेष (अनुत्तरित)' : 'Left',
+                        '$notAnswered',
+                        AppColors.danger,
+                      ),
                     ],
                   ),
                 ),
@@ -482,10 +496,22 @@ class _CbtExamScreenState extends State<CbtExamScreen>
                       spacing: AppSpacing.md,
                       runSpacing: AppSpacing.xs,
                       children: [
-                        _buildLegendBadge('हल किया', AppColors.success),
-                        _buildLegendBadge('समीक्षा', AppColors.warning),
-                        _buildLegendBadge('छोड़ा गया', AppColors.danger),
-                        _buildLegendBadge('नहीं देखा', isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted),
+                        _buildLegendBadge(
+                          AppStrings.isHindi ? 'हल किया' : 'Answered',
+                          AppColors.success,
+                        ),
+                        _buildLegendBadge(
+                          AppStrings.isHindi ? 'समीक्षा' : 'Marked',
+                          AppColors.warning,
+                        ),
+                        _buildLegendBadge(
+                          AppStrings.isHindi ? 'छोड़ा गया' : 'Skipped',
+                          AppColors.danger,
+                        ),
+                        _buildLegendBadge(
+                          AppStrings.isHindi ? 'नहीं देखा' : 'Not seen',
+                          isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
+                        ),
                       ],
                     ),
                     const SizedBox(height: AppSpacing.base),
@@ -552,7 +578,9 @@ class _CbtExamScreenState extends State<CbtExamScreen>
 
                     const SizedBox(height: AppSpacing.md),
                     AppButton(
-                      label: 'परीक्षा सबमिट करें',
+                      label: AppStrings.isHindi
+                          ? 'परीक्षा सबमिट करें'
+                          : 'Submit the exam',
                       variant: AppButtonVariant.primary,
                       width: double.infinity,
                       onPressed: () {
@@ -767,7 +795,7 @@ class _CbtExamScreenState extends State<CbtExamScreen>
                   ),
                   const SizedBox(height: AppSpacing.lg),
                   AppButton(
-                    label: 'वापस जाएँ',
+                    label: AppStrings.isHindi ? 'वापस जाएँ' : 'Go back',
                     variant: AppButtonVariant.primary,
                     width: double.infinity,
                     onPressed: () => Navigator.of(context).maybePop(),
@@ -886,7 +914,7 @@ class _CbtExamScreenState extends State<CbtExamScreen>
 
               // 3. Question Palette Button
               IconButton(
-                tooltip: 'प्रश्न पैलेट',
+                tooltip: AppStrings.isHindi ? 'प्रश्न पैलेट' : 'Question palette',
                 icon: const Icon(Icons.grid_view_rounded, size: 22),
                 onPressed: _showPalette,
               ),

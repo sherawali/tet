@@ -68,7 +68,7 @@ class _HtmlBookletScreenState extends State<HtmlBookletScreen> {
       _initWebView();
     } catch (e) {
       setState(() {
-        _errorMessage = 'बुकलेट तैयार करने में त्रुटि: $e';
+        _errorMessage = '${AppStrings.paperBuildError}: $e';
         _isLoading = false;
       });
     }
@@ -107,7 +107,8 @@ class _HtmlBookletScreenState extends State<HtmlBookletScreen> {
               _loadWatchdog?.cancel();
               if (mounted && _isLoading) {
                 setState(() {
-                  _errorMessage = 'बुकलेट लोड करने में समस्या: ${error.description}';
+                  _errorMessage =
+                      '${AppStrings.paperLoadError}: ${error.description}';
                   _isLoading = false;
                 });
               }
@@ -214,7 +215,8 @@ class _HtmlBookletScreenState extends State<HtmlBookletScreen> {
         case 'reportQuestion':
           final qIndex = data['qIndex'] as int? ?? 0;
           final qNum = data['qNum'] as int? ?? (qIndex + 1);
-          final reason = data['reason']?.toString() ?? 'गलत उत्तर / प्रश्न';
+          final reason = data['reason']?.toString() ??
+              (AppStrings.isHindi ? 'गलत उत्तर / प्रश्न' : 'Wrong answer / question');
           final comment = data['comment']?.toString();
           final qId = (qIndex < widget.session.questions.length)
               ? widget.session.questions[qIndex].id
@@ -302,10 +304,10 @@ class _HtmlBookletScreenState extends State<HtmlBookletScreen> {
 
     final leave = await AppDialogs.confirm(
       context,
-      title: 'परीक्षा से बाहर निकलें?',
+      title: AppStrings.paperExitTitle,
       message: AppStrings.exitExamMessage(total, answered),
-      confirmLabel: '✕ बाहर निकलें',
-      cancelLabel: '▶ हल करना जारी रखें',
+      confirmLabel: AppStrings.paperExitConfirm,
+      cancelLabel: AppStrings.paperExitCancel,
       destructive: true,
       icon: Icons.warning_amber_rounded,
     );
@@ -345,7 +347,8 @@ class _HtmlBookletScreenState extends State<HtmlBookletScreen> {
                     icon: Icons.error_outline_rounded,
                     accent: AppColors.danger,
                     title: _errorMessage!,
-                    actionLabel: 'दोबारा प्रयास करें',
+                    actionLabel:
+                        AppStrings.isHindi ? 'दोबारा प्रयास करें' : 'Try again',
                     onAction: () {
                       setState(() {
                         _isLoading = true;

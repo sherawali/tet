@@ -199,7 +199,7 @@ class _QuestionReportSheetState extends State<QuestionReportSheet> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'छात्रों द्वारा रिपोर्ट की गई समस्याएं सीधे GitHub Issues पर दर्ज होंगी। कुंजी (Key) ऐप में XOR Base64 मानक से 100% एन्क्रिप्ट होकर सुरक्षित रहती है।',
+                    LanguageService.instance.isHindi ? 'छात्रों द्वारा रिपोर्ट की गई समस्याएं सीधे GitHub Issues पर दर्ज होंगी। कुंजी (Key) ऐप में XOR Base64 मानक से 100% एन्क्रिप्ट होकर सुरक्षित रहती है।' : 'Student reports go straight to GitHub Issues. The key is XOR Base64 encrypted in the app at 100%.',
                     style: AppTypography.caption(
                       color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
                     ),
@@ -223,7 +223,7 @@ class _QuestionReportSheetState extends State<QuestionReportSheet> {
                   ),
                   const SizedBox(height: AppSpacing.base),
                   Text(
-                    'नया सुरक्षा टोकन (Personal Access Token) पेस्ट करें:',
+                    LanguageService.instance.isHindi ? 'नया सुरक्षा टोकन (Personal Access Token) पेस्ट करें:' : 'Paste a new Personal Access Token:',
                     style: AppTypography.labelMedium(color: textColor),
                   ),
                   const SizedBox(height: AppSpacing.sm),
@@ -262,24 +262,28 @@ class _QuestionReportSheetState extends State<QuestionReportSheet> {
                   onPressed: () async {
                     await GitHubReportService.instance.clearCustomToken();
                     setDlgState(() {
-                      statusMsg = 'टोकन हटा दिया गया (अब ऑफ़लाइन)';
+                      statusMsg = LanguageService.instance.isHindi ? 'टोकन हटा दिया गया (अब ऑफ़लाइन)' : 'Token removed (offline now)';
                     });
                     if (context.mounted) {
                       AppSnackBar.showSuccess(
                         context,
-                        title: 'टोकन हटाया गया',
-                        message: 'GitHub टोकन हटा दिया गया है।',
+                        title: LanguageService.instance.isHindi
+                            ? 'टोकन हटाया गया'
+                            : 'Token removed',
+                        message: LanguageService.instance.isHindi
+                            ? 'GitHub टोकन हटा दिया गया है।'
+                            : 'The GitHub token has been removed.',
                       );
                     }
                   },
                   child: Text(
-                    'हटाएं',
+                    LanguageService.instance.isHindi ? 'हटाएं' : 'Remove',
                     style: AppTypography.outfit(color: AppColors.danger, fontWeight: FontWeight.w600),
                   ),
                 ),
               TextButton(
                 onPressed: () => Navigator.pop(dlgCtx),
-                child: Text('रद्द करें', style: AppTypography.outfit(color: AppColors.lightTextMuted)),
+                child: Text(LanguageService.instance.isHindi ? 'रद्द करें' : 'Cancel', style: AppTypography.outfit(color: AppColors.lightTextMuted)),
               ),
               ElevatedButton(
                 onPressed: isTesting
@@ -287,12 +291,12 @@ class _QuestionReportSheetState extends State<QuestionReportSheet> {
                     : () async {
                         final raw = tokenController.text.trim();
                         if (raw.isEmpty) {
-                          setDlgState(() => statusMsg = '❌ कृपया टोकन दर्ज करें');
+                          setDlgState(() => statusMsg = LanguageService.instance.isHindi ? '❌ कृपया टोकन दर्ज करें' : '❌ Please enter a token');
                           return;
                         }
                         setDlgState(() {
                           isTesting = true;
-                          statusMsg = 'सत्यापन हो रहा है...';
+                          statusMsg = LanguageService.instance.isHindi ? 'सत्यापन हो रहा है...' : 'Verifying...';
                         });
 
                         final isValid = await GitHubReportService.instance.verifyToken(raw);
@@ -318,8 +322,8 @@ class _QuestionReportSheetState extends State<QuestionReportSheet> {
                           Navigator.pop(dlgCtx);
                           AppSnackBar.showSuccess(
                             context,
-                            title: 'GitHub कुंजी सक्रिय हो गई!',
-                            message: 'कुंजी एन्क्रिप्ट हो गई। $synced बाकी रिपोर्ट सिंक हो गईं।',
+                            title: LanguageService.instance.isHindi ? 'GitHub कुंजी सक्रिय हो गई!' : 'GitHub key active!',
+                            message: LanguageService.instance.isHindi ? 'कुंजी एन्क्रिप्ट हो गई। $synced बाकी रिपोर्ट सिंक हो गईं।' : 'Key encrypted. $synced pending reports have synced.',
                           );
                         }
                       },
@@ -334,7 +338,7 @@ class _QuestionReportSheetState extends State<QuestionReportSheet> {
                         child: CircularProgressIndicator(strokeWidth: 2, color: AppColors.darkTextPrimary),
                       )
                     : Text(
-                        'एन्क्रिप्ट और सहेजें',
+                        LanguageService.instance.isHindi ? 'एन्क्रिप्ट और सहेजें' : 'Encrypt and save',
                         style: AppTypography.outfit(fontWeight: FontWeight.bold, color: AppColors.lightTextPrimary),
                       ),
               ),
@@ -394,8 +398,8 @@ class _QuestionReportSheetState extends State<QuestionReportSheet> {
           context,
           questionNumber: widget.questionNumber,
           reportCode: reportCode,
-          title: 'रिपोर्ट दर्ज कर ली गई है',
-          message: 'प्रश्न ${widget.questionNumber} · संदर्भ: $reportCode · विशेषज्ञ दल जांच करेगा',
+          title: LanguageService.instance.isHindi ? 'रिपोर्ट दर्ज कर ली गई है' : 'Report recorded',
+          message: LanguageService.instance.isHindi ? 'प्रश्न ${widget.questionNumber} · संदर्भ: $reportCode · विशेषज्ञ दल जांच करेगा' : 'Question ${widget.questionNumber} · ref: $reportCode · the expert team will inspect it',
         );
       }
     } catch (e) {
@@ -403,8 +407,8 @@ class _QuestionReportSheetState extends State<QuestionReportSheet> {
         setState(() => _isSubmitting = false);
         AppSnackBar.showError(
           context,
-          title: 'रिपोर्ट सबमिट नहीं हो सकी',
-          message: 'त्रुटि: $e. कृपया पुनः प्रयास करें।',
+          title: LanguageService.instance.isHindi ? 'रिपोर्ट सबमिट नहीं हो सकी' : 'Report could not submit',
+          message: LanguageService.instance.isHindi ? 'त्रुटि: $e. कृपया पुनः प्रयास करें।' : 'Error: $e. Please try again.',
         );
       }
     }
@@ -415,7 +419,7 @@ class _QuestionReportSheetState extends State<QuestionReportSheet> {
     final q = widget.question;
     final optionsList = q.optionsHindi.isNotEmpty ? q.optionsHindi : (q.optionsEnglish ?? []);
     final optionsText = optionsList.asMap().entries.map((e) => '(${String.fromCharCode(65 + e.key)}) ${e.value}').join('\n');
-    final userOptStr = widget.userAnswer != null ? String.fromCharCode(65 + widget.userAnswer!) : 'छोड़ा गया';
+    final userOptStr = widget.userAnswer != null ? String.fromCharCode(65 + widget.userAnswer!) : (LanguageService.instance.isHindi ? 'छोड़ा गया' : 'Skipped');
     final correctOptStr = String.fromCharCode(65 + q.answer);
 
     final summary = '''🚩 [TET Exam App - प्रश्न त्रुटि रिपोर्ट]
@@ -429,7 +433,7 @@ $optionsText
 🎯 आधिकारिक उत्तर: ($correctOptStr)
 👤 छात्र चयन: ($userOptStr)
 ⚠️ समस्या: $_selectedReason
-${_suggestedOption != null ? '💡 छात्र द्वारा सुझाया गया सही विकल्प: ($_suggestedOption)\n' : ''}💬 अतिरिक्त विवरण: ${_commentController.text.trim().isEmpty ? 'कोई नहीं' : _commentController.text.trim()}
+${_suggestedOption != null ? '💡 छात्र द्वारा सुझाया गया सही विकल्प: ($_suggestedOption)\n' : ''}💬 अतिरिक्त विवरण: ${_commentController.text.trim().isEmpty ? (LanguageService.instance.isHindi ? 'कोई नहीं' : 'None') : _commentController.text.trim()}
 📅 दिनांक: ${DateTime.now().toLocal().toString().split('.')[0]}
 ━━━━━━━━━━━━━━━━━━━━''';
 
@@ -437,8 +441,8 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
 
     AppSnackBar.showSuccess(
       context,
-      title: 'रिपोर्ट कॉपी हो गई है',
-      message: 'विवरण क्लिपबोर्ड पर कॉपी हो गया। आप इसे WhatsApp/Email पर भेज सकते हैं।',
+      title: LanguageService.instance.isHindi ? 'रिपोर्ट कॉपी हो गई है' : 'Report copied',
+      message: LanguageService.instance.isHindi ? 'विवरण क्लिपबोर्ड पर कॉपी हो गया। आप इसे WhatsApp/Email पर भेज सकते हैं।' : 'Details copied to the clipboard. You can share them on WhatsApp/Email.',
     );
   }
 
@@ -546,7 +550,7 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
                           children: [
                             Flexible(
                               child: Text(
-                                'प्रश्न में त्रुटि रिपोर्ट',
+                                LanguageService.instance.isHindi ? 'प्रश्न में त्रुटि रिपोर्ट' : 'Report a question error',
                                 style: AppTypography.titleMedium(color: textPrimary),
                               ),
                             ),
@@ -572,7 +576,9 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
                         Text(
                           widget.paperTitle != null
                               ? '${widget.paperTitle} · प्रश्न संख्या ${widget.questionNumber}'
-                              : 'प्रश्न संख्या ${widget.questionNumber} का विवरण दर्ज करें',
+                              : (LanguageService.instance.isHindi
+                                  ? 'प्रश्न संख्या ${widget.questionNumber} का विवरण दर्ज करें'
+                                  : 'Report the details of question ${widget.questionNumber}'),
                           style: AppTypography.bodySmall(color: textSecondary),
                         ),
                       ],
@@ -581,7 +587,7 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
                   IconButton(
                     padding: const EdgeInsets.all(AppSpacing.xs),
                     constraints: const BoxConstraints(),
-                    tooltip: 'मेरी रिपोर्ट्स देखें',
+                    tooltip: LanguageService.instance.isHindi ? 'मेरी रिपोर्ट्स देखें' : 'View my reports',
                     icon: const Icon(Icons.history_rounded, color: AppColors.goldBright, size: 21),
                     onPressed: () {
                       ReportedQuestionsSheet.show(context);
@@ -630,7 +636,7 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
                               const SizedBox(width: 8),
                               Expanded(
                                 child: Text(
-                                  'आप इस प्रश्न की रिपोर्ट पहले दर्ज कर चुके हैं। (पिछली रिपोर्ट देखने हेतु टैप करें)',
+                                  LanguageService.instance.isHindi ? 'आप इस प्रश्न की रिपोर्ट पहले दर्ज कर चुके हैं। (पिछली रिपोर्ट देखने हेतु टैप करें)' : 'You have already reported this question. (Tap to see the earlier report)',
                                   style: AppTypography.labelMedium(color: AppColors.goldBright),
                                 ),
                               ),
@@ -659,7 +665,7 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
                               Icon(Icons.format_quote_rounded, size: 16, color: AppColors.goldBright),
                               const SizedBox(width: AppSpacing.sm),
                               Text(
-                                'प्रश्न का संक्षिप्त अंश:',
+                                LanguageService.instance.isHindi ? 'प्रश्न का संक्षिप्त अंश:' : 'Short excerpt of the question:',
                                 style: AppTypography.labelMedium(color: textSecondary),
                               ),
                               const Spacer(),
@@ -670,7 +676,7 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
                                   borderRadius: AppRadius.roundedSm,
                                 ),
                                 child: Text(
-                                  'सही उत्तर: (${String.fromCharCode(65 + q.answer)})',
+                                  LanguageService.instance.isHindi ? 'सही उत्तर: (${String.fromCharCode(65 + q.answer)})' : 'Correct answer: (${String.fromCharCode(65 + q.answer)})',
                                   style: AppTypography.labelSmall(color: AppColors.success),
                                 ),
                               ),
@@ -688,7 +694,7 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
 
                     // Section Title: Reason
                     Text(
-                      'इस प्रश्न में क्या समस्या है? (समस्या चुनें)',
+                      LanguageService.instance.isHindi ? 'इस प्रश्न में क्या समस्या है? (समस्या चुनें)' : 'What is wrong with this question? (Choose the issue)',
                       style: AppTypography.titleSmall(color: textPrimary),
                     ),
                     const SizedBox(height: AppSpacing.md),
@@ -831,7 +837,7 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'अतिरिक्त विवरण / टिप्पणी (वैकल्पिक)',
+                          LanguageService.instance.isHindi ? 'अतिरिक्त विवरण / टिप्पणी (वैकल्पिक)' : 'Extra details / comment (optional)',
                           style: AppTypography.labelMedium(color: textPrimary),
                         ),
                         if (isKeyboardOpen)
@@ -854,7 +860,7 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
                                   const Icon(Icons.keyboard_hide_rounded, size: 14, color: AppColors.goldBright),
                                   const SizedBox(width: 4),
                                   Text(
-                                    'कीबोर्ड छुपाएं',
+                                    LanguageService.instance.isHindi ? 'कीबोर्ड छुपाएं' : 'Hide keyboard',
                                     style: AppTypography.labelSmall(color: AppColors.goldBright),
                                   ),
                                 ],
@@ -885,7 +891,7 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
                       },
                       style: AppTypography.titleSmall(color: textPrimary),
                       decoration: InputDecoration(
-                        hintText: 'पुस्तक संदर्भ, सही उत्तर का कारण या प्रश्न में क्या छूटा है संक्षेप में लिखें...',
+                        hintText: LanguageService.instance.isHindi ? 'पुस्तक संदर्भ, सही उत्तर का कारण या प्रश्न में क्या छूटा है संक्षेप में लिखें...' : 'Book reference, why the key is right, or what is missing — briefly...',
                         hintStyle: AppTypography.caption(color: textSecondary.withValues(alpha: 0.7)),
                         filled: true,
                         fillColor: cardBg,
@@ -914,7 +920,7 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
                           onPressed: _copyReportToClipboard,
                           icon: const Icon(Icons.share_outlined, size: 16, color: AppColors.success),
                           label: Text(
-                            'कॉपी',
+                            LanguageService.instance.isHindi ? 'कॉपी' : 'Copy',
                             style: AppTypography.labelMedium(color: AppColors.success),
                           ),
                           style: OutlinedButton.styleFrom(
@@ -965,7 +971,7 @@ ${_suggestedOption != null ? '💡 छात्र द्वारा सुझ�
                                         const Icon(Icons.send_rounded, size: 18, color: AppColors.darkTextPrimary),
                                         const SizedBox(width: AppSpacing.sm),
                                         Text(
-                                          'रिपोर्ट सबमिट करें',
+                                          LanguageService.instance.isHindi ? 'रिपोर्ट सबमिट करें' : 'Submit the report',
                                           style: AppTypography.titleMedium(color: AppColors.darkTextPrimary),
                                         ),
                                       ],
@@ -1030,8 +1036,8 @@ class _ReportedQuestionsSheetState extends State<ReportedQuestionsSheet> {
     if (mounted) {
       AppSnackBar.showSuccess(
         context,
-        title: 'रिपोर्ट हटा दी गई',
-        message: 'प्रश्न $qNum की रिपोर्ट सफलतापूर्वक हटा दी गई है।',
+        title: LanguageService.instance.isHindi ? 'रिपोर्ट हटा दी गई' : 'Report removed',
+        message: LanguageService.instance.isHindi ? 'प्रश्न $qNum की रिपोर्ट सफलतापूर्वक हटा दी गई है।' : 'The report of question $qNum has been removed.',
       );
     }
   }
@@ -1054,15 +1060,15 @@ class _ReportedQuestionsSheetState extends State<ReportedQuestionsSheet> {
 ❓ प्रश्न सं: $qNum (ID: $qId)
 📝 प्रश्न अंश: $stem
 ⚠️ समस्या: $reason
-${opt != null && opt.toString().isNotEmpty ? '💡 सुझाया गया सही विकल्प: ($opt)\n' : ''}💬 टिप्पणी: ${comment ?? 'कोई नहीं'}
+${opt != null && opt.toString().isNotEmpty ? '💡 सुझाया गया सही विकल्प: ($opt)\n' : ''}💬 टिप्पणी: ${comment ?? (LanguageService.instance.isHindi ? 'कोई नहीं' : 'None')}
 📅 दिनांक: $date
 ━━━━━━━━━━━━━━━━━━━━''';
 
     Clipboard.setData(ClipboardData(text: text));
     AppSnackBar.showSuccess(
       context,
-      title: 'रिपोर्ट विवरण कॉपी हो गया',
-      message: 'क्लिपबोर्ड पर कॉपी हो गया।',
+      title: LanguageService.instance.isHindi ? 'रिपोर्ट विवरण कॉपी हो गया' : 'Report details copied',
+      message: LanguageService.instance.isHindi ? 'क्लिपबोर्ड पर कॉपी हो गया।' : 'Copied to the clipboard.',
     );
   }
 
@@ -1138,7 +1144,7 @@ ${opt != null && opt.toString().isNotEmpty ? '💡 सुझाया गया 
                           children: [
                             Flexible(
                               child: Text(
-                                'मेरी रिपोर्ट की गई समस्याएं',
+                                LanguageService.instance.isHindi ? 'मेरी रिपोर्ट की गई समस्याएं' : 'My reported issues',
                                 style: AppTypography.titleMedium(color: textPrimary),
                               ),
                             ),
@@ -1157,7 +1163,7 @@ ${opt != null && opt.toString().isNotEmpty ? '💡 सुझाया गया 
                           ],
                         ),
                         Text(
-                          'प्रश्नों की समीक्षा स्थिति · 7 दिनों में स्वतः निस्तारित',
+                          LanguageService.instance.isHindi ? 'प्रश्नों की समीक्षा स्थिति · 7 दिनों में स्वतः निस्तारित' : 'Review status of reports · auto-cleared in 7 days',
                           style: AppTypography.bodySmall(color: textSecondary),
                         ),
                       ],
@@ -1201,12 +1207,12 @@ ${opt != null && opt.toString().isNotEmpty ? '💡 सुझाया गया 
                                 ),
                                 const SizedBox(height: 16),
                                 Text(
-                                  'कोई रिपोर्ट दर्ज नहीं है',
+                                  LanguageService.instance.isHindi ? 'कोई रिपोर्ट दर्ज नहीं है' : 'No report filed yet',
                                   style: AppTypography.titleMedium(color: textPrimary),
                                 ),
                                 const SizedBox(height: AppSpacing.sm),
                                 Text(
-                                  'यदि किसी प्रश्न में उत्तर या प्रश्न अधूरा लगे, तो प्रश्न कार्ड पर "🚩 रिपोर्ट" बटन दबाकर रिपोर्ट दर्ज करें।',
+                                  LanguageService.instance.isHindi ? 'यदि किसी प्रश्न में उत्तर या प्रश्न अधूरा लगे, तो प्रश्न कार्ड पर "🚩 रिपोर्ट" बटन दबाकर रिपोर्ट दर्ज करें।' : 'If an answer or a question looks incomplete, press the "🚩 Report" button on the question card to file one.',
                                   textAlign: TextAlign.center,
                                   style: AppTypography.bodyMedium(color: textSecondary),
                                 ),
@@ -1223,7 +1229,7 @@ ${opt != null && opt.toString().isNotEmpty ? '💡 सुझाया गया 
                             final id = r['id'] as int? ?? 0;
                             final qNum = r['question_number'] as int? ?? 0;
                             final paper = r['paper_form_id']?.toString() ?? 'TET Paper';
-                            final reason = r['reason']?.toString() ?? 'त्रुटि';
+                            final reason = r['reason']?.toString() ?? (LanguageService.instance.isHindi ? 'त्रुटि' : 'Error');
                             final comment = r['comment']?.toString();
                             final stem = r['question_stem']?.toString();
                             final opt = r['suggested_option']?.toString();
@@ -1345,7 +1351,7 @@ ${opt != null && opt.toString().isNotEmpty ? '💡 सुझाया गया 
                                               padding: const EdgeInsets.all(AppSpacing.xs),
                                               constraints: const BoxConstraints(),
                                               icon: Icon(Icons.copy_rounded, size: 16, color: textSecondary),
-                                              tooltip: 'कॉपी करें',
+                                              tooltip: LanguageService.instance.isHindi ? 'कॉपी करें' : 'Copy',
                                               onPressed: () => _copySingleReport(r),
                                             ),
                                             const SizedBox(width: 8),
@@ -1355,7 +1361,7 @@ ${opt != null && opt.toString().isNotEmpty ? '💡 सुझाया गया 
                                               padding: const EdgeInsets.all(AppSpacing.xs),
                                               constraints: const BoxConstraints(),
                                               icon: const Icon(Icons.delete_outline_rounded, size: 17, color: AppColors.danger),
-                                              tooltip: 'हटाएं',
+                                              tooltip: LanguageService.instance.isHindi ? 'हटाएं' : 'Remove',
                                               onPressed: () => _deleteReport(id, qNum),
                                             ),
                                           ],
@@ -1391,7 +1397,7 @@ ${opt != null && opt.toString().isNotEmpty ? '💡 सुझाया गया 
                                                   borderRadius: AppRadius.roundedSm,
                                                 ),
                                                 child: Text(
-                                                  'समस्या: $reason',
+                                                  (LanguageService.instance.isHindi ? 'समस्या: ' : 'Issue: ') + reason,
                                                   maxLines: 1,
                                                   overflow: TextOverflow.ellipsis,
                                                   style: AppTypography.labelSmall(color: AppColors.danger),
@@ -1434,7 +1440,7 @@ ${opt != null && opt.toString().isNotEmpty ? '💡 सुझाया गया 
                                   if (comment != null && comment.isNotEmpty) ...[
                                     const SizedBox(height: 4),
                                     Text(
-                                      'टिप्पणी: $comment',
+                                      (LanguageService.instance.isHindi ? 'टिप्पणी: ' : 'Comment: ') + comment,
                                       style: AppTypography.bodySmall(
                                         color: textPrimary.withValues(alpha: 0.85),
                                       ).copyWith(fontStyle: FontStyle.italic),

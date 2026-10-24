@@ -163,14 +163,11 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   List<Map<String, dynamic>> get _carouselItems {
-    if (ExamService.instance.selectedPaper == 1) {
-      final list = <Map<String, dynamic>>[..._pyqForms];
-      list.addAll(_mockForms.take(5));
-      return list;
-    } else {
-      if (_pyqForms.isNotEmpty) return _pyqForms;
-      return _mockForms.take(8).toList();
-    }
+    // Every paper of the current exam+paper shows.  A capped list made the
+    // "N/M प्रश्न-पत्र" badge report fewer papers than the vault holds and
+    // hid the later mocks from the slider.
+    final list = <Map<String, dynamic>>[..._pyqForms, ..._mockForms];
+    return list;
   }
 
   void _startCarouselAutoPlay() {
@@ -291,7 +288,13 @@ class _HomeScreenState extends State<HomeScreen> {
 
       if (mockData.questions.isEmpty) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('इस पेपर के प्रश्न लोड नहीं हो सके')),
+          SnackBar(
+            content: Text(
+              AppStrings.isHindi
+                  ? 'इस पेपर के प्रश्न लोड नहीं हो सके'
+                  : 'The questions of this paper could not load',
+            ),
+          ),
         );
         return;
       }
@@ -400,11 +403,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     textAlign: TextAlign.center,
                     style: AppTypography.titleLarge(
                       color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
-                    ).copyWith(letterSpacing: 0.3),
-                  ),
-                  const SizedBox(height: AppSpacing.sm),
+                    ),
+                   ),
+                   const SizedBox(height: AppSpacing.sm),
 
-                  // Subtitle
+                   // Subtitle
                   Text(
                     isAdded
                         ? AppStrings.syncSuccessAddedDesc(result.totalCount)
@@ -841,7 +844,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               ExamService.instance.shortNameWithPaper,
                               style: AppTypography.labelMedium(
                                 color: AppColors.sealGoldSubtle,
-                              ).copyWith(letterSpacing: 0.5),
+                              ),
                             ),
                           );
                         },
@@ -857,12 +860,12 @@ class _HomeScreenState extends State<HomeScreen> {
                           AppStrings.appTitle,
                           style: AppTypography.titleSmall(
                             color: AppColors.darkTextPrimary,
-                          ).copyWith(letterSpacing: 0.3),
+                          ),
                         ),
                         Text(
                           AppStrings.appSubtitle,
                           style: AppTypography.labelSmall(
-                            color: isDark ? AppColors.darkTextSecondary : AppColors.darkTextSecondary,
+                            color: AppColors.darkTextSecondary,
                           ),
                         ),
                       ],
@@ -3157,7 +3160,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   overflow: TextOverflow.ellipsis,
                   style: AppTypography.labelMedium(
                     color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
-                  ).copyWith(letterSpacing: 0.2),
+                  ),
                 ),
               ),
               const SizedBox(width: AppSpacing.sm),
@@ -3278,7 +3281,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                 style: AppTypography.outfit(
                                   fontSize: 8.5,
                                   fontWeight: FontWeight.bold,
-                                  letterSpacing: 0.5,
                                   color: isPaper2
                                       ? AppColors.violetLight
                                       : (isDark
@@ -3346,9 +3348,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       ],
                     ),
 
-                    // Full width title: it wraps, it never truncates
+                    // Full width title: up to 3 lines inside its fixed box so
+                    // the scaled text (1.25) can never push the slide over.
                     Text(
                       title,
+                      maxLines: 3,
+                      overflow: TextOverflow.ellipsis,
                       style: AppTypography.titleSmall(
                         color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
                       ).copyWith(height: 1.25),
@@ -3542,7 +3547,6 @@ class _HomeScreenState extends State<HomeScreen> {
                             style: AppTypography.outfit(
                               fontSize: 8,
                               fontWeight: FontWeight.bold,
-                              letterSpacing: 0.5,
                               color: isDark
                                   ? AppColors.darkTextSecondary
                                   : AppColors.lightTextSecondary,

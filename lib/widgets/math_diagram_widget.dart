@@ -177,7 +177,7 @@ class MathDiagramWidget extends StatelessWidget {
     return GestureDetector(
       onTap: () => _openZoomDialog(
         context,
-        title: 'दिये गये चित्र में: OP || RS',
+        title: AppStrings.isHindi ? 'दिये गये चित्र में: OP || RS' : 'In the given figure: OP || RS',
         child: SizedBox(
           width: 320,
           height: 220,

@@ -458,8 +458,12 @@ class _SolutionScreenState extends State<SolutionScreen> {
                                       const SizedBox(height: AppSpacing.xs),
                                       Text(
                                         _expandedPassages.contains(qIdx)
-                                            ? 'संपूर्ण गद्यांश छिपाएँ ▲'
-                                            : 'पूरा गद्यांश पढ़ें ▼',
+                                            ? (AppStrings.isHindi
+                                                ? 'संपूर्ण गद्यांश छिपाएँ ▲'
+                                                : 'Hide full passage ▲')
+                                            : (AppStrings.isHindi
+                                                ? 'पूरा गद्यांश पढ़ें ▼'
+                                                : 'Read full passage ▼'),
                                         style: AppTypography.labelSmall(
                                           color: isDark
                                               ? AppColors.accentBright

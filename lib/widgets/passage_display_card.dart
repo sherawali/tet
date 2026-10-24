@@ -78,8 +78,12 @@ class _PassageDisplayCardState extends State<PassageDisplayCard> {
     final badgeBg = badgeColor.withValues(alpha: isDark ? 0.2 : 0.12);
 
     final titleText = isPoem
-        ? 'अपठित काव्यांश / कविता$qRangeSuffix'
-        : 'अपठित गद्यांश$qRangeSuffix';
+        ? (AppStrings.isHindi
+            ? 'अपठित काव्यांश / कविता$qRangeSuffix'
+            : 'Unseen poem$qRangeSuffix')
+        : (AppStrings.isHindi
+            ? 'अपठित गद्यांश$qRangeSuffix'
+            : 'Unseen passage$qRangeSuffix');
 
     final cardBg = isDark ? AppColors.darkCardDeep : AppColors.lightCard;
 
@@ -113,8 +117,12 @@ class _PassageDisplayCardState extends State<PassageDisplayCard> {
                   Expanded(
                     child: Text(
                       isPoem
-                          ? '📖 इस प्रश्न की कविता देखें$qRangeSuffix (टैप करें)'
-                          : '📖 इस प्रश्न का गद्यांश देखें$qRangeSuffix (टैप करें)',
+                          ? (AppStrings.isHindi
+                              ? '📖 इस प्रश्न की कविता देखें$qRangeSuffix (टैप करें)'
+                              : '📖 View the poem of this question$qRangeSuffix (tap)')
+                          : (AppStrings.isHindi
+                              ? '📖 इस प्रश्न का गद्यांश देखें$qRangeSuffix (टैप करें)'
+                              : '📖 View the passage of this question$qRangeSuffix (tap)'),
                       style: AppTypography.labelMedium(
                         color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
                       ),
@@ -275,11 +283,10 @@ class _PassageDisplayCardState extends State<PassageDisplayCard> {
                       ).copyWith(
                         height: 2.0,
                         fontStyle: FontStyle.italic,
-                        letterSpacing: 0.3,
                       )
                     : AppTypography.passageBody(
                         color: isDark ? AppColors.borderStrong : AppColors.lightTextPrimary,
-                      ).copyWith(letterSpacing: 0.1),
+                      ),
               ),
             ),
           ],

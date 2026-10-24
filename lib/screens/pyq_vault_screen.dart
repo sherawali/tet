@@ -50,7 +50,11 @@ class _PyqVaultScreenState extends State<PyqVaultScreen> {
   Future<void> _loadPyqForms() async {
     setState(() => _isLoading = true);
     final paper = ExamService.instance.selectedPaper;
-    final forms = await _db.getAvailablePaperForms(paper: paper, isPyqOnly: true);
+    // Only the past papers of the exam the candidate is preparing for, a
+    // CTET push must never see the UTET board papers and the other way.
+    final exam = ExamService.instance.isUtet ? 'utet' : 'ctet';
+    final forms =
+        await _db.getAvailablePaperForms(exam: exam, paper: paper, isPyqOnly: true);
     if (!mounted) return;
     setState(() {
       _forms = forms;
@@ -81,7 +85,9 @@ class _PyqVaultScreenState extends State<PyqVaultScreen> {
       if (data.questions.isEmpty) {
         AppSnackBar.showError(
           context,
-          title: 'इस वर्ष के प्रश्न उपलब्ध नहीं हैं',
+          title: AppStrings.isHindi
+              ? 'इस वर्ष के प्रश्न उपलब्ध नहीं हैं'
+              : 'No questions available for this year',
         );
         return;
       }
