@@ -775,12 +775,14 @@ class PremiumService {
       switch (purchaseDetails.status) {
         case PurchaseStatus.pending:
           // The payment is still being processed by the payment provider.
+          _pendingSingleScope = null;
           isLoading.value = false;
           _finishRequest(PremiumPurchaseResult.pending);
           break;
 
         case PurchaseStatus.canceled:
           // The candidate backed out - nothing is unlocked.
+          _pendingSingleScope = null;
           await _completePurchase(purchaseDetails);
           isLoading.value = false;
           _finishRequest(PremiumPurchaseResult.cancelled);
@@ -788,6 +790,7 @@ class PremiumService {
 
         case PurchaseStatus.error:
           // The store refused the payment - nothing is unlocked.
+          _pendingSingleScope = null;
           await _completePurchase(purchaseDetails);
           isLoading.value = false;
           _finishRequest(PremiumPurchaseResult.failed);

@@ -449,7 +449,14 @@ class MockEngine {
   }) async {
     final isPaper2 = exam.toLowerCase().contains('2') || ExamService.instance.selectedPaper == 2;
     try {
-      final forms = await db.getAvailablePaperForms(paper: isPaper2 ? 2 : 1, isPyqOnly: false);
+      // The fallback belongs to the exam too - a UTET candidate must never
+      // reach a CTET form through it (or the other way).
+      final examName = exam.toLowerCase().startsWith('c') ? 'ctet' : 'utet';
+      final forms = await db.getAvailablePaperForms(
+        exam: examName,
+        paper: isPaper2 ? 2 : 1,
+        isPyqOnly: false,
+      );
       if (forms.isNotEmpty) {
         final index = (paperNumber - 1).clamp(0, forms.length - 1);
         final targetForm = forms[index];
