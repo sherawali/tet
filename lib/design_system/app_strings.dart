@@ -787,18 +787,13 @@ class AppStrings {
       _isHi ? 'UTET प्रो पास' : 'UTET Pro Pass';
   static String get proPackCtetTitle =>
       _isHi ? 'CTET प्रो पास' : 'CTET Pro Pass';
-  // The "one exam" pack: the exam and the paper live on the chips.  A paper
-  // chip buys one direction of the exam (₹999), the Dono chip buys both
-  // papers of the exam (₹1,499).  Every choice runs for 365 days.
-  static String get proPackWhichPaper => _isHi
-      ? 'कौन-सा पेपर चुनें?'
-      : 'Which paper?';
-  static String get proPackPaper1Label => _isHi ? 'पेपर-1' : 'Paper-1';
-  static String get proPackPaper2Label => _isHi ? 'पेपर-2' : 'Paper-2';
-  static String get proPackDonoLabel => _isHi ? 'दोनों ₹1,499' : 'Both ₹1,499';
-  static String proPackEkOneSub(String examLabel, String paperLabel, int forms) => _isHi
-      ? '$examLabel $paperLabel · सभी $forms पेपर · हल + विश्लेषण · 365 दिन'
-      : '$examLabel $paperLabel · all $forms papers · solutions + analysis · 365 days';
+  // The "one exam" pack sells both papers of the exam together - the
+  // exam lives on the chips, the second paper is a free gift.  The old
+  // pay-one-direction (₹999) choice is gone: a half-exam pass was the
+  // whole confusion of one pack unlocking into the other.
+  static String get proPackExamGift => _isHi
+      ? 'दोनों पेपर साथ में · दूसरा पेपर मुफ़्त उपहार 🎁'
+      : 'Both papers together · the second paper is a free gift';
   static String get proPackUtetSub => _isHi
       ? 'UTET पेपर-1 + पेपर-2 · ${BankFacts.utetMockCount} मॉक + ${BankFacts.utetPyqCount} PYQ प्रश्न-पत्र + ${BankFacts.format(BankFacts.utetQuestionCount)} प्रश्न · 12 महीने'
       : 'UTET Paper-1 + Paper-2 · ${BankFacts.utetMockCount} mocks + ${BankFacts.utetPyqCount} PYQ papers + ${BankFacts.format(BankFacts.utetQuestionCount)} questions · 12 months';
@@ -808,22 +803,6 @@ class AppStrings {
   static String get proPackFullSubNew => _isHi
       ? 'UTET + CTET पेपर-1 और 2 · सभी ${BankFacts.utetMockCount + BankFacts.ctetMockCount} मॉक + ${BankFacts.utetPyqCount + BankFacts.ctetPyqCount} PYQ प्रश्न-पत्र + ${BankFacts.format(BankFacts.vaultQuestionCount)} प्रश्न · 12 महीने'
       : 'UTET Paper-1 & 2 + CTET Paper-1 & 2 · all ${BankFacts.utetMockCount + BankFacts.ctetMockCount} mocks + ${BankFacts.utetPyqCount + BankFacts.ctetPyqCount} PYQ papers + ${BankFacts.format(BankFacts.vaultQuestionCount)} questions · 12 months';
-  static List<String> proPackEkOneBullets({
-    required String examLabel,
-    required String paperLabel,
-    required int forms,
-    required int questions,
-  }) => _isHi
-      ? <String>[
-          '$examLabel $paperLabel के सभी $forms प्रश्न-पत्र',
-          '${BankFacts.format(questions)} प्रश्न · हल एवं विश्लेषण',
-          'पूरे 365 दिन तक सब खुला',
-        ]
-      : <String>[
-          'Every one of the $forms papers of $examLabel $paperLabel',
-          '${BankFacts.format(questions)} questions · solutions and analysis',
-          'Full access for 365 days',
-        ];
   static List<String> get proPackUtetBullets => _isHi
       ? const [
           'UTET पेपर-1 और पेपर-2 दोनों',
@@ -861,7 +840,7 @@ class AppStrings {
         ];
   static String get proPackSelectorHint => _isHi
       ? 'परीक्षा-चिप से पैक बदलें · "सब खुला" पैक में हमेशा दोनों परीक्षाएँ'
-      : 'The exam and paper chips switch the one-exam pack · the Full Access Pass always has both exams';
+      : 'The exam chip switches the one-exam pack · the Full Access Pass always has both exams';
 
   // ---- bilingual wording for the buttons and cards ------------------------
   static String get verifiedTestPapersHeading =>
@@ -943,7 +922,7 @@ class AppStrings {
       ? '🎉 बधाई! प्रो पास सफलतापूर्वक अनलॉक हो गया।'
       : '🎉 Congratulations! Pro Pass unlocked successfully.';
   static String get premiumActiveStatus => _isHi ? '👑 प्रो पास सक्रिय' : '👑 Pro Pass Active';
-  static String get premiumPriceBadge => _isHi ? '👑 प्रो पास उपलब्ध · ₹999 से शुरू' : '👑 Pro Pass Available · From ₹999';
+  static String get premiumPriceBadge => _isHi ? '👑 प्रो पास उपलब्ध · ₹1,499 से शुरू' : '👑 Pro Pass Available · From ₹1,499';
   static String get premiumCancelledToast => _isHi ? 'भुगतान रद्द कर दिया गया।' : 'Payment was cancelled.';
   static String get premiumErrorToast => _isHi ? 'भुगतान पूरा नहीं हो सका। कृपया पुनः प्रयास करें।' : 'Payment could not be completed. Please try again.';
   static String get premiumPendingToast => _isHi ? 'भुगतान प्रक्रिया में है। पुष्टि होते ही पास सक्रिय हो जाएगा।' : 'Payment is pending. Your pass will be activated upon confirmation.';

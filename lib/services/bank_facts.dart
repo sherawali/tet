@@ -28,8 +28,8 @@ class BankFacts {
   static const int ctetPyqCount = 8;
   static const int utetQuestionCount = 4616;
   static const int ctetQuestionCount = 5100;
-  /// Per direction (exam + paper), the one-direction choice (₹999) of the
-  /// one-exam pack shows them.
+  /// Per direction (exam + paper), the paywall formerly offered for ₹999;
+  /// the tier is retired but the counters keep serving any legacy scope.
   static const int utetP1FormCount = 22;
   static const int utetP1QuestionCount = 3146;
   static const int utetP2FormCount = 7;

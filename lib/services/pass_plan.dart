@@ -14,11 +14,12 @@
 /// | full access   | ₹2,499 | everything, 365 days             |
 ///
 /// The paywall shows two packs.  The old `tet_single_paper_399` product is
-/// not a visible pack any more: inside the "one exam" pack the chips
-/// "Paper-1 / Paper-2" reuse it as "one direction of the chosen exam for
-/// ₹999" and the "Dono" chip buys the exam pass of ₹1,499.  Everything
-/// runs for one year - the product id keeps its old name because Play
-/// Console ids cannot be renamed, its meaning and its price are decided by
+/// not sold any more: the "one exam" pack carries both papers (the second
+/// paper is a free gift) so no buyer can miss half of the exam.  An
+/// earlier single-direction purchase keeps opening exactly what was
+/// bought.  Everything runs for one year - the product id keeps its old
+/// name because Play Console ids cannot be renamed, its meaning and its
+/// price are decided by
 /// the app and the store, not by the id.
 class PassPlan {
   const PassPlan._();
@@ -125,7 +126,9 @@ class PassPlan {
   ///
   /// The scope is either a full form id (`utet-p1-fullmock`, opens exactly
   /// that paper) or a direction (`utet-p1`, opens every paper of that
-  /// direction of that exam - the ₹999 choice inside the one-exam pack).
+  /// direction).  The paywall no longer sells this tier - the one-exam
+  /// pack carries both papers, the second as a gift - but an earlier
+  /// buyer's restored purchase keeps opening exactly what was bought.
   static bool singleScopeMatches(String? scope, String formId) {
     if (scope == null || scope.isEmpty) return false;
     if (scope == formId) return true;

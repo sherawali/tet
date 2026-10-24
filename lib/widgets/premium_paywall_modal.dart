@@ -8,7 +8,6 @@ import '../design_system/app_shadows.dart';
 import '../design_system/app_typography.dart';
 import '../design_system/app_strings.dart';
 import '../services/premium_service.dart';
-import '../services/bank_facts.dart';
 import '../design_system/app_sheet.dart';
 
 class PremiumPaywallModal extends StatefulWidget {
@@ -29,49 +28,15 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
   final PremiumService _premiumService = PremiumService.instance;
   String _selectedTier = PremiumService.masterProductId;
   String _selectedExam = 'utet';
-
-  /// The paper of the "one exam" pack: one direction (₹999) or both
-  /// papers of the exam (₹1,499).  Every choice runs for 365 days.
-  String _paperChoice = 'dono';
   StreamSubscription<bool>? _successSubscription;
   bool _celebrationShown = false;
 
-  /// The product of the exam pass of the chosen exam.
+  /// The product of the exam pass of the chosen exam.  The pack always
+  /// carries both papers - the second paper is the gift - so a candidate
+  /// can never buy half of their exam and miss the other half.
   String get _examProductId => _selectedExam == 'ctet'
       ? PremiumService.ctetProductId
       : PremiumService.utetProductId;
-
-  /// The product of the "one exam" pass for the paper chips.  A single
-  /// paper choice reuses the direction product (₹999), the Dono chip buys
-  /// the exam pass of the chosen exam (₹1,499).
-  String get _buyProductId => _paperChoice == 'dono'
-      ? _examProductId
-      : PremiumService.singlePaperProductId;
-
-  /// The direction a single paper choice is bought for, e.g. `utet-p1`.
-  /// Null when the Dono chip is chosen (the whole exam gets bought).
-  String? get _singleScope =>
-      _paperChoice == 'dono' ? null : '$_selectedExam-$_paperChoice';
-
-  /// The papers and questions of the chosen direction (fixed in BankFacts).
-  (int, int) get _singleCounts => (_selectedExam, _paperChoice) == ('utet', 'p1')
-      ? (BankFacts.utetP1FormCount, BankFacts.utetP1QuestionCount)
-      : (_selectedExam, _paperChoice) == ('utet', 'p2')
-          ? (BankFacts.utetP2FormCount, BankFacts.utetP2QuestionCount)
-          : (_selectedExam, _paperChoice) == ('ctet', 'p1')
-              ? (BankFacts.ctetP1FormCount, BankFacts.ctetP1QuestionCount)
-              : (BankFacts.ctetP2FormCount, BankFacts.ctetP2QuestionCount);
-
-  /// The chip choice changed: any selected pack of the second card follows
-  /// the new product, so the card stays selected while its price changes.
-  void _choosePaper(String choice) {
-    setState(() {
-      _paperChoice = choice;
-      if (_selectedTier != PremiumService.masterProductId) {
-        _selectedTier = _buyProductId;
-      }
-    });
-  }
 
   @override
   void initState() {
@@ -91,129 +56,55 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
     super.dispose();
   }
 
-  /// The pack card of "one exam": exam and paper live on the chips inside
-  /// the card, the numbers and the price follow them live.
+  /// The pack card of "one exam": the exam lives on the chips inside the
+  /// card, both papers come together and the second paper is the gift.
   Widget _buildEkParikshaCard({required bool isDark}) {
-    final (forms, questions) = _singleCounts;
-    final examLabel = _selectedExam.toUpperCase();
-    final isDono = _paperChoice == 'dono';
-    final paperLabel = _paperChoice == 'p1'
-        ? AppStrings.proPackPaper1Label
-        : AppStrings.proPackPaper2Label;
     return _buildTierCard(
-      tierId: _buyProductId,
+      tierId: _examProductId,
       title: AppStrings.proPackExamTitle,
-      subtitle: isDono
-          ? (_selectedExam == 'ctet'
-              ? AppStrings.proPackCtetSub
-              : AppStrings.proPackUtetSub)
-          : AppStrings.proPackEkOneSub(examLabel, paperLabel, forms),
-      bulletLines: isDono
-          ? (_selectedExam == 'ctet'
-              ? AppStrings.proPackCtetBullets
-              : AppStrings.proPackUtetBullets)
-          : AppStrings.proPackEkOneBullets(
-              examLabel: examLabel,
-              paperLabel: paperLabel,
-              forms: forms,
-              questions: questions,
-            ),
-      price: _premiumService.priceOf(_buyProductId),
+      subtitle: _selectedExam == 'ctet'
+          ? AppStrings.proPackCtetSub
+          : AppStrings.proPackUtetSub,
+      bulletLines: _selectedExam == 'ctet'
+          ? AppStrings.proPackCtetBullets
+          : AppStrings.proPackUtetBullets,
+      price: _premiumService.priceOf(_examProductId),
       badgeText: AppStrings.proPackValidYear,
       isPopular: false,
       isDark: isDark,
-      extra: _buildPaperChoiceSelector(isDark: isDark),
+      extra: _buildExamGiftNote(isDark: isDark),
     );
   }
 
-  /// The chooser of the paper inside the "one exam" pack: P1 (₹999), P2
-  /// (₹999) or Dono (₹1,499).  The label carries the price, so the buyer
-  /// sees what the chip does to the bill before tapping the buy button.
-  Widget _buildPaperChoiceSelector({required bool isDark}) {
+  /// The gift note: no paper chip to choose between any more, the pack
+  /// always carries both papers so the choice can never go wrong.
+  Widget _buildExamGiftNote({required bool isDark}) {
     return Padding(
       padding: const EdgeInsets.only(top: AppSpacing.sm),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            AppStrings.proPackWhichPaper,
-            style: AppTypography.labelMedium(
-              color: isDark
-                  ? AppColors.darkTextSecondary
-                  : AppColors.lightTextSecondary,
-            ),
-          ),
-          const SizedBox(height: AppSpacing.xs),
-          Row(
-            children: [
-              Expanded(
-                child: _buildPaperChip(
-                  isDark,
-                  label: AppStrings.proPackPaper1Label,
-                  selected: _paperChoice == 'p1',
-                  onTap: () => _choosePaper('p1'),
-                ),
-              ),
-              const SizedBox(width: AppSpacing.sm),
-              Expanded(
-                child: _buildPaperChip(
-                  isDark,
-                  label: AppStrings.proPackPaper2Label,
-                  selected: _paperChoice == 'p2',
-                  onTap: () => _choosePaper('p2'),
-                ),
-              ),
-              const SizedBox(width: AppSpacing.sm),
-              Expanded(
-                child: _buildPaperChip(
-                  isDark,
-                  label: AppStrings.proPackDonoLabel,
-                  selected: _paperChoice == 'dono',
-                  onTap: () => _choosePaper('dono'),
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildPaperChip(
-    bool isDark, {
-    required String label,
-    required bool selected,
-    required VoidCallback onTap,
-  }) {
-    return InkWell(
-      onTap: onTap,
-      borderRadius: AppRadius.roundedMd,
       child: Container(
+        width: double.infinity,
         padding: const EdgeInsets.symmetric(
           horizontal: AppSpacing.sm,
           vertical: AppSpacing.xs,
         ),
         decoration: BoxDecoration(
-          color: selected
-              ? AppColors.sealGold.withValues(alpha: 0.15)
-              : (isDark ? AppColors.primaryLight : AppColors.lightSurface),
+          color: AppColors.sealGold.withValues(alpha: 0.12),
           borderRadius: AppRadius.roundedMd,
-          border: Border.all(
-            color: selected
-                ? AppColors.sealGold
-                : (isDark ? AppColors.darkBorder : AppColors.borderStrong),
-          ),
+          border: Border.all(color: AppColors.sealGold.withValues(alpha: 0.45)),
         ),
-        child: Text(
-          label,
-          textAlign: TextAlign.center,
-          style: AppTypography.titleSmall(
-            color: selected
-                ? AppColors.sealGold
-                : (isDark
-                    ? AppColors.darkTextSecondary
-                    : AppColors.lightTextSecondary),
-          ),
+        child: Row(
+          children: [
+            Text('🎁', style: AppTypography.titleMedium(color: AppColors.sealGold)),
+            const SizedBox(width: AppSpacing.sm),
+            Expanded(
+              child: Text(
+                AppStrings.proPackExamGift,
+                style: AppTypography.labelMedium(
+                  color: isDark ? AppColors.sealGoldLight : AppColors.accent,
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
@@ -243,7 +134,7 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
                 onTap: () => setState(() {
                   _selectedExam = 'utet';
                   if (_selectedTier != PremiumService.masterProductId) {
-                    _selectedTier = _buyProductId;
+                    _selectedTier = _examProductId;
                   }
                 }),
               ),
@@ -257,7 +148,7 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
                 onTap: () => setState(() {
                   _selectedExam = 'ctet';
                   if (_selectedTier != PremiumService.masterProductId) {
-                    _selectedTier = _buyProductId;
+                    _selectedTier = _examProductId;
                   }
                 }),
               ),
@@ -675,10 +566,9 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
                   ),
                   const SizedBox(height: AppSpacing.sm),
 
-                  // Tier 2: Ek Pariksha Pro Pass - the exam and the paper
-                  // live on the chips inside the card.  A paper chip buys
-                  // one direction (₹999), Dono buys both papers (₹1,499).
-                  // Everything runs for 365 days.
+                  // Tier 2: Ek Pariksha Pro Pass - the exam lives on the
+                  // chips inside the card and both papers come together,
+                  // the second paper as a gift.  Runs for 365 days.
                   _buildEkParikshaCard(isDark: isDark),
                   const SizedBox(height: AppSpacing.sm),
 
@@ -824,13 +714,9 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
                             onPressed: isLoading
                                 ? null
                                 : () async {
-                                    final result = await _premiumService
-                                        .buyProduct(
+                                    final result =
+                                        await _premiumService.buyProduct(
                                       _selectedTier,
-                                      singlePaperScope: _selectedTier ==
-                                              PremiumService.singlePaperProductId
-                                          ? _singleScope
-                                          : null,
                                     );
                                     if (!context.mounted) return;
 
