@@ -1078,6 +1078,58 @@
 - docs/PLAY_STORE_PASS_SETUP.md updated: create `tet_single_paper_399` at
   **R999 / 12 months**, named "Ek Pariksha - one paper (R999)".
 - Phone-proven after a fresh build + fresh install: two cards, chips
+
+### 2026-10-24 - Pre-release deep audit: 3 subagents + fixes + device proof
+- **Three parallel `explore` subagent audits** (mock completeness, IAP/packs,
+  UI/typography/perf) over lib/ + vault. Ground truth: 63 forms (ctet-p1 18 =
+  8 PYQ + 10 mock; ctet-p2 16 = 0 PYQ; utet-p1 22 = 1 PYQ + 21 mock incl
+  REV-01; utet-p2 7 all PYQ), 9,720 q, booklet list fully dynamic.
+- **Fixed - exam-scope leak:** `isPaperFree` gained an `exam` param; a
+  one-exam pass now opens only its own exam's subject sets, never the other
+  exam's. `subject_detail_screen` passes `exam: ExamService.instance.examCode`.
+- **Fixed - PYQ vault cross-leak:** pyq_vault_screen now filters by exam,
+  CTET never shows UTET board papers.
+- **Fixed - carousel un-capped:** removed `.take(5)`/`.take(8)`; carousel
+  shows every paper of the exam+paper, badge went from false "3/13" to the
+  real "5/18 प्रश्न-पत्र" (18 dots). Phone screenshot e1.
+- **Fixed - mid-session expiry:** paywall initState calls
+  `reloadFromDatabase()`; buyProduct/restorePurchases short-circuit only when
+  `isPremiumUnlocked && _passIsValid`; failed (non-pending) requests clear
+  `_pendingSingleScope`.
+- **Fixed - Devanagari letterSpacing purge:** ~10 call sites (sync modal,
+  appbar badge, appTitle, heading 3157, 2 stamps, question-column headers,
+  passage styles, flash banner, snack-bar title fallback, app_typography
+  questionText 0.1 removed, html_booklet banner h2). Snack-bar titles now
+  pick `notoSansDevanagari` when the text has Devanagari code points.
+- **Fixed - English-mode Hindi leaks (~39 strings):** cbt_exam summaries /
+  palette legend / submit / back / tooltip, html_booklet errors + exit
+  dialog (new AppStrings paperBuildError/paperLoadError/paperExit*),
+  solution passage toggles, mock/pyq empty states, passage titles,
+  math-diagram zoom title, home snack, question_report_sheet (python patch
+  script `build/_audit/patch_report_sheet.py`, 37 auto + 2 manual).
+- **UX:** haptics on option select (selectionClick) and manual submit
+  (mediumImpact), flash-banner dots padded, carousel title maxLines 3.
+- Tests: all 20 test files green (batched one-by-one protocol), analyze
+  clean. Committed **e0e07ef**, pushed.
+- **Device proof (com.tetrank.pro.debug, EN app-language mode):** e1
+  carousel 5/18; e8 booklet cover EN with EN chip selected (cover is
+  bilingual by design like a real exam booklet); e9 exit dialog pure
+  English "Leave the exam? / ✕ Leave / ▶ Keep solving".
+- **Pack architecture decision (user's question):** keep the current
+  2-pack paywall - सब खुला R2,499 (`tet_all_access_1y`) + एक परीक्षा card
+  R1,499 exams / R999 chips (`tet_utet_pass_1y`, `tet_ctet_pass_1y`,
+  `tet_single_paper_399`). That already equals "full + separate UTET/CTET
+  packs". User must create the 4 products in Play Console
+  (docs/PLAY_STORE_PASS_SETUP.md); recommend prepaid 1-year plans (no
+  silent auto-charge).
+- Known accepted: single-paper scope is device-local (clean reinstall
+  restores the flag but not the scope - buyer must re-open the direction);
+  db_helper reseed threshold `qCount < 9720` fine while the bank only grows.
+- Deferred (not release-blocking): home `_loadData` serial queries,
+  `_syncFromAssetDb` bulk import on main isolate, result-screen build loops,
+  RegExp hoisting. `build/_audit/figure_hard.py` still not run.
+- Evidence: build/_audit/e1..e9 (not committed). reminds user to revoke the
+  leaked GitHub PAT.
   switch the second card price R1,499 to R999 and the numbers switch to
   "UTET Paper-1 ke sabhi 22 paper / 3,146 prashn / 365 din" live. 6 test
   files pass, analyze clean.
