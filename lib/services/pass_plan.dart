@@ -4,28 +4,35 @@
 /// price can be changed without a new app release).  The values here are only
 /// the fallback that is shown when the store cannot be reached.
 ///
-/// The plan has no lifetime pass.  Every pass runs for one year, which keeps
-/// the price free to change every season and gives the user a reason to come
-/// back.
+/// The plan has no lifetime pass.  Every pass runs for a fixed term, which
+/// keeps the price free to change every season and gives the user a reason
+/// to come back.
 ///
 /// | tier          | price  | what it opens                    |
 /// |---------------|--------|----------------------------------|
-/// | one exam      | ₹1,499 | every paper of one exam, 365 days|
-/// | full access   | ₹2,499 | everything, 365 days             |
+/// | 6-month combo | ₹1,499 | everything, 182 days             |
+/// | yearly combo  | ₹2,500 | everything, 365 days             |
 ///
-/// The paywall shows two packs.  The old `tet_single_paper_399` product is
-/// not sold any more: the "one exam" pack carries both papers (the second
-/// paper is a free gift) so no buyer can miss half of the exam.  An
-/// earlier single-direction purchase keeps opening exactly what was
-/// bought.  Everything runs for one year - the product id keeps its old
-/// name because Play Console ids cannot be renamed, its meaning and its
-/// price are decided by
+/// The paywall shows exactly two packs and both are the same combo - UTET
+/// AND CTET, every paper of both exams - so the buyer can never pick "the
+/// wrong exam" and no pack-vs-pack confusion remains.  The six-month pack
+/// anchors the price (₹250 a month); next to it the yearly pack at ₹2,500
+/// reads as the gift (~₹498 saved against two six-month passes).  The old
+/// exam and single-paper products are no longer sold; an earlier buyer's
+/// restored purchase keeps opening exactly what was bought.  Every product
+/// id keeps its old name because Play Console ids cannot be renamed, its
+/// meaning and its price are decided by
 /// the app and the store, not by the id.
 class PassPlan {
   const PassPlan._();
 
   /// The product ids of the Play Console.
+  ///
+  /// The wall sells exactly two packs and both are the same combo - UTET
+  /// AND CTET, every paper of both exams.  Only the term differs, so there
+  /// is no pack-vs-pack scatter any more: nobody can buy "the wrong exam".
   static const String fullAccessProductId = 'tet_all_access_1y';
+  static const String halfYearProductId = 'tet_all_access_6m';
   static const String utetProductId = 'tet_utet_pass_1y';
   static const String ctetProductId = 'tet_ctet_pass_1y';
   static const String singlePaperProductId = 'tet_single_paper_399';
@@ -39,6 +46,7 @@ class PassPlan {
   /// Every product the app knows.
   static const List<String> allProductIds = <String>[
     fullAccessProductId,
+    halfYearProductId,
     utetProductId,
     ctetProductId,
     singlePaperProductId,
@@ -48,8 +56,13 @@ class PassPlan {
   ];
 
   /// The price that is shown when the store cannot be reached.
+  ///
+  /// ₹1,499 anchors the six-month pack, ₹2,500 the yearly one: two
+  /// six-month passes cost ₹2,998, so the yearly pack itself reads as a
+  /// ₹498 gift.  The store decides the real price, this is only the plan.
   static const Map<String, int> fallbackPrices = <String, int>{
-    fullAccessProductId: 2499,
+    fullAccessProductId: 2500,
+    halfYearProductId: 1499,
     utetProductId: 1499,
     ctetProductId: 1499,
     singlePaperProductId: 999,
@@ -61,6 +74,7 @@ class PassPlan {
   /// How long a pass runs, in days.
   static const Map<String, int> validDays = <String, int>{
     fullAccessProductId: 365,
+    halfYearProductId: 182,
     utetProductId: 365,
     ctetProductId: 365,
     singlePaperProductId: 365,
@@ -73,6 +87,7 @@ class PassPlan {
   static String tierOf(String productId) {
     switch (productId) {
       case fullAccessProductId:
+      case halfYearProductId:
       case legacyMasterProductId:
       case legacyFallbackProductId:
         return 'full';

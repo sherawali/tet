@@ -8,7 +8,27 @@ import '../design_system/app_shadows.dart';
 import '../design_system/app_typography.dart';
 import '../design_system/app_strings.dart';
 import '../services/premium_service.dart';
+import '../services/pass_plan.dart';
+import '../services/bank_facts.dart';
 import '../design_system/app_sheet.dart';
+
+/// What the just-bought (or restored) pass contains: its name, the live
+/// numbers of what it opens, and the real date it runs until.  The
+/// congratulations sheet reads only this, so it can never show a slogan
+/// instead of the pack the buyer actually holds.
+class _PackReceipt {
+  const _PackReceipt({
+    required this.name,
+    required this.openPapers,
+    required this.openQuestions,
+    required this.validTill,
+  });
+
+  final String name;
+  final String openPapers;
+  final String openQuestions;
+  final String validTill;
+}
 
 class PremiumPaywallModal extends StatefulWidget {
   const PremiumPaywallModal({super.key});
@@ -27,16 +47,8 @@ class PremiumPaywallModal extends StatefulWidget {
 class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
   final PremiumService _premiumService = PremiumService.instance;
   String _selectedTier = PremiumService.masterProductId;
-  String _selectedExam = 'utet';
   StreamSubscription<bool>? _successSubscription;
   bool _celebrationShown = false;
-
-  /// The product of the exam pass of the chosen exam.  The pack always
-  /// carries both papers - the second paper is the gift - so a candidate
-  /// can never buy half of their exam and miss the other half.
-  String get _examProductId => _selectedExam == 'ctet'
-      ? PremiumService.ctetProductId
-      : PremiumService.utetProductId;
 
   @override
   void initState() {
@@ -56,175 +68,44 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
     super.dispose();
   }
 
-  /// The pack card of "one exam": the exam lives on the chips inside the
-  /// card, both papers come together and the second paper is the gift.
-  Widget _buildEkParikshaCard({required bool isDark}) {
+  /// The pack card of "one exam" is gone.  Both cards of the wall are the
+  /// same combo - UTET AND CTET, every paper - so no buyer can ever pick
+  /// "the wrong exam"; only the term of the pass differs.
+  /// The card of the yearly combo: the default pick.  Both cards tell
+  /// the same story - the whole bank of both exams - and the term lives
+  /// in the title and the badge, nothing else.
+  Widget _buildYearCard({required bool isDark}) {
+    final yearly = PassPlan.priceOf(PremiumService.masterProductId);
     return _buildTierCard(
-      tierId: _examProductId,
-      title: AppStrings.proPackExamTitle,
-      subtitle: _selectedExam == 'ctet'
-          ? AppStrings.proPackCtetSub
-          : AppStrings.proPackUtetSub,
-      bulletLines: _selectedExam == 'ctet'
-          ? AppStrings.proPackCtetBullets
-          : AppStrings.proPackUtetBullets,
-      price: _premiumService.priceOf(_examProductId),
-      badgeText: AppStrings.proPackValidYear,
-      isPopular: false,
+      tierId: PremiumService.masterProductId,
+      title: AppStrings.proPackFullTitle,
+      subtitle: AppStrings.proPackComboSub,
+      bulletLines: AppStrings.proPackComboBullets,
+      price: _premiumService.priceOf(PremiumService.masterProductId),
+      badgeText: AppStrings.proPackMostPopular,
+      isPopular: true,
       isDark: isDark,
-      extra: _buildExamGiftNote(isDark: isDark),
-    );
-  }
-
-  /// The gift note: no paper chip to choose between any more, the pack
-  /// always carries both papers so the choice can never go wrong.
-  Widget _buildExamGiftNote({required bool isDark}) {
-    return Padding(
-      padding: const EdgeInsets.only(top: AppSpacing.sm),
-      child: Container(
-        width: double.infinity,
-        padding: const EdgeInsets.symmetric(
-          horizontal: AppSpacing.sm,
-          vertical: AppSpacing.xs,
-        ),
-        decoration: BoxDecoration(
-          color: AppColors.sealGold.withValues(alpha: 0.12),
-          borderRadius: AppRadius.roundedMd,
-          border: Border.all(color: AppColors.sealGold.withValues(alpha: 0.45)),
-        ),
-        child: Row(
-          children: [
-            Text('🎁', style: AppTypography.titleMedium(color: AppColors.sealGold)),
-            const SizedBox(width: AppSpacing.sm),
-            Expanded(
-              child: Text(
-                AppStrings.proPackExamGift,
-                style: AppTypography.labelMedium(
-                  color: isDark ? AppColors.sealGoldLight : AppColors.accent,
-                ),
-              ),
-            ),
-          ],
-        ),
+      noteText: AppStrings.proPackPerMonthFor(
+        '₹${(yearly / 12).round()}',
       ),
     );
   }
 
-  /// The selector of the exam of the "one exam" pass.
-  Widget _buildExamSelector(bool isDark) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          AppStrings.proPackWhichExam,
-          style: AppTypography.labelMedium(
-            color: isDark
-                ? AppColors.darkTextSecondary
-                : AppColors.lightTextSecondary,
-          ),
-        ),
-        const SizedBox(height: AppSpacing.sm),
-        Row(
-          children: [
-            Expanded(
-              child: _buildExamOption(
-                isDark,
-                label: AppStrings.proPackOnlyUtet,
-                selected: _selectedExam == 'utet',
-                onTap: () => setState(() {
-                  _selectedExam = 'utet';
-                  if (_selectedTier != PremiumService.masterProductId) {
-                    _selectedTier = _examProductId;
-                  }
-                }),
-              ),
-            ),
-            const SizedBox(width: AppSpacing.sm),
-            Expanded(
-              child: _buildExamOption(
-                isDark,
-                label: AppStrings.proPackOnlyCtet,
-                selected: _selectedExam == 'ctet',
-                onTap: () => setState(() {
-                  _selectedExam = 'ctet';
-                  if (_selectedTier != PremiumService.masterProductId) {
-                    _selectedTier = _examProductId;
-                  }
-                }),
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(height: AppSpacing.xs),
-        Text(
-          AppStrings.proPackSelectorHint,
-          style: AppTypography.labelSmall(
-            color: isDark ? AppColors.darkTextMuted : AppColors.lightTextMuted,
-          ),
-        ),
-      ],
-    );
-  }
-
-  /// One exam of the "one exam" pass.
-  Widget _buildExamOption(
-    bool isDark, {
-    required String label,
-    required bool selected,
-    required VoidCallback onTap,
-  }) {
-    return InkWell(
-      onTap: onTap,
-      borderRadius: AppRadius.roundedSm,
-      child: Container(
-        padding: const EdgeInsets.symmetric(
-          vertical: AppSpacing.sm,
-          horizontal: AppSpacing.xs,
-        ),
-        decoration: BoxDecoration(
-          color: selected
-              ? AppColors.sealGold.withValues(alpha: 0.18)
-              : (isDark ? AppColors.darkCardElevated : AppColors.lightBg),
-          borderRadius: AppRadius.roundedSm,
-          border: Border.all(
-            color: selected
-                ? AppColors.sealGold
-                : (isDark ? AppColors.darkBorder : AppColors.lightBorder),
-            width: selected ? 1.6 : 1.0,
-          ),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              selected
-                  ? Icons.check_circle_rounded
-                  : Icons.radio_button_unchecked_rounded,
-              size: 15,
-              color: selected
-                  ? AppColors.sealGold
-                  : (isDark
-                      ? AppColors.darkTextMuted
-                      : AppColors.lightTextMuted),
-            ),
-            const SizedBox(width: AppSpacing.xs),
-            Flexible(
-              child: Text(
-                label,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                textAlign: TextAlign.center,
-                style: AppTypography.labelMedium(
-                  color: selected
-                      ? AppColors.sealGold
-                      : (isDark
-                          ? AppColors.darkTextSecondary
-                          : AppColors.lightTextSecondary),
-                ),
-              ),
-            ),
-          ],
-        ),
+  /// The card of the six-month combo: the same bank, the shorter term,
+  /// the higher per-month price.
+  Widget _buildHalfYearCard({required bool isDark}) {
+    final price = PassPlan.priceOf(PassPlan.halfYearProductId);
+    return _buildTierCard(
+      tierId: PassPlan.halfYearProductId,
+      title: AppStrings.proPackHalfYearTitle,
+      subtitle: AppStrings.proPackComboSub,
+      bulletLines: AppStrings.proPackComboBullets,
+      price: _premiumService.priceOf(PassPlan.halfYearProductId),
+      badgeText: AppStrings.proPackHalfYearBadge,
+      isPopular: false,
+      isDark: isDark,
+      noteText: AppStrings.proPackPerMonthFor(
+        '₹${(price / 6).round()}',
       ),
     );
   }
@@ -236,9 +117,52 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
   Future<void> _celebrate() async {
     if (!mounted || _celebrationShown) return;
     _celebrationShown = true;
-    await _showCongratulationsDialog(context);
+    await _showCongratulationsDialog(context, _receiptFromActivePass());
     if (!mounted) return;
     Navigator.of(context).pop();
+  }
+
+  /// The receipt of the pass that is active right now: the buy path and
+  /// the restore path both land here, because the service has already
+  /// written the active product by the time the celebration fires.
+  _PackReceipt _receiptFromActivePass() {
+    final id = _premiumService.activeProductId ?? PremiumService.masterProductId;
+    final tier = PassPlan.tierOf(id);
+    final isFull = tier == 'full';
+    final isUtet = tier == 'utet';
+    final forms = isFull
+        ? BankFacts.utetPaperFormCount + BankFacts.ctetPaperFormCount
+        : isUtet
+            ? BankFacts.utetPaperFormCount
+            : BankFacts.ctetPaperFormCount;
+    final questions = isFull
+        ? BankFacts.vaultQuestionCount
+        : isUtet
+            ? BankFacts.utetQuestionCount
+            : BankFacts.ctetQuestionCount;
+    final name = isFull
+        ? id == PassPlan.halfYearProductId
+            ? AppStrings.proPackHalfYearTitle
+            : AppStrings.proPackFullTitle
+        : tier == 'single'
+            ? AppStrings.proPackExamTitle
+            : '${isUtet ? 'UTET' : 'CTET'} ${AppStrings.proPackExamTitle}';
+    final expiry = _premiumService.activeExpiry ??
+        DateTime.now().add(Duration(days: PassPlan.daysOf(id)));
+    // The real days still left - the dialog tells both the date and the
+    // count, never a slogan.
+    final daysLeft = expiry.difference(DateTime.now()).inDays;
+    return _PackReceipt(
+      name: name,
+      openPapers: AppStrings.congratulationsOpenPapers('$forms'),
+      openQuestions: AppStrings.congratulationsOpenQuestions(
+        BankFacts.format(questions),
+      ),
+      validTill: AppStrings.congratulationsValidTill(
+        AppStrings.dateFor(expiry),
+        daysLeft < 0 ? 0 : daysLeft,
+      ),
+    );
   }
 
   /// The message of a failed purchase.
@@ -340,7 +264,31 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
         width: width,
       );
 
-  static Future<void> _showCongratulationsDialog(BuildContext context) async {
+  /// One line of the receipt: a check and the dynamic fact.
+  static Widget _receiptLine(String text, {required bool isDark}) {
+    return Padding(
+      padding: const EdgeInsets.only(top: AppSpacing.xs),
+      child: Row(
+        children: [
+          const Icon(Icons.check_circle_rounded, color: AppColors.sealGold, size: 18),
+          const SizedBox(width: AppSpacing.sm),
+          Expanded(
+            child: Text(
+              text,
+              style: AppTypography.bodySmall(
+                color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  static Future<void> _showCongratulationsDialog(
+    BuildContext context,
+    _PackReceipt receipt,
+  ) async {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     await showDialog(
@@ -382,6 +330,41 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
                 color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
               ),
             ),
+            const SizedBox(height: AppSpacing.sm),
+            // The pack the buyer actually holds - not a slogan.
+            Container(
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppSpacing.md,
+                vertical: AppSpacing.xs,
+              ),
+              decoration: BoxDecoration(
+                color: AppColors.sealGold,
+                borderRadius: AppRadius.roundedFull,
+              ),
+              child: Text(
+                receipt.name,
+                textAlign: TextAlign.center,
+                style: AppTypography.labelMedium(color: AppColors.primary),
+              ),
+            ),
+            const SizedBox(height: AppSpacing.xs),
+            // The real validity: the date the pass runs until.
+            Container(
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppSpacing.md,
+                vertical: AppSpacing.xs,
+              ),
+              decoration: BoxDecoration(
+                color: AppColors.sealGold.withValues(alpha: 0.16),
+                borderRadius: AppRadius.roundedFull,
+                border: Border.all(color: AppColors.sealGold),
+              ),
+              child: Text(
+                receipt.validTill,
+                textAlign: TextAlign.center,
+                style: AppTypography.labelMedium(color: AppColors.sealGold),
+              ),
+            ),
           ],
         ),
         content: Column(
@@ -394,7 +377,11 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
                 color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary,
               ),
             ),
-            const SizedBox(height: AppSpacing.base),
+            const SizedBox(height: AppSpacing.sm),
+            // What this pack opens, with the live bank numbers.
+            _receiptLine(receipt.openPapers, isDark: isDark),
+            _receiptLine(receipt.openQuestions, isDark: isDark),
+            const SizedBox(height: AppSpacing.sm),
             Container(
               padding: const EdgeInsets.symmetric(
                 horizontal: AppSpacing.md,
@@ -431,7 +418,11 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
                 backgroundColor: AppColors.sealGold,
                 foregroundColor: AppColors.primary,
                 elevation: 0,
-                padding: const EdgeInsets.symmetric(vertical: AppSpacing.md),
+                minimumSize: const Size.fromHeight(52),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: AppSpacing.md,
+                  vertical: AppSpacing.md,
+                ),
                 shape: RoundedRectangleBorder(borderRadius: AppRadius.roundedBase),
                 textStyle: AppTypography.titleSmall(color: AppColors.primary),
               ),
@@ -547,29 +538,14 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
 
                 // Tier Selection Cards
                 if (!isUnlocked) ...[
-                  // The exam of the "one exam" pass
-                  _buildExamSelector(isDark),
+                  // Tier 1: the yearly combo of both exams - the default
+                  // pick, framed as the gift beside the 6-month anchor.
+                  _buildYearCard(isDark: isDark),
                   const SizedBox(height: AppSpacing.sm),
 
-                  // Tier 1: Full Access Pro Pass (every exam, every paper)
-                  _buildTierCard(
-                    tierId: PremiumService.masterProductId,
-                    title: AppStrings.proPackFullTitle,
-                    subtitle: AppStrings.proPackFullSubNew,
-                    bulletLines: AppStrings.proPackFullBullets,
-                    price: _premiumService.priceOf(PremiumService.masterProductId),
-                    badgeText: AppStrings.proPackMostPopular,
-                    isPopular: true,
-                    isDark: isDark,
-                    anchorText: AppStrings.proPackAnchorValue,
-                    noteText: AppStrings.proPackPerMonth,
-                  ),
-                  const SizedBox(height: AppSpacing.sm),
-
-                  // Tier 2: Ek Pariksha Pro Pass - the exam lives on the
-                  // chips inside the card and both papers come together,
-                  // the second paper as a gift.  Runs for 365 days.
-                  _buildEkParikshaCard(isDark: isDark),
+                  // Tier 2: the six-month combo - the same bank, the
+                  // shorter term, the per-month anchor.
+                  _buildHalfYearCard(isDark: isDark),
                   const SizedBox(height: AppSpacing.sm),
 
                   // Debug builds cannot buy on Play, so the mock buy note
@@ -732,7 +708,11 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
                               backgroundColor: AppColors.sealGold,
                               foregroundColor: AppColors.primary,
                               elevation: 0,
-                              padding: const EdgeInsets.symmetric(vertical: AppSpacing.md),
+                              minimumSize: const Size.fromHeight(56),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: AppSpacing.md,
+                                vertical: AppSpacing.md,
+                              ),
                               shape: RoundedRectangleBorder(
                                 borderRadius: AppRadius.roundedBase,
                               ),
@@ -851,11 +831,13 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
     required bool isPopular,
     required bool isDark,
     List<String> bulletLines = const [],
-    String? anchorText,
     String? noteText,
-    Widget? extra,
   }) {
     final isSelected = _selectedTier == tierId;
+    final titleColor =
+        isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary;
+    final subColor =
+        isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary;
 
     return InkWell(
       onTap: () => setState(() => _selectedTier = tierId),
@@ -876,46 +858,60 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
             width: isSelected ? 2 : 1,
           ),
         ),
-        child: Row(
+        // The card reads top to bottom: one header row (radio, title,
+        // badge, price), then the scope line, then the bullets.  Every
+        // line owns its row, so nothing parks on top of anything else.
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Icon(
-              isSelected
-                  ? Icons.radio_button_checked_rounded
-                  : Icons.radio_button_off_rounded,
-              color: isSelected ? AppColors.sealGold : (isDark ? AppColors.darkTextMuted : AppColors.lightTextMuted),
-              size: 22,
-            ),
-            const SizedBox(width: AppSpacing.sm),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // The title and the tag share one wrap, so a long title
-                  // never gets squeezed into a single letter per line.
-                  Wrap(
+            // Header: radio, then the title with its badge free to wrap,
+            // and the price on its slot of the row.  The Wrap keeps the
+            // title from being squeezed to one letter per line and the
+            // Expanded keeps the row from overflowing on narrow phones.
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 2),
+                  child: Icon(
+                    isSelected
+                        ? Icons.radio_button_checked_rounded
+                        : Icons.radio_button_off_rounded,
+                    color: isSelected
+                        ? AppColors.sealGold
+                        : (isDark
+                            ? AppColors.darkTextMuted
+                            : AppColors.lightTextMuted),
+                    size: 22,
+                  ),
+                ),
+                const SizedBox(width: AppSpacing.sm),
+                Expanded(
+                  child: Wrap(
                     spacing: AppSpacing.sm,
                     runSpacing: AppSpacing.xs,
                     crossAxisAlignment: WrapCrossAlignment.center,
                     children: [
                       Text(
                         title,
-                        style: AppTypography.titleSmall(
-                          color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
-                        ),
+                        style: AppTypography.titleSmall(color: titleColor),
                       ),
                       Container(
                         padding: const EdgeInsets.symmetric(
-                          horizontal: AppSpacing.xs,
+                          horizontal: AppSpacing.xs + 2,
                           vertical: 2,
                         ),
                         decoration: BoxDecoration(
                           color: isPopular
                               ? AppColors.sealGold.withValues(alpha: 0.2)
-                              : (isDark ? AppColors.darkBorder : AppColors.borderStrong),
-                          borderRadius: AppRadius.roundedSm,
+                              : (isDark
+                                  ? AppColors.darkBorder
+                                  : AppColors.borderStrong),
+                          borderRadius: AppRadius.roundedFull,
                           border: Border.all(
-                            color: isPopular ? AppColors.sealGold : Colors.transparent,
+                            color: isPopular
+                                ? AppColors.sealGold
+                                : Colors.transparent,
                             width: 0.8,
                           ),
                         ),
@@ -924,111 +920,77 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
                           style: AppTypography.labelSmall(
                             color: isPopular
                                 ? AppColors.sealGold
-                                : (isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary),
+                                : (isDark
+                                    ? AppColors.darkTextSecondary
+                                    : AppColors.lightTextSecondary),
                           ),
                         ),
                       ),
                     ],
                   ),
-                  const SizedBox(height: AppSpacing.xs),
-                  Text(
-                    subtitle,
-                    style: AppTypography.labelSmall(
-                      color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextMuted,
-                    ),
+                ),
+                const SizedBox(width: AppSpacing.sm),
+                Text(
+                  price,
+                  style: AppTypography.titleLarge(
+                    color: isSelected ? AppColors.sealGold : titleColor,
                   ),
-                  // "Kya milega": the plain list of what this tier unlocks.
-                  if (bulletLines.isNotEmpty) ...[
-                    const SizedBox(height: AppSpacing.xs),
-                    ...bulletLines.map(
-                      (line) => Padding(
-                        padding: const EdgeInsets.only(top: 2),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(top: 2),
-                              child: Icon(
-                                Icons.check_rounded,
-                                size: 13,
-                                color: isPopular
-                                    ? AppColors.sealGold
-                                    : (isDark
-                                        ? AppColors.darkTextSecondary
-                                        : AppColors.lightTextSecondary),
-                              ),
-                            ),
-                            const SizedBox(width: AppSpacing.xs),
-                            Expanded(
-                              child: Text(
-                                line,
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
-                                style: AppTypography.labelSmall(
-                                  color: isDark
-                                      ? AppColors.darkTextSecondary
-                                      : AppColors.lightTextSecondary,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                  // The single paper pass carries a chooser of the paper
-                  // (P1/P2) inside the card.
-                  ?extra,
-                ],
+                ),
+              ],
+            ),
+            const SizedBox(height: AppSpacing.xs),
+            // The scope line is aligned with the title, not with the radio.
+            Padding(
+              padding: const EdgeInsets.only(left: 30),
+              child: Text(
+                subtitle,
+                style: AppTypography.labelSmall(color: subColor),
               ),
             ),
-            const SizedBox(width: AppSpacing.sm),
-            // The price may be long, so it wraps instead of running out of
-            // the card.
-            ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 112),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  if (anchorText != null)
-                    Text(
-                      anchorText,
-                      textAlign: TextAlign.right,
-                      style: AppTypography.labelSmall(
-                        color: isDark
+            if (noteText != null)
+              Padding(
+                padding: const EdgeInsets.only(left: 30, top: 2),
+                child: Text(
+                  noteText,
+                  style: AppTypography.labelSmall(
+                    color: isSelected
+                        ? AppColors.sealGold
+                        : (isDark
                             ? AppColors.darkTextMuted
-                            : AppColors.lightTextMuted,
-                      ).copyWith(
-                        decoration: TextDecoration.lineThrough,
-                        decorationColor: AppColors.danger,
-                      ),
-                    ),
-                  Text(
-                    price,
-                    textAlign: TextAlign.right,
-                    style: AppTypography.titleSmall(
-                      color: isSelected ? AppColors.sealGold : (isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary),
-                    ),
+                            : AppColors.lightTextMuted),
                   ),
-                  if (noteText != null)
-                    Padding(
-                      padding: const EdgeInsets.only(top: 2),
-                      child: Text(
-                        noteText,
-                        textAlign: TextAlign.right,
-                        style: AppTypography.labelSmall(
+                ),
+              ),
+            if (bulletLines.isNotEmpty) ...[
+              const SizedBox(height: AppSpacing.sm),
+              ...bulletLines.map(
+                (line) => Padding(
+                  padding: const EdgeInsets.only(left: 30, top: AppSpacing.xs),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 2),
+                        child: Icon(
+                          Icons.check_rounded,
+                          size: 14,
                           color: isSelected
-                              ? AppColors.sealGoldLight
-                              : (isDark
-                                  ? AppColors.darkTextMuted
-                                  : AppColors.lightTextMuted),
+                              ? AppColors.sealGold
+                              : subColor,
                         ),
                       ),
-                    ),
-                ],
+                      const SizedBox(width: AppSpacing.xs + 2),
+                      Expanded(
+                        child: Text(
+                          line,
+                          style: AppTypography.labelSmall(color: subColor),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ),
-            ),
+            ],
           ],
         ),
       ),

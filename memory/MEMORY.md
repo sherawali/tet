@@ -20,6 +20,20 @@
 
 ## 📅 Timeline & Milestones
 
+### 2026-10-24: Two-Combo-Pack Release Design (desktop deep-audit round)
+- **Pack architecture FINAL: exactly TWO packs, both the SAME combo (UTET + CTET, both papers):**
+  - `tet_all_access_1y` → ₹2,500 · 365 days (default selected, "Most Popular")
+  - `tet_all_access_6m` → ₹1,499 · 182 days · badge "6 महीने"
+  - Exam passes (`tet_utet_pass_1y`/`tet_ctet_pass_1y`) + ₹999 tier NOT sold any more (stay in `PassPlan` map only for legacy restores; `tierOf` returns 'full' for both combos → no lock/unlock "janjhat" left).
+  - Play Console setup doc `docs/PLAY_STORE_PASS_SETUP.md` rewritten (2 products, prepaid plans).
+- **Gift box REMOVED per user:** struck ₹2,998 anchor + 🎁 gift note dropped from the yearly card (user: "gift tag htaao, extra hai").
+- **Paywall redesigned:** `_buildTierCard` rebuilt as top-to-bottom column — header row (radio + title + badge in Wrap so nothing squeezes, price in its own slot), scope line `proPackComboSub` ("UTET + CTET · Paper-1 + Paper-2 · one pack"), per-month note under it, 3 bullets from shared `proPackComboBullets` (all BankFacts-driven: 47 mocks + 16 boards, 9,720 questions, new papers auto-open). No duplicated numbers stacked on a card any more.
+- **Congratulations dialog shows REAL validity:** chip = pack name (pack-aware: "All-Open — Full Year" / "All-Open — 6 Months"), second chip = "valid until {date} · {N} days left" (`congratulationsValidTill(date, days)`; days = real `activeExpiry` difference, BankFacts month names). Receipt lines still dynamic (63 papers · 9,720 questions).
+- **Strings cleanup:** deleted dead getters (proPackPerMonth/ValidYear/AnchorValue/WhichExam/BothExams/OnlyUtet/OnlyCtet/ValidYearBadge/YearAnchor/YearGift, ExamGift, Utet/Ctet subs+bullets, SelectorHint, FullBullets/HalfYearBullets, proPackFullSubNew, proPackHalfYearSub) → replaced by `proPackComboSub`, `proPackComboBullets`.
+- **Device proofs (debug, Infinix X698):** `build/_audit/t3_wall_new.png` (renovated wall: yearly card clean + 6-month card render), `t5_congrats_year.png` ("All-Open — Full Year" + "valid until 24 Oct 2027 · 364 days left"), `t7_congrats_6m.png` ("All-Open — 6 Months" + "valid until 24 Apr 2027 · 181 days left"). Narrow-phone test (320px) re-passes after header Wrap fix (RenderFlex overflow gone).
+- **Tests:** premium_paywall, premium_expiry, bank_facts, design_system_guard, typography all green; `flutter analyze` clean.
+- **Device state after round:** 6-month pass active on `com.tetrank.pro.debug`; debug switch shows ON (binds `isPremiumUnlocked`, by design). Exam set to CTET Paper-1.
+
 ### 2026-10-17: Master Vault 4,620 Questions Clean System Upgrade
 - **Source:** Verified all 28 mock & PYQ papers from `C:\Users\pujariji\Desktop\tetmaster\Final_Mocks`.
   - **UTET Paper 1:** 21 full sets = 3,150 questions (1 Real PYQ + 20 Fresh Mocks).

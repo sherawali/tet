@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
 import '../database/db_helper.dart';
 import '../design_system/app_motion.dart';
+import 'bank_facts.dart';
 import 'pass_plan.dart';
 
 /// The outcome of a purchase or of a restore.
@@ -155,7 +156,9 @@ class PremiumService {
       // The price of the store is already formatted with its currency.
       return product.price;
     }
-    return '₹${PassPlan.priceOf(productId)}';
+    // The fallback is formatted with the thousands separator too, so a
+    // 2,499 never prints as "2499" while the store is away.
+    return '₹${BankFacts.format(PassPlan.priceOf(productId))}';
   }
 
   /// Does the app know this product?

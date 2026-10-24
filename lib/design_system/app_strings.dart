@@ -743,23 +743,26 @@ class AppStrings {
       _isHi ? 'प्रश्न $number' : 'Question $number';
 
   // ---- the pass plan (prices come from the store, these are the fallback)
+  // The wall has exactly two packs - the same combo, only the term
+  // differs.  One short scope line and one shared bullet list describe
+  // both cards, so no number is ever written twice on one card.
   static String get proPackMostPopular => _isHi ? 'सबसे लोकप्रिय' : 'Most Popular';
-  static String get proPackPerMonth => _isHi ? 'सिर्फ ₹208 प्रति माह' : 'Just ₹208 a month';
-  static String get proPackValidYear => _isHi ? '365 दिन' : '365 days';
-  static String get proPackAnchorValue => _isHi ? '₹4,999 की कीमत' : 'Worth ₹4,999';
   static String get proPackGuarantee => _isHi
       ? '7 दिन में बिना सवाल कुछ भी नहीं पसंद आया तो पूरा पैसा वापस'
       : 'Full refund within 7 days, no questions asked';
-  static String get proPackWhichExam => _isHi ? 'आप किस परीक्षा की तैयारी कर रहे हैं?' : 'Which exam are you preparing for?';
-  static String get proPackBothExams => _isHi ? 'UTET + CTET (दोनों)' : 'UTET + CTET (both)';
-  static String get proPackOnlyUtet => _isHi ? 'सिर्फ UTET' : 'UTET only';
-  static String get proPackOnlyCtet => _isHi ? 'सिर्फ CTET' : 'CTET only';
   static String get proPackFullTitle => _isHi
-      ? 'सब खुला प्रो पास'
-      : 'Full Access Pro Pass';
-  static String get proPackFullSub => _isHi
-      ? 'UTET + CTET, पेपर-1 और पेपर-2, सभी मॉडल एवं बोर्ड पेपर, लाइव बैंक अपडेट, 12 महीने'
-      : 'UTET + CTET, Paper-1 and Paper-2, every mock and board paper, live bank updates, 12 months';
+      ? 'सब खुला — पूरा साल'
+      : 'All-Open — Full Year';
+  static String get proPackHalfYearTitle => _isHi
+      ? 'सब खुला — 6 महीने'
+      : 'All-Open — 6 Months';
+  static String get proPackComboSub => _isHi
+      ? 'UTET + CTET · पेपर-1 + पेपर-2 · एक ही पैक में'
+      : 'UTET + CTET · Paper-1 + Paper-2 · one pack';
+  static String get proPackHalfYearBadge => _isHi ? '6 महीने' : '6 months';
+  static String proPackPerMonthFor(String perMonth) => _isHi
+      ? 'मात्र $perMonth प्रति माह'
+      : 'Just $perMonth a month';
   static String get proPackExamTitle => _isHi
       ? 'एक परीक्षा प्रो पास'
       : 'One Exam Pro Pass';
@@ -782,66 +785,20 @@ class AppStrings {
       : 'Renews at ₹$price';
   static String get proPackUnlockedBadge => _isHi ? 'प्रो पास सक्रिय' : 'Pro Pass Active';
 
-  // ---- what each tier unlocks (numbers fixed in BankFacts) ----------------
-  static String get proPackUtetTitle =>
-      _isHi ? 'UTET प्रो पास' : 'UTET Pro Pass';
-  static String get proPackCtetTitle =>
-      _isHi ? 'CTET प्रो पास' : 'CTET Pro Pass';
-  // The "one exam" pack sells both papers of the exam together - the
-  // exam lives on the chips, the second paper is a free gift.  The old
-  // pay-one-direction (₹999) choice is gone: a half-exam pass was the
-  // whole confusion of one pack unlocking into the other.
-  static String get proPackExamGift => _isHi
-      ? 'दोनों पेपर साथ में · दूसरा पेपर मुफ़्त उपहार 🎁'
-      : 'Both papers together · the second paper is a free gift';
-  static String get proPackUtetSub => _isHi
-      ? 'UTET पेपर-1 + पेपर-2 · ${BankFacts.utetMockCount} मॉक + ${BankFacts.utetPyqCount} PYQ प्रश्न-पत्र + ${BankFacts.format(BankFacts.utetQuestionCount)} प्रश्न · 12 महीने'
-      : 'UTET Paper-1 + Paper-2 · ${BankFacts.utetMockCount} mocks + ${BankFacts.utetPyqCount} PYQ papers + ${BankFacts.format(BankFacts.utetQuestionCount)} questions · 12 months';
-  static String get proPackCtetSub => _isHi
-      ? 'CTET पेपर-1 + पेपर-2 · ${BankFacts.ctetMockCount} मॉक + ${BankFacts.ctetPyqCount} PYQ प्रश्न-पत्र + ${BankFacts.format(BankFacts.ctetQuestionCount)} प्रश्न · 12 महीने'
-      : 'CTET Paper-1 + Paper-2 · ${BankFacts.ctetMockCount} mocks + ${BankFacts.ctetPyqCount} PYQ papers + ${BankFacts.format(BankFacts.ctetQuestionCount)} questions · 12 months';
-  static String get proPackFullSubNew => _isHi
-      ? 'UTET + CTET पेपर-1 और 2 · सभी ${BankFacts.utetMockCount + BankFacts.ctetMockCount} मॉक + ${BankFacts.utetPyqCount + BankFacts.ctetPyqCount} PYQ प्रश्न-पत्र + ${BankFacts.format(BankFacts.vaultQuestionCount)} प्रश्न · 12 महीने'
-      : 'UTET Paper-1 & 2 + CTET Paper-1 & 2 · all ${BankFacts.utetMockCount + BankFacts.ctetMockCount} mocks + ${BankFacts.utetPyqCount + BankFacts.ctetPyqCount} PYQ papers + ${BankFacts.format(BankFacts.vaultQuestionCount)} questions · 12 months';
-  static List<String> get proPackUtetBullets => _isHi
-      ? const [
-          'UTET पेपर-1 और पेपर-2 दोनों',
-          '21 मॉक पेपर + 8 विगत प्रश्नपत्र',
-          '4,616 प्रश्न · हल एवं विश्लेषण',
-        ]
-      : const [
-          'Both UTET Paper-1 and Paper-2',
-          '21 mock papers + 8 PYQ papers',
-          '4,616 questions · solutions and analysis',
-        ];
-  static List<String> get proPackCtetBullets => _isHi
-      ? const [
-          'CTET पेपर-1 और पेपर-2 दोनों',
-          '26 मॉक पेपर + 8 विगत प्रश्नपत्र',
-          '5,100 प्रश्न · हल एवं विश्लेषण',
-        ]
-      : const [
-          'Both CTET Paper-1 and Paper-2',
-          '26 mock papers + 8 PYQ papers',
-          '5,100 questions · solutions and analysis',
-        ];
-  static List<String> get proPackFullBullets => _isHi
-      ? [
-          'UTET + CTET, दोनों के पेपर-1 और पेपर-2',
-          'सभी ${BankFacts.utetMockCount + BankFacts.ctetMockCount} मॉक + ${BankFacts.utetPyqCount + BankFacts.ctetPyqCount} PYQ प्रश्न-पत्र',
-          '${BankFacts.format(BankFacts.vaultQuestionCount)} प्रश्न · हल एवं विश्लेषण',
-          '12 महीने तक सब खुला',
-        ]
-      : [
-          'UTET + CTET, Paper-1 and Paper-2 of both',
-          'All ${BankFacts.utetMockCount + BankFacts.ctetMockCount} mock + ${BankFacts.utetPyqCount + BankFacts.ctetPyqCount} PYQ papers',
-          '${BankFacts.format(BankFacts.vaultQuestionCount)} questions · solutions and analysis',
-          'Full access for 12 months',
-        ];
-  static String get proPackSelectorHint => _isHi
-      ? 'परीक्षा-चिप से पैक बदलें · "सब खुला" पैक में हमेशा दोनों परीक्षाएँ'
-      : 'The exam chip switches the one-exam pack · the Full Access Pass always has both exams';
-
+  /// What both combo packs open, from the live bank numbers.  The term
+  /// ('पूरा साल' / '6 महीने') lives on the title and the badge of the
+  /// card, so the list is never written twice.
+  static List<String> get proPackComboBullets => <String>[
+        _isHi
+            ? '${BankFacts.utetMockCount + BankFacts.ctetMockCount} मॉक + ${BankFacts.utetPyqCount + BankFacts.ctetPyqCount} बोर्ड विगत-पत्र'
+            : '${BankFacts.utetMockCount + BankFacts.ctetMockCount} mocks + ${BankFacts.utetPyqCount + BankFacts.ctetPyqCount} board papers',
+        _isHi
+            ? '${BankFacts.format(BankFacts.vaultQuestionCount)} प्रश्न · विस्तृत हल व विश्लेषण'
+            : '${BankFacts.format(BankFacts.vaultQuestionCount)} questions · full solutions and analysis',
+        _isHi
+            ? 'बैंक में जुड़ा नया पेपर आपके पास तुरंत खुलेगा'
+            : 'Every new paper opens for you the moment it lands',
+      ];
   // ---- bilingual wording for the buttons and cards ------------------------
   static String get verifiedTestPapersHeading =>
       _isHi ? 'प्रामाणिक तैयार मॉक प्रश्न-पुस्तिकाएँ' : 'Verified Ready-Made Test Papers';
@@ -901,15 +858,15 @@ class AppStrings {
   static String get premiumPassTitle =>
       _isHi ? 'UTET एवं CTET $currentExamYear प्रो पास' : 'UTET & CTET $currentExamYear Pro Pass';
   static String get premiumPassSubtitle => _isHi
-      ? 'एक मॉडल प्रश्न-पत्र पूर्णतः निःशुल्क है। बाकी सभी ${BankFacts.paperCount}+ मॉडल प्रश्न-पत्र, विगत वर्ष प्रश्न-पत्र और ${BankFacts.format(BankFacts.questionCount)}+ प्रश्न 12 महीने के लिए अनलॉक करें।'
-      : 'One model test paper is completely free. Unlock all ${BankFacts.paperCount}+ model test papers, previous year solved papers, and ${BankFacts.format(BankFacts.questionCount)}+ questions for a full year.';
+      ? 'पहला अभ्यास-पेपर सबके लिए निःशुल्क। पूरा बैंक खुलेगा — ${BankFacts.utetPaperFormCount + BankFacts.ctetPaperFormCount} सम्पूर्ण प्रश्न-पुस्तिकाएँ · ${BankFacts.format(BankFacts.vaultQuestionCount)} प्रश्न · UTET और CTET दोनों।'
+      : 'The first paper is free for everyone. Then the whole bank opens — ${BankFacts.utetPaperFormCount + BankFacts.ctetPaperFormCount} complete papers · ${BankFacts.format(BankFacts.vaultQuestionCount)} questions · UTET and CTET both.';
 
   static String get premiumFeature1 => _isHi
-      ? '${BankFacts.paperCount}+ सम्पूर्ण ${BankFacts.questionsPerPaper}-प्रश्नों के मॉडल प्रश्न-पत्र'
-      : '${BankFacts.paperCount}+ full ${BankFacts.questionsPerPaper}-question model test papers';
+      ? '${BankFacts.utetPaperFormCount + BankFacts.ctetPaperFormCount} पूर्ण ${BankFacts.questionsPerPaper}-प्रश्न प्रश्न-पत्र — मॉक और बोर्ड दोनों'
+      : '${BankFacts.utetPaperFormCount + BankFacts.ctetPaperFormCount} complete ${BankFacts.questionsPerPaper}-question papers — mocks and boards';
   static String get premiumFeature2 => _isHi
-      ? 'विगत वर्षों के ${BankFacts.pyqCount}+ प्रामाणिक बोर्ड प्रश्न-पत्र'
-      : '${BankFacts.pyqCount}+ authentic previous year board papers';
+      ? '${BankFacts.utetPyqCount + BankFacts.ctetPyqCount} प्रामाणिक बोर्ड विगत प्रश्न-पत्र (2014–2026)'
+      : '${BankFacts.utetPyqCount + BankFacts.ctetPyqCount} authentic board PYQ papers (2014–2026)';
   static String get premiumFeature3 => _isHi ? 'विस्तृत व्याख्या सहित सम्पूर्ण हल व सटीक विश्लेषण' : 'Detailed Explanations & Performance Analytics';
   static String get premiumFeature4 => _isHi ? '100% विज्ञापन-मुक्त · बिना इंटरनेट भी सब अभ्यास' : '100% Ad-Free · Complete Offline Access';
 
@@ -931,8 +888,36 @@ class AppStrings {
   // Congratulations Dialog
   static String get congratulationsTitle => _isHi ? 'बधाई हो! प्रो पास सक्रिय हो गया' : 'Congratulations! Pro Pass Activated';
   static String get congratulationsSub => _isHi
-      ? 'आपका प्रो पास सक्रिय हो गया है। अब आप सभी प्रश्न-पुस्तिकाएँ और विगत वर्ष के प्रश्न-पत्र बिना किसी रोक-टोक के हल कर सकते हैं।'
-      : 'Your Pro membership is now active. You have full unlimited access to all ${BankFacts.paperCount}+ exam booklets and previous year papers.';
+      ? 'आपका चुना हुआ पैक अब सक्रिय है — जितना चाहें अभ्यास करें।'
+      : 'Your chosen pack is active now — practise as much as you like.';
+  /// What the bought pack opens, with the live bank numbers.
+  static String congratulationsOpenPapers(String forms) => _isHi
+      ? '$forms प्रश्न-पत्र — मॉक + बोर्ड विगत'
+      : '$forms papers — mocks and boards';
+  static String congratulationsOpenQuestions(String questions) => _isHi
+      ? '$questions प्रश्न — विस्तृत हल विश्लेषण'
+      : '$questions questions — detailed solutions';
+  /// The tipline of the congratulations dialog: the expiry date AND the
+  /// days still left - the real validity, not a slogan.
+  static String congratulationsValidTill(String date, int days) => _isHi
+      ? '$date तक · $days दिन बाकी'
+      : 'valid until $date · $days days left';
+  /// Hindi month names for the validity date (Latin runes break matras).
+  static const List<String> _monthsHi = <String>[
+    'जनवरी', 'फ़रवरी', 'मार्च', 'अप्रैल', 'मई', 'जून',
+    'जुलाई', 'अगस्त', 'सितंबर', 'अक्टूबर', 'नवंबर', 'दिसंबर',
+  ];
+  static const List<String> _monthsEn = <String>[
+    'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
+  ];
+  /// The formatted validity date, e.g. `24 अक्टूबर 2027`.
+  static String dateFor(DateTime day) {
+    final months = _isHi ? _monthsHi : _monthsEn;
+    return '${day.day} ${months[day.month - 1]} ${day.year}';
+  }
+  /// The gold badge of the dialog carries the pack name itself.
+  static String congratulationsChip(String packName) => packName;
   static String get startPreparingBtn => _isHi ? 'तैयारी शुरू करें' : 'Start Preparing';
 
   // Sanskrit Upcoming Notice

@@ -8,19 +8,23 @@ after the next sync - no new app release needed.
 
 | Product id | Name | Price | Type | Base plan |
 |---|---|---|---|---|
-| `tet_all_access_1y` | Full Access Pro Pass (UTET + CTET) | ₹2,499 | Subscription | 12 months, ₹2,499/yr |
-| `tet_utet_pass_1y` | UTET Pro Pass (Paper-1 + Paper-2) | ₹1,499 | Subscription | 12 months, ₹1,499/yr |
-| `tet_ctet_pass_1y` | CTET Pro Pass (Paper-1 + Paper-2) | ₹1,499 | Subscription | 12 months, ₹1,499/yr |
+| `tet_all_access_1y` | All-Open Pass · 1 Year (UTET + CTET) | ₹2,500 | Subscription | 12 months, ₹2,500/yr, prepaid |
+| `tet_all_access_6m` | All-Open Pass · 6 Months (UTET + CTET) | ₹1,499 | Subscription | 6 months, ₹1,499, prepaid |
 
-**The paywall shows two packs** and only these three products are needed.
-Full Access (₹2,499/yr) unlocks everything. The "Ek Pariksha Pro Pass"
-(₹1,499/yr) buys `tet_utet_pass_1y` or `tet_ctet_pass_1y` with the exam
-selector - and it always carries **both papers**: the second paper is a
-free gift, so no buyer can ever miss half of their exam. The old ₹999
-one-direction tier (`tet_single_paper_399`) is **no longer sold** - do not
-create it; an earlier buyer's restored purchase still opens exactly what
-was bought. Every pass runs 365 days (recommend **prepaid** 1-year plans -
-no silent auto-charge).
+**The paywall shows exactly two packs and both are the same combo** - UTET
+AND CTET, every paper of both exams. Only the term differs:
+
+- `tet_all_access_6m` (₹1,499 · 182 days · prepaid) is the *anchor*: ₹250 a
+  month.
+- `tet_all_access_1y` (₹2,500 · 365 days · prepaid) is the *value pick*,
+  default selected. The wall shows the anchor struck through: two 6-month
+  passes would cost ₹2,998 - so the yearly pass reads as a ₹498 gift.
+
+Do **not** create `tet_utet_pass_1y`, `tet_ctet_pass_1y` or the old ₹999
+one-direction tier (`tet_single_paper_399`) - those products are retired
+from sale. An earlier buyer's restored purchase still opens exactly what
+was bought. Recommend **prepaid** plans for both products - no silent
+auto-charge.
 
 **No lifetime product.** A 365 day pass can be re-priced every season, a
 lifetime pass locks the price forever.
@@ -34,10 +38,10 @@ products are being created:
 - Google keeps **15 %** of a subscription and 15 % of the first ₹1 crore of
   one time purchases - and 30 % after that. A subscription is always 15 %.
 - A subscription renews by itself, so the second year needs no new customer.
-- At ₹2,499 the net per buyer is **₹2,124**; at ₹1,499 it is **₹1,274**.
-  The full access pass is the one that clears ₹1,500 per user, so it is the
-  pack the paywall pushes (featured, in the middle, with "₹208 a month" and
-  the struck through ₹4,999 anchor).
+- At ₹2,500 the net per yearly buyer is **₹2,125**; at ₹1,499 it is **₹1,274**.
+  The yearly pass is the one that clears ₹1,500 per user, so it is the pack
+  the paywall pushes (default selected, with "₹208 a month" and the struck
+  ₹2,998 two-pass anchor).
 
 ## Turning a paper free or paid (no app update)
 
