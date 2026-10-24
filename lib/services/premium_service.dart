@@ -78,13 +78,14 @@ class PremiumService {
   /// never reads it, so a debug session can never unlock a release build.
   static const String debugOverrideMetaKey = 'is_premium_debug_override';
 
-  // Exactly 1 designated free flagship mock paper for each exam & paper
+  // Exactly ONE designated free flagship mock per exam.  Both exams carry
+  // their own, so the candidate of either exam always sees exactly one
+  // free paper - never the whole paper list, and never a Paper-2 second
+  // free one.  The remote config (free_form_ids) can override this list
+  // from Git without an app release.
   static const Set<String> defaultFreePaperIds = {
-    'utet-p1-fullmock',     // UTET Paper 1 Flagship PYQ
-    'utet-p2-set-b',        // UTET Paper 2 Flagship PYQ (2023)
-    'ctet-p1-2026-pyq',     // CTET Paper 1 Flagship Solved
-    'ctet-p2-ms-mock-01',   // CTET Paper 2 Math-Science Flagship
-    'ctet-p2-sst-mock-01',  // CTET Paper 2 SST Flagship
+    'utet-p1-fullmock',    // UTET Paper 1 Flagship (official board 2023)
+    'ctet-p1-2026-pyq',    // CTET Paper 1 Flagship (2026 board solved)
   };
 
   final ValueNotifier<bool> isPremiumUnlocked = ValueNotifier<bool>(false);
@@ -194,6 +195,11 @@ class PremiumService {
       // Unknown paper: only a full pass opens it; an exam pass opens its
       // own exam (the id prefix tells), a single paper pass never.
       if (passValid && tier == 'full') return true;
+      // A named paper that no free list carries is never free because of
+      // its position in a list - the flagship papers are the only free
+      // mocks.  The position fallback below belongs to the subject
+      // drills (the set-1 rule) alone.
+      return false;
     } else if (passValid && tier != 'single') {
       // Without a paper id (the sets and drills) the caller names the exam
       // the content belongs to, so an exam pass opens only its own exam's
@@ -292,8 +298,17 @@ class PremiumService {
     // 4. A purchase that is already owned has to unlock the app right away.
     //    The store reports it as "restored" through the purchase stream, so
     //    the pass becomes active without any interaction of the candidate.
-    if (!isPremiumUnlocked.value) {
-      unawaited(_restoreOwnedPurchaseInBackground());
+    //    In a release build the reconciliation runs even when the local
+    //    state says unlocked: if the store no longer returns the pass
+    //    (a refunded or cancelled purchase, a Play account switch), the
+    //    local lock is taken off, so the validity can never drift away
+    //    from the store.  A debug build keeps its mock entitlement.
+    if (kDebugMode) {
+      if (!isPremiumUnlocked.value) {
+        unawaited(_reconcileWithStoreInBackground());
+      }
+    } else {
+      unawaited(_reconcileWithStoreInBackground());
     }
   }
 
@@ -330,17 +345,36 @@ class PremiumService {
     }
   }
 
-  /// Asks the store for the purchases of this app.  A purchase that is
-  /// already owned arrives as a "restored" purchase and unlocks the pass.
-  Future<void> _restoreOwnedPurchaseInBackground() async {
+  /// Asks the store for the purchases of this app.
+  ///
+  /// Two jobs, both honest:
+  /// 1. A purchase that is already owned arrives as a "restored" purchase
+  ///    and unlocks the pass (a reinstall, a new device, a fresh start).
+  /// 2. A pass the locally stored state still claims but the store no
+  ///    longer returns is locked again - the store is the single truth,
+  ///    so a refunded or cancelled purchase never keeps papers open.
+  Future<void> _reconcileWithStoreInBackground() async {
     if (storeStatus.value != PremiumStoreStatus.available) return;
+    _storeSawOwnedPurchase = false;
     try {
       await _iap.restorePurchases();
+      // The restore answers through the purchase stream.  An empty answer
+      // with a locally unlocked state means the entitlement is gone at
+      // Play - lock the papers back.
+      if (isPremiumUnlocked.value &&
+          _passIsValid &&
+          !_storeSawOwnedPurchase) {
+        await lockAllAccessLocally();
+      }
     } catch (_) {
-      // The store could not be reached - the app simply stays in the free
-      // mode and the candidate can try again from the payment sheet.
+      // The store could not be reached - the app keeps the locally stored
+      // state and the next start reconciles again.
     }
   }
+
+  /// Whether the purchase stream reported an owned product of this app
+  /// during the last restore.  The store reconciliation reads it.
+  bool _storeSawOwnedPurchase = false;
 
   /// Re-reads the stored entitlement from the database.
   ///
@@ -570,25 +604,38 @@ class PremiumService {
 
   /// Activates the pass and stores it in the local database, so it survives
   /// an app restart.
+  ///
+  /// [forceReplace] is a fresh payment's word: a bought pass always starts
+  /// its term now and its product replaces an older one (an upgrade from a
+  /// single paper to an exam pass, a leap from the 6-month pack to the
+  /// yearly one).  A store re-delivery of an owned purchase
+  /// (restore, restart, reconciliation) must stay quiet: it can never
+  /// stretch the expiry and never relabel a longer pass with a shorter one.
   Future<void> unlockAllAccessLocally({
     String? productId,
     String? singlePaperScope,
+    bool forceReplace = false,
   }) async {
     if (productId != null) {
       final newExpiry = DateTime.now().add(
         Duration(days: PassPlan.daysOf(productId)),
       );
-      _activeProductId = productId;
-      // A pass never stretches: the store re-delivers an owned purchase on
-      // every start, and "now + term" is then always a tiny bit later than
-      // the stored expiry, because the clock advanced.  Only an expiry at
-      // least a day beyond the stored one (a real renewal, +a term) may
-      // move the date.
-      final isRealRenewal = _activeExpiry == null ||
+      // A pass never stretches AND never shrinks, and the stored product
+      // id always belongs to the expiry that is kept.  The store
+      // re-delivers every owned purchase on every start - if a buyer owns
+      // the yearly pack and the store later hands over the six-month one
+      // too, the six-month delivery must not relabel the pass while the
+      // yearly expiry stays.  Only a genuine renewal (a delivery at least
+      // a day beyond the stored expiry) or a fresh payment moves the date
+      // and the product together; anything else keeps the longer
+      // entitlement.
+      final isRealRenewal = forceReplace ||
+          _activeExpiry == null ||
           newExpiry.isAfter(
             _activeExpiry!.add(const Duration(days: 1)),
           );
       if (isRealRenewal) {
+        _activeProductId = productId;
         _activeExpiry = newExpiry;
         try {
           await DbHelper.instance.setMeta(productMetaKey, productId);
@@ -702,6 +749,7 @@ class PremiumService {
     await unlockAllAccessLocally(
       productId: productId,
       singlePaperScope: singlePaperScope,
+      forceReplace: true,
     );
     isLoading.value = false;
     _purchaseSuccessController.add(true);
@@ -752,12 +800,20 @@ class PremiumService {
             await _completePurchase(purchaseDetails);
             break;
           }
+          // The store itself sang the pass is owned - the reconciliation
+          // reads this flag at the next start.
+          _storeSawOwnedPurchase = true;
           // The purchase is owned - bought now or restored from the store -
           // so the pass is activated and stored in the local database.
+          // A fresh payment always starts its term now (and may upgrade
+          // the product); a restore only fills a gap, it never stretches
+          // a longer pass or relabels it with a shorter product.
           await _completePurchase(purchaseDetails);
           await unlockAllAccessLocally(
             productId: purchaseDetails.productID,
             singlePaperScope: _pendingSingleScope,
+            forceReplace:
+                purchaseDetails.status == PurchaseStatus.purchased,
           );
           _pendingSingleScope = null;
           isLoading.value = false;

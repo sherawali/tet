@@ -84,6 +84,9 @@ class _HomeScreenState extends State<HomeScreen> {
   int _totalQuestions = 0;
   int _pyqCount = 0;
   List<Map<String, dynamic>> _history = [];
+  /// The sections where the mistakes repeat, strongest first - the smart
+  /// focus card of the history tab reads this.
+  List<Map<String, dynamic>> _weakTopics = [];
   /// Question count per section for the selected exam and paper.
   Map<String, int> _sectionCounts = <String, int>{};
   List<String> _pyqYears = [];
@@ -202,19 +205,55 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   /// Re-reads the stored test history (a finished test is written while the
-  /// candidate is away from this screen).
+  /// candidate is away from this screen).  The repeated mistakes ride
+  /// along, so the focus card of the tab is never one test behind.
   Future<void> _refreshHistoryIfNeeded() async {
     try {
       final history = await _db.getTestHistory();
       if (!mounted) return;
+      var changed = false;
       if (history.length == _history.length) {
         final newest = history.isNotEmpty ? history.first['timestamp'] : null;
         final currentNewest =
             _history.isNotEmpty ? _history.first['timestamp'] : null;
-        if (newest == currentNewest) return;
+        changed = newest != currentNewest;
+      } else {
+        changed = true;
       }
-      setState(() => _history = history);
+      final weak = await _db.getRecurringMistakeTopics(limit: 6);
+      if (!mounted) return;
+      if (changed) setState(() => _history = history);
+      setState(() => _weakTopics = weak);
     } catch (_) {}
+  }
+
+  /// The section with the most repeating mistakes.  The topics inside it
+  /// are the ones the candidate should sit with today.
+  Map<String, dynamic>? get _weakestSection {
+    if (_weakTopics.isEmpty) return null;
+    final bySection = <String, Map<String, dynamic>>{};
+    for (final row in _weakTopics) {
+      final section = (row['section'] as String?) ?? '';
+      if (section.isEmpty) continue;
+      final slot = bySection.putIfAbsent(section, () {
+        return {'section': section, 'wrongs': 0, 'topics': <String>[]};
+      });
+      slot['wrongs'] = (slot['wrongs'] as int) +
+          ((row['total_wrongs'] as num?)?.toInt() ?? 0);
+      final topic = (row['topic_name'] as String?) ?? '';
+      if (topic.isNotEmpty && (slot['topics'] as List<String>).length < 2) {
+        (slot['topics'] as List<String>).add(topic);
+      }
+    }
+    final best = bySection.values.toList()
+      ..sort((a, b) => (b['wrongs'] as int).compareTo(a['wrongs'] as int));
+    if (best.isEmpty) return null;
+    // The vault stores section codes; the user reads the display name.
+    best[0]['section'] = SectionCatalog.name(
+      best[0]['section'] as String,
+      hindi: AppStrings.isHindi,
+    );
+    return best.first;
   }
 
   Future<void> _loadData() async {
@@ -2629,6 +2668,12 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         const SizedBox(height: AppSpacing.md),
 
+        // The smart focus: the section where mistakes repeat, said kindly
+        // and with one clear step - the data comes from the user's own
+        // mistake records, so it can never be a decoration.
+        if (_history.isNotEmpty && _weakestSection != null)
+          _buildFocusCard(_weakestSection!, isDark),
+
         if (_history.isEmpty) ...[
           Container(
             padding: const EdgeInsets.symmetric(
@@ -2689,6 +2734,92 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
         const SizedBox(height: AppSpacing.xl),
       ],
+    );
+  }
+
+  /// The focus card of the history tab: the weakest section of the
+  /// candidate's own mistakes, with the two topics that repeat the most
+  /// and one clear next step.  Only facts the user really produced.
+  Widget _buildFocusCard(Map<String, dynamic> weak, bool isDark) {
+    final section = weak['section'] as String;
+    final wrongs = weak['wrongs'] as int;
+    final topics = weak['topics'] as List<String>;
+    String topicLine;
+    if (topics.isEmpty) {
+      topicLine = AppStrings.focusCardPlain(section);
+    } else {
+      topicLine = AppStrings.focusCardWithTopics(
+        section,
+        topics.join(AppStrings.focusTopicSeparator),
+      );
+    }
+    return Container(
+      margin: const EdgeInsets.only(bottom: AppSpacing.md),
+      padding: const EdgeInsets.all(AppSpacing.base),
+      decoration: BoxDecoration(
+        color: AppColors.sealGold.withValues(alpha: isDark ? 0.14 : 0.10),
+        borderRadius: AppRadius.roundedBase,
+        border: Border.all(color: AppColors.sealGold.withValues(alpha: 0.55)),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              const Icon(Icons.track_changes_rounded,
+                  color: AppColors.sealGold, size: 20),
+              const SizedBox(width: AppSpacing.sm),
+              Expanded(
+                child: Text(
+                  AppStrings.focusCardHeading,
+                  style: AppTypography.titleSmall(
+                    color: isDark
+                        ? AppColors.darkTextPrimary
+                        : AppColors.lightTextPrimary,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: AppSpacing.xs),
+          Text(
+            topicLine,
+            style: AppTypography.labelMedium(
+              color: isDark
+                  ? AppColors.darkTextSecondary
+                  : AppColors.lightTextSecondary,
+            ).copyWith(height: 1.4),
+          ),
+          const SizedBox(height: AppSpacing.xs),
+          Text(
+            AppStrings.focusMotivation(wrongs),
+            style: AppTypography.labelSmall(
+              color: isDark ? AppColors.sealGoldLight : AppColors.accent,
+            ),
+          ),
+          const SizedBox(height: AppSpacing.sm),
+          SizedBox(
+            width: double.infinity,
+            child: ElevatedButton.icon(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppColors.sealGold,
+                foregroundColor: AppColors.primary,
+                padding: const EdgeInsets.symmetric(vertical: AppSpacing.sm),
+                minimumSize: const Size(0, 42),
+                shape: const RoundedRectangleBorder(
+                  borderRadius: AppRadius.roundedSm,
+                ),
+              ),
+              icon: const Icon(Icons.fitness_center_rounded, size: 18),
+              label: Text(
+                AppStrings.focusPractiseCta,
+                style: AppTypography.labelMedium(),
+              ),
+              onPressed: _goToBookletsTab,
+            ),
+          ),
+        ],
+      ),
     );
   }
 

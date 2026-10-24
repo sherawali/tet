@@ -564,30 +564,6 @@ class _PremiumPaywallModalState extends State<PremiumPaywallModal> {
                     const SizedBox(height: AppSpacing.sm),
                   ],
 
-                  // The promise of the pass
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Icon(
-                        Icons.verified_user_rounded,
-                        size: 16,
-                        color: AppColors.correctGreen,
-                      ),
-                      const SizedBox(width: AppSpacing.xs),
-                      Flexible(
-                        child: Text(
-                          AppStrings.proPackGuarantee,
-                          textAlign: TextAlign.center,
-                          style: AppTypography.labelSmall(
-                            color: isDark
-                                ? AppColors.darkTextSecondary
-                                : AppColors.lightTextMuted,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-
                   // The prices are the usual ones while the store is away.
                   if (_premiumService.storeStatus.value !=
                       PremiumStoreStatus.available) ...[

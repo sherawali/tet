@@ -747,9 +747,6 @@ class AppStrings {
   // differs.  One short scope line and one shared bullet list describe
   // both cards, so no number is ever written twice on one card.
   static String get proPackMostPopular => _isHi ? 'सबसे लोकप्रिय' : 'Most Popular';
-  static String get proPackGuarantee => _isHi
-      ? '7 दिन में बिना सवाल कुछ भी नहीं पसंद आया तो पूरा पैसा वापस'
-      : 'Full refund within 7 days, no questions asked';
   static String get proPackFullTitle => _isHi
       ? 'सब खुला — पूरा साल'
       : 'All-Open — Full Year';
@@ -784,6 +781,25 @@ class AppStrings {
       ? 'नवीनीकरण ₹$price पर'
       : 'Renews at ₹$price';
   static String get proPackUnlockedBadge => _isHi ? 'प्रो पास सक्रिय' : 'Pro Pass Active';
+
+  // ---- the smart focus card of the history tab ----------------------------
+  /// The candidate's own repeated mistakes decide what the card says -
+  /// every number on it comes from the mistake_records table.
+  static String get focusCardHeading =>
+      _isHi ? 'आज का फ़ोकस' : "Today's focus";
+  static String focusCardPlain(String section) => _isHi
+      ? '$section में सबसे ज़्यादा गलतियाँ रही हैं।'
+      : '$section is where your mistakes repeat the most.';
+  /// The separator between two weak topics of the focus card.
+  static String get focusTopicSeparator => _isHi ? ' · ' : ' · ';
+  static String focusCardWithTopics(String section, String topics) => _isHi
+      ? '$section में सबसे ज़्यादा गलतियाँ — $topics'
+      : 'Weak spot: $section — $topics';
+  static String focusMotivation(int wrongs) => _isHi
+      ? '$wrongs बार रटने वाली गलतियाँ ही आपके मार्क्स का रास्ता रखती हैं — आज इसी हिस्से के 10 सवाल लगाओ, अगला टेस्ट ऊपर जाएगा।'
+      : '$wrongs repeated wrongs are exactly where marks are waiting — take 10 questions of this section today and the next test goes up.';
+  static String get focusPractiseCta =>
+      _isHi ? 'इसी हिस्से का अभ्यास करो' : 'Practise this section';
 
   /// What both combo packs open, from the live bank numbers.  The term
   /// ('पूरा साल' / '6 महीने') lives on the title and the badge of the

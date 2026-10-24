@@ -45,6 +45,25 @@ void main() {
     expect(lockedState, '0');
   });
 
+  test('a shorter re-delivered pack never relabels the longer pass', () async {
+    final service = PremiumService.instance;
+
+    // The buyer owns the yearly pack.
+    await service.unlockAllAccessLocally(
+      productId: PassPlan.fullAccessProductId,
+    );
+    // The store later hands over another owned pack of the buyer - the
+    // six-month one.  The label must stay the yearly pack, because its
+    // expiry is the one still running.
+    await service.unlockAllAccessLocally(
+      productId: PassPlan.halfYearProductId,
+    );
+    expect(service.activeProductId, PassPlan.fullAccessProductId);
+    expect(service.activePassDaysLeft, inInclusiveRange(364, 365));
+
+    await service.lockAllAccessLocally();
+  });
+
   test('a single paper pass opens only its direction', () async {
     final service = PremiumService.instance;
 
@@ -62,8 +81,14 @@ void main() {
     expect(service.isPaperFree(formId: 'ctet-p1-mock-05', index: 5), isFalse);
     expect(service.isPaperFree(formId: 'utet-p1-mock-09', index: 5), isFalse);
     expect(service.isPaperFree(formId: 'utet-p2-set-d', index: 5), isFalse);
-    // And the flagship free papers remain free as always.
-    expect(service.isPaperFree(formId: 'utet-p2-set-b', index: 5), isTrue);
+    // A named paper is never free because of its position in a list - the
+    // free position belongs to the subject drills (set-1) alone.
+    expect(service.isPaperFree(formId: 'utet-p1-set-b', index: 0), isFalse);
+    // Free tier is exactly one flagship per exam - the Paper-2 flagship is
+    // no longer free, the Paper-1 one always is.
+    expect(service.isPaperFree(formId: 'utet-p2-set-b', index: 5), isFalse);
+    expect(service.isPaperFree(formId: 'utet-p1-fullmock', index: 5), isTrue);
+    expect(service.isPaperFree(formId: 'ctet-p1-2026-pyq', index: 5), isTrue);
 
     // The direction also opens nothing for other papers of other exams.
     expect(
@@ -72,8 +97,12 @@ void main() {
       reason: 'subject drills are exam-wide, single paper pass never gets them',
     );
 
-    // An upgrade to the exam pass swallows the scope.
-    await service.unlockAllAccessLocally(productId: PassPlan.ctetProductId);
+    // A real upgrade is a fresh payment, so it replaces the product (and
+    // restarts the term) the way a store-purchased upgrade does.
+    await service.unlockAllAccessLocally(
+      productId: PassPlan.ctetProductId,
+      forceReplace: true,
+    );
     expect(service.isPaperFree(formId: 'ctet-p1-mock-05', index: 5), isTrue);
     expect(service.isPaperFree(formId: 'utet-p1-mock-09', index: 5), isFalse);
 
