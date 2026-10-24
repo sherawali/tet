@@ -1253,3 +1253,4 @@
 - **mock_engine line-452 dead-code guard:** generateModelPaper (caller-less hi) 'exam' filter teke - CTET candidate UTET tak form me na aaye UTET pehle (042f807).
 - Tests: ANLYZE clean + SAB 20 test files pass. Device re-spot (UTET P2/CTET P2 booklets) ruk gayi - DEVICE UNPLUGGED ho gaya; h4/h11/h12 pehle ke proofs exam-pairing live confirm down (UTET P1, CTET P1) - P2 re-check user AAB build par kar chuka.
 - Pending (user): Play Console par SIRF 2 products (tet_all_access_1y 2500/12mo prepaid + tet_all_access_6m 1499/6mo prepaid); GitHub PAT revoke; release AAB - GREEN SIGNAL.
+- 2026-10-24: user ne PAT revoke ko 'rhne de' bola - accepted risk, dobara nahi nage karna; token ka bina bhi release OK (report feature token ke bina bhi chalta hai).
