@@ -1,12 +1,9 @@
 {
   "_comment": "Which papers are free and which are paid. The app reads this from the CDN manifest, so a paper can be switched between free and paid without releasing a new app. Run: python bin/build_github_cdn_vault.py",
-  "free_mock_count": 1,
+  "free_mock_count": 2,
   "free_form_ids": [
     "utet-p1-fullmock",
-    "utet-p2-set-b",
-    "ctet-p1-2026-pyq",
-    "ctet-p2-ms-mock-01",
-    "ctet-p2-sst-mock-01"
+    "ctet-p1-2026-pyq"
   ],
   "paid_form_ids": [],
   "all_mocks_free": false

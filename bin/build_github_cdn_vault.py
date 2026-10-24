@@ -10,13 +10,10 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 DEFAULT_REMOTE_ACCESS = {
-    'free_mock_count': 1,
+    'free_mock_count': 2,
     'free_form_ids': [
         'utet-p1-fullmock',
-        'utet-p2-set-b',
         'ctet-p1-2026-pyq',
-        'ctet-p2-ms-mock-01',
-        'ctet-p2-sst-mock-01',
     ],
     'paid_form_ids': [],
     'all_mocks_free': False,
